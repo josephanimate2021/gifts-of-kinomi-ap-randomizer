@@ -144,6 +144,59 @@ seasonsShrineScriptHelper_stairsToWinter:
 	jp parseGivenObjectData
 
 
+spiritsGraveScript_respawnPots:
+; stop if Pumpkin Head is dead
+	ld a,(wNumEnemies)
+	or a
+	ret z
+
+	ld d,$d1		;Pumpkin Head
+	ld e,Enemy.yh
+	call getShortPositionFromDE
+	ld h,$d5		;Script interaction
+	ld l,Interaction.var3a	;Pumpkin Head's short position
+	ld (hl),a
+	ld de,@potPlacements
+
+@placePot:
+	ld a,(de)
+	ld h,$d5		;Script interaction
+	ld l,Interaction.var3b
+	ldd (hl),a	;Interaction.var3a
+	or a
+	ret z
+
+	push de
+	ld b,(hl)
+	cp b
+	jr z,@next
+
+	ld l,Interaction.yh
+	call setShortPosition;_paramC
+
+	ld d,h		;Script interaction
+	ld e,Interaction.yh
+	call objectGetTileAtPosition
+	cp TILEINDEX_MOVING_POT
+	jr z,@next
+
+	call objectCreatePuff
+
+	ld h,d		;Script interaction
+	ld l,Interaction.var3b
+	ld c,(hl)
+	ld a,TILEINDEX_MOVING_POT
+	call setTile
+@next:
+	pop de
+	inc e
+	jr @placePot
+
+@potPlacements:
+	.db $36 $37 $38 $53
+	.db $76 $77 $78 $5b
+	.db $00
+
 ; ==============================================================================
 ; INTERACID_BIPIN
 ; ==============================================================================

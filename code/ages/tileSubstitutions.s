@@ -583,18 +583,25 @@ replaceSwitchTiles:
 ; Room, Switch bit, new tile index, position of tile to replace
 
 @group4SwitchData:
-	.db $2f $02 $0b $79
-	.db $2f $02 $5a $6c
-	.db $3b $20 $af $79
-	.db $4c $01 $0b $38
-	.db $4e $02 $0b $68
-	.db $53 $04 $0b $6a
-	.db $72 $01 $af $8d
-	.db $89 $04 $0b $62
-	.db $89 $04 $5d $67
-	.db $8f $08 $0b $81
-	.db $8f $08 $5e $52
-	.db $c7 $01 $0b $68
+	.db <ROOM_AGES_415 $01 $5b $7a
+	.db <ROOM_AGES_415 $01 $0b $5b
+	.db <ROOM_AGES_416 $04 $0b $27
+	.db <ROOM_AGES_416 $04 $5d $3a
+	.db <ROOM_AGES_412 $02 $5a $88
+
+
+;	.db $2f $02 $0b $79
+;	.db $2f $02 $5a $6c
+;	.db $3b $20 $af $79
+;	.db $4c $01 $0b $38
+;	.db $4e $02 $0b $68
+;	.db $53 $04 $0b $6a
+;	.db $72 $01 $af $8d
+;	.db $89 $04 $0b $62
+;	.db $89 $04 $5d $67
+;	.db $8f $08 $0b $81
+;	.db $8f $08 $5e $52
+;	.db $c7 $01 $0b $68
 	.db $00
 
 @group5SwitchData:

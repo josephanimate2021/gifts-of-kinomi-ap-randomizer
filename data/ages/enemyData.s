@@ -126,22 +126,22 @@ enemyData:
 	/* 0x6d */ m_EnemyData $00 $00 $00 $00
 	/* 0x6e */ m_EnemyData $00 $00 $00 $00
 	/* 0x6f */ m_EnemyData $00 $00 $00 $00
-	/* 0x70 */ m_EnemyData $ad $c4 $1c $50
-	/* 0x71 */ m_EnemyData $af $c4 $1d $20
-	/* 0x72 */ m_EnemyData $b1 $c4 $1e $10
-	/* 0x73 */ m_EnemyData $b4 $c4 enemy73SubidData
-	/* 0x74 */ m_EnemyData $b7 $c5 $20 $30
-	/* 0x75 */ m_EnemyData $3c $46 $21 $20
-	/* 0x76 */ m_EnemyData $b8 $e4 $22 $10
-	/* 0x77 */ m_EnemyData $b9 $c8 $45 $10		;$23 $10
-	/* 0x78 */ m_EnemyData $bc $c9 $24 $30
-	/* 0x79 */ m_EnemyData $bf $ca $25 $00
-	/* 0x7a */ m_EnemyData $c2 $4b $26 $30
-	/* 0x7b */ m_EnemyData $c4 $ed $27 $10
-	/* 0x7c */ m_EnemyData $c5 $cd $28 $30
-	/* 0x7d */ m_EnemyData $c9 $8d $46 $60		;Gleeok $c8 $ce $29 $20
-	/* 0x7e */ m_EnemyData $cb $4f $2a $10
-	/* 0x7f */ m_EnemyData $a9 $d0 $36 $00
+	/* 0x70 */ m_EnemyData $ad     ENEMYCOLLISION_STANDARD_MINIBOSS $1c $50
+	/* 0x71 */ m_EnemyData $af $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1d $20
+	/* 0x72 */ m_EnemyData $b1 $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1e $10
+	/* 0x73 */ m_EnemyData $b4 $80|ENEMYCOLLISION_STANDARD_MINIBOSS enemy73SubidData
+	/* 0x74 */ m_EnemyData $b7 $80|ENEMYCOLLISION_SMASHER $20 $30
+	/* 0x75 */ m_EnemyData $3c     ENEMYCOLLISION_VIRE $21 $20
+	/* 0x76 */ m_EnemyData $b8 $80|ENEMYCOLLISION_ANGLER_FISH $22 $10
+	/* 0x77 */ m_EnemyData $b9 $80|ENEMYCOLLISION_BLUE_STALFOS $45 $10		;$23 $10
+	/* 0x78 */ m_EnemyData $bc $80|ENEMYCOLLISION_PUMPKIN_HEAD_BODY $24 $30
+	/* 0x79 */ m_EnemyData $bf $80|ENEMYCOLLISION_HEAD_THWOMP $25 $00
+	/* 0x7a */ m_EnemyData $c2     ENEMYCOLLISION_SHADOW_HAG $26 $30
+	/* 0x7b */ m_EnemyData $c4 $80|ENEMYCOLLISION_EYESOAR $27 $10
+	/* 0x7c */ m_EnemyData $c5 $80|ENEMYCOLLISION_SMOG $28 $30
+	/* 0x7d */ m_EnemyData $c9 $80|ENEMYCOLLISION_GLEEOK $46 $60		;Gleeok $c8 $ce $29 $20
+	/* 0x7e */ m_EnemyData $cb     ENEMYCOLLISION_PLASMARINE $2a $10
+	/* 0x7f */ m_EnemyData $a9 $80|ENEMYCOLLISION_KING_MOBLIN $36 $00
 
 ; Each 2 bytes are for a particular subID.
 ; 0: Bits 0-6 are an index for the extraEnemyData table below.

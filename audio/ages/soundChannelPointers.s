@@ -580,15 +580,15 @@ sound35:
 	.dw sound35Channel6
 	.db $ff
 
-sound0a:
+kakarikoVillage:
 	.db $00
-	.dw sound0aChannel0
+	.dw kakarikoVillageChannel0
 	.db $01
-	.dw sound0aChannel1
+	.dw kakarikoVillageChannel1
 	.db $04
-	.dw sound0aChannel4
+	.dw kakarikoVillageChannel4
 	.db $06
-	.dw sound0aChannel6
+	.dw kakarikoVillageChannel6
 	.db $ff
 
 sound0b:
@@ -613,15 +613,15 @@ sound12:
 	.dw sound12Channel6
 	.db $ff
 
-sound13:
+lightWorldDungeon:
 	.db $00
-	.dw sound13Channel0
+	.dw lightWorldDungeonChannel0
 	.db $01
-	.dw sound13Channel1
+	.dw lightWorldDungeonChannel1
 	.db $04
-	.dw sound13Channel4
+	.dw lightWorldDungeonChannel4
 	.db $06
-	.dw sound13Channel6
+	.dw lightWorldDungeonChannel6
 	.db $ff
 
 franticFactory:

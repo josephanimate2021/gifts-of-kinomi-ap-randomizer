@@ -62,12 +62,12 @@ _movingPlatform_scriptTable:
 
 @@platform1:
 	plat_wait  $08
-	plat_left  $40
+	plat_left  $60
 --
 	plat_wait  $08
-	plat_right $80
+	plat_right $c0
 	plat_wait  $08
-	plat_left  $80
+	plat_left  $c0
 	plat_jump --
 
 

@@ -1,9 +1,9 @@
 ; These are a bunch of scripts used by INTERACID_DUNGEON_SCRIPT.
 
 dungeonScript_spawnChestOnTriggerBit0:
-;	stopifitemflagset
-;	checkflagset $00, wActiveTriggers
-;	scriptjump _spawnChestAfterPuff
+	stopifitemflagset
+	checkflagset $00, wActiveTriggers
+	scriptjump _spawnChestAfterPuff
 
 
 makuPathScript_spawnChestWhenActiveTriggersEq01:
@@ -75,6 +75,18 @@ makuPathScript_spawnUpStairsWhen2TorchesLit:
 
 ; Spawn the moving platform in the room with 2 buttons when the right one is pressed.
 spiritsGraveScript_spawnMovingPlatform:
+	checkflagset 1, wActiveTriggers
+	setcoords $48, $78
+	asm15 objectCreatePuff
+	setcoords $58, $78
+	asm15 objectCreatePuff
+	setcoords $68, $78
+	asm15 objectCreatePuff
+	wait 30
+	spawninteraction INTERACID_MOVING_PLATFORM, $0a, $58, $78
+	playsound SND_SOLVEPUZZLE	
+	scriptend
+
 ;	checkflagset $01, wActiveTriggers
 ;	setcoords $48, $78
 ;	asm15 objectCreatePuff
@@ -86,10 +98,19 @@ spiritsGraveScript_spawnMovingPlatform:
 ;	scriptend
 
 spiritsGraveScript_spawnBracelet:
-;	stopifitemflagset
-;	spawnitem TREASURE_BRACELET, $00
-;	scriptend
+	stopifitemflagset
+	spawnitem TREASURE_BRACELET, $00
+	scriptend
 
+spiritsGraveScript_respawnPots:
+	checkflagset 7, wActiveTriggers
+	disableinput
+	wait 30
+	asm15 scriptHelp.spiritsGraveScript_respawnPots
+	enableinput
+	wait 255
+	scriptjump spiritsGraveScript_respawnPots
+	scriptend
 
 ; Create the miniboss portal when it's killed.
 dungeonScript_minibossDeath:

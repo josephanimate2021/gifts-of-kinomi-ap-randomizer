@@ -203,8 +203,9 @@ bank3bChannelFallback:
 .include "audio/mus/ages/nayru.s"
 ;.include "audio/mus/ages/crescent.s"
 .include "audio/mus/ages/gerudoValley.s"
-.include "audio/mus/ages/lynnaCity.s"
-.include "audio/mus/ages/lynnaVillage.s"
+;.include "audio/mus/ages/lynnaCity.s"
+.include "audio/mus/ages/kakarikoVillage.s"
+.include "audio/mus/ages/lynnaVillage.s"		;gutted
 .include "audio/mus/ages/makuPath.s"
 .include "audio/mus/ages/symmetryPresent.s"		;gutted
 .include "audio/sfx/common/splash.s"
@@ -215,6 +216,7 @@ bank3bChannelFallback:
 .include "audio/sfx/common/enemyJump.s"
 .include "audio/sfx/common/galeSeed.s"
 .include "audio/mus/ages/tokayHouse.s"
+.include "audio/mus/ages/lightWorldDungeon.s"
 
 soundcaStart:
 soundcaChannel2:

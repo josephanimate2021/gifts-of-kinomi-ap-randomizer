@@ -24,6 +24,9 @@ staticDungeonObjects:
 	.dw dungeoneStaticObjects
 	.dw dungeonfStaticObjects
 
+dungeon1StaticObjects:
+;	.db $03, <ROOM_AGES_415, INTERACID_MINECART, $00, $28, $58
+	.db $ff
 
 dungeon2StaticObjects:
 	.db $03, $33, INTERACID_MINECART, $00, $38, $c8
@@ -48,7 +51,7 @@ dungeonbStaticObjects:
 	.db $ff 
 
 dungeon0StaticObjects:
-dungeon1StaticObjects:
+
 dungeon3StaticObjects:
 dungeon5StaticObjects:
 dungeon6StaticObjects:

@@ -5914,6 +5914,7 @@ interactionCode90:
 	.dw _miscPuzzles_subid22
 	.dw _miscPuzzles_subid23
 	.dw _miscPuzzles_subid24
+	.dw _miscPuzzles_subid25
 
 
 ; Boss key puzzle in D6
@@ -7251,6 +7252,22 @@ _miscPuzzles_subid22:
 	.db TILEINDEX_YELLOW_PUSHABLE_BLOCK $54 $ff
 	.db TILEINDEX_BLUE_PUSHABLE_BLOCK $87
 	.db $00
+
+_miscPuzzles_subid25:
+	call interactionDeleteAndRetIfEnabled02
+	call _miscPuzzles_deleteSelfAndRetIfItemFlagSet
+
+	ld hl,@blockPositions
+	call _miscPuzzles_verifyTilesAtPositions
+	ret nz
+	jpab agesInteractionsBank08.spawnChestAndDeleteSelf
+
+@blockPositions:
+	.db TILEINDEX_RED_TOGGLE_BLOCK $2c $37 $ff
+	.db TILEINDEX_YELLOW_TOGGLE_BLOCK $5b $77 $82 $ff
+	.db TILEINDEX_BLUE_TOGGLE_BLOCK $22 $53 $8c
+	.db $00	
+
 
 ;mushroom room
 _miscPuzzles_subid23:

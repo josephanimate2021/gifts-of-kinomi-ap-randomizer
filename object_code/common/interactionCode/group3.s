@@ -201,6 +201,10 @@ interactionCode78:
 	
 @group4TileReplacement:
 	.db $5d $59
+	.db $5e $5b
+	.db $5b $5a
+	.db $5c $5d
+
 
 @group5TileReplacement:
 	.db $b0 $52

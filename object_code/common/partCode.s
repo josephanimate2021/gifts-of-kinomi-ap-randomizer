@@ -948,9 +948,16 @@ partCode06:
 	cp $02
 	jr z,@normalStatus
 
-	ld l,Part.counter2
+	ld l,Part.var03
+	ld a,(hl)
+	or a
+	ld l,Part.counter1
+	jr nz,+
+	inc l		;Part.counter2
 	ldd a,(hl)
-	ld (hl),a ; [counter1] = [counter2]
++
+	ldi (hl),a ; [counter1] = [counter2]
+	ld (hl),a
 	ld l,Part.state
 	ld (hl),$02
 
@@ -1272,7 +1279,11 @@ partCode08:
 	inc l
 	ld e,l
 	ld a,(de)
-	ld (hl),a ; [child.subid] = [this.subid]
+	ldi (hl),a ; [child.subid] = [this.subid]
+
+	inc e
+	ld a,(de)
+	ld (hl),a ; [child.var03] = [this.var03]
 
 	; Set length of time the torch can remain lit
 	ld e,Part.yh

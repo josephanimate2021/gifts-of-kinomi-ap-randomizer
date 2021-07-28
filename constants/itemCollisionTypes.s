@@ -20,6 +20,7 @@
 	ITEMCOLLISION_L2_SWORD			db ; $05: Level 2 sword
 	ITEMCOLLISION_L3_SWORD			db ; $06: Level 3 sword
 	ITEMCOLLISION_BIGGORON_SWORD		db ; $07: Biggoron's sword
+	
 	ITEMCOLLISION_SWORDSPIN			db ; $08: Sword spin (any level?)
 	ITEMCOLLISION_SWORD_HELD		db ; $09: Sword being held out (any level?)
 	ITEMCOLLISION_FIST_PUNCH		db ; $0a: Punch (fist ring, unused item)

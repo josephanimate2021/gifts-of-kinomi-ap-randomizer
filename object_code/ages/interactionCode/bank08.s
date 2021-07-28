@@ -638,6 +638,7 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.spiritsGraveScript_stairsToBraceletRoom
 	.dw mainScripts.spiritsGraveScript_spawnMovingPlatform
+	.dw mainScripts.spiritsGraveScript_respawnPots
 @dungeonb:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath

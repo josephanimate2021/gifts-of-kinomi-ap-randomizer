@@ -9,7 +9,7 @@ _soundPointers:
 	m_soundPointer hyruleCastle
 	m_soundPointer sound08
 	m_soundPointer sound09
-	m_soundPointer sound0a
+	m_soundPointer kakarikoVillage
 	m_soundPointer sound0b
 	m_soundPointer sound0c
 	m_soundPointer sound0d
@@ -18,7 +18,7 @@ _soundPointers:
 	m_soundPointer sound10
 	m_soundPointer fileSelect
 	m_soundPointer sound12
-	m_soundPointer sound13
+	m_soundPointer lightWorldDungeon
 	m_soundPointer franticFactory
 	m_soundPointer floroCaverns
 	m_soundPointer sound16

@@ -151,11 +151,19 @@ _giantGhini_setChildRespawnTimer:
 
 ; "Normal" state during battle
 _giantGhini_state9:
+	ld a,(wNumTorchesLit)
+	cp $04
+	ld h,d
+	ld l,Enemy.collisionType
+	res 7,(hl)
+	jr nz,+
+	set 7,(hl)
+
 	ld e,Enemy.var32
 	ld a,(de)
 	or a
 	jr nz,@beginCharge
-
++
 	call enemyAnimate
 	call objectApplySpeed
 
