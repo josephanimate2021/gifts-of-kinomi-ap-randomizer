@@ -2861,6 +2861,7 @@ group4Map47ObjectData:
 
 group4Map48ObjectData:
 	obj_Pointer group4Map48EnemyObjectData
+	obj_BeforeEvent group4Map48BeforeEventObjectData
 	obj_End
 
 group4Map49ObjectData:

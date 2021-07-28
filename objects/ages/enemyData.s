@@ -2741,3 +2741,7 @@ group4Map14EnemyObjectData:
 	obj_RandomEnemy $40 $34 $00
 	obj_ItemDrop 0 $05 $4b
 	obj_EndPointer
+
+group4Map48BeforeEventObjectData:
+	obj_SpecificEnemyA 0 $75 $00 $58 $78
+	obj_EndPointer
