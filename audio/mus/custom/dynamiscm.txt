@@ -1,4 +1,0 @@
-Standing: A, R, [U, T, U, S] ... A, D, I, 
-Walking (Lon Lon): A, C, D, J, H, B, C, E, F, E
-Walking (Hylia): A, D, G, J, H, E, D, D, E, K
-Walking lake: A, E, D, G, E, C, ...
