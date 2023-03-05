@@ -310,3 +310,90 @@
 .macro cmdff
 	.db $ff
 .endm
+
+.macro tempo
+.redefine BEAT 1
+.redefine Q (150*24 - (150*24) # \1) / \1
+
+.if ((150*24) # \1) >= 0.5*\1
+	.redefine Q Q+1
+.endif
+
+.redefine T1 (Q - (Q # 8))/8
+.redefine T2 (Q * 2 - ((Q * 2) # 8))/8 - T1
+.redefine T3 (Q * 3 - ((Q * 3) # 8))/8 - (T1+T2)
+.redefine T4 (Q * 4 - ((Q * 4) # 8))/8 - (T1+T2+T3)
+.redefine T5 (Q * 5 - ((Q * 5) # 8))/8 - (T1+T2+T3+T4)
+.redefine T6 (Q * 6 - ((Q * 6) # 8))/8 - (T1+T2+T3+T4+T5)
+.redefine T7 (Q * 7 - ((Q * 7) # 8))/8 - (T1+T2+T3+T4+T5+T6)
+.redefine T8 (Q * 8 - ((Q * 8) # 8))/8 - (T1+T2+T3+T4+T5+T6+T7)
+
+.redefine S1 T1+T2
+.redefine S2 T3+T4
+.redefine S3 T5+T6
+.redefine S4 T7+T8
+.redefine E1 S1+S2
+.redefine E2 S3+S4
+.redefine HF Q*2
+.redefine W Q*4
+.redefine BEAT 1
+
+.redefine W1 (Q - (Q # 12))/12
+.redefine W2 (Q * 2 - ((Q * 2) # 12))/12 - W1
+.redefine W3 (Q * 3 - ((Q * 3) # 12))/12 - (W1+W2)
+.redefine W4 (Q * 4 - ((Q * 4) # 12))/12 - (W1+W2+W3)
+.redefine W5 (Q * 5 - ((Q * 5) # 12))/12 - (W1+W2+W3+W4)
+.redefine W6 (Q * 6 - ((Q * 6) # 12))/12 - (W1+W2+W3+W4+W5)
+.redefine W7 (Q * 7 - ((Q * 7) # 12))/12 - (W1+W2+W3+W4+W5+W6)
+.redefine W8 (Q * 8 - ((Q * 8) # 12))/12 - (W1+W2+W3+W4+W5+W6+W7)
+.redefine W9 (Q * 9 - ((Q * 9) # 12))/12 - (W1+W2+W3+W4+W5+W6+W7+W8)
+.redefine W10 (Q * 10 - ((Q * 10) # 12))/12 - (W1+W2+W3+W4+W5+W6+W7+W8+W9)
+.redefine W11 (Q * 11 - ((Q * 11) # 12))/12 - (W1+W2+W3+W4+W5+W6+W7+W8+W9+W10)
+.redefine W12 (Q * 12 - ((Q * 12) # 12))/12 - (W1+W2+W3+W4+W5+W6+W7+W8+W9+W10+W11)
+
+.redefine Y1 W1+W2
+.redefine Y2 W3+W4
+.redefine Y3 W5+W6
+.redefine Y4 W7+W8
+.redefine Y5 W9+W10
+.redefine Y6 W11+W12
+.redefine R1 Y1+Y2
+.redefine R2 Y3+Y4
+.redefine R3 Y5+Y6
+.endm
+
+.redefine X1 (Q - (Q # \1))/\1
+.redefine X2 (Q * 2 - ((Q * 2) # \1))/\1 - X1
+.redefine X3 (Q * 3 - ((Q * 3) # \1))/\1 - (X1+X2)
+.redefine X4 (Q * 4 - ((Q * 4) # \1))/\1 - (X1+X2+X3)
+.redefine X5 (Q * 5 - ((Q * 5) # \1))/\1 - (X1+X2+X3+X4)
+.redefine X6 (Q * 6 - ((Q * 6) # \1))/\1 - (X1+X2+X3+X4+X5)
+.redefine X7 (Q * 7 - ((Q * 7) # \1))/\1 - (X1+X2+X3+X4+X5+X6)
+.redefine X8 (Q * 8 - ((Q * 8) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7)
+.redefine X9 (Q * 9 - ((Q * 9) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8)
+.redefine X10 (Q * 10 - ((Q * 10) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9)
+.redefine X11 (Q * 11 - ((Q * 11) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9+X10)
+.redefine X12 (Q * 12 - ((Q * 12) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9+X10+X11)
+.endm
+
+.macro beginLoop
+	.db $fc
+	.db \1
+.endm
+
+.macro breakOrLoop
+	.db $f7
+.endm
+
+.macro endSec
+	.db $fa
+.endm
+
+.macro transpose
+	.db $fb
+	.db \1
+.endm
+
+.macro shift
+	cmdfd \1
+.endm

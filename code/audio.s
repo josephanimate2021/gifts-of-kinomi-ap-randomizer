@@ -677,12 +677,12 @@ _doNextChannelCommand:
 	.dw _channelCmdff
 	.dw _channelCmdfe
 	.dw _channelCmdfd
-	.dw _channelCmdff
-	.dw _channelCmdff
-	.dw _channelCmdff
+	.dw _channelCmdfc ; beginLoop
+	.dw _channelCmdfb ; transpose
+	.dw _channelCmdfa ; endSec
 	.dw _channelCmdf9
 	.dw _channelCmdf8
-	.dw _channelCmdff
+	.dw _channelCmdf7 ; breakOrLoop
 	.dw _channelCmdf6
 	.dw _channelCmdff
 	.dw _channelCmdff
@@ -700,6 +700,113 @@ _channelCmdf2:
 ;;
 _channelCmdf3:
 	jp _doNextChannelCommand
+
+;;
+; beginLoop
+channelCmdfc:
+	ld a,(wSoundChannel)
+	scf
+	ccf
+	cp $07
+	jp nc,channels6And7
+; Set loop counter
+	call getNextChannelByte
+	ld hl,wChannelLoopCounters
+	call loadChannelVariable
+	ld (hl),a
+
+; Set loop pointer
+	ld hl,wChannelLoopPointers
+	call loadAddressPointerIntoHL
+	jp doNextChannelCommand
+
+loadAddressPointerIntoHL:
+	;ret ; temp
+	ld a,(wSoundChannel)
+	sla a
+	add <hSoundChannelAddresses
+	ld c,a
+	ld a,($ff00+c)
+	inc c
+
+	ld e,a
+	ld a,($ff00+c)
+	ld d,a
+
+	ld a,(wSoundChannel)
+	sla a
+	ld c,a
+	ld b,$00
+	add hl,bc
+
+	ld a,e
+	ldi (hl),a
+	ld (hl),d
+	ret
+
+loadHLIntoAddressPointer:
+	call loadChannelVariable
+	add hl,de
+loadHLIntoAddressPointerSkipVar:
+	;ret ; temp
+	ldi a,(hl)
+	ld e,a
+	ld d,(hl)
+
+	ld a,(wSoundChannel)
+	sla a
+	add <hSoundChannelAddresses
+	ld c,a
+
+	ld a,e
+	ld ($ff00+c),a
+	inc c
+	ld a,d
+	ld ($ff00+c),a
+	ret
+
+;;
+; breakOrLoop
+channelCmdf7:
+	ld a,(wSoundChannel)
+	scf
+	ccf
+	cp $07
+	jr nc,channels6And7
+
+	ld hl,wChannelLoopCounters
+	call loadChannelVariable
+	dec (hl)
+	ld a,(hl)
+	and %01111111
+	ld hl,wChannelLoopPointers
+	call nz,loadHLIntoAddressPointer
+	jp doNextChannelCommand
+
+;;
+; endSec
+channelCmdfa:
+	ld hl,wChannelAddressPointers
+	call loadHLIntoAddressPointer
+	jp doNextChannelCommand
+
+;; transpose
+channelCmdfb:
+	call getNextChannelByte
+	ld hl,wChannelTranspose
+	call loadChannelVariable
+	ld (hl),a
+	jp doNextChannelCommand
+
+; [hl] : Channel Variable to set hl to
+loadChannelVariable:
+	push af
+	ld a,(wSoundChannel)
+	ld e,a
+	ld d,$00
+	add hl,de
+	pop af
+	ret
 
 ;;
 ; Vibrato

@@ -121,6 +121,12 @@ wChannelWaitCounters: ; $c075
 wChannelVolumes: ; $c07d
 	dsb 8
 
+; ZTK added variables
+wChannelAddressPointers: ;$cddb/$cc3b
+	dsw 8
+wChannelTranspose: ; $c580
+	dsb 5
+
 ; $c085-$c09f unused?
 
 .ENDS
