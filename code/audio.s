@@ -1,6 +1,6 @@
 .include "include/rominfo.s"
 .include "include/musicMacros.s"
-
+.include "include/macros.s"
 .include "include/constants.s"
 
 ; HACK-BASE: Bank of sound engine (and of data in "audio/{game}/soundChannelData.s") changed to
@@ -8,6 +8,7 @@
 .BANK $72 SLOT 1
 .ORG 0
 
+m_section_superfree AudioCode NAMESPACE audio
 ;;
 b39_initSound:
 	jp _initSound
@@ -38,7 +39,7 @@ b39_updateMusicVolume:
 
 
 ; This is pointless?
-.dw sound00
+;.dw sound00
 
 
 ;;
@@ -662,6 +663,30 @@ _doNextChannelCommand:
 	jr c,+
 	jp _cmdVolume
 +
+
+; ZTK-added code
+	cp $60
+	jr z,@afterTranspose
+	jr nc,@afterTranspose
+
+	ld b,a
+	ld a,(wSoundChannel)
+	cp $05
+	jr nc,@skipTranspose
+
+	ld a,b
+	ld hl,wChannelTranspose
+	call loadChannelVariable
+	ld b,(hl)
+	add b
+	cp $60
+	jr c,@afterTranspose
+	sub $60
+	jr @afterTranspose
+
+@skipTranspose:
+	ld a,b
+@afterTranspose:
 	ld (wSoundCmd),a
 	jp _standardSoundCmd
 
@@ -703,14 +728,14 @@ _channelCmdf3:
 
 ;;
 ; beginLoop
-channelCmdfc:
+_channelCmdfc:
 	ld a,(wSoundChannel)
 	scf
 	ccf
 	cp $07
 	jp nc,channels6And7
 ; Set loop counter
-	call getNextChannelByte
+	call _getNextChannelByte
 	ld hl,wChannelLoopCounters
 	call loadChannelVariable
 	ld (hl),a
@@ -718,7 +743,7 @@ channelCmdfc:
 ; Set loop pointer
 	ld hl,wChannelLoopPointers
 	call loadAddressPointerIntoHL
-	jp doNextChannelCommand
+	jp _doNextChannelCommand
 
 loadAddressPointerIntoHL:
 	;ret ; temp
@@ -767,7 +792,7 @@ loadHLIntoAddressPointerSkipVar:
 
 ;;
 ; breakOrLoop
-channelCmdf7:
+_channelCmdf7:
 	ld a,(wSoundChannel)
 	scf
 	ccf
@@ -781,22 +806,22 @@ channelCmdf7:
 	and %01111111
 	ld hl,wChannelLoopPointers
 	call nz,loadHLIntoAddressPointer
-	jp doNextChannelCommand
+	jp _doNextChannelCommand
 
 ;;
 ; endSec
-channelCmdfa:
+_channelCmdfa:
 	ld hl,wChannelAddressPointers
 	call loadHLIntoAddressPointer
-	jp doNextChannelCommand
+	jp _doNextChannelCommand
 
 ;; transpose
-channelCmdfb:
-	call getNextChannelByte
+_channelCmdfb:
+	call _getNextChannelByte
 	ld hl,wChannelTranspose
 	call loadChannelVariable
 	ld (hl),a
-	jp doNextChannelCommand
+	jp _doNextChannelCommand
 
 ; [hl] : Channel Variable to set hl to
 loadChannelVariable:
@@ -807,6 +832,10 @@ loadChannelVariable:
 	add hl,de
 	pop af
 	ret
+
+channels6And7:
+	call _getNextChannelByte
+	jp _doNextChannelCommand
 
 ;;
 ; Vibrato
@@ -1806,7 +1835,16 @@ _setWaveform:
 	ld ($ff00+R_NR34),a
 	ret
 
+;goto
 _channelCmdfe:
+	ld hl,wChannelAddressPointers
+	call loadAddressPointerIntoHL
+	inc de
+	inc de
+	ld (hl),d
+	dec l
+	ld (hl),e
+
 	call _getNextChannelByte
 	ld l,a
 	call _getNextChannelByte
@@ -2067,18 +2105,22 @@ _playSound:
 	ld d,h
 	ld e,l
 
-	ld hl,_soundPointers
+	ld hl,soundPointers
 	add hl,de
+; Wrapping this in a BUILD_VANILLA check because: A) it's unused, B) it can cause problems
+; if audio data gets placed into an unexpected bank (which WLA could decide to do).
+.ifdef BUILD_VANILLA
 	ld a,(hl)
 	and $80
-	jr z,+
+	jr z,@skipWeirdCall
 
 	; What were the programmers on? Clearly this part of the code is unused
 	call _noiseFrequencyTable
 
 	jp @setVolumeAndEnd
+@skipWeirdCall
+.endif
 
-+
 	ldi a,(hl)
 	ld c,a
 	ldh a,(<hSoundDataBaseBank)
@@ -2177,6 +2219,10 @@ _playSound:
 	ld d,$00
 	add hl,de
 	ld (hl),a
+	ld hl,wChannelTranspose
+	ld d,$00
+	add hl,de
+	ld (hl),a
 	jr ++
 
 @squareChannel:
@@ -2210,6 +2256,10 @@ _playSound:
 	add hl,de
 	ld (hl),a
 	ld hl,wc039
+	ld d,$00
+	add hl,de
+	ld (hl),a
+	ld hl,wChannelTranspose
 	ld d,$00
 	add hl,de
 	ld (hl),a
@@ -2518,9 +2568,10 @@ _waveformTable:
 	.include "audio/ages/soundChannelPointers.s"
 	.include "audio/ages/soundPointers.s"
 
-	.ifdef BUILD_VANILLA
-	.ORGA $59ff
-	.endif
+	;.ifdef BUILD_VANILLA
+	;.ORGA $59ff
+	;.endif
+	.ends ; End of section AudioCode
 
 	.include "audio/ages/soundChannelData.s"
 
@@ -2532,9 +2583,10 @@ _waveformTable:
 	.include "audio/seasons/soundChannelPointers.s"
 	.include "audio/seasons/soundPointers.s"
 
-	.ifdef BUILD_VANILLA
-	.ORGA $5a86
-	.endif
+	;.ifdef BUILD_VANILLA
+	;.ORGA $5a86
+	;.endif
+	.ends ; End of section AudioCode
 
 	.include "audio/seasons/soundChannelData.s"
 

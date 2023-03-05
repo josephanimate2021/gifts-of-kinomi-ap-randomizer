@@ -124,8 +124,12 @@ wChannelVolumes: ; $c07d
 ; ZTK added variables
 wChannelAddressPointers: ;$cddb/$cc3b
 	dsw 8
-wChannelTranspose: ; $c580
+wChannelTranspose: ; $c08d
 	dsb 5
+wChannelLoopCounters: ; $c093
+	dsb 8
+
+
 
 ; $c085-$c09f unused?
 
@@ -341,6 +345,9 @@ wObjectsToDraw: ; $c500
 ; Must be aligned to $100 bytes.
 	dsb $80
 
+;ZTK-added variable
+wChannelLoopPointers: ; $c080
+	dsw 8
 ; $c580-$c5af unused?
 
 .ENDS

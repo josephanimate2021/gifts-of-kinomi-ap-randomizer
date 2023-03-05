@@ -127,8 +127,8 @@
 .endm
 
 .macro m_soundPointer
-	.db :\1Start - :b39_initSound
-	.dw \1
+	.db :\1Start - :audio.b39_initSound ; Bank number
+	.dw \1 ; Pointer
 .endm
 
 ; Byte 1: frequency
@@ -362,19 +362,6 @@
 .redefine R3 Y5+Y6
 .endm
 
-.redefine X1 (Q - (Q # \1))/\1
-.redefine X2 (Q * 2 - ((Q * 2) # \1))/\1 - X1
-.redefine X3 (Q * 3 - ((Q * 3) # \1))/\1 - (X1+X2)
-.redefine X4 (Q * 4 - ((Q * 4) # \1))/\1 - (X1+X2+X3)
-.redefine X5 (Q * 5 - ((Q * 5) # \1))/\1 - (X1+X2+X3+X4)
-.redefine X6 (Q * 6 - ((Q * 6) # \1))/\1 - (X1+X2+X3+X4+X5)
-.redefine X7 (Q * 7 - ((Q * 7) # \1))/\1 - (X1+X2+X3+X4+X5+X6)
-.redefine X8 (Q * 8 - ((Q * 8) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7)
-.redefine X9 (Q * 9 - ((Q * 9) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8)
-.redefine X10 (Q * 10 - ((Q * 10) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9)
-.redefine X11 (Q * 11 - ((Q * 11) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9+X10)
-.redefine X12 (Q * 12 - ((Q * 12) # \1))/\1 - (X1+X2+X3+X4+X5+X6+X7+X8+X9+X10+X11)
-.endm
 
 .macro beginLoop
 	.db $fc
@@ -396,4 +383,8 @@
 
 .macro shift
 	cmdfd \1
+.endm
+
+.macro rest
+	wait1 \1
 .endm
