@@ -162,7 +162,7 @@
 	m_GfxData spr_giantghini_2 ; $0b0b3c
 	m_GfxData spr_swoop ; $0b0c6e
 	m_GfxData spr_pound ; $0b0db6
-	m_GfxData spr_subterror_1 ; $0b0e17
+	m_GfxData spr_facade	;spr_subterror_1 ; $0b0e17
 	m_GfxData spr_subterror_2 ; $0b0fb9
 	m_GfxData spr_subterror_3 ; $0b1127
 	m_GfxData spr_armoswarrior_1 ; $0b11be
@@ -180,8 +180,8 @@
 	m_GfxData spr_headthwomp_1 ; $0b21c8
 	m_GfxData spr_headthwomp_2 ; $0b232b
 	m_GfxData spr_headthwomp_3 ; $0b251e
-	m_GfxData spr_shadowhag_1 ; $0b253a
-	m_GfxData spr_shadowhag_2 ; $0b26ee
+	m_GfxData spr_manhandla_1 ;spr_shadowhag_1 ; $0b253a
+	m_GfxData spr_manhandla_2 ;spr_shadowhag_2 ; $0b26ee
 	m_GfxData spr_smog_1 ; $0b2823
 	m_GfxData spr_smog_2 ; $0b2950
 	m_GfxData spr_smog_3 ; $0b2ad5

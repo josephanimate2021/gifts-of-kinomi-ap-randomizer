@@ -676,7 +676,8 @@
 
 .define ENEMYID_GIANT_GHINI			$70
 .define ENEMYID_SWOOP				$71
-.define ENEMYID_SUBTERROR			$72
+.define ENEMYID_FACADE               $72
+;.define ENEMYID_SUBTERROR			$72
 
 ;;
 ; @subid_00{Spawner (use this)}
@@ -771,7 +772,8 @@
 .define ENEMYID_HEAD_THWOMP			$79
 
 ;;
-.define ENEMYID_SHADOW_HAG			$7a
+.define ENEMYID_MANHANDLA           $7a ;$7d
+;.define ENEMYID_SHADOW_HAG			
 
 ;;
 ; @subid_00{Spawner; spawns subid 1 and 4 children}

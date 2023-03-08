@@ -461,7 +461,7 @@ soundddChannel6:
 .include "audio/mus/common/boss.s"
 .include "audio/mus/common/credits1.s"
 .include "audio/mus/ages/symmetryPast.s"
-.include "audio/mus/ages/zoraVillage.s"
+.include "audio/mus/ages/forestOfMystery.s"
 .include "audio/sfx/common/heartBeep.s"
 .include "audio/sfx/common/rupee.s"
 .include "audio/sfx/common/swordSpin.s"

@@ -1836,12 +1836,12 @@ interactionCodee9:
 	ld (wWarpTransition2),a
 	jp interactionDelete
 @warpDestLocations:
-	.db $80|>ROOM_AGES_470 <ROOM_AGES_470 $57 ; 
-	.db $80|>ROOM_AGES_472 <ROOM_AGES_472 $57 ; 
-	.db $80|>ROOM_AGES_475 <ROOM_AGES_475 $57 ; 
-	.db $80|>ROOM_AGES_476 <ROOM_AGES_476 $57 ; 
+	.db $80|>ROOM_AGES_470 <ROOM_AGES_46b $87 ; 473 $23
+	.db $80|>ROOM_AGES_472 <ROOM_AGES_472 $67 ; 
+	.db $80|>ROOM_AGES_475 <ROOM_AGES_475 $34 ; 
+	.db $80|>ROOM_AGES_476 <ROOM_AGES_476 $52 ; 
 	.db $80|>ROOM_AGES_479 <ROOM_AGES_479 $97 ; 
-	.db $80|>ROOM_AGES_47a <ROOM_AGES_47a $57 ; 
+	.db $80|>ROOM_AGES_47a <ROOM_AGES_47a $85 ; 
 
 
 ; Param			b		Radius Y collision
@@ -1948,24 +1948,54 @@ _objectIsItem:
 ; ==============================================================================
 interactionCodeea:
 	call checkInteractionState
+	jr z,@spawnBlock
+
+; waiting for block to despawn
+@state1:
+	ld a,ObjectStruct.id
+	call objectGetRelatedObject1Var
+; if subid is $00, then respawn the block
+	ld a,(hl)
+	or a
 	ret nz
 
-	inc a
+	ld e,Interaction.state
 	ld (de),a
+	ret
+
+; state 0
+@spawnBlock:
+	push de
+	ld de,w1Link.yh
+	call getShortPositionFromDE
+	pop de
+	ld e,Interaction.var03
+	ld (de),a
+	call objectGetShortPosition
+	ld b,a
+	ld e,Interaction.var03
+	ld a,(de)
+	cp b
+	ret z
 
 	call getFreeItemSlot
 	ret nz
-;	ld e,Interaction.relatedObj1
-;	ld (hl),Item.start
-;	inc l
-;	ld (hl),d
-
-
 ;	ld l,Item.start
 	inc (hl)
 	inc l
 	ld (hl),ITEMID_18
+	call objectCopyPosition
 
+	ld e,Interaction.relatedObj1
+	ld a,Item.start
+	ld (de),a
+	inc e
+	ld a,h
+	ld (de),a
 	; Set Y/X of the new item as calculated earlier, and copy Link's Z position
-	jp objectCopyPosition
+	jp interactionIncState
+
+
+
+
 .ends

@@ -1176,14 +1176,20 @@ interactionCode7e:
 @dungeonRoomTable:
 .ifdef ROM_AGES
 	.db $01 $04
-	.db $18 $24
-	.db $69 $51
-	.db $59 $50
+	.db $18 $24 ; 0x01
+	.db $69 $51 ; 0x02
+	.db $59 $50 ; 0x03
 	
-	.db $4c $40
-	.db $2f $35
-	.db $1e $2a
-	.db $13 $19
+	.db $4c $40 ; 0x04, Winter
+	.db $2f $35 ; 0x04,	Autumn
+	.db $1e $2a ; 0x04, Summer
+	.db $13 $19 ; 0x04, Spring
+
+	.db $00 $00 ; 0x08
+	.db $00 $00 ; 0x09
+	.db $00 $00 ; 0x0a
+	.db $48 $7e ; 0x0b
+	.db $6b $77 ; 0x0c	
 .else
 	.db $01 $01
 	.db $0b $15

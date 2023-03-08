@@ -406,154 +406,7 @@ interactionCode1a:
 ; INTERACID_MINECART_GATE
 ; ==============================================================================
 interactionCode1b:
-	ld e,Interaction.state
-	ld a,(de)
-	rst_jumpTable
-	.dw @state0
-	.dw @state1
-	.dw @state2
-	.dw @state3
 
-@state0:
-	ld a,$01
-	ld (de),a
-
-	; Move bits 4-7 of subid to bits 0-3 (direction of gate)
-	ld e,Interaction.subid
-	ld a,(de)
-	ld b,a
-	swap a
-	and $0f
-	ld (de),a
-
-	; Set var03 to a bitmask based on bits 0-2 of subid
-	ld a,b
-	and $07
-	ld hl,bitTable
-	add l
-	ld l,a
-	inc e
-	ld a,(hl)
-	ld (de),a
-
-	call interactionInitGraphics
-	call objectSetVisible82
-
-	call @setAnimationAndUpdateCollisions
-	ld e,Interaction.var30
-	ld a,(de)
-	ld b,a
-	and $01
-	inc a
-	ld e,Interaction.state
-	ld (de),a
-	ld a,b
-	xor $01
-	jp interactionSetAnimation
-
-;;
-; Sets var30 to the animation to be done. Bit 0 set if the gate is open.
-; Also modifies tile collisions appropriately.
-@setAnimationAndUpdateCollisions:
-	ld a,(wSwitchState)
-	ld b,a
-	ld e,Interaction.var03
-	ld a,(de)
-	and b
-	ld c,$00
-	jr nz,+
-	ld c,$01
-+
-	dec e
-	ld a,(de) ; a = [subid] (subid is 0 if facing left, 2 if facing right)
-	or c
-	ld e,Interaction.var30
-	ld (de),a
-
-	call interactionSetAnimation
-
-	call objectGetTileAtPosition
-	dec h ; h points to wRoomCollisions
-	dec l
-
-	; a = [var30]*3
-	ld e,Interaction.var30
-	ld a,(de)
-	ld b,a
-	add a
-	add b
-
-	ld bc,@collisions
-	call addAToBc
-	ld a,(bc)
-	ldi (hl),a
-	inc bc
-	ld a,(bc)
-	ld (hl),a
-
-	inc bc
-	ld a,(bc)
-	add l
-	ld l,a
-	inc h
-	ld a,(de)
-	rrca
-	jr c,+
-	ld (hl),$5e
-	ret
-+
-	ld (hl),$00
-	ret
-
-@collisions:
-	.db $00 $0a  $ff ; Gate facing right
-	.db $0c $0a  $ff
-	.db $05 $00  $00 ; Gate facing left
-	.db $05 $0c  $00
-
-
-; State 1: waiting for switch to be pressed
-@state1:
-	call objectSetPriorityRelativeToLink
-	ld a,(wSwitchState)
-	cpl
-	jr ++
-
-; State 2: waiting for switch to be released
-@state2:
-	call objectSetPriorityRelativeToLink
-	ld a,(wSwitchState)
-++
-	ld b,a
-	ld e,Interaction.var03
-	ld a,(de)
-	and b
-	ret z
-
-	ld e,Interaction.state
-	ld a,$03
-	ld (de),a
-	ld a,SND_OPEN_GATE
-	call playSound
-	jp @setAnimationAndUpdateCollisions
-
-
-; State 3: in the process of opening or closing
-@state3:
-	call interactionAnimate
-	call objectSetPriorityRelativeToLink
-
-	ld e,Interaction.animParameter
-	ld a,(de)
-	inc a
-	ret nz
-
-	ld e,Interaction.var30
-	ld a,(de)
-	and $01
-	inc a
-	ld e,Interaction.state
-	ld (de),a
 interactionCode1f:
 	ret
 
@@ -657,13 +510,19 @@ interactionCode20:
 @dungeonc:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
-	.dw mainScripts.mermaidsCaveScript_spawnBridgeWhenOrbHit
-	.dw mainScripts.mermaidsCaveScript_updateTrigger2BasedOnTriggers0And1
+	.dw mainScripts.swordAndShieldMazeScript_armosBlockingStairs
+	.dw mainScripts.spiritsGraveScript_stairsToBraceletRoom	
+	.dw mainScripts.tokayTempleScript_gloveRoom
+;	.dw mainScripts.mermaidsCaveScript_spawnBridgeWhenOrbHit
+;	.dw mainScripts.mermaidsCaveScript_updateTrigger2BasedOnTriggers0And1
 @dungeon3:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.moonlitGrottoScript_spawnChestWhen2TorchesLit
 	.dw mainScripts.spawnHeartPiece
+	.dw mainScripts.cornersCaveScript_spawnMovingPlatform
+	.dw mainScripts.cornersCaveScript_minecartRoom
+	.dw mainScripts.cornersCaveScript_bossRoom
 @dungeon4:
 	.dw mainScripts.seasonsShrineScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
@@ -802,7 +661,7 @@ _interaction21_subid04:
 	call objectGetTileAtPosition
 	ld e,Interaction.var03
 	ld (de),a
-	sub TILEINDEX_RED_TOGGLE_FLOOR
+	sub TILEINDEX_RED_TOGGLE_BLOCK	;FLOOR
 	set 7,a
 	ld (wRotatingCubeColor),a
 	ld a,$57
@@ -811,7 +670,7 @@ _interaction21_subid04:
 @initialized:
 	call objectGetTileAtPosition
 	ld b,a
-	sub TILEINDEX_RED_TOGGLE_FLOOR
+	sub TILEINDEX_RED_TOGGLE_BLOCK	;FLOOR
 	cp $03
 	ret nc
 
@@ -822,7 +681,7 @@ _interaction21_subid04:
 
 	ld a,b
 	ld (de),a
-	sub TILEINDEX_RED_TOGGLE_FLOOR
+	sub TILEINDEX_RED_TOGGLE_BLOCK	;FLOOR
 	set 7,a
 	ld (wRotatingCubeColor),a
 	ret
@@ -835,9 +694,9 @@ _interaction21_subid05:
 	jp _verifyTilesAndDropSmallKey
 
 @tileData:
-	.db TILEINDEX_RED_PUSHABLE_BLOCK     $49 $4b $69 $6b $ff
-	.db TILEINDEX_YELLOW_PUSHABLE_BLOCK  $5a $ff
-	.db TILEINDEX_BLUE_PUSHABLE_BLOCK    $4a $59 $5b $6a $00
+	.db TILEINDEX_RED_PUSHABLE_BLOCK     $46 $48 $66 $68 $ff
+	.db TILEINDEX_YELLOW_PUSHABLE_BLOCK  $57 $ff
+	.db TILEINDEX_BLUE_PUSHABLE_BLOCK    $47 $56 $58 $67 $00
 
 
 ; d2: Set trigger 0 when the colored flames are lit red.
@@ -1074,12 +933,13 @@ _interaction21_subid0d:
 
 ; d3: Small key falls when a block is pushed into place
 _interaction21_subid0e:
+	call interactionDeleteAndRetIfEnabled02
 	call _interactionDeleteAndRetIfItemFlagSet
-	ld hl,wRoomLayout+$4a
-	ld a,(hl)
-	cp $2a
-	ret nz
-	jp _spawnSmallKeyFromCeiling
+	ld hl,@tileData
+	jp _verifyTilesAndDropSmallKey
+
+@tileData:
+	.db TILEINDEX_PUSHABLE_BLOCK $55 $56 $57 $58 $59 $00
 
 
 ; d4: A door opens when a certain floor pattern is achieved
@@ -1330,22 +1190,22 @@ _interaction21_subid18:
 	call getThisRoomFlags
 	ld b,$00
 
-	ld l,$38		;$5d
+	ld l,<ROOM_AGES_538		;$5d
 	bit 6,(hl)
 	jr z,+
 	set 4,b
 +
-	ld l,$39		;$5f
+	ld l,<ROOM_AGES_539		;$5f
 	bit 6,(hl)
 	jr z,+
 	set 5,b
 +
-	ld l,$3e		;$61
+	ld l,<ROOM_AGES_53e		;$61
 	bit 6,(hl)
 	jr z,+
 	set 6,b
 +
-	ld l,$3f		;$63
+	ld l,<ROOM_AGES_53f		;$63
 	bit 6,(hl)
 	jr z,+
 	set 7,b
@@ -1868,19 +1728,19 @@ interactionCode23:
 ;   Subsequent bytes are positions at which to create that tile until it reaches $ff.
 
 @creation0:
-	.db TILEINDEX_VERTICAL_BRIDGE   $43 $53 $63 $ff
+	.db TILEINDEX_VERTICAL_BRIDGE   $67 $57 $47 $37 $27 $ff		;$43 $53 $63 $ff
 @creation1:
-	.db TILEINDEX_HORIZONTAL_BRIDGE $76 $77 $78 $79 $ff
+	.db TILEINDEX_HORIZONTAL_BRIDGE $3a $39 $38 $37 $36 $35 $34	$ff;$76 $77 $78 $79 $ff
 @creation2:
-	.db TILEINDEX_HORIZONTAL_BRIDGE $39 $38 $37 $36 $ff
+	.db TILEINDEX_VERTICAL_BRIDGE $49 $59 $69 $ff ;D3	.db TILEINDEX_HORIZONTAL_BRIDGE $39 $38 $37 $36 $ff
 @creation3:
-	.db TILEINDEX_VERTICAL_BRIDGE   $42 $52 $62 $ff
+	.db TILEINDEX_VERTICAL_BRIDGE $41 $51 $61 $ff ;D3	.db TILEINDEX_VERTICAL_BRIDGE   $42 $52 $62 $ff
 @creation4:
-	.db TILEINDEX_VERTICAL_BRIDGE   $4c $5c $6c $ff
+	.db TILEINDEX_VERTICAL_BRIDGE $45 $55 $65 $ff ;.db TILEINDEX_VERTICAL_BRIDGE   $4c $5c $6c $ff
 @creation5:
-	.db TILEINDEX_HORIZONTAL_BRIDGE $2a $29 $28 $27 $ff
+	;.db TILEINDEX_HORIZONTAL_BRIDGE $2a $29 $28 $27 $ff
 @creation6:
-	.db TILEINDEX_VERTICAL_BRIDGE   $3d $4d $5d $6d $ff
+	;.db TILEINDEX_VERTICAL_BRIDGE   $3d $4d $5d $6d $ff
 
 
 @bridgeRemovalData:
@@ -1897,19 +1757,19 @@ interactionCode23:
 ; it.)
 
 @removal0:
-	.db TILEINDEX_HOLE+1  $63 $53 $43 $ff
+	.db TILEINDEX_WATER	 $27 $37 $47 $57 $67 $ff		;$63 $53 $43 $ff
 @removal1:
-	.db TILEINDEX_HOLE+1  $79 $78 $77 $76 $ff
+	.db TILEINDEX_WATER	  $34 $35 $36 $37 $38 $39 $3a $ff	;$79 $78 $77 $76 $ff
 @removal2:
-	.db TILEINDEX_HOLE+1  $36 $37 $38 $39 $ff
+	.db TILEINDEX_HOLE+1 $69 $59 $49 $ff ;D3	.db TILEINDEX_HOLE+1  $36 $37 $38 $39 $ff
 @removal3:
-	.db TILEINDEX_HOLE+1  $62 $52 $42 $ff
+	.db TILEINDEX_HOLE+1 $61 $51 $41 $ff ;.db TILEINDEX_HOLE+1  $62 $52 $42 $ff
 @removal4:
-	.db TILEINDEX_HOLE+1  $6c $5c $4c $ff
+	.db TILEINDEX_HOLE+1 $65 $55 $45 $ff ;.db TILEINDEX_HOLE+1  $6c $5c $4c $ff
 @removal5:
-	.db TILEINDEX_HOLE+1  $27 $28 $29 $2a $ff
+	;.db TILEINDEX_HOLE+1  $27 $28 $29 $2a $ff
 @removal6:
-	.db TILEINDEX_HOLE+1  $6d $5d $4d $3d $ff
+	;.db TILEINDEX_HOLE+1  $6d $5d $4d $3d $ff
 
 
 ; ==============================================================================
@@ -4404,9 +4264,11 @@ interactionCode33:
 	ld a,$01
 	ld (wMenuDisabled),a
 	ld (wDisabledObjects),a
-	ld a,($cc93)
+; checking door shutters?
+	ld a,(wcc93)
 	or a
 	ret nz
+;	xor a
 
 	inc a
 	ld (de),a ; [state] = 1
@@ -4738,15 +4600,15 @@ interactionCode33:
 ; removing block tiles)
 
 	ld e,Interaction.var32
-	ld a,$11
+	ld a,$22;$11
 	ld (de),a ; var32
 
-	ld a, LARGE_ROOM_HEIGHT-2
+	ld a, LARGE_ROOM_HEIGHT-4;2
 	inc e
 	ld (de),a ; var33
 
 	inc e
-	ld a, LARGE_ROOM_WIDTH-2
+	ld a, LARGE_ROOM_WIDTH-4;2
 	ld (de),a ; var34
 
 	jp interactionIncState
@@ -4754,25 +4616,43 @@ interactionCode33:
 
 ; Clearing out all blocks on-screen in preparation for next phase
 @stateA:
+; delete the somaria block
+	ld c,ITEMID_18	;somaria block
+	call findItemWithID
+	ld l,Item.var2f
+	set 5,(hl)
+
 	call interactionDecCounter1
 	ret nz
 
 	ld a,$05
 	ld (hl),a
 
-	ld l,Interaction.var32
+	ld l,Interaction.var32		;beginning position
 	ldi a,(hl)
 	ld b,(hl)
 	ld l,a
-	ld h,>wRoomCollisions
+	ld h,>wRoomCollisions		;Layout	;Collisions
 @nextRow:
 	ld e,Interaction.var34
 	ld a,(de)
 	ld c,a
 @nextColumn:
+; if anything non-solid
+;	ld a,(hl)
+;	or a
+;	jr nz,@foundNextBlockTile
+
+; if anything not a hole
+;	ld a,(hl)
+;	cp TILEINDEX_HOLE+1
+;	jr nz,@foundNextBlockTile
+
+; if anything not a hazard
 	ld a,(hl)
-	or a
+	cp $10
 	jr nz,@foundNextBlockTile
+
 
 	ld e,Interaction.var32
 	inc l
@@ -4785,14 +4665,14 @@ interactionCode33:
 	jr nz,@nextColumn
 
 	; Reset number of columns to check for the next row
-	ld a,LARGE_ROOM_WIDTH-2
+	ld a,LARGE_ROOM_WIDTH-4;2
 	ld (de),a
 
 	; Adjust position for the next row
 	ld c,a
 	ld e,Interaction.var32
 	ld a,l
-	add ($10 - (LARGE_ROOM_WIDTH-2))
+	add ($10 - (LARGE_ROOM_WIDTH-4));-2
 	ld (de),a
 
 	ld l,a
@@ -4809,6 +4689,8 @@ interactionCode33:
 	ret
 
 @foundNextBlockTile:
+; l == Block short position
+; convert from short to long (centered) position
 	ld a,l
 	ld e,Interaction.yh
 	and $f0
@@ -4822,7 +4704,7 @@ interactionCode33:
 	ld (de),a
 
 	ld c,l
-	ld a,$a3
+	ld a,TILEINDEX_HOLE+1	;DUNGEON_a3	;
 	call setTile
 	jp objectCreatePuff
 
@@ -4932,66 +4814,170 @@ interactionCode33:
 ; Data format:
 ;   b0: position
 ;   b1: tile index to place at that position
-
 @phase0Tiles:
-	.db $11 $0c
-	.db $37 $1d
-	.db $46 $1d
-	.db $47 $1d
-	.db $48 $1d
-	.db $76 $1d
-	.db $77 $1d
-	.db $78 $1d
-	.db $87 $1d
+	.db $11 TILEINDEX_BUTTON
+	.db $53 TILEINDEX_PUSHABLE_BLOCK
+	.db $45 TILEINDEX_PUSHABLE_BLOCK
+	.db $55 TILEINDEX_PUSHABLE_BLOCK
+	.db $65 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $46 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $68 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $49 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $59 TILEINDEX_PUSHABLE_BLOCK
+	.db $69 TILEINDEX_PUSHABLE_BLOCK
+	.db $5b TILEINDEX_PUSHABLE_BLOCK
+
+;	.db $52 TILEINDEX_DUNGEON_a3
+;	.db $42 TILEINDEX_DUNGEON_a3
+	.db $43 TILEINDEX_DUNGEON_a3
+	.db $44 TILEINDEX_DUNGEON_a3
+	.db $54 TILEINDEX_DUNGEON_a3
+	.db $64 TILEINDEX_DUNGEON_a3
+	.db $63 TILEINDEX_DUNGEON_a3
+;	.db $62 TILEINDEX_DUNGEON_a3
+
+	.db $57 TILEINDEX_DUNGEON_a3
+
+;	.db $5c TILEINDEX_DUNGEON_a3
+;	.db $4c TILEINDEX_DUNGEON_a3
+	.db $4b TILEINDEX_DUNGEON_a3
+	.db $4a TILEINDEX_DUNGEON_a3
+	.db $5a TILEINDEX_DUNGEON_a3
+	.db $6a TILEINDEX_DUNGEON_a3
+	.db $6b TILEINDEX_DUNGEON_a3
+;	.db $6c TILEINDEX_DUNGEON_a3
 	.db $00
+
+;	.db $11 TILEINDEX_BUTTON
+;	.db $37 TILEINDEX_PUSHABLE_BLOCK
+;	.db $46 TILEINDEX_PUSHABLE_BLOCK
+;	.db $47 TILEINDEX_PUSHABLE_BLOCK
+;	.db $48 TILEINDEX_PUSHABLE_BLOCK
+;	.db $76 TILEINDEX_PUSHABLE_BLOCK
+;	.db $77 TILEINDEX_PUSHABLE_BLOCK
+;	.db $78 TILEINDEX_PUSHABLE_BLOCK
+;	.db $87 TILEINDEX_PUSHABLE_BLOCK
+;	.db $00
 
 @phase1Tiles:
-	.db $11 $0c
-	.db $3a $1c
-	.db $44 $1d
-	.db $47 $1d
-	.db $4a $1d
-	.db $54 $1c
-	.db $57 $1d
-	.db $64 $1d
-	.db $67 $1d
-	.db $00
+	.db $11 TILEINDEX_BUTTON
+	.db $54 TILEINDEX_PUSHABLE_BLOCK
+
+	.db $46 TILEINDEX_PUSHABLE_BLOCK
+	.db $47 TILEINDEX_PUSHABLE_BLOCK
+	.db $37 TILEINDEX_PUSHABLE_BLOCK-1
+
+	.db $76 TILEINDEX_PUSHABLE_BLOCK
+	.db $77 TILEINDEX_PUSHABLE_BLOCK
+	.db $78 TILEINDEX_PUSHABLE_BLOCK-1
+
+	.db $49 TILEINDEX_PUSHABLE_BLOCK
+	.db $6a TILEINDEX_PUSHABLE_BLOCK
+
+	.db $53 TILEINDEX_DUNGEON_a3
+	.db $43 TILEINDEX_DUNGEON_a3
+;	.db $44 TILEINDEX_DUNGEON_a3
+;	.db $45 TILEINDEX_DUNGEON_a3
+;	.db $55 TILEINDEX_DUNGEON_a3
+;	.db $65 TILEINDEX_DUNGEON_a3
+	.db $64 TILEINDEX_DUNGEON_a3
+	.db $63 TILEINDEX_DUNGEON_a3
+
+	.db $67 TILEINDEX_DUNGEON_a3
+	.db $48 TILEINDEX_DUNGEON_a3
+	.db $38 TILEINDEX_DUNGEON_a3
+	.db $39 TILEINDEX_DUNGEON_a3
+	.db $3a TILEINDEX_DUNGEON_a3
+;	.db $4a TILEINDEX_DUNGEON_a3
+;	.db $5a TILEINDEX_DUNGEON_a3
+;	.db $5b TILEINDEX_DUNGEON_a3
+	.db $6b TILEINDEX_DUNGEON_a3
+	.db $7b TILEINDEX_DUNGEON_a3
+	.db $7a TILEINDEX_DUNGEON_a3
+	.db $79 TILEINDEX_DUNGEON_a3
+;	.db $69 TILEINDEX_DUNGEON_a3
+;	.db $59 TILEINDEX_DUNGEON_a3
+;	.db $58 TILEINDEX_DUNGEON_a3
+	.db $00	
+
+;	.db $11 TILEINDEX_BUTTON
+;	.db $3a TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $44 TILEINDEX_PUSHABLE_BLOCK
+;	.db $47 TILEINDEX_PUSHABLE_BLOCK
+;	.db $4a TILEINDEX_PUSHABLE_BLOCK
+;	.db $54 TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $57 TILEINDEX_PUSHABLE_BLOCK
+;	.db $64 TILEINDEX_PUSHABLE_BLOCK
+;	.db $67 TILEINDEX_PUSHABLE_BLOCK
+;	.db $00
 
 @phase2Tiles:
-	.db $11 $0c
-	.db $57 $1c
-	.db $62 $1d
-	.db $63 $1d
-	.db $64 $1d
-	.db $6a $1d
-	.db $6b $1d
-	.db $6c $1d
-	.db $77 $1c
+	.db $11 TILEINDEX_BUTTON
+	.db $53 TILEINDEX_PUSHABLE_BLOCK
+	.db $54 TILEINDEX_PUSHABLE_BLOCK
+	.db $36 TILEINDEX_PUSHABLE_BLOCK
+	.db $46 TILEINDEX_PUSHABLE_BLOCK
+	.db $56 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $59 TILEINDEX_PUSHABLE_BLOCK-1
+	.db $5a TILEINDEX_PUSHABLE_BLOCK
+	.db $5b TILEINDEX_PUSHABLE_BLOCK
+	.db $79 TILEINDEX_PUSHABLE_BLOCK
+
+	.db $44 TILEINDEX_DUNGEON_a3
+	.db $45 TILEINDEX_DUNGEON_a3
+	.db $55 TILEINDEX_DUNGEON_a3
+;	.db $65 TILEINDEX_DUNGEON_a3
+;	.db $66 TILEINDEX_DUNGEON_a3
+	.db $49 TILEINDEX_DUNGEON_a3
+	.db $4a TILEINDEX_DUNGEON_a3
+	.db $4b TILEINDEX_DUNGEON_a3
+	.db $69 TILEINDEX_DUNGEON_a3
 	.db $00
 
+;	.db $57 TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $62 TILEINDEX_PUSHABLE_BLOCK
+;	.db $63 TILEINDEX_PUSHABLE_BLOCK
+;	.db $64 TILEINDEX_PUSHABLE_BLOCK
+;	.db $6a TILEINDEX_PUSHABLE_BLOCK
+;	.db $6b TILEINDEX_PUSHABLE_BLOCK
+;	.db $6c TILEINDEX_PUSHABLE_BLOCK
+;	.db $77 TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $00
+
 @phase3Tiles:
-	.db $11 $0c
-	.db $25 $1d
-	.db $26 $1d
-	.db $27 $1d
-	.db $32 $1d
-	.db $37 $1d
-	.db $3a $1c
-	.db $3c $1d
-	.db $42 $1d
-	.db $46 $1d
-	.db $4c $1d
-	.db $52 $1d
-	.db $59 $1d
-	.db $5c $1d
-	.db $62 $1c
-	.db $68 $1d
-	.db $6c $1d
-	.db $72 $1d
-	.db $74 $1d
-	.db $77 $1c
-	.db $7c $1d
+	.db $11 TILEINDEX_BUTTON
+	.db $37 TILEINDEX_PUSHABLE_BLOCK
+	.db $73 TILEINDEX_PUSHABLE_BLOCK
+	.db $7b TILEINDEX_PUSHABLE_BLOCK
+
+	.db $77 TILEINDEX_DUNGEON_a3
+	.db $63 TILEINDEX_DUNGEON_a3
+	.db $47 TILEINDEX_DUNGEON_a3 
+	.db $6b TILEINDEX_DUNGEON_a3 
+
 	.db $00
+;	.db $11 TILEINDEX_BUTTON
+;	.db $25 TILEINDEX_PUSHABLE_BLOCK
+;	.db $26 TILEINDEX_PUSHABLE_BLOCK
+;	.db $27 TILEINDEX_PUSHABLE_BLOCK
+;	.db $32 TILEINDEX_PUSHABLE_BLOCK
+;	.db $37 TILEINDEX_PUSHABLE_BLOCK
+;	.db $3a TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $3c TILEINDEX_PUSHABLE_BLOCK
+;	.db $42 TILEINDEX_PUSHABLE_BLOCK
+;	.db $46 TILEINDEX_PUSHABLE_BLOCK
+;	.db $4c TILEINDEX_PUSHABLE_BLOCK
+;	.db $52 TILEINDEX_PUSHABLE_BLOCK
+;	.db $59 TILEINDEX_PUSHABLE_BLOCK
+;	.db $5c TILEINDEX_PUSHABLE_BLOCK
+;	.db $62 TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $68 TILEINDEX_PUSHABLE_BLOCK
+;	.db $6c TILEINDEX_PUSHABLE_BLOCK
+;	.db $72 TILEINDEX_PUSHABLE_BLOCK
+;	.db $74 TILEINDEX_PUSHABLE_BLOCK
+;	.db $77 TILEINDEX_PUSHABLE_BLOCK-1
+;	.db $7c TILEINDEX_PUSHABLE_BLOCK
+;	.db $00
 
 @numEnemiesToSpawn: ; Each byte is for a different phase
 	.db $02 $03 $02 $03
@@ -5004,24 +4990,38 @@ interactionCode33:
 ;   b3: direction
 
 @smogEnemyData: ; Each row is for a different enemy (across all phases)
-	.db $00 $58 $78 $00
-	.db $02 $38 $68 $01
-	.db $02 $88 $88 $03
-	.db $82 $58 $a8 $01
-	.db $02 $38 $48 $01
-	.db $02 $78 $78 $03
-	.db $02 $58 $38 $01
-	.db $82 $78 $b8 $01
-	.db $02 $28 $28 $01
-	.db $82 $58 $88 $03
-	.db $82 $88 $c8 $01
+	.db $00 $58 $78 DIR_UP
+
+	.db $02 $58 $48 DIR_LEFT
+	.db $82 $58 $a8 DIR_RIGHT
+;	.db $02 $38 $68 DIR_RIGHT
+;	.db $02 $88 $88 DIR_LEFT
+
+	.db $82 $58 $38 DIR_RIGHT
+	.db $02 $38 $98 DIR_DOWN
+	.db $02 $68 $b8 DIR_LEFT
+;	.db $82 $58 $a8 DIR_RIGHT
+;	.db $02 $38 $48 DIR_RIGHT
+;	.db $02 $78 $78 DIR_LEFT
+
+	.db $02 $48 $58 DIR_RIGHT
+	.db $82 $48 $a8 DIR_DOWN
+;	.db $02 $58 $38 DIR_RIGHT
+;	.db $82 $78 $b8 DIR_RIGHT
+
+	.db $02 $48 $78 DIR_UP
+	.db $82 $68 $38 DIR_DOWN
+	.db $82 $68 $b8 DIR_DOWN
+;	.db $02 $28 $28 DIR_RIGHT
+;	.db $82 $58 $88 DIR_LEFT
+;	.db $82 $88 $c8 DIR_RIGHT
 
 
 @linkPlacementPositions: ; Positions to drop Link at for each phase
 	.db $58 $78
-	.db $28 $78
-	.db $38 $78
-	.db $38 $68
+	.db $68 $78
+	.db $68 $98
+	.db $78 $78
 
 
 ; ==============================================================================
@@ -5231,629 +5231,7 @@ interactionCode34:
 ;   var3e/3f: pointer to "position list" data for when the child moves around
 ; ==============================================================================
 interactionCode35:
-	ld e,Interaction.state
-	ld a,(de)
-	rst_jumpTable
-	.dw @state0
-	.dw _interac65_state1
-
-@state0:
-	call _childDetermineAnimationBase
-	call interactionInitGraphics
-	call interactionIncState
-
-	ld e,Interaction.var03
-	ld a,(de)
-	ld hl,_childScriptTable
-	rst_addDoubleIndex
-	ldi a,(hl)
-	ld h,(hl)
-	ld l,a
-	call interactionSetScript
-
-	ld e,Interaction.var03
-	ld a,(de)
-	rst_jumpTable
-
-	/* $00 */ .dw @initAnimation
-	/* $01 */ .dw @hyperactiveStage4Or5
-	/* $02 */ .dw @shyStage4Or5
-	/* $03 */ .dw @curious
-	/* $04 */ .dw @hyperactiveStage4Or5
-	/* $05 */ .dw @shyStage4Or5
-	/* $06 */ .dw @curious
-	/* $07 */ .dw @hyperactiveStage6
-	/* $08 */ .dw @shyStage6
-	/* $09 */ .dw @curious
-	/* $0a */ .dw @slacker
-	/* $0b */ .dw @warrior
-	/* $0c */ .dw @arborist
-	/* $0d */ .dw @singer
-	/* $0e */ .dw @slacker
-	/* $0f */ .dw @script0f
-	/* $10 */ .dw @arborist
-	/* $11 */ .dw @singer
-	/* $12 */ .dw @slacker
-	/* $13 */ .dw @warrior
-	/* $14 */ .dw @arborist
-	/* $15 */ .dw @singer
-	/* $16 */ .dw @val16
-	/* $17 */ .dw @initAnimation
-	/* $18 */ .dw @curious
-	/* $19 */ .dw @slacker
-	/* $1a */ .dw @initAnimation
-	/* $1b */ .dw @initAnimation
-	/* $1c */ .dw @singer
-
-@initAnimation:
-	ld e,Interaction.var37
-	ld a,(de)
-	call interactionSetAnimation
-	jp _childUpdateSolidityAndVisibility
-
-@hyperactiveStage6:
-	ld a,$02
-	call _childLoadPositionListPointer
-
-@hyperactiveStage4Or5:
-	ld h,d
-	ld l,Interaction.var39
-	ld (hl),$01
-
-	ld l,Interaction.speed
-	ld (hl),SPEED_180
-	ld l,Interaction.angle
-	ld (hl),$18
-
-	ld a,$00
-
-@setAnimation:
-	ld h,d
-	ld l,Interaction.var3a
-	ld (hl),a
-	ld l,Interaction.var37
-	add (hl)
-	call interactionSetAnimation
-	jp _childUpdateSolidityAndVisibility
-
-@val16:
-	call @hyperactiveStage4Or5
-	ld h,d
-	ld l,Interaction.speed
-	ld (hl),SPEED_100
-	ret
-
-@shyStage4Or5:
-	ld a,$00
-	call _childLoadPositionListPointer
-	jr ++
-
-@shyStage6:
-	ld a,$01
-	call _childLoadPositionListPointer
-++
-	ld h,d
-	ld l,Interaction.var39
-	ld (hl),$01
-	ld l,Interaction.speed
-	ld (hl),SPEED_200
-	ld a,$00
-	jr @setAnimation
-
-@curious:
-	ld h,d
-	ld l,Interaction.var39
-	ld (hl),$02
-	ld a,$00
-	jr @setAnimation
-
-@slacker:
-	ld a,$00
-	jr @setAnimation
-
-@warrior:
-	ld a,$03
-	call _childLoadPositionListPointer
-	jr ++
-
-@script0f:
-	ld a,$04
-	call _childLoadPositionListPointer
-++
-	ld h,d
-	ld l,Interaction.var39
-	ld (hl),$01
-	ld l,Interaction.speed
-	ld (hl),SPEED_80
-	ld a,$00
-	jr @setAnimation
-
-@arborist:
-	ld a,$03
-	jr @setAnimation
-
-@singer:
-	ld a,$00
-	jr @setAnimation
-
-
-_interac65_state1:
-	ld e,Interaction.var03
-	ld a,(de)
-	rst_jumpTable
-
-	/* $00 */ .dw @updateAnimationAndSolidity
-	/* $01 */ .dw @hyperactiveMovement
-	/* $02 */ .dw @shyMovement
-	/* $03 */ .dw @curiousMovement
-	/* $04 */ .dw @hyperactiveMovement
-	/* $05 */ .dw @shyMovement
-	/* $06 */ .dw @curiousMovement
-	/* $07 */ .dw @usePositionList
-	/* $08 */ .dw @shyMovement
-	/* $09 */ .dw @curiousMovement
-	/* $0a */ .dw @slackerMovement
-	/* $0b */ .dw @usePositionList
-	/* $0c */ .dw @arboristMovement
-	/* $0d */ .dw @singerMovement
-	/* $0e */ .dw @slackerMovement
-	/* $0f */ .dw @usePositionList
-	/* $10 */ .dw @arboristMovement
-	/* $11 */ .dw @singerMovement
-	/* $12 */ .dw @slackerMovement
-	/* $13 */ .dw @usePositionList
-	/* $14 */ .dw @arboristMovement
-	/* $15 */ .dw @singerMovement
-	/* $16 */ .dw @val16
-	/* $17 */ .dw @updateAnimationAndSolidity
-	/* $18 */ .dw @val1b
-	/* $19 */ .dw @slackerMovement
-	/* $1a */ .dw @updateAnimationAndSolidity
-	/* $1b */ .dw @updateAnimationAndSolidity
-	/* $1c */ .dw @singerMovement
-
-@hyperactiveMovement:
-	ld e,Interaction.counter1
-	ld a,(de)
-	or a
-	jr nz,+
-	call _childUpdateHyperactiveMovement
-+
-
-@arboristMovement:
-	call interactionRunScript
-
-@updateAnimationAndSolidity:
-	jp _childUpdateAnimationAndSolidity
-
-@val16:
-	call _childUpdateUnknownMovement
-	jp _childUpdateAnimationAndSolidity
-
-@shyMovement:
-	ld e,Interaction.counter1
-	ld a,(de)
-	or a
-	jr nz,+
-	call _childUpdateShyMovement
-+
-	jr @runScriptAndUpdateAnimation
-
-@usePositionList:
-	ld e,Interaction.counter1
-	ld a,(de)
-	or a
-	jr nz,++
-	call _childUpdateAngleAndApplySpeed
-	call _childCheckAnimationDirectionChanged
-	call _childCheckReachedDestination
-	call c,_childIncPositionIndex
-++
-	jr @runScriptAndUpdateAnimation
-
-@curiousMovement:
-	call _childUpdateCuriousMovement
-	ld e,Interaction.var3d
-	ld a,(de)
-	or a
-	call z,interactionRunScript
-
-@val1b:
-	jp _childUpdateAnimationAndSolidity
-
-@slackerMovement:
-	ld a,(wFrameCounter)
-	and $1f
-	jr nz,++
-	ld e,Interaction.animParameter
-	ld a,(de)
-	and $01
-	ld c,$08
-	jr nz,+
-	ld c,$fc
-+
-	ld b,$f4
-	call objectCreateFloatingMusicNote
-++
-	jr @runScriptAndUpdateAnimation
-
-@singerMovement:
-	ld a,(wFrameCounter)
-	and $1f
-	jr nz,@runScriptAndUpdateAnimation
-	ld e,Interaction.direction
-	ld a,(de)
-	or a
-	ld c,$fc
-	jr z,+
-	ld c,$00
-+
-	ld b,$fc
-	call objectCreateFloatingMusicNote
-
-@runScriptAndUpdateAnimation:
-	call interactionRunScript
-	jp _childUpdateAnimationAndSolidity
-
-
-;;
-_childUpdateAnimationAndSolidity:
-	call interactionAnimate
-
-;;
-_childUpdateSolidityAndVisibility:
-	ld e,Interaction.var39
-	ld a,(de)
-	cp $01
-	jr z,++
-	cp $02
-	jp z,objectSetPriorityRelativeToLink_withTerrainEffects
-	call objectPreventLinkFromPassing
-	jp objectSetPriorityRelativeToLink_withTerrainEffects
-++
-	call objectPushLinkAwayOnCollision
-	jp objectSetPriorityRelativeToLink_withTerrainEffects
-
-;;
-; Writes the "base" animation index to var37 based on subid (personality type)?
-_childDetermineAnimationBase:
-	ld e,Interaction.subid
-	ld a,(de)
-	ld hl,@animations
-	rst_addAToHl
-	ld a,(hl)
-	ld e,Interaction.var37
-	ld (de),a
-	ret
-
-@animations:
-	.db $00 $02 $05 $08 $0b $11 $15 $17
-
-;;
-_childUpdateHyperactiveMovement:
-	call objectApplySpeed
-	ld h,d
-	ld l,Interaction.xh
-	ld a,(hl)
-	sub $29
-	cp $40
-	ret c
-	bit 7,a
-	jr nz,+
-	dec (hl)
-	dec (hl)
-+
-	inc (hl)
-	ld l,Interaction.var3c
-	ld a,(hl)
-	inc a
-	and $03
-	ld (hl),a
-	ld bc,_childHyperactiveMovementAngles
-	call addAToBc
-	ld a,(bc)
-	ld l,Interaction.angle
-	ld (hl),a
-
-_childFlipAnimation:
-	ld l,Interaction.var3a
-	ld a,(hl)
-	xor $01
-	ld (hl),a
-	ld l,Interaction.var37
-	add (hl)
-	jp interactionSetAnimation
-
-_childHyperactiveMovementAngles:
-	.db $18 $0a $18 $06
-
-;;
-_childUpdateUnknownMovement:
-	call objectApplySpeed
-	ld e,Interaction.xh
-	ld a,(de)
-	sub $14
-	cp $28
-	ret c
-	ld h,d
-	ld l,Interaction.angle
-	ld a,(hl)
-	xor $10
-	ld (hl),a
-	jr _childFlipAnimation
-
-;;
-; Updates movement for "shy" personality type (runs away when Link approaches)
-_childUpdateShyMovement:
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-
-@substate0:
-	ld c,$18
-	call objectCheckLinkWithinDistance
-	ret nc
-
-	call interactionIncSubstate
-
-@substate1:
-	call _childUpdateAngleAndApplySpeed
-	call _childCheckReachedDestination
-	ret nc
-
-	ld h,d
-	ld l,Interaction.substate
-	ld (hl),$00
-	jp _childIncPositionIndex
-
-;;
-_childUpdateAngleAndApplySpeed:
-	ld h,d
-	ld l,Interaction.var3c
-	ld a,(hl)
-	add a
-	ld b,a
-	ld e,Interaction.var3f
-	ld a,(de)
-	ld l,a
-	ld e,Interaction.var3e
-	ld a,(de)
-	ld h,a
-	ld a,b
-	rst_addAToHl
-	ld b,(hl)
-	inc hl
-	ld c,(hl)
-	call objectGetRelativeAngle
-	ld e,Interaction.angle
-	ld (de),a
-	jp objectApplySpeed
-
-;;
-; @param[out]	cflag	Set if the child's reached the position he's moving toward (or is
-;			within 1 pixel from the destination on both axes)
-_childCheckReachedDestination:
-	ld h,d
-	ld l,Interaction.var3c
-	ld a,(hl)
-	add a
-	push af
-
-	ld e,Interaction.var3f
-	ld a,(de)
-	ld c,a
-	ld e,Interaction.var3e
-	ld a,(de)
-	ld b,a
-
-	pop af
-	call addAToBc
-	ld l,Interaction.yh
-	ld a,(bc)
-	sub (hl)
-	add $01
-	cp $03
-	ret nc
-	inc bc
-	ld l,Interaction.xh
-	ld a,(bc)
-	sub (hl)
-	add $01
-	cp $03
-	ret
-
-;;
-; Updates animation if the child's direction has changed?
-_childCheckAnimationDirectionChanged:
-	ld h,d
-	ld l,Interaction.angle
-	ld a,(hl)
-	swap a
-	and $01
-	xor $01
-	ld l,Interaction.direction
-	cp (hl)
-	ret z
-	ld (hl),a
-	ld l,Interaction.var3a
-	add (hl)
-	ld l,Interaction.var37
-	add (hl)
-	jp interactionSetAnimation
-
-;;
-_childIncPositionIndex:
-	ld h,d
-	ld l,Interaction.var3d
-	ld a,(hl)
-	ld l,Interaction.var3c
-	inc (hl)
-	cp (hl)
-	ret nc
-	ld (hl),$00
-	ret
-
-;;
-; Loads address of position list into var3e/var3f, and the number of positions to loop
-; through (minus one) into var3d.
-;
-; @param	a	Data index
-_childLoadPositionListPointer:
-	add a
-	add a
-	ld hl,@positionTable
-	rst_addAToHl
-	ld e,Interaction.var3f
-	ldi a,(hl)
-	ld (de),a
-	ld e,Interaction.var3e
-	ldi a,(hl)
-	ld (de),a
-	ld e,Interaction.var3d
-	ldi a,(hl)
-	ld (de),a
-	ret
-
-
-; Data format:
-;  word: pointer to position list
-;  byte: number of entries in the list (minus one)
-;  byte: unused
-@positionTable:
-	dwbb @list0 $07 $00
-	dwbb @list1 $03 $00
-	dwbb @list2 $0b $00
-	dwbb @list3 $01 $00
-	dwbb @list4 $03 $00
-
-; Each 2 bytes is a position the child will move to.
-@list0:
-	.db $68 $18
-	.db $68 $68
-	.db $28 $68
-	.db $68 $18
-	.db $38 $18
-	.db $68 $68
-	.db $28 $68
-	.db $38 $18
-
-@list1:
-	.db $18 $18
-	.db $58 $18
-	.db $58 $48
-	.db $18 $48
-
-@list2:
-	.db $28 $48
-	.db $18 $44
-	.db $18 $28
-	.db $20 $18
-	.db $2c $0c
-	.db $38 $08
-	.db $44 $0c
-	.db $50 $18
-	.db $58 $28
-	.db $58 $44
-	.db $48 $48
-	.db $38 $4c
-
-@list3:
-	.db $48 $18
-	.db $48 $68
-@list4:
-	.db $18 $30
-	.db $58 $30
-	.db $58 $48
-	.db $18 $48
-
-;;
-_childUpdateCuriousMovement:
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-	.dw @substate2
-
-@substate0:
-	ld h,d
-	ld l,Interaction.speed
-	ld (hl),SPEED_100
-	ld l,Interaction.angle
-	ld (hl),$18
-
-@gotoSubstate1AndJump:
-	ld h,d
-	ld l,Interaction.substate
-	ld (hl),$01
-	ld l,Interaction.var3d
-	ld (hl),$01
-
-	ld l,Interaction.speedZ
-	ld (hl),$00
-	inc hl
-	ld (hl),$fb
-	ld a,SND_JUMP
-	jp playSound
-
-@substate1:
-	ld c,$50
-	call objectUpdateSpeedZ_paramC
-	jp nz,objectApplySpeed
-
-	call interactionIncSubstate
-
-	ld l,Interaction.var3d
-	ld (hl),$00
-	ld l,Interaction.var3c
-	ld (hl),$78
-
-	ld l,Interaction.angle
-	ld a,(hl)
-	xor $10
-	ld (hl),a
-	ret
-
-@substate2:
-	ld h,d
-	ld l,Interaction.var3c
-	dec (hl)
-	ret nz
-	jr @gotoSubstate1AndJump
-
-
-_childScriptTable:
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript_stage4_hyperactive
-	.dw mainScripts.childScript_stage4_shy
-	.dw mainScripts.childScript_stage4_curious
-	.dw mainScripts.childScript_stage5_hyperactive
-	.dw mainScripts.childScript_stage5_shy
-	.dw mainScripts.childScript_stage5_curious
-	.dw mainScripts.childScript_stage6_hyperactive
-	.dw mainScripts.childScript_stage6_shy
-	.dw mainScripts.childScript_stage6_curious
-	.dw mainScripts.childScript_stage7_slacker
-	.dw mainScripts.childScript_stage7_warrior
-	.dw mainScripts.childScript_stage7_arborist
-	.dw mainScripts.childScript_stage7_singer
-	.dw mainScripts.childScript_stage8_slacker
-	.dw mainScripts.childScript_stage8_warrior
-	.dw mainScripts.childScript_stage8_arborist
-	.dw mainScripts.childScript_stage8_singer
-	.dw mainScripts.childScript_stage9_slacker
-	.dw mainScripts.childScript_stage9_warrior
-	.dw mainScripts.childScript_stage9_arborist
-	.dw mainScripts.childScript_stage9_singer
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
-	.dw mainScripts.childScript00
+	jp interactionDelete
 
 
 ; ==============================================================================
@@ -9692,6 +9070,233 @@ _oldLadyScriptTable:
 	.dw mainScripts.oldLadySubid2Script
 	.dw mainScripts.oldLadySubid3Script
 
+; ==============================================================================
+; INTERACID_D7_4_ARMOS_BUTTON_PUZZLE
+; ==============================================================================
+interactionCode27:
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_jumpTable
+	.dw @subid0
+	.dw @subid1
+@subid1:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @@state0
+	.dw @@state1
+@@state0:
+; Interaction.state = $01
+	ld a,$01
+	ld (de),a
+
+	call interactionInitGraphics
+; 2nd armos tile
+	ld a,$26
+	call objectMimicBgTile
+	ld a,$06
+	call objectSetCollideRadius
+	ld l,Interaction.speed		;$50
+	ld (hl),SPEED_100			;$28
+	ld l,Interaction.counter1	;$46
+	ld (hl),16					;$10
+	inc l	;Interaction.counter2
+	ld (hl),2					;$02
+	ld l,Interaction.yh			;$4b
+	dec (hl)
+	dec (hl)
+	push de
+	call @@func_55c8
+	pop de
+	ld a,SND_MOVEBLOCK			;$71
+	call playSound
+	jp objectSetVisible82
+@@state1:
+	call objectApplySpeed
+	call objectPreventLinkFromPassing
+	call interactionDecCounter1
+	ret nz
+	ld (hl),16					;$10
+	inc l
+;Passes through on the second interation
+	dec (hl)
+	jr z,+
+	call interactionCheckAdjacentTileIsSolid
+	ret z
++
+	call objectGetShortPosition
+	ld c,a
+; 2nd armos tile
+	ld a,$26
+	call setTile
+	jp interactionDelete
+@@func_55c8:
+	call objectGetShortPosition
+	ld c,a
+	ld a,$03
+	ld ($ff00+R_SVBK),a
+	ld b,>w3RoomLayoutBuffer		;$df
+	ld a,(bc)
+	ld b,a
+	xor a
+	ld ($ff00+R_SVBK),a
+	ld a,b
+	jp setTile
+@subid0:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @@state0
+	.dw @@state1
+	.dw @@state2
+@@state0:
+	ld e,Interaction.state
+	ld a,$01
+	ld (de),a
+	ld a,$03
+	ld ($ff00+R_SVBK),a
+	ld b,>w3RoomLayoutBuffer			;$df
+	ld hl,@@table_5610
+	ld a,TILEINDEX_DUNGEON_a3			;$a3
+-
+	ld c,(hl)
+	inc hl
+	ld (bc),a
+	dec e
+	jr nz,-
+; hl == w3RoomLayoutBuffer
+; changes all underlying tiles 
+	ld h,b
+	ld l,$16							;$17
+	ld (hl),TILEINDEX_STANDARD_FLOOR	;$a0
+	ld l,$3a							;$3b
+	ld (hl),TILEINDEX_STANDARD_FLOOR	;$a0
+	ld l,$5a							;$5b
+	ld (hl),TILEINDEX_STANDARD_FLOOR	;$a0
+	ld l,$56							;$57
+	ld (hl),TILEINDEX_DUNGEON_a2		;$a2
+	xor a
+	ld ($ff00+R_SVBK),a
+	ret
+@@table_5610:
+	.db $34 $36 $38 $54					;$35 $37 $39 $55
+	.db $58 $74 $76 $78					;$59 $75 $77 $79
+@@state1:
+	ld hl,wActiveTriggers
+	bit 4,(hl)
+	jr nz,+
+	bit 0,(hl)
+	jr z,+
+	set 4,(hl)
+; Top-west button
+	ld c,$31				;$32
+	call nz,_func_5694
++
+	ld hl,wActiveTriggers
+	bit 5,(hl)
+	jr nz,+
+	bit 1,(hl)
+	jr z,+
+	set 5,(hl)
+; Bottom-west button
+	ld c,$51				;$52
+	call nz,_func_5694
++
+	ld hl,wActiveTriggers
+	bit 6,(hl)
+	jr nz,+
+	bit 2,(hl)
+	jr z,+
+	set 6,(hl)
+; South-left button
+	ld c,$94				;$95
+	call nz,_func_56a5
++
+	ld hl,wActiveTriggers
+	bit 7,(hl)
+	jr nz,+
+	bit 3,(hl)
+	jr z,+
+	set 7,(hl)
+; South-right button
+	ld c,$96				;$97
+	call nz,_func_56a5
++
+; continues if all triggers have been activated
+	ld a,(wActiveTriggers)
+	inc a
+	ret nz
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,(hl)
+	jp nz,interactionDelete
+	ld e,Interaction.counter1	;$46
+	ld a,60						;$3c
+	ld (de),a
+	jp interactionIncState
+@@state2:
+; puzzle is solved by the revelation of center tile
+	call interactionDecCounter1
+	ret nz
+	ld a,TILEINDEX_DUNGEON_a3		;$a3
+	call findTileInRoom
+	jr nz,+
+	ld a,SND_ERROR 					;$5a
+	call playSound
+	jp interactionDelete
++
+; falling key
+	ldbc TREASURE_SMALL_KEY $01
+	call createTreasure
+	call objectCopyPosition
+	jp interactionDelete
+
+_func_5694:
+	ld b,>wRoomLayout		;$cf
+-
+	ld a,(bc)
+; 2nd armos tile
+	cp $26
+	ld e,ANGLE_LEFT	;$18
+	call z,_func_56b8
+; c == tile short position
+; reading, going right
+	inc c
+	ld a,c
+	and $0f
+	ret z
+	jr -
+_func_56a5:
+	ld b,$cf
+-
+	ld a,(bc)
+; 2nd armos tile
+	cp $26
+	ld e,ANGLE_DOWN	;$10
+	call z,_func_56b8
+; c == tile short position
+; reading, going up
+	ld a,c
+	sub $10
+	ld c,a
+	and $f0
+	ret z
+	jr -
+_func_56b8:
+	call getFreeInteractionSlot
+	ret nz
+	ld (hl),INTERACID_D7_4_ARMOS_BUTTON_PUZZLE
+	inc l
+; subid = $01
+	ld (hl),$01
+	push bc
+	ld l,Interaction.yh		;$4b
+	call setShortPosition_paramC
+	pop bc
+	ld l,Interaction.angle	;$49
+	ld (hl),e
+	ret
 
 
+
+	
 .ends

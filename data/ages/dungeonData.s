@@ -54,7 +54,7 @@ dungeonData0a:
 dungeonData0b:
 	m_DungeonData >wGroup4Flags, $ce, dungeon0bLayout, $03, $03, $00, $00, $00
 dungeonData0c:
-	m_DungeonData >wGroup4Flags, $44, dungeon0cLayout, $03, $02, $00, $00, $00
+	m_DungeonData >wGroup4Flags, $77, dungeon0cLayout, $02, $02, $00, $00, $00
 dungeonData0d:
 	m_DungeonData >wGroup4Flags, $04, dungeon0dLayout, $01, $03, $00, $00, $00
 dungeonData0e:

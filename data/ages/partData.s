@@ -100,3 +100,4 @@ partData:
 	.db $d7 $86 $62 $f8 $40 $1e $06 $00 ; $58
 	.db $00 $86 $55 $fc $40 $08 $0a $00 ; $59
 	.db $3d $00 $00 $00 $01 $00 $06 $00 ; $5a
+	.db OBJGFXH_a7 $00 $66 $00 $40 $18 $04 $00 ; $5b Facade Hole SEASON_OBJGFXH_8f

@@ -11,7 +11,7 @@ _soundPointers:
 	m_soundPointer sound09
 	m_soundPointer kakarikoVillage
 	m_soundPointer sound0b
-	m_soundPointer sound0c
+	m_soundPointer forestOfMystery
 	m_soundPointer sound0d
 	m_soundPointer sound0e
 	m_soundPointer fairyFountain

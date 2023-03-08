@@ -44,7 +44,8 @@
 	; ambi's guards (they notice him right away), while $12-$1f are indirect attacks?
 
 .ifdef ROM_AGES
-	ITEMCOLLISION_AG_13			db ; $13:
+;	ITEMCOLLISION_AG_13			db ; $13:
+	ITEMCOLLISION_L2_BOOMERANG		db ; $13
 	ITEMCOLLISION_AG_14			db ; $14:
 	ITEMCOLLISION_SOMARIA_BLOCK		db ; $15: Cane of Somaria block
 	ITEMCOLLISION_THROWN_OBJECT		db ; $16: Object being thrown (ie. sign)

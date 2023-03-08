@@ -39,7 +39,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group0Mapda ; $1f
   .dw tileReplacement_group0Mapca ; $20
   .dw tileReplacement_group0Map61 ; $21
-  .dw tileReplacement_group0Map51 ; $22
+  .dw tileReplacement_group0Map50 ; $22
   .dw tileReplacement_group0Map54 ; $23
   .dw tileReplacement_group0Map25 ; $24
   .dw tileReplacement_group0Map3a ; $25
@@ -74,6 +74,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group4Map43 ; $42
   .dw tileReplacement_group4Map3b ; $43
   .dw tileReplacement_group0Map33 ; $44
+  .dw tileReplacement_group0Map51 ; $45
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -88,12 +89,11 @@ roomTileChangerCodeGroupTable:
 roomTileChangerCodeGroup0Data:
   .db $70 $37
   .db $40 $3e
-  .db $32 $3d
-  .db $57 $3a
-  .db $74 $3b
   .db $01 $08
   .db $11 $17
   .db $33 $44
+  .db $51 $45
+  .db $62 $45
   ;.db $5c $14
   ;.db $73 $16
   .db $ac $18
@@ -132,7 +132,6 @@ roomTileChangerCodeGroup2Data:
   ;.db $7e $02
   .db $00
 roomTileChangerCodeGroup3Data:
-  .db $08 $39
   .db $00
 roomTileChangerCodeGroup4Data:
   .db $50 $12     ;Group5Map95
@@ -547,6 +546,7 @@ tileReplacement_group5Map43:
 ;;
 ; D8: room with retracting wall
 tileReplacement_group5Map95:
+; group4Map50
   call getThisRoomFlags
   and ROOMFLAG_40
   ret nz
@@ -564,7 +564,7 @@ tileReplacement_group5Map95:
 
 ;YX, Height, Length, Tile Index
 @wallInterior:
-  .db $4d $06 $02 $a7
+  .db $4d $06 $02 $a6
 @wallEdge:
   .db $4c $06 $01 $b1
 
@@ -991,7 +991,7 @@ tileReplacement_group0Map61:
 
 ;;
 ; Screen above talus peaks vines
-tileReplacement_group0Map51:
+tileReplacement_group0Map50:
   ld bc,$0122
   call getVinePosition
   jr z,@vines1
@@ -1543,40 +1543,34 @@ tileReplacement_group5Map26:
 @bridgeData
   .db $3a $04 $01 $6a   ;SEASONS_SPRING
   .db $83 $01 $06 $6d   ;SEASON_SUMMER
+; unused
   .db $83 $01 $06 $6d   ;SEASONS_FALL
   .db $83 $01 $06 $6d   ;SEASON_WINTER
 
 tileReplacement_group3Map08:
-  call getThisRoomFlags
-  and ROOMFLAG_40
-  ret z
-
-  ld hl,wRoomLayout+$41
-  ld (hl),$1d
-  ld l,$31
-  ld (hl),$a0
   ret
 
-tileReplacement_group0Map57:
-  ld c,$56
-  jp replaceSimpleGround
+tileReplacement_group0Map51:
+;and group0Map62
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit ROOMFLAG_BIT_LAYOUTSWAP,a
+	ret nz
 
-tileReplacement_group0Map32:
-  ld c,$55
-  jp replaceSimpleGround
+  ld c,$68
 
-tileReplacement_group0Map74:
-  ld c,67
-  
 replaceSimpleGround:
   call getThisRoomFlags
   and ROOMFLAG_40
   ret z
 
   ld hl,wRoomLayout
-  ld b,$00
-  add hl,bc
-  ld (hl),$3a
+  ld a,c
+  add l
+  ld l,a
+  ld (hl),TILEINDEX_OVERWORLD_STANDARD_GROUND+1
+tileReplacement_group0Map32:
+tileReplacement_group0Map74:
+tileReplacement_group0Map57:
   ret
 
 tileReplacement_group5Map37:

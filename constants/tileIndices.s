@@ -131,6 +131,7 @@
 .define TILEINDEX_HORIZONTAL_BRIDGE_LEFT	$6e ; dungeons/indoors only
 .define TILEINDEX_HORIZONTAL_BRIDGE_RIGHT	$6f ; dungeons/indoors only
 .define TILEINDEX_STANDARD_FLOOR	$a0 ; Keyblocks and such will turn into this tile
+.define TILEINDEX_DUNGEON_a2		$a2 ; dungeons, indoors only
 .define TILEINDEX_DUNGEON_a3		$a3 ; dungeons, indoors only
 
 .define TILEINDEX_RED_TOGGLE_BLOCK	$aa
@@ -153,7 +154,7 @@
 .define TILEINDEX_BLANK_HOLE		$f4 ; dungeons / indoors only
 
 ; $d4-$d7 are filled slate tiles in ages D8
-.define TILEINDEX_FILLED_SLATE_1	$d4
+.define TILEINDEX_FILLED_SLATE_1	$d6;$c5,$d4
 
 .define TILEINDEX_INDOOR_DOOR		$af ; indoors only
 

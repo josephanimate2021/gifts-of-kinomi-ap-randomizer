@@ -107,17 +107,22 @@ _objectDataOpcodeSizes:
 ; Only use objects when certain room properties are set
 ; Used a lot in jabu-jabu
 _objectDataOp0:
+; Set to either $01, $02 or $04
+; depending on being underwater
+; and layout swap room flag (bit 0)
 	ld a,(wRoomStateModifier)
 	ld hl,bitTable
 	add l
 	ld l,a
 	ld a,(hl)
 	ld b,a
+; Compared to second argument of conditional, next opcode
+; parse data after conditional if values match
 	ld a,(de)
 	inc de
 	and b
 	jp nz,parseGivenObjectData
-
+; Reset b and hl (to next opcode)
 	ld b,$00
 	ld l,e
 	ld h,d

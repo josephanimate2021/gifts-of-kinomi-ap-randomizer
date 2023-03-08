@@ -457,6 +457,8 @@
 ; before it's moved, the stone is handled by INTERACID_TRIFORCE_STONE instead.
 .define PARTID_TRIFORCE_STONE			$5a
 
+.define PARTID_FACADE_HOLE                     $5b
+
 
 ; Can't have IDs higher than $80 (would need to modify code in objectLoading.s, possibly more)
 

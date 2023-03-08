@@ -87,6 +87,34 @@ spiritsGraveScript_spawnMovingPlatform:
 	playsound SND_SOLVEPUZZLE	
 	scriptend
 
+cornersCaveScript_spawnMovingPlatform:
+	jumpifroomflagset ROOMFLAG_40, _spawnPlatform
+	checkflagset 4, wActiveTriggers
+	orroomflag ROOMFLAG_40
+_spawnPlatform:
+	settileat $6a TILEINDEX_PRESSED_BUTTON
+	setcoords $68 $78
+	asm15 objectCreatePuff
+	setcoords $68 $88
+	asm15 objectCreatePuff
+	wait 30
+	spawninteraction INTERACID_MOVING_PLATFORM, $03, $68, $80
+	playsound SND_SOLVEPUZZLE
+	scriptend
+
+cornersCaveScript_minecartRoom:
+	stopifroomflag80set
+	setcollisionradii $06 $06
+	checkcollidedwithlink_ignorez
+
+	settileat $36 $5e
+	settileat $76 $5e
+	checknoenemies
+	playsound SND_SOLVEPUZZLE	
+
+	orroomflag ROOMFLAG_80
+	settileat $76 $5c
+	scriptend
 ;	checkflagset $01, wActiveTriggers
 ;	setcoords $48, $78
 ;	asm15 objectCreatePuff
@@ -96,6 +124,25 @@ spiritsGraveScript_spawnMovingPlatform:
 ;	spawninteraction INTERACID_MOVING_PLATFORM, $09, $50, $78
 ;	playsound SND_SOLVEPUZZLE
 ;	scriptend
+
+cornersCaveScript_bossRoom:
+	jumpifroomflagset ROOMFLAG_80 @setTiles
+	checkobjectbyteeq Enemy.state $0e	;end of fight, stunned
+@setTiles:
+	setcoords $38 $78
+	createpuff
+	settilehere TILEINDEX_STANDARD_FLOOR
+	setcoords $58 $38
+	createpuff
+	settilehere TILEINDEX_STANDARD_FLOOR
+	setcoords $78 $78
+	createpuff
+	settilehere TILEINDEX_STANDARD_FLOOR	
+	setcoords $58 $b8
+	createpuff
+	settilehere TILEINDEX_STANDARD_FLOOR
+	scriptend
+
 
 spiritsGraveScript_spawnBracelet:
 	stopifitemflagset
@@ -165,14 +212,23 @@ wingDungeonScript_bossDeath:
 
 ; Spawn stairs to the bracelet room when the two torches are lit.
 spiritsGraveScript_stairsToBraceletRoom:
-;	stopifroomflag80set
-;	asm15 scriptHelp.makeTorchesLightable
-;	checkmemoryeq wNumTorchesLit, $02
-;	orroomflag $80
-;	playsound SND_SOLVEPUZZLE
-;	asm15 objectCreatePuff
-;	settilehere $45
-;	scriptend
+	stopifroomflag40set
+; lightable torches already spawned
+	checkmemoryeq wNumTorchesLit, $04
+	playsound SND_SOLVEPUZZLE
+	asm15 objectCreatePuff
+	settilehere TILEINDEX_INDOOR_UPSTAIRCASE
+	settileat $82, TILEINDEX_INDOOR_UPSTAIRCASE
+	orroomflag ROOMFLAG_40
+	asm15 scriptHelp.tokayTempleSetRoomflag40
+	scriptend
+
+tokayTempleScript_gloveRoom:
+	stopifitemflagset
+	checkmemoryeq wActiveTriggers, $03
+	playsound SND_SOLVEPUZZLE
+	spawnitem TREASURE_BRACELET $05
+	scriptend
 
 wingDungeonScript_spawnFeather:
 ;	stopifitemflagset
@@ -186,8 +242,24 @@ spawn80Rupees:
 
 spawnHeartPiece:
 	stopifitemflagset
+	jumpifobjectbyteeq Interaction.var03 $01 spawnHeartContainer
 	spawnitem TREASURE_HEART_PIECE, $00
-	scriptend	
+	scriptend
+
+spawnHeartContainer:
+	spawnitem TREASURE_HEART_CONTAINER, $00
+	scriptend
+
+swordAndShieldMazeScript_armosBlockingStairs:
+	stopifroomflag80set
+	writeobjectbyte Interaction.direction, $96
+
+@checkIfWillMove:
+	asm15 scriptHelp.D8armosCheckIfWillMove
+	jumptable_objectbyte Interaction.angle		;$49
+	.dw @checkIfWillMove
+	.dw stubScript
+
 
 moonlitGrottoScript_spawnChestWhen2TorchesLit:
 ;	stopifitemflagset

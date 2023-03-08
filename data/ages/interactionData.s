@@ -63,7 +63,7 @@ interactionData:
 	/* $24 */ m_InteractionData $00 $00 $00
 	/* $25 */ m_InteractionData $00 $00 $00
 	/* $26 */ m_InteractionData $00 $00 $00
-	/* $27 */ m_InteractionData $00 $00 $00
+	/* $27 */ m_InteractionData $00 $00 $e0	;armos puzzle
 	/* $28 */ m_InteractionData $46 $00 $00
 	/* $29 */ m_InteractionData $62 $12 $00
 	/* $2a */ m_InteractionData $55 $1a $00
@@ -289,7 +289,7 @@ interaction63SubidData:
 	m_InteractionData $7d $12 $50
 	m_InteractionData $7d $10 $50
 	m_InteractionData $7d $16 $40
-	m_InteractionData $7d $18 $50
+	m_InteractionData $7d $18 $40	;5boomerang
 	m_InteractionData $00 $00 $00
 	m_InteractionData $7d $14 $20;$00 $00 $00	;rod
 	m_InteractionData $7d $1e $40
@@ -387,7 +387,13 @@ interactiond7SubidData:
 	m_InteractionData $80 $1a $23	;Sparring Book		$13
 	m_InteractionData $81 $00 $33
 	m_InteractionData $81 $04 $33
-	m_InteractionData $81 $88 $13
+	m_InteractionData $81 $08 $13 ; $7b
+
+	m_InteractionData $7c $10 $10 ; $7c (Magnet Gloves)
+	m_InteractionData $7c $02 $40 ; $7d (Slingshot)
+	m_InteractionData $e0 $00 $50 ; $7e (Hyper Slingshot)
+	m_InteractionData $84 $04 $40 ; $7f (Magic Boomerang)
+	m_InteractionData $7d $1a $50 ; $80 (Roc's Cape)
 
 interaction1bSubidData:
 	m_InteractionData $74 $10 $00

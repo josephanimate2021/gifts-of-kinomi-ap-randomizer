@@ -468,6 +468,12 @@ interactionOamDataTable: ; 0x59a23
 	.dw interactione7OamDataPointers
 	.dw interactione8OamDataPointers
 
+interaction27Animations:
+	.dw interactionAnimation5a3af ; interactionAnimation51cda
+	.dw interactionAnimation5a2b7 ; interactionAnimation51c08
+	.dw interactionAnimation5a2c9 ; interactionAnimation51c1a
+	.dw interactionAnimation5a2db ; interactionAnimation51c2c
+	.dw interactionAnimation5a2e9 ; interactionAnimation51c3a
 interaction00Animations:
 interaction01Animations:
 interaction0dAnimations:
@@ -485,7 +491,7 @@ interaction23Animations:
 interaction24Animations:
 interaction25Animations:
 interaction26Animations:
-interaction27Animations:
+
 interaction2fAnimations:
 interaction33Animations:
 interaction67Animations:
@@ -3103,6 +3109,18 @@ interactionAnimation5adf0:
 	.db $02 $02 $00
 	.db $7f $22 $ff
 
+interaction27OamDataPointers: ; 0x5adfc
+	.dw interactionOamData50220 ; interactionOamData4c1ff
+	.dw interactionOamData530a7 ; interactionOamData4f149
+	.dw interactionOamData530b8 ; interactionOamData4f15a
+	.dw interactionOamData530c9 ; interactionOamData4f16b
+	.dw interactionOamData530da ; interactionOamData4f17c
+	.dw interactionOamData530f3 ; interactionOamData4f195
+	.dw interactionOamData5310c ; interactionOamData4f1ae
+	.dw interactionOamData53125 ; interactionOamData4f1c7
+	.dw interactionOamData53146 ; interactionOamData4f1e8
+	.dw interactionOamData53167 ; interactionOamData4f209
+
 
 
 interaction00OamDataPointers: ; 0x5adfc
@@ -3121,7 +3139,7 @@ interaction23OamDataPointers: ; 0x5adfc
 interaction24OamDataPointers: ; 0x5adfc
 interaction25OamDataPointers: ; 0x5adfc
 interaction26OamDataPointers: ; 0x5adfc
-interaction27OamDataPointers: ; 0x5adfc
+
 interaction2fOamDataPointers: ; 0x5adfc
 interaction33OamDataPointers: ; 0x5adfc
 interaction67OamDataPointers: ; 0x5adfc

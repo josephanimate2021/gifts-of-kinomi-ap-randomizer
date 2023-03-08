@@ -64,12 +64,12 @@ _parentItemCode_feather:
 
 	ld a,$01
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld a,(wFeatherLevel)
 	cp $02
 	ld a,$41
 	jr z,++
-.endif
+;.endif
 	ld a,$01
 ++
 	ld (wLinkInAir),a
@@ -85,9 +85,9 @@ _parentItemCode_feather:
 
 @state1:
 
-.ifdef ROM_AGES
-	jp _clearParentItem
-.else
+;.ifdef ROM_AGES
+;	jp _clearParentItem
+;.else
 	ld a,(wLinkInAir)
 	bit 5,a
 	jr nz,@deleteParent
@@ -122,4 +122,4 @@ _parentItemCode_feather:
 	ld a,SND_THROW
 	call playSound
 	jp _clearParentItem
-.endif
+;.endif

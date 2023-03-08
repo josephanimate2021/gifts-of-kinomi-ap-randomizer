@@ -314,6 +314,12 @@ _screenTransitionState2:
 
 	; Check rightmost map boundary
 	ld a,(wActiveRoom)
+	cp <ROOM_AGES_047
+	jr z,@doneBoundaryChecks
+	cp <ROOM_AGES_067
+	jr z,@doneBoundaryChecks
+	cp <ROOM_AGES_088
+	jr z,@doneBoundaryChecks
 	ld e,a
 	and $0f
 	cp OVERWORLD_WIDTH-1
@@ -4532,15 +4538,19 @@ getNextActiveRoom:
 	rst_jumpTable
 
 .ifdef ROM_AGES
-	.dw screenTransitionForestScrambler
-	.dw clearEyePuzzleVars
+	.dw screenTransitionLostWoods
+	;.dw screenTransitionForestScrambler
+	.dw screenTransitionSwordUpgrade	
+	;.dw clearEyePuzzleVars
 	.dw clearEyePuzzleVars
 	.dw screenTransitionEyePuzzle
+	.dw screenTransitionSeasonsShrine
 .else
 	.dw screenTransitionLostWoods
 	.dw screenTransitionSwordUpgrade
 	.dw screenTransitionOnoxDungeon
 	.dw screenTransitionEyePuzzle
+	.dw screenTransitionSeasonsShrine
 .endif
 
 ;;
@@ -4571,6 +4581,9 @@ clearEyePuzzleVars:
 		.dw mapTransitionGroup7Data
 
 	mapTransitionGroup0Data:
+		.db <ROOM_AGES_067 $00 ; LostWoods
+		.db <ROOM_AGES_047 $01 ; SwordUpgrade
+		.db <ROOM_AGES_088 $04 ; Seasons Shrine
 		;.db $70 $00 ; ForestScrambler
 		;.db $71 $00 ; ForestScrambler
 		;.db $72 $00 ; ForestScrambler
@@ -4629,7 +4642,7 @@ clearEyePuzzleVars:
 
 
 
-.ifdef ROM_AGES
+.ifdef ROM_SEASONS
 
 ;;
 ; Forest scrambler code
@@ -4678,23 +4691,36 @@ screenTransitionForestScrambler:
 	.db $82 $00 $00 $92
 
 
-.else; ROM_SEASONS
+.else; ROM_AGES
 
 
 ;;
 screenTransitionLostWoods:
 	call @checkMoveNorthTransitions
 	ret c
-	call @checkSwordUpgradeTransitions
+	call @checkSwordUpgradeTransitions	; moving west
 	ret c
+	call @checkMoveEastTransitions
+	ret c
+
+; Loop if direction is not south or if puzzle doesn't require south movement
 	ld a,(wScreenTransitionDirection)
+;	dec a ; only allows DIR_RIGHT
+	cp DIR_DOWN
+	jr nz,@loop
+; Check for Shrine south movement
+	ld a,$03
+	ld hl,wLostWoodsTransitionCounter1
+	cp (hl)
+	jr z,@loop	; if don't have to go south, follow standard transition
+; Check for sword south movement
+	inc l ; wLostWoodsTransitionCounter2
 	dec a
-	jr nz,+
-	ld a,(wLostWoodsTransitionCounter1)
-	cp $03
-	jr nz,screenTransitionStandard
-+
-	ld a,$40
+	cp (hl)
+	jr z,@loop
+	jr screenTransitionStandard
+@loop:
+	ld a,<ROOM_AGES_067		;$40
 	ld (wActiveRoom),a
 	scf
 	ret
@@ -4703,7 +4729,7 @@ screenTransitionLostWoods:
 ; Check for the sequence of transitions needed to move north.
 ; @param[out]	cflag	Set if the north transition succeeded.
 @checkMoveNorthTransitions:
-	ld a,(wLostWoodsTransitionCounter1)
+	ld a,(wLostWoodsTransitionCounter3)
 	rst_jumpTable
 	.dw @transition0
 	.dw @transition1
@@ -4711,10 +4737,10 @@ screenTransitionLostWoods:
 	.dw @transition3
 
 @transition0:
-	ldbc DIR_LEFT, SEASON_WINTER
+	ldbc DIR_UP, SEASON_WINTER ;DIR_LEFT, SEASON_WINTER
 
 @checkTransitionForNorth:
-	ld hl,wLostWoodsTransitionCounter1
+	ld hl,wLostWoodsTransitionCounter3
 
 ; b = expected direction of transition
 ; c = expected season
@@ -4723,7 +4749,7 @@ screenTransitionLostWoods:
 	ld a,(wScreenTransitionDirection)
 	cp b
 	jr nz,@wrongWay
-	ld a,(wRoomStateModifier)
+	ld a,(wCurrentSeason)	;wRoomStateModifier)
 	cp c
 	jr nz,@wrongWay
 	inc (hl)
@@ -4737,21 +4763,21 @@ screenTransitionLostWoods:
 	ret
 
 @transition1:
-	ldbc DIR_DOWN, SEASON_FALL
+	ldbc DIR_UP, SEASON_FALL ;DIR_DOWN, SEASON_FALL
 	jr @checkTransitionForNorth
 
 @transition2:
-	ldbc DIR_RIGHT, SEASON_SPRING
+	ldbc DIR_UP, SEASON_SPRING ;DIR_RIGHT, SEASON_SPRING
 	jr @checkTransitionForNorth
 
 @transition3:
-	ldbc DIR_UP, SEASON_SUMMER
+	ldbc DIR_UP, SEASON_SUMMER ;
 	call @checkTransitionForNorth
 	ld a,(hl)
 	cp $04
 	ret nz
 	ld (hl),$00
-	ld a,$30
+	ld a,<ROOM_AGES_057	;$30
 	ld (wActiveRoom),a
 	scf
 	ret
@@ -4769,22 +4795,22 @@ screenTransitionLostWoods:
 	.dw @@transition3
 
 @@transition0:
-	ldbc DIR_LEFT, SEASON_WINTER
+	ldbc DIR_RIGHT, SEASON_WINTER ;DIR_LEFT, SEASON_WINTER
 	ld hl,wLostWoodsTransitionCounter2
 	jr @checkTransition
 
 @@transition1:
-	ldbc DIR_LEFT, SEASON_FALL
+	ldbc DIR_DOWN, SEASON_SPRING ;DIR_LEFT, SEASON_FALL
 	ld hl,wLostWoodsTransitionCounter2
 	jr @checkTransition
 
 @@transition2:
-	ldbc DIR_LEFT, SEASON_SPRING
+	ldbc DIR_UP, SEASON_SUMMER ;DIR_LEFT, SEASON_SPRING
 	ld hl,wLostWoodsTransitionCounter2
 	jr @checkTransition
 
 @@transition3:
-	ldbc DIR_LEFT, SEASON_SUMMER
+	ldbc DIR_LEFT, SEASON_FALL ;DIR_LEFT, SEASON_SUMMER
 	ld hl,wLostWoodsTransitionCounter2
 	call @checkTransition
 	ld a,(hl)
@@ -4793,7 +4819,45 @@ screenTransitionLostWoods:
 
 	; Success, warp to sword upgrade screen
 	ld (hl),$00
-	ld a,$c9
+	ld a,<ROOM_AGES_047		;$c9
+	ld (wActiveRoom),a
+	scf
+	ret
+
+@checkMoveEastTransitions:
+	ld a,(wLostWoodsTransitionCounter1)
+	rst_jumpTable
+	.dw @@transition0
+	.dw @@transition1
+	.dw @@transition2
+	.dw @@transition3
+
+@@transition0:
+	ldbc DIR_LEFT, SEASON_WINTER ;DIR_LEFT, SEASON_WINTER
+	ld hl,wLostWoodsTransitionCounter1
+	jr @checkTransition
+
+@@transition1:
+	ldbc DIR_UP, SEASON_SUMMER ;DIR_LEFT, SEASON_FALL
+	ld hl,wLostWoodsTransitionCounter1
+	jp @checkTransition
+
+@@transition2:
+	ldbc DIR_DOWN, SEASON_FALL ;DIR_LEFT, SEASON_SPRING
+	ld hl,wLostWoodsTransitionCounter1
+	jp @checkTransition
+
+@@transition3:
+	ldbc DIR_RIGHT, SEASON_SPRING ;DIR_LEFT, SEASON_SUMMER
+	ld hl,wLostWoodsTransitionCounter1
+	call @checkTransition
+	ld a,(hl)
+	cp $04
+	ret nz
+
+	; Success, warp to Seasons Shrine screen
+	ld (hl),$00
+	ld a,<ROOM_AGES_088		;$c9
 	ld (wActiveRoom),a
 	scf
 	ret
@@ -4802,8 +4866,13 @@ screenTransitionLostWoods:
 ; The sword upgrade screen is actually located where you'd expect the maku tree to be, so
 ; override the destination room.
 screenTransitionSwordUpgrade:
+	ld a,(wScreenTransitionDirection)
+	cp DIR_RIGHT
+	jp nz,screenTransitionStandard
+
+screenTransitionSeasonsShrine:
 	call clearEyePuzzleVars
-	ld a,$40
+	ld a,<ROOM_AGES_067	;$40
 	ld (wActiveRoom),a
 	scf
 	ret

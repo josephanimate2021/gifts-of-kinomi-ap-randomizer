@@ -27,7 +27,7 @@ interactionCodeTable: ; $3b8b
 	.dw    commonInteractions1.interactionCode18 ; 0x18
 	.dw agesInteractionsBank08.interactionCode19 ; 0x19
 	.dw agesInteractionsBank08.interactionCode1a ; 0x1a
-	.dw agesInteractionsBank08.interactionCode1b ; 0x1b
+	.dw agesInteractionsBank08.interactionCode1b ; 0x1b	;gutted
 	.dw    commonInteractions1.interactionCode1c ; 0x1c
 	.dw                        interactionDelete ; 0x1d
 	.dw    commonInteractions1.interactionCode1e ; 0x1e
@@ -39,7 +39,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank08.interactionCode24 ; 0x24
 	.dw agesInteractionsBank08.interactionCode25 ; 0x25
 	.dw                        interactionDelete ; 0x26
-	.dw                        interactionDelete ; 0x27
+	.dw agesInteractionsBank08.interactionCode27 ; 0x27	;originally blank, armos puzzle
 	.dw agesInteractionsBank08.interactionCode28 ; 0x28
 	.dw agesInteractionsBank08.interactionCode29 ; 0x29
 	.dw agesInteractionsBank08.interactionCode2a ; 0x2a
@@ -235,7 +235,6 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank10.interactionCodee8 ; 0xe8
 	.dw agesInteractionsBank10.interactionCodee9 ; 0xe9	
 	.dw agesInteractionsBank10.interactionCodeea ; 0xea
-
 .else; ROM_SEASONS
 
 	.dw       commonInteractions1.interactionCode00 ; 0x00

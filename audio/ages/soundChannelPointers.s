@@ -74,15 +74,15 @@ sound09:
 	.dw sound09Channel6
 	.db $ff
 
-sound0c:
+forestOfMystery:
 	.db $00
-	.dw sound0cChannel0
+	.dw forestOfMysteryChannel0
 	.db $01
-	.dw sound0cChannel1
+	.dw forestOfMysteryChannel1
 	.db $04
-	.dw sound0cChannel4
+	.dw forestOfMysteryChannel4
 	.db $06
-	.dw sound0cChannel6
+	.dw forestOfMysteryChannel6
 	.db $ff
 
 sound0d:

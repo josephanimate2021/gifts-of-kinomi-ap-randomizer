@@ -610,8 +610,8 @@ replaceSwitchTiles:
 	.db $51 $01 $0b $8c
 	.db $51 $01 $52 $42
 
-	.db $6e $02 $0b $11
-	.db $6e $02 $d0 $33
+	.db $6e $40 $0b $11
+	.db $6e $40 $d0 $33
 	.db $6e $04 $0b $1d
 	.db $6e $04 $d0 $3b
 	.db $6e $08 $0b $9d
@@ -632,6 +632,8 @@ replaceSwitchTiles:
 	.db $28 $01 $52 $58
 	.db $2b $01 $0b $2b
 	.db $2b $01 $b2 $75
+
+	.db <ROOM_AGES_567 $02 $0b $2c
 
 	;.db $6a $01 $57 $23
 	;.db $6a $01 $57 $24
@@ -666,6 +668,11 @@ applySingleTileChanges:
 	cp $f2
 	jr z,@finishedGameOnly
 
+	sub $e0
+	jr c,+
+	cp $08
+	jr c,@slateRoom
++
 	ld a,(hl)
 	and c
 	jr z,@notMatch
@@ -702,6 +709,14 @@ applySingleTileChanges:
 	ld a,GLOBALFLAG_FINISHEDGAME
 	push hl
 	call checkGlobalFlag
+	pop hl
+	ret z
+	jr @match
+
+@slateRoom:
+	push hl
+	ld hl,wNumPlacedSlates
+	call checkFlag
 	pop hl
 	ret z
 	jr @match

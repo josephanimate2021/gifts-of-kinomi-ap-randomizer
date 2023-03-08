@@ -4532,3 +4532,9 @@ paletteDataTemple:
 	m_RGB16 $10 $00 $00
 	m_RGB16 $08 $00 $00
 	m_RGB16 $00 $00 $00
+
+paletteDataManhandla:
+	m_RGB16 $1f $1f $11
+	m_RGB16 $00 $00 $00
+	m_RGB16 $00 $12 $00
+	m_RGB16 $19 $1f $19

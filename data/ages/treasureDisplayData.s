@@ -13,6 +13,7 @@ treasureDisplayData1:
 	.db TREASURE_HARP		<wSelectedHarpSong     $08
 	.db TREASURE_TUNI_NUT		<wTuniNutState         $09
 	.db TREASURE_SWITCH_HOOK	<wSwitchHookLevel      $0a
+	.db TREASURE_FEATHER		<wFeatherLevel $0b
 	.db $00				$00                    $00
 
 treasureDisplayData2:
@@ -27,6 +28,7 @@ treasureDisplayData2:
 	.dw treasureDisplayData_harp
 	.dw treasureDisplayData_tuniNut
 	.dw treasureDisplayData_switchHook-7
+	.dw treasureDisplayData_feather   - 7
 
 
 ; The parts marked as "filler" in this table aren't actually used, since they have their
@@ -62,7 +64,8 @@ treasureDisplayData_standard:
 	.db TREASURE_BOMBS		$9e $04 $00 $00 $01 <TX_0926 ; TREASURE_BOMBS (0x03)
 	.db $00				$97 $02 $00 $00 $ff <TX_093c ; TREASURE_CANE_OF_SOMARIA (0x04)
 	.db $00				$07 $00 $07 $00 $00 <TX_0900 ; (filler) TREASURE_SWORD (0x05)
-	.db TREASURE_BOOMERANG		$9c $05 $00 $00 $ff <TX_0927 ; TREASURE_BOOMERANG (0x06)
+	.db TREASURE_BOOMERANG		$9c $04 $00 $00 $ff <TX_0927 ; TREASURE_BOOMERANG (0x06)
+	;TREASURE_BOOMERANG		$9c $05 $00 $00 $ff <TX_0927
 	.db TREASURE_ROD_OF_SEASONS	$9a $02 $00 $00 $ff <TX_096b ; TREASURE_ROD_OF_SEASONS (0x07)
 								;$98 $02 $00 $00 $02 $41
 	.db $00				$07 $00 $07 $00 $ff <TX_0900 ; TREASURE_MAGNET_GLOVES (0x08)
@@ -80,7 +83,7 @@ treasureDisplayData_standard:
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_14 (0x14)
 	.db $00				$9b $04 $00 $00 $ff <TX_092a ; TREASURE_SHOVEL (0x15)
 	.db TREASURE_BRACELET		$99 $05 $00 $00 $00 <TX_092b ; (filler) TREASURE_BRACELET (0x16)
-	.db TREASURE_FEATHER		$96 $04 $00 $00 $ff <TX_092c ; TREASURE_FEATHER (0x17)
+	.db TREASURE_FEATHER		$96 $04 $00 $00 $ff <TX_092c ; TREASURE_FEATHER (0x17)	unused
 	.db $00				$00 $03 $00 $00 $ff <TX_0900 ; TREASURE_18 (0x18)
 	.db $00				$07 $00 $07 $00 $01 <TX_0900 ; (filler) TREASURE_SEED_SATCHEL (0x19)
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_1a (0x1a)
@@ -221,4 +224,6 @@ treasureDisplayData_switchHook:
 	.db TREASURE_SWITCH_HOOK $9f $04 $00 $00 $00 <TX_093d ; L1
 	.db TREASURE_SWITCH_HOOK $9f $04 $00 $00 $00 <TX_093e ; L2
 
-
+treasureDisplayData_feather:
+	.db TREASURE_FEATHER            $96 $04 $00 $00 $00 <TX_092c;$2c
+	.db TREASURE_FEATHER            $9d $05 $00 $00 $ff <TX_096c

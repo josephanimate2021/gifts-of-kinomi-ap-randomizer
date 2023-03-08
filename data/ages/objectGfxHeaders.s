@@ -176,7 +176,7 @@ objectGfxHeaderTable:
 	/* $ae */ m_ObjectGfxHeader spr_giantghini_2 $80
 	/* $af */ m_ObjectGfxHeader spr_swoop $00
 	/* $b0 */ m_ObjectGfxHeader spr_pound $80
-	/* $b1 */ m_ObjectGfxHeader spr_subterror_1 $00
+	/* $b1 */ m_ObjectGfxHeader spr_facade $00	;spr_subterror_1 $00
 	/* $b2 */ m_ObjectGfxHeader spr_subterror_2 $00
 	/* $b3 */ m_ObjectGfxHeader spr_subterror_3 $80
 	/* $b4 */ m_ObjectGfxHeader spr_armoswarrior_1 $00
@@ -193,8 +193,8 @@ objectGfxHeaderTable:
 	/* $bf */ m_ObjectGfxHeader spr_headthwomp_1 $00
 	/* $c0 */ m_ObjectGfxHeader spr_headthwomp_2 $00
 	/* $c1 */ m_ObjectGfxHeader spr_headthwomp_3 $80
-	/* $c2 */ m_ObjectGfxHeader spr_shadowhag_1 $00
-	/* $c3 */ m_ObjectGfxHeader spr_shadowhag_2 $80
+	/* $c2 */ m_ObjectGfxHeader spr_manhandla_1 $00 ;spr_shadowhag_1 $00
+	/* $c3 */ m_ObjectGfxHeader spr_manhandla_2 $80 ;spr_shadowhag_2 $80
 	/* $c4 */ m_ObjectGfxHeader spr_smog_1 $00
 	/* $c5 */ m_ObjectGfxHeader spr_smog_2 $00
 	/* $c6 */ m_ObjectGfxHeader spr_smog_3 $00

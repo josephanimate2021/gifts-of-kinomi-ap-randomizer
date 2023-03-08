@@ -5835,3 +5835,54 @@ partCode5a:
   ld a,PALH_98
   call loadPaletteHeader
   jp objectSetVisible83
+
+; ==============================================================================
+; PARTID_FACADE_HOLE
+; ==============================================================================
+partCode5b:
+;partCode2e:
+	ld e,Part.state         ;$c4
+	ld a,(de)
+	or a
+	jr z,@state0
+	ld e,Part.animParameter ;$e1
+	ld a,(de)
+	or a
+	jr z,+
+	bit 7,a
+	jp nz,partDelete
+	call _func_6853
++
+	jp partAnimate
+@state0:
+	ld a,$01
+	ld (de),a
+	call objectGetTileAtPosition
+	cp TILEINDEX_HOLE       ;$f3
+	jp z,partDelete
+	ld h,>wRoomCollisions   ;$ce
+	ld a,(hl)
+	or a
+	jp nz,partDelete
+	ld a,SND_POOF
+	call playSound
+	jp objectSetVisible83
+	
+_func_6853:
+	push af
+	xor a
+	ld (de),a
+	call objectGetTileAtPosition
+	pop af
+	ld e,Part.var30         ;$f0
+	dec a
+	jr z,+
+	ld a,(de)
+	ld (hl),a
+	ret
++
+; Stores original tile in var30, sets tile to a hole
+	ld a,(hl)
+	ld (de),a
+	ld (hl),TILEINDEX_HOLE       ;$f3
+	ret

@@ -73,6 +73,17 @@ _movingPlatform_scriptTable:
 
 @dungeon02:
 @dungeon03:
+	.dw @@platform0
+@@platform0:
+	plat_wait	$08
+	plat_up 	$40
+--
+	plat_wait $08
+	plat_down  $60
+	plat_wait  $08
+	plat_up    $60
+	plat_jump --
+
 @dungeon04:
 	.dw @@platform0
 	.dw @@platform1

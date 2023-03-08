@@ -29,30 +29,34 @@ dungeon1StaticObjects:
 	.db $ff
 
 dungeon2StaticObjects:
-	.db $03, $33, INTERACID_MINECART, $00, $38, $c8
-	.db $03, $35, INTERACID_MINECART, $00, $68, $b8
-	.db $03, $40, INTERACID_MINECART, $00, $58, $a8
+	;.db $03, $33, INTERACID_MINECART, $00, $38, $c8
+	;.db $03, $35, INTERACID_MINECART, $00, $68, $b8
+	;.db $03, $40, INTERACID_MINECART, $00, $58, $a8
 	.db $ff 
 
+dungeon3StaticObjects:
+	.db $03, $6f, INTERACID_MINECART, $00, $38, $38
+	;.db $03, $64, INTERACID_MINECART, $00, $98, $c8
+	.db $ff
+
 dungeon4StaticObjects:
-	.db $03, $73, INTERACID_MINECART, $00, $58, $48
-	.db $03, $75, INTERACID_MINECART, $00, $58, $a8
-	.db $03, $78, INTERACID_MINECART, $00, $88, $78
-	.db $03, $89, INTERACID_MINECART, $00, $88, $48
+	;.db $03, $73, INTERACID_MINECART, $00, $58, $48
+	;.db $03, $75, INTERACID_MINECART, $00, $58, $a8
+	;.db $03, $78, INTERACID_MINECART, $00, $88, $78
+	;.db $03, $89, INTERACID_MINECART, $00, $88, $48
 	.db $ff 
 
 dungeon8StaticObjects:
-	.db $03, $90, INTERACID_MINECART, $00, $38, $98
-	.db $03, $92, INTERACID_MINECART, $00, $88, $48
+	;.db $03, $90, INTERACID_MINECART, $00, $38, $98
+	;.db $03, $92, INTERACID_MINECART, $00, $88, $48
 	.db $ff 
 
 dungeonbStaticObjects:
-	.db $03, $c3, INTERACID_MINECART, $00, $48, $28
+	;.db $03, $c3, INTERACID_MINECART, $00, $48, $28
 	.db $ff 
 
 dungeon0StaticObjects:
 
-dungeon3StaticObjects:
 dungeon5StaticObjects:
 dungeon6StaticObjects:
 dungeon7StaticObjects:
@@ -63,5 +67,5 @@ dungeondStaticObjects:
 dungeoneStaticObjects:
 	.db $ff
 dungeonfStaticObjects:
-	.db $03, $2b, INTERACID_MINECART, $00, $58, $48
+	;.db $03, $2b, INTERACID_MINECART, $00, $58, $48
 	.db $ff

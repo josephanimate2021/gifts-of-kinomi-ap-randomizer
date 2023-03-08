@@ -91,5 +91,5 @@ partActiveCollisions:
 	dbrev %00000000 %00000000 %00000000 %00000000 ; 0x57
 	dbrev %10110000 %00000000 %00000000 %00000000 ; 0x58
 	dbrev %10000000 %00000000 %00000000 %00000000 ; 0x59
-	; Part $5a exists, but doesn't use collisions
+	; Part $5a exists, but doesn't use collisions, nor $5b
 

@@ -948,11 +948,11 @@ _func_67f8:
 
 
 partCode2e:
-	ld e,$c4
+	ld e,Part.state         ;$c4
 	ld a,(de)
 	or a
-	jr z,++
-	ld e,$e1
+	jr z,@state0
+	ld e,Part.animParameter ;$e1
 	ld a,(de)
 	or a
 	jr z,+
@@ -961,13 +961,13 @@ partCode2e:
 	call _func_6853
 +
 	jp partAnimate
-++
+@state0:
 	ld a,$01
 	ld (de),a
 	call objectGetTileAtPosition
-	cp $f3
+	cp TILEINDEX_HOLE       ;$f3
 	jp z,partDelete
-	ld h,$ce
+	ld h,>wRoomCollisions   ;$ce
 	ld a,(hl)
 	or a
 	jp nz,partDelete
@@ -981,16 +981,17 @@ _func_6853:
 	ld (de),a
 	call objectGetTileAtPosition
 	pop af
-	ld e,$f0
+	ld e,Part.var30         ;$f0
 	dec a
 	jr z,+
 	ld a,(de)
 	ld (hl),a
 	ret
 +
+; Stores original tile in var30, sets tile to a hole
 	ld a,(hl)
 	ld (de),a
-	ld (hl),$f3
+	ld (hl),TILEINDEX_HOLE       ;$f3
 	ret
 
 

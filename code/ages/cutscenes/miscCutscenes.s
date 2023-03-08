@@ -2083,7 +2083,7 @@ func_701d:
 	call reloadTileMap
 	ld a,SND_DOORCLOSE
 	call playSound
-	ld hl,$cbb7
+	ld hl,wGenericCutscene.cbb7	;$cbb7wTmpcbb7
 	inc (hl)
 	ld a,(hl)
 	cp $0f
@@ -2134,7 +2134,7 @@ _wallRetraction_dungeon8:
 	call reloadTileMap
 	ld a,SND_DOORCLOSE
 	call playSound
-	ld hl,$cbb7
+	ld hl,wGenericCutscene.cbb7	;$cbb7wTmpcbb7
 	inc (hl)
 	ld a,(hl)
 	cp $0b
@@ -2151,7 +2151,7 @@ _func_70f7:
 	and $0f
 	add a
 	ld e,a
-	ld a,($cbb7)
+	ld a,(wGenericCutscene.cbb7)
 	add e
 	ldh (<hFF93),a
 	ld c,$20
@@ -2863,6 +2863,7 @@ _cleanSeas_incCBB3:
 
 ;;
 ; CUTSCENE_CLEAN_SEAS
+; fairy, time portals, witch
 func_03_7619:
 	ld a,(wCutsceneState)
 	rst_jumpTable
@@ -2884,11 +2885,23 @@ func_03_7619:
 	call refreshObjectGfx
 	ld a,MUS_ESSENCE_ROOM
 	call playSound
+
+;	call getFreeEnemySlot
+;	ret nz
+;	push hl
 	call _cleanSeas_incState
 	xor a
 	ld bc, ROOM_AGES_150
 	call @func_764a
-	ld hl,objectData.group1Map50ObjectData
+;	pop hl
+;	dec l
+;	ld (hl),$11
+;	inc l
+;	ld (hl),ENEMYID_SEEDS_ON_TREE
+;	inc l
+;	ld (hl),$08
+;	ret
+	ld hl,objectData.objectData7e71				;group1Map50ObjectData
 	jp parseGivenObjectData
 @func_764a:
 	push bc
@@ -2991,7 +3004,7 @@ func_03_7619:
 	call _cleanSeas_incState
 	xor a
 	ld (wTmpcbb3),a
-	ld bc, ROOM_AGES_160
+	ld bc,ROOM_AGES_160
 	jp @func_764a
 ;	ld hl,objectData.objectData7e71
 ;	jp parseGivenObjectData
@@ -3018,7 +3031,7 @@ func_03_7619:
 	ld (wTmpcbb3),a
 	ld a,$3c
 	ld (wTmpcbb4),a
-	ld bc, ROOM_AGES_161
+	ld bc,ROOM_AGES_161
 	jp @func_764a
 ;	ld hl,objectData.objectData7e7b
 ;	jp parseGivenObjectData
@@ -3046,6 +3059,10 @@ func_03_7619:
 	ld (wTmpcbb3),a
 	ld bc, ROOM_AGES_130
 	call @func_764a
+
+	ld hl,objectData.objectData7e7b					;group1Map30ObjectData
+	call parseGivenObjectData
+
 	ld hl,w1Link.enabled
 	ld (hl),$03
 	ld l,$0b ;w1Link.yh

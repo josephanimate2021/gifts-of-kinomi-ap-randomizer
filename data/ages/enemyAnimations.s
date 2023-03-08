@@ -643,14 +643,17 @@ enemy71Animations:
 	.dw enemyAnimation37806
 	.dw enemyAnimation3781b
 enemy72Animations:
-	.dw enemyAnimation37827
-	.dw enemyAnimation37832
-	.dw enemyAnimation3783d
-	.dw enemyAnimation37848
-	.dw enemyAnimation37853
-	.dw enemyAnimation3785f
-	.dw enemyAnimation37867
-	.dw enemyAnimation3787e
+	.dw enemyAnimationFacade0	;enemyAnimation33712
+	.dw enemyAnimationFacade1	;enemyAnimation33729
+	.dw enemyAnimationFacade2	;enemyAnimation3373a
+	;.dw enemyAnimation37827
+	;.dw enemyAnimation37832
+	;.dw enemyAnimation3783d
+	;.dw enemyAnimation37848
+	;.dw enemyAnimation37853
+	;.dw enemyAnimation3785f
+	;.dw enemyAnimation37867
+	;.dw enemyAnimation3787e
 enemy73Animations:
 	.dw enemyAnimation3756a
 	.dw enemyAnimation3746e
@@ -701,13 +704,29 @@ enemy79Animations:
 	.dw enemyAnimation37395
 	.dw enemyAnimation37389
 enemy7aAnimations:
-	.dw enemyAnimation374cb
-	.dw enemyAnimation374d3
-	.dw enemyAnimation374db
-	.dw enemyAnimation374e3
-	.dw enemyAnimation37999
-	.dw enemyAnimation3799e
-	.dw enemyAnimation37993
+	.dw enemyAnimationManhandla00
+	.dw enemyAnimation3751a
+	.dw enemyAnimation3751f
+	.dw enemyAnimationGleeok4
+	.dw enemyAnimationManhandla04
+	.dw enemyAnimation37565
+	.dw enemyAnimation3774c
+	.dw enemyAnimation379bd
+	.dw enemyAnimation379c2
+	.dw enemyAnimation3722d
+	.dw enemyAnimationManhandla0a
+	.dw enemyAnimationManhandla0b
+	.dw enemyAnimationManhandla0c
+	.dw enemyAnimationManhandla0d
+	.dw enemyAnimationManhandla0e
+	
+	;.dw enemyAnimation374cb
+	;.dw enemyAnimation374d3
+	;.dw enemyAnimation374db
+	;.dw enemyAnimation374e3
+	;.dw enemyAnimation37999
+	;.dw enemyAnimation3799e
+	;.dw enemyAnimation37993
 enemy7bAnimations:
 	.dw enemyAnimation379a7
 	.dw enemyAnimation379af
@@ -1734,11 +1753,11 @@ enemyAnimation3798a:
 	.db $04 $1c $00
 	.db $7f $0c $00
 enemyAnimation37993:
-	.db $08 $14 $00
-	.db $08 $12 $01
+	;.db $08 $14 $00
+	;.db $08 $12 $01
 enemyAnimation37999:
-	.db $7f $10 $02
-	m_AnimationLoop enemyAnimation37999
+	;.db $7f $10 $02
+	;m_AnimationLoop enemyAnimation37999
 
 enemyAnimation3799e:
 	.db $08 $12 $00
@@ -1803,7 +1822,79 @@ enemyAnimationGleeok3:
 	.db $10 $0c $00
 	m_AnimationLoop enemyAnimationGleeok4
 
+enemyAnimationFacade0:
+	.db $08 $00 $00
+	.db $08 $02 $00
+	.db $08 $04 $00
+enemyAnimationFacade0Loop:
+	.db $5a $0a $01
+	.db $04 $08 $00
+	.db $04 $06 $00
+	.db $04 $08 $00
+	m_AnimationLoop enemyAnimationFacade0Loop
 
+enemyAnimationFacade1:
+	.db $04 $0c $00
+	.db $04 $0e $00
+	.db $10 $10 $00
+	.db $04 $12 $00
+	.db $20 $14 $01
+	m_AnimationLoop enemyAnimationFacade1
+
+enemyAnimationFacade2:
+	.db $08 $04 $00
+	.db $08 $02 $00
+	.db $08 $00 $00
+	.db $7f $00 $ff
+
+	.db $10 $04 $00
+	.db $3c $06 $00
+	.db $1e $08 $00
+	.db $1e $0a $01
+	.db $3c $06 $00
+	.db $7f $06 $ff
+enemyAnimationFacade2Loop:
+	.db $10 $0c $00
+	.db $10 $0e $00
+	m_AnimationLoop enemyAnimationFacade2Loop
+
+enemyAnimationManhandla00:
+	.db $10 $00 $00
+	.db $10 $02 $02
+	.db $10 $00 $00
+	.db $10 $04 $04
+	m_AnimationLoop enemyAnimationManhandla00
+
+enemyAnimationManhandla04:
+	.db $04 $0e $00
+	.db $04 $10 $00
+	.db $04 $0e $00
+	.db $04 $12 $00
+	m_AnimationLoop enemyAnimationManhandla04
+
+enemyAnimationManhandla0a:
+	.db $7f $1e $00
+	.db $78 $06 $01
+	.db $1e $04 $00
+	.db $0c $06 $02
+	.db $08 $04 $00
+	.db $0c $06 $02
+	.db $7f $06 $ff
+enemyAnimationManhandla0b:
+	.db $7f $20 $00
+enemyAnimationManhandla0c:
+	.db $7f $22 $00
+enemyAnimationManhandla0d:
+	.db $7f $24 $00
+enemyAnimationManhandla0e:
+	.db $7f $26 $00
+	.db $7f $28 $00
+	.db $7f $2a $00
+	.db $7f $2c $00
+enemyAnimationManhandla0bLoop:
+	.db $18 $06 $00
+	.db $18 $08 $00
+	m_AnimationLoop enemyAnimationManhandla0bLoop
 
 enemy00OamDataPointers: ; 0x379ff
 enemy01OamDataPointers: ; 0x379ff
@@ -2372,24 +2463,35 @@ enemy71OamDataPointers: ; 0x37d11
 	.dw enemyOamData4f24a
 
 enemy72OamDataPointers: ; 0x37d21
-	.dw enemyOamData4d6cc
-	.dw enemyOamData4d6d9
-	.dw enemyOamData4d6e6
-	.dw enemyOamData4d6f3
-	.dw enemyOamData4d700
-	.dw enemyOamData4d70d
-	.dw enemyOamData4d71a
-	.dw enemyOamData4d727
-	.dw enemyOamData4d734
-	.dw enemyOamData4d4cf
-	.dw enemyOamData4d4d8
-	.dw enemyOamData4d741
-	.dw enemyOamData4d4e1
-	.dw enemyOamData4d4ea
-	.dw enemyOamData4d4f3
-	.dw enemyOamData4d4fc
-	.dw enemyOamData4d505
-	.dw enemyOamData4d74e
+	.dw enemyOamDataFacade0	;enemyOamData4a6d3
+	.dw enemyOamDataFacade1	;enemyOamData4a6f4
+	.dw enemyOamDataFacade2	;enemyOamData4a715
+	.dw enemyOamDataFacade3	;enemyOamData4a736
+	.dw enemyOamDataFacade4	;enemyOamData4a757
+	.dw enemyOamDataFacade5	;enemyOamData4a778
+	.dw enemyOamDataFacade6	;enemyOamData4a799
+	.dw enemyOamDataFacade7	;enemyOamData4a7ba
+	.dw enemyOamDataFacade8	;enemyOamData4a7db
+	.dw enemyOamDataFacade9	;enemyOamData4a7fc
+	.dw enemyOamDataFacadeA	;enemyOamData4a81d	
+	;.dw enemyOamData4d6cc
+	;.dw enemyOamData4d6d9
+	;.dw enemyOamData4d6e6
+	;.dw enemyOamData4d6f3
+	;.dw enemyOamData4d700
+	;.dw enemyOamData4d70d
+	;.dw enemyOamData4d71a
+	;.dw enemyOamData4d727
+	;.dw enemyOamData4d734
+	;.dw enemyOamData4d4cf
+	;.dw enemyOamData4d4d8
+	;.dw enemyOamData4d741
+	;.dw enemyOamData4d4e1
+	;.dw enemyOamData4d4ea
+	;.dw enemyOamData4d4f3
+	;.dw enemyOamData4d4fc
+	;.dw enemyOamData4d505
+	;.dw enemyOamData4d74e
 
 enemy73OamDataPointers: ; 0x37d45
 	.dw enemyOamData4df9c
@@ -2504,17 +2606,38 @@ enemy79OamDataPointers: ; 0x37ddf
 	.dw enemyOamData4f6a2
 
 enemy7aOamDataPointers: ; 0x37e09
-	.dw enemyOamData4dfce
-	.dw enemyOamData4dfe7
-	.dw enemyOamData4e332
-	.dw enemyOamData4e34f
-	.dw enemyOamData4e000
-	.dw enemyOamData4e019
-	.dw enemyOamData4e36c
-	.dw enemyOamData4e389
-	.dw enemyOamData4d54d
-	.dw enemyOamData4d556
-	.dw enemyOamData4e032
+	.dw enemyOamDataManhandla00
+	.dw enemyOamDataManhandla01
+	.dw enemyOamDataManhandla02
+	.dw enemyOamDataManhandla03
+	.dw enemyOamDataManhandla04
+	.dw enemyOamDataManhandla05
+	.dw enemyOamDataManhandla06
+	.dw enemyOamDataManhandla07
+	.dw enemyOamDataManhandla08
+	.dw enemyOamDataManhandla09
+	.dw enemyOamDataManhandla0a
+	.dw enemyOamDataManhandla0b
+	.dw enemyOamDataManhandla0c
+	.dw enemyOamDataManhandla0d
+	.dw enemyOamDataManhandla0e
+	.dw enemyOamDataManhandla0f
+	.dw enemyOamDataManhandla10
+	.dw enemyOamDataManhandla11
+	.dw enemyOamDataManhandla12
+	.dw enemyOamDataManhandla13
+
+	;.dw enemyOamData4dfce
+	;.dw enemyOamData4dfe7
+	;.dw enemyOamData4e332
+	;.dw enemyOamData4e34f
+	;.dw enemyOamData4e000
+	;.dw enemyOamData4e019
+	;.dw enemyOamData4e36c
+	;.dw enemyOamData4e389
+	;.dw enemyOamData4d54d
+	;.dw enemyOamData4d556
+	;.dw enemyOamData4e032
 
 enemy7bOamDataPointers: ; 0x37e1f
 	.dw enemyOamData4d7a9

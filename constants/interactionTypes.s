@@ -277,7 +277,13 @@
 .define INTERACID_TILE_FILLER		$25
 
 .define INTERACID_STUB_26		$26
-.define INTERACID_STUB_27		$27
+
+;;
+; TODO:
+; @subid_00{}
+; @subid_01{created by subid_00}
+.define INTERACID_D7_4_ARMOS_BUTTON_PUZZLE	$27
+;INTERACID_STUB_27	
 
 ;;
 ; Valid subids: $00-$0a

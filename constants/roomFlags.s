@@ -43,6 +43,9 @@
 
 .define ROOMFLAG_BIT_VISITED	4
 .define ROOMFLAG_BIT_ITEM	5
+
+.define ROOMFLAG_BIT_02     1
+.define ROOMFLAG_BIT_04     2
 .define ROOMFLAG_BIT_40		6
 .define ROOMFLAG_BIT_80		7
 

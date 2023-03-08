@@ -208,6 +208,7 @@
 	PALH_c8:	db ; $c8
 	PALH_c9:	db ; $c9
 	PALH_ca:	db ; $ca
+	PALH_cb:	db ; $ca
 
 .else; ROM_SEASONS
 

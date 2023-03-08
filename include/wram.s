@@ -739,8 +739,13 @@ wTradeItem: ; $c6c0
 
 .ifdef ROM_AGES
 
+wNumPlacedSlates:	;$c6c1
+	.db
 wc6c1: ; $c6c1
 	db
+
+wFeatherLevel:
+	.db 
 wTuniNutState: ; $c6c2
 ; 0: broken
 ; 1: not in inventory (doing patch's game)
@@ -2571,6 +2576,7 @@ wLastDungeonIndex: ; $cd2e
 	db
 ; $cd2e-$cd2f unused?
 
+
 .ENDS
 
 
@@ -2735,6 +2741,8 @@ wcde3: ; $cde3
 ; are given back to Link during credits cutscene state 3
 	dw
 
+wLostWoodsTransitionCounter3: ; $cde5
+	db
 ; $cde5-$ceff unused?
 
 .endif ; ROM_AGES

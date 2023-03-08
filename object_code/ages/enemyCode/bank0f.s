@@ -367,6 +367,7 @@ _giantGhini_getTargetAngle:
 ;   var31: Target stomp position (short-form)
 ;   var32/var33: Target stomp position (long-form)
 ; ==============================================================================
+
 enemyCode71:
 	jr z,@normalStatus
 	sub ENEMYSTATUS_NO_HEALTH
@@ -827,561 +828,334 @@ _swoop_framesBeforeAttacking:
 
 
 ; ==============================================================================
-; ENEMYID_SUBTERROR
-;
-; Variables:
-;   var30: If nonzero, dirt is created at subterror's position every 8 frames.
-;   var31: Counter until a new dirt object (PARTID_SUBTERROR_DIRT) is created.
+; ENEMYID_FACADE
 ; ==============================================================================
+;enemyCode71:
 enemyCode72:
 	jr z,@normalStatus
-	sub ENEMYSTATUS_NO_HEALTH
+	sub $03
 	ret c
-	jr nz,@normalStatus
+	ret nz
+	; dead
+	ld e,Enemy.collisionType	;$a4
+	ld a,(de)
+	or a
+	call nz,@dead
+	ld e,Enemy.subid			;$82
+	ld a,(de)
+	or a
+	jp nz,enemyDie
 	jp _enemyBoss_dead
 
 @normalStatus:
-	ld e,Enemy.var30
-	ld a,(de)
-	or a
-	call nz,_subterror_spawnDirtEvery8Frames
-	ld e,Enemy.state
+	ld e,Enemy.state			;$84
 	ld a,(de)
 	rst_jumpTable
-	.dw _subterror_state_uninitialized
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state_stub
-	.dw _subterror_state8
-	.dw _subterror_state9
-	.dw _subterror_stateA
-	.dw _subterror_stateB
-	.dw _subterror_stateC
+	.dw @state0
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @state8
+	.dw @state9
+	.dw @stateA
+	.dw @stateB
+	.dw @stateC
 
-
-_subterror_state_uninitialized:
-	ld a,ENEMYID_SUBTERROR
-	ld b,PALH_be
-	call _enemyBoss_initializeRoom
+@state0:
 	call _ecom_setSpeedAndState8
-
-	ld a,$07
-	ld l,Enemy.var31
-	ldd (hl),a ; [var31] = 7
-	ld (hl),a  ; [var30] = 7
-
-	ld l,Enemy.speed
-	ld (hl),SPEED_180
-	ld l,Enemy.angle
-	ld (hl),ANGLE_DOWN
-
-	ld l,Enemy.counter2
-	ld (hl),30
-	ret
-
-
-_subterror_state_stub:
-	ret
-
-
-; Cutscene before fight
-_subterror_state8:
-	ld e,Enemy.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-	.dw @substate2
-	.dw @substate3
-
-@substate0:
-	ld a,DISABLE_LINK
-	ld (wDisabledObjects),a
-	ld (wMenuDisabled),a
-
-	; Wait for door to close
-	ld a,($cc93)
-	or a
-	ret nz
-
-	call _ecom_decCounter2
-	ret nz
-
-	; Move further down
-	call objectApplySpeed
-	ld e,Enemy.yh
-	ld a,(de)
-	cp $58
-	ret c
-
-	; Reached middle of screen, about to pop out
-
-	ld a,SND_DIG
-	call playSound
-
-	ld a,$06
-	call enemySetAnimation
-	call objectSetVisiblec2
-
-	call _ecom_incSubstate
-
-	; Disable dirt animation
-	ld l,Enemy.var30
-	ld (hl),$00
-
-	call objectGetTileAtPosition
-	ld c,l
-	ld a,TILEINDEX_DUNGEON_DUG_DIRT
-	jp setTile
-
-@substate1:
-	call _subterror_retFromCallerIfAnimationUnfinished
-
-	ld b,INTERACID_ROCKDEBRIS
-	call objectCreateInteractionWithSubid00
-
-	call _ecom_incSubstate
-
-	ld l,Enemy.counter1
-	ld (hl),60
-
-	ld bc,-$200
-	call objectSetSpeedZ
-
-	ld a,$05
-	jp enemySetAnimation
-
-@substate2:
-	ld c,$10
-	call objectUpdateSpeedZ_paramC
-	ret nz
-
-	ld a,$02
-	call enemySetAnimation
-	call _ecom_decCounter1
-	ret nz
-
-	ld bc,TX_2f03
-	call showText
-	jp _ecom_incSubstate
-
-@substate3:
-	call retIfTextIsActive
-
-	call _enemyBoss_beginMiniboss
-	xor a
-	ld (wDisabledObjects),a
-	ld (wMenuDisabled),a
-
-
-_subterror_digIntoGround:
-	ld e,Enemy.state
-	ld a,$09
-	ld (de),a
-
-	ld a,$04
-	jp enemySetAnimation
-
-
-; Digging into ground
-_subterror_state9:
-	call _subterror_retFromCallerIfAnimationUnfinished
-
-	; Done digging, about to start moving around
-_subterror_beginUndergroundMovement:
-	ld h,d
-	ld l,Enemy.state
-	ld (hl),$0a
-	inc l
-	xor a
-	ld (hl),a ; [substate]
-
-	dec a
-	ld l,Enemy.angle
-	ld (hl),a ; [angle] = $ff
-
-	ld l,Enemy.visible
-	res 7,(hl)
-
-	ld l,Enemy.enemyCollisionMode
-	ld (hl),ENEMYCOLLISION_SUBTERROR_UNDERGROUND
-
-	ld l,Enemy.counter1
-	ld (hl),60
-
-	call _subterror_getAngerLevel
-	ld hl,_subterror_timeUntilDrillAttack
-	rst_addAToHl
-	ld a,(hl)
-	ld e,Enemy.counter2
-	ld (de),a
-
-	ld a,SND_DIG
-	call playSound
-	jp _subterror_spawnDirt
-
-
-; Currently in the ground, moving around
-_subterror_stateA:
-	ld e,Enemy.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-	.dw @substate2
-
-; Staying underground for [counter1] frames before moving
-@substate0:
-	call _ecom_decCounter1
-	ret nz
-
-	call _ecom_incSubstate
-
-@resetUndergroundMovement:
-	; Adjust angle toward Link?
-	call objectGetAngleTowardLink
-	ld c,a
-	ld e,Enemy.angle
-	ld a,(de)
-	xor $10
-	cp c
-	ld a,c
-	jr nz,+
-	add $08
-	and $1f
-+
-	ld (de),a
-
-	ld e,Enemy.counter1
-	ld a,30
-	ld (de),a
-
-	call _subterror_getAngerLevel
-	ld hl,_subterror_speedVals
-	rst_addAToHl
-	ld a,(hl)
-	ld e,Enemy.speed
-	ld (de),a
-
-	ld a,$0a
-	call objectSetCollideRadius
-	jp _subterror_spawnDirt
-
-; Moving around until shovel is used or he starts drilling
-@substate1:
-	ld e,Enemy.var2a
-	ld a,(de)
-	sla a
-	jr nc,@noShovel
-	cp ITEMCOLLISION_SHOVEL<<1
-	jr nz,@noShovel
-
-	; Shovel was used; will now pop out of ground
-
-	ld bc,-$100
-	call objectSetSpeedZ
-	ld l,Enemy.speed
-	ld (hl),SPEED_100
-
-	ld a,$0c
-	ld l,Enemy.state
-	ldi (hl),a
-	xor a
-	ld (hl),a ; [substate] = 0
-
-	ld l,Enemy.var30
-	ld (hl),a ; [var30] = 0
-
-	inc a
-	ld l,Enemy.counter1
-	ld (hl),a ; [counter1] = 1
-
-	ld l,Enemy.visible
-	set 7,(hl)
-
-	; Bounces away from Link
-	call objectGetAngleTowardLink
-	xor $10
-	ld e,Enemy.angle
-	ld (de),a
-
-	ld a,$06
-	call objectSetCollideRadius
-	ld a,$05
-	jp enemySetAnimation
-
-@noShovel:
-	call objectApplySpeed
-	ld a,$01
-	call _ecom_getSideviewAdjacentWallsBitset
-	jr z,++
-
-	; Hit wall
-	call _ecom_incSubstate
-	ld l,Enemy.counter1
-	ld (hl),90
-	ld l,Enemy.visible
-	res 7,(hl)
-	ld l,Enemy.var30
-	ld (hl),$00
-	ret
-++
-	call _ecom_decCounter1
-	call z,@resetUndergroundMovement
-	call _ecom_decCounter2
-	ret nz
-
-	; If Link is close enough, drill him
-	ld c,$18
-	call objectCheckLinkWithinDistance
-	ret nc
-
-	; "Transport" to the tile at Link's position
-	ld hl,w1Link.yh
-	ldi a,(hl)
-	inc l
-	ld c,(hl)
-	ld b,a
-	call getTileAtPosition
-	ld c,l
-	call convertShortToLongPosition_paramC
-	ld e,Enemy.yh
-	ld a,b
-	ld (de),a
-	ld e,Enemy.xh
-	ld a,c
-	ld (de),a
-
-	call _ecom_incState ; [state] = $0b
-	inc l
-	xor a
-	ld (hl),a ; [substate] = 0
-
-	ld l,Enemy.var30
-	ld (hl),a ; [var30] = 0
-
-	ld a,60
-	ld l,Enemy.counter1
-	ldi (hl),a
-	sra a
-	ld (hl),a ; [counter2] = 30
-
-	ld a,$06
-	call objectSetCollideRadius
-	ld a,$06
-	jp enemySetAnimation
-
-; Hit a wall; pause before resuming
-@substate2:
-	call _ecom_decCounter2
-	call _ecom_decCounter1
-	ret nz
-	ld l,Enemy.substate
-	dec (hl)
-	jp @resetUndergroundMovement
-
-
-; Drilling
-_subterror_stateB:
-	ld e,Enemy.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-
-@substate0:
-	ld h,d
-	ld l,Enemy.counter2
-	ld a,(hl)
-	or a
-	jr z,@drilling
-
-	dec (hl)
-	ret nz
-
-	; Just started drilling
-	ld l,Enemy.enemyCollisionMode
-	ld (hl),ENEMYCOLLISION_SUBTERROR_DRILLING
-	ld l,Enemy.visible
-	set 7,(hl)
-	ld a,SND_SHOCK
-	call playSound
-
-@drilling:
-	call enemyAnimate
-	call _ecom_decCounter1
-	ret nz
-
-	ld l,Enemy.counter1
-	ld (hl),60
-	ld a,$07
-	call enemySetAnimation
-	jp _ecom_incSubstate
-
-@substate1:
-	call _subterror_retFromCallerIfAnimationUnfinished
-	call _subterror_beginUndergroundMovement
-	ld e,Enemy.var30
-	xor a
-	ld (de),a
-	ret
-
-
-; Popping out of ground after shovel was used
-_subterror_stateC:
-	ld e,Enemy.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-	.dw @substate2
-
-@substate0:
-	call _ecom_applyVelocityForSideviewEnemy
-	ld c,$10
-	call objectUpdateSpeedZ_paramC
-	ret nz
-
-	ld e,Enemy.var2a
-	ld (de),a ; [var2a] = 0
-
-	ld e,Enemy.enemyCollisionMode
-	ld a,ENEMYCOLLISION_STANDARD_MINIBOSS
-	ld (de),a
-
-	call _ecom_decCounter1
-	jr z,++
-	ld l,Enemy.counter1
-	ld (hl),180
-	jp _ecom_incSubstate
-++
-	ld bc,-$80
-	jp objectSetSpeedZ
-
-@substate1:
-	ld e,Enemy.var2a
+	ld l,Enemy.yh				;$8b
+	ld (hl),$58
+	ld l,Enemy.xh				;$8d
+	ld (hl),$78
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	or a
-	jr nz,++
-	call enemyAnimate
-	call _ecom_decCounter1
-	ret nz
-++
-	call _ecom_incSubstate
-
-	call getRandomNumber
-	and $1c
-	ld l,Enemy.angle
-	ld (hl),a
-
-	ld l,Enemy.speed
-	ld (hl),SPEED_80
-
-	call getRandomNumber
-	and $03
-	ld hl,_subterror_durationAboveGround
-	rst_addAToHl
-	ldi a,(hl)
-	ld e,Enemy.counter1
-	ld (de),a
-
-	jp _subterror_setAnimationFromAngle
-
-@substate2:
-	call enemyAnimate
-
-	ld e,Enemy.animParameter
-	ld a,(de)
-	or a
-	ld a,SND_LAND
-	call nz,playSound
-
-	call objectApplySpeed
-	call _ecom_bounceOffWallsAndHoles
-	call nz,_subterror_setAnimationFromAngle
-
-	; Dig back into ground when [counter1] reaches 0
-	call _ecom_decCounter1
-	ret nz
-	jp _subterror_digIntoGround
-
-
-;;
-_subterror_spawnDirtEvery8Frames:
-	inc e
-	ld a,(de) ; [var31]
-	dec a
-	ld (de),a
-	ret nz
-
-;;
-_subterror_spawnDirt:
-	ld e,Enemy.var31
-	ld a,$07
-	ld (de),a ; [var31] = 7
-	dec e
-	ld (de),a ; [var30] = 7
-
-	ld b,PARTID_SUBTERROR_DIRT
-	call _ecom_spawnProjectile
-
-	call objectGetTileAtPosition
-	ld c,l
-	ld a,$ef
-	jp setTile
-
-;;
-_subterror_retFromCallerIfAnimationUnfinished:
-	call enemyAnimate
-	ld h,d
-	ld l,Enemy.animParameter
-	ld a,(hl)
-	or a
-	ret nz
-	pop af
-	ret
-
-;;
-; @param[out]	a	Anger level (0-2)
-_subterror_getAngerLevel:
+	ld a,$ff
 	ld b,$00
-	ld e,Enemy.health
-	ld a,(de)
-	cp $0a
-	jr nc,++
-	inc b
-	cp $06
-	jr nc,++
-	inc b
-++
-	ld a,b
+	jp z,_enemyBoss_initializeRoom
+	ld l,Enemy.counter1			;$86
+	ld (hl),60					;$3c
+	ld l,Enemy.state			;$84
+	inc (hl)
 	ret
 
-;;
-_subterror_setAnimationFromAngle:
+@stateStub:
+	ret
+
+@state8:
+	ldh a,(<hEnemyTargetX);(<hEnemyTargetY)
+	cp $38;$58
+	ret nc;c
 	ld h,d
-	ld l,Enemy.angle
-	ldd a,(hl)
-	add a
-	swap a
+	ld l,e
+	inc (hl)
+	ld l,Enemy.counter1			;$86
+	inc (hl)
+	ld a,MUS_MINIBOSS			;$2d
+	ld (wActiveMusic),a
+	jp playSound
+
+@state9:
+	call _ecom_decCounter1
+	ret nz
+	ld a,120					;$78
+	ld (hl),a
+	ld l,e
+	inc (hl)		;inc state
+	ld l,Enemy.collisionType	;$a4
+	set 7,(hl)
+	call setScreenShakeCounter
+
+	ld a,(wNumBombs)
+	or a
+	jr z,+	;if Link has no bombs, spawn beetles
+	call getRandomNumber_noPreserveVars
 	and $03
-	ld (hl),a ; [direction]
-	add $00
+	ld hl,@table_48c4
+	rst_addAToHl
+	ld a,(hl)
++
+	ld e,Enemy.var03			;$83
+	ld (de),a
+	ld a,SND_RUMBLE2			;$b8
+	call playSound
+	xor a
+	call enemySetAnimation
+	jp objectSetVisible83
+
+@table_48c4:
+	.db $00
+	.db $01
+	.db $02
+	.db $02
+
+@stateA:
+	call _ecom_decCounter1
+	jr z,+
+	ld a,(hl)
+	and $1f
+	ld a,SND_RUMBLE2			;$b8
+	call z,playSound
+	jr ++
++
+	ld l,e
+	inc (hl)
+	inc l
+	ld (hl),$00
+++
+	jp enemyAnimate
+
+; attacking state
+@stateB:
+	call enemyAnimate
+	ld e,Enemy.var03			;$83
+	ld a,(de)
+	rst_jumpTable
+	.dw @var03_00
+	.dw @var03_01
+	.dw @var03_02
+
+; spawns beetles
+@var03_00:
+	ld e,Enemy.substate			;$85
+	ld a,(de)
+	rst_jumpTable
+	.dw @@substate0
+	.dw @@substate1
+	.dw @@substate2
+
+@@substate0:
+	ld h,d
+	ld l,e
+	inc (hl)
+	inc l		;[Enemy.counter1]
+	ld (hl),20					;$14
+	ret
+
+@@substate1:
+	call _ecom_decCounter1
+	ret nz
+	ld (hl),70					;$46
+	ld l,e
+	inc (hl)
+	ret
+
+@@substate2:
+	call _ecom_decCounter1
+	jp z,@incStateAndSetAnimation02
+	ld a,(hl)
+	and $0f
+	ret nz
+	ld l,Enemy.var30			;$b0
+	ld a,(hl)
+	cp $05
+	ret nc
+	jp @spawnBeetle
+
+; spawns holes
+@var03_01:
+	ld e,Enemy.substate			;$85
+	ld a,(de)
+	rst_jumpTable
+	.dw @@substate0
+	.dw @@substate1
+	.dw @@substate2
+
+@@substate0:
+	ld a,$01
+	ld (de),a
+	inc a
 	jp enemySetAnimation
 
+@@substate1:
+	ld h,d
+	ld l,Enemy.animParameter	;$a1
+	bit 7,(hl)
+	jp z,enemyAnimate
+	ld l,e
+	inc (hl)
+	ld l,Enemy.counter1			;$86
+	ld (hl),180					;$b4
+	ld l,Enemy.collisionType	;$a4
+	res 7,(hl)
+	jp objectSetInvisible
 
-_subterror_speedVals: ; Chosen based on "anger level"
-	.db SPEED_80 SPEED_100 SPEED_180
+@@substate2:
+	call _ecom_decCounter1
+	jp z,@incStateAndSetAnimation02
+	ld a,(hl)
+	and $1f
+	ret nz
+	jp @spawnHoles
 
-_subterror_timeUntilDrillAttack: ; Chosen based on "anger level"
-	.db 120 90 60
+; spawns fire projectile
+@var03_02:
+	ld e,Enemy.substate			;$85
+	ld a,(de)
+	rst_jumpTable
+	.dw @@substate0
+	.dw @@substate1
 
-_subterror_durationAboveGround: ; Chosen randomly
-	.db 60 90 120 180
+@@substate0:
+	ld h,d
+	ld l,e
+	inc (hl)
+	inc l		;[Enemy.counter1]
+	ld (hl),240					;$f0
+	ld a,$01
+	jp enemySetAnimation
+
+@@substate1:
+	call _ecom_decCounter1
+	jp z,@incStateAndSetAnimation02
+	ld a,(hl)
+	and $0f
+	ret nz
+	ld e,Enemy.animParameter	;$a1
+	ld a,(de)
+	dec a
+	ret nz
+	ld a,SND_THROW				;$51
+	call playSound
+	jp @spawnFire
+
+@stateC:
+	ld h,d
+	ld l,Enemy.animParameter	;$a1
+	bit 7,(hl)
+	jp z,enemyAnimate
+	ld l,e		;[Enemy.state]
+	ld (hl),$09
+	ld l,Enemy.counter1			;$86
+	ld (hl),120					;$78
+	ld l,Enemy.collisionType	;$a4
+	res 7,(hl)
+	jp objectSetInvisible
+
+@spawnBeetle:
+	ld b,ENEMYID_BEETLE
+	call _ecom_spawnEnemyWithSubid01
+	ret nz
+	ld l,Enemy.relatedObj1		;$96
+	ld a,Enemy.start			;$80
+	ldi (hl),a
+	ld (hl),d
+	ld e,Enemy.var30			;$b0
+	ld a,(de)
+	inc a
+	ld (de),a
+	call getRandomNumber
+	ld c,a
+	and $70
+	add $20
+	ld l,Enemy.yh				;$8b
+	ldi (hl),a
+	inc l		;[Enemy.xh]
+	ld a,c
+	and $07
+	swap a
+	add $40
+	ld (hl),a
+	ret
+
+; Spawns holes at random locations
+@spawnHoles:
+	ld b,PARTID_FACADE_HOLE		;PARTID_2e
+	call _ecom_spawnProjectile
+	ret nz
+	push hl
+	ld bc,$1f1f
+	call _ecom_randomBitwiseAndBCE
+	pop hl
+	ldh a,(<hEnemyTargetY)
+	add b
+	sub $10
+	and $f0
+	add $08
+	ld l,Part.yh				;$cb
+	ld (hl),a
+	ldh a,(<hEnemyTargetX)
+	add c
+	sub $10
+	and $f0
+	add $08
+	ld l,Part.xh				;$cd
+	ld (hl),a
+	ret
+
+; Spawns a rock
+@spawnFire:
+	ld b,PARTID_VOLCANO_ROCK
+	call _ecom_spawnProjectile
+	ret nz
+	ld l,Part.subid				;$c2
+	inc (hl)
+	ret
+
+; Increases state and sets animation to $02
+@incStateAndSetAnimation02:
+	ld l,Enemy.state			;$84
+	inc (hl)
+	ld a,$02
+	jp enemySetAnimation
+
+; Kills all remaining beetles at the death of Facade
+@dead:
+	ldhl FIRST_ENEMY_INDEX, Enemy.start	;$d080
+-
+	ld l,Enemy.id				;$81
+	ld a,(hl)
+	cp ENEMYID_BEETLE			;$51
+	call z,_ecom_killObjectH
+	inc h
+	ld a,h
+	cp $e0
+	jr c,-
+	ret
 
 
 ; ==============================================================================
@@ -5013,6 +4787,7 @@ enemyCode77:
 	sub ENEMYSTATUS_NO_HEALTH
 	ret c
 	jp z,_enemyBoss_dead
+;	jp z,_enemyBoss_beginMiniboss
 	dec a
 	jr nz,@normalStatus
 
@@ -7933,606 +7708,638 @@ _headThwomp_checkShootProjectile:
 
 
 ; ==============================================================================
-; ENEMYID_SHADOW_HAG
-;
-; Variables:
-;   counter2: Number of times to spawn bugs before shadows separate
-;   var30: Number of bugs on-screen
-;   var31: Set if the hag couldn't spawn because Link was in a bad position
+; ENEMYID_MANHANDLA
+; 	var2a:
+; 	var30: Stored Animation Index, based off of subid, in @table_7828
+; 	var31-36:
+; 	var36:
+; 	var37:
+; 	var38:
+;	var39:
 ; ==============================================================================
 enemyCode7a:
+;enemycode7d:
 	jr z,@normalStatus
-	sub ENEMYSTATUS_NO_HEALTH
+	sub $03
 	ret c
-	jr nz,@normalStatus
-
-	; Dead. Delete all "children" objects.
-	ld e,Enemy.collisionType
+	dec a
+	jr z,+
+	dec a
+	jr z,@normalStatus
+	ld e,Enemy.subid			;$82
 	ld a,(de)
-	or a
-	jr z,@dead
-	ldhl FIRST_ENEMY_INDEX, Enemy.start
-@killNext:
-	ld l,Enemy.id
-	ld a,(hl)
-	cp ENEMYID_SHADOW_HAG_BUG
-	call z,_ecom_killObjectH
-	inc h
-	ld a,h
-	cp LAST_ENEMY_INDEX+1
-	jr c,@killNext
-@dead:
-	jp _enemyBoss_dead
-
+	dec a
+	jp z,_enemyBoss_dead
+	dec a
+	call z,_ecom_killRelatedObj1
+	jp enemyDie_uncounted
++
+	call _func_7a44
 @normalStatus:
-	ld e,Enemy.state
-	ld a,(de)
+	call _ecom_getSubidAndCpStateTo08
+	jr nc,+
 	rst_jumpTable
-	.dw _shadowHag_state_uninitialized
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state_stub
-	.dw _shadowHag_state8
-	.dw _shadowHag_state9
-	.dw _shadowHag_stateA
-	.dw _shadowHag_stateB
-	.dw _shadowHag_stateC
-	.dw _shadowHag_stateD
-	.dw _shadowHag_stateE
-	.dw _shadowHag_stateF
-	.dw _shadowHag_state10
-	.dw _shadowHag_state11
-	.dw _shadowHag_state12
-	.dw _shadowHag_state13
-
-_shadowHag_state_uninitialized:
-	ld a,ENEMYID_SHADOW_HAG
-	ld b,$00
-	call _enemyBoss_initializeRoom
-	ld a,SPEED_80
-	jp _ecom_setSpeedAndState8
-
-
-_shadowHag_state_stub:
-	ret
-
-
-_shadowHag_state8:
-	inc e
-	ld a,(de)
+	.dw @state0
+	.dw @state1
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
+	.dw @stateStub
++
+	dec b
+	ld a,b
 	rst_jumpTable
-	.dw @substate0
-	.dw @substate1
-	.dw @substate2
-	.dw @substate3
-	.dw @substate4
+	.dw @subid1	;body
+	.dw @subid2
+	.dw @subid3 ;top 	right head
+	.dw @subid4 ;bottom right head
+	.dw @subid5 ;bottom	left  head
+	.dw @subid6 ;top	left  head
 
-; Wait for door to close, then begin cutscene
-@substate0:
-	ld a,($cc93)
+@state0:
+; initialize room and spawn subids 1-6 if subid is $00
+	ld a,b
 	or a
-	ret nz
-
-	inc a
-	ld (wDisabledObjects),a
-
-	ld bc,$0104
-	call _enemyBoss_spawnShadow
-	ret nz
-
-	ld h,d
-	ld l,Enemy.substate
-	inc (hl)
-	ld l,Enemy.angle
-	ld (hl),$18
-	ld l,Enemy.zh
-	ld (hl),$ff
-
-	; Set position to Link's position
-	ld l,Enemy.yh
-	ldh a,(<hEnemyTargetY)
-	add $04
-	ldi (hl),a
-	inc l
-	ldh a,(<hEnemyTargetX)
-	ld (hl),a
-	ret
-
-; Moving left to center of room
-@substate1:
-	ld e,Enemy.xh
+	jr nz,+
+	ld a,ENEMYID_MANHANDLA		;$7d
+	ld b,PALH_85;cb				;$85
+	call _enemyBoss_initializeRoom
+	jr @state1
++
+	dec a
+	ld hl,@table_7828
+	rst_addAToHl
+	ld e,Enemy.var30			;$b0
+	ld a,(hl)
+	ld (de),a
+	call enemySetAnimation
+	call _ecom_setSpeedAndState8
+	ld e,Enemy.subid			;$82
 	ld a,(de)
-	cp ((LARGE_ROOM_WIDTH/2)<<4)+8
-	jp nc,objectApplySpeed
-
-	call _shadowHag_beginEmergingFromShadow
-	ld h,d
-	ld l,Enemy.substate
-	inc (hl)
-
-	inc l
-	ld (hl),$10 ; [counter1]
-
-	ld l,Enemy.zh
-	ld (hl),$00
-	jp _ecom_killRelatedObj2
-
-; Emerging from shadow
-@substate2:
-	call _shadowHag_updateEmergingFromShadow
-	ret nz
-
-	ld e,Enemy.substate
+	cp $03			;special interaction with subids >$03
+	jr nc,+
+	dec a
+	jr z,++
+	jp objectSetInvisible
++
+	call _func_7a14
+	ld e,Enemy.var31			;$b1
 	ld a,$03
 	ld (de),a
-	dec a
-	jp enemySetAnimation
-
-; Delay before showing textbox
-@substate3:
-	call _ecom_decCounter1
-	jr nz,@animate
-
-	ld (hl),$08
-	ld l,e
-	inc (hl)
-	ld bc,TX_2f2b
-	jp showText
-
-@substate4:
-	call _ecom_decCounter1
-	jr nz,@animate
-	call _shadowHag_beginReturningToGround
-	call _enemyBoss_beginBoss
-@animate:
-	jp enemyAnimate
-
-
-; Currently in the ground, showing eyes
-_shadowHag_state9:
-	call _ecom_decCounter2
-	jp nz,shadowHag_updateReturningToGround
-
-	dec l
-	ld a,(hl)
-	or a
-	jr z,@spawnShadows
-
-	dec (hl)
-	jp _ecom_flickerVisibility
-
-@spawnShadows:
-	ld b,$04
-	call checkBPartSlotsAvailable
-	ret nz
-
-	ldbc PARTID_SHADOW_HAG_SHADOW,$04
---
-	call _ecom_spawnProjectile
-	dec c
-	ld l,Part.angle
-	ld (hl),c
-	jr nz,--
-
-	; Go to state A
-	call _ecom_incState
-	ld l,Enemy.counter1
-	ld (hl),150
-	inc l
-	ld (hl),$04 ; [counter2]
-
-	ld l,Enemy.collisionType
-	res 7,(hl)
-	jp objectSetInvisible
-
-
-; Shadows chasing Link
-_shadowHag_stateA:
-	ld a,(wFrameCounter)
-	rrca
-	ret c
-	call _ecom_decCounter1
-	ret nz
-
-	; Time for shadows to reconverge.
-
-	dec (hl) ; [counter1] = $ff
-	ld l,e
-	inc (hl) ; [state] = $0b
-
-	call getRandomNumber_noPreserveVars
-	and $06
-	ld hl,@targetPositions
-	rst_addAToHl
-	ld e,Enemy.yh
-	ldi a,(hl)
-	ld (de),a
-	ld e,Enemy.xh
-	ld a,(hl)
-	ld (de),a
-	ret
-
-; When the shadows reconverge, one of these positions is chosen randomly.
-@targetPositions:
-	.db $38 $48
-	.db $38 $b8
-	.db $78 $48
-	.db $78 $b8
-
-
-; Shadows reconverging to target position
-_shadowHag_stateB:
-	ld e,Enemy.counter2
-	ld a,(de)
-	or a
-	ret nz
-
-	; All shadows have now returned.
-
-	; Decide how many times to spawn bugs before shadows separate again
-	call getRandomNumber_noPreserveVars
-	and $01
-	add $02
-	ld e,Enemy.counter2
-	ld (de),a
-
-_shadowHag_initStateC:
-	ld h,d
-	ld l,Enemy.state
-	ld (hl),$0c
-	ld l,Enemy.counter1
-	ld (hl),30
-
-	ld l,Enemy.collisionType
-	ld (hl),$80|ENEMYID_PODOBOO
-
-	ld l,Enemy.collisionRadiusY
-	ld (hl),$03
-	inc l
-	ld (hl),$05
-
-	call objectSetVisible83
-	ld a,$04
-	jp enemySetAnimation
-
-
-; Delay before spawning bugs
-_shadowHag_stateC:
-	call _ecom_decCounter1
-	jr nz,++
-	ld (hl),$41
-	ld l,e
-	inc (hl)
-++
-	jp enemyAnimate
-
-
-; Spawning bugs
-_shadowHag_stateD:
-	call enemyAnimate
-	call _ecom_decCounter1
-	jr z,@doneSpawningBugs
-
-	; Spawn bug every 16 frames
-	ld a,(hl)
-	and $0f
-	ret nz
-
-	; Maximum of 7 at a time
-	ld e,Enemy.var30
-	ld a,(de)
-	cp $07
-	ret nc
-
-	; Spawn bug
-	ld b,ENEMYID_SHADOW_HAG_BUG
-	call _ecom_spawnUncountedEnemyWithSubid01
-	ret nz
-
-	; [child.relatedObj1] = this
-	ld l,Enemy.relatedObj1
-	ld a,Enemy.start
-	ldi (hl),a
-	ld (hl),d
-
-	; [child.position] = [this.position]
-	call objectCopyPosition
-
-	ld h,d
-	ld l,Enemy.var30
-	inc (hl)
-	ret
-
-@doneSpawningBugs:
-	call _ecom_incState
-	ld l,Enemy.counter1
-	ld (hl),30
-	ret
-
-
-; Done spawning bugs; delay before the hag herself spawns in
-_shadowHag_stateE:
-	call _ecom_decCounter1
-	jp nz,_ecom_flickerVisibility
-
-	ld e,Enemy.var31
-	ld a,(de)
-	or a
-	ld a,90
-	jr z,++
-	xor a
-	ld (de),a
-	ld a,150
-++
-	ld (hl),a ; [counter1] = a
-
-	ld l,Enemy.state
-	inc (hl)
-	ld l,Enemy.collisionType
-	res 7,(hl)
-	jp objectSetInvisible
-
-
-; Waiting for Link to be in a position where the hag can spawn behind him
-_shadowHag_stateF:
-	call _ecom_decCounter1
-	jr z,@couldntSpawn
-
-	call _shadowHag_chooseSpawnPosition
-	ret nz
-	ld e,Enemy.yh
-	ld a,b
-	ld (de),a
-	ld e,Enemy.xh
-	ld a,c
-	ld (de),a
-	call _shadowHag_beginEmergingFromShadow
-	jp _ecom_incState
-
-@couldntSpawn:
-	ld e,Enemy.var31
-	ld a,$01
-	ld (de),a
-
-	inc l
-	dec (hl) ; [counter2]--
-	jp nz,_shadowHag_initStateC
-
-	call _shadowHag_beginReturningToGround
-	ld a,$04
-	jp enemySetAnimation
-
-
-; Spawning out of ground to attack Link
-_shadowHag_state10:
-	call _shadowHag_updateEmergingFromShadow
-	ret nz
-
-	call _ecom_incState
-
-	ld l,Enemy.collisionType
-	ld (hl),$80|ENEMYID_SHADOW_HAG
-
-	ld l,Enemy.speed
-	ld (hl),SPEED_180
-	ld l,Enemy.counter1
-	ld (hl),30
-	ld l,Enemy.direction
-	ld (hl),$ff
-
-	ld l,Enemy.collisionRadiusY
-	ld (hl),$0c
-	inc l
-	ld (hl),$08
-
-	call _ecom_updateCardinalAngleTowardTarget
-	jp _ecom_updateAnimationFromAngle
-
-
-; Delay before charging at Link
-_shadowHag_state11:
-	call _shadowHag_checkLinkLookedAtHag
-	jr z,_shadowHag_doneCharging
-
-	call _ecom_decCounter1
-	ret nz
-	ld (hl),60
-
-	ld l,Enemy.state
-	inc (hl)
-
-_shadowHag_animate:
-	jp enemyAnimate
-
-
-; Charging at Link
-_shadowHag_state12:
-	call _shadowHag_checkLinkLookedAtHag
-	jr z,_shadowHag_doneCharging
-
-	call _ecom_decCounter1
-	jr z,_shadowHag_doneCharging
-
-	ld e,Enemy.yh
-	ld a,(de)
-	sub $12
-	cp (LARGE_ROOM_HEIGHT<<4)-$32
-	jr nc,_shadowHag_doneCharging
-
-	ld e,Enemy.xh
-	ld a,(de)
-	sub $18
-	cp (LARGE_ROOM_WIDTH<<4)-$30
-	jr nc,_shadowHag_doneCharging
-	call objectApplySpeed
-	jr _shadowHag_animate
-
-
-_shadowHag_doneCharging:
-	call _ecom_decCounter2
-	jp z,_shadowHag_beginReturningToGround
-
-	ld l,Enemy.counter1
-	ld (hl),30
-
-	ld l,Enemy.state
-	inc (hl)
-
-	ld l,Enemy.collisionType
-	ld (hl),$80|ENEMYID_PODOBOO
-	ld a,$06
-	jp enemySetAnimation
-
-
-; Delay before spawning bugs again
-_shadowHag_state13:
-	call _ecom_decCounter1
-	jr nz,shadowHag_updateReturningToGround
-	jp _shadowHag_initStateC
-
-
-;;
-_shadowHag_beginEmergingFromShadow:
-	ld a,$05
-	call enemySetAnimation
-	call objectSetVisible82
-	ld e,Enemy.yh
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	sub $04
-	ld (de),a
+	cp $02
+	jp c,objectSetVisible82
+++
+	jp objectSetVisible83
+
+@table_7828:
+	.db $00 $05 $09
+	.db $0d $0b $07
+
+; spawns subids 1-6
+@state1:
+	ld b,$06
+	call checkBEnemySlotsAvailable
+	ret nz
+	ld b,ENEMYID_MANHANDLA
+	call _ecom_spawnUncountedEnemyWithSubid01
+	ld l,Enemy.enabled		;$80
+	ld e,l
+	ld a,(de)
+	ld (hl),a
+	call objectCopyPosition
+	push hl
+	ld c,h
+	call _ecom_spawnUncountedEnemyWithSubid01
+	inc (hl)
+	call objectCopyPosition
+	call _setRelatedObj1
+	ld a,h
+	ld hl,hFF8A				;$ff8a
+	ldi (hl),a
+	ld a,$04
+; hFF8F: repeat counter
+-
+	ldh (<hFF8F),a
+	push hl
+	call _ecom_spawnUncountedEnemyWithSubid01
+	call _func_7a1f
+	ld a,h
+	pop hl
+	ldi (hl),a
+	ldh a,(<hFF8F)
+	dec a
+	jr nz,-
+
+; a == 0
+	pop hl
+	ld bc,hFF8A				;$ff8a
+	ld l,Enemy.var31		;$b1
+	ld e,$05
+; Copies from hFF8A-hFF8F to var31-var36
+-
+	ld a,(bc)
+	ldi (hl),a
+	inc c
+	dec e
+	jr nz,-
+	jp enemyDelete
+
+@stateStub:
 	ret
 
-;;
-; @param[out]	zflag	z if done emerging? (animParameter was $ff)
-_shadowHag_updateEmergingFromShadow:
-	call enemyAnimate
-	ld e,Enemy.animParameter
-	ld a,(de)
-	inc a
-	ret z
-
-	; If [animParameter] == 1, y -= 8? (To center the hitbox maybe?)
-	sub $02
-	ret nz
-	ld (de),a
-
-	ld e,Enemy.yh
+; Manhandla's Body
+@subid1:
+	call _func_7ac8
+	ld e,Enemy.state		;$84
 	ld a,(de)
 	sub $08
-	ld (de),a
-	or d
-	ret
-
-;;
-shadowHag_updateReturningToGround:
-	call enemyAnimate
-
-	ld e,Enemy.animParameter
-	ld a,(de)
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @@stateA
+	.dw @@stateB
+	.dw @@stateC
+	.dw @@stateD
+	.dw @@stateE
+	
+@@state8:
+; Return if doors are not shut
+	ld a,(wcc93)
 	or a
-	ret z
-	bit 7,a
 	ret nz
 
-	dec a
-	ld hl,@yOffsets
+	ld h,d
+	ld l,Enemy.speedY		;$90
+	ld (hl),SPEED_40		;$0a
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),ENEMYCOLLISION_MANHANDLA_BODY;$61
+	ld l,Enemy.var36		;$b6
+	ld (hl),$04
+	inc l		;[var37]
+	ld (hl),$58
+	inc l		;[var38]
+	ld (hl),$78
+	inc l		;[var39]
+	ld (hl),$ff
+	call @@func_78ce
+	ld a,MUS_BOSS			;$2e
+	ld (wActiveMusic),a
+	jp playSound
+	
+@@state9:
+	call _ecom_decCounter1
+	jr nz,@@bounceAndApplySpeed
+	ld (hl),120				;$78
+	ld l,e
+	inc (hl)
+	xor a
+	call enemySetAnimation
+@@bounceAndApplySpeed:
+	call _ecom_bounceOffWallsAndHoles
+	call objectApplySpeed
+@@animate:
+	jp enemyAnimate
+	
+@@stateA:
+	call _ecom_decCounter1
+	ret nz
+	
+@@func_78ce:
+	ld l,e
+	ld (hl),$09
+	call getRandomNumber_noPreserveVars
+	and $07
+	ld hl,@@table_78f6
 	rst_addAToHl
+	ld e,Enemy.counter1		;$86
+	ld a,(hl)
+	ld (de),a
+	ld bc,$5078		;General Center of room
+	call objectGetRelativeAngle
+	push af
+	call getRandomNumber_noPreserveVars
+	and $01
+	pop af
+	jr z,+
+	sub $02
+	and $1f
++
+	ld e,Enemy.angle		;$89
+	ld (de),a
+	jr @@animate
 
-	ld e,Enemy.yh
+@@table_78f6:
+	.db $a0 $b0 $c0 $d0
+	.db $d0 $e0 $f0 $00
+	
+@@stateB:
+	call _func_7ab4
+	jr nc,+
+	ld l,e
+	inc (hl)
+	ld l,Enemy.angle		;$89
+	ld (hl),ANGLE_UP		;$00
+	ld l,Enemy.counter1		;$86
+	ld (hl),4				;$04
+	ld l,Enemy.speedY		;$90
+	ld (hl),SPEED_220		;$55
+	jr @@animate
++
+	call objectGetRelativeAngleWithTempVars
+	ld e,Enemy.angle		;$89
+	ld (de),a
+	jr @@bounceAndApplySpeed
+	
+@@stateC:
+	call _ecom_decCounter1
+	jr nz,@@bounceAndApplySpeed
+	ld (hl),4				;$04
+	ld l,Enemy.var39		;$b9
+	ld e,Enemy.angle		;$89
+	ld a,(de)
+	add (hl)
+	and $1f
+	ld (de),a
+	or a
+	jr nz,@@bounceAndApplySpeed
+	ld a,(hl)
+	cpl
+	inc a
+	ld (hl),a
+	jr @@bounceAndApplySpeed
+	
+@@stateD:
+	call _ecom_decCounter1
+	jr nz,@@animateAndUpdateMovingPlatform
+	ld (hl),60				;$3c
+; decrease animation index by 1, set state to $0b when reaching $00
+	ld l,Enemy.var30		;$b0
+	ld a,(hl)
+	dec a
+	ld (hl),a
+	jr nz,+
+	ld l,Enemy.state		;$84
+	ld (hl),$0b
++
+	jp enemySetAnimation
+	
+@@stateE:
+	call _ecom_decCounter1
+	jr nz,+
+	inc (hl)
+	ld l,Enemy.state		;$84
+	dec (hl)
+	ld l,Enemy.collisionType	;$a4
+	ld (hl),$80|ENEMYID_MANHANDLA;$fd
+; decrease animation index by 1
+	ld l,Enemy.var30		;$b0
+	dec (hl)
+	ld a,(hl)
+	call enemySetAnimation
+	jp objectSetVisible82
++
+	ld a,(hl)
+	cp 120					;$78
+	jr nz,@@animateAndUpdateMovingPlatform
+; increase animation index by 1
+	ld l,Enemy.var30		;$b0
+	inc (hl)
+	ld a,(hl)
+	jp enemySetAnimation
+@@animateAndUpdateMovingPlatform:
+	call enemyAnimate
+	jp _ecom_updateMovingPlatform
+
+@subid2:
+	call _func_7ad6
+	ld e,Enemy.state		;$84
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	.dw @@stateA
+
+@@state8:
+	ld h,d
+	ld l,e
+	inc (hl)
+	ld l,Enemy.collisionType	;$a4
+	res 7,(hl)
+	inc l		;[Enemy.enemyCollisionMode]
+	ld (hl),ENEMYCOLLISION_MANHANDLA_3;$63
+	ret
+
+@@state9:
+	ld a,ObjectStruct.state		;$04
+	call objectGetRelatedObject1Var
+	ld a,(hl)
+	cp $0e
+	ret nz
+	ld h,d
+	ld l,Enemy.state		;$84
+	inc (hl)
+	ld l,Enemy.collisionType	;$a4
+	set 7,(hl)
+	ld l,Enemy.zh			;$8f
+	ld (hl),$f9		;[-7]
+	ld l,Enemy.speedZ		;$94
+	xor a
+	ldi (hl),a
+	ld (hl),a
+	call objectSetVisible81
+	ld a,$05
+	jp enemySetAnimation
+
+@@stateA:
+	ld a,ObjectStruct.state		;$04
+	call objectGetRelatedObject1Var
+	ld a,(hl)
+	cp $0d
+	jr nz,+
+	ld h,d
+	ld l,Enemy.state		;$84
+	dec (hl)
+	ld l,Enemy.collisionType	;$a4
+	res 7,(hl)
+	jp objectSetInvisible
++
+	ld l,Enemy.counter1		;$86
+	ld a,(hl)
+	cp 120					;$78
+	ret nc
+	add $03
+	and $0c
+	rrca
+	rrca
+	ld hl,@@table_79d9
+	rst_addAToHl
+	ld e,Enemy.xh			;$8d
 	ld a,(de)
 	add (hl)
 	ld (de),a
-
-	ld e,Enemy.animParameter
-	xor a
-	ld (de),a
 	ret
 
-@yOffsets:
-	.db $08 $04
+@@table_79d9:
+	.db $00 $02 $00 $fe
 
-;;
-; Sets state to 9 & initializes stuff
-_shadowHag_beginReturningToGround:
+@subid3:
+@subid4:
+@subid5:
+@subid6:
+	ld a,(de)
+	sub $08
+	rst_jumpTable
+	.dw @@state8
+	.dw @@state9
+	
+@@state8:
+	call _ecom_decCounter1
+	jr nz,@@toFunc7ad6
+	call _func_7b1c
+	jr c,@@toFunc7ad6
+--
+	call getRandomNumber_noPreserveVars
+	and $50
+	add 90							;$5a
+	ld e,Enemy.counter1				;$86
+	ld (de),a
+@@toFunc7ad6:
+	jp _func_7ad6
+	
+@@state9:
+	call _ecom_decCounter1
+	jr z,+
+	ld a,(hl)
+	cp 90							;$5a
+	jr nz,@@toFunc7ad6
+	ld b,PARTID_GOPONGA_PROJECTILE
+	call _ecom_spawnProjectile
+	jr @@toFunc7ad6
++
+; decrease animation index by 1
+	ld l,Enemy.var30				;$b0
+	dec (hl)
+	ld a,(hl)
+	call enemySetAnimation
+
+_func_7a14:
 	ld h,d
-	ld l,Enemy.state
-	ld (hl),$09
+	ld l,Enemy.state				;$84
+	ld (hl),$08
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),ENEMYCOLLISION_TWINROVA	;$0a
+	jr --
 
-	ld l,Enemy.counter1
-	ld (hl),90
-	inc l
-	ld (hl),30 ; [counter2]
-
-	; Make hag invincible
-	ld l,Enemy.collisionType
-	ld (hl),$80|ENEMYID_PODOBOO
-
-	ld l,Enemy.collisionRadiusY
-	ld (hl),$03
-	inc l
-	ld (hl),$05
-
-	ld a,$06
-	jp enemySetAnimation
-
-;;
-; Chooses position to spawn at for charge attack based on Link's facing direction.
-;
-; @param[out]	bc	Spawn position
-; @param[out]	zflag	nz if Link is too close to the wall to spawn in
-_shadowHag_chooseSpawnPosition:
-	ld a,(w1Link.direction)
-	ld hl,@spawnOffsets
-	rst_addDoubleIndex
-
-	ld a,(w1Link.yh)
+; param		hl		Enemy.subid
+_func_7a1f:
+	push bc
+	push hl
+	ldh a,(<hFF8F)
+	ld b,a
+	ld a,$07
+	sub b
+	ld (hl),a
+	call _func_7af2
+	ld e,Enemy.yh					;$8b
+	ld a,(de)
 	add (hl)
 	ld b,a
-	sub $1c
-	cp $80
-	jr nc,@invalid
-
-	inc hl
-	ld a,(w1Link.xh)
-	ld e,a
+	inc hl		;[Enemy.var03]
+	ld e,Enemy.xh					;$8d
+	ld a,(de)
 	add (hl)
 	ld c,a
-	cp $f0
-	jr nc,@invalid
+	pop hl		;[Enemy.subid]
+	ld l,e
+	ld (hl),c
+	ld l,Enemy.yh					;$8b
+	ld (hl),b
+	pop bc
 
-	sub e
-	jr nc,++
-	cpl
-	inc a
-++
-	rlca
-	jp nc,getTileCollisionsAtPosition
-
-@invalid:
-	or d
+_setRelatedObj1:
+	ld l,Enemy.relatedObj1			;$96
+	ld a,Enemy.start				;$80
+	ldi (hl),a
+	ld (hl),c
 	ret
 
-@spawnOffsets:
-	.db $40 $00
-	.db $08 $c0
-	.db $c0 $00
-	.db $08 $40
+_func_7a44:
+	ld h,d
+	ld l,Enemy.var2a				;$aa
+	ld e,Enemy.subid				;$82
+	ld a,(de)
+	dec a
+	jr z,_func_7a70
+; Return if subid == $02
+	dec a
+	ret z
+; Return if not dead
+	ld l,Enemy.health				;$a9
+	ld a,(hl)
+	or a
+	ret nz
 
-;;
-; @param[out]	zflag	z if Link looked at the hag
-_shadowHag_checkLinkLookedAtHag:
-	call objectGetAngleTowardEnemyTarget
-	add $14
-	and $18
-	swap a
-	rlca
+	ld a,ObjectStruct.var36 		;$36
+	call objectGetRelatedObject1Var
+	dec (hl)
+	jr z,_func_7a63
+	ld l,Enemy.speedY				;$90
+	ld a,(hl)
+	add SPEED_80					;$14
+	ld (hl),a
+	ret
+	
+_func_7a63:
+	ld l,Enemy.state				;$84
+	ld (hl),$0b
+	ld l,Enemy.speedY				;$90
+	ld (hl),SPEED_200				;$50
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),SE_ENEMYCOLLISION_4c	;$4c
+	ret
+
+; For subid 01
+_func_7a70:
+	ld l,Enemy.var2a				;$aa
+	ld a,(hl)
+	cp $80|ITEMCOLLISION_ELECTRIC_SHOCK;$a0
+	jr nz,+
+	ld l,Enemy.var3a				;$ba
+	ld (hl),60						;$3c
++
+	ld l,Enemy.health				;$a9
+	ld (hl),$40
+	ld l,Enemy.var36				;$b6
+	ld a,(hl)
+	or a
+	ret nz
+	ld l,Enemy.var2a				;$aa
+	ld a,(hl)
+	cp $80|ITEMCOLLISION_L1_BOOMERANG;ITEMCOLLISION_SE_16		;$96
+	ret nz
+; increase animation index by 1, and jump if larger than $03
+	ld l,Enemy.var30				;$b0
+	ld a,(hl)
+	inc a
+	cp $03
+	ld (hl),a
+	jr nc,_func_7aa1
+	ld l,Enemy.counter1				;$86
+	ld (hl),60						;$3c
+	ld l,Enemy.state				;$84
+	ld (hl),$0d
+	call enemySetAnimation
+	jp objectSetVisible81
+	
+; param		hl		Enemy.var30
+_func_7aa1:
+; set stored animation index to $03
+	ld (hl),$03
+	ld l,Enemy.state				;$84
+	ld (hl),$0e
+	ld l,Enemy.counter1				;$86
+	ld (hl),180						;$b4
+	ld l,Enemy.collisionType		;$a4
+	ld (hl),$80|ENEMYID_PODOBOO		;$29					;$a9	;change this!!!
+	ld a,$03
+	jp enemySetAnimation
+	
+_func_7ab4:
+	ld h,d
+	ld l,Enemy.var37				;$b7
+	call _ecom_readPositionVars
+	sub c
+	add $04
+	cp $09
+	ret nc
+	ldh a,(<hFF8F)
+	sub b
+	add $04
+	cp $09
+	ret
+
+_func_7ac8:
+	ld h,d
+	ld l,Enemy.var3a				;$ba
+	ld a,(hl)
+	or a
+	ret z
+
+	pop bc
+	dec (hl)
+	ret nz
+	ld l,Enemy.collisionType		;$a4
+	set 7,(hl)
+	ret
+
+_func_7ad6:
+	ld a,ObjectStruct.yh			;$0b
+	call objectGetRelatedObject1Var
+	ld b,(hl)
+	ld l,Enemy.xh					;$8d
+	ld c,(hl)
+	ld l,Enemy.animParameter		;$a1
+	ld e,Enemy.subid				;$82
+	ld a,(de)
+	call _func_7af2
+	ld e,Enemy.yh					;$8b
+	ldi a,(hl)
+	add b
+	ld (de),a
+	ld e,Enemy.xh					;$8d
+	ld a,(hl)
+	add c
+	ld (de),a
+	ret
+	
+_func_7af2:
+	sub $02
+	ld e,a
+	add a
+	add e
+	add a
+	add (hl)
+	ld hl,_table_7afe
+	rst_addAToHl
+	ret
+
+_table_7afe:
+	.db $0a $00 $0a $00 $0a $00 ; subid2
+	.db $f0 $0a $f2 $0a $f1 $0a ; subid3
+	.db $00 $0b $02 $0b $01 $0b ; subid4
+	.db $00 $f5 $01 $f5 $02 $f5 ; subid5
+	.db $f0 $f6 $f1 $f6 $f2 $f6 ; subid6
+
+_func_7b1c:
+	call objectGetAngleTowardEnemyTarget ; $7b1c
 	ld b,a
-	ld a,(w1Link.direction)
-	cp b
+	ld e,Enemy.subid				;$82
+	ld a,(de)
+	sub $03
+	swap a
+	rrca
+	sub b
+	cp $f8
+	ret nc
+	ld h,d
+	ld l,Enemy.state				;$84
+	inc (hl)
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),ENEMYCOLLISION_MANHANDLA_HEAD	;$62
+	ld l,Enemy.counter1				;$86
+	ld (hl),120						;$78
+; increase animation index by 1
+	ld l,Enemy.var30				;$b0
+	inc (hl)
+	ld a,(hl)
+	call enemySetAnimation
+	scf
 	ret
 
 
@@ -9148,7 +8955,7 @@ _smog_state_uninitialized:
 @subid4Init:
 	ld a,$04
 	ld (de),a ; [subid] = 4
-
+;sets button tile to floor tile
 	ld a,TILEINDEX_DUNGEON_a3
 	ld c,$11
 	call setTile

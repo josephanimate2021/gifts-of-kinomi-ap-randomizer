@@ -3634,7 +3634,7 @@ interactionCode7b:
 	ld a,PALH_7e
 	call loadPaletteHeader
 	call getThisRoomFlags
-	and $40
+	and ROOMFLAG_40
 	jr nz,@initializeOpenedState
 
 	; Closed
@@ -3755,7 +3755,7 @@ interactionCode7b:
 	ld hl,wActiveTriggers
 	res 7,(hl)
 	call getThisRoomFlags
-	set 6,(hl)
+	set ROOMFLAG_BIT_40,(hl)
 
 	call @updateSolidityUponOpening
 	ld a,(wActiveMusic)
@@ -4146,6 +4146,17 @@ interactionCode81:
 ; INTERACID_SARCOPHAGUS
 ; ==============================================================================
 interactionCode82:
+	ld e,Interaction.subid
+	ld a,(de)
+	or a
+	jr z,+
+	cp $80		;if from grotto crystal
+	jr z,+
+; if subid is nonzero, check if desert
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
+	bit 0,a
+	jp z,interactionDelete
++
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -4164,7 +4175,7 @@ interactionCode82:
 	or a
 	jr z,++
 	call getThisRoomFlags
-	bit 6,a
+	bit ROOMFLAG_BIT_40,a
 	jp nz,interactionDelete
 ++
 	call interactionIncState
@@ -4213,7 +4224,7 @@ interactionCode82:
 	ld a,SND_SOLVEPUZZLE
 	call z,playSound
 	call getThisRoomFlags
-	set 6,(hl)
+	set ROOMFLAG_BIT_40,(hl)
 ++
 	call objectGetShortPosition
 	push af
@@ -4294,9 +4305,9 @@ _bombUpgradeFairy_subid00:
 	call checkGlobalFlag
 	jp nz,interactionDelete
 
-	call getThisRoomFlags
-	bit 0,a
-	jp z,interactionDelete
+;	call getThisRoomFlags
+;	bit ROOMFLAG_BIT_LAYOUTSWAP,a
+;	jp z,interactionDelete
 
 	call interactionInitGraphics
 	call interactionSetAlwaysUpdateBit
@@ -4318,7 +4329,7 @@ _bombUpgradeFairy_subid00:
 	xor a
 	ld (hl),a
 	ld (wTmpcfc0.bombUpgradeCutscene.state),a
-	ld ($cfd0),a
+	ld (wTmpcfc0.genericCutscene.cfd0),a
 	ret
 
 @state1:
@@ -4334,11 +4345,11 @@ _bombUpgradeFairy_subid00:
 
 	; Check that Link's in position
 	ldh a,(<hEnemyTargetY)
-	sub $41
+	sub $41	;$41
 	cp $06
 	ret nc
 	ldh a,(<hEnemyTargetX)
-	sub $58
+	sub $48		;$58
 	cp $21
 	ret nc
 
@@ -4366,6 +4377,8 @@ _bombUpgradeFairy_subid00:
 	ld (wDisabledObjects),a
 	ld (wMenuDisabled),a
 	call setLinkForceStateToState08
+	ld a,MUS_FAIRY_FOUNTAIN
+	call playSound
 	jp interactionIncState
 
 @state2:
@@ -4419,6 +4432,8 @@ _bombUpgradeFairy_subid00:
 	ld (wTmpcfc0.bombUpgradeCutscene.state),a
 
 	call objectCreatePuff
+	ld a,MUS_OVERWORLD_PAST
+	call playSound
 	jp interactionDelete
 
 
@@ -4472,7 +4487,7 @@ _bombUpgradeFairy_subid01:
 	jp objectSetVisible82
 
 @state2:
-	ld a,($cfd0)
+	ld a,(wTmpcfc0.genericCutscene.cfd0)
 	inc a
 	jp z,interactionDelete
 
@@ -4507,13 +4522,13 @@ _bombUpgradeFairy_subid02:
 	ld e,Interaction.var03
 	ld a,(de)
 	or a
-	ld b,$5a
+	ld b,$4a			;$5a
 	jr z,++
 	ld l,Interaction.oamFlagsBackup
 	ld a,$06
 	ldi (hl),a
 	ld (hl),a
-	ld b,$76
+	ld b,$66			;$76
 ++
 	ld l,Interaction.yh
 	ld (hl),$3c
@@ -4541,7 +4556,7 @@ _bombUpgradeFairy_subid02:
 	jp objectSetVisible82
 
 @state2:
-	ld a,($cfd0)
+	ld a,(wTmpcfc0.genericCutscene.cfd0)
 	or a
 	ret z
 	call objectCreatePuff
@@ -5915,7 +5930,7 @@ interactionCode90:
 	.dw _miscPuzzles_subid23
 	.dw _miscPuzzles_subid24
 	.dw _miscPuzzles_subid25
-
+	.dw _miscPuzzles_subid26
 
 ; Boss key puzzle in D6
 _miscPuzzles_subid00:
@@ -6615,7 +6630,7 @@ _miscPuzzles_subid0d:
 	ret nz
 	ld hl,wActiveTriggers
 	ld a,(hl)
-	cp $07
+	cp %00000111	;$07
 	ret nz
 
 	ld e,Interaction.counter1
@@ -6673,9 +6688,11 @@ _miscPuzzles_subid0e:
 	jp nz,interactionDelete
 
 	; Wait for all slates to be put in
+	ld hl,wNumPlacedSlates
 	ld a,(hl)
-	and ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
-	cp  ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
+;	and ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
+;	cp  ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
+	inc a
 	ret nz
 
 	ld hl,wActiveTriggers
@@ -7147,7 +7164,8 @@ _miscPuzzles_subid1f:
 	jp setWarpDestVariables
 
 @warpDest:
-	m_HardcodedWarpA ROOM_AGES_49b, $00, $12, $03
+; Room, UNKOWN, Short Position, Unknown
+	m_HardcodedWarpA ROOM_AGES_473, $00, $0b, $03
 
 
 
@@ -7268,6 +7286,21 @@ _miscPuzzles_subid25:
 	.db TILEINDEX_BLUE_TOGGLE_BLOCK $22 $53 $8c
 	.db $00	
 
+_miscPuzzles_subid26:
+	call interactionDeleteAndRetIfEnabled02
+	call _miscPuzzles_deleteSelfAndRetIfItemFlagSet
+
+	ld hl,@blockPositions
+	call _miscPuzzles_verifyTilesAtPositions
+	ret nz
+	jp _miscPuzzles_dropSmallKeyHere
+
+@blockPositions:
+	.db TILEINDEX_RED_TOGGLE_BLOCK $6b $ff
+	.db TILEINDEX_YELLOW_TOGGLE_BLOCK $63 $89 $ff
+	.db TILEINDEX_BLUE_TOGGLE_BLOCK $67 $85
+	.db $00	
+
 
 ;mushroom room
 _miscPuzzles_subid23:
@@ -7332,6 +7365,7 @@ _miscPuzzles_subid23:
 	jp interactionDelete
 
 _miscPuzzles_subid24:
+;tombstones puzzle
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -7367,12 +7401,10 @@ _miscPuzzles_subid24:
 	.dw interactionIncState
 
 @@substate0
-	ldbc $32,$33
-	jp @@checkIfGraveMoved
+	ldbc $23,$33
+;	jp @@checkIfGraveMoved
 
 @@checkIfGraveMoved:
-
-
 	ld a,c
 	ld hl,wRoomLayout
 	rst_addAToHl
@@ -7395,15 +7427,15 @@ _miscPuzzles_subid24:
 
 @@substate1:
 	ldbc $53,$52
-	jp @@checkIfGraveMoved
+	jr @@checkIfGraveMoved
 
 @@substate2:
-	ldbc $36,$35
-	jp @@checkIfGraveMoved
+	ldbc $34,$35
+	jr @@checkIfGraveMoved
 
 @@substate3:
 	ldbc $44,$54
-	jp @@checkIfGraveMoved
+	jr @@checkIfGraveMoved
 
 @state2:
 	ld hl,wRoomLayout + $31
@@ -8784,7 +8816,6 @@ dropSparkles:
 	ld (hl),$10
 	ldbc INTERACID_SPARKLE, $01
 	jp objectCreateInteraction
-
 
 
 .ends

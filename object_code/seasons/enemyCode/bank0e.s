@@ -460,18 +460,18 @@ enemyCode71:
 	ret c
 	ret nz
 	; dead
-	ld e,$a4
+	ld e,Enemy.collisionType	;$a4
 	ld a,(de)
 	or a
 	call nz,@dead
-	ld e,$82
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	or a
 	jp nz,enemyDie
 	jp _enemyBoss_dead
 
 @normalStatus:
-	ld e,$84
+	ld e,Enemy.state			;$84
 	ld a,(de)
 	rst_jumpTable
 	.dw @state0
@@ -490,19 +490,19 @@ enemyCode71:
 
 @state0:
 	call _ecom_setSpeedAndState8
-	ld l,$8b
+	ld l,Enemy.yh				;$8b
 	ld (hl),$58
-	ld l,$8d
+	ld l,Enemy.xh				;$8d
 	ld (hl),$78
-	ld e,$82
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	or a
 	ld a,$ff
 	ld b,$00
 	jp z,_enemyBoss_initializeRoom
-	ld l,$86
-	ld (hl),$3c
-	ld l,$84
+	ld l,Enemy.counter1			;$86
+	ld (hl),60					;$3c
+	ld l,Enemy.state			;$84
 	inc (hl)
 	ret
 
@@ -516,30 +516,30 @@ enemyCode71:
 	ld h,d
 	ld l,e
 	inc (hl)
-	ld l,$86
+	ld l,Enemy.counter1			;$86
 	inc (hl)
-	ld a,$2d
+	ld a,MUS_MINIBOSS			;$2d
 	ld (wActiveMusic),a
 	jp playSound
 
 @state9:
 	call _ecom_decCounter1
 	ret nz
-	ld a,$78
+	ld a,120					;$78
 	ld (hl),a
 	ld l,e
-	inc (hl)
-	ld l,$a4
+	inc (hl)		;inc state
+	ld l,Enemy.collisionType	;$a4
 	set 7,(hl)
 	call setScreenShakeCounter
 	call getRandomNumber_noPreserveVars
 	and $03
 	ld hl,@table_48c4
 	rst_addAToHl
-	ld e,$83
+	ld e,Enemy.var03			;$83
 	ld a,(hl)
 	ld (de),a
-	ld a,$b8
+	ld a,SND_RUMBLE2			;$b8
 	call playSound
 	xor a
 	call enemySetAnimation
@@ -556,7 +556,7 @@ enemyCode71:
 	jr z,+
 	ld a,(hl)
 	and $1f
-	ld a,$b8
+	ld a,SND_RUMBLE2			;$b8
 	call z,playSound
 	jr ++
 +
@@ -567,17 +567,19 @@ enemyCode71:
 ++
 	jp enemyAnimate
 
+; attacking state
 @stateB:
 	call enemyAnimate
-	ld e,$83
+	ld e,Enemy.var03			;$83
 	ld a,(de)
 	rst_jumpTable
 	.dw @var03_00
 	.dw @var03_01
 	.dw @var03_02
 
+; spawns beetles
 @var03_00:
-	ld e,$85
+	ld e,Enemy.substate			;$85
 	ld a,(de)
 	rst_jumpTable
 	.dw @@substate0
@@ -588,64 +590,69 @@ enemyCode71:
 	ld h,d
 	ld l,e
 	inc (hl)
-	inc l
-	ld (hl),$14
+	inc l		;[Enemy.counter1]
+	ld (hl),20					;$14
 	ret
 
 @@substate1:
 	call _ecom_decCounter1
 	ret nz
-	ld (hl),$46
+	ld (hl),70					;$46
 	ld l,e
 	inc (hl)
 	ret
 
 @@substate2:
 	call _ecom_decCounter1
-	jp z,@func_49e3
+	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $0f
 	ret nz
-	ld l,$b0
+	ld l,Enemy.var30			;$b0
 	ld a,(hl)
 	cp $05
 	ret nc
-	jp @func_498c
+	jp @spawnBeetle
 
+; spawns holes
 @var03_01:
-	ld e,$85
+	ld e,Enemy.substate			;$85
 	ld a,(de)
 	rst_jumpTable
-	inc hl
-	ld c,c
-	ldi a,(hl)
-	ld c,c
-	ccf
-	ld c,c
+	.dw @@substate0
+	.dw @@substate1
+	.dw @@substate2
+
+@@substate0:
 	ld a,$01
 	ld (de),a
 	inc a
 	jp enemySetAnimation
+
+@@substate1:
 	ld h,d
-	ld l,$a1
+	ld l,Enemy.animParameter	;$a1
 	bit 7,(hl)
 	jp z,enemyAnimate
 	ld l,e
 	inc (hl)
-	ld l,$86
-	ld (hl),$b4
-	ld l,$a4
+	ld l,Enemy.counter1			;$86
+	ld (hl),180					;$b4
+	ld l,Enemy.collisionType	;$a4
 	res 7,(hl)
 	jp objectSetInvisible
+
+@@substate2:
 	call _ecom_decCounter1
-	jp z,@func_49e3
+	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $1f
 	ret nz
-	jp @func_49b2
+	jp @spawnHoles
 
+; spawns fire projectile
 @var03_02:
-	ld e,$85
+	ld e,Enemy.substate			;$85
 	ld a,(de)
 	rst_jumpTable
 	.dw @@substate0
@@ -655,47 +662,47 @@ enemyCode71:
 	ld h,d
 	ld l,e
 	inc (hl)
-	inc l
-	ld (hl),$f0
+	inc l		;[Enemy.counter1]
+	ld (hl),240					;$f0
 	ld a,$01
 	jp enemySetAnimation
 
 @@substate1:
 	call _ecom_decCounter1
-	jp z,@func_49e3
+	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $0f
 	ret nz
-	ld e,$a1
+	ld e,Enemy.animParameter	;$a1
 	ld a,(de)
 	dec a
 	ret nz
-	ld a,$51
+	ld a,SND_THROW				;$51
 	call playSound
-	jp @func_49d9
+	jp @spawnFire
 
 @stateC:
 	ld h,d
-	ld l,$a1
+	ld l,Enemy.animParameter	;$a1
 	bit 7,(hl)
 	jp z,enemyAnimate
-	ld l,e
+	ld l,e		;[Enemy.state]
 	ld (hl),$09
-	ld l,$86
-	ld (hl),$78
-	ld l,$a4
+	ld l,Enemy.counter1			;$86
+	ld (hl),120					;$78
+	ld l,Enemy.collisionType	;$a4
 	res 7,(hl)
 	jp objectSetInvisible
 
-@func_498c:
+@spawnBeetle:
 	ld b,ENEMYID_BEETLE
 	call _ecom_spawnEnemyWithSubid01
 	ret nz
-	ld l,$96
-	ld a,$80
+	ld l,Enemy.relatedObj1		;$96
+	ld a,Enemy.start			;$80
 	ldi (hl),a
 	ld (hl),d
-	ld e,$b0
+	ld e,Enemy.var30			;$b0
 	ld a,(de)
 	inc a
 	ld (de),a
@@ -703,9 +710,9 @@ enemyCode71:
 	ld c,a
 	and $70
 	add $20
-	ld l,$8b
+	ld l,Enemy.yh				;$8b
 	ldi (hl),a
-	inc l
+	inc l		;[Enemy.xh]
 	ld a,c
 	and $07
 	swap a
@@ -713,8 +720,9 @@ enemyCode71:
 	ld (hl),a
 	ret
 
-@func_49b2:
-	ld b,PARTID_2e
+; Spawns holes at random locations
+@spawnHoles:
+	ld b,PARTID_FACADE_HOLE		;PARTID_2e
 	call _ecom_spawnProjectile
 	ret nz
 	push hl
@@ -726,44 +734,46 @@ enemyCode71:
 	sub $10
 	and $f0
 	add $08
-	ld l,$cb
+	ld l,Part.yh				;$cb
 	ld (hl),a
 	ldh a,(<hEnemyTargetX)
 	add c
 	sub $10
 	and $f0
 	add $08
-	ld l,$cd
+	ld l,Part.xh				;$cd
 	ld (hl),a
 	ret
 
-@func_49d9:
+; Spawns a rock
+@spawnFire:
 	ld b,PARTID_VOLCANO_ROCK
 	call _ecom_spawnProjectile
 	ret nz
-	ld l,$c2
+	ld l,Part.subid				;$c2
 	inc (hl)
 	ret
 
-@func_49e3:
-	ld l,$84
+; Increases state and sets animation to $02
+@incStateAndSetAnimation02:
+	ld l,Enemy.state			;$84
 	inc (hl)
 	ld a,$02
 	jp enemySetAnimation
 
+; Kills all remaining beetles at the death of Facade
 @dead:
-	ld hl,$d080
+	ldhl FIRST_ENEMY_INDEX, Enemy.start	;$d080
 -
-	ld l,$81
+	ld l,Enemy.id				;$81
 	ld a,(hl)
-	cp $51
+	cp ENEMYID_BEETLE			;$51
 	call z,_ecom_killObjectH
 	inc h
 	ld a,h
 	cp $e0
 	jr c,-
 	ret
-
 
 ; ==============================================================================
 ; ENEMYID_OMUAI
@@ -9268,7 +9278,7 @@ enemyCode7d:
 	jr z,+
 	dec a
 	jr z,@normalStatus
-	ld e,$82
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	dec a
 	jp z,_enemyBoss_dead
@@ -9304,32 +9314,32 @@ enemyCode7d:
 	ld a,b
 	or a
 	jr nz,+
-	ld a,$7d
-	ld b,$85
+	ld a,ENEMYID_MANHANDLA		;$7d
+	ld b,PALH_85				;$85		;change this!!!!
 	call _enemyBoss_initializeRoom
 	jr @state1
 +
 	dec a
 	ld hl,@table_7828
 	rst_addAToHl
-	ld e,$b0
+	ld e,Enemy.var30			;$b0
 	ld a,(hl)
 	ld (de),a
 	call enemySetAnimation
 	call _ecom_setSpeedAndState8
-	ld e,$82
+	ld e,Enemy.subid			;$82
 	ld a,(de)
-	cp $03
+	cp $03			;special interaction with subids >$03
 	jr nc,+
 	dec a
 	jr z,++
 	jp objectSetInvisible
 +
 	call _func_7a14
-	ld e,$b1
+	ld e,Ememy.var31			;$b1
 	ld a,$03
 	ld (de),a
-	ld e,$82
+	ld e,Enemy.subid			;$82
 	ld a,(de)
 	sub $04
 	cp $02
@@ -9347,7 +9357,7 @@ enemyCode7d:
 	ret nz
 	ld b,ENEMYID_MANHANDLA
 	call _ecom_spawnUncountedEnemyWithSubid01
-	ld l,$80
+	ld l,Enemy.enabled		;$80
 	ld e,l
 	ld a,(de)
 	ld (hl),a
@@ -9359,7 +9369,7 @@ enemyCode7d:
 	call objectCopyPosition
 	call _func_7a3d
 	ld a,h
-	ld hl,$ff8a
+	ld hl,hFF8A				;$ff8a
 	ldi (hl),a
 	ld a,$04
 -
@@ -9374,8 +9384,8 @@ enemyCode7d:
 	dec a
 	jr nz,-
 	pop hl
-	ld bc,$ff8a
-	ld l,$b1
+	ld bc,hFF8A				;$ff8a
+	ld l,Enemy.var31		;$b1
 	ld e,$05
 -
 	ld a,(bc)
@@ -9390,7 +9400,7 @@ enemyCode7d:
 
 @subid1:
 	call _func_7ac8
-	ld e,$84
+	ld e,Enemy.state		;$84
 	ld a,(de)
 	sub $08
 	rst_jumpTable
@@ -9407,20 +9417,20 @@ enemyCode7d:
 	or a
 	ret nz
 	ld h,d
-	ld l,$90
+	ld l,Enemy.speedY		;$90
 	ld (hl),$0a
-	ld l,$a5
+	ld l,Enemy.enemyCollisionMode	;$a5
 	ld (hl),$61
-	ld l,$b6
+	ld l,Enemy.var36		;$b6
 	ld (hl),$04
-	inc l
+	inc l		;[var37]
 	ld (hl),$58
-	inc l
+	inc l		;[var38]
 	ld (hl),$78
-	inc l
+	inc l		;[var39]
 	ld (hl),$ff
 	call @@func_78ce
-	ld a,$2e
+	ld a,MUS_BOSS			;$2e
 	ld (wActiveMusic),a
 	jp playSound
 	
@@ -9449,7 +9459,7 @@ enemyCode7d:
 	and $07
 	ld hl,@@table_78f6
 	rst_addAToHl
-	ld e,$86
+	ld e,Enemy.counter1		;$86
 	ld a,(hl)
 	ld (de),a
 	ld bc,$5078
@@ -9462,7 +9472,7 @@ enemyCode7d:
 	sub $02
 	and $1f
 +
-	ld e,$89
+	ld e,Enemy.angle		;$89
 	ld (de),a
 	jr @@animate
 
@@ -9475,16 +9485,16 @@ enemyCode7d:
 	jr nc,+
 	ld l,e
 	inc (hl)
-	ld l,$89
+	ld l,Enemy.angle		;$89
 	ld (hl),$00
-	ld l,$86
+	ld l,Enemy.counter1		;$86
 	ld (hl),$04
-	ld l,$90
+	ld l,Enemy.speedY		;$90
 	ld (hl),$55
 	jr @@animate
 +
 	call objectGetRelativeAngleWithTempVars
-	ld e,$89
+	ld e,Enemy.angle		;$89
 	ld (de),a
 	jr @@bounceAndApplySpeed
 	
@@ -9492,8 +9502,8 @@ enemyCode7d:
 	call _ecom_decCounter1
 	jr nz,@@bounceAndApplySpeed
 	ld (hl),$04
-	ld l,$b9
-	ld e,$89
+	ld l,Enemy.var39		;$b9
+	ld e,Enemy.angle		;$89
 	ld a,(de)
 	add (hl)
 	and $1f
@@ -9509,13 +9519,13 @@ enemyCode7d:
 @@stateD:
 	call _ecom_decCounter1
 	jr nz,@@animateAndUpdateMovingPlatform
-	ld (hl),$3c
-	ld l,$b0
+	ld (hl),60				;$3c
+	ld l,Enemy.var30		;$b0
 	ld a,(hl)
 	dec a
 	ld (hl),a
 	jr nz,+
-	ld l,$84
+	ld l,Enemy.state		;$84
 	ld (hl),$0b
 +
 	jp enemySetAnimation
@@ -9524,11 +9534,11 @@ enemyCode7d:
 	call _ecom_decCounter1
 	jr nz,+
 	inc (hl)
-	ld l,$84
+	ld l,Enemy.state		;$84
 	dec (hl)
-	ld l,$a4
-	ld (hl),$fd
-	ld l,$b0
+	ld l,Enemy.collisionType	;$a4
+	ld (hl),$fd		;[-3]
+	ld l,Enemy.var30		;$b0
 	dec (hl)
 	ld a,(hl)
 	call enemySetAnimation
@@ -9537,7 +9547,7 @@ enemyCode7d:
 	ld a,(hl)
 	cp $78
 	jr nz,@@animateAndUpdateMovingPlatform
-	ld l,$b0
+	ld l,Enemy.var30		;$b0
 	inc (hl)
 	ld a,(hl)
 	jp enemySetAnimation
@@ -9547,7 +9557,7 @@ enemyCode7d:
 
 @subid2:
 	call _func_7ad6
-	ld e,$84
+	ld e,Enemy.state		;$84
 	ld a,(de)
 	sub $08
 	rst_jumpTable
@@ -9559,7 +9569,7 @@ enemyCode7d:
 	ld h,d
 	ld l,e
 	inc (hl)
-	ld l,$a4
+	ld l,Enemy.collisionType	;$a4
 	res 7,(hl)
 	inc l
 	ld (hl),$63
@@ -9572,13 +9582,13 @@ enemyCode7d:
 	cp $0e
 	ret nz
 	ld h,d
-	ld l,$84
+	ld l,Enemy.state		;$84
 	inc (hl)
-	ld l,$a4
+	ld l,Enemy.collisionType	;$a4
 	set 7,(hl)
-	ld l,$8f
-	ld (hl),$f9
-	ld l,$94
+	ld l,Enemy.zh			;$8f
+	ld (hl),$f9		;[-7]
+	ld l,Enemy.speedZ		;$94
 	xor a
 	ldi (hl),a
 	ld (hl),a
@@ -9593,15 +9603,15 @@ enemyCode7d:
 	cp $0d
 	jr nz,+
 	ld h,d
-	ld l,$84
+	ld l,Enemy.state		;$84
 	dec (hl)
-	ld l,$a4
+	ld l,Enemy.collisionType	;$a4
 	res 7,(hl)
 	jp objectSetInvisible
 +
-	ld l,$86
+	ld l,Enemy.counter1		;$86
 	ld a,(hl)
-	cp $78
+	cp 120					;$78
 	ret nc
 	add $03
 	and $0c
@@ -9609,7 +9619,7 @@ enemyCode7d:
 	rrca
 	ld hl,@@table_79d9
 	rst_addAToHl
-	ld e,$8d
+	ld e,Enemy.xh			;$8d
 	ld a,(de)
 	add (hl)
 	ld (de),a
@@ -9636,8 +9646,8 @@ enemyCode7d:
 --
 	call getRandomNumber_noPreserveVars
 	and $50
-	add $5a
-	ld e,$86
+	add 90							;$5a
+	ld e,Enemy.counter1				;$86
 	ld (de),a
 @@toFunc7ad6:
 	jp _func_7ad6
@@ -9646,23 +9656,23 @@ enemyCode7d:
 	call _ecom_decCounter1
 	jr z,+
 	ld a,(hl)
-	cp $5a
+	cp 90							;$5a
 	jr nz,@@toFunc7ad6
 	ld b,PARTID_GOPONGA_PROJECTILE
 	call _ecom_spawnProjectile
 	jr @@toFunc7ad6
 +
-	ld l,$b0
+	ld l,Enemy.var30				;$b0
 	dec (hl)
 	ld a,(hl)
 	call enemySetAnimation
 
 _func_7a14:
 	ld h,d
-	ld l,$84
+	ld l,Enemy.state				;$84
 	ld (hl),$08
-	ld l,$a5
-	ld (hl),$0a
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),ENEMYCOLLISION_TWINROVA	;$0a
 	jr --
 
 _func_7a1f:
@@ -9674,106 +9684,106 @@ _func_7a1f:
 	sub b
 	ld (hl),a
 	call _func_7af2
-	ld e,$8b
+	ld e,Enemy.yh					;$8b
 	ld a,(de)
 	add (hl)
 	ld b,a
-	inc hl
-	ld e,$8d
+	inc hl							;
+	ld e,Enemy.xh					;$8d
 	ld a,(de)
 	add (hl)
 	ld c,a
 	pop hl
 	ld l,e
 	ld (hl),c
-	ld l,$8b
+	ld l,Enemy.yh					;$8b
 	ld (hl),b
 	pop bc
 
 _func_7a3d:
-	ld l,$96
-	ld a,$80
+	ld l,Enemy.relatedObj1			;$96
+	ld a,Enemy.start				;$80
 	ldi (hl),a
 	ld (hl),c
 	ret
 
 _func_7a44:
 	ld h,d
-	ld l,$aa
-	ld e,$82
+	ld l,Enemy.var2a				;$aa
+	ld e,Enemy.subid				;$82
 	ld a,(de)
 	dec a
 	jr z,_func_7a70
 	dec a
 	ret z
-	ld l,$a9
+	ld l,Enemy.health				;$a9
 	ld a,(hl)
 	or a
 	ret nz
-	ld a,$36
+	ld a,ObjectStruct.var36 		;$36
 	call objectGetRelatedObject1Var
 	dec (hl)
 	jr z,_func_7a63
-	ld l,$90
+	ld l,Enemy.speedY				;$90
 	ld a,(hl)
 	add $14
 	ld (hl),a
 	ret
 	
 _func_7a63:
-	ld l,$84
+	ld l,Enemy.state				;$84
 	ld (hl),$0b
-	ld l,$90
+	ld l,Enemy.speedY				;$90
 	ld (hl),$50
-	ld l,$a5
-	ld (hl),$4c
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),SE_ENEMYCOLLISION_4c	;$4c		;change this!!!
 	ret
 	
 _func_7a70:
-	ld l,$aa
+	ld l,Enemy.var2a				;$aa
 	ld a,(hl)
 	cp $a0
 	jr nz,+
-	ld l,$ba
-	ld (hl),$3c
+	ld l,Enemy.var3a				;$ba
+	ld (hl),60						;$3c
 +
-	ld l,$a9
+	ld l,Enemy.health				;$a9
 	ld (hl),$40
-	ld l,$b6
+	ld l,Enemy.var36				;$b6
 	ld a,(hl)
 	or a
 	ret nz
-	ld l,$aa
+	ld l,Enemy.var2a				;$aa
 	ld a,(hl)
-	cp $96
+	cp 150							;$96
 	ret nz
-	ld l,$b0
+	ld l,Enemy.var30				;$b0
 	ld a,(hl)
 	inc a
 	cp $03
 	ld (hl),a
 	jr nc,_func_7aa1
-	ld l,$86
-	ld (hl),$3c
-	ld l,$84
+	ld l,Enemy.counter1				;$86
+	ld (hl),60						;$3c
+	ld l,Enemy.state				;$84
 	ld (hl),$0d
 	call enemySetAnimation
 	jp objectSetVisible81
 	
 _func_7aa1:
 	ld (hl),$03
-	ld l,$84
+	ld l,Enemy.state				;$84
 	ld (hl),$0e
-	ld l,$86
-	ld (hl),$b4
-	ld l,$a4
-	ld (hl),$a9
+	ld l,Enemy.counter1				;$86
+	ld (hl),180						;$b4
+	ld l,Enemy.collisionType		;$a4
+	ld (hl),$80|$29					;$a9	;change this!!!
 	ld a,$03
 	jp enemySetAnimation
 	
 _func_7ab4:
 	ld h,d
-	ld l,$b7
+	ld l,Enemy.var37				;$b7
 	call _ecom_readPositionVars
 	sub c
 	add $04
@@ -9787,32 +9797,32 @@ _func_7ab4:
 
 _func_7ac8:
 	ld h,d
-	ld l,$ba
+	ld l,Enemy.var3a				;$ba
 	ld a,(hl)
 	or a
 	ret z
 	pop bc
 	dec (hl)
 	ret nz
-	ld l,$a4
+	ld l,Enemy.collisionType		;$a4
 	set 7,(hl)
 	ret
 
 _func_7ad6:
-	ld a,$0b
+	ld a,ObjectStruct.yh			;$0b
 	call objectGetRelatedObject1Var
 	ld b,(hl)
-	ld l,$8d
+	ld l,Enemy.xh					;$8d
 	ld c,(hl)
-	ld l,$a1
-	ld e,$82
+	ld l,Enemy.animParameter		;$a1
+	ld e,Enemy.subid				;$82
 	ld a,(de)
 	call _func_7af2
-	ld e,$8b
+	ld e,Enemy.yh					;$8b
 	ldi a,(hl)
 	add b
 	ld (de),a
-	ld e,$8d
+	ld e,Enemy.xh					;$8d
 	ld a,(hl)
 	add c
 	ld (de),a
@@ -9839,7 +9849,7 @@ _table_7afe:
 _func_7b1c:
 	call objectGetAngleTowardEnemyTarget ; $7b1c
 	ld b,a
-	ld e,$82
+	ld e,Enemy.subid				;$82
 	ld a,(de)
 	sub $03
 	swap a
@@ -9848,13 +9858,13 @@ _func_7b1c:
 	cp $f8
 	ret nc
 	ld h,d
-	ld l,$84
+	ld l,Enemy.state				;$84
 	inc (hl)
-	ld l,$a5
-	ld (hl),$62
-	ld l,$86
-	ld (hl),$78
-	ld l,$b0
+	ld l,Enemy.enemyCollisionMode	;$a5
+	ld (hl),SE_ENEMYCOLLISION_62	;$62		change this!!!
+	ld l,Enemy.counter1				;$86
+	ld (hl),120						;$78
+	ld l,Enemy.var30				;$b0
 	inc (hl)
 	ld a,(hl)
 	call enemySetAnimation

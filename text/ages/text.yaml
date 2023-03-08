@@ -311,11 +311,13 @@ groups:
   - name: TX_0022
     index: 0x22
     text: |-
-      You got a
-      \col(1)Boomerang\col(0)!
-      Use it to stop
-      enemies in their
-      tracks!
+      \pos(2)It's the \col(1)Magical
+      Boomerang\col(0)!
+      Press \col(0x84)\item(0x00)\col(0)
+      while holding
+      the button to
+      control its
+      flight path!
 
   - name: TX_0023
     index: 0x23
@@ -593,8 +595,7 @@ groups:
   - name: TX_0043
     index: 0x43
     text: |-
-      You got the \col(1)Old
-      Mermaid Key\col(0)!
+      You got the \col(1)Witch's Key\col(0)!
 
   - name: TX_0044
     index: 0x44
@@ -922,7 +923,7 @@ groups:
       You got the
       \col(1)Cane of Somaria\col(0)!
       Use it to create
-      blocks.
+      special blocks.
 
   - name: TX_0074
     index: 0x74
@@ -1039,6 +1040,15 @@ groups:
       You got
       \col(1)Din's Gift\col(0)!
       You're sure she'll love this!  
+
+  - name: TX_0084
+    index: 0x84
+    text: |-
+      You got \col(1)Roc's
+      Cape\col(0)! Press and
+      hold the button
+      to do a double
+      jump!
 
 - group: 0x01
   data:
@@ -4154,9 +4164,9 @@ groups:
   - name: TX_0927
     index: 0x27
     text: |-
-      Boomerang
-      Always comes
-      back to you.
+      Magic Boomerang
+      A remote-control
+      weapon.
 
   - name: TX_0928
     index: 0x28
@@ -4444,8 +4454,8 @@ groups:
   - name: TX_0952
     index: 0x52
     text: |-
-      Old Mermaid Key
-      An ancient key.
+      Witch's Key
+      An house key.
 
   - name: TX_0953
     index: 0x53
@@ -4591,6 +4601,13 @@ groups:
       Rod of Seasons
       Best used from
       atop a stump.
+
+  - name: TX_096c
+    index: 0x6c
+    text: |-
+      Roc's Cape
+      A wind-riding
+      cape.      
 
 
 - group: 0x0a
@@ -9155,24 +9172,15 @@ groups:
       You are holding
       an instrument
       called the \col(2)Harp
-      of Ages\col(4). I do
-      not know you,
-      but it is not by
-      mere chance that
-      you now hold
-      that \col(2)harp\col(4).
-      You are a hero
+      of Ages\col(4). \Link,
+      you are a hero
       chosen by the
       currents
       of time.\stop
       Your arrival
       means I am not
-      in this age any
-      longer.\stop
-      I hid the \col(2)harp\col(4)
-      here, knowing
-      this could
-      happen.
+      home right now.\stop
+      Take the \col(2)harp\col(4).
       I entrust the
       \col(2)harp\col(4) to you!
       By playing
@@ -9183,7 +9191,7 @@ groups:
       time!\stop
       Let me teach
       you the \col(2)Tune
-      of Echoes\col(4)!
+      of Echoes\col(4) again!
 
   - name: TX_1d11
     index: 0x11
@@ -9199,21 +9207,10 @@ groups:
       Portal\col(4) to travel
       through time
       to another age.\stop
-      As you journey,
-      you may learn
-      more \col(2)tunes\col(4) that
-      will let you
-      travel through
-      time more freely
-      when you play
-      them.\stop
       Please, chosen
-      hero, protect
-      this land from
-      the clutches of
-      evil! I am
+      hero, find me! I am
       counting on you,
-      unknown hero.
+      \Link.
 
   - name: TX_1d12
     index: 0x12
@@ -17134,15 +17131,14 @@ groups:
   - name: TX_3303
     index: 0x03
     text: |-
-      The strange
-      beast was the
-      \col(3)Fairy Queen\col(0).
-      No matter how
-      nonsensical a
-      story sounds, it
-      may have some
-      truth hidden
-      deep inside.
+      A man walked through an ominous wood.
+      He first felt a chilly wind,
+      but the unease heated his skin like the sun.
+      He looked to the west, the north, then the south.
+      But in the east he saw a great beast approach.
+      The man fell to a flashing light and sprung up,
+      running away.
+      Never again did he travel those woods.
 
   - name: TX_3304
     index: 0x04

@@ -90,6 +90,7 @@ partAnimationTable:
 	.dw part58Animations
 	.dw part59Animations
 	.dw part5aAnimations
+	.dw part5bAnimations
 
 partOamDataTable: ; 0x5b71e
 	.dw part00OamDataPointers
@@ -183,6 +184,7 @@ partOamDataTable: ; 0x5b71e
 	.dw part58OamDataPointers
 	.dw part59OamDataPointers
 	.dw part5aOamDataPointers
+	.dw part5bOamDataPointers
 
 part00Animations:
 part05Animations:
@@ -398,6 +400,29 @@ part59Animations:
 	.dw partAnimation5bbf0
 part5aAnimations:
 	.dw partAnimation5b8c0
+part5bAnimations:
+	.dw partAnimationFacadeHole
+
+partAnimationFacadeHole:
+	.db $08 $00 $00
+	.db $08 $02 $00
+	.db $08 $04 $00
+	.db $5a $06 $01
+	.db $0a $04 $02
+	.db $0a $02 $00
+	.db $0a $00 $00
+	.db $7f $00 $ff
+
+	.db $08 $04 $00
+	.db $7f $04 $ff
+partAnimationFacadeHoleLoop:
+	.db $04 $00 $00
+	.db $04 $02 $00
+	.db $04 $04 $00
+	.db $04 $06 $00
+	.db $04 $08 $00
+	m_AnimationLoop partAnimationFacadeHoleLoop
+
 partAnimation5b8c0:
 	.db $7f $00 $00
 	m_AnimationLoop partAnimation5b8c0
@@ -1226,3 +1251,9 @@ part56OamDataPointers: ; 0x5bdf8
 
 part5aOamDataPointers: ; 0x5be00
 	.dw partOamData534a6
+
+part5bOamDataPointers:
+	.dw partOamData531de	;partOamData4f345
+	.dw partOamData531fc	;partOamData4f35e
+	.dw partOamData532ba	;partOamData4f3f9
+	.dw partOamData532f0	;partOamData4f41d

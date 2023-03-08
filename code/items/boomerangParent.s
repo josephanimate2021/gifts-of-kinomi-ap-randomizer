@@ -7,9 +7,9 @@ _parentItemCode_boomerang:
 
 	.dw @state0
 	.dw @state1
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	.dw @state2
-.endif
+;.endif
 
 @state0:
 .ifdef ROM_AGES
@@ -34,7 +34,7 @@ _parentItemCode_boomerang:
 	inc a
 +
 .else; ROM_AGES
-	ld a,$01
+	ld a,$02;$01
 .endif
 
 	ld e,Item.state
@@ -64,7 +64,7 @@ _parentItemCode_boomerang:
 	ld (hl),a
 	ret
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 
 @state2:
 	call _parentItemCheckButtonPressed
@@ -103,7 +103,7 @@ _parentItemCode_boomerang:
 	ld (de),a
 	; Fall through to @state1
 
-.endif ; ROM_SEASONS
+;.endif ; ROM_SEASONS
 
 
 @state1:

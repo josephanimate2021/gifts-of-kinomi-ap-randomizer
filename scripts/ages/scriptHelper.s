@@ -16,30 +16,42 @@ setTrigger2IfTriggers0And1Set:
 	ret
 
 ;;
+makeTorchesTemporarilyLightable:
+	ld c,a
+;;
 ; Creates a part object (PARTID_LIGHTABLE_TORCH) at each unlit torch, allowing them to be lit.
 makeTorchesLightable:
 	call getFreeInteractionSlot
 	ret nz
 
 	ld (hl),INTERACID_CREATE_OBJECT_AT_EACH_TILEINDEX
-	inc l
+	inc l		;subid
 	ld (hl),TILEINDEX_UNLIT_TORCH
 
 	ld l,Interaction.yh
 	ld (hl),PARTID_LIGHTABLE_TORCH
 	ld l,Interaction.xh
+	ld b,$10
+
 	ld (hl),$10
 	ret
 
 seasonsShrine_minibossDeath:
 	call getThisRoomFlags
 	set ROOMFLAG_BIT_80,(hl)
-	ld l,$4c
+	ld l,<ROOM_AGES_54c
 	set ROOMFLAG_BIT_80,(hl)
-	ld l,$2f
+	ld l,<ROOM_AGES_52f
 	set ROOMFLAG_BIT_80,(hl)
-	ld l,$13
+	ld l,<ROOM_AGES_513
 	set ROOMFLAG_BIT_80,(hl)
+	ret
+
+tokayTempleSetRoomflag40:
+	ld a,<ROOM_AGES_474
+	call getARoomFlags
+	or ROOMFLAG_40
+	ld (hl),a
 	ret
 
 createBridgeSpawner:
@@ -197,6 +209,39 @@ spiritsGraveScript_respawnPots:
 	.db $76 $77 $78 $5b
 	.db $00
 
+D8armosCheckIfWillMove:
+	ld a,(wLinkUsingItem1)
+	or a
+	jr nz,+
+	ld a,(wFrameCounter)
+	rrca
+	ret c
+
+	ld h,d
+	ld l,Interaction.direction
+	dec (hl)
+	ret nz
+
+	call getFreeEnemySlot
+	jr nz,+
+	ld (hl),ENEMYID_ARMOS
+	ld l,Enemy.yh
+;tile index to use
+	ld (hl),$26								;$27
+	ld l,Enemy.xh
+	ld (hl),TILEINDEX_STANDARD_FLOOR		;$a0
+; just a random variable to make the armos move...
+	ld a,$28								;$45
+	ld (wcca2),a
+	ld a,SND_SOLVEPUZZLE
+	call playSound
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_80,(hl)
++
+	ld e,Interaction.angle
+	ld a,$01
+	ld (de),a
+	ret
 ; ==============================================================================
 ; INTERACID_BIPIN
 ; ==============================================================================
@@ -2619,10 +2664,11 @@ tokayExplainingVinesScript:
 boredSoldierScript:
 	initcollisions
 @npcLoop:
+	setanimation $00
 	turntofacelink
 	checkabutton
 	disableinput	
-	jumpifroomflagset ROOMFLAG_ITEM, @alreadyTraded
+	jumpifroomflagset ROOMFLAG_40, @alreadyTraded
 
 	showtextlowindex <TX_0a00
 	wait 30
@@ -2662,6 +2708,7 @@ boredSoldierScript:
 	showtextlowindex <TX_0a04
 	wait 30
 	giveitem TREASURE_TRADEITEM, TRADEITEM_BROKEN_SWORD
+	orroomflag ROOMFLAG_40
 
 	checktext
 	showtextlowindex <TX_0a05
@@ -8561,13 +8608,15 @@ slateSlot_placeSlate:
 	ld c,l
 	ld e,Interaction.subid
 	ld a,(de)
+	and $03
 	ld b,a
 	ld a,TILEINDEX_FILLED_SLATE_1
 	add b
 	call setTile
 
 	; Mark room flag
-	call getThisRoomFlags
+;	call getThisRoomFlags
+	ld hl,wNumPlacedSlates
 	ld e,Interaction.subid
 	ld a,(de)
 	ld bc,bitTable
@@ -8598,10 +8647,15 @@ slateSlot_placeSlate:
 	jp setTile
 
 @torchPositions:
-	.db $86 $88 ; 0 == [subid]
-	.db $4b $6b ; 1
-	.db $26 $28 ; 2
-	.db $43 $63 ; 3
+	.db $86 $88 ; Up,	0 == [subid]
+	.db $4b $6b ; Left,	1
+	.db $26 $28 ; Down,	2
+	.db $43 $63 ; Right,3
+
+	.db $11 $13 ; 4
+	.db $71 $91 ; 5
+	.db $9b $9d ; 6
+	.db $1d $3d ; 7
 
 
 ; ==============================================================================

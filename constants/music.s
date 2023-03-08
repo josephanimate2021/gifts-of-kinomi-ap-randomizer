@@ -32,7 +32,8 @@
 	;MUS_HORON_VILLAGE         db ; $0a
 	MUS_KAKARIKO_VILLAGE      db ; $0a
 	MUS_LYNNA_VILLAGE         db ; $0b
-	MUS_ZORA_VILLAGE          db ; $0c
+	;MUS_ZORA_VILLAGE         db ; $0c
+	MUS_FOREST_OF_MYSTERY		db ; $0c
 .else
 	MUS_HORON_VILLAGE         db ; $0a
 	MUS_HIDE_AND_SEEK         db ; $0b

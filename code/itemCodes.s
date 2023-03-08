@@ -1898,7 +1898,7 @@ _bombUpdateThrowingVerticallyAndCheckDelete:
 
 .ifdef ROM_AGES
 	; Check if room $0050 (Present overworld, bomb upgrade screen)
-	ld bc,$0050
+	ld bc,ROOM_AGES_111		;$0050
 .else
 	ld bc,$04ef
 .endif
@@ -2222,7 +2222,7 @@ itemCode06:
 	call _itemLoadAttributesAndGraphics
 .ifdef ROM_AGES
 	ld a,UNCMP_GFXH_18
-.else
+.else ;ROM_SEASONS
 	ld e,Item.subid
 	ld a,(de)
 	add $18
@@ -2231,13 +2231,13 @@ itemCode06:
 
 	call itemIncState
 
-.ifdef ROM_AGES
-	ld l,Item.speed
-	ld (hl),SPEED_1a0
-
-	ld l,Item.counter1
-	ld (hl),$28
-.else
+;.ifdef ROM_AGES
+;	ld l,Item.speed
+;	ld (hl),SPEED_1a0
+;
+;	ld l,Item.counter1
+;	ld (hl),$28
+;.else
 	ld bc,(SPEED_1a0<<8|$28)
 	ld l,Item.subid
 	bit 0,(hl)
@@ -2245,7 +2245,7 @@ itemCode06:
 
 	; level-2
 	ld l,Item.collisionType
-	ld (hl),$96
+	ld (hl),$80|ITEMCOLLISION_L1_BOOMERANG		;ITEMCOLLISION_SE_16	
 	ld l,Item.oamFlagsBackup
 	ld a,$0c
 	ldi (hl),a
@@ -2256,7 +2256,7 @@ itemCode06:
 	ld (hl),b
 	ld l,Item.counter1
 	ld (hl),c
-.endif
+;.endif
 
 	ld c,-1
 	ld a,RANG_RING_L1
