@@ -515,7 +515,7 @@ treasureObjectData2b:
 	.db $02 $01 $17 $3a
 
 treasureObjectData2a:
-	.db $3a $04 $16 $3b
+	.db $1a $04 $16 $3b
 	.db $30 $04 $16 $3b
 	.db $02 $04 $16 $3b
 

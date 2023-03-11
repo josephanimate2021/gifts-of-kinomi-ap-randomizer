@@ -5223,7 +5223,7 @@ group4Map26ObjectData:
 	obj_Interaction $12 $01 $28 $78
 	obj_Interaction $1e $05 $05 $00
 	obj_Pointer group4Map26EnemyObjectData
-	obj_Interaction $22 $00 $48 $78
+	obj_Interaction $22 $00 $58 $78
 	obj_End
 
 group2Map50ObjectData:
