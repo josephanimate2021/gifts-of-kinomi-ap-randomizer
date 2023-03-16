@@ -113,7 +113,7 @@ group0WarpDestTable:
 	m_WarpDest $26 $18 $0 $1
 	m_WarpDest $27 $27 $0 $1
 	m_WarpDest $54 $51 $0 $1
-	m_WarpDest $74 $62 $0 $1
+	m_WarpDest $55 $24 $0 $1
 	m_WarpDest $54 $11 $0 $1
 	m_WarpDest $74 $62 $0 $1
 	m_WarpDest $45 $18 $0 $1
@@ -135,11 +135,11 @@ group0WarpDestTable:
 	m_WarpDest $30 $47 $0 $1
 	m_WarpDest $29 $52 $0 $1
 	m_WarpDest $12 $37 $0 $1
-	m_WarpDest $00 $00 $0 $1
+	m_WarpDest $74 $25 $0 $1
 	m_WarpDest $46 $67 $0 $1
 	m_WarpDest $70 $46 $0 $1
 	m_WarpDest $40 $56 $0 $1
-	m_WarpDest $00 $00 $0 $3
+	m_WarpDest $74 $13 $0 $1
 	m_WarpDest $3a $68 $0 $1
 	m_WarpDest $60 $47 $0 $4
 	m_WarpDest $63 $57 $0 $1
@@ -150,6 +150,7 @@ group0WarpDestTable:
 	m_WarpDest $73 $32 $0 $1
 	m_WarpDest $33 $14 $0 $1
 	m_WarpDest $20 $61 $0 $1
+	m_WarpDest $00 $00 $0 $1
 
 group1WarpDestTable:
 	m_WarpDest $48 $21 $0 $1
@@ -370,7 +371,7 @@ group3WarpDestTable:
 	m_WarpDest $e7 $ff $9 $3
 	m_WarpDest $e8 $ff $9 $3
 	m_WarpDest $e9 $18 $0 $1
-	m_WarpDest $38 $ff $0 $1
+	m_WarpDest $1b $57 $0 $1
 	m_WarpDest $9e $ff $0 $3
 	m_WarpDest $ec $f6 $9 $3
 	m_WarpDest $ed $ff $9 $3
@@ -402,7 +403,7 @@ group3WarpDestTable:
 	m_WarpDest $78 $14 $0 $1
 	m_WarpDest $18 $17 $0 $1
 	m_WarpDest $1a $61 $0 $1
-	m_WarpDest $18 $ff $0 $3
+	m_WarpDest $1b $23 $0 $1
 	m_WarpDest $38 $ff $0 $3
 	m_WarpDest $69 $18 $0 $4
 	m_WarpDest $69 $48 $9 $1
@@ -546,7 +547,7 @@ group5WarpDestTable:
 	m_WarpDest $cf $fc $0 $3
 	m_WarpDest $09 $8b $0 $1
 	m_WarpDest $b5 $2b $0 $4
-	m_WarpDest $fc $84 $9 $3
+	m_WarpDest $08 $8b $0 $1
 	m_WarpDest $fe $8b $0 $1
 	m_WarpDest $d2 $53 $0 $4
 	m_WarpDest $69 $68 $0 $4
@@ -570,7 +571,7 @@ group5WarpDestTable:
 	m_WarpDest $cc $f2 $9 $3
 	m_WarpDest $fc $2b $0 $1
 	m_WarpDest $cc $1c $0 $1
-	m_WarpDest $00 $8b $0 $1
+	m_WarpDest $08 $8b $0 $1
 	m_WarpDest $cd $f3 $9 $3
 	m_WarpDest $cd $f8 $9 $3
 	m_WarpDest $0a $8b $9 $3
@@ -598,7 +599,7 @@ group5WarpDestTable:
 	m_WarpDest $e8 $49 $0 $4
 	m_WarpDest $e9 $f3 $9 $3
 	m_WarpDest $ea $77 $0 $4
-	m_WarpDest $09 $8b $0 $1
+	m_WarpDest $08 $00 $0 $1
 	m_WarpDest $fc $f2 $0 $3
 	m_WarpDest $eb $ff $9 $3
 	m_WarpDest $eb $57 $0 $4
@@ -830,7 +831,6 @@ group0WarpSources: ; $135ae
 	m_PointerWarp  $40 $ff group0RoomffWarpSources
 	m_StandardWarp $00 $15 $7b $5 $4
 	m_StandardWarp $00 $54 $7c $5 $4
-	m_StandardWarp $00 $74 $7e $5 $4
 	m_PointerWarp  $40 $13 group0Room13WarpSources
 	m_PointerWarp  $40 $78 group0Room78WarpSources
 	m_PointerWarp  $40 $08 group0Room08WarpSources
@@ -864,7 +864,11 @@ group0WarpSources: ; $135ae
 	m_StandardWarp $00 $27 $35 $5 $4
 	m_StandardWarp $00 $07 $05 $5 $4
 	m_StandardWarp $00 $16 $1d $5 $4
+	m_PointerWarp  $40 $74 group0Room74WarpSources
 	m_WarpSourcesEnd
+group0Room74WarpSources:
+	m_PointedWarp $00 $25 $34 $3 $4
+	m_PointedWarp $80 $13 $54 $3 $4
 group0Room06WarpSources:
 	m_PointedWarp $00 $38 $3c $3 $4
 group0Room46WarpSources:
@@ -1256,7 +1260,11 @@ group3WarpSources: ; $139b2
 	m_PointerWarp  $40 $69 group3Room69WarpSources
 	m_StandardWarp $08 $79 $67 $0 $3
 	m_PointerWarp  $40 $79 group3Room79WarpSources
+	m_PointerWarp  $40 $1b group3Room1bWarpSources
 	m_WarpSourcesEnd
+group3Room1bWarpSources:
+	m_PointedWarp $00 $57 $75 $0 $2
+	m_PointedWarp $80 $23 $79 $0 $2
 group3RoomedWarpSources:
 	m_PointedWarp $80 $68 $5f $4 $2
 group3Room79WarpSources:

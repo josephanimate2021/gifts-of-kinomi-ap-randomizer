@@ -232,6 +232,11 @@ interactionAnimationTable:
 	.dw interactione6Animations
 	.dw interactione7Animations
 	.dw interactione8Animations
+; $e9 - $ea
+.rept 2
+	.db $00 $00 
+.endr
+	.dw interactionebAnimations
 
 interactionOamDataTable: ; 0x59a23
 	.dw interaction00OamDataPointers
@@ -467,6 +472,11 @@ interactionOamDataTable: ; 0x59a23
 	.dw interactione6OamDataPointers
 	.dw interactione7OamDataPointers
 	.dw interactione8OamDataPointers
+; $e9 - $ea
+.rept 2
+	.db $00 $00 
+.endr
+	.dw interactionebOamDataPointers
 
 interaction27Animations:
 	.dw interactionAnimation5a3af ; interactionAnimation51cda
@@ -1240,6 +1250,7 @@ interactionb7Animations:
 	.dw interactionAnimation5ac94
 	.dw interactionAnimation5aca5
 interactionb9Animations:
+/*
 	.dw interactionAnimation5a73b
 	.dw interactionAnimation5a73b
 	.dw interactionAnimation5a468
@@ -1256,6 +1267,7 @@ interactionb9Animations:
 	.dw interactionAnimation5a80b
 	.dw interactionAnimation5a78b
 	.dw interactionAnimation5a78b
+*/
 interactionbcAnimations:
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6
@@ -1312,6 +1324,44 @@ interactionddAnimations:
 	.dw interactionAnimation5adb2
 	.dw interactionAnimation5adcc
 	.dw interactionAnimation5adf0
+
+interactionebAnimations:
+	.dw interactionAnimation5a793
+	.dw interactionAnimationFlowerBloom_2
+	.dw interactionAnimationFlowerBloom_3
+
+	;.dw interactionAnimation52665
+	;.dw interactionAnimation52668
+	;.dw interactionAnimation5267d
+
+interactionAnimationFlowerBloom_2:
+	.db $08 $00 $00
+	.db $08 $02 $00
+	.db $08 $04 $00
+	.db $08 $00 $00
+	.db $08 $02 $00
+	.db $07 $04 $00
+	.db $01 $04 $ff
+
+interactionAnimationFlowerBloom_3:
+	.db $0e $06 $01
+	.db $0e $08 $02
+	.db $0e $0a $03
+	.db $0e $0c $04
+	.db $0e $0e $ff
+	.db $0e $10 $00
+	.db $0e $12 $00
+	.db $08 $14 $00
+	.db $08 $16 $00
+	.db $08 $18 $00
+	.db $7f $14 $ff
+	.db $08 $06 $00
+	.db $14 $10 $00
+	.db $08 $12 $01
+interactionAnimationFlowerBloom_3Loop:
+	.db $7f $14 $00
+	m_AnimationLoop interactionAnimationFlowerBloom_3Loop
+
 interactionAnimation5a083:
 	.db $04 $00 $00
 	.db $04 $02 $00
@@ -2960,19 +3010,23 @@ interactionAnimation5acbc:
 	.db $08 $00 $00
 	m_AnimationLoop interactionAnimation5acbc
 
+/*
 interactionAnimation5acca:
 	.db $20 $0a $00
 	.db $08 $0c $00
 	.db $08 $10 $00
 	.db $08 $12 $00
 	m_AnimationLoop interactionAnimation5acca
+	*/
 
 interactionAnimation5acd8:
+/*  ; commented out to make room for flower bloom
 	.db $7f $02 $00
 	.db $06 $02 $00
 	.db $06 $04 $00
 	.db $05 $06 $00
 	.db $01 $06 $ff
+*/
 interactionAnimation5ace7:
 	.db $28 $02 $01
 interactionAnimation5acea:
@@ -3109,6 +3163,8 @@ interactionAnimation5adf0:
 	.db $02 $02 $00
 	.db $7f $22 $ff
 
+
+
 interaction27OamDataPointers: ; 0x5adfc
 	.dw interactionOamData50220 ; interactionOamData4c1ff
 	.dw interactionOamData530a7 ; interactionOamData4f149
@@ -3120,8 +3176,6 @@ interaction27OamDataPointers: ; 0x5adfc
 	.dw interactionOamData53125 ; interactionOamData4f1c7
 	.dw interactionOamData53146 ; interactionOamData4f1e8
 	.dw interactionOamData53167 ; interactionOamData4f209
-
-
 
 interaction00OamDataPointers: ; 0x5adfc
 interaction0dOamDataPointers: ; 0x5adfc
@@ -4457,8 +4511,10 @@ interactionc2OamDataPointers: ; 0x5b5aa
 	.dw interactionOamData520bb
 
 interactionc3OamDataPointers: ; 0x5b5ba
+/*
 	.dw interactionOamData51d83
 	.dw interactionOamData51d98
+	*/
 
 interactionc4OamDataPointers: ; 0x5b5be
 	.dw interactionOamData50fa7
@@ -4487,9 +4543,10 @@ interactionc9OamDataPointers: ; 0x5b5d8
 	.dw interactionOamData50325
 
 interactioncbOamDataPointers: ; 0x5b5e0
+/*
 	.dw interactionOamData5020e
 	.dw interactionOamData502f8
-
+*/
 interactioncdOamDataPointers: ; 0x5b5e4
 	.dw interactionOamData50f73
 	.dw interactionOamData50f80
@@ -4577,3 +4634,18 @@ interactione6OamDataPointers: ; 0x5b660
 	.dw interactionOamData502b9
 	.dw interactionOamData502e6
 	.dw interactionOamData505bf
+	
+interactionebOamDataPointers:
+	.dw interactionOamDataFlowerBloom_00
+	.dw interactionOamDataFlowerBloom_01
+	.dw interactionOamDataFlowerBloom_02
+	.dw interactionOamDataFlowerBloom_03
+	.dw interactionOamDataFlowerBloom_04
+	.dw interactionOamDataFlowerBloom_05
+	.dw interactionOamDataFlowerBloom_06
+	.dw interactionOamDataFlowerBloom_07
+	.dw interactionOamDataFlowerBloom_08
+	.dw interactionOamDataFlowerBloom_09
+	.dw interactionOamDataFlowerBloom_00
+	.dw interactionOamDataFlowerBloom_01
+	.dw interactionOamDataFlowerBloom_0a

@@ -1997,5 +1997,187 @@ interactionCodeea:
 
 
 
+; ==============================================================================
+; INTERACID_SPRINGBLOOM_FLOWER
+; ==============================================================================
+interactionCodeeb:
+	ld e,Interaction.state
+	ld a,(de)
+	;ld b,b
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+	.dw @state2
+	.dw @state3
+	.dw @state4
+	.dw @state5
+	.dw @state6
+	.dw @state7
+@state0:
+	ld a,$01
+	ld (de),a
+	ld a,(wCurrentSeason) ; wRoomStateModifier
+	cp SEASON_SPRING ; or a
+	jp nz,interactionDelete
+	ld a,$06
+	call objectSetCollideRadius
+	call interactionInitGraphics
+	call objectSetVisible83
+@state1:
+	ld a,(wcca7) ; wUnknown
+	or a
+	jr z,+
+	ld a,$05
+	jr ++
++
+	ld a,(wWarpsDisabled)
+	or a
+	ret nz
+	ld a,(wLinkObjectIndex)
+	rrca ; nonzero if riding an animal, minecart
+	ret c
+	call objectCheckCollidedWithLink
+	ret nc
+	ld a,$02
+	ld (wcca7),a ; wUnknown
+++
+	ld e,Interaction.state
+	ld (de),a
+	ld a,$01
+	jp interactionSetAnimation
+@state2:
+	call interactionAnimate
+	ld e,Interaction.animParameter ; $61
+	ld a,(de)
+	or a
+	ret z
+	ld a,(wLinkObjectIndex)
+	cp $d0 ; nonzero if riding an animal, minecart
+	jp nz,seasonsFunc_0a_5d18
+	call checkLinkID0AndControlNormal
+	jp nc,seasonsFunc_0a_5d18
+	call objectCheckCollidedWithLink
+	jp nc,seasonsFunc_0a_5d18
+	ld e,Interaction.state ; $44
+	ld a,$03
+	ld (de),a
+	call clearAllParentItems
+	call dropLinkHeldItem
+	call resetLinkInvincibility
+	ld a,$83
+	ld (wDisabledObjects),a
+	ld (wWarpsDisabled),a
+	call setLinkForceStateToState08
+	call interactionSetAlwaysUpdateBit
+	xor a
+	ld e,Interaction.animParameter ; $61
+	call _func_5cf2
+	ld e,Interaction.xh ; $4d
+	ld a,(de)
+	ld (w1Link.xh),a ; $d00d
+	xor a
+	ld (w1Link.zh),a ; $d00f
+	ld a,SND_BOMB_LAND ; $52
+	call playSound
+	ld a,$02
+	jp interactionSetAnimation
+@state3:
+	ld a,$10
+	ld (wcc50),a
+	call interactionAnimate
+	ld e,Interaction.animParameter ; $61
+	ld a,(de)
+	inc a
+	jr z,@func_5ca0
+	cp $02
+	call nc,_func_5cf2
+	ret
+@func_5ca0:
+	ld a,$06
+	call _func_5cf2
+	xor a
+	ld (wDisabledObjects),a
+	ld e,Interaction.state
+	ld a,$04
+	ld (de),a
+	ld a,LINK_STATE_06
+	ld (wLinkForceState),a
+	jp objectSetVisible83
+@state4:
+@state7:
+	call interactionAnimate
+	ld e,Interaction.animParameter ; $61
+	ld a,(de)
+	inc a
+	ret nz
+	jr seasonsFunc_0a_5d18
+@state5:
+	call interactionAnimate
+	ld e,Interaction.animParameter ; $61
+	ld a,(de)
+	or a
+	ret z
+	ld a,SND_BOMB_LAND
+	call playSound
+	call interactionIncState
+	ld a,$02
+	jp interactionSetAnimation
+@state6:
+	call interactionAnimate
+	ld e,Interaction.animParameter ; $61
+	ld a,(de)
+	inc a
+	jr nz,@func_5ce8
+	ld (de),a
+	ld (wcca7),a
+	call objectSetVisible83
+	jp interactionIncState
+@func_5ce8:
+	dec a
+	ld (wcca7),a
+	cp $02
+	ret c
+	jp objectSetVisible82
+_func_5cf2:
+	ld hl,_table_5d08
+	rst_addDoubleIndex
+	xor a
+	ld (de),a
+	ld e,Interaction.yh ; $4b
+	ld a,(de)
+	add (hl)
+	ld (w1Link.yh),a ; $d00b
+	inc hl
+	ld e,Interaction.visible ; $5a
+	ld a,(de)
+	and $f0
+	or (hl)
+	ld (de),a
+	ret
+_table_5d08:
+	; yh - xh
+	.db $f9 $03
+	.db $f9 $03
+	.db $f8 $03
+	.db $f9 $01
+	.db $fa $01
+	.db $ff $01
+	.db $f0 $01
+	.db $00 $01
+
+seasonsFunc_0a_5d18:
+	ld e,Interaction.state ; $44
+	ld a,$01
+	ld (de),a
+	dec a
+	ld (wcca7),a ; WUnknown
+	call interactionSetAlwaysUpdateBit
+	res 7,(hl)
+	call objectSetVisible83
+	ld a,$00
+	jp interactionSetAnimation
+
+
+
 
 .ends

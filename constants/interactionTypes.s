@@ -2008,6 +2008,9 @@
 
 .define INTERACID_SOMARIA_BLOCK $ea
 
+;;
+.define INTERACID_SPRINGBLOOM_FLOWER	$eb
+
 
 
 

@@ -14069,16 +14069,19 @@ groups:
   - name: TX_2e09
     index: 0x09
     text: |-
-      \up Rolling Ridge
-         Base
-      \left Lynna Village
+      \right Lost Woods
+      Six spirits guard this wood.
+
+      Watch your back.
 
   - name: TX_2e0a
     index: 0x0a
     text: |-
-      \up Dance Hall
-      \right Rolling Ridge
-         Summit
+      \up Tepid Forest
+
+      \left To Hedge
+        Maze
+      Warning! Peril!
 
   - name: TX_2e0b
     index: 0x0b

@@ -320,6 +320,10 @@ _screenTransitionState2:
 	jr z,@doneBoundaryChecks
 	cp <ROOM_AGES_088
 	jr z,@doneBoundaryChecks
+	cp <ROOM_AGES_074
+	jr z,@doneBoundaryChecks
+	cp <ROOM_AGES_075
+	jr z,@doneBoundaryChecks
 	ld e,a
 	and $0f
 	cp OVERWORLD_WIDTH-1
@@ -4538,13 +4542,14 @@ getNextActiveRoom:
 	rst_jumpTable
 
 .ifdef ROM_AGES
-	.dw screenTransitionLostWoods
+	.dw screenTransitionLostWoods ; to get to book house
 	;.dw screenTransitionForestScrambler
-	.dw screenTransitionSwordUpgrade	
+	.dw screenTransitionSwordUpgrade	; to get to salesman
 	;.dw clearEyePuzzleVars
 	.dw clearEyePuzzleVars
 	.dw screenTransitionEyePuzzle
-	.dw screenTransitionSeasonsShrine
+	.dw screenTransitionSeasonsShrine ; to get to dungeon
+	.dw screenTransitionForestScrambler ; area before forest
 .else
 	.dw screenTransitionLostWoods
 	.dw screenTransitionSwordUpgrade
@@ -4584,6 +4589,13 @@ clearEyePuzzleVars:
 		.db <ROOM_AGES_067 $00 ; LostWoods
 		.db <ROOM_AGES_047 $01 ; SwordUpgrade
 		.db <ROOM_AGES_088 $04 ; Seasons Shrine
+		.db <ROOM_AGES_044 $05 ; Forest Scrambler
+		.db <ROOM_AGES_054 $05 ; Forest Scrambler
+		.db <ROOM_AGES_055 $05 ; Forest Scrambler
+		.db <ROOM_AGES_064 $05 ; Forest Scrambler
+		.db <ROOM_AGES_065 $05 ; Forest Scrambler
+		.db <ROOM_AGES_074 $05 ; Forest Scrambler
+		.db <ROOM_AGES_075 $05 ; Forest Scrambler
 		;.db $70 $00 ; ForestScrambler
 		;.db $71 $00 ; ForestScrambler
 		;.db $72 $00 ; ForestScrambler
@@ -4642,7 +4654,7 @@ clearEyePuzzleVars:
 
 
 
-.ifdef ROM_SEASONS
+;ifdef ROM_SEASONS
 
 ;;
 ; Forest scrambler code
@@ -4652,20 +4664,20 @@ screenTransitionForestScrambler:
 	jp nz,screenTransitionStandard
 
 	ld a,(wActiveRoom)
-	sub $70
-	ld b,a
-	and $f0
-	swap a
+	sub <ROOM_AGES_044 ;$70
+	ld b,a	;save net index
+	and $f0	;take column index
+	swap a	;$10 -> $01
+	;ld c,a	;save into c
+	add a	;double
+	;add c	;triple
 	ld c,a
-	add a
-	add c
-	ld c,a
-	ld a,b
-	and $0f
-	add c
-	add a
-	add a
-	ld b,a
+	ld a,b	;net index
+	and $0f	;take row index
+	add c	;add column index
+	add a	;double
+	add a	;quadruple (to have all 4 directions)
+	ld b,a	;save
 	ld a,(wScreenTransitionDirection)
 	and $03
 	add b
@@ -4679,19 +4691,39 @@ screenTransitionForestScrambler:
 	scf
 	ret
 
+; UP, RIGHT, DOWN, LEFT
 @forestScramblerTable:
-	.db $00 $71 $90 $00
-	.db $00 $82 $91 $80
-	.db $00 $00 $92 $82
-	.db $72 $82 $80 $00
-	.db $80 $82 $82 $71
-	.db $70 $71 $82 $71
-	.db $81 $92 $00 $00
-	.db $72 $91 $00 $92
-	.db $82 $00 $00 $92
+	.db $00			  $00			  <ROOM_AGES_075 $00
+	.db $00			  $00			  $00			 $00	
+	.db $00			   <ROOM_AGES_075  $00			 <ROOM_AGES_054 ; $54
+	.db <ROOM_AGES_074 <ROOM_AGES_055 <ROOM_AGES_064 <ROOM_AGES_074 ; $55
+	.db <ROOM_AGES_064 <ROOM_AGES_055 <ROOM_AGES_075 <ROOM_AGES_064 ; $64
+	.db <ROOM_AGES_054 <ROOM_AGES_065 <ROOM_AGES_055 <ROOM_AGES_054 ; $65
+	.db <ROOM_AGES_075 <ROOM_AGES_065 <ROOM_AGES_065 <ROOM_AGES_064 ; $74
+	.db $00			   $00			  <ROOM_AGES_054 $00			; $75
+/*
+	.db $00			  $00			  <ROOM_AGES_075 $00
+	.db $00			  $00			  $00			 $00	
+	.db <ROOM_AGES_064 <ROOM_AGES_075 <ROOM_AGES_065 <ROOM_AGES_054
+	.db <ROOM_AGES_074 <ROOM_AGES_055 <ROOM_AGES_075 <ROOM_AGES_064
+	.db <ROOM_AGES_055 <ROOM_AGES_075 <ROOM_AGES_054 <ROOM_AGES_064
+	.db <ROOM_AGES_044 <ROOM_AGES_065 <ROOM_AGES_055 <ROOM_AGES_054
+	.db <ROOM_AGES_075 <ROOM_AGES_055 <ROOM_AGES_064 <ROOM_AGES_074
+	.db <ROOM_AGES_054 $00			  <ROOM_AGES_064 $00
+*/
+/*
+	.db $00 $71 $90 $00	; $70
+	.db $00 $82 $91 $80 ; $71
+	.db $00 $00 $92 $82 ; $72
+	.db $72 $82 $80 $00 ; $80
+	.db $80 $82 $82 $71 ; $81
+	.db $70 $71 $82 $71 ; $82
+	.db $81 $92 $00 $00 ; $90
+	.db $72 $91 $00 $92 ; $91
+	.db $82 $00 $00 $92 ; $92
+*/
 
-
-.else; ROM_AGES
+;.else; ROM_AGES
 
 
 ;;
@@ -4718,7 +4750,7 @@ screenTransitionLostWoods:
 	dec a
 	cp (hl)
 	jr z,@loop
-	jr screenTransitionStandard
+	jp screenTransitionStandard
 @loop:
 	ld a,<ROOM_AGES_067		;$40
 	ld (wActiveRoom),a
@@ -4912,7 +4944,7 @@ screenTransitionOnoxDungeon:
 	scf
 	ret
 
-.endif ; ROM_SEASONS
+;.endif ; ROM_SEASONS
 
 
 ;;

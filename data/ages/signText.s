@@ -17,6 +17,8 @@ signTextGroup0Data:
 	.db $41 $22 $0d ; directions,to falls
 	.db $21 $01 $0e ; D1 entrance (present)
 	.db $46 $43 $0f ; to mountains (& $10 to desert)
+	.db $57 <ROOM_AGES_075 $09
+	.db $13 <ROOM_AGES_036 $0a
 	.db $00
 signTextGroup1Data:
 	.db $14 $10 $07	; Entrance1

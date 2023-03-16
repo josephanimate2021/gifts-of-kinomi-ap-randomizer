@@ -441,6 +441,8 @@ group0Map73EnemyObjectData:
 	obj_EndPointer
 
 group0Map74EnemyObjectData:
+	obj_SpecificEnemyA 0 $1d $81 $38 $18
+	obj_ItemDrop 0 $04 $62
 	obj_EndPointer
 
 group0Map84EnemyObjectData:
@@ -602,7 +604,7 @@ group0Map62EnemyObjectData:
 	obj_EndPointer
 
 group0Map64EnemyObjectData:
-	obj_RandomEnemy $20 $18 $00
+	obj_SpecificEnemyA 0 $1d $81 $58 $18
 	obj_EndPointer
 
 group1Map01EnemyObjectData:
@@ -2273,7 +2275,6 @@ group0Map05EnemyObjectData:
 	obj_EndPointer
 
 group0Map15EnemyObjectData:
-	obj_RandomEnemy $20 $08 $00
 	obj_EndPointer
 
 group0Map40EnemyObjectData:
@@ -2301,7 +2302,7 @@ group0Map44EnemyObjectData:
 	obj_EndPointer
 
 group0Map75EnemyObjectData:
-	obj_RandomEnemy $20 $08 $00
+	obj_SpecificEnemyA 0 $1d $81 $38 $28
 	obj_EndPointer
 
 group0Map35EnemyObjectData:
@@ -2527,6 +2528,7 @@ group0Map45EnemyObjectData:
 	obj_EndPointer
 
 group0Map55EnemyObjectData:
+	obj_SpecificEnemyA 0 $1d $81 $28 $48
 	obj_EndPointer
 
 group3Map19EnemyObjectData:
@@ -2539,7 +2541,7 @@ group0Map17EnemyObjectData:
 	obj_EndPointer
 
 group0Map65EnemyObjectData:
-	obj_RandomEnemy $20 $18 $00
+	obj_SpecificEnemyA 0 $1d $81 $48 $48
 	obj_EndPointer
 
 group5Map05EnemyObjectData:
@@ -2594,7 +2596,8 @@ group0Map38EnemyObjectData:
 	obj_EndPointer
 
 group0Map54EnemyObjectData:
-	obj_RandomEnemy $40 $09 $02
+	obj_SpecificEnemyA 0 $1d $81 $58 $18
+	obj_RandomEnemy $40 $09 $00
 	obj_EndPointer
 
 group3Map79EnemyObjectData:
@@ -2820,4 +2823,17 @@ group0Map76EnemyObjectData:
 group0Map26EnemyObjectData:
 	obj_RandomEnemy $40 $09 $00
 	obj_SpecificEnemyA 0 $45 $00 $38 $48
+	obj_EndPointer
+
+group3Map54EnemyObjectData:
+	obj_ItemDrop 0 $04 $31
+	obj_EndPointer
+
+group3Map74EnemyObjectData:
+	obj_EndPointer
+
+group3Map1bEnemyObjectData:
+	obj_ItemDrop 0 $04 $64
+	obj_ItemDrop     $04 $63
+	obj_RandomEnemy $20 $32 $00
 	obj_EndPointer

@@ -275,9 +275,9 @@ _markEnemyAsKilledInRoom:
 @foundRoom:
 	inc l
 	ld e,Enemy.enabled
-	ld a,(de)
-	and $70
-	swap a
+	ld a,(de) ; load enabled
+	and $70 ; %01110000 - only the index of enemy on the screen
+	swap a ; %00000111
 	ld bc,bitTable
 	add c
 	ld c,a

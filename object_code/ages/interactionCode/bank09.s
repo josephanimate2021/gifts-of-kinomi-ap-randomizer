@@ -9053,7 +9053,4 @@ goronDanceScriptTable:
 	.dw mainScripts.goronDanceScript_givePrize
 
 
-
-
-
 .ends

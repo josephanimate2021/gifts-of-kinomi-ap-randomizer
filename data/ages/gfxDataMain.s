@@ -516,3 +516,4 @@
 	m_GfxData unk_0e2a57 ; $0e2a57
 	m_GfxData unk_0e2aa2 ; $0e2aa2
 	m_GfxData unk_0e2ad7 ; $0e2ad7
+	m_GfxData spr_springflower_makuleaf_farorebook ; $0a8036

@@ -75,6 +75,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group4Map3b ; $43
   .dw tileReplacement_group0Map33 ; $44
   .dw tileReplacement_group0Map51 ; $45
+  .dw tileReplacement_group0HedgeMazeMap75 ; $46
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -117,6 +118,7 @@ roomTileChangerCodeGroup0Data:
   .db $98 $35
   .db $a5 $37
   ;.db $76 $36
+  .db <ROOM_AGES_075 $46
   .db $00
 roomTileChangerCodeGroup1Data:
   .db $30 $40
@@ -1676,3 +1678,64 @@ tileReplacement_group0Map33:
   ld hl,wRoomLayout + $14
   ld (hl),$64
   jr -
+
+
+tileReplacement_group0HedgeMazeMap75:
+  ldbc $01,$06
+  ld hl,wPresentRoomFlags+<ROOM_AGES_054
+-
+  ldi a,(hl) ;<ROOM_AGES_055
+  and ROOMFLAG_40
+  jr z,+
+  dec c ; decrease c if armos killed
+  ret z
++
+  dec b
+  jr z,-
+
+  ld b,$01
+  ld a,<ROOM_AGES_064-<ROOM_AGES_055-1
+  add l
+  ld l,a
+  cp <ROOM_AGES_074+$10
+  jr nz,-
+
+  ld a,c ; 6-number of armos killed
+  rra ; $02,$03 -> $01
+  ld d,a
+  jr nc,@evenNumberKilled
+  xor $03
+  ld hl,wRoomLayout+$46
+  rst_addAToHl
+  ld (hl),TILEINDEX_OUTDOORS_PUSHABLE_ARMOS
+
+  dec c
+  ret z
+  ld a,d
+@evenNumberKilled:
+  dec a
+  add a
+  add a
+  ld hl,@armos3And4Killed
+  rst_addAToHl
+  jp fillRectInRoomLayout
+
+
+; - Top-left position (YX)
+; - Height
+; - Width
+; - Tile value
+; c = $02 and $03
+@armos3And4Killed:
+  .db $39 $02 $01 TILEINDEX_OUTDOORS_PUSHABLE_ARMOS
+; c = $04 and $05
+@armos1And2Killed:
+  .db $38 $02 $02 TILEINDEX_OUTDOORS_PUSHABLE_ARMOS
+; c = $06
+@armos0Killed:
+  .db $37 $02 $03 TILEINDEX_OUTDOORS_PUSHABLE_ARMOS
+
+
+
+
+

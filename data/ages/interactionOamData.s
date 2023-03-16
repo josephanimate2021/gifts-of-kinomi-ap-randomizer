@@ -5202,3 +5202,65 @@ interactionOamDataStaticObjects6:
 	.db $10 $00 $04 $60
 	.db $10 $08 $02 $60
 	.db $10 $10 $00 $60
+
+interactionOamDataFlowerBloom_00:
+	.db $04
+	.db $01 $05 $14 $05
+	.db $08 $fd $00 $03
+	.db $08 $05 $02 $03
+	.db $08 $0c $00 $23
+
+interactionOamDataFlowerBloom_01:
+	.db $04
+	.db $02 $05 $14 $05
+	.db $08 $fd $04 $03
+	.db $08 $05 $06 $03
+	.db $08 $0c $04 $23
+
+interactionOamDataFlowerBloom_02:
+	.db $04
+	.db $02 $05 $14 $05
+	.db $0a $fd $00 $03
+	.db $0a $05 $02 $03
+	.db $0a $0c $00 $23
+
+interactionOamDataFlowerBloom_03:
+	.db $04
+	.db $02 $05 $14 $05
+	.db $08 $fd $08 $03
+	.db $08 $05 $0a $03
+	.db $08 $0c $08 $23
+interactionOamDataFlowerBloom_04:
+	.db $02
+	.db $05 $00 $0c $03
+	.db $05 $08 $0c $23
+interactionOamDataFlowerBloom_05:
+	.db $02
+	.db $06 $00 $0c $03
+	.db $06 $08 $0c $23
+interactionOamDataFlowerBloom_06:
+	.db $04
+	.db $07 $fb $0e $03
+	.db $07 $03 $10 $03
+	.db $07 $0d $0e $23
+	.db $07 $05 $10 $23
+interactionOamDataFlowerBloom_07:
+	.db $02
+	.db $03 $01 $12 $03
+	.db $03 $07 $12 $23
+interactionOamDataFlowerBloom_08:
+	.db $02
+	.db $04 $00 $12 $03
+	.db $04 $08 $12 $23
+interactionOamDataFlowerBloom_09:
+	.db $04
+	.db $02 $05 $14 $05
+	.db $07 $fd $08 $03
+	.db $07 $05 $0a $03
+	.db $07 $0c $08 $23
+interactionOamDataFlowerBloom_0a:
+	.db $04
+	.db $03 $05 $14 $05
+	.db $0a $fd $00 $03
+	.db $0a $05 $02 $03
+	.db $0a $0c $00 $23

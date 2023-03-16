@@ -235,6 +235,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank10.interactionCodee8 ; 0xe8
 	.dw agesInteractionsBank10.interactionCodee9 ; 0xe9	
 	.dw agesInteractionsBank10.interactionCodeea ; 0xea
+	.dw agesInteractionsBank10.interactionCodeeb ; 0xeb ; Springbloom flower
 .else; ROM_SEASONS
 
 	.dw       commonInteractions1.interactionCode00 ; 0x00

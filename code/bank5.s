@@ -4436,9 +4436,13 @@ _linkState06:
 	call objectUpdateSpeedZ_paramC
 	ret nz
 
+	ld a,SND_LAND
+	call playSound
+
 	xor a
 	ld (wLinkInAir),a
 	ld (wWarpsDisabled),a
+
 	jp _initLinkStateAndAnimateStanding
 
 .ifdef ROM_AGES
