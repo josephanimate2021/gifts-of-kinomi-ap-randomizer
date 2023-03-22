@@ -3869,6 +3869,38 @@ _showItemText2:
 	ld (hl),a
 	ld c,a
 	ld b,>TX_0900
+	cp <TX_096d
+	jr nz,@skipStoneCheck
+
+	push af
+	push hl
+	ld hl,wTextSubstitutions+3
+	ld a,<TX_096e
+.rept 3
+	ldd (hl),a
+.endr
+	ld (hl),a
+	inc a
+	ld d,a
+	ld e,TREASURE_WINTER_STONE
+-
+	ld a,e
+	cp <TX_0972+1
+	jr z,@endStoneCheck
+	call checkTreasureObtained
+	jr nc,+
+	ld (hl),d
++
+	inc l
+	inc d
+	inc e
+	jr -
+
+@endStoneCheck:
+	pop hl
+	pop af
+
+@skipStoneCheck:
 	bit 7,c
 	jr z,+
 
@@ -3886,6 +3918,7 @@ _showItemText2:
 	add <TX_3080
 	ld (wTextSubstitutions+3),a
 	ld c,<TX_30c1
+
 +
 	jp showTextOnInventoryMenu
 
@@ -5885,26 +5918,33 @@ _subscreen1TreasureData:
 		.db TREASURE_GASHA_SEED			$0d $04
 
 		; Row 2
-		.db TREASURE_GRAVEYARD_KEY		$31 $05
-		.db TREASURE_LIBRARY_KEY		$34 $06
-		.db TREASURE_MERMAID_KEY		$37 $07
-		.db TREASURE_OLD_MERMAID_KEY	$3a $08
+		.db TREASURE_SPRING_STONE		$31 $05
+		.db TREASURE_WINTER_STONE		$32 $05
+		.db TREASURE_SUMMER_STONE		$21 $05
+		.db TREASURE_AUTUMN_STONE		$22 $05
+
+		.db TREASURE_FLIPPERS			$34 $06
 
 		.db TREASURE_CROWN_KEY			$3d $09
-
 		.db TREASURE_CHEVAL_ROPE		$34 $06
 		.db TREASURE_RICKY_GLOVES		$34 $06
 		.db TREASURE_ISLAND_CHART		$34 $06
 		.db TREASURE_MEMBERS_CARD		$34 $06
-		.db TREASURE_SCENT_SEEDLING		$37 $07
-		.db TREASURE_TUNI_NUT			$37 $07
-		.db TREASURE_BOMB_FLOWER		$27 $07
-		.db TREASURE_BOMB_FLOWER_LOWER_HALF	$47 $07
+;		.db TREASURE_SCENT_SEEDLING		$37 $07
+;		.db TREASURE_TUNI_NUT			$37 $07
+;		.db TREASURE_BOMB_FLOWER		$27 $07
+;		.db TREASURE_BOMB_FLOWER_LOWER_HALF	$47 $07
 ;		.db TREASURE_CROWN_KEY			$37 $07
-		.db TREASURE_BROTHER_EMBLEM		$3a $08
+
 ;		.db TREASURE_SLATE				$3d $09
 
+
 		; Row 3
+		.db TREASURE_GRAVEYARD_KEY		$61 $0a
+		.db TREASURE_LIBRARY_KEY		$64 $0b
+		.db TREASURE_MERMAID_KEY		$67 $0c
+		.db TREASURE_OLD_MERMAID_KEY	$6a $0d
+
 		.db TREASURE_LAVA_JUICE			$61 $0a
 		.db TREASURE_GORON_LETTER		$61 $0a
 ;		.db TREASURE_OLD_MERMAID_KEY	$61 $0a

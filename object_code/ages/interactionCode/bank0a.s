@@ -308,6 +308,8 @@ interactionCode6b:
 	.dw _interaction6b_subid16
 	.dw _interaction6b_subid17
 	.dw _interaction6b_subid18
+	.dw _interaction6b_subid19
+	.dw _interaction6b_subid1a
 
 
 ; Handles showing Impa's "Help" text when Link's about to screen transition
@@ -1073,6 +1075,7 @@ _interaction6b_initGraphicsAndLoadScript:
 _interaction6b_loadScript:
 	ld e,Interaction.subid
 	ld a,(de)
+_interaction6b_loadScript_useA:
 	ld hl,_interaction6b_scriptTable
 	rst_addDoubleIndex
 	ldi a,(hl)
@@ -1112,6 +1115,29 @@ _interaction6b_checkLinkPressedUpAtScreenEdge:
 	ld a,(wKeysPressed)
 	and BTN_UP
 	ret
+
+_interaction6b_subid19:
+	ldbc INTERACID_TREASURE,TREASURE_AUTUMN_STONE
+@merge:
+	call checkInteractionState
+	ret nz
+
+@state0:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,a
+	jp nz,interactionDelete
+
+	call objectCreateInteraction
+	jp interactionIncState
+
+
+_interaction6b_subid1a:
+	ld a,(wNumEnemies)
+	or a
+	ret nz
+
+	ldbc INTERACID_TREASURE,TREASURE_SPRING_STONE
+	jr _interaction6b_subid19@merge
 
 _interaction6b_scriptTable:
 	.dw mainScripts.interaction6b_stubScript

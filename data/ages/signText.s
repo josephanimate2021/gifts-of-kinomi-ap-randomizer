@@ -21,11 +21,12 @@ signTextGroup0Data:
 	.db $13 <ROOM_AGES_036 $0a
 	.db $00
 signTextGroup1Data:
-	.db $14 $10 $07	; Entrance1
-	.db $18 $02 $08 ; Entrance2
-	.db $51 $12 $09 ; Gale seed tree house
-	.db $48 $30 $0a ; Syrup's House
-	.db $31 $72 $0b ; right of tree, near actual entrance
+	.db $14 <ROOM_AGES_110 $07	; Entrance1
+	.db $18 <ROOM_AGES_102 $08 ; Entrance2
+	.db $51 <ROOM_AGES_112 $09 ; Gale seed tree house
+	.db $48 <ROOM_AGES_130 $10 ; Syrup's House
+	.db $31 <ROOM_AGES_172 $0b ; right of tree, near actual entrance
+	.db $51 <ROOM_AGES_111 $12
 	.db $00
 signTextGroup2Data:
 	.db $00
@@ -38,6 +39,7 @@ signTextGroup4Data:
 	.db $00
 signTextGroup5Data:
 	.db $77 $2c $03
+	.db $53 <ROOM_AGES_5fc $13
 
 signTextGroup6Data:
 signTextGroup7Data:

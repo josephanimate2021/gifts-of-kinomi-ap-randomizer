@@ -2519,6 +2519,7 @@ cutscene15:
 	call clearMemoryOnScreenReload
 	call stopTextThread
 	call applyWarpDest
+	call checkRoomPackAfterWarp_body
 	call loadTilesetData
 	call loadTilesetGraphics
 	call loadDungeonLayout
@@ -3820,8 +3821,9 @@ _func_5c18:
 	call clearAllParentItems
 +
 .ifdef ROM_AGES
-	ld a,(wLoadingRoomPack)
-	ld (wRoomPack),a
+	call checkRoomPackAfterWarp_body
+	;ld a,(wLoadingRoomPack)
+	;ld (wRoomPack),a
 .endif
 	call setInstrumentsDisabledCounterAndScrollMode
 	call setEnteredWarpPosition
@@ -4887,12 +4889,26 @@ screenTransitionLostWoods:
 	cp $04
 	ret nz
 
+	ld b,TREASURE_WINTER_STONE
+	ld a,b
+-
+	call checkTreasureObtained
+	ret nc
+	inc b
+	ld a,b
+	cp TREASURE_SPRING_STONE+1
+	jr nz,-
+
 	; Success, warp to Seasons Shrine screen
 	ld (hl),$00
 	ld a,<ROOM_AGES_088		;$c9
 	ld (wActiveRoom),a
+	ld a,SND_SOLVEPUZZLE
+	call playSound
 	scf
 	ret
+
+
 
 ;;
 ; The sword upgrade screen is actually located where you'd expect the maku tree to be, so
@@ -5915,13 +5931,14 @@ checkRoomPackAfterWarp_body:
 .else ; ROM_AGES
 
 checkRoomPackAfterWarp_body:
-	ld a,(wRoomPack)
-	sub $80
-	ret c
-	
+	ld a,(wLoadingRoomPack)
+	cp $80
+	jr c,++
+
+/*	
 	ld b,a
 	ld a,(wActiveRoom)
-	cp $87
+	cp <ROOM_AGES_087
 	jr nz,+
 	ld a,(wDungeonIndex)
 	inc a
@@ -5934,6 +5951,22 @@ checkRoomPackAfterWarp_body:
 +
 	ld a,b
 	ld (wCurrentSeason),a
+*/
+
+	ld b,a
+	ld a,(wRoomPack)
+	cp b
+	ld a,b
+	jr z,++
+	sub $80
+	cp SEASON_SPRING
+	jr c,+
+	ld a,SEASON_SPRING
++
+	ld (wCurrentSeason),a
+	ld a,b
+++
+	ld (wRoomPack),a
 	ret
 ;;
 updateLastToggleBlocksState:

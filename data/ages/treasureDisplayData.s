@@ -46,7 +46,7 @@ treasureDisplayData2:
 ;      $03: display nothing extra (stub?)
 ;      $04: display number with "x" (ie. x2). Used by slates only.
 ;      $ff: display nothing extra
-;  b6: Low byte of text index (high byte is $09)
+;  b6: Low byte of text index (high byte is $09) (bit 7 used for rings)
 ;
 ;  b1 and b3, the "sprite indices", refer to tiles in the vram layout. See gfx header $08
 ;  for what the vram layout will be at that time. For items which are equippable, the
@@ -118,10 +118,10 @@ treasureDisplayData_standard:
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_ORE_CHUNKS (0x37)
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_38 (0x38)
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_39 (0x39)
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3a (0x3a)
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3b (0x3b)
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3c (0x3c)
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3d (0x3d)
+	.db TREASURE_WINTER_STONE	$e0 $01 $00 $00 $ff <TX_096d ; TREASURE_3a (0x3a)
+	.db TREASURE_SUMMER_STONE	$e1 $02 $00 $00 $ff <TX_096d ; TREASURE_3b (0x3b)
+	.db TREASURE_AUTUMN_STONE	$e2 $03 $00 $00 $ff <TX_096d ; TREASURE_3c (0x3c)
+	.db TREASURE_SPRING_STONE	$e3 $00 $00 $00 $ff <TX_096d ; TREASURE_3d (0x3d)
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3e (0x3e)
 	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_3f (0x3f)
 	.db $00				$07 $00 $07 $00 $ff <TX_0900 ; TREASURE_ESSENCE (0x40)

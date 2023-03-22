@@ -279,7 +279,7 @@ interaction63SubidData:
 	m_InteractionData $79 $0a $10
 	m_InteractionData $79 $08 $00
 	m_InteractionData $00 $00 $00
-	m_InteractionData $7d $00 $00
+	m_InteractionData $7d $00 $00 ; $10
 	m_InteractionData $7d $02 $50
 	m_InteractionData $7d $04 $40
 	m_InteractionData $7d $06 $00
@@ -295,7 +295,7 @@ interaction63SubidData:
 	m_InteractionData $00 $00 $00
 	m_InteractionData $7d $14 $20;$00 $00 $00	;rod
 	m_InteractionData $7d $1e $40
-	m_InteractionData $7c $00 $50
+	m_InteractionData $7c $00 $50 ; $20
 	m_InteractionData $7c $02 $50
 	m_InteractionData $00 $00 $00
 	m_InteractionData $7c $16 $03
@@ -311,7 +311,7 @@ interaction63SubidData:
 	m_InteractionData $78 $08 $43
 	m_InteractionData $78 $08 $53
 	m_InteractionData $00 $00 $00 ; fairy powder?
-	m_InteractionData $79 $00 $00
+	m_InteractionData $79 $00 $00 ; $30
 	m_InteractionData $79 $04 $53
 	m_InteractionData $79 $04 $00
 	m_InteractionData $79 $14 $00
@@ -321,13 +321,13 @@ interaction63SubidData:
 	m_InteractionData $82 $06 $20
 	m_InteractionData $82 $08 $10
 	m_InteractionData $82 $0a $30
-	m_InteractionData $79 $10 $22
+	m_InteractionData $79 $10 $22 ; $3a
 	m_InteractionData $79 $12 $52
 	m_InteractionData $81 $10 $33
 	m_InteractionData $65 $10 $23
 	m_InteractionData $83 $00 $03
 	m_InteractionData $45 $06 $20
-	m_InteractionData $7a $00 $33
+	m_InteractionData $7a $00 $33 ; $40
 	m_InteractionData $7a $04 $13
 interaction17SubidData:
 	m_InteractionData $7a $0c $50
@@ -336,7 +336,7 @@ interaction18SubidData:
 	m_InteractionData $7a $0e $50
 	m_InteractionData $7a $10 $20
 	m_InteractionData $7a $12 $50
-	m_InteractionData $7a $12 $40
+	m_InteractionData $7a $12 $40 ; $40
 	m_InteractionData $7a $14 $00
 	m_InteractionData $82 $14 $33
 	m_InteractionData $82 $08 $53
@@ -391,11 +391,16 @@ interactiond7SubidData:
 	m_InteractionData $81 $04 $33
 	m_InteractionData $81 $08 $13 ; $7b
 
-	m_InteractionData $7c $10 $10 ; $7c (Magnet Gloves)
-	m_InteractionData $7c $02 $40 ; $7d (Slingshot)
+	m_InteractionData OBJGFXH_7c $10 $10 ; $7c (Magnet Gloves)
+	m_InteractionData OBJGFXH_7c $02 $40 ; $7d (Slingshot)
 	m_InteractionData $e0 $00 $50 ; $7e (Hyper Slingshot)
-	m_InteractionData $84 $04 $40 ; $7f (Magic Boomerang)
-	m_InteractionData $7d $1a $50 ; $80 (Roc's Cape)
+	m_InteractionData OBJGFXH_84 $04 $40 ; $7f (Magic Boomerang)
+	m_InteractionData OBJGFXH_7d $1a $50 ; $80 (Roc's Cape)
+; jewels/stones
+	m_InteractionData OBJGFXH_82 $00 $10
+	m_InteractionData OBJGFXH_82 $02 $20
+	m_InteractionData OBJGFXH_82 $04 $30
+	m_InteractionData OBJGFXH_82 $06 $00
 
 interaction1bSubidData:
 	m_InteractionData $74 $10 $00
@@ -626,15 +631,15 @@ interaction6bSubidData:
 	m_InteractionData $00 $00 $00
 	m_InteractionData $00 $00 $00
 	m_InteractionData $7c $00 $51
-	m_InteractionData $00 $00 $00
+	m_InteractionData $00 $00 $00 ; $08
 	m_InteractionData $7d $16 $41
-	m_InteractionData $78 $10 $41
+	m_InteractionData $78 $10 $41 ; $0a
 	m_InteractionData $81 $10 $32
 	m_InteractionData $79 $04 $52
 	m_InteractionData $00 $36 $e3
 	m_InteractionData $6d $00 $64
 	m_InteractionData $00 $00 $00
-	m_InteractionData $6d $00 $66
+	m_InteractionData $6d $00 $66 ; $10
 	m_InteractionData $00 $00 $00
 	m_InteractionData $58 $00 $07
 	m_InteractionData $4c $1c $48
@@ -643,7 +648,8 @@ interaction6bSubidData:
 	m_InteractionData $00 $86 $aa
 
 	m_InteractionData $7d $02 $51		;swords
-	m_InteractionData $7d $84 $41
+	m_InteractionData $7d $84 $41 ; $18
+
 
 interaction6dSubidData:
 interaction6eSubidData:

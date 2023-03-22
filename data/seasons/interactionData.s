@@ -261,7 +261,7 @@ interaction60SubidData:
 	m_InteractionData $5d $0a $10
 	m_InteractionData $5d $08 $00
 	m_InteractionData $00 $00 $00
-	m_InteractionData $60 $00 $00
+	m_InteractionData $60 $00 $00 ; $10
 	m_InteractionData $60 $02 $50
 	m_InteractionData $60 $04 $40
 	m_InteractionData $60 $06 $00
@@ -277,7 +277,7 @@ interaction60SubidData:
 	m_InteractionData $60 $1a $40
 	m_InteractionData $60 $10 $20		;rod
 	m_InteractionData $60 $1e $40
-	m_InteractionData $5f $00 $50
+	m_InteractionData $5f $00 $50 ; $20
 	m_InteractionData $5f $02 $40
 	m_InteractionData $5f $04 $50
 	m_InteractionData $5f $16 $03
@@ -293,7 +293,7 @@ interaction60SubidData:
 	m_InteractionData $5c $08 $43
 	m_InteractionData $5c $08 $53
 	m_InteractionData $5c $0c $30
-	m_InteractionData $5d $00 $00
+	m_InteractionData $5d $00 $00 ; $30
 	m_InteractionData $5d $04 $53
 	m_InteractionData $5d $04 $00
 	m_InteractionData $5d $14 $00

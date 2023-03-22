@@ -326,22 +326,22 @@ treasureCollectionBehaviourTable:
 	; TREASURE_3a (0x3a)
 	.db $00
 	.db $00
-	.db SND_NONE
+	.db SND_GETITEM
 
 	; TREASURE_3b (0x3b)
 	.db $00
 	.db $00
-	.db SND_NONE
+	.db SND_GETITEM
 
 	; TREASURE_3c (0x3c)
 	.db $00
 	.db $00
-	.db SND_NONE
+	.db SND_GETITEM
 
 	; TREASURE_3d (0x3d)
 	.db $00
 	.db $00
-	.db SND_NONE
+	.db SND_GETITEM
 
 	; TREASURE_3e (0x3e)
 	.db $00

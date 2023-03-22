@@ -1050,6 +1050,30 @@ groups:
       to do a double
       jump!
 
+  - name: TX_0085
+    index: 0x85
+    text: |-
+      You got the
+      \col(1)Summer Stone\col(0)!
+      
+  - name: TX_0086
+    index: 0x86
+    text: |-
+      You got the
+      \col(2)Autumn Stone\col(0)!
+
+  - name: TX_0087
+    index: 0x87
+    text: |-
+      You got the
+      \col(3)Winter Stone\col(0)!
+
+  - name: TX_0088
+    index: 0x88
+    text: |-
+      You got the
+      \col(4)Spring Stone\col(0)!
+
 - group: 0x01
   data:
   - name: TX_0100
@@ -3975,7 +3999,7 @@ groups:
     index: 0x09
     text: |-
       Ghastly Doll
-      Frightening, but endearing
+      Frightening, but endearing.
 
   - name: TX_090a
     index: 0x0a
@@ -3993,19 +4017,19 @@ groups:
     index: 0x0c
     text: |-
       Broken Sword
-      Only useful to collectors
+      Only useful to collectors.
 
   - name: TX_090d
     index: 0x0d
     text: |-
       Sparring Book
-      For a lover of the blade
+      For a lover of the blade.
 
   - name: TX_090e
     index: 0x0e
     text: |-
       Mushroom
-      Found in the depths
+      Found in the depths.
 
   - name: TX_090f
     index: 0x0f
@@ -4607,7 +4631,40 @@ groups:
     text: |-
       Roc's Cape
       A wind-riding
-      cape.      
+      cape.
+
+  - name: TX_096d
+    index: 0x6d
+    text: |-
+      Stone
+      Treasure from a
+      bygone age.
+      It whispers \call(0xff), \call(0xfe), \call(0xfd), \call(0xfc)
+
+  - name: TX_096e
+    index: 0x6e
+    text: |-
+      ...
+
+  - name: TX_096f
+    index: 0x6f
+    text: |-
+      west in winter
+
+  - name: TX_0970
+    index: 0x70
+    text: |-
+      north in summer
+
+  - name: TX_0971
+    index: 0x71
+    text: |-
+      south in fall
+
+  - name: TX_0972
+    index: 0x72
+    text: |-
+      east in spring.
 
 
 - group: 0x0a
@@ -14132,8 +14189,7 @@ groups:
   - name: TX_2e13
     index: 0x13
     text: |-
-      \up Restoration
-         Wall
+      \right Tepid Forest
 
   - name: TX_2e14
     index: 0x14
@@ -17118,18 +17174,14 @@ groups:
   - name: TX_3302
     index: 0x02
     text: |-
-      Those who have
-      seen a strange
-      beast on the
-      isle to the west
-      say the beast is
-      always there,
-      never attacks,
-      and just stares
-      as if asking for
-      help. Some even
-      claim it speaks.
-      It's nonsense!
+      Huh? How did you get here?
+      Are you also a researcher of this mysterious Lost Woods?
+      There is a \col(3)Shrine\col(0) somewhere between the trees,
+      but I have struggled finding the means to reach it.
+      These books are all useless, but I at least know that
+      you must collect four gems to learn the right path.
+      Good luck in your endeavors, adventurer!
+
 
   - name: TX_3303
     index: 0x03
@@ -19557,6 +19609,34 @@ groups:
       10 Bombs for
       30 Rupees!
         \opt()OK \opt()No thanks
+
+  - name: TX_450e
+    index: 0x0e
+    text: |-
+      \sfx(0xc6)I surrender!
+      In return, I
+      offer my advice!
+      To get to the
+      old man's house
+      out of the
+      lost woods, you must keep traveling north!
+      \sfx(0xc6)
+
+      ...weather?
+      How would I know?
+      I'm sure you'd remember that!
+
+  - name: TX_450f
+    index: 0x0f
+    text: |-
+      \sfx(0xc6)I surrender!
+      In return, I
+      offer my advice!
+      To get to the crazed salesman's house out of the lost woods,
+      you must travel east, south, north, then west!
+      \sfx(0xc6)
+      Oh, and the season must start its coldest and progress naturally!
+
 
 - group: 0x46
   data:
