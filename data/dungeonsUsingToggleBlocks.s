@@ -2,4 +2,5 @@
 ; The default values are dungeons 5, 8, and hero's cave.
 
 dungeonsUsingToggleBlocks:
-	dbrev %00000100 %10010000
+	;dbrev %00000100 %10010000
+	dbrev %00010100 %10010000

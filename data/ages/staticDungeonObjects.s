@@ -35,7 +35,7 @@ dungeon2StaticObjects:
 	.db $ff 
 
 dungeon3StaticObjects:
-	.db $03, $6f, INTERACID_MINECART, $00, $38, $38
+	;.db $03, $6f, INTERACID_MINECART, $00, $38, $38
 	;.db $03, $64, INTERACID_MINECART, $00, $98, $c8
 	.db $ff
 

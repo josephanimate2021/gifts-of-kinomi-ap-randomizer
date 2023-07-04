@@ -11,13 +11,12 @@ chestDataGroupTable:
 	.dw chestGroup7Data
 
 chestGroup0Data:
+	.db $27 $27 $2a $01
 	.db $12 $08 $2e $02
 	.db $53 $60 $4b $00
 	.db $31 $61 $4b $00
 	.db $12 $70 $4b $00
 	.db $43 $40 $4b $00
-	.db $08 $05 $28 $18
-	.db $58 $77 $28 $18
 	.db $27 $51 $4b $00
 	.db $51 <ROOM_AGES_049 $28 $04
 	.db $36 $84 $28 $05
@@ -72,9 +71,9 @@ chestGroup4Data:
 	.db $63 $1d $31 $03
 	.db $17 $23 $30 $03
 	.db $47 $22 $30 $03
-	.db $87 <ROOM_AGES_43e $33 $02
+	.db $87 $3e $33 $02
 	.db $57 <ROOM_AGES_467 $32 $02
-	.db $58 <ROOM_AGES_445 $30 $03
+	.db $58 $45 $30 $03
 	.db $46 $5c $30 $03
 	.db $55 <ROOM_AGES_46a $45 $02
 	.db $57 <ROOM_AGES_44f $31 $03
@@ -88,7 +87,7 @@ chestGroup4Data:
 	.db $72 $15 $32 $02
 	.db $47 <ROOM_AGES_430 $04 $00
 	.db $87 <ROOM_AGES_440 $33 $02
-	.db $3d <ROOM_AGES_441 $30 $03
+	.db $3d $41 $30 $03
 	.db $4c $55 $34 $01
 	.db $69 $56 $32 $02
 	.db $57 $60 $34 $01

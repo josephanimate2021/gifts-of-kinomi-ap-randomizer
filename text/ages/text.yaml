@@ -14127,6 +14127,7 @@ groups:
     index: 0x09
     text: |-
       \right Lost Woods
+
       Six spirits guard this wood.
 
       Watch your back.
@@ -19623,8 +19624,7 @@ groups:
       \sfx(0xc6)
 
       ...weather?
-      How would I know?
-      I'm sure you'd remember that!
+      I think it must get progressively warmer each step!
 
   - name: TX_450f
     index: 0x0f

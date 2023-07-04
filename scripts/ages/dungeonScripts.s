@@ -103,6 +103,7 @@ _spawnPlatform:
 	scriptend
 
 cornersCaveScript_minecartRoom:
+/*
 	stopifroomflag80set
 	setcollisionradii $06 $06
 	checkcollidedwithlink_ignorez
@@ -115,6 +116,7 @@ cornersCaveScript_minecartRoom:
 	orroomflag ROOMFLAG_80
 	settileat $76 $5c
 	scriptend
+*/
 ;	checkflagset $01, wActiveTriggers
 ;	setcoords $48, $78
 ;	asm15 objectCreatePuff

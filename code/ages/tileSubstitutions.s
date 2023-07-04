@@ -718,5 +718,5 @@ applySingleTileChanges:
 	ld hl,wNumPlacedSlates
 	call checkFlag
 	pop hl
-	ret z
-	jr @match
+	jr nz,@match
+	jr @notMatch

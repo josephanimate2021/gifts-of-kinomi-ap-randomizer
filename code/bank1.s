@@ -606,7 +606,7 @@ _screenTransitionState3:
 	bit 7,a
 	jr nz,+
 
-	call loadTilesetGfx
+	call loadTilesetGfxIfChanged
 	ld b,$05
 +
 	ld hl,wScreenTransitionState
@@ -1084,7 +1084,7 @@ _screenTransitionState5Substate2:
 	inc (hl)
 	ld a,(wTilesetIndex)
 	and $80
-	call nz,loadTilesetGfx
+	call nz,loadTilesetGfxIfChanged
 	ret
 
 ;;
@@ -1272,7 +1272,7 @@ _screenTransitionState5Substate1:
 	inc (hl)
 	ld a,(wTilesetIndex)
 	and $80
-	call nz,loadTilesetGfx
+	call nz,loadTilesetGfxIfChanged
 	ret
 
 ;;
@@ -4813,6 +4813,8 @@ screenTransitionLostWoods:
 	ld (hl),$00
 	ld a,<ROOM_AGES_057	;$30
 	ld (wActiveRoom),a
+	ld a,SND_SOLVEPUZZLE
+	call playSound
 	scf
 	ret
 
@@ -4855,6 +4857,8 @@ screenTransitionLostWoods:
 	ld (hl),$00
 	ld a,<ROOM_AGES_047		;$c9
 	ld (wActiveRoom),a
+	ld a,SND_SOLVEPUZZLE
+	call playSound
 	scf
 	ret
 
@@ -4869,17 +4873,17 @@ screenTransitionLostWoods:
 @@transition0:
 	ldbc DIR_LEFT, SEASON_WINTER ;DIR_LEFT, SEASON_WINTER
 	ld hl,wLostWoodsTransitionCounter1
-	jr @checkTransition
+	jr @@checkTransition
 
 @@transition1:
 	ldbc DIR_UP, SEASON_SUMMER ;DIR_LEFT, SEASON_FALL
 	ld hl,wLostWoodsTransitionCounter1
-	jp @checkTransition
+	jr @@checkTransition
 
 @@transition2:
 	ldbc DIR_DOWN, SEASON_FALL ;DIR_LEFT, SEASON_SPRING
 	ld hl,wLostWoodsTransitionCounter1
-	jp @checkTransition
+	jr @@checkTransition
 
 @@transition3:
 	ldbc DIR_RIGHT, SEASON_SPRING ;DIR_LEFT, SEASON_SUMMER
@@ -4908,7 +4912,8 @@ screenTransitionLostWoods:
 	scf
 	ret
 
-
+@@checkTransition:
+	jp @checkTransition
 
 ;;
 ; The sword upgrade screen is actually located where you'd expect the maku tree to be, so
