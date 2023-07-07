@@ -8322,7 +8322,7 @@ interactionCode3c:
 
 	ldbc INTERACID_BALL,$00
 	call objectCreateInteraction
-	ld bc,$4a75
+	ld bc,$6a75
 	call interactionHSetPosition
 
 	pop af

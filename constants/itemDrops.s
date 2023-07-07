@@ -18,4 +18,5 @@
 	ITEM_DROP_10_ORE_CHUNKS           db ; $0d
 	ITEM_DROP_50_ORE_CHUNKS           db ; $0e
 	ITEM_DROP_100_RUPEES_OR_ENEMY     db ; $0f
+	;ITEM_DROP_HEART_PIECE			  db ; $10
 .ende

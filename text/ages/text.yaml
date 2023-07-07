@@ -1053,25 +1053,25 @@ groups:
   - name: TX_0085
     index: 0x85
     text: |-
-      You got the
+      You found the
       \col(1)Summer Stone\col(0)!
       
   - name: TX_0086
     index: 0x86
     text: |-
-      You got the
+      You found the
       \col(2)Autumn Stone\col(0)!
 
   - name: TX_0087
     index: 0x87
     text: |-
-      You got the
+      You found the
       \col(3)Winter Stone\col(0)!
 
   - name: TX_0088
     index: 0x88
     text: |-
-      You got the
+      You found the
       \col(4)Spring Stone\col(0)!
 
 - group: 0x01

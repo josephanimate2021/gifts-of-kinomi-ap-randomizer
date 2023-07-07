@@ -32,6 +32,8 @@ interactionCodedc:
 	.dw _interactiondc_subid16
 	.dw _interactiondc_subid17
 	.dw _interactiondc_subid18
+	.dw _interactiondc_subid19
+	.dw _interactiondc_subid1a
 
 ; Heart piece spawner
 _interactiondc_subid07:
@@ -624,6 +626,59 @@ _interactiondc_subid18:
 	m_HardcodedWarpA ROOM_AGES_027 $00 $15 $83
 @D4warpDestVariables:
 	m_HardcodedWarpA ROOM_AGES_077 $00 $46 $83
+
+
+; creates interaction $dc07 when tile is destroyed
+_interactiondc_subid19:
+	call checkInteractionState
+	jr nz,@state1
+
+@state0:
+	inc a
+	ld (de),a
+
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,a
+	jp nz,interactionDelete
+
+	call objectGetTileAtPosition
+	ld e,Interaction.var30
+	ld (de),a
+
+@state1:
+	call objectGetTileAtPosition
+	ld h,d
+	ld l,Interaction.var30
+	cp (hl)
+	ret z
+
+	; Tile has changed
+	call getFreeInteractionSlot
+	ret nz
+	ld (hl),INTERACID_MISCELLANEOUS_2
+	inc l
+	ld (hl),$07 ; subid = 07
+
+	call objectCopyPosition
+	ld a,SND_SOLVEPUZZLE
+	call playSound
+	jp interactionDelete
+
+_interactiondc_subid1a:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,a
+	jp nz,interactionDelete
+
+	ld a,(wNumEnemies)
+	or a
+	ret nz
+
+	ldbc, TREASURE_HEART_PIECE,$02 ; falls from screen-top
+	call createTreasure
+	call objectCopyPosition
+	ld a,SND_SOLVEPUZZLE
+	call playSound
+	jp interactionDelete
 
 
 ; ==============================================================================

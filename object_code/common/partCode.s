@@ -230,6 +230,7 @@ partCode01:
 	ld c,(hl)
 	ld a,b
 	call giveTreasure
+
 	ld e,Part.subid
 	ld a,(de)
 	cp ITEM_DROP_L2_SWORD
@@ -272,6 +273,7 @@ partCode01:
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_10,  RUPEEVAL_20  ; ITEM_DROP_10_ORE_CHUNKS
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_50,  RUPEEVAL_100 ; ITEM_DROP_50_ORE_CHUNKS
 	.db TREASURE_RUPEES,        RED_JOY_RING,   RUPEEVAL_100, RUPEEVAL_200 ; ITEM_DROP_100_RUPEES_OR_ENEMY
+	;.db TREASURE_HEART_PIECE,	$00,			$01, $01 ; ITEM_DROP_HEART_PIECE
 
 
 ;;
@@ -313,11 +315,16 @@ _itemDrop_initGfx:
 	.db $0c $02 ; ITEM_DROP_10_ORE_CHUNKS
 	.db $0c $03 ; ITEM_DROP_50_ORE_CHUNKS
 	.db $08 $04 ; ITEM_DROP_100_RUPEES_OR_ENEMY
+	;.db $0a $01 ; ITEM_DROP_HEART_PIECE
 
 
 ;;
 ; @param[out]	cflag	c if time to disappear
 _itemDrop_countdownToDisappear:
+;	ld a, Part.subid
+;	cp ITEM_DROP_HEART_PIECE
+;	ret z
+
 	ld a,(wFrameCounter)
 	xor d
 	rrca

@@ -3434,9 +3434,7 @@ interactione8OamDataPointers: ; 0x5af04
 	.dw interactionOamData500a9
 	.dw interactionOamData500ae
 	.dw interactionOamData50205
-interactiona5OamDataPointers: ; 0x5af0c
-	.dw interactionOamData5020e	;interactionOamData500ae		;ghastly doll
-	.dw interactionOamData50205	;fairy powder
+
 interaction1cOamDataPointers: ; 0x5af0c
 interaction71OamDataPointers: ; 0x5af0c
 interactione5OamDataPointers: ; 0x5af0c
@@ -4649,3 +4647,7 @@ interactionebOamDataPointers:
 	.dw interactionOamDataFlowerBloom_00
 	.dw interactionOamDataFlowerBloom_01
 	.dw interactionOamDataFlowerBloom_0a
+	
+interactiona5OamDataPointers: ; 0x5af0c
+	.dw interactionOamData5020e	;interactionOamData500ae		;ghastly doll
+	.dw interactionOamData50205	;fairy powder

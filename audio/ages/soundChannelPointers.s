@@ -74,6 +74,7 @@ sound09:
 	.dw sound09Channel6
 	.db $ff
 
+/*
 forestOfMystery:
 	.db $00
 	.dw forestOfMysteryChannel0
@@ -84,6 +85,30 @@ forestOfMystery:
 	.db $06
 	.dw forestOfMysteryChannel6
 	.db $ff
+*/
+fallingRain:
+	.db $00
+	.dw fallingRainChannel0
+	.db $01
+	.dw fallingRainChannel1
+	.db $04
+	.dw fallingRainChannel4
+	.db $06
+	.dw fallingRainChannel6
+	.db $ff
+/*
+sound0c:
+	.db $00
+	.dw sound0cChannel0
+	.db $01
+	.dw sound0cChannel1
+	.db $04
+	.dw sound0cChannel4
+	.db $06
+	.dw sound0cChannel6
+	.db $ff
+*/
+
 
 sound0d:
 	.db $00
@@ -106,7 +131,7 @@ sound0e:
 	.db $06
 	.dw sound0eChannel6
 	.db $ff
-
+/*
 fairyFountain:
 	.db $00
 	.dw fairyFountainChannel0
@@ -116,6 +141,17 @@ fairyFountain:
 	.dw fairyFountainChannel4
 	.db $06
 	.dw fairyFountainChannel6
+	.db $ff
+*/
+sound0f:
+	.db $00
+	.dw sound0fChannel0
+	.db $01
+	.dw sound0fChannel1
+	.db $04
+	.dw sound0fChannel4
+	.db $06
+	.dw sound0fChannel6
 	.db $ff
 
 sound10:
@@ -128,7 +164,7 @@ sound10:
 	.db $06
 	.dw sound10Channel6
 	.db $ff
-
+/*
 fileSelect:
 	.db $00
 	.dw fileSelectChannel0
@@ -138,6 +174,17 @@ fileSelect:
 	.dw fileSelectChannel4
 	.db $06
 	.dw fileSelectChannel6
+	.db $ff
+*/
+sound11:
+	.db $00
+	.dw sound11Channel0
+	.db $01
+	.dw sound11Channel1
+	.db $04
+	.dw sound11Channel4
+	.db $06
+	.dw sound11Channel6
 	.db $ff
 
 sound1b:
@@ -294,6 +341,17 @@ sound2d:
 	.dw sound2dChannel6
 	.db $ff
 
+attackingVahNaboris:
+	.db $00
+	.dw attackingVahNaborisChannel0
+	.db $01
+	.dw attackingVahNaborisChannel1
+	.db $04
+	.dw attackingVahNaborisChannel4
+	.db $06
+	.dw attackingVahNaborisChannel6
+	.db $ff
+/*
 sound2e:
 	.db $00
 	.dw sound2eChannel0
@@ -304,6 +362,8 @@ sound2e:
 	.db $06
 	.dw sound2eChannel6
 	.db $ff
+*/
+
 
 sound2f:
 	.db $00
@@ -491,7 +551,7 @@ sound08:
 	.db $06
 	.dw sound08Channel6
 	.db $ff
-
+/*
 gerudoValley:
 	.db $00
 	.dw gerudoValleyChannel0
@@ -513,6 +573,7 @@ hyruleCastle:
 	.db $06
 	.dw hyruleCastleChannel6
 	.db $ff
+*/
 
 theGreatPalace:
 	.db $00
@@ -524,6 +585,42 @@ theGreatPalace:
 	.db $06
 	.dw theGreatPalaceChannel6
 	.db $ff
+
+; replaced
+sound05:
+	.db $00
+	.dw sound05Channel0
+	.db $01
+	.dw sound05Channel1
+	.db $04
+	.dw sound05Channel4
+	.db $06
+	.dw sound05Channel6
+	.db $ff
+
+sound07:
+	.db $00
+	.dw sound07Channel0
+	.db $01
+	.dw sound07Channel1
+	.db $04
+	.dw sound07Channel4
+	.db $06
+	.dw sound07Channel6
+	.db $ff
+/*
+sound18:
+	.db $00
+	.dw sound18Channel0
+	.db $01
+	.dw sound18Channel1
+	.db $04
+	.dw sound18Channel4
+	.db $06
+	.dw sound18Channel6
+	.db $ff
+*/
+; end replacement
 
 sound16:
 	.db $00
@@ -580,6 +677,7 @@ sound35:
 	.dw sound35Channel6
 	.db $ff
 
+/*
 kakarikoVillage:
 	.db $00
 	.dw kakarikoVillageChannel0
@@ -590,6 +688,30 @@ kakarikoVillage:
 	.db $06
 	.dw kakarikoVillageChannel6
 	.db $ff
+*/
+
+outsetIsland:
+	.db $00
+	.dw outsetIslandChannel0
+	.db $01
+	.dw outsetIslandChannel1
+	.db $04
+	.dw outsetIslandChannel4
+	.db $06
+	.dw outsetIslandChannel6
+	.db $ff
+/*
+sound0a:
+	.db $00
+	.dw sound0aChannel0
+	.db $01
+	.dw sound0aChannel1
+	.db $04
+	.dw sound0aChannel4
+	.db $06
+	.dw sound0aChannel6
+	.db $ff
+*/
 
 sound0b:
 	.db $00
@@ -613,6 +735,7 @@ sound12:
 	.dw sound12Channel6
 	.db $ff
 
+/*
 lightWorldDungeon:
 	.db $00
 	.dw lightWorldDungeonChannel0
@@ -623,28 +746,64 @@ lightWorldDungeon:
 	.db $06
 	.dw lightWorldDungeonChannel6
 	.db $ff
-
-franticFactory:
+*/
+sound13:
 	.db $00
-	.dw franticFactoryChannel0
+	.dw sound13Channel0
 	.db $01
-	.dw franticFactoryChannel1
+	.dw sound13Channel1
 	.db $04
-	.dw franticFactoryChannel4
+	.dw sound13Channel4
 	.db $06
-	.dw franticFactoryChannel6
+	.dw sound13Channel6
+	.db $ff
+	
+ghostsNGoblinsGraveyard:
+	.db $00
+	.dw ghostsNGoblinsGraveyardChannel0
+	.db $01
+	.dw ghostsNGoblinsGraveyardChannel1
+	.db $04
+	.dw ghostsNGoblinsGraveyardChannel4
+	.db $06
+	.dw ghostsNGoblinsGraveyardChannel6
 	.db $ff
 
-floroCaverns:
+spiritTemple:
 	.db $00
-	.dw floroCavernsChannel0
+	.dw spiritTempleChannel0
 	.db $01
-	.dw floroCavernsChannel1
+	.dw spiritTempleChannel1
 	.db $04
-	.dw floroCavernsChannel4
+	.dw spiritTempleChannel4
 	.db $06
-	.dw floroCavernsChannel6
+	.dw spiritTempleChannel6
 	.db $ff
+
+/*
+
+sound14:
+	.db $00
+	.dw sound14Channel0
+	.db $01
+	.dw sound14Channel1
+	.db $04
+	.dw sound14Channel4
+	.db $06
+	.dw sound14Channel6
+	.db $ff
+/*
+sound15:
+	.db $00
+	.dw sound15Channel0
+	.db $01
+	.dw sound15Channel1
+	.db $04
+	.dw sound15Channel4
+	.db $06
+	.dw sound15Channel6
+	.db $ff
+*/
 
 sound17:
 	.db $00

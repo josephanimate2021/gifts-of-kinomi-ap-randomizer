@@ -64,7 +64,7 @@ soundbdChannel2:
 .include "audio/mus/common/essence.s"
 .include "audio/sfx/ages/echoes.s"
 .include "audio/mus/ages/underwater.s"
-.include "audio/mus/ages/makuTree.s"
+
 
 .ifdef BUILD_VANILLA
 	.dsb 162 $ff
@@ -78,7 +78,6 @@ bank3aChannelFallback:
 	cmdff
 
 .redefine MUSIC_CHANNEL_FALLBACK bank3aChannelFallback
-
 
 .include "audio/mus/common/indoors.s"
 .include "audio/mus/common/titlescreen.s"
@@ -193,18 +192,19 @@ bank3bChannelFallback:
 
 
 .include "audio/mus/common/minigame.s"
-;.include "audio/mus/common/fileSelect.s"		;within fairyFountainOoT
-;.include "audio/mus/common/fairyFountain.s"
-.include "audio/mus/ages/fairyFountainOoT.s"
+.include "audio/mus/common/fileSelect.s"		;within fairyFountainOoT
+.include "audio/mus/common/fairyFountain.s"
+;.include "audio/mus/custom/OLD/fairyFountainOoT.s"
 .include "audio/mus/common/overworld.s"
 .include "audio/mus/common/essenceRoom.s"
 .include "audio/mus/common/ganon.s"
 .include "audio/mus/ages/overworldPast.s"
 .include "audio/mus/ages/nayru.s"
-;.include "audio/mus/ages/crescent.s"
-.include "audio/mus/ages/gerudoValley.s"
+.include "audio/mus/ages/crescent.s"
+;.include "audio/mus/custom/OLD/gerudoValley.s"
 ;.include "audio/mus/ages/lynnaCity.s"
-.include "audio/mus/ages/kakarikoVillage.s"
+.include "audio/mus/custom/outsetIsland.s"
+;.include "audio/mus/custom/OLD/kakarikoVillage.s"
 .include "audio/mus/ages/lynnaVillage.s"		;gutted
 .include "audio/mus/ages/makuPath.s"
 .include "audio/mus/ages/symmetryPresent.s"		;gutted
@@ -216,7 +216,7 @@ bank3bChannelFallback:
 .include "audio/sfx/common/enemyJump.s"
 .include "audio/sfx/common/galeSeed.s"
 .include "audio/mus/ages/tokayHouse.s"
-.include "audio/mus/ages/lightWorldDungeon.s"
+
 
 soundcaStart:
 soundcaChannel2:
@@ -241,24 +241,26 @@ bank3cChannelFallback:
 
 .redefine MUSIC_CHANNEL_FALLBACK bank3cChannelFallback
 
-
-;.include "audio/mus/ages/moonlitGrotto.s"
-.include "audio/mus/ages/floroCaverns.s"
+.include "audio/mus/custom/ghostsNGoblinsGraveyard.s"
+.include "audio/mus/ages/moonlitGrotto.s"
+.include "audio/mus/custom/spiritTemple.s"
+;.include "audio/mus/custom/OLD/floroCaverns.s"
 .include "audio/mus/common/onoxCastle.s"
 .include "audio/mus/common/sadness.s"
 .include "audio/mus/common/intro2.s"
-;.include "audio/mus/ages/ambiPalace.s"
-.include "audio/mus/ages/hyruleCastle.s"
+.include "audio/mus/ages/ambiPalace.s"
+.include "audio/mus/custom/fallingRain.s"
+;.include "audio/mus/custom/OLD/hyruleCastle.s"
 
 ;.include "audio/mus/ages/mermaidsCave.s"
-.include "audio/mus/ages/theGreatPalace.s"
+.include "audio/mus/custom/theGreatPalace.s"
 .include "audio/mus/ages/skullDungeon.s"
 .include "audio/mus/ages/blackTower.s"
 .include "audio/mus/ages/fairyForest.s"
 .include "audio/mus/ages/ralph.s"
 .include "audio/mus/ages/spiritsGrave.s"	;gutted
-;.include "audio/mus/ages/wingDungeon.s"
-.include "audio/mus/ages/franticFactory.s"
+.include "audio/mus/ages/wingDungeon.s"
+;.include "audio/mus/custom/OLD/lightWorldDungeon.s"
 .include "audio/mus/ages/crownDungeon.s"	;gutted
 .include "audio/mus/ages/jabuJabusBelly.s"
 .include "audio/sfx/common/damageEnemy.s"
@@ -452,16 +454,18 @@ soundddChannel6:
 	.dsb 4 $ff
 .endif
 
-
+.include "audio/mus/ages/makuTree.s"
 .include "audio/mus/common/greatMoblin.s"
 .include "audio/mus/common/ladxSideview.s"
 .include "audio/mus/common/syrup.s"
 .include "audio/mus/common/goronCave.s"
 .include "audio/mus/common/credits2.s"
-.include "audio/mus/common/boss.s"
+;.include "audio/mus/common/boss.s"
+.include "audio/mus/custom/attackingVahNaboris.s"
 .include "audio/mus/common/credits1.s"
 .include "audio/mus/ages/symmetryPast.s"
-.include "audio/mus/ages/forestOfMystery.s"
+.include "audio/mus/ages/zoraVillage.s"
+;.include "audio/mus/custom/OLD/forestOfMystery.s"
 .include "audio/sfx/common/heartBeep.s"
 .include "audio/sfx/common/rupee.s"
 .include "audio/sfx/common/swordSpin.s"

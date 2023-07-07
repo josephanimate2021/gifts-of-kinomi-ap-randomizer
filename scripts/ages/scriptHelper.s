@@ -2664,9 +2664,8 @@ tokayExplainingVinesScript:
 boredSoldierScript:
 	initcollisions
 @npcLoop:
-	setanimation $00
-	turntofacelink
 	checkabutton
+	turntofacelink
 	disableinput	
 	jumpifroomflagset ROOMFLAG_40, @alreadyTraded
 

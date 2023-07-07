@@ -180,7 +180,7 @@ group5Mapb6EnemyObjectData:
 	obj_EndPointer
 
 group5Mapb8EnemyObjectData:
-	obj_SpecificEnemyA 0 $38 $00 $50 $78
+	obj_SpecificEnemyA 0 $38 $00 $5c $78
 	obj_EndPointer
 
 group5MapbeEnemyObjectData:
@@ -2847,7 +2847,7 @@ group3Map1bEnemyObjectData:
 	obj_EndPointer
 
 group5Map0dEnemyObjectData:
-	obj_SpecificEnemyA 0 $2a $01 $20 $50
+	obj_SpecificEnemyA 0 $2a $02 $20 $50
 	obj_EndPointer
 
 group5Map0cEnemyObjectData:
@@ -2858,4 +2858,7 @@ group5Map0cEnemyObjectData:
 
 group0Map41EnemyObjectData:
 	obj_SpecificEnemyB $27 $00 $28 $38 $0f
+	obj_EndPointer
+
+group5Map07EnemyObjectData:
 	obj_EndPointer

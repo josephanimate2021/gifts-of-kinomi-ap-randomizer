@@ -1,6 +1,6 @@
 .include "include/rominfo.s"
 .include "include/musicMacros.s"
-
+.include "include/macros.s"
 .include "include/constants.s"
 
 ; HACK-BASE: Bank of sound engine (and of data in "audio/{game}/soundChannelData.s") changed to
@@ -8,6 +8,7 @@
 .BANK $72 SLOT 1
 .ORG 0
 
+m_section_superfree AudioCode NAMESPACE audio
 ;;
 b39_initSound:
 	jp _initSound
@@ -38,7 +39,7 @@ b39_updateMusicVolume:
 
 
 ; This is pointless?
-.dw sound00
+;.dw sound00
 
 
 ;;
@@ -62,7 +63,6 @@ _initSound:
 	ld c,@readFunctionEnd-@readFunction+2
 	ld hl,@readFunction
 	ld de,wMusicReadFunction
-
 -
 	ldi a,(hl)
 	ld (de),a
@@ -91,7 +91,6 @@ _initSound:
 ; @param	a	Volume (0-3)
 ;
 _updateMusicVolume:
-
 	push bc
 	push de
 	push hl
@@ -664,8 +663,34 @@ _doNextChannelCommand:
 	jr c,+
 	jp _cmdVolume
 +
+
+; ZTK-added code
+	cp $60
+	jr z,@afterTranspose
+	jr nc,@afterTranspose
+
+	ld b,a
+	ld a,(wSoundChannel)
+	cp $05
+	jr nc,@skipTranspose
+
+	ld a,b
+	ld hl,wChannelTranspose
+	call loadChannelVariable
+	ld b,(hl)
+	add b
+	cp $60
+	jr c,@afterTranspose
+	sub $60
+	jr @afterTranspose
+
+@skipTranspose:
+	ld a,b
+; end added code
+@afterTranspose:
 	ld (wSoundCmd),a
 	jp _standardSoundCmd
+
 
 @cmdf0Toff:
 	ld e,a
@@ -679,56 +704,129 @@ _doNextChannelCommand:
 	.dw _channelCmdff
 	.dw _channelCmdfe
 	.dw _channelCmdfd
-	.dw _channelCmdff
-	.dw _channelCmdff
-	.dw _channelCmdff
+	.dw _channelCmdfc ; beginLoop
+	.dw _channelCmdfb ; transpose
+	.dw _channelCmdfa ; endSec
 	.dw _channelCmdf9
 	.dw _channelCmdf8
-	.dw _channelCmdff
+	.dw _channelCmdf7 ; breakOrLoop
 	.dw _channelCmdf6
 	.dw _channelCmdff
-	.dw _channelCmdf4
+	.dw _channelCmdff
 	.dw _channelCmdf3
 	.dw _channelCmdf2
 	.dw _channelCmdf1
 	.dw _channelCmdf0
 
 ;;
-; gotoCond
-;
 _channelCmdf1:
-	call _getNextChannelByte
-	ld hl,wVolta
-	call _getChannelVarInHL
-	cp (hl)
-	jp z, _channelCmdfe
-;	jp nc, _channelCmdfe
-+
-	call _getNextChannelByte
-	call _getNextChannelByte
 	jp _doNextChannelCommand
 ;;
 _channelCmdf2:
 	jp _doNextChannelCommand
 ;;
-; incCoda
-;
 _channelCmdf3:
-	ld hl,wVolta
-	call _getChannelVarInHL
-	inc (hl)
-	jp _doNextChannelCommand
-;;
-; resetCoda
-;
-_channelCmdf4:
-	ld hl,wVolta
-	call _getChannelVarInHL
-	ld (hl),$00
 	jp _doNextChannelCommand
 
-; @param 	hl	wram variable
-_getChannelVarInHL:
+;;
+; beginLoop
+_channelCmdfc:
+	ld a,(wSoundChannel)
+	scf
+	ccf
+	cp $07
+	jp nc,channels6And7
+; Set loop counter
+	call _getNextChannelByte
+	ld hl,wChannelLoopCounters
+	call loadChannelVariable
+	ld (hl),a
+
+; Set loop pointer
+	ld hl,wChannelLoopPointers
+	call loadAddressPointerIntoHL
+	jp _doNextChannelCommand
+
+loadAddressPointerIntoHL:
+	;ret ; temp
+	ld a,(wSoundChannel)
+	sla a
+	add <hSoundChannelAddresses
+	ld c,a
+	ld a,($ff00+c)
+	inc c
+
+	ld e,a
+	ld a,($ff00+c)
+	ld d,a
+
+	ld a,(wSoundChannel)
+	sla a
+	ld c,a
+	ld b,$00
+	add hl,bc
+
+	ld a,e
+	ldi (hl),a
+	ld (hl),d
+	ret
+
+loadHLIntoAddressPointer:
+	call loadChannelVariable
+	add hl,de
+loadHLIntoAddressPointerSkipVar:
+	;ret ; temp
+	ldi a,(hl)
+	ld e,a
+	ld d,(hl)
+
+	ld a,(wSoundChannel)
+	sla a
+	add <hSoundChannelAddresses
+	ld c,a
+
+	ld a,e
+	ld ($ff00+c),a
+	inc c
+	ld a,d
+	ld ($ff00+c),a
+	ret
+
+;;
+; breakOrLoop
+_channelCmdf7:
+	ld a,(wSoundChannel)
+	scf
+	ccf
+	cp $07
+	jr nc,channels6And7
+
+	ld hl,wChannelLoopCounters
+	call loadChannelVariable
+	dec (hl)
+	ld a,(hl)
+	and %01111111
+	ld hl,wChannelLoopPointers
+	call nz,loadHLIntoAddressPointer
+	jp _doNextChannelCommand
+
+;;
+; endSec
+_channelCmdfa:
+	ld hl,wChannelAddressPointers
+	call loadHLIntoAddressPointer
+	jp _doNextChannelCommand
+
+;; transpose
+_channelCmdfb:
+	call _getNextChannelByte
+	ld hl,wChannelTranspose
+	call loadChannelVariable
+	ld (hl),a
+	jp _doNextChannelCommand
+
+; [hl] : Channel Variable to set hl to
+loadChannelVariable:
 	push af
 	ld a,(wSoundChannel)
 	ld e,a
@@ -736,6 +834,11 @@ _getChannelVarInHL:
 	add hl,de
 	pop af
 	ret
+
+channels6And7:
+	call _getNextChannelByte
+	jp _doNextChannelCommand
+
 ;;
 ; Vibrato
 ;
@@ -1734,7 +1837,16 @@ _setWaveform:
 	ld ($ff00+R_NR34),a
 	ret
 
+;goto
 _channelCmdfe:
+	ld hl,wChannelAddressPointers
+	call loadAddressPointerIntoHL
+	inc de
+	inc de
+	ld (hl),d
+	dec l
+	ld (hl),e
+
 	call _getNextChannelByte
 	ld l,a
 	call _getNextChannelByte
@@ -1997,16 +2109,20 @@ _playSound:
 
 	ld hl,_soundPointers
 	add hl,de
+; Wrapping this in a BUILD_VANILLA check because: A) it's unused, B) it can cause problems
+; if audio data gets placed into an unexpected bank (which WLA could decide to do).
+.ifdef BUILD_VANILLA
 	ld a,(hl)
 	and $80
-	jr z,+
+	jr z,@skipWeirdCall
 
 	; What were the programmers on? Clearly this part of the code is unused
 	call _noiseFrequencyTable
 
 	jp @setVolumeAndEnd
+@skipWeirdCall
+.endif
 
-+
 	ldi a,(hl)
 	ld c,a
 	ldh a,(<hSoundDataBaseBank)
@@ -2105,6 +2221,10 @@ _playSound:
 	ld d,$00
 	add hl,de
 	ld (hl),a
+	ld hl,wChannelTranspose
+	ld d,$00
+	add hl,de
+	ld (hl),a
 	jr ++
 
 @squareChannel:
@@ -2138,6 +2258,10 @@ _playSound:
 	add hl,de
 	ld (hl),a
 	ld hl,wc039
+	ld d,$00
+	add hl,de
+	ld (hl),a
+	ld hl,wChannelTranspose
 	ld d,$00
 	add hl,de
 	ld (hl),a
@@ -2446,20 +2570,29 @@ _waveformTable:
 	.include "audio/ages/soundChannelPointers.s"
 	.include "audio/ages/soundPointers.s"
 
-	.ifdef BUILD_VANILLA
-	.ORGA $59ff
-	.endif
+	;.ifdef BUILD_VANILLA
+	;.ORGA $59ff
+	;.endif
+	.ends ; End of section AudioCode
 
 	.include "audio/ages/soundChannelData.s"
+
+	.ifdef BUILD_VANILLA
+		.db $ff $ff $ff
+	.endif
 
 .else; ROM_SEASONS
 	.include "audio/seasons/soundChannelPointers.s"
 	.include "audio/seasons/soundPointers.s"
 
-	.ifdef BUILD_VANILLA
-	.ORGA $5a86
-	.endif
+	;.ifdef BUILD_VANILLA
+	;.ORGA $5a86
+	;.endif
+	.ends ; End of section AudioCode
 
 	.include "audio/seasons/soundChannelData.s"
 
+	.ifdef BUILD_VANILLA
+		.dsb 10 $ff
+	.endif
 .endif

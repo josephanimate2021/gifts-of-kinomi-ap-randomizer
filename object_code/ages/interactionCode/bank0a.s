@@ -8307,7 +8307,7 @@ interactionCode95:
 	jr z,@subid2
 
 	dec a
-	ld bc,$4a3c
+	ld bc,$6a3c
 	jr z,+
 	ld c,$75
 +

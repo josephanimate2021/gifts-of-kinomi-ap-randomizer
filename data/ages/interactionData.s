@@ -561,7 +561,7 @@ interactione0SubidData:
 	m_InteractionData $67 $80 $00
 interaction47SubidData:
 	m_InteractionData $7c $00 $50		;seed satchel $79 $14 $10
-	m_InteractionData $78 $02 $59
+	m_InteractionData $78 $02 $59		;heart		  $78 $02 $59
 	m_InteractionData $79 $12 $52		;heart container
 	m_InteractionData $7d $06 $00
 	m_InteractionData $78 $10 $40
