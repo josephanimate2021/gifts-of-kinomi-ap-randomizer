@@ -4988,6 +4988,7 @@ getRupeeValue:
 	.dw $0900 ; $12
 	.dw $0080 ; $13
 	.dw $0999 ; $14
+	.dw $0777 ; $15
 
 ;;
 ; @param	a	Seed type to decrement

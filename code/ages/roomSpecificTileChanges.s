@@ -131,7 +131,7 @@ roomTileChangerCodeGroup2Data:
   ;.db $0e $15
   .db $90 $2b
   .db $9e $2f
-  ;.db $7e $02
+  .db $7e $02
   .db $00
 roomTileChangerCodeGroup3Data:
   .db $00
@@ -249,8 +249,10 @@ tileReplacement_group4Map1b:
 ; already bought everything.
 tileReplacement_group2Map7e:
   ld a,(wBoughtShopItems1)
-  and $0f
-  cp $0f
+  ;and $0f
+  ;cp $0f
+  and $4f
+  cp $4f
   ret nz
 
   ld hl,@data

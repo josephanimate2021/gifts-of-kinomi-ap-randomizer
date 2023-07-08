@@ -7777,8 +7777,8 @@ miscPuzzles_eyeglassLibraryOpeningScript:
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
 	playsound SND_DOORCLOSE
-	settileat $43, TILEINDEX_DUNGEON_DOOR_1
-	settileat $44, TILEINDEX_DUNGEON_DOOR_2
+	settileat $43, $dd ; special cave opening
+	;settileat $44, TILEINDEX_DUNGEON_DOOR_2
 	scriptjump _miscPuzzles_justOpenedKeyDoor
 
 

@@ -382,29 +382,29 @@ shopkeeperScript_boughtEverything:
 
 shopkeeperScript_purchaseItem:
 	jumptable_objectbyte Interaction.var37
-	.dw @buyUpgradeableItem
-	.dw @buy3Hearts
-	.dw @buyHiddenShopGashaSeed1
-	.dw @buyL1Shield
-	.dw @buy10Bombs
-	.dw @buyHiddenShopOtherItem
-	.dw @buyHiddenShopGashaSeed2
-	.dw @buyUpgradeableItem
-	.dw @buyUpgradeableItem
-	.dw @buyUpgradeableItem
-	.dw @buyUpgradeableItem
-	.dw @buyUpgradeableItem
-	.dw @buyUpgradeableItem
-	.dw @buyStrangeFlute
-	.dw @buyAdvanceShopGashaSeed
-	.dw @buyAdvanceShopGbaRing
-	.dw @buyAdvanceShopRing
-	.dw @buyL2Shield
-	.dw @buyL3Shield
-	.dw @buyNormalShopGashaSeed
+	/* $00 */ .dw @buyUpgradeableItem
+	/* $01 */ .dw @buy3Hearts
+	/* $02 */ .dw @haveSecondUpgradeableItem;@buyHiddenShopGashaSeed1
+	/* $03 */ .dw @buyL1Shield
+	/* $04 */ .dw @buy10Bombs
+	/* $05 */ .dw @buyHiddenShopOtherItem
+	/* $06 */ .dw @buyUpgradeableItem2;@buyHiddenShopGashaSeed2
+	/* $07 */ .dw @buyMagicPotion
+	/* $08 */ .dw @haveSecondUpgradeableItem2
+	/* $09 */ .dw @buyMagicPotion
+	/* $0a */ .dw @buyUpgradeableItem
+	/* $0b */ .dw @buyUpgradeableItem
+	/* $0c */ .dw @buyUpgradeableItem
+	/* $0d */ .dw @buyStrangeFlute
+	/* $0e */ .dw @buyAdvanceShopGashaSeed
+	/* $0f */ .dw @buyAdvanceShopGbaRing
+	/* $10 */ .dw @buyAdvanceShopRing
+	/* $11 */ .dw @buyL2Shield
+	/* $12 */ .dw @buyL3Shield
+	/* $13 */ .dw @buyNormalShopGashaSeed
 .ifdef ROM_AGES
-	.dw @buyUpgradeableItem
-	.dw @buyHiddenShopHeartPiece
+	/* $14 */ .dw @buyUpgradeableItem
+	/* $15 */ .dw @buyHiddenShopHeartPiece
 .endif
 
 ; Ring box upgrade (ages) or satchel upgrade (seasons)
@@ -412,13 +412,14 @@ shopkeeperScript_purchaseItem:
 .ifdef ROM_AGES
 	jumpifitemobtained TREASURE_SEED_SATCHEL, @haveUpgradeableItem
 
-	; No ring box, can't buy
+	; No satchel, can't buy
 	showtextlowindex <TX_0e0b
 	writeobjectbyte Interaction.var3a, $ff
 	scriptend
 .endif
 
 @haveUpgradeableItem:
+;	jumpifc6xxset <wSeedSatchelLevel $02 @haveSecondUpgradeableItem
 .ifdef ROM_AGES
 	showtextnonexitablelowindex <TX_0e09
 .else; ROM_SEASONS
@@ -427,6 +428,26 @@ shopkeeperScript_purchaseItem:
 	callscript _shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $01
 	scriptend
+
+@haveSecondUpgradeableItem:
+	showtextnonexitablelowindex <TX_0e0a
+	callscript _shopkeeperConfirmPurchase
+	ormemory wBoughtShopItems1, $02
+	scriptend	
+
+@buyUpgradeableItem2:
+;	jumpifc6xxset <wSlingshotLevel $01 @haveSecondUpgradeableItem2
+	showtextnonexitablelowindex <TX_0e2c
+	callscript _shopkeeperConfirmPurchase
+	ormemory wBoughtShopItems1, $04
+	scriptend
+
+@haveSecondUpgradeableItem2:
+	showtextnonexitablelowindex <TX_0e2d
+	callscript _shopkeeperConfirmPurchase
+	ormemory wBoughtShopItems1, $08
+	scriptend
+
 
 @buy3Hearts:
 	showtextnonexitablelowindex <TX_0e02
@@ -447,6 +468,12 @@ shopkeeperScript_purchaseItem:
 	showtextnonexitablelowindex <TX_0e1d
 	callscript _shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $02
+	scriptend
+
+@buyMagicPotion:
+	showtextnonexitablelowindex <TX_0e2e
+	callscript _shopkeeperConfirmPurchase
+	ormemory wBoughtShopItems2, $10
 	scriptend
 
 ; A ring (ages) or treasure map (seasons)
@@ -516,7 +543,7 @@ shopkeeperScript_purchaseItem:
 @buyHiddenShopHeartPiece:
 	showtextnonexitablelowindex <TX_0e01
 	callscript _shopkeeperConfirmPurchase
-	ormemory wBoughtShopItems2, $40
+	ormemory wBoughtShopItems1, $40
 	scriptend
 .endif
 
@@ -709,7 +736,7 @@ shopkeeperScript_openedCorrectChest:
 
 	; Selected no; get round 3 prize
 	showtextlowindex <TX_0e14
-	writeobjectbyte Interaction.var3f, $03 ; Tier 3 ring
+	writeobjectbyte Interaction.var3f, RUPEEVAL_100 ; Tier 3 ring
 	callscript _shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
@@ -720,7 +747,7 @@ shopkeeperScript_openedCorrectChest:
 
 	; Selected no; get round 4 prize
 	showtextlowindex <TX_0e14
-	writeobjectbyte Interaction.var3f, $02 ; Tier 2 ring
+	writeobjectbyte Interaction.var3f, RUPEEVAL_200 ; Tier 2 ring
 	callscript _shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
@@ -728,7 +755,7 @@ shopkeeperScript_openedCorrectChest:
 @round5:
 	; Get round 5 prize
 	showtextlowindex <TX_0e16
-	writeobjectbyte Interaction.var3f, $01 ; Tier 1 ring
+	writeobjectbyte Interaction.var3f, RUPEEVAL_500 ; Tier 1 ring
 	callscript _shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend

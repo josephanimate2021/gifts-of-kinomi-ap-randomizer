@@ -11,7 +11,7 @@ groups:
     - 0x01
     text: |-
       You got \col(1)1 Rupee\col(0)!
-      That sucks!
+      Too bad!
 
   - name: TX_0002
     index: 0x02
@@ -1073,6 +1073,100 @@ groups:
     text: |-
       You found the
       \col(4)Spring Stone\col(0)!
+
+  - name: TX_0089
+    index: 0x89
+    text: |-
+      You got
+      \col(1)2 Rupees\col(0)!
+      ...
+
+  - name: TX_008a
+    index: 0x8a
+    text: |-
+      You got
+      \col(1)40 Rupees\col(0)!
+      That's not bad.
+
+  - name: TX_008b
+    index: 0x8b
+    text: |-
+      You got
+      \col(1)60 Rupees\col(0)!
+      You're thrilled!
+
+  - name: TX_008c
+    index: 0x8c
+    text: |-
+      You got
+      \col(1)70 Rupees\col(0)!
+      You're thrilled!
+
+  - name: TX_008d
+    index: 0x8d
+    text: |-
+      You got
+      \col(1)25 Rupees\col(0)!
+      That's not bad.
+
+  - name: TX_008e
+    index: 0x8e
+    text: |-
+      You got
+      \col(1)400 Rupees\col(0)!
+      Your face is glowing!
+
+  - name: TX_008f
+    index: 0x8f
+    text: |-
+      You got
+      \col(1)300 Rupees\col(0)!
+      Your face is glowing!
+
+  - name: TX_0090
+    index: 0x90
+    text: |-
+      You got
+      \col(1)500 Rupees\col(0)!
+      You are overjoyed!
+
+  - name: TX_0091
+    index: 0x91
+    text: |-
+      You got
+      \col(1)900 Rupees\col(0)!
+      You are overjoyed!
+
+  - name: TX_0092
+    index: 0x92
+    text: |-
+      You got
+      \col(1)999 Rupees\col(0)!
+      Your wallet can't fit anymore!
+
+  - name: TX_0093
+    index: 0x93
+    text: |-
+      You got
+      \col(1)777 Rupees\col(0)!
+      What tremendous luck!
+
+  - name: TX_0094
+    index: 0x94
+    text: |-
+      You got the
+      \col(1)Slingshot\col(0)!
+      Choose your
+      \col(1)seeds\col(0) and
+      take aim!
+    
+  - name: TX_0095
+    index: 0x95
+    text: |-
+      You got the
+      \col(1)Hyper Slingshot\col(0)!
+      It shoots three
+      seeds at a time!
 
 - group: 0x01
   data:
@@ -6334,14 +6428,15 @@ groups:
       This satchel
       holds lots of
       \col(1)seeds\col(0). It's
-      300 Rupees.
-        \opt()OK \opt()No thanks
+      \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False
 
   - name: TX_0e0b
     index: 0x0b
     text: |-
       Oh! You don't
-      have a \col(1)Ring Box\col(0)!
+      have a \col(1)Satchel\col(0)!
       Then I can't
       help you!
 
@@ -6489,10 +6584,10 @@ groups:
     - 0x1e
     - 0x1f
     text: |-
-      Your gift is a
-      \col(1)ring\col(0), but what
-      kind of \col(1)ring\col(0) it
-      is is a secret.
+      Your gift is
+      \col(1)rupees\col(0), but how
+      much is granted
+      by your luck.
 
   - name: TX_0e20
     index: 0x20
@@ -6583,6 +6678,30 @@ groups:
     index: 0x2b
     text: |2-
         \opt()OK \opt()No thanks\cmd8(0x0f)
+
+  - name:
+    - TX_0e2c
+    - TX_0e2d
+    index:
+    - 0x2c
+    - 0x2d
+    text: |-
+      This slingshot
+      can shoot lots
+      of \col(1)seeds\col(0). It's
+       \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False
+
+  - name: TX_0e2e
+    index: 0x2e
+    text: |-
+      \col(1)Magic Potion\col(0).
+      Can reverse the fall of a hero.
+       \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False    
+
 
 - group: 0x0f
   data:

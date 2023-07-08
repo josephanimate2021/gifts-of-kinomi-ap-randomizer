@@ -125,7 +125,7 @@ wChannelVolumes: ; $c07d
 wChannelAddressPointers: ;$cddb/$cc3b
 	dsw 8
 wChannelTranspose: ; $c08d
-	dsb 5
+	dsb 6
 wChannelLoopCounters: ; $c093
 	dsb 8
 
@@ -760,6 +760,9 @@ wTuniNutState: ; $c6c2
 ; 1: not in inventory (doing patch's game)
 ; 2: fixed (only within Link's inventory?)
 	db
+wSlingshotLevel
+	.db
+
 wNumSlates: ; $c6c3
 ; Slates used only in ages dungeon 8
 	db

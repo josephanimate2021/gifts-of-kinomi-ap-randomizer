@@ -17,6 +17,7 @@ theGreatPalaceChannel1:
 	beat a E2 g Q r Q
 
 theGreatPalaceChannel1Loop:
+	transpose 0
 	env $0 $05
 beginLoop 2
 ; Measure 3b,7b
@@ -98,6 +99,7 @@ theGreatPalaceChannel0:
 	beat d E2 d Q
 
 theGreatPalaceChannel0Loop:
+	transpose 0
 ; Measure 3-10
 	env $0 $06
 beginLoop 4
@@ -157,6 +159,7 @@ theGreatPalaceChannel4:
 	beat r E1 g E2 g E1 r E2
 
 theGreatPalaceChannel4Loop:
+	transpose 0
 ; Measure 3-10
 beginLoop 8
 	goto theGreatPalaceChannel4Measure3

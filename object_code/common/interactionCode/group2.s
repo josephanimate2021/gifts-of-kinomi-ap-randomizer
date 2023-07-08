@@ -335,6 +335,7 @@ _shopkeeperState4:
 	or a
 	jr z,@notRing
 
+/*
 	ld c,a
 	xor a
 	ld (de),a
@@ -342,9 +343,13 @@ _shopkeeperState4:
 	ld b,c
 	ld c,$00
 	call giveRingToLink
+*/
+	ld c,a
+	ld a,TREASURE_RUPEES
+	call giveTreasure
 
-	ld a,$01
-	ld (wDisabledObjects),a
+	;ld a,$01
+	;ld (wDisabledObjects),a
 	jr _shopkeeperGotoState1
 
 @notRing:
@@ -547,7 +552,7 @@ _shopkeeperGetItemPrice:
 	ld a,(hl)
 	call cpRupeeValue
 	ld (wShopHaveEnoughRupees),a
-	ld ($cbad),a
+	ld (wcbad),a
 	ld hl,wTextNumberSubstitution
 	ld (hl),c
 	inc l
@@ -709,9 +714,9 @@ _shopItemState0:
 	jr nc,++
 
 	ld a,(wSeedSatchelLevel)
-	or a
+	dec a
 	jr z,++
-	ld a,$14
+	ld a,$02
 	ld (de),a
 ++
 	; If this is 10 bombs, delete self if Link doesn't have bombs
@@ -723,15 +728,6 @@ _shopItemState0:
 	jp nc,_shopItemPopStackAndDeleteSelf
 	jr @checkFlutePurchasable
 ++
-	ld a,(de)
-	cp $02
-	jr nz,++
-	ld a,(wLinkMaxHealth)
-	cp $3c
-	jr c,++
-	ld a,(wNumHeartPieces)
-	or a
-	jp nz,interactionDelete
 .else
 	ld a,TREASURE_SWORD
 	call checkTreasureObtained
@@ -990,12 +986,16 @@ _shopItemState3:
 +
 	call giveTreasure
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld e,Interaction.subid
 	ld a,(de)
 	or a
+	jr nz,+
+	call refillSeedSatchel
++
+	cp $02
 	call z,refillSeedSatchel
-.endif
+;.endif
 
 	ld e,Interaction.state
 	ld a,$05
@@ -1094,29 +1094,29 @@ _shopItemGetTilesForRupeeDisplay:
 	ret
 
 @itemPricePositions:
-	.dw w3VramTiles+$66
-	.dw w3VramTiles+$6f
-	.dw w3VramTiles+$6a
-	.dw w3VramTiles+$6c
-	.dw w3VramTiles+$69
-	.dw w3VramTiles+$6e
-	.dw w3VramTiles+$6a
-	.dw w3VramTiles+$68
-	.dw w3VramTiles+$6d
-	.dw w3VramTiles+$6b
-	.dw w3VramTiles+$6f
-	.dw w3VramTiles+$67
-	.dw $ffff
-	.dw w3VramTiles+$6f
-	.dw w3VramTiles+$67
-	.dw w3VramTiles+$6b
-	.dw w3VramTiles+$6f
-	.dw w3VramTiles+$6c
-	.dw w3VramTiles+$6c
-	.dw w3VramTiles+$6c
+	.dw w3VramTiles+$66 ; $00
+	.dw w3VramTiles+$6f ; $01
+	.dw w3VramTiles+$66;$6a ; $02
+	.dw w3VramTiles+$6c ; $03
+	.dw w3VramTiles+$69 ; $04
+	.dw w3VramTiles+$6e ; $05
+	.dw w3VramTiles+$6a ; $06
+	.dw w3VramTiles+$68 ; $07
+	.dw w3VramTiles+$6a;$6d ; $08
+	.dw w3VramTiles+$6e;$6b ; $09
+	.dw w3VramTiles+$6f ; $0a
+	.dw w3VramTiles+$68;$67 ; $0b
+	.dw $ffff			; $0c
+	.dw w3VramTiles+$6f ; $0d
+	.dw w3VramTiles+$67 ; $0e
+	.dw w3VramTiles+$6b ; $0f
+	.dw w3VramTiles+$6f ; $10
+	.dw w3VramTiles+$6c ; $11
+	.dw w3VramTiles+$6c ; $12
+	.dw w3VramTiles+$6c ; $13
 .ifdef ROM_AGES
-	.dw w3VramTiles+$66
-	.dw w3VramTiles+$6f	;$6e
+	.dw w3VramTiles+$66 ; $14
+	.dw w3VramTiles+$6e ; $15
 .endif
 
 shopItemPrices:
@@ -1130,12 +1130,12 @@ shopItemPrices:
 .else
 	/* $05 */ .db RUPEEVAL_200
 .endif
-	/* $06 */ .db RUPEEVAL_500
+	/* $06 */ .db RUPEEVAL_400
 	/* $07 */ .db RUPEEVAL_300
-	/* $08 */ .db RUPEEVAL_300
+	/* $08 */ .db RUPEEVAL_500
 	/* $09 */ .db RUPEEVAL_300
 	/* $0a */ .db RUPEEVAL_300
-	/* $0b */ .db RUPEEVAL_100
+	/* $0b */ .db RUPEEVAL_080
 	/* $0c */ .db RUPEEVAL_010
 	/* $0d */ .db RUPEEVAL_150
 	/* $0e */ .db RUPEEVAL_100
@@ -1145,8 +1145,8 @@ shopItemPrices:
 	/* $12 */ .db RUPEEVAL_080
 	/* $13 */ .db RUPEEVAL_030
 .ifdef ROM_AGES
-	/* $14 */ .db RUPEEVAL_300
-	/* $15 */ .db RUPEEVAL_080
+	/* $14 */ .db RUPEEVAL_200
+	/* $15 */ .db RUPEEVAL_200
 .endif
 
 ;;
@@ -1197,7 +1197,7 @@ shopItemTreasureToGive:
 	/* $00 */ .db  TREASURE_SEED_SATCHEL  $01
 .endif
 	/* $01 */ .db  TREASURE_HEART_REFILL  $0c
-	/* $02 */ .db  TREASURE_HEART_CONTAINER    $04
+	/* $02 */ .db  TREASURE_SEED_SATCHEL    $02
 	/* $03 */ .db  TREASURE_SHIELD        $01
 	/* $04 */ .db  TREASURE_BOMBS         $10
 .ifdef ROM_AGES
@@ -1205,9 +1205,9 @@ shopItemTreasureToGive:
 .else
 	/* $05 */ .db  TREASURE_TREASURE_MAP  $01
 .endif
-	/* $06 */ .db  TREASURE_GASHA_SEED    $01
+	/* $06 */ .db  TREASURE_SLINGSHOT     $01 ;TREASURE_GASHA_SEED    $01
 	/* $07 */ .db  TREASURE_POTION        $01
-	/* $08 */ .db  TREASURE_GASHA_SEED    $01
+	/* $08 */ .db  TREASURE_SLINGSHOT     $02 ;TREASURE_GASHA_SEED $01
 	/* $09 */ .db  TREASURE_POTION        $01
 	/* $0a */ .db  TREASURE_GASHA_SEED    $01
 	/* $0b */ .db  TREASURE_BOMBCHUS      $05
@@ -1238,18 +1238,18 @@ shopItemTreasureToGive:
 ;   b2: Item to sell if the first one is unavailable (or $ff to sell nothing)
 ;   b3: Value to add to x position if the first item was sold out
 _shopItemReplacementTable:
-	/* $00 */ .db <wBoughtShopItems1  $01 $ff $00
+	/* $00 */ .db <wBoughtShopItems1  $01 $02 $00 ; sell 2nd satchel
 	/* $01 */ .db <wBoughtShopItems2  $08 $0d $04
-	/* $02 */ .db <wLinkMaxHealth     $40 $ff $00
+	/* $02 */ .db <wBoughtShopItems1  $02 $ff $00
 	/* $03 */ .db <wShieldLevel       $02 $11 $00
 	/* $04 */ .db <wBoughtShopItems1  $00 $ff $00
-	/* $05 */ .db <wBoughtShopItems1  $08 $ff $00
-	/* $06 */ .db <wBoughtShopItems1  $04 $ff $00
-	/* $07 */ .db <wBoughtShopItems2  $10 $09 $18
-	/* $08 */ .db <wBoughtShopItems2  $10 $0a $10
-	/* $09 */ .db <wBoughtShopItems1  $00 $ff $00
-	/* $0a */ .db <wBoughtShopItems1  $40 $ff $00
-	/* $0b */ .db <wBoughtShopItems2  $20 $ff $00
+	/* $05 */ .db <wBoughtShopItems1  $00 $ff $00
+	/* $06 */ .db <wBoughtShopItems1  $04 $08 $00 ; slingshot
+	/* $07 */ .db <wBoughtShopItems2  $00 $09 $18 ; $10 $09 $18
+	/* $08 */ .db <wBoughtShopItems1  $08 $ff $10 ; 2nd slingshot
+	/* $09 */ .db <wBoughtShopItems1  $10 $ff $00
+	/* $0a */ .db <wBoughtShopItems2  $08 $ff $00
+	/* $0b */ .db <wNumBombchus		  $99 $ff $00
 	/* $0c */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $0d */ .db <wBoughtShopItems2  $00 $ff $00
 	/* $0e */ .db <wBoughtShopItems2  $01 $ff $00
@@ -1259,8 +1259,8 @@ _shopItemReplacementTable:
 	/* $12 */ .db <wShieldLevel       $00 $ff $00
 	/* $13 */ .db <wBoughtShopItems1  $20 $03 $00
 .ifdef ROM_AGES
-	/* $14 */ .db <wBoughtShopItems1  $01 $ff $00
-	/* $15 */ .db <wLinkMaxHealth  	  $40 $ff $00
+	/* $14 */ .db <wBoughtShopItems1  $01 $02 $00
+	/* $15 */ .db <wBoughtShopItems1  $40 $ff $00
 .endif
 
 
@@ -1272,7 +1272,7 @@ _shopItemTextTable:
 	/* $00 */ .db <TX_0046
 .endif
 	/* $01 */ .db <TX_004c
-	/* $02 */ .db <TX_0016	;4b
+	/* $02 */ .db <TX_0080	;4b
 	/* $03 */ .db <TX_001f
 	/* $04 */ .db <TX_004d
 .ifdef ROM_AGES
@@ -1280,9 +1280,9 @@ _shopItemTextTable:
 .else
 	/* $05 */ .db <TX_006c
 .endif
-	/* $06 */ .db <TX_004b
+	/* $06 */ .db <TX_0094
 	/* $07 */ .db <TX_006d
-	/* $08 */ .db <TX_004b
+	/* $08 */ .db <TX_0095
 	/* $09 */ .db <TX_006d
 	/* $0a */ .db <TX_004b
 	/* $0b */ .db <TX_0032
@@ -1295,7 +1295,7 @@ _shopItemTextTable:
 	/* $12 */ .db <TX_0021
 	/* $13 */ .db <TX_004b
 .ifdef ROM_AGES
-	/* $14 */ .db <TX_0059
+	/* $14 */ .db <TX_0080
 	/* $15 */ .db <TX_0017
 .endif
 

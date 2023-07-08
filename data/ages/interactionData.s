@@ -303,14 +303,14 @@ interaction63SubidData:
 	m_InteractionData $7e $02 $33
 	m_InteractionData $81 $14 $43
 	m_InteractionData $79 $16 $43
-	m_InteractionData $78 $04 $00
-	m_InteractionData $78 $04 $10
-	m_InteractionData $78 $04 $20
-	m_InteractionData $78 $06 $40
-	m_InteractionData $78 $06 $50
-	m_InteractionData $78 $08 $43
-	m_InteractionData $78 $08 $53
-	m_InteractionData $00 $00 $00 ; fairy powder?
+	m_InteractionData $78 $04 $00 ; $28 Small Green Rupee
+	m_InteractionData $78 $04 $10 ; $29 Small Blue Rupee
+	m_InteractionData $78 $04 $20 ; $2a Small Red Rupee
+	m_InteractionData $78 $06 $40 ; $2b Blue Rupee
+	m_InteractionData $78 $06 $50 ; $2c Red Rupee
+	m_InteractionData $78 $08 $43 ; $2d Big Blue Rupee
+	m_InteractionData $78 $08 $53 ; $2e Big Red Rupee
+	m_InteractionData $00 $00 $00 ; $2f
 	m_InteractionData $79 $00 $00 ; $30
 	m_InteractionData $79 $04 $53
 	m_InteractionData $79 $04 $00
@@ -336,7 +336,7 @@ interaction18SubidData:
 	m_InteractionData $7a $0e $50
 	m_InteractionData $7a $10 $20
 	m_InteractionData $7a $12 $50
-	m_InteractionData $7a $12 $40 ; $40
+	m_InteractionData $7a $12 $40 ; $47
 	m_InteractionData $7a $14 $00
 	m_InteractionData $82 $14 $33
 	m_InteractionData $82 $08 $53
@@ -345,7 +345,7 @@ interaction18SubidData:
 	m_InteractionData $82 $0e $12
 	m_InteractionData $82 $04 $53
 	m_InteractionData $83 $12 $0d
-	m_InteractionData $75 $1c $30
+	m_InteractionData $75 $1c $30 ; $50
 	m_InteractionData $81 $0c $13
 	m_InteractionData $7a $16 $03
 	m_InteractionData $82 $1a $50
@@ -362,7 +362,7 @@ interaction18SubidData:
 	m_InteractionData $00 $00 $00
 interactiond7SubidData:
 	m_InteractionData $83 $12 $0d
-	m_InteractionData $7f $00 $13
+	m_InteractionData $7f $00 $13 ; $60
 	m_InteractionData $7f $04 $02
 	m_InteractionData $7f $06 $32
 	m_InteractionData $7f $08 $22
@@ -378,7 +378,7 @@ interactiond7SubidData:
 	m_InteractionData $00 $00 $00
 	m_InteractionData $00 $00 $00
 	m_InteractionData $00 $00 $00
-	m_InteractionData $80 $00 $53
+	m_InteractionData $80 $00 $53 ; $70
 	m_InteractionData $80 $04 $22	;life potion
 	m_InteractionData $80 $06 $03	;ghastly doll
 	m_InteractionData $80 $0a $33	;life potion(?)
@@ -397,10 +397,13 @@ interactiond7SubidData:
 	m_InteractionData OBJGFXH_84 $04 $40 ; $7f (Magic Boomerang)
 	m_InteractionData OBJGFXH_7d $1a $50 ; $80 (Roc's Cape)
 ; jewels/stones
-	m_InteractionData OBJGFXH_82 $00 $10
-	m_InteractionData OBJGFXH_82 $02 $20
-	m_InteractionData OBJGFXH_82 $04 $30
-	m_InteractionData OBJGFXH_82 $06 $00
+	m_InteractionData OBJGFXH_82 $00 $10 ; $81
+	m_InteractionData OBJGFXH_82 $02 $20 ; $82
+	m_InteractionData OBJGFXH_82 $04 $30 ; $83
+	m_InteractionData OBJGFXH_82 $06 $00 ; $84
+
+	m_InteractionData $57 $04 $00 ; $85 Green Rupee
+	m_InteractionData $57 $06 $03 ; $86 Big Green Rupee
 
 interaction1bSubidData:
 	m_InteractionData $74 $10 $00
@@ -562,13 +565,13 @@ interactione0SubidData:
 interaction47SubidData:
 	m_InteractionData $7c $00 $50		;seed satchel $79 $14 $10
 	m_InteractionData $78 $02 $59		;heart		  $78 $02 $59
-	m_InteractionData $79 $12 $52		;heart container
+	m_InteractionData $7c $00 $50 ; 2nd seed satchel ;$79 $12 $52 ;heart container
 	m_InteractionData $7d $06 $00
 	m_InteractionData $78 $10 $40
 	m_InteractionData $79 $08 $00
-	m_InteractionData $79 $0a $10
+	m_InteractionData $7c $02 $40 ;slingshot ;$79 $0a $10
 	m_InteractionData $79 $00 $23
-	m_InteractionData $79 $0a $10
+	m_InteractionData $7c $04 $50 ;hyper slingshot ;$79 $0a $10
 	m_InteractionData $79 $00 $23
 	m_InteractionData $79 $0a $10
 	m_InteractionData $7e $00 $50

@@ -30,8 +30,9 @@
 	RUPEEVAL_900	db ; $12
 	RUPEEVAL_080	db ; $13
 	RUPEEVAL_999	db ; $14
+	RUPEEVAL_777	db ; $15
 
-	RUPEEVAL_COUNT	db ; $15
+	RUPEEVAL_COUNT	db ; $16
 
 .ende
 

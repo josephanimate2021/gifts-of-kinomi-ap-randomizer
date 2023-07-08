@@ -655,8 +655,6 @@ group1Map53EnemyObjectData:
 	obj_EndPointer
 
 group1Map44EnemyObjectData:
-	obj_SpecificEnemyA $00 $09 $00 $38 $48
-	obj_SpecificEnemyA     $09 $00 $48 $78
 	obj_EndPointer
 
 group1Map54EnemyObjectData:
@@ -2517,7 +2515,7 @@ group5Map15EnemyObjectData:
 	obj_EndPointer
 
 group0Map77EnemyObjectData:
-	obj_RandomEnemy $80 $24 $00
+	obj_RandomEnemy $a0 $24 $00
 	obj_EndPointer
 
 group3Map09EnemyObjectData:

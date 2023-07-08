@@ -653,12 +653,9 @@ _interactiondc_subid19:
 	ret z
 
 	; Tile has changed
-	call getFreeInteractionSlot
-	ret nz
-	ld (hl),INTERACID_MISCELLANEOUS_2
-	inc l
-	ld (hl),$07 ; subid = 07
-
+	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
+	call _isHeartPieceOrRupee
+	call createTreasure
 	call objectCopyPosition
 	ld a,SND_SOLVEPUZZLE
 	call playSound
@@ -673,12 +670,28 @@ _interactiondc_subid1a:
 	or a
 	ret nz
 
-	ldbc, TREASURE_HEART_PIECE,$02 ; falls from screen-top
+	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
+	call _isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 	ld a,SND_SOLVEPUZZLE
 	call playSound
 	jp interactionDelete
+
+_isHeartPieceOrRupee:
+	ld e,Interaction.var03
+	ld a,(de)
+	sub $01
+	jr c,+
+
+	add b
+	ld c,a
+	ld b,TREASURE_RUPEES
+	ret
+
++	
+	ld b,TREASURE_HEART_PIECE
+	ret
 
 
 ; ==============================================================================
