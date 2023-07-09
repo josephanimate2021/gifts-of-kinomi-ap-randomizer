@@ -936,9 +936,9 @@ group0Map4dObjectData:
 	obj_End
 
 group0Map50ObjectData:
-	obj_Interaction $e1 $00 $18 $58
 	obj_Pointer group0Map50EnemyObjectData
 	obj_Interaction $e9 $01 $50 $50
+	obj_Interaction $e1 $00 $48 $58
 	obj_Interaction $e1 $00 $68 $88
 	obj_End
 
@@ -1001,10 +1001,10 @@ group0Map5dObjectData:
 
 group0Map60ObjectData:
 	obj_Pointer group0Map60EnemyObjectData
-	obj_Interaction $80 $01 $28 $8e
 	obj_Interaction $e1 $00 $38 $88
-	obj_Interaction $e1 $00 $68 $88
+	obj_Interaction $e1 $00 $58 $88
 	obj_Interaction $82 $01 $50 $38
+	obj_Interaction $e1 $00 $48 $48
 	obj_End
 
 group0Map62ObjectData:

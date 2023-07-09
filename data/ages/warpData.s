@@ -36,7 +36,7 @@ group0WarpDestTable:
 	m_WarpDest $40 $16 $0 $1
 	m_WarpDest $09 $37 $0 $1
 	m_WarpDest $70 $18 $0 $1
-	m_WarpDest $51 $01 $0 $1
+	m_WarpDest $52 $07 $0 $1
 	m_WarpDest $0b $41 $0 $1
 	m_WarpDest $0b $43 $0 $1
 	m_WarpDest $0b $27 $0 $1
@@ -152,8 +152,10 @@ group0WarpDestTable:
 	m_WarpDest $20 $61 $0 $1
 	m_WarpDest $35 $37 $0 $1
 	m_WarpDest $16 $61 $0 $1
-	m_WarpDest $00 $00 $0 $1
+	m_WarpDest $60 $24 $0 $1
 	m_WarpDest $74 $31 $0 $1
+	m_WarpDest $00 $00 $0 $1
+	m_WarpDest $00 $00 $0 $1
 
 group1WarpDestTable:
 	m_WarpDest $48 $21 $0 $1
@@ -297,7 +299,7 @@ group2WarpDestTable:
 	m_WarpDest $ee $ff $9 $3
 	m_WarpDest $29 $ff $0 $3
 	m_WarpDest $f3 $ff $9 $3
-	m_WarpDest $35 $8b $0 $1
+	m_WarpDest $29 $ff $0 $3
 	m_WarpDest $f5 $ff $9 $3
 	m_WarpDest $f6 $ff $9 $3
 	m_WarpDest $f7 $ff $9 $3
@@ -319,7 +321,7 @@ group2WarpDestTable:
 	m_WarpDest $1a $16 $0 $1
 	m_WarpDest $1a $13 $0 $1
 	m_WarpDest $2a $ff $0 $3
-	m_WarpDest $00 $00 $0 $3
+	m_WarpDest $bf $ff $0 $3
 
 group3WarpDestTable:
 	m_WarpDest $0f $f4 $9 $3
@@ -850,7 +852,7 @@ group0WarpSources: ; $135ae
 	m_PointerWarp  $40 $60 group0Room60WarpSources
 	m_PointerWarp  $40 $51 group0Room51WarpSources
 	m_StandardWarp $00 $63 $15 $2 $4
-	m_StandardWarp $00 $52 $3c $2 $4
+	m_PointerWarp  $40 $52 group0Room52WarpSources
 	m_StandardWarp $00 $73 $5a $4 $2
 	m_StandardWarp $00 $33 $5d $4 $4
 	m_StandardWarp $00 $20 $5e $4 $2
@@ -869,6 +871,9 @@ group0WarpSources: ; $135ae
 	m_PointerWarp  $40 $74 group0Room74WarpSources
 	m_StandardWarp $00 $65 $53 $5 $2
 	m_WarpSourcesEnd
+group0Room52WarpSources:
+	m_PointedWarp $00 $33 $3e $2 $4
+	m_PointedWarp $80 $07 $54 $2 $4
 group0Room47WarpSources:
 	m_PointedWarp $00 $07 $58 $3 $4
 	m_PointedWarp $80 $56 $7a $5 $2
@@ -889,8 +894,8 @@ group0Room29WarpSources:
 group0Room51WarpSources:
 	m_PointedWarp $80 $01 $1e $2 $4
 group0Room60WarpSources:
-	m_PointedWarp $00 $58 $38 $2 $4
-	m_PointedWarp $80 $57 $50 $2 $4
+	m_PointedWarp $00 $57 $50 $2 $4
+	m_PointedWarp $80 $24 $86 $0 $4
 group0Room3aWarpSources:
 	m_PointedWarp $00 $68 $78 $0 $8
 	m_PointedWarp $80 $23 $35 $3 $4
