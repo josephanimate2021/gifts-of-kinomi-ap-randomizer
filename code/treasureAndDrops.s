@@ -749,7 +749,7 @@ loadTreasureDisplayData:
 	inc hl
 	jr -
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 +
 	cp ITEMID_SLINGSHOT
 	jr nz,+
@@ -758,7 +758,7 @@ loadTreasureDisplayData:
 	jr nz,+
 	inc a
 	rst_addAToHl
-.endif
+;.endif
 +
 	ldi a,(hl)
 	ld e,(hl)

@@ -4760,6 +4760,19 @@ groups:
     text: |-
       east in spring.
 
+  - name: TX_0973
+    index: 0x73
+    text: |-
+      Slingshot
+      Used to shoot
+      seeds.
+
+  - name: TX_0974
+    index: 0x74
+    text: |-
+      Hyper Slingshot
+      Shoots in three
+      directions.
 
 - group: 0x0a
   data:

@@ -1755,6 +1755,10 @@ interactionCode45:
 ; INTERACID_TOKAY
 ; ==============================================================================
 interactionCode48:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_LAYOUTSWAP,a
+	jp z,interactionDelete
+
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable

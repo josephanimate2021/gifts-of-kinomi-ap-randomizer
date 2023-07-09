@@ -1085,6 +1085,7 @@ group0Map71ObjectData:
 
 group0Map72ObjectData:
 	obj_Interaction $e9 $05 $40 $30
+	obj_Pointer group0Map72EnemyObjectData
 	obj_End
 
 group0Map73ObjectData:

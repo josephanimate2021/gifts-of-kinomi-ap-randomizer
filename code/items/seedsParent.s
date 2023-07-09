@@ -2,7 +2,7 @@
 ; ITEMID_SLINGSHOT ($13)
 ; @snaddr{4d25}
 _parentItemCode_slingshot:
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 	ld e,Item.state
 	ld a,(de)
 	rst_jumpTable
@@ -54,7 +54,7 @@ _parentItemCode_slingshot:
 	ld a,b
 	jp decNumActiveSeeds
 
-.endif ; ROM_SEASONS
+;.endif ; ROM_SEASONS
 
 
 ;;

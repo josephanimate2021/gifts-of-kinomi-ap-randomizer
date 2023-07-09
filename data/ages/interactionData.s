@@ -404,6 +404,9 @@ interactiond7SubidData:
 
 	m_InteractionData $57 $04 $00 ; $85 Green Rupee
 	m_InteractionData $57 $06 $03 ; $86 Big Green Rupee
+	m_InteractionData $7c $02 $40 ; $87 (Slingshot)
+	m_InteractionData $7c $04 $50 ; $88 (Hyper Slingshot)
+
 
 interaction1bSubidData:
 	m_InteractionData $74 $10 $00

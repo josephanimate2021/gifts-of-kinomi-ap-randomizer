@@ -3279,6 +3279,7 @@ _loadEquippedItemSpriteData:
 	; Comparion differs between ages/seasons. See the respective games'
 	; "spr_item_icons_1.bin". This comparison changes the palette used for the seed
 	; satchel, seed shooter, slingshot, and hyper slingshot.
+/*
 .ifdef ROM_AGES
 	cp $84
 .else; ROM_SEASONS
@@ -3289,6 +3290,20 @@ _loadEquippedItemSpriteData:
 	sub $03
 	or $01
 +
+*/
+	cp $8a
+	jr z,+
+	cp $86
+	jr c,+
+	ldi a,(hl)
+	jr @gotAttribute
++
+	ldi a,(hl)
+	sub $03
+	or $01
+	
+@gotAttribute:
+
 	; Store into [wItemSpriteAttribtue1]
 	set 3,a
 	ld (de),a
@@ -3762,7 +3777,7 @@ _loadItemIconGfx:
 	or a
 	jr z,@clear
 
-.ifdef ROM_AGES
+;.ifdef ROM_AGES
 	; Special behaviour for harp song icons: add 2 to the index so that the "smaller
 	; version" of the icon is drawn. (spr_item_icons_3.bin has two versions of each
 	; song)
@@ -3770,8 +3785,15 @@ _loadItemIconGfx:
 	jr c,+
 	add $02
 +
-.endif
+;.endif
 
+	cp $81
+	jr nz,+
+	ld a,(wSlingshotLevel)
+	cp $02
+	jr nz,+
+	inc b
++
 	add a
 	call multiplyABy16
 	ld hl,spr_item_icons_1
@@ -3956,6 +3978,13 @@ _inventoryMenuState0:
 	call loadCommonGraphics
 	ld a,GFXH_08
 	call loadGfxHeader
+
+	ld a,(wSlingshotLevel)
+	cp $02
+	jr nz,+
+	ld a,UNCMP_GFXH_HYPER_SLINGSHOT_INV
+	call loadUncompressedGfxHeader
++
 	ld a,UNCMP_GFXH_06
 	call loadUncompressedGfxHeader
 	ld a,PALH_0a
@@ -4076,18 +4105,16 @@ _inventoryMenuState1:
 	cp ITEMID_SEED_SATCHEL
 	jr z,@hasSubmenu
 
-.ifdef ROM_AGES
 	cp ITEMID_SHOOTER
 	jr z,@hasSubmenu
+
+	cp ITEMID_SLINGSHOT
+	jr z,@hasSubmenu
+
 
 	cp ITEMID_HARP
 	jr nz,@finalizeEquip
 	ld c,$e0
-
-.else; ROM_SEASONS
-	cp ITEMID_SLINGSHOT
-	jr nz,@finalizeEquip
-.endif
 
 @hasSubmenu:
 	ld a,(wSeedsAndHarpSongsObtained)
@@ -4389,16 +4416,17 @@ _inventoryMenuState2:
 	rst_addAToHl
 	ld a,(wInventory.selectedItem)
 
-.ifdef ROM_AGES
-	cp ITEMID_SHOOTER
-.else
-	cp ITEMID_SLINGSHOT
-.endif
 
-	ld a,$00
-	jr nz,+
-	ld a,$05
+	cp ITEMID_SHOOTER
+	jr z,+
+	cp ITEMID_SLINGSHOT
+	jr z,+
+
+	xor a
+	jr ++
 +
+	ld a,$05
+++
 	add (hl)
 	call _showItemText2
 	jp _func_02_5a35

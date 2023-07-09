@@ -802,7 +802,6 @@ group0WarpSources: ; $135ae
 	m_StandardWarp $00 $37 $55 $3 $4
 	m_PointerWarp  $40 $3d warpSource76f6
 	m_StandardWarp $00 $4d $09 $2 $4
-	m_StandardWarp $00 $53 $32 $2 $4
 	m_StandardWarp $00 $55 $1f $5 $2
 	m_StandardWarp $00 $58 $3b $2 $4
 	m_StandardWarp $00 $5d $37 $3 $4
@@ -844,7 +843,6 @@ group0WarpSources: ; $135ae
 	m_StandardWarp $00 $87 $29 $5 $2
 	m_StandardWarp $00 $85 $2d $5 $2
 	m_StandardWarp $00 $86 $3c $5 $2
-	m_StandardWarp $00 $50 $71 $0 $9
 	m_PointerWarp  $40 $30 group0Room30WarpSources
 	m_PointerWarp  $40 $70 group0Room70WarpSources
 	m_PointerWarp  $40 $40 group0Room40WarpSources
