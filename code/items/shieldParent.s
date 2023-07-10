@@ -6,6 +6,7 @@ _parentItemCode_shield:
 	jr nc,@deleteSelf
 
 	; Return if any other item is in use
+;	call checkReloadStatusBarGraphics
 	call _checkNoOtherParentItemsInUse
 	ret nz
 
@@ -20,6 +21,7 @@ _parentItemCode_shield:
 	ld a,$01
 	ld (de),a
 
+	call setStatusBarNeedsRefreshBit0
 	ld a,SND_SHIELD
 	call playSound
 

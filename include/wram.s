@@ -703,6 +703,8 @@ wFluteIcon: ; $c6b5/$c6af
 
 .ifdef ROM_AGES
 
+wSlingshotLevel
+	.db
 wSwitchHookLevel: ; $c6b6
 	db
 wSelectedHarpSong: ; $c6b7
@@ -739,6 +741,7 @@ wNumGaleSeeds: ; $c6bc/$c6b8
 	db
 wNumMysterySeeds: ; $c6bd/$c6b9
 	db
+
 wNumGashaSeeds: ; $c6be/$c6ba
 	db
 wEssencesObtained: ; $c6bf/$c6bb
@@ -760,8 +763,6 @@ wTuniNutState: ; $c6c2
 ; 1: not in inventory (doing patch's game)
 ; 2: fixed (only within Link's inventory?)
 	db
-wSlingshotLevel
-	.db
 
 wNumSlates: ; $c6c3
 ; Slates used only in ages dungeon 8

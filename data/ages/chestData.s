@@ -34,7 +34,7 @@ chestGroup2Data:
 	.db $14 $af $2b $01
 	.db $14 <ROOM_AGES_2f7 $2d $11
 	.db $16 <ROOM_AGES_2f7 $34 $01
-	.db $45 $be $2b $01
+	.db $45 $be $28 $0d
 	.db $22 <ROOM_AGES_2fc $28 $06
 	.db $15 <ROOM_AGES_2ce $34 $01
 	.db $34 <ROOM_AGES_2ec $2d $19

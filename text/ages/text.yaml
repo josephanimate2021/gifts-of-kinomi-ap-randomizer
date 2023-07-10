@@ -5745,7 +5745,7 @@ groups:
   - name: TX_0b12
     index: 0x12
     text: |-
-      \pos(2)That one looks about twice as powerful as your old sword,
+      \pos(2)That one looks about twice as powerful as your old wooden sword,
       but it looks like it can only take about \col(1)20 hits\col(0) before breaking.\stop
       Would you like to buy it for \col(3)80 rupees\col(0)?
       \opt()Yes \opt()No
@@ -6606,15 +6606,15 @@ groups:
     index: 0x20
     text: |-
       Welcome, sir...\stop
-      to the 100 Rupee
-      Advance Shop.
+      to the Great Sword
+      and Shield Shop.
       I'm amazed you
       found us! We're
       only found on
-      Game Boy
-      Advance!
+      this small
+      island!
       Everything is
-      100 Rupees.\stop
+      quite expensive.\stop
       Don't let our
       secret out!
 
@@ -6684,7 +6684,8 @@ groups:
     index: 0x2a
     text: |-
       \col(1)Mirror Shield\col(0)\stop
-       \num1 Rupees\n
+       \num1 Rupees
+      \jump(TX_0e2b)       
     null_terminator: False
 
   - name: TX_0e2b
@@ -6714,6 +6715,24 @@ groups:
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False    
+
+  - name: TX_0e2f
+    index: 0x2f
+    text: |-
+      \col(1)Noble Sword\col(0)\stop
+       \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False
+
+  - name: TX_0e30
+    index: 0x30
+    text: |-
+      \col(1)Great Sword\col(0)\stop
+       \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False
+
+
 
 
 - group: 0x0f

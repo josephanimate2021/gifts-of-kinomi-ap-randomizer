@@ -367,7 +367,7 @@ _parentItemCode_sword:
 
 breakSword:
 	ld a,(wSwordLevel)
-	sub $01
+	dec a
 	ret z
 
 	ld hl,wSwordBreakCounter
@@ -375,12 +375,9 @@ breakSword:
 	jr z,+
 	ret nc
 +
-	ld a,(hl)
-	inc a
+	ld a,$01
 	ld (wSwordLevel),a
-	ld hl,wStatusBarNeedsRefresh
-	set 0,(hl)
-	call wStatusBarNeedsRefresh
+	call setStatusBarNeedsRefreshBit0
 	ld a,SND_CLINK2
 	jp playSound
 

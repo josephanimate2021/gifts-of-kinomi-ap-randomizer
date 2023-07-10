@@ -279,7 +279,7 @@ interaction63SubidData:
 	m_InteractionData $79 $0a $10
 	m_InteractionData $79 $08 $00
 	m_InteractionData $00 $00 $00
-	m_InteractionData $7d $00 $00 ; $10
+	m_InteractionData $7d $00 $00 ; $10 ; swords
 	m_InteractionData $7d $02 $50
 	m_InteractionData $7d $04 $40
 	m_InteractionData $7d $06 $00
@@ -581,8 +581,8 @@ interaction47SubidData:
 	m_InteractionData $79 $10 $13
 	m_InteractionData $7c $16 $03
 	m_InteractionData $79 $0a $10
-	m_InteractionData $79 $08 $00
-	m_InteractionData $79 $08 $00
+	m_InteractionData $7d $02 $50 ; L2 sword ;m_InteractionData $79 $08 $00
+	m_InteractionData $7d $04 $40 ; L3 sword ;m_InteractionData $79 $08 $00
 	m_InteractionData $7d $08 $50
 	m_InteractionData $7d $0a $40
 	m_InteractionData $79 $0a $10

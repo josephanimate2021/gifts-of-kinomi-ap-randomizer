@@ -233,6 +233,7 @@ partCode01:
 
 	ld e,Part.subid
 	ld a,(de)
+
 	cp ITEM_DROP_L2_SWORD
 	jr nz,+
 	ld a,(wSwordLevel)
@@ -242,7 +243,19 @@ partCode01:
 	ld (hl),20
 	ld a,SND_SWORDBEAM
 	call playSound
+	jr @deleteSelf
 +
+	cp ITEM_DROP_L2_SHIELD
+	jr nz,++
+	ld a,(wSwordLevel)
+	cp $03
+	jr nc,++
+	ld hl,wShieldBreakCounter
+	ld (hl),20
+	ld a,SND_SHIELD
+	call playSound
+	jr @deleteSelf
+++
 	cp ITEM_DROP_50_ORE_CHUNKS
 	jr nz,@deleteSelf
 	call getThisRoomFlags
@@ -267,8 +280,8 @@ partCode01:
 	.db TREASURE_PEGASUS_SEEDS, $00,            $05, $0a ; ITEM_DROP_PEGASUS_SEEDS
 	.db TREASURE_GALE_SEEDS,    $00,            $05, $0a ; ITEM_DROP_GALE_SEEDS
 	.db TREASURE_MYSTERY_SEEDS, $00,            $05, $0a ; ITEM_DROP_MYSTERY_SEEDS
-	.db TREASURE_SWORD,         $00,            $02, $02 ; ITEM_DROP_L2_SWORD
-	.db $00,                    $00,            $00, $00 ; ITEM_DROP_0b
+	.db TREASURE_SWORD,         $00,            $02, $03 ; ITEM_DROP_L2_SWORD
+	.db TREASURE_SHIELD,        $00,            $02, $03 ; ITEM_DROP_L2_SHIELD
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_1,   RUPEEVAL_2   ; ITEM_DROP_1_ORE_CHUNK
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_10,  RUPEEVAL_20  ; ITEM_DROP_10_ORE_CHUNKS
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_50,  RUPEEVAL_100 ; ITEM_DROP_50_ORE_CHUNKS
@@ -310,7 +323,7 @@ _itemDrop_initGfx:
 	.db $18 $01 ; ITEM_DROP_GALE_SEEDS
 	.db $1a $00 ; ITEM_DROP_MYSTERY_SEEDS
 	.db $1c $05 ; ITEM_DROP_L2_SWORD
-	.db $1e $05 ; ITEM_DROP_0b
+	.db $1e $05 ; ITEM_DROP_L2_SHIELD
 	.db $0c $01 ; ITEM_DROP_1_ORE_CHUNK
 	.db $0c $02 ; ITEM_DROP_10_ORE_CHUNKS
 	.db $0c $03 ; ITEM_DROP_50_ORE_CHUNKS

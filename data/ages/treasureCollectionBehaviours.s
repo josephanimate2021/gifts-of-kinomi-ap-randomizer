@@ -40,7 +40,7 @@ treasureCollectionBehaviourTable:
 
 	; TREASURE_SHIELD (0x01)
 	.db <wShieldLevel
-	.db $08
+	.db $88
 	.db SND_GETITEM
 
 	; TREASURE_PUNCH (0x02)

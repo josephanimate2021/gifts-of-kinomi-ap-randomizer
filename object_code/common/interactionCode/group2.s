@@ -985,9 +985,15 @@ _shopItemState3:
 	call getRandomRingOfGivenTier
 +
 	call giveTreasure
-
-;.ifdef ROM_SEASONS
 	ld e,Interaction.subid
+	ld a,(de)
+
+	sub $0f
+	jr c,+
+	cp $04
+	call c,@swordsAndShields
+
+	;ld e,Interaction.subid
 	ld a,(de)
 	or a
 	jr nz,+
@@ -995,7 +1001,6 @@ _shopItemState3:
 +
 	cp $02
 	call z,refillSeedSatchel
-;.endif
 
 	ld e,Interaction.state
 	ld a,$05
@@ -1017,6 +1022,28 @@ _shopItemState3:
 	ld b,>TX_0000
 	jp nz,showText
 	ret
+
+
+
+@swordsAndShields:
+	ld c,a
+	ld b,20
+
+	and $01
+	jr z,@@L2
+	ld b,100
+@@L2:
+	ld hl,wSwordBreakCounter
+	ld a,c
+
+	and $02
+	jr z,@@sword
+	inc l
+@@sword:
+	ld (hl),b
+	ld a,SND_GETITEM
+	jp playSound	
+
 
 ;;
 ; Gets the tiles to replace in the rupee display.
@@ -1109,10 +1136,10 @@ _shopItemGetTilesForRupeeDisplay:
 	.dw $ffff			; $0c
 	.dw w3VramTiles+$6f ; $0d
 	.dw w3VramTiles+$67 ; $0e
-	.dw w3VramTiles+$6b ; $0f
-	.dw w3VramTiles+$6f ; $10
-	.dw w3VramTiles+$6c ; $11
-	.dw w3VramTiles+$6c ; $12
+	.dw w3VramTiles+$6b;$6b ; $0f
+	.dw w3VramTiles+$6e ; $10
+	.dw w3VramTiles+$67;$6c ; $11
+	.dw w3VramTiles+$63;$6c ; $12
 	.dw w3VramTiles+$6c ; $13
 .ifdef ROM_AGES
 	.dw w3VramTiles+$66 ; $14
@@ -1139,10 +1166,10 @@ shopItemPrices:
 	/* $0c */ .db RUPEEVAL_010
 	/* $0d */ .db RUPEEVAL_150
 	/* $0e */ .db RUPEEVAL_100
-	/* $0f */ .db RUPEEVAL_100
-	/* $10 */ .db RUPEEVAL_100
+	/* $0f */ .db RUPEEVAL_080
+	/* $10 */ .db RUPEEVAL_400
 	/* $11 */ .db RUPEEVAL_050
-	/* $12 */ .db RUPEEVAL_080
+	/* $12 */ .db RUPEEVAL_200
 	/* $13 */ .db RUPEEVAL_030
 .ifdef ROM_AGES
 	/* $14 */ .db RUPEEVAL_200
@@ -1212,16 +1239,18 @@ shopItemTreasureToGive:
 	/* $0a */ .db  TREASURE_GASHA_SEED    $01
 	/* $0b */ .db  TREASURE_BOMBCHUS      $05
 	/* $0c */ .db  $00                    $00
-.ifdef ROM_AGES
+;.ifdef ROM_AGES
 	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECTID_DIMITRI
 	/* $0e */ .db  TREASURE_GASHA_SEED    $01
-	/* $0f */ .db  TREASURE_RING          GBA_TIME_RING
-.else
-	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECTID_MOOSH
-	/* $0e */ .db  TREASURE_GASHA_SEED    $01
-	/* $0f */ .db  TREASURE_RING          GBA_NATURE_RING
-.endif
-	/* $10 */ .db  $00                    $01
+	/* $0f */ .db  TREASURE_SWORD		  $02;TREASURE_RING          GBA_TIME_RING
+
+;.else
+;	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECTID_MOOSH
+;	/* $0e */ .db  TREASURE_GASHA_SEED    $01
+;	/* $0f */ .db  TREASURE_RING          GBA_NATURE_RING
+;.endif
+
+	/* $10 */ .db  TREASURE_SWORD		  $03; $00                    $01
 	/* $11 */ .db  TREASURE_SHIELD        $02
 	/* $12 */ .db  TREASURE_SHIELD        $03
 	/* $13 */ .db  TREASURE_GASHA_SEED    $01
@@ -1241,7 +1270,7 @@ _shopItemReplacementTable:
 	/* $00 */ .db <wBoughtShopItems1  $01 $02 $00 ; sell 2nd satchel
 	/* $01 */ .db <wBoughtShopItems2  $08 $0d $04
 	/* $02 */ .db <wBoughtShopItems1  $02 $ff $00
-	/* $03 */ .db <wShieldLevel       $02 $11 $00
+	/* $03 */ .db <wShieldLevel       $02 $ff $00
 	/* $04 */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $05 */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $06 */ .db <wBoughtShopItems1  $04 $08 $00 ; slingshot
@@ -1253,9 +1282,9 @@ _shopItemReplacementTable:
 	/* $0c */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $0d */ .db <wBoughtShopItems2  $00 $ff $00
 	/* $0e */ .db <wBoughtShopItems2  $01 $ff $00
-	/* $0f */ .db <wBoughtShopItems2  $02 $ff $00
-	/* $10 */ .db <wBoughtShopItems2  $04 $ff $00
-	/* $11 */ .db <wShieldLevel       $01 $12 $00
+	/* $0f */ .db <wSwordLevel		  $02 $ff $00
+	/* $10 */ .db <wSwordLevel		  $00 $ff $00
+	/* $11 */ .db <wShieldLevel       $02 $ff $00
 	/* $12 */ .db <wShieldLevel       $00 $ff $00
 	/* $13 */ .db <wBoughtShopItems1  $20 $03 $00
 .ifdef ROM_AGES
@@ -1289,8 +1318,8 @@ _shopItemTextTable:
 	/* $0c */ .db $00
 	/* $0d */ .db <TX_003b
 	/* $0e */ .db <TX_004b
-	/* $0f */ .db <TX_0054
-	/* $10 */ .db <TX_0054
+	/* $0f */ .db <TX_001d
+	/* $10 */ .db <TX_001e
 	/* $11 */ .db <TX_0020
 	/* $12 */ .db <TX_0021
 	/* $13 */ .db <TX_004b

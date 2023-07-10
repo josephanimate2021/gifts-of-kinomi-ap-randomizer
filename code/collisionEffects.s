@@ -234,8 +234,15 @@ _enemyCheckCollisions:
 	add <Object.collisionRadiusY
 	ld e,a
 	call checkObjectsCollidedFromVariables
+
+	;jp c,@handleCollision
+	jr nc,@checkHitLink
+
+	push de
+	call @breakShield
+	pop de
 	ld hl,w1Link
-	jp c,@handleCollision
+	jp @handleCollision
 
 	; Not using shield (or shield is ineffective)
 @checkHitLink:
@@ -276,6 +283,24 @@ _enemyCheckCollisions:
 	call checkObjectsCollidedFromVariables
 	jp c,@handleCollision
 	ret
+
+@breakShield:
+	ld a,(wShieldLevel)
+	dec a
+	ret z
+
+	ld hl,wShieldBreakCounter
+	dec (hl)
+	ret nz
+	ld a,20
+	cp (hl)
+	ret c
+
+	ld a,$01
+	ld (wShieldLevel),a
+	ld a,SND_CLINK2
+	jp playSound
+
 
 ;;
 ; This appears to behave identically to the checkFlag function in bank 0.

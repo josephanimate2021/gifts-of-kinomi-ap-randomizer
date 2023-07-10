@@ -40,7 +40,9 @@ _interactiondc_subid07:
 	call getThisRoomFlags
 	and ROOMFLAG_ITEM
 	jp nz,interactionDelete
-	ld bc,TREASURE_HEART_PIECE_SUBID_00
+
+	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
+	call _isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 _stub:

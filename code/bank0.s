@@ -5027,6 +5027,13 @@ setStatusBarNeedsRefreshBit1:
 	pop hl
 	ret
 
+setStatusBarNeedsRefreshBit0:
+	push hl
+	ld hl,wStatusBarNeedsRefresh
+	set 0,(hl)
+	pop hl
+	ret
+
 ;;
 ; Gets a random ring of the given tier ('c').
 ;

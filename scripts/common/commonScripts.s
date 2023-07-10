@@ -397,8 +397,8 @@ shopkeeperScript_purchaseItem:
 	/* $0c */ .dw @buyUpgradeableItem
 	/* $0d */ .dw @buyStrangeFlute
 	/* $0e */ .dw @buyAdvanceShopGashaSeed
-	/* $0f */ .dw @buyAdvanceShopGbaRing
-	/* $10 */ .dw @buyAdvanceShopRing
+	/* $0f */ .dw @buyL2Sword;@buyAdvanceShopGbaRing
+	/* $10 */ .dw @buyL3Sword;@buyAdvanceShopRing
 	/* $11 */ .dw @buyL2Shield
 	/* $12 */ .dw @buyL3Shield
 	/* $13 */ .dw @buyNormalShopGashaSeed
@@ -530,6 +530,16 @@ shopkeeperScript_purchaseItem:
 
 @buyL3Shield:
 	showtextnonexitablelowindex <TX_0e2a
+	callscript _shopkeeperConfirmPurchase
+	scriptend
+
+@buyL2Sword:
+	showtextnonexitablelowindex <TX_0e2f
+	callscript _shopkeeperConfirmPurchase
+	scriptend
+
+@buyL3Sword:
+	showtextnonexitablelowindex <TX_0e30
 	callscript _shopkeeperConfirmPurchase
 	scriptend
 

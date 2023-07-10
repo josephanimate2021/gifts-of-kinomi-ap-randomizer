@@ -1439,9 +1439,7 @@ tileReplacement_group0Mapa5:
   ret z
 
   ld hl,wRoomLayout+$43
-  ld (hl),$ee
-  inc l
-  ld (hl),$ef
+  ld (hl),$dd
   ret
 
 ;;
