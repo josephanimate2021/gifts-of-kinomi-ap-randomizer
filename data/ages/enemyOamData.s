@@ -435,17 +435,18 @@ enemyOamData4d4b4:
 	.db $02
 	.db $08 $00 $06 $40
 	.db $08 $08 $08 $40
-
+/*
 enemyOamData4d4bd:
 	.db $02
 	.db $02 $04 $40 $00
 	.db $12 $04 $42 $00
-
+*/
+/*
 enemyOamData4d4c6:
 	.db $02
 	.db $02 $04 $44 $00
 	.db $12 $04 $46 $00
-
+*/
 enemyOamData4d4cf:
 	;.db $02
 	;.db $08 $00 $20 $00
@@ -660,43 +661,48 @@ enemyOamData4d671:
 	.db $08 $00 $18 $00
 	.db $08 $08 $1a $00
 	.db $08 $10 $1c $00
-
+/*
 enemyOamData4d67e:
 	.db $03
 	.db $04 $04 $48 $00
 	.db $14 $04 $46 $00
 	.db $04 $0c $4a $00
-
+*/
+/*
 enemyOamData4d68b:
 	.db $03
 	.db $04 $fc $54 $00
 	.db $04 $04 $56 $00
 	.db $04 $0c $58 $00
-
+*/
+/*
 enemyOamData4d698:
 	.db $03
 	.db $08 $00 $5c $00
 	.db $08 $08 $5e $00
 	.db $08 $f8 $5a $00
-
+*/
+/*
 enemyOamData4d6a5:
 	.db $03
 	.db $fc $04 $46 $60
 	.db $0c $04 $48 $60
 	.db $0c $fc $4a $60
-
+*/
+/*
 enemyOamData4d6b2:
 	.db $03
 	.db $0c $fc $58 $60
 	.db $0c $04 $56 $60
 	.db $0c $0c $54 $60
-
+*/
+/*
 enemyOamData4d6bf:
 	.db $03
 	.db $08 $00 $5e $60
 	.db $08 $08 $5c $60
 	.db $08 $10 $5a $60
-
+*/
 enemyOamData4d6cc:
 	.db $03
 	.db $08 $fc $08 $00
@@ -1068,27 +1074,31 @@ enemyOamData4da1f:
 	.db $fc $00 $68 $00
 	.db $fc $08 $68 $20
 
+/*
 enemyOamData4da30:
 	.db $04
 	.db $02 $00 $16 $00
 	.db $02 $08 $18 $00
 	.db $12 $00 $1a $00
 	.db $12 $08 $1c $00
-
+*/
+/*
 enemyOamData4da41:
 	.db $04
 	.db $02 $00 $18 $20
 	.db $02 $08 $16 $20
 	.db $12 $00 $1c $20
 	.db $12 $08 $1a $20
-
+*/
+/*
 enemyOamData4da52:
 	.db $04
 	.db $02 $00 $20 $00
 	.db $02 $08 $22 $00
 	.db $12 $00 $24 $00
 	.db $12 $08 $26 $00
-
+*/
+/*
 enemyOamData4da63:
 	.db $04
 	.db $02 $00 $28 $00
@@ -1109,21 +1119,23 @@ enemyOamData4da85:
 	.db $02 $08 $3a $00
 	.db $12 $00 $3c $00
 	.db $12 $08 $3e $00
-
+*/
+/*
 enemyOamData4da96:
 	.db $04
 	.db $08 $00 $50 $00
 	.db $08 $08 $52 $00
 	.db $f8 $00 $4c $00
 	.db $f8 $08 $4e $00
-
+*/
+/*
 enemyOamData4daa7:
 	.db $04
 	.db $08 $00 $52 $60
 	.db $08 $08 $50 $60
 	.db $18 $00 $4e $60
 	.db $18 $08 $4c $60
-
+*/
 enemyOamData4dab8:
 	.db $04
 	.db $08 $fc $00 $00
@@ -1591,6 +1603,7 @@ enemyOamData4df83:
 	.db $0b $0c $14 $20
 	.db $14 $04 $16 $00
 
+/*
 enemyOamData4df9c:
 	.db $06
 	.db $fe $fc $00 $00
@@ -1599,7 +1612,8 @@ enemyOamData4df9c:
 	.db $0e $fc $06 $00
 	.db $0e $04 $08 $00
 	.db $0e $0c $0a $00
-
+*/
+/*
 enemyOamData4dfb5:
 	.db $06
 	.db $fe $fc $04 $20
@@ -1608,7 +1622,7 @@ enemyOamData4dfb5:
 	.db $0e $fc $0a $20
 	.db $0e $04 $08 $20
 	.db $0e $0c $06 $20
-
+*/
 enemyOamData4dfce:
 	;.db $06
 	;.db $10 $00 $16 $00
@@ -1784,6 +1798,7 @@ enemyOamData4e19c:
 	.db $12 $f7 $16 $00
 	.db $12 $11 $16 $20
 
+/*
 enemyOamData4e1b9:
 	.db $07
 	.db $fe $f4 $0c $00
@@ -1793,7 +1808,7 @@ enemyOamData4e1b9:
 	.db $0e $fc $12 $00
 	.db $0e $04 $08 $00
 	.db $0e $0c $0a $00
-
+*/
 enemyOamData4e1d6:
 	.db $07
 	.db $fc $fb $00 $00
@@ -4485,3 +4500,187 @@ enemyOamDataManhandla13:
 	.db $02
 	.db $08 $00 $16 $04
 	.db $08 $08 $18 $04
+
+enemyOamDataSyger00:
+	.db $06
+	.db $00 $fc $00 $00
+	.db $00 $04 $02 $00
+	.db $00 $0c $04 $00
+	.db $10 $fc $06 $00
+	.db $10 $04 $08 $00
+	.db $10 $0c $0a $00
+
+enemyOamDataSyger01:
+	.db $06
+	.db $00 $fc $04 $20
+	.db $00 $04 $02 $20
+	.db $00 $0c $00 $20
+	.db $10 $fc $0a $20
+	.db $10 $04 $08 $20
+	.db $10 $0c $06 $20
+
+enemyOamDataSyger02:
+	.db $06
+	.db $00 $fc $40 $40
+	.db $00 $04 $42 $40
+	.db $00 $0c $40 $60
+	.db $10 $fc $20 $40
+	.db $10 $04 $22 $40
+	.db $10 $0c $20 $60
+
+enemyOamDataSyger03:
+	.db $06
+	.db $00 $fc $44 $40
+	.db $00 $04 $46 $40
+	.db $00 $0c $44 $60
+	.db $10 $fc $24 $40
+	.db $10 $04 $26 $40
+	.db $10 $0c $24 $60
+
+enemyOamDataSyger04:
+	.db $06
+	.db $00 $fc $48 $40
+	.db $00 $04 $4a $40
+	.db $00 $0c $48 $60
+	.db $10 $fc $28 $40
+	.db $10 $04 $2a $40
+	.db $10 $0c $28 $60
+
+enemyOamDataSyger05:
+	.db $06
+	.db $00 $fc $4c $40
+	.db $00 $04 $4e $40
+	.db $00 $0c $4c $60
+	.db $10 $fc $2c $40
+	.db $10 $04 $2e $40
+	.db $10 $0c $2c $60
+
+enemyOamDataSyger06:
+	.db $06
+	.db $00 $fc $20 $00
+	.db $00 $04 $22 $00
+	.db $00 $0c $20 $20
+	.db $10 $fc $40 $00
+	.db $10 $04 $42 $00
+	.db $10 $0c $40 $20
+
+enemyOamDataSyger07:
+	.db $06
+	.db $00 $fc $24 $00
+	.db $00 $04 $26 $00
+	.db $00 $0c $24 $20
+	.db $10 $fc $44 $00
+	.db $10 $04 $46 $00
+	.db $10 $0c $44 $20
+
+enemyOamDataSyger08:
+	.db $06
+	.db $00 $fc $28 $00
+	.db $00 $04 $2a $00
+	.db $00 $0c $28 $20
+	.db $10 $fc $48 $00
+	.db $10 $04 $4a $00
+	.db $10 $0c $48 $20
+
+enemyOamDataSyger09:
+	.db $06
+	.db $00 $fc $2c $00
+	.db $00 $04 $2e $00
+	.db $00 $0c $2c $20
+	.db $10 $fc $4c $00
+	.db $10 $04 $4e $00
+	.db $10 $0c $4c $20
+
+enemyOamDataSyger0a:
+	.db $08
+	.db $00 $f8 $30 $00
+	.db $00 $00 $32 $00
+	.db $00 $08 $34 $00
+	.db $00 $10 $36 $00
+	.db $10 $f8 $50 $00
+	.db $10 $00 $52 $00
+	.db $10 $08 $54 $00
+	.db $10 $10 $56 $00
+
+enemyOamDataSyger0b:
+	.db $08
+	.db $00 $f8 $38 $00
+	.db $00 $00 $3a $00
+	.db $00 $08 $3c $00
+	.db $00 $10 $3e $00
+	.db $10 $f8 $58 $00
+	.db $10 $00 $5a $00
+	.db $10 $08 $5c $00
+	.db $10 $10 $5e $00
+
+enemyOamDataSyger0c:
+	.db $08
+	.db $00 $f8 $56 $60
+	.db $00 $00 $54 $60
+	.db $00 $08 $52 $60
+	.db $00 $10 $50 $60
+	.db $10 $f8 $36 $60
+	.db $10 $00 $34 $60
+	.db $10 $08 $32 $60
+	.db $10 $10 $30 $60
+
+enemyOamDataSyger0d:
+	.db $08
+	.db $00 $f8 $5e $60
+	.db $00 $00 $5c $60
+	.db $00 $08 $5a $60
+	.db $00 $10 $58 $60
+	.db $10 $f8 $3e $60
+	.db $10 $00 $3c $60
+	.db $10 $08 $3a $60
+	.db $10 $10 $38 $60
+
+enemyOamDataSyger0e:
+	.db $03
+	.db $02 $08 $1c $01
+	.db $08 $00 $0c $00
+	.db $08 $08 $0e $00
+
+enemyOamDataSyger0f:
+	.db $03
+	.db $06 $07 $1c $01
+	.db $08 $00 $10 $00
+	.db $08 $08 $12 $00
+
+enemyOamDataSyger10:
+	.db $03
+	.db $01 $07 $1c $01
+	.db $08 $00 $14 $00
+	.db $08 $08 $16 $00
+
+enemyOamDataSyger11:
+	.db $03
+	.db $00 $06 $1c $01
+	.db $08 $00 $18 $00
+	.db $08 $08 $1a $00
+
+enemyOamDataSyger12:
+	.db $03
+	.db $02 $00 $1c $21
+	.db $08 $00 $0e $20
+	.db $08 $08 $0c $20
+
+enemyOamDataSyger13:
+	.db $03
+	.db $06 $01 $1c $21
+	.db $08 $00 $12 $20
+	.db $08 $08 $10 $20
+
+enemyOamDataSyger14:
+	.db $03
+	.db $01 $01 $1c $21
+	.db $08 $00 $16 $20
+	.db $08 $08 $14 $20
+
+enemyOamDataSyger15:
+	.db $03
+	.db $00 $02 $1c $21
+	.db $08 $00 $1a $20
+	.db $08 $08 $18 $20
+
+

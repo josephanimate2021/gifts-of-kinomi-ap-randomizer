@@ -655,6 +655,14 @@ enemy72Animations:
 	;.dw enemyAnimation37867
 	;.dw enemyAnimation3787e
 enemy73Animations:
+	.dw enemyAnimation374cb
+	.dw enemyAnimationSyger01Loop
+	.dw enemyAnimationSyger02Loop
+	.dw enemyAnimationSyger03Loop
+	.dw enemyAnimationSyger04Loop
+	.dw enemyAnimationSyger05Loop
+
+/*
 	.dw enemyAnimation3756a
 	.dw enemyAnimation3746e
 	.dw enemyAnimation37515
@@ -667,6 +675,7 @@ enemy73Animations:
 	.dw enemyAnimation37218
 	.dw enemyAnimation3788a
 	.dw enemyAnimation3788d
+*/
 enemy75Animations:
 	.dw enemyAnimation374cb
 	.dw enemyAnimation37515
@@ -1896,6 +1905,41 @@ enemyAnimationManhandla0bLoop:
 	.db $18 $08 $00
 	m_AnimationLoop enemyAnimationManhandla0bLoop
 
+enemyAnimationSyger01Loop:
+	.db $03 $04 $00
+	.db $03 $06 $00
+	.db $03 $08 $00
+	.db $03 $0a $00
+	m_AnimationLoop enemyAnimationSyger01Loop
+
+enemyAnimationSyger02Loop:
+	.db $03 $0c $00
+	.db $03 $0e $00
+	.db $03 $10 $00
+	.db $03 $12 $00
+	m_AnimationLoop enemyAnimationSyger02Loop
+
+enemyAnimationSyger03Loop:
+	.db $03 $14 $00
+	.db $03 $16 $02
+	.db $03 $18 $04
+	.db $03 $1a $06
+	m_AnimationLoop enemyAnimationSyger03Loop
+
+enemyAnimationSyger04Loop:
+	.db $10 $1c $00
+	.db $10 $1e $00
+	.db $10 $20 $00
+	.db $10 $22 $00
+	m_AnimationLoop enemyAnimationSyger04Loop
+
+enemyAnimationSyger05Loop:
+	.db $10 $24 $00
+	.db $10 $26 $00
+	.db $10 $28 $00
+	.db $10 $2a $00
+	m_AnimationLoop enemyAnimationSyger05Loop
+
 enemy00OamDataPointers: ; 0x379ff
 enemy01OamDataPointers: ; 0x379ff
 enemy2bOamDataPointers: ; 0x379ff
@@ -2494,6 +2538,56 @@ enemy72OamDataPointers: ; 0x37d21
 	;.dw enemyOamData4d74e
 
 enemy73OamDataPointers: ; 0x37d45
+/*
+	.dw enemyOamData49f5b
+	.dw enemyOamData49f74
+	.dw enemyOamData49f8d
+	.dw enemyOamData49fa6
+	.dw enemyOamData49fbf
+	.dw enemyOamData49fd8
+	.dw enemyOamData49ff1
+	.dw enemyOamData4a00a
+	.dw enemyOamData4a023
+	.dw enemyOamData4a03c
+	.dw enemyOamData4a8a1
+	.dw enemyOamData4a8c2
+	.dw enemyOamData4a8e3
+	.dw enemyOamData4a904
+	.dw enemyOamData49680
+	.dw enemyOamData4968d
+	.dw enemyOamData4969a
+	.dw enemyOamData496a7
+	.dw enemyOamData496b4
+	.dw enemyOamData496c1
+	.dw enemyOamData496ce
+	.dw enemyOamData496db
+*/
+
+
+	.dw enemyOamDataSyger00
+	.dw enemyOamDataSyger01
+	.dw enemyOamDataSyger02
+	.dw enemyOamDataSyger03
+	.dw enemyOamDataSyger04
+	.dw enemyOamDataSyger05
+	.dw enemyOamDataSyger06
+	.dw enemyOamDataSyger07
+	.dw enemyOamDataSyger08
+	.dw enemyOamDataSyger09
+	.dw enemyOamDataSyger0a
+	.dw enemyOamDataSyger0b
+	.dw enemyOamDataSyger0c
+	.dw enemyOamDataSyger0d
+	.dw enemyOamDataSyger0e
+	.dw enemyOamDataSyger0f
+	.dw enemyOamDataSyger10
+	.dw enemyOamDataSyger11
+	.dw enemyOamDataSyger12
+	.dw enemyOamDataSyger13
+	.dw enemyOamDataSyger14
+	.dw enemyOamDataSyger15
+	
+/*
 	.dw enemyOamData4df9c
 	.dw enemyOamData4dfb5
 	.dw enemyOamData4e1b9
@@ -2513,6 +2607,7 @@ enemy73OamDataPointers: ; 0x37d45
 	.dw enemyOamData4daa7
 	.dw enemyOamData4d6b2
 	.dw enemyOamData4d6bf
+*/
 
 enemy74OamDataPointers: ; 0x37d6b
 	.dw enemyOamData4dab8

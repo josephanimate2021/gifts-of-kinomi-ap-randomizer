@@ -129,7 +129,8 @@ enemyData:
 	/* 0x70 */ m_EnemyData $ad     ENEMYCOLLISION_STANDARD_MINIBOSS $1c $50
 	/* 0x71 */ m_EnemyData $af $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1d $20
 	/* 0x72 */ m_EnemyData OBJGFXH_b1 ENEMYCOLLISION_MOTIONLESS_ENEMY	$1d $10 ;Facade			;$b1 $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1e $10
-	/* 0x73 */ m_EnemyData $b4 $80|ENEMYCOLLISION_STANDARD_MINIBOSS enemy73SubidData
+	/* 0x73 */ m_EnemyData OBJGFXH_b4 $80|ENEMYCOLLISION_SYGER		$4a $30 ;$9b
+	;/* 0x73 */ m_EnemyData $b4 $80|ENEMYCOLLISION_STANDARD_MINIBOSS enemy73SubidData
 	/* 0x74 */ m_EnemyData $b7 $80|ENEMYCOLLISION_SMASHER 			$20 $30
 	/* 0x75 */ m_EnemyData $3c     ENEMYCOLLISION_VIRE 				$21 $20
 	/* 0x76 */ m_EnemyData $b8 $80|ENEMYCOLLISION_ANGLER_FISH 		$22 $10
@@ -314,3 +315,4 @@ extraEnemyData:
 	.db $0c $06 $f8 $7f ; 0x47	Manhandla Body
 	.db $04 $04 $fc $02 ; 0x48	
 	.db $06 $06 $f8 $06 ; 0x49	Manhandla Head
+	.db $06 $06 $fc $10 ; 0x4a

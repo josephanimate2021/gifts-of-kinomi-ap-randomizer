@@ -165,9 +165,12 @@
 	m_GfxData spr_facade	;spr_subterror_1 ; $0b0e17
 	m_GfxData spr_subterror_2 ; $0b0fb9
 	m_GfxData spr_subterror_3 ; $0b1127
-	m_GfxData spr_armoswarrior_1 ; $0b11be
-	m_GfxData spr_armoswarriorshield ; $0b1342
-	m_GfxData spr_armoswarriorsword ; $0b14df
+	m_GfxData spr_syger_1 ; $0ab810
+	m_GfxData spr_syger_2 ; $0ab99f
+	m_GfxData spr_syger_3 ; $0abb46
+	;m_GfxData spr_armoswarrior_1 ; $0b11be
+	;m_GfxData spr_armoswarriorshield ; $0b1342
+	;m_GfxData spr_armoswarriorsword ; $0b14df
 	m_GfxData spr_smasher ; $0b1627
 	m_GfxData spr_vire ; $0b16f8
 	m_GfxData spr_anglerfish ; $0b17dd

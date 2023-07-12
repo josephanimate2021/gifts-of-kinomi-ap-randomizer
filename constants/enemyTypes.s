@@ -684,7 +684,8 @@
 ; @subid_01{Parent (the actual boss himself)}
 ; @subid_02{Shield}
 ; @subid_03{Sword}
-.define ENEMYID_ARMOS_WARRIOR			$73
+;.define ENEMYID_ARMOS_WARRIOR			$73
+.define ENEMYID_SYGER $73
 
 ;;
 ; @subid_00{Ball (spawns parent)}

@@ -726,7 +726,7 @@ group7WarpDestTable:
 	m_WarpDest $46 $0b $0 $4
 	m_WarpDest $42 $a1 $0 $4
 	m_WarpDest $43 $ad $0 $4
-	m_WarpDest $42 $02 $0 $4
+	m_WarpDest $42 $02 $1 $4
 	m_WarpDest $4b $ad $0 $4
 	m_WarpDest $47 $08 $0 $4
 	m_WarpDest $48 $ad $0 $4

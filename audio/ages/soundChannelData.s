@@ -20,6 +20,7 @@ bank39ChannelFallback:
 	.dsb 11 $ff
 .endif
 
+
 .include "audio/sfx/ages/monkey.s"
 .include "audio/sfx/common/beam.s"
 .include "audio/sfx/common/wave.s"
@@ -54,10 +55,12 @@ soundb7Channel7:
 .include "audio/sfx/common/warpStart.s"
 .include "audio/sfx/common/endless.s"
 .include "audio/sfx/common/bigExplosion2.s"
-
+.include "audio/sfx/ages/bd.s"
+/*
 soundbdStart:
 soundbdChannel2:
 	cmdff
+*/
 
 .include "audio/mus/common/mapleGame.s"
 .include "audio/mus/common/finalBoss.s"

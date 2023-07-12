@@ -179,9 +179,12 @@ objectGfxHeaderTable:
 	/* $b1 */ m_ObjectGfxHeader spr_facade $00	;spr_subterror_1 $00
 	/* $b2 */ m_ObjectGfxHeader spr_subterror_2 $00
 	/* $b3 */ m_ObjectGfxHeader spr_subterror_3 $80
-	/* $b4 */ m_ObjectGfxHeader spr_armoswarrior_1 $00
-	/* $b5 */ m_ObjectGfxHeader spr_armoswarriorshield $00
-	/* $b6 */ m_ObjectGfxHeader spr_armoswarriorsword $80
+	/* $b4 */ m_ObjectGfxHeader spr_syger_1 $00
+	/* $b5 */ m_ObjectGfxHeader spr_syger_2 $00
+	/* $b6 */ m_ObjectGfxHeader spr_syger_3 $80
+	/* $b4 */ ;m_ObjectGfxHeader spr_armoswarrior_1 $00
+	/* $b5 */ ;m_ObjectGfxHeader spr_armoswarriorshield $00
+	/* $b6 */ ;m_ObjectGfxHeader spr_armoswarriorsword $80
 	/* $b7 */ m_ObjectGfxHeader spr_smasher $00
 	/* $b8 */ m_ObjectGfxHeader spr_anglerfish $00
 	/* $b9 */ m_ObjectGfxHeader spr_bluestalfos_1 $00

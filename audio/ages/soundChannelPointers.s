@@ -1461,6 +1461,8 @@ soundbc:
 soundbd:
 	.db $02
 	.dw soundbdChannel2
+	.db $07
+	.dw soundd1Channel7
 	.db $ff
 
 soundbe:
