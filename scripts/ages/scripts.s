@@ -6755,6 +6755,7 @@ interaction6b_subid0aScript:
 	.dw @flippers
 
 @bombs:
+; makes max bombs 30
 	asm15 scriptHelp.interaction6b_refillBombs
 	giveitem TREASURE_BOMBS, $04
 	wait 30

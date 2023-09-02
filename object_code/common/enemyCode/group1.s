@@ -27,10 +27,9 @@ enemyCode08:
 @state_uninitialized:
 	ld a,$09
 	ld (de),a
-	ret
-
 @state_stub:
 	ret
+
 
 
 ; Waiting under the water until time to resurface
@@ -5367,13 +5366,13 @@ _likelike_subid01:
 	and $02
 	ld c,a
 	ld a,(wActiveRoom)
-	cp $50
+	cp <ROOM_AGES_077;<ROOM_SEASONS_050
 	jr z,@fromTop
-	cp $40
+	cp <ROOM_AGES_067;<ROOM_SEASONS_40
 	jr z,@fromBottom
 
-	set 2,c
-	cp $51
+	;set 2,c
+	cp <ROOM_AGES_076;<ROOM_SEASONS_51
 	ret nz
 
 @fromBottom:

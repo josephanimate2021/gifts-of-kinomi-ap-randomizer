@@ -3241,6 +3241,7 @@ _zelda_state0:
 	jp @commonInit
 
 @initSubid07:
+/*
 	ld a,GLOBALFLAG_GOT_RING_FROM_ZELDA
 	call checkGlobalFlag
 	jp z,interactionDeleteAndUnmarkSolidPosition
@@ -3248,12 +3249,11 @@ _zelda_state0:
 	ld a,TREASURE_MAKU_SEED
 	call checkTreasureObtained
 	jp c,interactionDeleteAndUnmarkSolidPosition
-
 	ld a,GLOBALFLAG_SAVED_NAYRU
 	call checkGlobalFlag
-	ld a,<TX_0606
-	jr nz,@actAsGenericNpc
-	ld a,<TX_0605
+*/
+	ld a,(wEssencesObtained)
+	add <TX_0605
 
 @actAsGenericNpc:
 	ld e,Interaction.textID

@@ -171,6 +171,9 @@
 	.define TILEINDEX_PUDDLE		$f9
 	.define TILEINDEX_WATER			$fa
 
+	.define TILEINDEX_RIGHT_RUPEE	$ce
+	.define TILEINDEX_LEFT_RUPEE	$cf
+
 .else ; ROM_SEASONS
 	; Trampolines overwrite the tile index they're on with this value.
 	.define TILEINDEX_TRAMPOLINE		$07 ; dungeons

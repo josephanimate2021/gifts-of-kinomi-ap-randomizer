@@ -609,6 +609,7 @@ interactionCode12:
 	cp l
 	jp nz,interactionDelete
 	call interactionIncState
+
 	call interactionSetAlwaysUpdateBit
 	ld a,$81
 	ld (wDisabledObjects),a
@@ -627,7 +628,7 @@ interactionCode12:
 	ld e,Interaction.var03
 	ld a,(de)
 	or a
-	call nz,@showText
+	call z,@showText
 
 	xor a
 	ld (wDisabledObjects),a
@@ -1401,7 +1402,7 @@ interactionCode1c:
 	jp interactionIncState
 
 
-.ifdef ROM_SEASONS
+;.ifdef ROM_SEASONS
 
 ; This is the only interaction in this file that is completely game-exclusive
 
@@ -1439,15 +1440,15 @@ interactionCode1d:
 
 @@rupeeRoomTable:
 	; top-left coords of rupees grid
-	dbw $23 wD2RupeeRoomRupees
-	dbw $34 wD6RupeeRoomRupees
+	dbw $24 wD11RupeeRoomRupees
+	dbw $34 wD12RupeeRoomRupees
 
 @state1:
 	ld a,(wActiveTileIndex)
 	; is a rupee tile
-	cp $3c
+	sub TILEINDEX_RIGHT_RUPEE
 	jr z,+
-	cp $3d
+	dec a ; TILEINDEX_LEFT_RUPEE
 	ret nz
 +
 	ld h,d
@@ -1472,17 +1473,24 @@ interactionCode1d:
 	ld a,(bc)
 	or (hl)
 	ld (hl),a
+
 	call getRandomNumber
 	and $0f
 	ld hl,@@chosenRupeeVal
 	rst_addAToHl
 	ld c,(hl)
+	/*
 	ld a,GOLD_JOY_RING
 	call cpActiveRing
 	jr z,@@doubleRupees
 	ld a,RED_JOY_RING
 	call cpActiveRing
-	jr nz,@@giveRupees
+	jr z,@@doubleRupees
+	*/
+	ld e,Interaction.subid
+	ld a,(de)
+	dec a
+	jr z,@@giveRupees
 
 @@doubleRupees:
 	inc c
@@ -1492,16 +1500,22 @@ interactionCode1d:
 	call giveTreasure
 	ld a,(wActiveTilePos)
 	ld c,a
-	ld a,TILEINDEX_STANDARD_FLOOR
+	ld a,TILEINDEX_STANDARD_FLOOR+$03
 	jp setTile
 
 @@chosenRupeeVal:
+/*
+	.db RUPEEVAL_002 RUPEEVAL_020 RUPEEVAL_020 RUPEEVAL_010
+	.db RUPEEVAL_010 RUPEEVAL_010 RUPEEVAL_010 RUPEEVAL_002
+	.db RUPEEVAL_002 RUPEEVAL_040 RUPEEVAL_002 RUPEEVAL_002
+	.db RUPEEVAL_002 RUPEEVAL_002 RUPEEVAL_002 RUPEEVAL_002
+*/
 	.db RUPEEVAL_001 RUPEEVAL_010 RUPEEVAL_010 RUPEEVAL_005
 	.db RUPEEVAL_005 RUPEEVAL_005 RUPEEVAL_005 RUPEEVAL_001
 	.db RUPEEVAL_001 RUPEEVAL_020 RUPEEVAL_001 RUPEEVAL_001
 	.db RUPEEVAL_001 RUPEEVAL_001 RUPEEVAL_001 RUPEEVAL_001
 
-.endif ; ROM_SEASONS
+;.endif ; ROM_SEASONS
 
 
 ; ==============================================================================

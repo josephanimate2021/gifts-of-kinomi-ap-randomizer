@@ -2789,12 +2789,18 @@ _fireKeese_state8:
 	ld c,l
 	ld l,$00
 @nextTile:
+	ldbc TILEINDEX_LIT_TORCH,LARGE_ROOM_HEIGHT<<4
+	ld a,(wTilesetIndex)
+	and TILESETFLAG_OUTDOORS
+	jr z,+
+	ldbc $fe,SMALL_ROOM_HEIGHT<<4 ;lavafall
++
 	ld a,(hl)
-	cp TILEINDEX_LIT_TORCH
+	cp b ;TILEINDEX_LIT_TORCH
 	call z,_fireKeese_addCandidateTorch
 	inc l
 	ld a,l
-	cp LARGE_ROOM_HEIGHT<<4
+	cp c
 	jr c,@nextTile
 
 	; Check if one was found
@@ -3258,22 +3264,32 @@ _fireKeese_checkForNewlyLitTorch:
 	ld l,a
 	ld h,>wRoomLayout
 	ld b,$16
+
+	push de
+	ldde TILEINDEX_LIT_TORCH,LARGE_ROOM_HEIGHT<<4
+	ld a,(wTilesetIndex)
+	and TILESETFLAG_OUTDOORS
+	jr z,@loop
+	ldde TILEINDEX_OVERWORLD_LAVA_1,SMALL_ROOM_HEIGHT<<4
+
 @loop:
 	ldi a,(hl)
-	cp TILEINDEX_LIT_TORCH
+	cp d;TILEINDEX_LIT_TORCH
 	jr z,@foundTorch
 	dec b
 	jr nz,@loop
 
 	ld a,l
-	cp LARGE_ROOM_HEIGHT<<4
+	cp e;LARGE_ROOM_HEIGHT<<4
 	jr nz,+
 	xor a
 +
+	pop de
 	ld (de),a
 	ret
 
 @foundTorch:
+	pop de
 	pop hl ; Return from caller
 
 	ld h,d
@@ -3315,15 +3331,26 @@ _fireKeese_moveToGround:
 
 ;;
 _fireKeese_moveTowardCenterIfOutOfBounds:
+	ldbc (LARGE_ROOM_HEIGHT/2)<<4 + 8, (LARGE_ROOM_WIDTH/2)<<4 + 8
+	ld e,LARGE_ROOM_HEIGHT<<4
+	ld a,(wTilesetIndex)
+	and TILESETFLAG_OUTDOORS
+	jr z,+
+	ldbc (SMALL_ROOM_HEIGHT/2)<<4 + 8, (SMALL_ROOM_WIDTH/2)<<4 + 8
+	ld e,SMALL_ROOM_HEIGHT<<4
++
+	push bc
+	ld b,e
+	
 	ld e,Enemy.yh
 	ld a,(de)
-	cp LARGE_ROOM_HEIGHT<<4
+	cp b;LARGE_ROOM_HEIGHT<<4
 	jr nc,@outOfBounds
 
 	ld e,Enemy.xh
 	ld a,(de)
 	cp $f0
-	ret c
+	jr c,@popbc
 
 @outOfBounds:
 	ld e,Enemy.yh
@@ -3333,13 +3360,17 @@ _fireKeese_moveTowardCenterIfOutOfBounds:
 	ld a,(de)
 	ldh (<hFF8E),a
 
-	ldbc (LARGE_ROOM_HEIGHT/2)<<4 + 8, (LARGE_ROOM_WIDTH/2)<<4 + 8
+	pop bc
+	;ldbc (LARGE_ROOM_HEIGHT/2)<<4 + 8, (LARGE_ROOM_WIDTH/2)<<4 + 8
 	call objectGetRelativeAngleWithTempVars
 	ld c,a
 	ld b,SPEED_100
 	ld e,Enemy.angle
 	jp objectApplyGivenSpeed
 
+@popbc:
+	pop bc
+	ret
 
 ; Offsets for Z position, in subpixels.
 _fireKeese_subid0_zOffsets:

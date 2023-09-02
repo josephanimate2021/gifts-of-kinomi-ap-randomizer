@@ -536,12 +536,13 @@ _nextToOverworldKeyhole:
 ; b0: room index
 ; b1: Item needed to unlock the room (see constants/treasure.s)
 @group0:
-	.db <ROOM_AGES_130 TREASURE_OLD_MERMAID_KEY
 	.db <ROOM_AGES_011 TREASURE_GRAVEYARD_KEY
-	.db <ROOM_AGES_00a TREASURE_CROWN_KEY
+	;.db <ROOM_AGES_00a TREASURE_CROWN_KEY
 	.db <ROOM_AGES_070 TREASURE_LIBRARY_KEY ; unused since the present library doesn't have a keyhole
 	.db $00
 @group1:
+	;.db <ROOM_AGES_130 TREASURE_OLD_MERMAID_KEY
+	.db <ROOM_AGES_102 TREASURE_CROWN_KEY
 	.db <ROOM_AGES_130 TREASURE_MERMAID_KEY
 	.db <ROOM_AGES_1a5 TREASURE_LIBRARY_KEY
 	.db $00

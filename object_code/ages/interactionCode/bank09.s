@@ -1307,9 +1307,8 @@ interactionCode44:
 
 	call getGameProgress_1
 	ld a,b
-	ld ($c6f2),a
-	ld c,$02
-	ld a,$06
+	ld c,$02 ; subid
+	ld a,$06 ; MISC_MAN_2 data table
 	call checkNpcShouldExistAtGameStage_body
 	jp nz,interactionDelete
 
@@ -1375,77 +1374,6 @@ interactionCode44:
 	call interactionSetScript
 	jp interactionIncState
 
-;;
-; @param[out]	b
-;			$00 before starting quest
-;			$01 if got sword
-;			$02 if got bombs
-;			$03 if got boomerang
-;			$04 if got Rod of Seasons
-;			$05 if got feather
-;			$06 if got gift
-;			$07 if game finished (unlinked only)
-;ZerotoK's version
-getGameProgress_1:
-	ld b,$07
-	ld a,GLOBALFLAG_FINISHEDGAME
-	call checkGlobalFlag
-	ret nz
-
-	ld hl,@itemTable
-@checkItemObtained:
-	dec b
-	ret z
-	ldi a,(hl)
-	call checkTreasureObtained
-	ret c
-	jr @checkItemObtained
-
-
-@itemTable:
-	.db TREASURE_DINS_GIFT
-	.db TREASURE_FEATHER
-	.db TREASURE_ROD_OF_SEASONS
-	.db TREASURE_BOOMERANG
-	.db TREASURE_BOMBS
-	.db TREASURE_SWORD
-
-;;
-; @param[out]	b
-;			$00 before starting quest
-;			$01 if got sword
-;			$02 if got satchel
-;			$03 if got bracelet
-;			$04 if got a trade item
-;			$05 if got Harp of Ages
-;			$06 if got switchhook
-;			$07 if got gift
-;			$08 if game finished (unlinked only)
-;Gamma's version
-getGameProgress_2:
-	ld b,$08
-	ld a,GLOBALFLAG_FINISHEDGAME
-	call checkGlobalFlag
-	ret nz
-
-	ld hl,@itemTable
-@checkItemObtained:
-	dec b
-	ret z
-	ldi a,(hl)
-	call checkTreasureObtained
-	ret c
-	jr @checkItemObtained
-
-
-@itemTable:
-	.db TREASURE_NAYRUS_GIFT
-	.db TREASURE_SWITCH_HOOK
-	.db TREASURE_HARP
-	.db TREASURE_TRADEITEM
-	.db TREASURE_BRACELET
-	.db TREASURE_SEED_SATCHEL
-	.db TREASURE_SWORD
 
 ;;
 ; @param[out]	b	$00 before beating d2;
@@ -1620,9 +1548,9 @@ checkNpcShouldExistAtGameStage_body:
 @@subid2:
 	.db $00 $01 $ff
 @@subid3:
-	.db $02 $03 $04 $05 $ff
+	.db $02 $03 $04 $05 $06 $ff
 @@subid4:
-	.db $06 $07 $ff
+	.db $07 $08 $ff
 
 @data7: ; INTERACID_OLD_LADY subids 0-5
 	.dw @@subid0
@@ -1755,10 +1683,14 @@ interactionCode45:
 ; INTERACID_TOKAY
 ; ==============================================================================
 interactionCode48:
+	ld a,(wTilesetFlags)
+	and TILESETFLAG_OUTDOORS
+	jr z,+
+	
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_LAYOUTSWAP,a
 	jp z,interactionDelete
-
++
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -4736,19 +4668,20 @@ interactionCode52:
 	ld (hl),$06
 	ld l,Interaction.direction
 	dec (hl)
-
+/*
 	ld a,GLOBALFLAG_WATER_POLLUTION_FIXED
 	call checkGlobalFlag
 	ld b,$00
 	jr z,+
 	inc b
 +
+*/
 	ld e,Interaction.subid
 	ld a,(de)
 	sub $03
 	ld c,a
 	add a
-	add b
+;	add b
 	ld hl,@textIndices
 	rst_addAToHl
 	ld e,Interaction.textID
@@ -4791,7 +4724,7 @@ interactionCode52:
 ; is fixed, respectively.
 @textIndices:
 	.db <TX_3300, <TX_3301
-	.db <TX_3302, <TX_3303
+	.db <TX_3303, <TX_3303
 	.db <TX_3304, <TX_3305
 	.db <TX_3306, <TX_3307
 
@@ -9055,6 +8988,182 @@ goronDanceScriptTable:
 	.dw mainScripts.goron_subid00Script
 	.dw mainScripts.goronDanceScript_failedRound
 	.dw mainScripts.goronDanceScript_givePrize
+
+;;
+; @param[out]	b
+;			$00 before starting quest
+;			$01 if got sword
+;			$02 if got satchel
+;			$03 if got bracelet
+;			$04 if got a trade item
+;			$05 if got Harp of Ages
+;			$06 if got Cane
+;			$07 if got gift
+;			$08 if game finished (unlinked only)
+;ZerotoK's version
+getGameProgress_Ages:
+	ld de,wGameProgress2
+	ld hl,@itemTable2
+	ldbc $08,$02 ;Essence 2
+	jr getGameProgress_Seasons@getProgress
+@itemTable2:
+	.db TREASURE_CANE_OF_SOMARIA
+	.db TREASURE_HARP
+	.db TREASURE_TRADEITEM
+	.db TREASURE_BRACELET
+	.db TREASURE_SEED_SATCHEL
+	.db TREASURE_SWORD
+
+;;
+; @param[out]	b
+;			$00 before starting quest
+;			$01 if got sword
+;			$02 if got bombs
+;			$03 if got boomerang
+;			$04	if got flippers
+;			$05 if got Rod of Seasons
+;			$06 if got feather
+;			$07 if got gift
+;			$08 if game finished (unlinked only)
+;ZerotoK's version
+getGameProgress_Seasons:
+	ld de,wGameProgress1
+	ld hl,@itemTable1
+	ldbc $08,$01 ;Essence 1
+@getProgress:
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call checkGlobalFlag
+	ret nz
+	ld a,(wEssencesObtained)
+	and c
+	ret nz
+
+@checkItemObtained:
+	dec b
+	ret z
+	ldi a,(hl)
+	call checkTreasureObtained
+	jr nc,@checkItemObtained
+	ld (de),a
+	ret
+
+@itemTable1:
+	.db TREASURE_FEATHER
+	.db TREASURE_FLIPPERS
+	.db TREASURE_ROD_OF_SEASONS
+	.db TREASURE_BOOMERANG
+	.db TREASURE_BOMBS
+	.db TREASURE_SWORD
+
+
+;;
+; @param[out]	b	$00 before beating d3;
+;			$01 if beat d3
+;			$02 if saved Nayru;
+;			$03 if beat d7;
+;			$04 if got the maku seed (saw twinrova cutscene);
+;			$05 if game finished (unlinked only)
+getGameProgress_1:
+	ld b,$05
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	ld a,GLOBALFLAG_SAW_TWINROVA_BEFORE_ENDGAME
+	call checkGlobalFlag
+	ret nz
+
+	ld a,TREASURE_ESSENCE
+	call checkTreasureObtained
+	jr nc,@noEssences
+
+	call getHighestSetBit
+	ld c,a
+	ld b,$03
+	cp $06
+	ret nc
+
+	dec b
+	ld a,GLOBALFLAG_SAVED_NAYRU
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	ld a,c
+	cp $02
+	ret nc
+
+@noEssences:
+	ld b,$00
+	ret
+
+;;
+; @param[out]	b	$00 before beating d2;
+;			$01 if beat d2;
+;			$02 if beat d4;
+;			$03 if saved nayru;
+;			$04 if beat d7;
+;			$05 if got the maku seed (saw twinrova cutscene);
+;			$06 if beat veran but not twinrova (linked only);
+;			$07 if game finished (unlinked only)
+getGameProgress_2:
+	ld b,$07
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	call checkIsLinkedGame
+	jr z,+
+	ld hl,wGroup4Flags+$fc
+	bit 7,(hl)
+	ret nz
++
+	dec b
+	ld a,GLOBALFLAG_SAW_TWINROVA_BEFORE_ENDGAME
+	call checkGlobalFlag
+	ret nz
+
+	ld a,TREASURE_ESSENCE
+	call checkTreasureObtained
+	jr nc,@noEssences
+
+	call getHighestSetBit
+	ld c,a
+	ld b,$04
+	cp $06
+	ret nc
+
+	dec b
+	ld a,GLOBALFLAG_SAVED_NAYRU
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	ld a,c
+	cp $03
+	ret nc
+	dec b
+	ld a,c
+	cp $01
+	ret nc
+
+@noEssences:
+	ld b,$00
+	ret
+
+
+;;
+unusedFunc5598:
+	ld a,b
+	ld hl,lynnaMan2ScriptTable
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	call interactionSetScript
+	jp interactionIncState
 
 
 .ends

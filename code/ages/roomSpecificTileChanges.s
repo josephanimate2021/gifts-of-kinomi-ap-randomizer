@@ -76,6 +76,9 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group0Map33 ; $44
   .dw tileReplacement_group0Map51 ; $45
   .dw tileReplacement_group0HedgeMazeMap75 ; $46
+  .dw tileReplacement_group4RupeeRoomMap34 ; $47
+  .dw tileReplacement_group4RupeeRoomMap7c
+
 
 roomTileChangerCodeGroupTable:
   .dw roomTileChangerCodeGroup0Data
@@ -141,6 +144,8 @@ roomTileChangerCodeGroup4Data:
   .db $43 $42
   .db $51 $3f
   .db $3b $43
+  .db $34 $47 ; D11 rupee room
+  .db $7c $48 ; D12 rupee room
   ;.db $1b $01
   ;.db $4c $03
   ;.db $4e $04
@@ -1736,6 +1741,42 @@ tileReplacement_group0HedgeMazeMap75:
   .db $37 $02 $03 TILEINDEX_OUTDOORS_PUSHABLE_ARMOS
 
 
+; D2 - hidden rupee room
+tileReplacement_group4RupeeRoomMap34:
+	ld hl,wRoomLayout+$24
+	ld bc,$0808
+	ld de,wD11RupeeRoomRupees
+	jp replaceRupeeRoomRupees
 
+; D6 - hidden rupee room
+tileReplacement_group4RupeeRoomMap7c:
+	ld hl,wRoomLayout+$34
+	ld bc,$0808
+	ld de,wD12RupeeRoomRupees
+	jp replaceRupeeRoomRupees
+*/
 
+;;
+; @param	bc	$0808
+; @param	de	$c8f0 - d2 rupee room, $c8f8 - d6 rupee room
+; @param	hl	top-left tile of rupees
+replaceRupeeRoomRupees:
+	ld a,(de)
+	inc de
+	push bc
+-
+	rrca
+	jr nc,+
+	ld (hl),TILEINDEX_STANDARD_FLOOR+$03
++
+	inc l
+	dec b
+	jr nz,-
 
+	ld a,l
+	add $08
+	ld l,a
+	pop bc
+	dec c
+	jr nz,replaceRupeeRoomRupees
+	ret

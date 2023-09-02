@@ -19,6 +19,10 @@ signTextGroup0Data:
 	.db $46 $43 $0f ; to mountains (& $10 to desert)
 	.db $57 <ROOM_AGES_075 $09
 	.db $13 <ROOM_AGES_036 $0a
+	.db $48 <ROOM_AGES_084 $14 ; Summer roof
+	.db $48 <ROOM_AGES_085 $15 ; Autumn roof
+	.db $48 <ROOM_AGES_086 $16 ; Winter roof
+	.db $48 <ROOM_AGES_087 $17 ; Spring roof
 	.db $00
 signTextGroup1Data:
 	.db $14 <ROOM_AGES_110 $07	; Entrance1

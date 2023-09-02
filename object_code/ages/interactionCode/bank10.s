@@ -9,7 +9,7 @@ interactionCodedc:
 	rst_jumpTable
 	.dw _interactiondc_subid00
 	.dw _interactiondc_subid01
-	.dw _stub
+	.dw _interactiondc_subid02
 	.dw _stub
 	.dw _stub
 	.dw _interactiondc_subid05
@@ -672,6 +672,11 @@ _interactiondc_subid1a:
 	or a
 	ret nz
 
+	ld a,(wScrollMode)
+	and $08 ; in screen transition
+	jp z,interactionDelete
+
+
 	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
 	call _isHeartPieceOrRupee
 	call createTreasure
@@ -694,6 +699,34 @@ _isHeartPieceOrRupee:
 +	
 	ld b,TREASURE_HEART_PIECE
 	ret
+
+_interactiondc_subid02:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,a
+	jp nz,interactionDelete
+
+	call checkInteractionState
+	jr z,@@initialize
+
+	; Check that Link has collided with this object, he's not holding anything, and
+	; he's diving.
+	ld a,(wLinkSwimmingState)
+	rlca
+	ret nc
+	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
+	ret nc
+
+	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
+	call _isHeartPieceOrRupee
+	call createTreasure
+	call objectCopyPosition
+	jp interactionDelete
+
+@@initialize:
+	inc a ; $01
+	ld (de),a
+	inc a ; $02
+	jp objectSetCollideRadius
 
 
 ; ==============================================================================

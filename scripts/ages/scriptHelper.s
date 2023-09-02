@@ -5707,8 +5707,15 @@ interaction6b_checkLinkCanCollect:
 ;;
 interaction6b_refillBombs:
 	ld hl,wMaxBombs
-	ldd a,(hl)
-	ld (hl),a
+	ld a,(hl)
+	ld b,$30
+	cp $10
+	jr z,+
+	ld b,$50
++
+	ld (hl),b
+	dec l
+	ld (hl),b
 	ret
 
 

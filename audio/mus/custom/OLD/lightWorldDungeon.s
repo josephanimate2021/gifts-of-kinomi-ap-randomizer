@@ -150,7 +150,7 @@ lightWorldDungeonChannel1Measure20:
 
 lightWorldDungeonChannel0:
 	resetCoda
-	.redefine BEAT 6
+	.redefine BEAT 6 ; sixteenth
 lightWorldDungeonChannel0Measure1:
 	incCoda	
 ; Measure 1

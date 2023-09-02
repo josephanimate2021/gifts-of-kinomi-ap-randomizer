@@ -203,8 +203,8 @@ bank3bChannelFallback:
 .include "audio/mus/common/ganon.s"
 .include "audio/mus/ages/overworldPast.s"
 .include "audio/mus/ages/nayru.s"
-.include "audio/mus/ages/crescent.s"
-;.include "audio/mus/custom/OLD/gerudoValley.s"
+;.include "audio/mus/ages/crescent.s"
+.include "audio/mus/custom/gerudoValley.s"
 ;.include "audio/mus/ages/lynnaCity.s"
 .include "audio/mus/custom/outsetIsland.s"
 ;.include "audio/mus/custom/OLD/kakarikoVillage.s"
@@ -252,7 +252,8 @@ bank3cChannelFallback:
 .include "audio/mus/common/sadness.s"
 .include "audio/mus/common/intro2.s"
 .include "audio/mus/ages/ambiPalace.s"
-.include "audio/mus/custom/fallingRain.s"
+;.include "audio/mus/custom/fallingRain.s"
+.include "audio/mus/custom/sacredGrove.s"
 ;.include "audio/mus/custom/OLD/hyruleCastle.s"
 
 ;.include "audio/mus/ages/mermaidsCave.s"
@@ -262,8 +263,8 @@ bank3cChannelFallback:
 .include "audio/mus/ages/fairyForest.s"
 .include "audio/mus/ages/ralph.s"
 .include "audio/mus/ages/spiritsGrave.s"	;gutted
-.include "audio/mus/ages/wingDungeon.s"
-;.include "audio/mus/custom/OLD/lightWorldDungeon.s"
+;.include "audio/mus/ages/wingDungeon.s"
+.include "audio/mus/custom/lightWorldDungeon.s"
 .include "audio/mus/ages/crownDungeon.s"	;gutted
 .include "audio/mus/ages/jabuJabusBelly.s"
 .include "audio/sfx/common/damageEnemy.s"

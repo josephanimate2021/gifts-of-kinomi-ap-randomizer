@@ -695,7 +695,7 @@ interactionCode21:
 	ld a,(de)
 	rst_jumpTable
 	.dw interactionDelete
-	.dw _interaction21_subid01
+	.dw _stub
 	.dw _interaction21_subid02
 	.dw _interaction21_subid03
 	.dw _interaction21_subid04
@@ -725,21 +725,41 @@ interactionCode21:
 
 
 ; D2: Verify a 2x2 floor pattern
+/*
 _interaction21_subid01:
 	call _interactionDeleteAndRetIfItemFlagSet
 	ld hl,_subid01_tileData
+*/
+_interaction21_subid02:
+	call _interactionDeleteAndRetIfItemFlagSet
+	ld hl,_subid02_tileData
 
 _verifyTilesAndDropSmallKey:
 	call _verifyTiles
 	ret nz
 	jp _spawnSmallKeyFromCeiling
 
+
+_subid02_tileData:
+	.db TILEINDEX_RED_TOGGLE_BLOCK $27 $38 $ff
+	.db TILEINDEX_YELLOW_TOGGLE_BLOCK $29 $37 $ff
+	.db TILEINDEX_BLUE_TOGGLE_BLOCK $28 $39 $ff
+	.db TILEINDEX_RED_TOGGLE_FLOOR $2b $3c $ff
+	.db TILEINDEX_YELLOW_TOGGLE_FLOOR $2d $3b $ff
+	.db TILEINDEX_BLUE_TOGGLE_FLOOR $2c $3d $ff
+	.db $00
+
+
+/*
 _subid01_tileData:
 	.db TILEINDEX_YELLOW_TOGGLE_FLOOR  $67 $77 $ff ; Tiles at $67 and $77 must be red
 	.db TILEINDEX_BLUE_TOGGLE_FLOOR    $68 $78 $00 ; Tiles at $68 and $78 must be blue
-
+*/
 
 ; D2: Verify a floor tile is red to open a door
+
+	
+/*
 _interaction21_subid02:
 	ld a,(wRoomLayout+$5a)
 	cp TILEINDEX_RED_TOGGLE_FLOOR
@@ -749,6 +769,7 @@ _interaction21_subid02:
 +
 	ld (wActiveTriggers),a
 	ret
+*/
 
 
 ; Light torches when a colored cube rolls into this position.
@@ -820,6 +841,7 @@ _interaction21_subid04:
 	sub TILEINDEX_RED_TOGGLE_BLOCK	;FLOOR
 	set 7,a
 	ld (wRotatingCubeColor),a
+_stub:
 	ret
 
 
@@ -9172,7 +9194,7 @@ _genericNPC:
 	callab agesInteractionsBank09.getGameProgress_2
 	ld e,b
 
-	ld ($c6f2),a
+	ld (wGameProgress2),a
 	pop bc
 ;	ld c,$00
 	ld a,b		;input

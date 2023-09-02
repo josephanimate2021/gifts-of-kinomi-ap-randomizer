@@ -892,8 +892,12 @@ wSwordBreakCounter: ; $c6f0
 	db
 wShieldBreakCounter: ; $c6f1
 	db
+wGameProgress1:
+	db
+wGameProgress2:
+	db
 wc6f0: ; $c6f0
-	.dsb $9	;$b
+	.dsb $7	;$b
 
 .endif ; ROM_AGES
 
@@ -947,8 +951,8 @@ wGroup5Flags: ; $ca00
 ; Steal 6 of the past room flags for vine seed positions
 .define wVinePositions wPastRoomFlags+$f0
 ; Steal 16 of subrosia's room flags for rupee room rupees gotten
-.define wD2RupeeRoomRupees wPastRoomFlags+$f0
-.define wD6RupeeRoomRupees wPastRoomFlags+$f8
+.define wD11RupeeRoomRupees wPastRoomFlags+$e0
+.define wD12RupeeRoomRupees wPastRoomFlags+$e8
 
 ; ========================================================================================
 ; $cb00: END of data that goes into the save file

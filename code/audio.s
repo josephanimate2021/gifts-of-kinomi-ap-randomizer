@@ -707,13 +707,13 @@ _doNextChannelCommand:
 	.dw _channelCmdfc ; beginLoop
 	.dw _channelCmdfb ; transpose
 	.dw _channelCmdfa ; endSec
-	.dw _channelCmdf9
-	.dw _channelCmdf8
+	.dw _channelCmdf9 ; vibrato
+	.dw _channelCmdf8 ; sweep
 	.dw _channelCmdf7 ; breakOrLoop
-	.dw _channelCmdf6
+	.dw _channelCmdf6 ; duty
 	.dw _channelCmdff
 	.dw _channelCmdff
-	.dw _channelCmdf3
+	.dw _channelCmdf3 ; jumpto
 	.dw _channelCmdf2
 	.dw _channelCmdf1
 	.dw _channelCmdf0
@@ -723,9 +723,6 @@ _channelCmdf1:
 	jp _doNextChannelCommand
 ;;
 _channelCmdf2:
-	jp _doNextChannelCommand
-;;
-_channelCmdf3:
 	jp _doNextChannelCommand
 
 ;;
@@ -1847,6 +1844,7 @@ _channelCmdfe:
 	dec l
 	ld (hl),e
 
+_channelCmdf3:
 	call _getNextChannelByte
 	ld l,a
 	call _getNextChannelByte

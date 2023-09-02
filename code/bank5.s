@@ -7282,9 +7282,9 @@ checkLinkPushingAgainstTreeStump:
 	ld b,a
 	ld c,(hl)
 	ld e,TILEINDEX_STUMP
-	ld a,(wActiveGroup)
-	or a
-	jr z,+
+	ld a,(wTilesetFlags)
+	and TILESETFLAG_OUTDOORS
+	jr nz,+
 	ld e,TILEINDEX_DUNGEON_STUMP
 +
 	call objectGetRelativeTile

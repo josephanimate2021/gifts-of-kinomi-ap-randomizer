@@ -14024,7 +14024,7 @@ func_3ee4:
 	ret
 
 .endif
-	
+
 
 .include "code/debug.s"
 

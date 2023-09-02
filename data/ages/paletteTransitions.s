@@ -58,6 +58,7 @@ paletteTransitionGroup0:
 	.db $ff
 
 paletteTransitionGroup1:
+	dbbww DIR_DOWN <ROOM_AGES_112 paletteData4ca0 paletteData4d00
 	dbbww DIR_DOWN  $30  paletteData4d00 paletteData4be0	
 ;	dbbww DIR_UP    $12  paletteData4d00 paletteData4ca0
 ;	dbbww DIR_DOWN  $22  paletteData4ca0 paletteData4d00

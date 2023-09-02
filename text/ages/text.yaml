@@ -943,7 +943,7 @@ groups:
     text: |-
       You found the
       old man's \col(1)Bombs\col(0)!
-      There are 10.
+      There are 30.
 
   - name: TX_0077
     index: 0x77
@@ -3501,51 +3501,47 @@ groups:
   - name: TX_0605
     index: 0x05
     text: |-
-      I've caused you
-      much trouble.
-      But I can't
-      stand by as the
-      world falls into
-      darkness.
-      Please rescue
-      \col(3)Nayru\col(0) as quickly
-      as you can!
+      I've invited
+      \col(3)Nayru\col(0) and \col(1)Din\col(0)
+      to my villa to
+      celebrate their
+      birthdays!\stop
+      You didn't know
+      that they shared
+      a birthday? Scoff!
+      You should go 
+      find some gifts
+      for them or else
+      they will be mad
+      at you!
 
   - name: TX_0606
     index: 0x06
     text: |-
-      The darkness has
-      not faded yet...
-      You must stop
-      \col(3)Veran\col(0) before the
-      darkness engulfs
-      everything!
+      You found a gift
+      for \col(1)Din\col(0)! Hooray!
+      Don't forget about \col(3)Nayru\col(0)!
+
 
   - name: TX_0607
     index: 0x07
     text: |-
-      I, too, ask for
-      your help.\stop
-      All people, not
-      just those of
-      this age, will
-      meet with great
-      misfortune.
-      \col(3)Nayru\col(0), \col(3)Impa\col(0) and
-      I will try to
-      give strength to
-      the people.
-      \Link,
-      we're counting
-      on you.
+      You found a gift
+      for \col(3)Nayru\col(0)! Hooray!
+      Don't forget about \col(1)Din\col(0)!
 
   - name: TX_0608
     index: 0x08
     text: |-
-      \pos(2)\Link,
+      \pos(2)The evil witches
+      Twinrova have taken
+      the Oracles without
+      us knowing!
+      You must save them! 
+      \pos(1)\Link,
       I always hope
       for your safe
-      return.
+      return!\stop
 
   - name: TX_0609
     index: 0x09
@@ -4731,8 +4727,7 @@ groups:
     index: 0x6d
     text: |-
       Stone
-      Treasure from a
-      bygone age.
+      Treasure from a bygone age.
       It whispers \call(0xff), \call(0xfe), \call(0xfd), \call(0xfc)
 
   - name: TX_096e
@@ -5259,15 +5254,9 @@ groups:
     - 0x3f
     - 0x40
     text: |-
-      \sfx(0xb6)This is our
-      precious tree
-      nursery. They
-      say a \col(1)Scent Tree\col(0)
-      was planted here
-      long ago. If I
-      had a \col(1)seedling\col(0),
-      I'd plant it
-      here.
+      \sfx(0xb6)I visited the graveyard just northwest of our desert. So many weeds!\stop
+      \sfx(0xb6)Today, I saw there was a \col(1)pattern\col(0) on the floor in our \col(1)Temple\col(0).\stop
+      \sfx(0xb6)What could it mean? 
 
   - name: TX_0a41
     index: 0x41
@@ -5456,42 +5445,30 @@ groups:
   - name: TX_0a60
     index: 0x60
     text: |-
-      \sfx(0xb6)There was a
-      \col(1)Scent Tree\col(0) here
-      long ago. If you
-      planted a
-      \col(1)seedling\col(0) now,
-      it would take
-      hundreds of
-      years to grow.
+      \sfx(0xb6)All of us
+      \col(1)Tokay\col(0) keep an
+      entrance to our
+      sacred \col(1)Temple\col(0) in our homes to pray.
 
   - name: TX_0a61
     index: 0x61
     text: |-
-      \sfx(0xb6)Put \col(1)vine sprouts\col(0)
-      by strange walls
-      for good luck.
+      \sfx(0xb6)The \col(1)chief\col(0) lives just north of here.\stop
+      \sfx(0xb6)Do you have business with him?
 
   - name: TX_0a62
     index: 0x62
     text: |-
-      \sfx(0xb6)There's a spot
-      just like this
-      on the west side
-      of the island.
+      \sfx(0xb6)Some say our \col(1)Temple\col(0) used to be a mine abandoned long ago.\stop
+      \sfx(0xb6)How ridiculous!
+
 
   - name: TX_0a63
     index: 0x63
     text: |-
-      \sfx(0xb6)Our guardian is
-      at the center of
-      the island. When
-      the sun climbs
-      high into the
-      sky, the sea
-      comes in and
-      you can't get
-      to him.
+      \sfx(0xb6)Our \col(1)Temple\col(0)
+      is a labrinth below our feet.
+      Only the chief knows what's beyond the stairs we use to pray.
 
   - name: TX_0a64
     index: 0x64
@@ -5499,15 +5476,19 @@ groups:
       \sfx(0xb6)One, two, three!
       Is that a lot?
       I need to learn
-      my numbers.
+      my numbers...\stop
+      \sfx(0xb6)I heard from the chief there are a lot of sacred \col(1)relics\col(0) hidden around the desert and in our \col(1)Temple\col(0).
+      But why go to the trouble of finding them?
 
   - name: TX_0a65
     index: 0x65
     text: |-
+      \sfx(0xb6)Hello! I am the chief of the Tokay in this small desert.\stop      
       \sfx(0xb6)There's a
       winding maze
       beneath this
-      island. Maybe.
+      desert, known as our \col(1)Temple\col(0).\stop
+      You have my permission to explore down there, but please do not disturb any tokays if you see them!
 
   - name: TX_0a66
     index: 0x66
@@ -5515,9 +5496,8 @@ groups:
       \sfx(0xb6)It's said that
       long ago, a
       Tokay with no
-      tail opened our
-      guardian's
-      mouth.
+      tail ventured into the \col(1)Temple\col(0), climbed the sacred stairs and created our desert with only his two hands!\stop
+      \sfx(0xb6)I don't believe all the folklore, but I would like to meet this legendary figure.
 
   - name: TX_0a67
     index: 0x67
@@ -5571,34 +5551,20 @@ groups:
     text: |-
       \sfx(0xb6)Hey! You!
       Listen to me!
-      It takes a long
-      time for trees
-      to grow. The
-      same goes for
-      that vine you
-      climbed down.
+      Beware of going down into the \col(1)Temple\col(0)!
+      Talk to the chief first!
 
   - name: TX_0a6b
     index: 0x6b
     text: |-
-      \sfx(0xb6)It takes a long,
-      long time for a
-      tree to grow.
-      The same goes
-      for that vine
-      sprout.
+      \sfx(0xb6)Beware of going down into the \col(1)Temple\col(0)!
+      Talk to the chief first!
 
   - name: TX_0a6c
     index: 0x6c
     text: |-
-      \sfx(0xb6)This is
-      \col(3)Crescent Island\col(0).
-      I've never seen
-      a Tokay like
-      you. You have
-      ears. Are you a
-      long-eared
-      Tokay?
+      \sfx(0xb6)I don't know what these \col(3)statues\col(0) are used for, but they are all over the desert.
+      
 
 - group: 0x0b
   data:
@@ -6740,10 +6706,11 @@ groups:
   - name: TX_0f00
     index: 0x00
     text: |-
-      Somewhere in the
-      woods is a tree
+      I have in my
+      backyard a tree
       that bears very
       \col(1)special seeds\col(0).
+      Take as many as you need.
 
   - name: TX_0f01
     index: 0x01
@@ -6756,16 +6723,7 @@ groups:
   - name: TX_0f02
     index: 0x02
     text: |-
-      I began my life
-      as a fisherman
-      on this island,
-      but now the
-      island drifts
-      toward the
-      horizon. In my
-      grandson's day,
-      this island will
-      be farther west.
+      The guards won't let me in until I get an invitation to the party.
 
   - name: TX_0f03
     index: 0x03
@@ -8248,9 +8206,7 @@ groups:
     - 0x3f
     - 0x40
     text: |-
-      So, you wanna
-      start over from
-      scratch?
+      I'd be careful wandering around this villa further than the main halls! 
 
   - name: TX_1441
     index: 0x41
@@ -8265,15 +8221,18 @@ groups:
   - name: TX_1442
     index: 0x42
     text: |-
-      The village has
-      it hard with the
-      construction of
-      \col(3)Queen Ambi's\col(0)
-      tower, but ya
-      still gotta
-      spend time with
-      the kids. Hey!
-      Nice one!
+      The village is
+      happy to have
+      the \col(1)oracles\col(0) here
+      for their birth-
+      days!\stop
+      The \col(2)princess\col(0)'
+      villa just north
+      of here is large
+      and beautiful!
+      Gotta stick with
+      the kids today!
+      Hey! Nice one!
 
   - name: TX_1443
     index: 0x43
@@ -8347,8 +8306,8 @@ groups:
       I have to do all
       the things I
       want to before
-      I can't move
-      anymore!
+      the birthday
+      party!
 
   - name: TX_1507
     index: 0x07
@@ -12093,8 +12052,7 @@ groups:
   - name: TX_2510
     index: 0x10
     text: |-
-      Shhh! I can't
-      hear \col(3)Nayru\col(0) sing!
+      Is Zelda busy now?
 
   - name: TX_2511
     index: 0x11
@@ -14346,27 +14304,30 @@ groups:
   - name: TX_2e14
     index: 0x14
     text: |-
-      \up Maku Tree
+      \left
+      Shrine of Summer\stop
+      Seasons' shrines are hidden, accessible to only those that have visited them!
 
   - name: TX_2e15
     index: 0x15
     text: |-
-      Know-It-All
-      Birds' Hut
-       First-timers
-       welcome!!!
+      \left
+      Shrine of Autumn\stop
+      Some switches only have affect in another season's shrine!
 
   - name: TX_2e16
     index: 0x16
     text: |-
-      \up Nayru's House
-      \down Lynna City
+      \left
+      Shrine of Winter\stop
+      The north winter stump has been cursed with a magical barrier!
 
   - name: TX_2e17
     index: 0x17
     text: |-
-      \up Ambi's Palace
-      \left Ambi's Tower
+      \left 
+      Shrine of Spring\stop
+      Gales reach all shrines!
 
   - name: TX_2e18
     index: 0x18
@@ -14571,11 +14532,11 @@ groups:
     - 0x12
     text: |-
       \pos(2)I am \col(3)Vire\col(0),
-      \col(3)Veran's\col(0) loyal
+      \col(3)Twinrova's\col(0) loyal
       henchman! I
       heard someone
       was trying to
-      stop \col(3)Veran\col(0), so
+      stop \col(3)Twinrova\col(0), so
       I came here. But
       it's just some
       kid!\stop
@@ -14619,7 +14580,7 @@ groups:
       I paid for my
       overconfidence,
       but I'll report
-      this to \col(3)Veran\col(0)!
+      this to \col(3)Twinrova\col(0)!
       Gar har har!
 
   - name: TX_2f18
@@ -14627,7 +14588,7 @@ groups:
     text: |-
       \slow()Im...impossible!
       Not once, but
-      twice! \col(3)Veran\col(0)...
+      twice! \col(3)Twinrova\col(0)...
       \col(3)Onox\col(0)...
       I'm sorry...
       Goodbye!
@@ -22161,7 +22122,7 @@ groups:
     text: |-
       \col(2)Zelda\col(0) has gone
       and done it this time with all of the festivities!
-      This \col(3)small vista\col(0) can't hold all of these guests!
+      This \col(3)small villa\col(0) can't hold all of these guests!
 
   - name: TX_5911
     index: 0x11
@@ -22188,14 +22149,14 @@ groups:
     index: 0x14
     text: |-
       It is our job to
-      guard the \col(3)vista\col(0)
+      guard the \col(3)villa\col(0)
       with our lives!
 
   - name: TX_5915
     index: 0x15
     text: |-
       This is \col(2)Zelda's\col(0)
-      \col(3)summer vista\col(0) that
+      \col(3)summer villa\col(0) that
       she uses to spend time with the Oracles.
 
   - name: TX_5916

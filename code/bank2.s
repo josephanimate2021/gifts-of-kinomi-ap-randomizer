@@ -3891,11 +3891,10 @@ _showItemText2:
 	ld (hl),a
 	ld c,a
 	ld b,>TX_0900
+
 	cp <TX_096d
 	jr nz,@skipStoneCheck
 
-	push af
-	push hl
 	ld hl,wTextSubstitutions+3
 	ld a,<TX_096e
 .rept 3
@@ -3919,13 +3918,16 @@ _showItemText2:
 	jr -
 
 @endStoneCheck:
-	pop hl
-	pop af
+	ld hl,wInventory.activeText
+	ld c,(hl)
+	ld a,c
+	ld b,>TX_0900
 
 @skipStoneCheck:
 	bit 7,c
 	jr z,+
 
+; Vasu text
 	ld b,>TX_3000
 	ld c,$c0
 	and $3f

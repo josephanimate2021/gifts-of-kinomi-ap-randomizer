@@ -86,15 +86,15 @@ forestOfMystery:
 	.dw forestOfMysteryChannel6
 	.db $ff
 */
-fallingRain:
+sacredGrove:
 	.db $00
-	.dw fallingRainChannel0
+	.dw sacredGroveChannel0
 	.db $01
-	.dw fallingRainChannel1
+	.dw sacredGroveChannel1
 	.db $04
-	.dw fallingRainChannel4
+	.dw sacredGroveChannel4
 	.db $06
-	.dw fallingRainChannel6
+	.dw sacredGroveChannel6
 	.db $ff
 /*
 sound0c:
@@ -551,7 +551,7 @@ sound08:
 	.db $06
 	.dw sound08Channel6
 	.db $ff
-/*
+
 gerudoValley:
 	.db $00
 	.dw gerudoValleyChannel0
@@ -562,7 +562,7 @@ gerudoValley:
 	.db $06
 	.dw gerudoValleyChannel6
 	.db $ff
-
+/*
 hyruleCastle:
 	.db $00
 	.dw hyruleCastleChannel0
@@ -587,6 +587,7 @@ theGreatPalace:
 	.db $ff
 
 ; replaced
+/*
 sound05:
 	.db $00
 	.dw sound05Channel0
@@ -597,7 +598,7 @@ sound05:
 	.db $06
 	.dw sound05Channel6
 	.db $ff
-
+*/
 sound07:
 	.db $00
 	.dw sound07Channel0
@@ -735,7 +736,7 @@ sound12:
 	.dw sound12Channel6
 	.db $ff
 
-/*
+
 lightWorldDungeon:
 	.db $00
 	.dw lightWorldDungeonChannel0
@@ -746,7 +747,7 @@ lightWorldDungeon:
 	.db $06
 	.dw lightWorldDungeonChannel6
 	.db $ff
-*/
+/*
 sound13:
 	.db $00
 	.dw sound13Channel0
@@ -757,7 +758,7 @@ sound13:
 	.db $06
 	.dw sound13Channel6
 	.db $ff
-	
+	*/
 ghostsNGoblinsGraveyard:
 	.db $00
 	.dw ghostsNGoblinsGraveyardChannel0

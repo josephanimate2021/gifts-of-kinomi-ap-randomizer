@@ -234,32 +234,33 @@ partCode01:
 	ld e,Part.subid
 	ld a,(de)
 
-	cp ITEM_DROP_L2_SWORD
-	jr nz,+
-	ld a,(wSwordLevel)
-	cp $03
-	jr nc,+
-	ld hl,wSwordBreakCounter
-	ld (hl),20
-	ld a,SND_SWORDBEAM
-	call playSound
-	jr @deleteSelf
-+
-	cp ITEM_DROP_L2_SHIELD
-	jr nz,++
-	ld a,(wSwordLevel)
-	cp $03
-	jr nc,++
-	ld hl,wShieldBreakCounter
-	ld (hl),20
-	ld a,SND_SHIELD
-	call playSound
-	jr @deleteSelf
-++
+/*
 	cp ITEM_DROP_50_ORE_CHUNKS
 	jr nz,@deleteSelf
 	call getThisRoomFlags
 	set 5,(hl)
+*/
+
+	ld bc,wSwordLevel
+	ld hl,wSwordBreakCounter
+	ld e,SND_SWORDBEAM
+	sub ITEM_DROP_L2_SWORD
+	jr z,@swordOrShieldDrop
+
+	dec a ; ITEM_DROP_L2_SHIELD
+	jr nz,@deleteSelf
+	ld c,<wShieldLevel
+	inc l ;wShieldBreakCounter
+	ld e,SND_SHIELD
+
+@swordOrShieldDrop:
+	ld a,(bc)
+	cp $03
+	jr nc,@deleteSelf	
+	ld (hl),20
+	ld a,e
+	call playSound
+
 @deleteSelf:
 	jp partDelete
 
@@ -286,7 +287,7 @@ partCode01:
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_10,  RUPEEVAL_20  ; ITEM_DROP_10_ORE_CHUNKS
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_50,  RUPEEVAL_100 ; ITEM_DROP_50_ORE_CHUNKS
 	.db TREASURE_RUPEES,        RED_JOY_RING,   RUPEEVAL_100, RUPEEVAL_200 ; ITEM_DROP_100_RUPEES_OR_ENEMY
-	;.db TREASURE_HEART_PIECE,	$00,			$01, $01 ; ITEM_DROP_HEART_PIECE
+
 
 
 ;;
@@ -328,16 +329,11 @@ _itemDrop_initGfx:
 	.db $0c $02 ; ITEM_DROP_10_ORE_CHUNKS
 	.db $0c $03 ; ITEM_DROP_50_ORE_CHUNKS
 	.db $08 $04 ; ITEM_DROP_100_RUPEES_OR_ENEMY
-	;.db $0a $01 ; ITEM_DROP_HEART_PIECE
 
 
 ;;
 ; @param[out]	cflag	c if time to disappear
 _itemDrop_countdownToDisappear:
-;	ld a, Part.subid
-;	cp ITEM_DROP_HEART_PIECE
-;	ret z
-
 	ld a,(wFrameCounter)
 	xor d
 	rrca
@@ -1335,8 +1331,15 @@ partCode08:
 	ld c,a
 
 	; Search for lightable torches
-	ld hl,wRoomLayout
+	ld a,(wDungeonIndex)
+	inc a
 	ld b,LARGE_ROOM_HEIGHT << 4
+	jr nz,+
+	call darkenRoom
+	ld b,SMALL_ROOM_HEIGHT << 4
++
+	ld hl,wRoomLayout
+
 --
 	ld a,(hl)
 	cp TILEINDEX_UNLIT_TORCH

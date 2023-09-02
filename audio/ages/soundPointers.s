@@ -4,21 +4,21 @@ _soundPointers:
 	m_soundPointer sound02
 	m_soundPointer sound03
 	m_soundPointer sound04
-	m_soundPointer sound05;gerudoValley
+	m_soundPointer gerudoValley
 	m_soundPointer sound06
 	m_soundPointer sound07;hyruleCastle
 	m_soundPointer sound08
 	m_soundPointer sound09
 	m_soundPointer outsetIsland;sound0a;kakarikoVillage
 	m_soundPointer sound0b
-	m_soundPointer fallingRain;sound0c;forestOfMystery
+	m_soundPointer sacredGrove;sound0c;forestOfMystery
 	m_soundPointer sound0d
 	m_soundPointer sound0e
 	m_soundPointer sound0f;fairyFountain
 	m_soundPointer sound10
 	m_soundPointer sound11;fileSelect
 	m_soundPointer sound12
-	m_soundPointer sound13;lightWorldDungeon
+	m_soundPointer lightWorldDungeon
 	m_soundPointer ghostsNGoblinsGraveyard;sound14;franticFactory
 	m_soundPointer spiritTemple;sound15;floroCaverns
 	m_soundPointer sound16

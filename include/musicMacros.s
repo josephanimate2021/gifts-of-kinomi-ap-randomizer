@@ -265,6 +265,11 @@
 	.db $f3
 .endm
 
+.macro jumpto
+	.db $f3
+	.dw \1
+.endm
+
 ; f4-f5: duplicates of ff?
 .macro cmdf4
 	.db $f4

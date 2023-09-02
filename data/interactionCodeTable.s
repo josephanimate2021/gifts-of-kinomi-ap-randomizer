@@ -29,7 +29,7 @@ interactionCodeTable: ; $3b8b
 	.dw agesInteractionsBank08.interactionCode1a ; 0x1a
 	.dw agesInteractionsBank08.interactionCode1b ; 0x1b	;gutted
 	.dw    commonInteractions1.interactionCode1c ; 0x1c
-	.dw                        interactionDelete ; 0x1d
+	.dw    commonInteractions1.interactionCode1d;interactionDelete ; 0x1d
 	.dw    commonInteractions1.interactionCode1e ; 0x1e
 	.dw agesInteractionsBank08.interactionCode1f ; 0x1f
 	.dw agesInteractionsBank08.interactionCode20 ; 0x20
