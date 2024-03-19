@@ -1949,7 +1949,6 @@ playSound:
 	ld a,$00
 	ld (wSoundFadeDirection),a
 	ld a,(wSoundTmp)
-; MUSIC-FEATURE: changed to include lookup index 
 
 	; Get a*3 in de
 	ld d,$00
