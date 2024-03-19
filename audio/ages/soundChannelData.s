@@ -64,9 +64,6 @@ sndbdChannel2:
 .include "audio/mus/common/essence.s"
 .include "audio/sfx/ages/echoes.s"
 .include "audio/mus/ages/underwater.s"
-.include "audio/mus/ages/makuTree.s"
-
-.include "audio/sfx/seasons/magnetGloves.s" ; CROSSITEMS: Added this
 
 .ifdef BUILD_VANILLA
 	.dsb 162 $ff

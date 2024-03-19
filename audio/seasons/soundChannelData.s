@@ -60,9 +60,6 @@ bank39ChannelFallback:
 .include "audio/sfx/seasons/bd.s" ; TODO
 .include "audio/mus/common/mapleGame.s"
 .include "audio/mus/common/finalBoss.s"
-.include "audio/mus/common/essence.s"
-
-.include "audio/sfx/ages/switch2.s" ; CROSSITEMS: Added this
 
 .ifdef BUILD_VANILLA
 	.dsb 13 $ff

@@ -1847,6 +1847,7 @@ playSound:
 	push bc
 	push de
 	push hl
+
 	ld (wSoundTmp),a
 	cp $00
 	jr nz,+
@@ -1948,6 +1949,7 @@ playSound:
 	ld a,$00
 	ld (wSoundFadeDirection),a
 	ld a,(wSoundTmp)
+; MUSIC-FEATURE: changed to include lookup index 
 
 	; Get a*3 in de
 	ld d,$00
@@ -2414,21 +2416,19 @@ waveformTable:
 	.db $9b $df $ff $fe $dc $ba $98 $76 $21 $00 $01 $23 $22 $22 $23 $23
 
 
-
-
 .ifdef ROM_AGES
 	.include "audio/ages/soundChannelPointers.s"
-	.include "audio/ages/soundPointers.s"
-
-	.ends ; End of section AudioCode
-
-	.include "audio/ages/soundChannelData.s"
-
-.else; ROM_SEASONS
+.else ;ROM_SEASONS
 	.include "audio/seasons/soundChannelPointers.s"
-	.include "audio/seasons/soundPointers.s"
+.endif 
+	.include "audio/common/soundChannelPointersExtra.s"
+	.include "audio/common/soundPointers.s"
 
 	.ends ; End of section AudioCode
 
+.ifdef ROM_AGES
+	.include "audio/ages/soundChannelData.s"
+.else ;ROM_SEASONS
 	.include "audio/seasons/soundChannelData.s"
 .endif
+	.include "audio/common/soundChannelDataExtra.s"
