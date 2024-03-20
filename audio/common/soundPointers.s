@@ -341,60 +341,6 @@ soundPointers:
 	/* 0xdc */ m_soundPointer snddc
 	/* 0xdd */ m_soundPointer snddd
 	/* 0xde */ m_soundPointer sndde
-.ifdef ROM_AGES
-; Seasons Music
-			   m_soundPointer musAncientRuins
-			   m_soundPointer musCarnival
-			   m_soundPointer musDancingDragonDungeon
-			   m_soundPointer musExplorersCrypt
-			   m_soundPointer musGnarledRootDungeon
-			   m_soundPointer musHerosCave
-			   m_soundPointer musHideAndSeek
-			   m_soundPointer musHoronVillage
-			   m_soundPointer musPoisonMothsLair
-			   m_soundPointer musSamasaDesert
-			   m_soundPointer musSnakesRemains
-			   m_soundPointer musSongOfStorms
-			   m_soundPointer musSubrosia
-			   m_soundPointer musSubrosianDance
-			   m_soundPointer sndSubrosianShop
-			   m_soundPointer musSunkenCity
-			   m_soundPointer musSwordAndShieldMaze
-			   m_soundPointer musTarmRuins
-			   m_soundPointer musTempleRemains
-			   m_soundPointer musUnicornsCave
-			   m_soundPointer musUnused1
-			   m_soundPointer musUnused2
-.else ;ROM_SEASONS
-; Ages Music
-			   m_soundPointer musAmbiPalace
-			   m_soundPointer musAncientTomb
-			   m_soundPointer musBlackTower
-			   m_soundPointer musCrescent
-			   m_soundPointer musCrownDungeon
-			   m_soundPointer musFairyForest
-			   m_soundPointer musJabuJabusBelly
-			   m_soundPointer musLynnaCity
-			   m_soundPointer musLynnaVillage
-			   m_soundPointer musMakuPath
-			   m_soundPointer musMakuTree
-			   m_soundPointer musMermaidsCave
-			   m_soundPointer musMoonlitGrotto
-			   m_soundPointer musNayru
-			   m_soundPointer musOverworldPast
-			   m_soundPointer musRalph
-			   m_soundPointer musSkullDungeon
-			   m_soundPointer musSpiritsGrave
-			   m_soundPointer musSymmetryPast
-			   m_soundPointer musSymmetryPresent
-			   m_soundPointer musTokayHouse
-			   m_soundPointer musUnderwater
-			   m_soundPointer musWingDungeon
-			   m_soundPointer musZoraVillage
-.endif
-; Custom Music
-
-
 
 ; This should really be located in "soundChannelPointers.s" but it's positioned differently for
 ; some reason.

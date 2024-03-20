@@ -9,73 +9,6 @@ snddeChannel4:
 snddeChannel6:
 	cmdff
 
-.ifdef ROM_AGES
-; MUSIC: Moved from Bank $39
-bank40ChannelFallback:
-	cmdff
-	cmdff
-
-.redefine MUSIC_CHANNEL_FALLBACK bank40ChannelFallback
-
-
-	.include "audio/sfx/common/baseball.s"
-
-.ifdef BUILD_VANILLA
-	.dsb 11 $ff
-.endif
-
-	.include "audio/sfx/ages/monkey.s"
-	.include "audio/sfx/common/beam.s"
-	.include "audio/sfx/common/wave.s"
-	.include "audio/sfx/common/swordObtained.s"
-	.include "audio/sfx/common/pieceOfPower.s"
-	.include "audio/sfx/common/linkSwim.s"
-
-snd97Start:
-snd97Channel2:
-	cmdff
-
-	.include "audio/sfx/common/poof.s"
-	.include "audio/sfx/common/bigSword.s"
-	.include "audio/sfx/common/rumble.s"
-	.include "audio/sfx/common/veranProjectile.s"
-	.include "audio/sfx/common/shock.s"
-	.include "audio/sfx/common/beam1.s"
-	.include "audio/sfx/common/fadeout.s"
-	.include "audio/sfx/common/pickUp.s"
-	.include "audio/sfx/common/chicken.s"
-	.include "audio/sfx/common/makuDisappear.s"
-	.include "audio/sfx/common/beam2.s"
-
-sndb7Start:
-sndb7Channel2:
-	cmdff
-sndb7Channel7:
-	cmdff
-
-	.include "audio/sfx/common/veranFairyAttack.s"
-	.include "audio/sfx/common/rumble2.s"
-	.include "audio/sfx/common/warpStart.s"
-	.include "audio/sfx/common/endless.s"
-	.include "audio/sfx/common/bigExplosion2.s"
-
-sndbdStart:
-sndbdChannel2:
-	cmdff
-
-	.include "audio/mus/common/mapleGame.s"
-	.include "audio/mus/common/finalBoss.s"
-	.include "audio/mus/common/essence.s"
-	.include "audio/sfx/ages/echoes.s"
-	.include "audio/mus/ages/underwater.s"
-	.include "audio/mus/ages/makuTree.s" ; MUSIC: moved from Bank $39
-	.include "audio/sfx/seasons/magnetGloves.s" ; CROSSITEMS: Added this
-
-.ifdef BUILD_VANILLA
-	.dsb 162 $ff
-.endif
-
-.else ;ROM_SEASONS
 ; MUSIC: Moved from Bank $39
 snd97Start:
 sndadStart:
@@ -132,23 +65,11 @@ bank40ChannelFallback:
 	.include "audio/mus/common/finalBoss.s"
 	.include "audio/mus/common/essence.s"
 
-	.include "audio/sfx/ages/switch2.s" ; CROSSITEMS: Added this
-
-	.ifdef BUILD_VANILLA
-		.dsb 13 $ff
-	.endif
+.ifdef BUILD_VANILLA
+	.dsb 13 $ff
 .endif
 
-.ifdef ROM_AGES
-; MUSIC: Added Seasons music
-	.include "audio/mus/seasons/ancientRuins.s"
-	.include "audio/mus/seasons/carnival.s"
-	.include "audio/mus/seasons/dancingDragonDungeon.s"
-	.include "audio/mus/seasons/explorersCrypt.s"
-	.include "audio/mus/seasons/gnarledRootDungeon.s"
-	.include "audio/mus/seasons/herosCave.s"
-.else ;ROM_SEASONS
-; MUSIC: Added Ages Music
+; MUSIC: Added Ages music
 	.include "audio/mus/ages/ambiPalace.s"
 	.include "audio/mus/ages/ancientTomb.s"
 	.include "audio/mus/ages/blackTower.s"
@@ -156,7 +77,6 @@ bank40ChannelFallback:
 	.include "audio/mus/ages/crownDungeon.s"
 	.include "audio/mus/ages/fairyForest.s"
 	.include "audio/mus/ages/jabuJabusBelly.s"
-.endif
 
 .BANK $41 SLOT 1
 .ORG 0
@@ -166,29 +86,9 @@ bank41ChannelFallBack:
 
 .redefine MUSIC_CHANNEL_FALLBACK bank41ChannelFallBack
 
-.ifdef ROM_AGES
-	.include "audio/mus/seasons/hideAndSeek.s"
-	.include "audio/mus/seasons/horonVillage.s"
-	.include "audio/mus/seasons/poisonMothsLair.s"
-	.include "audio/mus/seasons/samasaDesert.s"
-	.include "audio/mus/seasons/snakesRemains.s"
-	.include "audio/mus/seasons/songOfStorms.s"
-	.include "audio/mus/seasons/subrosia.s"
-	.include "audio/mus/seasons/subrosianDance.s"
-	.include "audio/mus/seasons/subrosianShop.s"
-	.include "audio/mus/seasons/sunkenCity.s"
-	.include "audio/mus/seasons/swordAndShieldMaze.s"
-	;.include "audio/mus/seasons/makuTree.s"
-	.include "audio/mus/seasons/tarmRuins.s"
-	.include "audio/mus/seasons/templeRemains.s"
-	.include "audio/mus/seasons/unicornsCave.s"
-	.include "audio/mus/seasons/unused1.s"
-	.include "audio/mus/seasons/unused2.s"
-.else ;ROM_SEASONS
 	.include "audio/mus/ages/lynnaCity.s"
 	.include "audio/mus/ages/lynnaVillage.s"
 	.include "audio/mus/ages/makuPath.s"
-	;.include "audio/mus/ages/makuTree.s"
 	.include "audio/mus/ages/mermaidsCave.s"
 	.include "audio/mus/ages/moonlitGrotto.s"
 	.include "audio/mus/ages/nayru.s"
@@ -201,7 +101,6 @@ bank41ChannelFallBack:
 	.include "audio/mus/ages/tokayHouse.s"
 	.include "audio/mus/ages/underwater.s"
 	.include "audio/mus/ages/wingDungeon.s"
-.endif
 
 .BANK $42 SLOT 1
 .ORG 0
@@ -211,8 +110,7 @@ bank42ChannelFallBack:
 
 .redefine MUSIC_CHANNEL_FALLBACK bank42ChannelFallBack
 
-.ifdef ROM_SEASONS
 	.include "audio/mus/ages/zoraVillage.s"
-.endif
+; MUSIC: Custom music
 
 .undefine MUSIC_CHANNEL_FALLBACK

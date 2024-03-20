@@ -2427,7 +2427,8 @@ waveformTable:
 
 .ifdef ROM_AGES
 	.include "audio/ages/soundChannelData.s"
+	.include "audio/ages/soundChannelDataExtra.s"
 .else ;ROM_SEASONS
 	.include "audio/seasons/soundChannelData.s"
+	.include "audio/seasons/soundChannelDataExtra.s"
 .endif
-	.include "audio/common/soundChannelDataExtra.s"
