@@ -105,3 +105,13 @@ bank41ChannelFallBack:
 	.include "audio/mus/seasons/unused1.s"
 	.include "audio/mus/seasons/unused2.s"
 ; MUSIC: Custom music
+
+
+.BANK $42 SLOT 1
+.ORG 0
+
+bank42ChannelFallBack:
+    cmdff
+
+.redefine MUSIC_CHANNEL_FALLBACK bank42ChannelFallBack
+	.include "audio/mus/custom/linebeck.s"

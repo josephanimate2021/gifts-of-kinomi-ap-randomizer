@@ -521,3 +521,14 @@ musZoraVillage:
 	.dw musZoraVillageChannel6
 	.db $ff
 .endif
+
+musLinebeck:
+	.db $00
+	.dw musLinebeckChannel0
+	.db $01
+	.dw musLinebeckChannel1
+	.db $04
+	.dw musLinebeckChannel4
+	.db $06
+	.dw musLinebeckChannel6
+	.db $ff

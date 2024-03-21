@@ -112,5 +112,6 @@ bank42ChannelFallBack:
 
 	.include "audio/mus/ages/zoraVillage.s"
 ; MUSIC: Custom music
+	.include "audio/mus/custom/linebeck.s"
 
 .undefine MUSIC_CHANNEL_FALLBACK
