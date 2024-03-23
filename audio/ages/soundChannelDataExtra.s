@@ -115,3 +115,6 @@ bank42ChannelFallBack:
 
 .redefine MUSIC_CHANNEL_FALLBACK bank42ChannelFallBack
 	.include "audio/mus/custom/linebeck.s"
+	.include "audio/mus/custom/inTheFields.s"
+	.include "audio/mus/custom/sacredGrove.s"
+	.include "audio/mus/custom/gerudoValley.s"

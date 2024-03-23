@@ -532,3 +532,36 @@ musLinebeck:
 	.db $06
 	.dw musLinebeckChannel6
 	.db $ff
+
+musInTheFields:
+	.db $00
+	.dw musInTheFieldsChannel0
+	.db $01
+	.dw musInTheFieldsChannel1
+	.db $04
+	.dw musInTheFieldsChannel4
+	.db $06
+	.dw musInTheFieldsChannel6
+	.db $ff
+
+musSacredGrove:
+	.db $00
+	.dw musSacredGroveChannel0
+	.db $01
+	.dw musSacredGroveChannel1
+	.db $04
+	.dw musSacredGroveChannel4
+	.db $06
+	.dw musSacredGroveChannel6
+	.db $ff
+
+musGerudoValley:
+	.db $00
+	.dw musGerudoValleyChannel0
+	.db $01
+	.dw musGerudoValleyChannel1
+	.db $04
+	.dw musGerudoValleyChannel4
+	.db $06
+	.dw musGerudoValleyChannel6
+	.db $ff

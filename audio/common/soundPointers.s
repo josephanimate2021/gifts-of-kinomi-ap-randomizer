@@ -34,7 +34,7 @@ soundPointers:
 	/* 0x0e */ m_soundPointer musIndoors
 	/* 0x0f */ m_soundPointer musFairyFountain
 	/* 0x10 */ m_soundPointer musGetEssence
-	/* 0x11 */ m_soundPointer musFileSelect
+	/* 0x11 */ m_soundPointer musGerudoValley;musFileSelect
 .ifdef ROM_AGES
 	/* 0x12 */ m_soundPointer musMakuPath
 	/* 0x13 */ m_soundPointer musSpiritsGrave
