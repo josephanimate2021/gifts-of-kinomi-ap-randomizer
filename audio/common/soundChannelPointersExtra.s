@@ -565,3 +565,14 @@ musGerudoValley:
 	.db $06
 	.dw musGerudoValleyChannel6
 	.db $ff
+
+musLostWoods:
+	.db $00
+	.dw musLostWoodsChannel0
+	.db $01
+	.dw musLostWoodsChannel1
+	.db $04
+	.dw musLostWoodsChannel4
+	.db $06
+	.dw musLostWoodsChannel6
+	.db $ff
