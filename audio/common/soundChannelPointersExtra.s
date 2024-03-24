@@ -576,3 +576,14 @@ musLostWoods:
 	.db $06
 	.dw musLostWoodsChannel6
 	.db $ff
+
+musDragonRoostIsland:
+	.db $00
+	.dw musDragonRoostIslandChannel0
+	.db $01
+	.dw musDragonRoostIslandChannel1
+	.db $04
+	.dw musDragonRoostIslandChannel4
+	.db $06
+	.dw musDragonRoostIslandChannel6
+	.db $ff

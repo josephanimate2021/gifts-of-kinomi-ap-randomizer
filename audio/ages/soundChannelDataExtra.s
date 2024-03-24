@@ -119,3 +119,4 @@ bank42ChannelFallBack:
 	.include "audio/mus/custom/sacredGrove.s"
 	.include "audio/mus/custom/gerudoValley.s"
 	.include "audio/mus/custom/lostWoods.s"
+	.include "audio/mus/custom/dragonRoostIsland.s"

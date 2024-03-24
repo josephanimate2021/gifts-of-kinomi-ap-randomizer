@@ -84,8 +84,3 @@ sndSubrosianShop
 musSubrosia
 musSamasaDesert
 musSongOfStorms
-musLinebeck
-musInTheFields
-musSacredGrove
-musGerudoValley
-musLostWoods

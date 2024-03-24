@@ -354,9 +354,7 @@ musLostWoodsChannel4Measure2Loop:
 .endr
 .rept 4 INDEX REPTCTR
 ; Measure 4-5,8-9
-.ifeq REPTCTR 0
     duty HI_VOL
-.endif
     beat e E1
 	;beat ou c 13 c 13 c 13
     octaveu
@@ -369,10 +367,17 @@ musLostWoodsChannel4Measure2Loop:
     beat c S1
     duty LO_VOL2
     beat c S2
-
+.ifeq (REPTCTR # 2) 0
+    duty HI_VOL2
+    beat c S1
+    duty LO_VOL2
+    beat c S2
+    octaved
+.else 
     octaved
 	duty HI_VOL
     beat c E2
+.endif
 .endr
 .endr
 
@@ -471,12 +476,12 @@ musLostWoodsChannel4Measure2Loop:
     ;duty HI_VOL
     beat b S3+T7
     duty LO_VOL
-    beat b T8
+    beat b T8 r E1
 
     duty HI_VOL
     beat b S1+T3
     duty LO_VOL
-    beat b T4 r E2
+    beat b T4
 .endr
 ; Measure 19
 	duty HI_VOL
