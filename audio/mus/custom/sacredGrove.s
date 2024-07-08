@@ -191,6 +191,90 @@ musSacredGroveChannel1Measure9Loop:
     goto musSacredGroveChannel1Measure9Loop
     cmdff
 
+S4
+    vol HI_VOL
+    
+
+.macro m_musSacredGroveChannel0Measure1
+    octave OCT
+    vol HI_VOL
+    beat e S1
+    vol LO_VOL
+    beat r S4
+    vol HI_VOL
+    beat f S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat a S1
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
+    beat ou c S3
+    vol LO_VOL
+    beat od a S4
+    vol HI_VOL
+.rept 3
+    octave OCT
+    beat e S1
+    vol LO_VOL
+    beat ou c S4
+    vol HI_VOL
+    beat od f S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat a S1
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
+    beat ou c S3
+    vol LO_VOL
+    beat od a S4
+    vol HI_VOL
+.endr
+.endm
+.macro m_musSacredGroveChannel0Measure3
+    octave OCT-1
+    beat b S1
+    vol LO_VOL
+    beat ou c S4
+    vol HI_VOL
+    beat c S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat e S1
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    beat ou g S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL  
+.rept 3
+    octave OCT-1
+    beat b S1
+    vol LO_VOL
+    beat ou e S4
+    vol HI_VOL
+    beat c S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat e S1
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    beat ou g S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL  
+.endr
+.endm
+
 musSacredGroveChannel0:
 .redefine HI_VOL $6
 .redefine LO_VOL $3
@@ -203,68 +287,249 @@ musSacredGroveChannel0:
     duty $02
 .rept 2
 ; Measure 1-2,5-6
-.rept 4
-    octave OCT
-    echobeat e E1 f E2 a E1 ou c E2
-.endr
-.rept 4
+    m_musSacredGroveChannel0Measure1
 ; Measure 3-4,7-8
-    octave OCT-1
-    echobeat b E1 ou c E2
-    echobeat e E1 g E2 
-.endr
+    m_musSacredGroveChannel0Measure3
 .endr   
 
 musSacredGroveChannel0Measure9Loop:
 .rept 2
-    octave OCT
-.rept 4
 ; Measure 9-10,13-14
-    echobeat e E1 f E2 a E1 ou c E2
-    octaved
-.endr
-.rept 4
+    m_musSacredGroveChannel0Measure1
 ; Measure 11-12,15-16 (same as 3-4,7-8)
-    octaved
-    echobeat b E1 ou c E2
-    echobeat e E1 g E2 
-.endr
+    m_musSacredGroveChannel0Measure3
 .endr
 
     octave OCT
 .rept 3
 ; Measure 17,19,21
-    echobeat c E1 d E2 f E1 a E2
+;    echobeat c E1 d E2 f E1 a E2
+    beat c S1
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat d S3
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat f S1
+    vol LO_VOL
+    beat d S4
+    vol HI_VOL
+    beat a S3
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
     octaved
-    echobeat b E1 ou d E2
-    echobeat f E1 a E2 
+    ;echobeat b E1 ou d E2
+    ;echobeat f E1 a E2 
+    beat b S1
+    vol LO_VOL
+    beat ou a S4
+    vol HI_VOL
+    beat d S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat f S1
+    vol LO_VOL
+    beat d S4
+    vol HI_VOL
+    beat a S3
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
 ; Measure 18,20,22
-.rept 2
     octaved
-    echobeat b E1 ou c E2
-    echobeat e E1 g E2
-.endr
+    ;echobeat b E1 ou c E2
+    ;echobeat e E1 g E2
+    beat b S1
+    vol LO_VOL
+    beat ou a S4
+    vol HI_VOL
+    beat c S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat e S1
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat g S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+
+    octaved
+    beat b S1
+    vol LO_VOL
+    beat ou g S4
+    vol HI_VOL
+    beat c S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat e S1
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat g S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
 .endr
 ; Measure 23
     octave OCT
-.rept 2
-    echobeat c E1 d E2 f E1 a E2
-.endr
+    ;echobeat c E1 d E2 f E1 a E2
+    beat c S1
+    vol LO_VOL
+    beat g S4
+    vol HI_VOL
+    beat d S3
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat f S1
+    vol LO_VOL
+    beat d S4
+    vol HI_VOL
+    beat a S3
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
+
+    octave OCT
+    beat c S1
+    vol LO_VOL
+    beat a S4
+    vol HI_VOL
+    beat d S3
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat f S1
+    vol LO_VOL
+    beat d S4
+    vol HI_VOL
+    beat a S3
+    vol LO_VOL
+    beat f S4
+    vol HI_VOL
 ; Measure 24
-.rept 2
-    echobeat c E1 e E2 g E1 b E2
-.endr
+    ;echobeat c E1 e E2 g E1 b E2
+    beat c S1
+    vol LO_VOL
+    beat a S4
+    vol HI_VOL
+    beat e S3
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat g S1
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat b S3
+    vol LO_VOL
+    beat g S4
+    vol HI_VOL
+
+    beat c S1
+    vol LO_VOL
+    beat b S4
+    vol HI_VOL
+    beat e S3
+    vol LO_VOL
+    beat c S4
+    vol HI_VOL
+    beat g S1
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat b S3
+    vol LO_VOL
+    beat g S4
+    vol HI_VOL
 
 ; Measure 25
     octave OCT-1
-    echobeat b E1 ou e E2
-    echobeat a E1 b E2
-    echobeat e E1 a E2 b E1 ou e E2
+    ;echobeat b E1 ou e E2
+    ;echobeat a E1 b E2
+    beat b S1
+    vol LO_VOL
+    beat b S4
+    vol HI_VOL
+    beat ou e S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    octaveu
+    beat a S1
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat b S3
+    vol LO_VOL
+    beat a S4
+    vol HI_VOL
+
+    ;echobeat e E1 a E2 b E1 ou e E2
+    beat e S1
+    vol LO_VOL
+    beat b S4
+    vol HI_VOL
+    beat a S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat b S1
+    vol LO_VOL
+    beat a S4
+    vol HI_VOL
+    beat ou e S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
 ; Measure 26
-    octaved
-    echobeat e E1 gs E2 b E1 ou e E1
-    octaved
-    echobeat b E1 gs E2 e E1 od b E1
+    ;octaved
+    ;echobeat e E1 gs E2 b E1 ou e E1
+    beat e S1
+    vol LO_VOL
+    beat ou e S4
+    vol HI_VOL
+    beat od gs S3
+    vol LO_VOL
+    beat e S4
+    vol HI_VOL
+    beat b S1
+    vol LO_VOL
+    beat gs S4
+    vol HI_VOL
+    beat ou e S3
+    vol LO_VOL
+    beat od b S4
+    vol HI_VOL
+    ;octaved
+    ;echobeat b E1 gs E2 e E1 od b E1
+    beat b S1
+    vol LO_VOL
+    beat ou e S4
+    vol HI_VOL
+    beat od gs S3
+    vol LO_VOL
+    beat b S4
+    vol HI_VOL
+    beat e S1
+    vol LO_VOL
+    beat gs S4
+    vol HI_VOL
+    beat od b S3
+    vol LO_VOL
+    beat ou gs S4
+    vol HI_VOL
 
     goto musSacredGroveChannel0Measure9Loop
     cmdff
