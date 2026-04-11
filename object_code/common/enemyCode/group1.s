@@ -43,6 +43,9 @@ enemyCode08:
 
 ; Resurfacing in a random position
 @state_09:
+	call _ecom_setPositionAtRandomWaterTile
+	ret nc
+/*
 	call getRandomNumber_noPreserveVars
 	cp (SCREEN_WIDTH<<4)-8
 	ret nc
@@ -65,6 +68,7 @@ enemyCode08:
 	; Tile is water; spawn here.
 	ld c,l
 	call objectSetShortPosition
+*/
 	ld l,Enemy.counter1
 	ld (hl),48
 

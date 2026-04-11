@@ -21,8 +21,6 @@ chestGroup0Data:
 	.db $51 $49 $28 $04
 	.db $36 $84 $28 $05
 	.db $35 <ROOM_AGES_091 $2d $21
-	.db $25 <ROOM_AGES_0d4 $2d $23
-	.db $25 <ROOM_AGES_0d5 $2d $25
 	.db $ff
 
 chestGroup1Data:
@@ -44,11 +42,12 @@ chestGroup2Data:
 	.db $ff
 
 chestGroup3Data:
+	.db $35 $0d $15 $00
 	.db $14 $1a $61 $01
 	.db $14 $48 $28 $18
 	.db $18 $2b $28 $04
 	.db $24 $3b $3a $00
-	.db $24 <ROOM_AGES_30e $2d $26
+	.db $24 $0e $2d $26
 	.db $18 $1f $28 $06
 	.db $35 <ROOM_AGES_3e8 $00 $00
 	.db $35 <ROOM_AGES_3ff $00 $00
@@ -57,8 +56,8 @@ chestGroup3Data:
 	.db $ff
 
 chestGroup4Data:
+	.db $6d $63 $30 $03
 	.db $81 $37 $2b $01
-	.db $72 $62 $30 $03
 	.db $1d $76 $4b $00
 	.db $52 $7a $33 $02
 	.db $11 $75 $32 $02

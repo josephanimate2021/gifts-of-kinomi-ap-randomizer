@@ -460,24 +460,18 @@ spiritTempleChannel6:
     .redefine MED_TOM $23
     .redefine LO_TOM $24;$2e
 
-beginLoop 2
-; Measure 1,2
-; 6/4
-    vol HI_VOL
-    beat SLAP Q SLAP Q r W
-; Measure 2,3
-; 9/4, 6/4
-    beat SLAP Q SLAP Q SLAP Q
-    vol $0
-    beat r HF+Q r HF+Q
-breakOrLoop
+.rept 2
+; Measure 1,2,3
+    goto spiritTempleChannel6Measure1
+.endr
 ; Measure 4c
+    vol $0
     beat r Q
 ; Measure 4d-6
 ; Measure 7-10
-beginLoop 2+4
+.rept 2+4
    beat r W
-breakOrLoop
+.endr
 ; Measure 11
     vol HI_VOL
     beat LO_TOM HF
@@ -496,5 +490,20 @@ spiritTempleChannel6Measure13Loop:
     vol LO_VOL
     beat SLAP W1 SLAP W2+W3+S2+E2+Q 
     beat SLAP E1 SLAP E2
+
     goto spiritTempleChannel6Measure13Loop
     cmdff
+
+spiritTempleChannel6Measure1:
+; Measure 1,2
+; 6/4
+    vol HI_VOL
+    beat SLAP Q SLAP Q r W
+; Measure 2,3
+; 9/4, 6/4
+    beat SLAP Q SLAP Q SLAP Q
+    vol $0
+    beat r HF+Q r HF+Q
+
+    endSec
+

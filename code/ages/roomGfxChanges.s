@@ -109,11 +109,11 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 ; $0a: Maku tree past screen
 
 @group0:
-	.db $84 $01
-	.db $85 $01
-	.db $86 $01
-	.db $87 $01
-	.db $71 $01
+	.db <ROOM_AGES_084 $01
+	.db <ROOM_AGES_085 $01
+	.db <ROOM_AGES_086 $01
+	.db <ROOM_AGES_087 $01
+	.db <ROOM_AGES_071 $01
 
 	;.db $05 $08
 	;.db $2c $08
@@ -132,8 +132,9 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 	;.db $67 $09
 	.db $00
 @group1:
-	.db $12 $01
-	.db $71 $01
+	.db <ROOM_AGES_112 $01
+	.db <ROOM_AGES_171 $01
+	.db <ROOM_AGES_113 $01
 	;.db $01 $08
 	;.db $0a $08
 	;.db $28 $08
@@ -419,18 +420,19 @@ treeGfxLocationsTable:
 ; w2: Start of tree gfx in w3VramTiles to overwrite
 
 @present:
-	dbbw $84 $02 w3VramTiles+$048
-	dbbw $85 $01 w3VramTiles+$048 
-	dbbw $87 $03 w3VramTiles+$048
-	dbbw $71 $00 w3VramTiles+$048
+	dbbw <ROOM_AGES_084 $02 w3VramTiles+$048
+	dbbw <ROOM_AGES_085 $01 w3VramTiles+$048 
+	dbbw <ROOM_AGES_087 $03 w3VramTiles+$048
+	dbbw <ROOM_AGES_071 $00 w3VramTiles+$048
 
 	;dbbw $13 $02 w3VramTiles+$0c8
 	;dbbw $ac $00 w3VramTiles+$0c6
 	;dbbw $c1 $02 w3VramTiles+$08a
 	.db $00
 @past:
-	dbbw $12 $02 w3VramTiles+$08e
-	dbbw $71 $00 w3VramTiles+$048	
+	dbbw <ROOM_AGES_112 $02 w3VramTiles+$08e
+	dbbw <ROOM_AGES_171 $00 w3VramTiles+$048
+	dbbw <ROOM_AGES_113 $03 w3VramTiles+$0c8	
 	;dbbw $08 $01 w3VramTiles+$086
 	;dbbw $25 $00 w3VramTiles+$0ca
 	;dbbw $2d $03 w3VramTiles+$10c

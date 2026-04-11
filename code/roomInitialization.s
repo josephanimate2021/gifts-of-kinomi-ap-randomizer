@@ -547,29 +547,32 @@ enemyUnspawnableTilesTable:
 
 @collisions0:
 @collisions4:
-	.db $f3 $01
-	.db $fd $01
-	.db $e9 $01
+	.db TILEINDEX_HOLE $01
+	.db TILEINDEX_FD $01
+	.db TILEINDEX_WHIRLPOOL $01
 	.db $00
 
 @collisions1:
 @collisions2:
 @collisions5:
-	.db $f3 $01
-	.db $f4 $01
-	.db $f5 $01
-	.db $f6 $01
-	.db $f7 $01
-	.db $fd $01
-	.db $59 $01
-	.db $5a $01
-	.db $5b $01
-	.db $5c $01
-	.db $5d $01
-	.db $5e $01
-	.db $5f $01
-	.db $44 $01
-	.db $45 $01
+	.db TILEINDEX_HOLE $01
+	.db TILEINDEX_BLANK_HOLE $01
+	.db TILEINDEX_BLANK_HOLE+1 $01
+	.db TILEINDEX_BLANK_HOLE+2 $01
+	.db TILEINDEX_BLANK_HOLE+3 $01
+	.db TILEINDEX_FD $01
+	.db TILEINDEX_TRACK_TL $01
+	.db TILEINDEX_TRACK_BR $01
+	.db TILEINDEX_TRACK_BL $01
+	.db TILEINDEX_TRACK_TR $01
+	.db TILEINDEX_TRACK_HORIZONTAL $01
+	.db TILEINDEX_TRACK_VERTICAL $01
+	.db TILEINDEX_MINECART_PLATFORM $01
+	.db TILEINDEX_INDOOR_UPSTAIRCASE $01
+	.db TILEINDEX_INDOOR_DOWNSTAIRCASE $01
+	.db TILEINDEX_INDOOR_WALL_UPSTAIRCASE $01
+	.db TILEINDEX_INDOOR_WALL_UPSTAIRCASE+1 $01 ; wall downstaircase
+
 	.db $3c $01
 	.db $3d $01
 	.db $3e $01

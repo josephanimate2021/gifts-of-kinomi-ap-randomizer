@@ -1406,7 +1406,16 @@ _interaction7f_subid00:
 
 	ld a,(wDungeonIndex)
 	dec a
+	cp $0b
+	jr z,+
+	cp $0c
+	jr nz,++
++
+	ld a,$02
+++
+	rrca
 
+/*
 .ifdef ROM_AGES
 	; Override dungeon 6 past ($0b) with present ($05)
 	cp $0b
@@ -1414,6 +1423,7 @@ _interaction7f_subid00:
 	ld a,$05
 +
 .endif
+*/
 
 	; [var03] = index of oam data?
 	ld l,Interaction.var03
@@ -1447,8 +1457,9 @@ _interaction7f_subid00:
 ;   b2: which layout to use (2-tile or 4-tile)
 @essenceOamData:
 .ifdef ROM_AGES
-	.db $00 $01 $01
-	.db $04 $00 $02
+	.db $00 $01 $01 ; Nayru's Gift
+	.db $08 $02 $02 ;.db $04 $00 $02 ; Din's Gift
+
 	.db $06 $03 $02
 	.db $08 $02 $02
 	.db $0a $00 $02

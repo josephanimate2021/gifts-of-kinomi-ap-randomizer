@@ -6,7 +6,7 @@ _soundPointers:
 	m_soundPointer sound04
 	m_soundPointer gerudoValley
 	m_soundPointer sound06
-	m_soundPointer sound07;hyruleCastle
+	m_soundPointer hyruleCastle;hyruleCastle
 	m_soundPointer sound08
 	m_soundPointer sound09
 	m_soundPointer outsetIsland;sound0a;kakarikoVillage
@@ -36,7 +36,8 @@ _soundPointers:
 	m_soundPointer sound22
 	m_soundPointer sound23
 	m_soundPointer sound24
-	m_soundPointer sound25
+	;m_soundPointer sound25
+	m_soundPointer blackMist
 	m_soundPointer sound26
 	m_soundPointer sound27
 	m_soundPointer sound28

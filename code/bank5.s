@@ -5426,10 +5426,12 @@ _linkUpdateDrowning:
 ;;
 ; Sets Link's speed, speedTmp, var12, and var35 variables.
 _linkSetSwimmingSpeed:
-	ld a,SWIMMERS_RING
-	call cpActiveRing
+	;ld a,SWIMMERS_RING
+	;call cpActiveRing
+	ld a,TREASURE_ZORA_SCALE
+	call checkTreasureObtained
 	ld a,SPEED_e0
-	jr z,+
+	jr c,+
 	ld a,SPEED_80
 +
 	; Set speed, speedTmp to specified value
@@ -5451,10 +5453,12 @@ _linkSetSwimmingSpeed:
 ; Sets the speedTmp variable in the same way as the above function, but doesn't touch any
 ; other variables.
 _linkSetSwimmingSpeedTmp:
-	ld a,SWIMMERS_RING
-	call cpActiveRing
+	;ld a,SWIMMERS_RING
+	;call cpActiveRing
+	ld a,TREASURE_ZORA_SCALE
+	call checkTreasureObtained
 	ld a,SPEED_e0
-	jr z,+
+	jr c,+
 	ld a,SPEED_80
 +
 	ld e,SpecialObject.speedTmp
@@ -5587,9 +5591,14 @@ _linkUpdateDiving:
 	bit BTN_BIT_B,a
 	jr nz,@pressedB
 
+/*
 	ld a,ZORA_RING
 	call cpActiveRing
 	ret z
+*/
+	ld a,TREASURE_ZORA_SCALE
+	call checkTreasureObtained
+	ret c
 
 	ld e,SpecialObject.counter2
 	ld a,(de)
@@ -5755,9 +5764,12 @@ _linkUpdateVelocity:
 @mermaidSuit:
 	ld c,$98
 	call updateLinkSpeed_withParam
-	ld a,(wActiveRing)
-	cp SWIMMERS_RING
-	jr nz,+
+
+	ld a,TREASURE_ZORA_SCALE
+	call checkTreasureObtained
+	;ld a,(wActiveRing)
+	;cp SWIMMERS_RING
+	jr nc,+ ;jr nz,+
 
 	ld e,SpecialObject.speedTmp
 	ld a,SPEED_160

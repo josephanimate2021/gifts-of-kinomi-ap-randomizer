@@ -1266,3 +1266,29 @@ _ecom_fallToGroundAndSetState:
 	ld l,Enemy.state
 	ld (hl),b
 	ret
+
+_ecom_setPositionAtRandomWaterTile:
+	call getRandomNumber_noPreserveVars
+	cp (SCREEN_WIDTH<<4)-8
+	ret nc
+
+	ld c,a
+	ldh a,(<hCameraX)
+	add c
+	ld c,a
+
+	ldh a,(<hCameraY)
+	ld b,a
+	ldh a,(<hRng2)
+	res 7,a
+	add b
+	ld b,a
+
+	call checkTileAtPositionIsWater
+	ret nc
+
+	; Tile is water; spawn here.
+	ld c,l
+	call objectSetShortPosition
+	scf
+	ret

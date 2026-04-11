@@ -599,15 +599,15 @@ sound05:
 	.dw sound05Channel6
 	.db $ff
 */
-sound07:
+hyruleCastle:
 	.db $00
-	.dw sound07Channel0
+	.dw hyruleCastleChannel0
 	.db $01
-	.dw sound07Channel1
+	.dw hyruleCastleChannel1
 	.db $04
-	.dw sound07Channel4
+	.dw hyruleCastleChannel4
 	.db $06
-	.dw sound07Channel6
+	.dw hyruleCastleChannel6
 	.db $ff
 /*
 sound18:
@@ -860,7 +860,7 @@ sound24:
 	.db $06
 	.dw sound24Channel6
 	.db $ff
-
+/*
 sound25:
 	.db $00
 	.dw sound25Channel0
@@ -870,6 +870,17 @@ sound25:
 	.dw sound25Channel4
 	.db $06
 	.dw sound25Channel6
+	.db $ff
+*/
+blackMist:
+	.db $00
+	.dw blackMistChannel0
+	.db $01
+	.dw blackMistChannel1
+	.db $04
+	.dw blackMistChannel4
+	.db $06
+	.dw blackMistChannel6
 	.db $ff
 
 	; Unused data?

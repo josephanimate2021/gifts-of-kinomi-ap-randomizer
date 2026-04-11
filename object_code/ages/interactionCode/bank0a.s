@@ -6110,7 +6110,8 @@ _miscPuzzles_subid03:
 
 @wantedFloorTiles:
 	.db TILEINDEX_STANDARD_FLOOR
-	.db $37 $65 $69
+	;.db $37 $65 $69
+	.db $2c $65 $6b
 	.db $00
 
 ;;

@@ -199,9 +199,9 @@ _movingPlatform_scriptTable:
 	plat_jump @@platform1
 
 @@platform2:
-	plat_wait	$10
+	plat_wait	$20
 	plat_right	$80
 @@platform3:
-	plat_wait 	$18
+	plat_wait 	$20
 	plat_left	$80
 	plat_jump @@platform2

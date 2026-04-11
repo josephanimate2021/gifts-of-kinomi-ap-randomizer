@@ -1,15 +1,15 @@
 ; Each number corresponds to TX_03XX (see text.txt).
 ; If bit 7 is set, that indicates special behaviour; see the "_mapGetRoomText" function.
 presentMapTextIndices:
-	.db $09 $89 $09  $81 $07  $0b $0b $0b    $05 $82 $a9 $05 $05 $05
-	.db $09 $09 $09  $07 $07  $0b $0b $0b    $05 $05 $05 $05 $05 $42
-	.db $09 $09 $09  $07 $0a  $11 $11 $99    $06 $06 $06 $06 $05 $05
-	.db $06 $06 $06 $06   $11 $11 $11 $11    $80 $08 $1b $06 $b1 $06
-	.db $06 $06 $06 $06   $04 $04 $11 $11    $81 $08 $08 $06 $06 $06
+	.db $09 $89 $0b  $81 $07  $19 $19 $99         $05 $82 $a9 $05 $05 $05
+	.db $09 $09 $0b  $07 $07  $19 $19 $19         $05 $05 $05 $05 $05 $42
+	.db $09 $09 $0b  $07 $0a  $19 $19 $19         $06 $06 $06 $06 $05 $05
+	.db $06 $06 $06 $06    $0c $0c $19 $19    $80 $08 $1b $06 $b1 $06
+	.db $06 $06 $06 $06    $0c $0c $03 $03    $81 $08 $08 $06 $06 $06
 
-	.db $85 $85 $85 $85   $04 $04 $04 $04    $1e $08 $08 $15 $09 $1a
-	.db $85 $85 $85 $85   $03 $03 $03 $04    $1d $08 $08 $09 $09 $09
-	.db $de $85 $85 $85   $03 $03 $03 $a1    $0b $08 $08 $09 $09 $09
+	.db $85 $85 $85 $85    $04 $04 $03 $03    $1e $08 $08 $15 $09 $1a
+	.db $85 $85 $85 $85    $04 $04 $03 $03    $1d $08 $08 $09 $09 $09
+	.db $de $85 $85 $85    $04 $04 $03 $a1    $0b $08 $08 $09 $09 $09
 
 	.db $0a $0a $0a $0a   $a1 $a1 $a1 $a1 $0b $08 $08 $09 $09 $89
 	.db $b9 $0a $0a $0a $0a $0c $0c $0c $0c $0c $0d $0d $0d $0d
@@ -20,16 +20,16 @@ presentMapTextIndices:
 
 pastMapTextIndices:
 	.db $30 $30 $30      $03 $03 $38 $38 $38 $05 $05 $05 $05 $05 $05
-	.db $30  $02 $02     $21 $03 $38 $38 $38 $05 $05 $05 $05 $05 $48
+	.db $30 $02 $02     $21 $03 $38 $38 $38 $05 $05 $05 $05 $05 $48
 
 	.db  $02 $02 $02    $31 $03 $38 $38 $38 $06 $06 $06 $06 $05 $05
 
 	.db $06 $06 $06 $06  $02 $38 $38 $38 $80 $33 $33 $06 $e1 $06
 	.db $06 $06 $06 $06  $02 $49 $32 $32 $e9 $33 $35 $06 $06 $06
 
-	.db $37 $37 $37 $37  $02 $3d $4a $3c $84 $32 $35 $36 $c1 $36
-	.db $37 $37 $37 $37  $34 $32 $22 $32 $32 $32 $36 $36 $36 $36
-	.db $91 $37 $37 $37  $37 $13 $46 $0c $0c $3a $36 $36 $36 $36
+	.db $11 $11 $11 $11  $02 $3d $4a $3c $84 $32 $35 $36 $c1 $36
+	.db $11 $11 $11 $11  $34 $32 $22 $32 $32 $32 $36 $36 $36 $36
+	.db $91 $11 $11 $11  $37 $13 $46 $0c $0c $3a $36 $36 $36 $36
 
 	.db $37 $37 $37 $91 $37 $13 $13 $0c $0c $0c $36 $36 $36 $36
 	.db $37 $37 $37 $37 $37 $0c $0c $0c $0d $0d $0d $0d $0d $0d
@@ -47,49 +47,56 @@ pastMapTextIndices:
 ;     popup use the same digit twice. (see the "_mapMenu_LoadPopupData" function)
 presentMinimapPopups:
 ; Dungeons
-	.db $03 $88
-	.db $01 $88
-	.db $70 $88
-	.db $27 $88
-	.db $77 $8f
+	m_PopupData <ROOM_AGES_003 POPUP_CAVE ;.db $03 $88
+	m_PopupData <ROOM_AGES_001 POPUP_CAVE ;.db $01 $88
+	m_PopupData <ROOM_AGES_070 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_007 POPUP_STUMP POPUP_CAVE
 ; Trees
-	.db $04 $ff
-	.db $71 $ff
-	.db $84 $ff
-	.db $85 $ff
-	.db $86 $ff
-	.db $87 $ff
+	m_PopupData <ROOM_AGES_004 POPUP_SEED_TREE
+	m_PopupData <ROOM_AGES_071 POPUP_SEED_TREE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_077 POPUP_SEED_TREE POPUP_CAVE
+	m_PopupData <ROOM_AGES_084 POPUP_SEED_TREE
+	m_PopupData <ROOM_AGES_085 POPUP_SEED_TREE
+	m_PopupData <ROOM_AGES_086 POPUP_SEED_TREE
+	m_PopupData <ROOM_AGES_087 POPUP_SEED_TREE
 ; Seasons
-	.db $05 $33
-	.db $06 $88
-	.db $16 $11
-	.db $26 $88
-	.db $34 $33
-	.db $47 $33
-	.db $54 $33
-	.db $56 $88
-	.db $57 $11
-	.db $64 $33
-	.db $66 $88
-	.db $67 $33
-	.db $75 $33
+	m_PopupData <ROOM_AGES_006 POPUP_STUMP
+	m_PopupData <ROOM_AGES_015 POPUP_CAVE
+	m_PopupData <ROOM_AGES_017 POPUP_PRESENT_HOUSE
+	m_PopupData <ROOM_AGES_025 POPUP_STUMP
+	m_PopupData <ROOM_AGES_035 POPUP_CAVE
+	m_PopupData <ROOM_AGES_036 POPUP_STUMP
+	m_PopupData <ROOM_AGES_037 POPUP_CAVE
+	m_PopupData <ROOM_AGES_044 POPUP_STUMP
+	m_PopupData <ROOM_AGES_045 POPUP_STUMP
+	m_PopupData <ROOM_AGES_046 POPUP_CAVE
+	m_PopupData <ROOM_AGES_047 POPUP_CAVE
+	m_PopupData <ROOM_AGES_056 POPUP_CAVE
+	m_PopupData <ROOM_AGES_064 POPUP_STUMP
+	m_PopupData <ROOM_AGES_067 POPUP_STUMP
 ; Ages
-	.db $02 $11
-	.db $10 $88
-	.db $30 $11
-	.db $33 $88
-	.db $40 $88
-	.db $50 $aa
-	.db $70 $55
-;	.db $72 $11	;not there in the desert
-	.db $73 $88
+	m_PopupData <ROOM_AGES_002 POPUP_PRESENT_HOUSE
+	m_PopupData <ROOM_AGES_010 POPUP_CAVE
+	m_PopupData <ROOM_AGES_030 POPUP_TIMEPORTAL_SPOT;POPUP_PRESENT_HOUSE 
+	m_PopupData <ROOM_AGES_033 POPUP_CAVE
+	m_PopupData <ROOM_AGES_040 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_050 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_051 POPUP_CAVE
+	m_PopupData <ROOM_AGES_052 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_053 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_060 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_063 POPUP_TIMEPORTAL_SPOT
+
+; Ages Desert
+	;m_PopupData <ROOM_AGES_061 POPUP_TIMEPORTAL_SPOT ; desert only
+	;m_PopupData <ROOM_AGES_073 POPUP_TIMEPORTAL_SPOT ; desert only
 ; Common
-	.db $13 $1c
-	.db $23 $11
-	.db $24 $11
+	m_PopupData <ROOM_AGES_013 POPUP_SHOP POPUP_PRESENT_HOUSE
+	m_PopupData <ROOM_AGES_023 POPUP_PRESENT_HOUSE
+	m_PopupData <ROOM_AGES_024 POPUP_PRESENT_HOUSE
+	.db $ff
 
-
-
+/*
 ;	.db $48 $88 ; 0x00
 	.db $8d $88 ; 0x02
 	.db $83 $88 ; 0x04
@@ -137,8 +144,29 @@ presentMinimapPopups:
 	.db $cd $aa
 	.db $d7 $99
 	.db $ff
-
+*/
 pastMinimapPopups:
+; Dungeons
+	m_PopupData <ROOM_AGES_170 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_102 POPUP_SEED_TREE POPUP_CAVE
+; Trees
+	m_PopupData <ROOM_AGES_112 POPUP_SEED_TREE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_150 POPUP_SEED_TREE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_171 POPUP_SEED_TREE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_113 POPUP_SEED_TREE POPUP_TIMEPORTAL_SPOT
+; Ages
+	m_PopupData <ROOM_AGES_120 POPUP_CAVE
+	m_PopupData <ROOM_AGES_130 POPUP_SYRUP POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_131 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_133 POPUP_CAVE
+	m_PopupData <ROOM_AGES_140 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_151 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_160 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_161 POPUP_TIMEPORTAL_SPOT
+	m_PopupData <ROOM_AGES_173 POPUP_CAVE POPUP_TIMEPORTAL_SPOT
+	.db $ff
+
+/*
 	.db $3c $88
 	.db $5c $88
 	.db $48 $a8
@@ -179,3 +207,4 @@ pastMinimapPopups:
 	.db $cd $aa
 	.db $d9 $aa
 	.db $ff
+*/

@@ -21,10 +21,10 @@ presentTreeWarps:
 	.db $00 $00 $00 ; Extra, 9th entry here since the 1st one is sometimes skipped
 
 pastTreeWarps:
+	.db <ROOM_AGES_113 $55 MYSTERY_SEEDS_POPUP
 	.db <ROOM_AGES_112 $36 GALE_SEEDS_POPUP
 	.db <ROOM_AGES_150 $46 EMBER_SEEDS_POPUP
 	.db <ROOM_AGES_171 $35 SCENT_SEEDS_POPUP
-	.db $00 $00 $00
 	.db $00 $00 $00
 	.db $00 $00 $00
 	.db $00 $00 $00

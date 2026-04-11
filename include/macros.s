@@ -491,3 +491,19 @@
 	.db ((\3) - dungeonLayoutDataStart) / $40
 	.db \4, \5, \6, \7, \8
 .endm
+
+; Arg 1: Lower byte of room
+; Arg 2: First popup
+; Arg 3: Secnod popup
+.macro m_PopupData
+	.if NARGS > 3
+		.fail
+	.endif
+
+	.db \1
+	.if NARGS == 2
+		.db \2<<4|\2
+	.else
+		.db \2<<4|\3
+	.endif
+.endm

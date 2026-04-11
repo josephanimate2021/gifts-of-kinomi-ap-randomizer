@@ -134,3 +134,43 @@
 	.define SEED_TREE_5 $20
 	.define SEED_TREE_6 $40
 	.define SEED_TREE_7 $80
+
+; Input values:
+; 0: no popup
+; 1: present house
+; 2: tokay trading hut
+; 3: past house/stump
+; 4: maku tree icon (past or present)
+; 5: eyeglass library
+; 6: shooting gallery
+; 7: ring shop or syrup's hut
+; 8: cave (checks whether it's been opened)
+; 9: gasha spot (only displays if something's been planted)
+; A: timeportal spot (checks whether the timeportal is discovered)
+; B: advance shop (icon only appears if it's been visited)
+; C: shop
+; D: moblin's keep (either intact or ruined)
+; E: black tower (different icon based on progress)
+; F: seed tree (checks the room index to set the tree type)
+
+.enum 0
+	POPUP_NONE				db ; $00
+	POPUP_PRESENT_HOUSE		db ; $01
+	POPUP_TOKAY_HOUSE		db ; $02
+	POPUP_PAST_HOUSE		db ; $03
+	POPUP_MAKU_TREE			db ; $04
+	POPUP_EYEGLASS_LIBRARY	db ; $05
+	POPUP_SHOOTING_GALLERY	db ; $06
+	POPUP_RING_SHOP			db ; $07
+	POPUP_CAVE				db ; $08
+	POPUP_GASHA_SPOT		db ; $09
+	POPUP_TIMEPORTAL_SPOT	db ; $0a
+	POPUP_ADVANCE_SHOP		db ; $0b
+	POPUP_SHOP				db ; $0c
+	POPUP_MOBLINS_KEEP		db ; $0d
+	POPUP_BLACK_TOWER		db ; $0e
+	POPUP_SEED_TREE			db ; $0f
+.ende
+
+	.define POPUP_STUMP $03
+	.define POPUP_SYRUP	$07

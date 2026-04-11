@@ -2013,9 +2013,9 @@ paletteData4be0:
 	m_RGB16 $0a $04 $14
 	m_RGB16 $00 $00 $00
 
-	m_RGB16 $1c $15 $0b
-	m_RGB16 $17 $0b $11
-	m_RGB16 $10 $00 $0e
+	m_RGB16 $1f $1f $18
+	m_RGB16 $0e $09 $1c
+	m_RGB16 $0a $04 $14
 	m_RGB16 $00 $05 $05
 
 paletteData4c10:

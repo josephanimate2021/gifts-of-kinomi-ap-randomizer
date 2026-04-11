@@ -8442,7 +8442,9 @@ dinScript:
 ; INTERACID_ZORA
 ; ==============================================================================
 
+
 zoraSubid0cScript:
+/*
 	wait 60
 	setanimation $03
 	wait 30
@@ -8461,7 +8463,9 @@ zoraScript_end:
 	xorcfc0bit 7
 	scriptend
 
+*/
 zoraSubid0dScript:
+/*
 	wait 60
 	setanimation $01
 	wait 30
@@ -8475,10 +8479,11 @@ zoraSubid0dScript:
 	moveup $11
 	moveleft $17
 	scriptjump zoraScript_end
-
+*/
 
 ; Zora studying in library
 zoraSubid0eScript:
+/*
 	initcollisions
 @loop:
 	checkabutton
@@ -8486,32 +8491,48 @@ zoraSubid0eScript:
 	showloadedtext
 	setanimation $00
 	scriptjump @loop
-
+*/
+	scriptend
 
 ; Gives zora scale to Link
 zoraSubid10Script:
+	initcollisions
+@loop
 	asm15 scriptHelp.zora_waitForLinkToMoveDown
 	jumptable_memoryaddress wTmpcfc0.genericCutscene.cfc1
-	.dw zoraSubid10Script
+	.dw @loop
 	.dw @linkMovedDown
 
 @linkMovedDown:
 	disableinput
-	asm15 scriptHelp.zora_makeLinkFaceDown
+	asm15 scriptHelp.zora_createExclamationMark
+	setanimation $02
+	wait 20
+	asm15 scriptHelp.zora_beginJump
+	wait 8
+
+	asm15 scriptHelp.zora_makeLinkFaceRight
 	wait 30
 
 	setspeed SPEED_100
-	setangle $18
-	asm15 scriptHelp.zora_moveToLinksXPosition
+	setangle ANGLE_DOWN ; $18
+	asm15 scriptHelp.zora_moveToLinksYPosition
 	wait 1
 
-	moveup $20
+	moveleft $10
 	wait 30
 	showtext TX_3430
 	wait 30
 
 	giveitem TREASURE_ZORA_SCALE_SUBID_00
-	movedown $80
+	wait 10
+	showtext TX_3431
+
+	asm15 scriptHelp.zora_moveLinkDown
+	wait 10
+	asm15 scriptHelp.zora_setLinkDirectionUp
+	wait 10
+	moveleft $80
 	enableinput
 	scriptend
 
@@ -8786,36 +8807,37 @@ humanVeranScript:
 ; ==============================================================================
 
 symmetryNpcSubid0And1Script:
-	rungenericnpclowindex <TX_2d0c
+	;rungenericnpclowindex <TX_2d0c
 
 symmetryNpcSubid2And3Script:
-	rungenericnpclowindex <TX_2d19
+	;rungenericnpclowindex <TX_2d19
 
 symmetryNpcSubid4And5Script:
-	rungenericnpclowindex <TX_2d23
+	;rungenericnpclowindex <TX_2d23
 
 symmetryNpcSubid6And7Script:
-	loadscript scriptHelp.symmetryNpcSubid6And7Script
+	;loadscript scriptHelp.symmetryNpcSubid6And7Script
 
 symmetryNpcSubid8And9Script:
-	loadscript scriptHelp.symmetryNpcSubid8And9Script
+	;loadscript scriptHelp.symmetryNpcSubid8And9Script
 
 symmetryNpcSubid8And9Script_afterTuniNutRestored:
-	rungenericnpclowindex <TX_2d18
+	;rungenericnpclowindex <TX_2d18
 
 symmetryNpcSubidAScript:
-	jumpifglobalflagset GLOBALFLAG_TUNI_NUT_PLACED, symmetryNpcSubidAOrBScript_afterTuniNutRestored
-	rungenericnpclowindex <TX_2d20
+	;jumpifglobalflagset GLOBALFLAG_TUNI_NUT_PLACED, symmetryNpcSubidAOrBScript_afterTuniNutRestored
+	;rungenericnpclowindex <TX_2d20
 
 symmetryNpcSubidBScript:
-	jumpifglobalflagset GLOBALFLAG_TUNI_NUT_PLACED, symmetryNpcSubidAOrBScript_afterTuniNutRestored
-	rungenericnpclowindex <TX_2d21
+	;jumpifglobalflagset GLOBALFLAG_TUNI_NUT_PLACED, symmetryNpcSubidAOrBScript_afterTuniNutRestored
+	;rungenericnpclowindex <TX_2d21
 
 symmetryNpcSubidAOrBScript_afterTuniNutRestored:
-	rungenericnpclowindex <TX_2d22
+	;rungenericnpclowindex <TX_2d22
 
 symmetryNpcSubidCScript:
-	rungenericnpclowindex <TX_2d2c
+	;rungenericnpclowindex <TX_2d2c
+	scriptend
 
 
 ; ==============================================================================

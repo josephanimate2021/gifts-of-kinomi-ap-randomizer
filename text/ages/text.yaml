@@ -112,9 +112,9 @@ groups:
     index: 0x0e
     text: |-
       \pos(2)\slow()You got the
+      song of the
       \col(1)Eternal Spirit\col(0),
-      an Essence of
-      Time!\stop
+      your gift to Nayru!\stop
       Even after life
       ends, it speaks
       across time to
@@ -124,12 +124,14 @@ groups:
     index: 0x0f
     text: |-
       \pos(2)\slow()You got the
-      \col(1)Ancient Wood\col(0), an
-      Essence of Time!\stop
-      It whispers only
-      truth to closed
-      ears from out of
-      the stillness.
+      torch of the
+      \col(1)Burning Flame\col(0),
+      your gift to Din!\stop
+      It reignites
+      wavering hearts
+      with a hero's
+      burning
+      passion.
 
   - name: TX_0010
     index: 0x10
@@ -558,7 +560,7 @@ groups:
     index: 0x3d
     text: |-
       You got the
-      \col(1)Crown Key\col(0)!
+      \col(1)Old Labrinth Key\col(0)!
 
   - name: TX_003e
     index: 0x3e
@@ -601,7 +603,7 @@ groups:
     index: 0x44
     text: |-
       You got the
-      \col(1)Library Key\col(0)!
+      \col(1)Labrinth Key\col(0)!
 
   - name: TX_0045
     index: 0x45
@@ -1698,18 +1700,17 @@ groups:
     text: |2-
        Seasons Shrine
 
+  - name: TX_0205
+    index: 0x05
+    text: |2-
+      Ruptured Mine
+
   - name:
-    - TX_0205
+    - TX_0206
     - TX_020c
     index:
-    - 0x05
+    - 0x06
     - 0x0c
-    text: |2-
-       Temple of
-          the Tokay
-
-  - name: TX_0206
-    index: 0x06
     text: |2-
        Temple of
           the Tokay
@@ -1769,7 +1770,8 @@ groups:
   - name: TX_0302
     index: 0x02
     text: |-
-      Spring Crag
+      Springwater
+         Crag
 
   - name: TX_0303
     index: 0x03
@@ -1779,12 +1781,14 @@ groups:
   - name: TX_0304
     index: 0x04
     text: |-
-      Fiorla Marsh
+      Fiorla Hedges
 
-  - name: TX_0305
-    index: 0x05
+  - name:
+    - TX_0305
+    index:
+    - 0x05
     text: |-
-      Gobbi Gorge
+      Abadonni Quarry
 
   - name: TX_0306
     index: 0x06
@@ -1819,7 +1823,7 @@ groups:
   - name: TX_030c
     index: 0x0c
     text: |-
-      South Shore
+      Lake of Memories
 
   - name: TX_030d
     index: 0x0d
@@ -1848,7 +1852,7 @@ groups:
     - 0x11
     - 0x12
     text: |-
-      Tepid Forest
+      Forest of Time
 
   - name: TX_0313
     index: 0x13
@@ -1882,8 +1886,7 @@ groups:
     - 0x18
     - 0x19
     text: |-
-      Great Moblin's
-      Keep
+      Tepid Forest
 
   - name: TX_031a
     index: 0x1a
@@ -2020,8 +2023,10 @@ groups:
       Coast of No
       Return
 
-  - name: TX_0336
-    index: 0x36
+  - name:
+    - TX_0336
+    index:
+    - 0x36
     text: |-
       Tokay Desert
 
@@ -4528,9 +4533,8 @@ groups:
   - name: TX_094c
     index: 0x4c
     text: |-
-      Crown Key
-      A crown-shaped
-      key.
+      Old Labrinth Key
+      A rusted key to an elaborate maze.
 
   - name: TX_094d
     index: 0x4d
@@ -4569,14 +4573,14 @@ groups:
     index: 0x52
     text: |-
       Witch's Key
-      An house key.
+      A house key.
 
   - name: TX_0953
     index: 0x53
     text: |-
-      Library Key
-      The key to vast
-      knowledge.
+      Labrinth Key
+      The key to a
+      vast maze.
 
   - name: TX_0954
     index: 0x54
@@ -4589,7 +4593,7 @@ groups:
     index: 0x55
     text: |-
       Slate
-      One of four.
+      One of many.
 
   - name: TX_0956
     index: 0x56
@@ -17958,26 +17962,16 @@ groups:
   - name: TX_3430
     index: 0x30
     text: |-
-      You have done
-      so much for us!\stop
-      Our seas are
-      clean and all
-      is well! I offer
-      you our symbol
-      of heroism--
-      the \col(1)Zora Scale\col(0)!
+      Welcome, traveler, to my humble island!\stop
+      I'm not sure why, but I feel the need to give this to you.\stop
+      I offer you this--
+      a \col(1)Zora Scale\col(0)!
 
   - name: TX_3431
     index: 0x31
     text: |-
-      The seas beyond
-      here swallow up
-      all who venture
-      into them--the
-      \col(3)Sea of Storms\col(0)!
-      I can't allow a
-      child like you
-      to pass!
+      This \col(1)scale\col(0) will allow you to take deeper dives under-
+      water! Have fun!
 
   - name: TX_3432
     index: 0x32

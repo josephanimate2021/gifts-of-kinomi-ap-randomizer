@@ -25,7 +25,7 @@ interactionCodedc:
 	.dw _interactiondc_subid0F
 	.dw _interactiondc_subid10
 	.dw _interactiondc_subid11
-	.dw _interactiondc_subid12
+	.dw _stub
 	.dw _interactiondc_subid13
 	.dw _interactiondc_subid14
 	.dw _interactiondc_subid15
@@ -469,19 +469,36 @@ _interactiondc_subid12:
 ; "sink" into it instead of exploding like on land.
 _interactiondc_subid13:
 	call returnIfScrollMode01Unset
-	ld a,TILEINDEX_OVERWORLD_LAVA_1 ; TODO
-	ld hl,wRoomLayout+$14
-	ldi (hl),a
-	ld (hl),a
-	ld l,$24
-	ldi (hl),a
-	ld (hl),a
-	ld l,$34
-	ldi (hl),a
-	ld (hl),a
-	jp interactionDelete
+	ld de,@subid13Data
+	jr _setRoomLayoutBlock
+
+@subid13Data:
+	.db $14 $24 $34 $ff
+
+_interactiondc_subid14:
+	call returnIfScrollMode01Unset
+	ld de,@subid14Data
+	jr _setRoomLayoutBlock
+
+@subid14Data:
+	.db $21 $31 $27 $37 $64 $74 $ff
+
+_setRoomLayoutBlock:
+	ld b,TILEINDEX_OVERWORLD_LAVA_1
+	ld hl,wRoomLayout
+-	
+	ld a,(de)
+	ld l,a
+	inc a
+	jp z,interactionDelete
+	ld (hl),b
+	inc l
+	ld (hl),b
+	inc de
+	jr -
 
 
+/*
 ; Spawns portal to final dungeon from maku tree
 _interactiondc_subid14:
 	call objectGetTileAtPosition
@@ -493,7 +510,7 @@ _interactiondc_subid14:
 	call objectCreateInteractionWithSubid00
 @delete:
 	jp interactionDelete
-
+*/
 
 
 ; Sets present sea of storms chest contents (changes if linked)

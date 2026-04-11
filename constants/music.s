@@ -78,7 +78,8 @@
 
 .ifdef ROM_AGES
 	MUS_SYMMETRY_PRESENT      db ; $24
-	MUS_SYMMETRY_PAST         db ; $25
+	MUS_BLACK_MIST		      db ; $25
+	;MUS_SYMMETRY_PAST         db ; $25
 	MUS_TOKAY_HOUSE           db ; $26
 .else
 	MUS_24                    db ; $24 (blank)

@@ -910,7 +910,7 @@ shootingGalleryScript_goronNpc_gameDone:
 impa_moveLinkUp32Frames:
 	ld a,$20
 	ld (wLinkStateParameter),a
-	xor a
+	xor a ; ANGLE_UP
 	ld (w1Link.angle),a
 	ld (w1Link.direction),a
 	jr ++
@@ -919,7 +919,7 @@ impa_moveLinkUp32Frames:
 impa_moveLinkRight8Frames:
 	ld a,$08
 	ld (wLinkStateParameter),a
-	ld a,$08
+	ld a,ANGLE_RIGHT ; ANGLE_RIGHT
 	ld (w1Link.angle),a
 ++
 	ld a,LINK_STATE_FORCE_MOVEMENT
@@ -7765,12 +7765,20 @@ zora_beginJump:
 	ld bc,-$100
 	jp objectSetSpeedZ
 
+/*
 ;;
 zora_makeLinkFaceDown:
-	ld a,$02
+	ld a,DIR_DOWN
+	ld (w1Link.direction),a
+	jp clearAllParentItems
+*/
+
+zora_makeLinkFaceRight:
+	ld a,DIR_RIGHT
 	ld (w1Link.direction),a
 	jp clearAllParentItems
 
+/*
 ;;
 zora_moveToLinksXPosition:
 	ld a,(w1Link.xh)
@@ -7781,16 +7789,38 @@ zora_moveToLinksXPosition:
 	ld e,Interaction.counter2
 	ld (de),a
 	ret
+*/
+
+;;
+zora_moveToLinksYPosition:
+	ld e,Interaction.yh
+	ld a,(de)
+	ld b,a
+	ld a,(w1Link.yh)
+	sub b
+	ld e,Interaction.counter2
+	ld (de),a
+	ret
 
 ;;
 ; Zora subid 10 waits for Link to move down before starting cutscene
 zora_waitForLinkToMoveDown:
+	ld b,$00
+
+	ld a,(w1Link.zh)
+	or a
+	jr nz,+
 	ld a,(w1Link.yh)
-	cp $18
-	ld a,$01
+	cp $3b
 	jr nc,+
-	dec a
+	cp $30
+	jr c,+
+	ld a,(w1Link.xh)
+	cp $18
+	jr nz,+
+	inc b
 +
+	ld a,b
 	ld (wTmpcfc0.genericCutscene.cfc1),a
 	ret
 
@@ -7831,6 +7861,24 @@ zora_setLinkDirectionLeft:
 	ld a,$03
 ++
 	ld (w1Link.direction),a
+	ret
+
+zora_moveLinkDown:
+	/*
+	ld a,(w1Link.yh)
+	sub $48
+	dec a
+	dec a
+	xor $ff ; 3-step abs value
+	*/
+	ld a,$10
+	ld (wLinkStateParameter),a
+	ld a,ANGLE_DOWN
+	ld (w1Link.angle),a
+	ld a,DIR_DOWN
+	ld (w1Link.direction),a
+	ld a,LINK_STATE_FORCE_MOVEMENT
+	ld (wLinkForceState),a
 	ret
 
 
@@ -7972,7 +8020,7 @@ vire_activateMusic:
 	ld a,MUS_MINIBOSS
 	jp playSound
 
-
+/*
 ; ==============================================================================
 ; INTERACID_SYMMETRY_NPC
 ; ==============================================================================
@@ -8228,7 +8276,7 @@ symmetryNpcSubid6And7Script:
 
 @tuniNutPlaced:
 	rungenericnpclowindex <TX_2d0a
-
+*/
 
 ; ==============================================================================
 ; INTERACID_PIRATE_CAPTAIN

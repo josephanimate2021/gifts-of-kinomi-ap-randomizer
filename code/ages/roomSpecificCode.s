@@ -11,10 +11,11 @@ runRoomSpecificCode:
 	.dw _setMinimapVars_Group3Map08
 	.dw _setMinimapVars_Group3Map18
 	.dw _setMinimapVars_Group3Map78
-	.dw _setMinimapVars_Group1Map78
+	.dw _setMinimapVars_Group0Map78
 	.dw _setMinimapVars_Group3Map79
 	.dw _setRoomFlags_Group5Map30
-	.dw _setMinimapVars_Group1Map84	
+	.dw _setMinimapVars_Group0Map77
+	.dw _setMinimapVars_Group1Map02
 ;	.dw _roomSpecificCode5
 ;	.dw setDeathRespawnPoint
 ;	.dw _roomSpecificCode7
@@ -40,22 +41,25 @@ _roomSpecificCodeGroupTable:
 ; Format: room index
 
 _roomSpecificCodeGroup0Table:
-	.db $08 $00
-	.db $18 $00
-	.db $28 $00
-	.db $38 $00
-	.db $68 $00
-	.db $78 $04
-	.db $84 $07
-	.db $85 $07
-	.db $86 $07
-	.db $87 $07
+	.db <ROOM_AGES_008 $00
+	.db <ROOM_AGES_018 $00
+	.db <ROOM_AGES_028 $00
+	.db <ROOM_AGES_038 $00
+	.db <ROOM_AGES_068 $00
+	.db <ROOM_AGES_078 $04
+	.db <ROOM_AGES_084 $07
+	.db <ROOM_AGES_085 $07
+	.db <ROOM_AGES_086 $07
+	.db <ROOM_AGES_087 $07
 ;	.db $93 $00
 ;	.db $38 $06
 ;	.db $39 $08
 ;	.db $3a $09
 	.db $00
 _roomSpecificCodeGroup1Table:
+	.db <ROOM_AGES_103 $08
+	.db <ROOM_AGES_113 $08
+	.db <ROOM_AGES_123 $08
 ;	.db $81 $03
 ;	.db $38 $06
 ;	.db $97 $07
@@ -101,29 +105,38 @@ _disableMapMenu:
 _setMinimapVars_Group3Map08:
 	ld a,$24
 _setMiniMapVarsGroup0:
+	ld b,$00
+_setMiniMapVars:
 	ld hl,wMinimapRoom
 	ldd (hl),a
-	ld (hl),$00
+	ld (hl),b
 	ret
 
 _setMinimapVars_Group3Map18:
-	ld a,$16
+	ld a,<ROOM_AGES_016
 	jr _setMiniMapVarsGroup0
 
 _setMinimapVars_Group3Map78:
-	ld a,$27
+	ld a,<ROOM_AGES_027
 	jr _setMiniMapVarsGroup0
 
 _setMinimapVars_Group3Map79:
-	ld a,$06
+	ld a,<ROOM_AGES_006
 	jr _setMiniMapVarsGroup0
 	
-_setMinimapVars_Group1Map78:
+_setMinimapVars_Group0Map78:
 	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
 	call setGlobalFlag
-_setMinimapVars_Group1Map84:
-	ld a,$77
+_setMinimapVars_Group0Map77:
+	ld a,<ROOM_AGES_077
 	jr _setMiniMapVarsGroup0
+
+
+_setMinimapVars_Group1Map02:
+	ld a,<ROOM_AGES_102
+	ld b,>ROOM_AGES_102
+	jr _setMiniMapVars
+
 
 _setRoomFlags_Group5Map30:
 	call getThisRoomFlags
@@ -134,8 +147,8 @@ _setRoomFlags_Group5Map30:
 	set ROOMFLAG_BIT_80,(hl)
 	ld l,$20
 	set ROOMFLAG_BIT_80,(hl)
-	ld l,$30
-	set ROOMFLAG_BIT_80,(hl)
+	;ld l,$30
+	;set ROOMFLAG_BIT_80,(hl)
 	ld l,$3c
 	set ROOMFLAG_BIT_80,(hl)
 
@@ -143,6 +156,8 @@ _setRoomFlags_Group5Map30:
   	ld (hl),$47
 	ret
 
+
+/*
 ;;
 ;_roomSpecificCode0:
 	ld a,GLOBALFLAG_WON_FAIRY_HIDING_GAME
@@ -275,3 +290,4 @@ _roomSpecificCodeC:
 	ret nz
 	ld (hl),$ff
 	ret
+*/

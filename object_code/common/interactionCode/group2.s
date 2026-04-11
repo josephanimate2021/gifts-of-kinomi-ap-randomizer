@@ -1270,7 +1270,7 @@ _shopItemReplacementTable:
 	/* $00 */ .db <wBoughtShopItems1  $01 $02 $00 ; sell 2nd satchel
 	/* $01 */ .db <wBoughtShopItems2  $08 $0d $04
 	/* $02 */ .db <wBoughtShopItems1  $02 $ff $00
-	/* $03 */ .db <wShieldLevel       $02 $ff $00
+	/* $03 */ .db <wShieldLevel       $00 $ff $00
 	/* $04 */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $05 */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $06 */ .db <wBoughtShopItems1  $04 $08 $00 ; slingshot
@@ -1282,9 +1282,9 @@ _shopItemReplacementTable:
 	/* $0c */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $0d */ .db <wBoughtShopItems2  $00 $ff $00
 	/* $0e */ .db <wBoughtShopItems2  $01 $ff $00
-	/* $0f */ .db <wSwordLevel		  $02 $ff $00
+	/* $0f */ .db <wSwordLevel		  $00 $ff $00
 	/* $10 */ .db <wSwordLevel		  $00 $ff $00
-	/* $11 */ .db <wShieldLevel       $02 $ff $00
+	/* $11 */ .db <wShieldLevel       $00 $ff $00
 	/* $12 */ .db <wShieldLevel       $00 $ff $00
 	/* $13 */ .db <wBoughtShopItems1  $20 $03 $00
 .ifdef ROM_AGES

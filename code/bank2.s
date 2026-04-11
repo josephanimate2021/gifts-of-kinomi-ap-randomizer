@@ -5955,7 +5955,7 @@ _subscreen1TreasureData:
 
 		.db TREASURE_FLIPPERS			$34 $06
 
-		.db TREASURE_CROWN_KEY			$3d $09
+		;.db TREASURE_CROWN_KEY			$3d $09
 		.db TREASURE_CHEVAL_ROPE		$34 $06
 		.db TREASURE_RICKY_GLOVES		$34 $06
 		.db TREASURE_ISLAND_CHART		$34 $06
@@ -5974,13 +5974,14 @@ _subscreen1TreasureData:
 		.db TREASURE_LIBRARY_KEY		$64 $0b
 		.db TREASURE_MERMAID_KEY		$67 $0c
 		.db TREASURE_OLD_MERMAID_KEY	$6a $0d
+		.db TREASURE_CROWN_KEY			$6a $0d
 
-		.db TREASURE_LAVA_JUICE			$61 $0a
-		.db TREASURE_GORON_LETTER		$61 $0a
+		;.db TREASURE_LAVA_JUICE			$61 $0a
+		;.db TREASURE_GORON_LETTER		$61 $0a
 ;		.db TREASURE_OLD_MERMAID_KEY	$61 $0a
-		.db TREASURE_ROCK_BRISKET		$64 $0b
-		.db TREASURE_GORON_VASE			$64 $0b
-		.db TREASURE_GORONADE			$64 $0b
+		;.db TREASURE_ROCK_BRISKET		$64 $0b
+		;.db TREASURE_GORON_VASE			$64 $0b
+		;.db TREASURE_GORONADE			$64 $0b
 ;		.db TREASURE_MERMAID_KEY		$64 $0b
 ;		.db TREASURE_LIBRARY_KEY		$67 $0c
 		.db TREASURE_BOOK_OF_SEALS		$6a $0d
@@ -6245,12 +6246,13 @@ _galeSeedMenu_addOffsetToWarpIndex:
 	jr z,--
 
 	ldi a,(hl)
+	ld c,a
 
-	cp $84
-	jr c,+
-	ld a,$77
-+
+	call checkForRoomExceptions
+	jr c,@setRoom_paramA
 
+	ld a,c
+@setRoom_paramA:
 	ld (wMapMenu.cursorIndex),a
 
 	ld hl,wMapMenu.warpIndex
@@ -6303,9 +6305,24 @@ _mapMenu_state0:
 	ld a,$05
 	call c,_mapMenu_performTileSubstitutions
 
+	ld hl,wRoomPack
+	ld a,$04
+	sub (hl)
+	call z,_mapMenu_performTileSubstitutions
+
+	bit 7,(hl)
+	jr z,@past
+
+	ld a,(wCurrentSeason)
+	add $07
+	call _mapMenu_performTileSubstitutions
+
+	ld a,$0b
+	call _mapMenu_performTileSubstitutions
+
 @past:
 	; Check the position of the stone in talus peaks which changes water flow
-	ld a,(wPastRoomFlags+$41)
+	ld a,(wPastRoomFlags+<ROOM_AGES_120)
 	rrca
 	ld a,$06
 	call c,_mapMenu_performTileSubstitutions
@@ -6315,6 +6332,7 @@ _mapMenu_state0:
 	ld (wMapMenu.cursorIndex),a
 	call _mapMenu_loadPopupData
 	jr @commonCode
+
 
 .else; ROM_SEASONS
 
@@ -6414,7 +6432,7 @@ _loadMinimapDisplayRoom:
 	ld hl,wMinimapGroup
 	ldi a,(hl)
 	ld c,(hl)
-	ld b,a
+	;ld d,a;ld b,a
 	ld b,$02
 	ld a,(wTilesetFlags)
 	bit TILESETFLAG_BIT_LARGE_INDOORS,a
@@ -6423,30 +6441,73 @@ _loadMinimapDisplayRoom:
 	jr nz,@setRoom
 
 @overworld:
-	ld b,a
+	;ld b,a
 	rlca
 	and $01 ; This tests TILESETFLAG_PAST
-	bit TILESETFLAG_BIT_MAKU,b
+	;bit TILESETFLAG_BIT_MAKU,b
 	ld b,a
-	jr z,@checkForShrine
+	;jr z,@checkForExceptions
 
 	; If the area is the maku tree, hardcode the room index?
-	ld c,$38
+	;ld c,<ROOM_AGES_038 ; <ROOM_AGES_138
 
-@checkForShrine:
-	ld a,c
-	sub $84
-	jr c,@setRoom
-	cp $05
-	jr nc,@setRoom
-	ld c,$77
+@checkForExceptions:
+	call checkForRoomExceptions
+	jr c,@setRoom_paramA
 
 @setRoom:
 	ld a,c
+@setRoom_paramA:
 	ld (wMapMenu.currentRoom),a
-	ld a,b
+	ld a,b ; $00 present, $01 past, $02 dungeon
 	ld (wMapMenu.mode),a
 	ret
+
+;;
+; param 	 c ; Room Index
+; param[out] a ; Room index overwrite
+; param[out] c ; original room index
+checkForRoomExceptions:
+	ld a,(wMinimapGroup)
+	ld hl,@roomOverwriteDataGroup0
+	dec a
+	jr nz,+
+	ld hl,@roomOverwriteDataGroup1
++
+	;dec a ; for groups higher than $01
+	;jr nc,@setRoom
+
+	ld e,c
+	jp lookupKey
+
+@roomOverwriteDataGroup0:
+	.db <ROOM_AGES_008 <ROOM_AGES_046
+	.db <ROOM_AGES_018 <ROOM_AGES_046
+	.db <ROOM_AGES_028 <ROOM_AGES_046
+	.db <ROOM_AGES_038 <ROOM_AGES_046
+	.db <ROOM_AGES_03a <ROOM_AGES_040
+	.db <ROOM_AGES_078 <ROOM_AGES_077
+	.db <ROOM_AGES_084 <ROOM_AGES_077
+	.db <ROOM_AGES_085 <ROOM_AGES_077
+	.db <ROOM_AGES_086 <ROOM_AGES_077
+	.db <ROOM_AGES_087 <ROOM_AGES_077
+	.db <ROOM_AGES_088 <ROOM_AGES_077 
+	.db $00
+
+@roomOverwriteDataGroup1:
+	.db <ROOM_AGES_103 <ROOM_AGES_102
+	.db <ROOM_AGES_113 <ROOM_AGES_102
+	.db <ROOM_AGES_123 <ROOM_AGES_102
+	.db <ROOM_AGES_15c <ROOM_AGES_140
+	.db <ROOM_AGES_15d <ROOM_AGES_140
+	.db <ROOM_AGES_16c <ROOM_AGES_140
+	.db <ROOM_AGES_16d <ROOM_AGES_140
+	.db <ROOM_AGES_17a <ROOM_AGES_140
+	.db <ROOM_AGES_17b <ROOM_AGES_140
+	.db <ROOM_AGES_17c <ROOM_AGES_140
+	.db <ROOM_AGES_17d <ROOM_AGES_140
+	.db $00
+
 
 .else; ROM_SEASONS
 
@@ -6593,8 +6654,14 @@ _mapMenu_state1:
 .ifdef ROM_AGES
 
 	ld c,a
-	; d,e are Y/X boundaries for the cursor (cursor can't meet or exceed them).
 	ldde OVERWORLD_HEIGHT*16, OVERWORLD_WIDTH
+	ld a,(wTilesetFlags)
+	and TILESETFLAG_PAST
+	jr z,@@cursor
+	rrc e
+
+	; d,e are Y/X boundaries for the cursor (cursor can't meet or exceed them).
+
 
 .else; ROM_SEASONS
 
@@ -6609,7 +6676,7 @@ _mapMenu_state1:
 	ldde $70, SUBROSIA_WIDTH
 +
 .endif
-
+@@cursor:
 	; Set h to vertical component of cursor index, l to horizontal component
 	ld a,(wMapMenu.cursorIndex)
 	ld l,a
@@ -6739,13 +6806,13 @@ _mapGetRoomText:
 	ld a,c
 	and $07
 	rst_jumpTable
-	.dw @specialCode0
-	.dw @specialCode1
-	.dw @specialCode2
-	.dw @specialCode3
-	.dw @specialCode4
-	.dw @specialCode5
-	.dw @specialCode6
+	.dw @specialCode0 ; Maku Tree
+	.dw @specialCode1 ; Dungeon
+	.dw @specialCode2 ; Moblin's Keep
+	.dw @specialCode3 ; Animal Companion Region
+	.dw @specialCode4 ; Advance Shop
+	.dw @specialCode5 ; Desert Text
+	.dw @specialCode6 ; Shrine or Labrinth
 
 ; Maku tree: text varies based on the point in the game the player is at
 @specialCode0:
@@ -6798,9 +6865,9 @@ _mapGetRoomText:
 ; Upper 5 bits of 'c' indicate the "index" to use in a table lookup.
 @specialCode1:
 	ld a,c
-	add a
-	swap a
-	and $0f
+	add a ; double a
+	swap a ;
+	and $0f ; Dungeon index (every 8 indices; e.g. $81,$89)
 	ld c,a
 	call @checkDungeonEntered
 	jr nz,+
@@ -6854,9 +6921,9 @@ _mapGetRoomText:
 
 ; Show desert text instead of mountains
 @specialCode5:
-	ld c,a		;<TX_0305
+	ld c,$05
 	ld a,(wPastRoomFlags+<ROOM_AGES_120)
-	bit 0,a
+	and ROOMFLAG_LAYOUTSWAP
 	ret z
 	ld c,<TX_0336
 	ret
@@ -6864,10 +6931,9 @@ _mapGetRoomText:
 ; show shrine or labrinth
 @specialCode6:
 	ld a,(wPastRoomFlags+<ROOM_AGES_120)
-	bit 0,a
+	and ROOMFLAG_LAYOUTSWAP
 	jr z,@specialCode1
-	add $08			;increases from D11 to D12
-	ld c,a
+	ld c,$e1 ; D12 text
 	jr @specialCode1
 
 ;;
@@ -6886,7 +6952,7 @@ _mapGetRoomText:
 	inc d
 +
 	ld a,(de)
-	bit 4,a
+	bit ROOMFLAG_BIT_VISITED,a
 	pop de
 	ret
 
@@ -7091,20 +7157,27 @@ _minimapPopupType_portalSpot:
 	ret
 
 _minimapPopupType_seedTree:
-	ld a,(wMapMenu.cursorIndex)
-
-	cp $77
-	jr nz,+
-	ld b,a
 	ld a,(wOpenedMenuType)
-	cp $05
-	ld a,b
+	cp $05 ; warp menu type
+	ld a,(wMapMenu.cursorIndex) ; cursor index
+	jr nz,+
+
+; Check for Shrine warps
+	cp <ROOM_AGES_077
 	jr nz,+
 	ld a,(wMapMenu.warpIndex)
-	add $0b
-	add b
+	add <ROOM_AGES_084-2 ; Room $84 is warp index $02
 +
-
+; check for mine warp
+	ld b,b
+	cp <ROOM_AGES_102
+	jr nz,+
+	ld a,(wPastRoomFlags + <ROOM_AGES_113)
+	and ROOMFLAG_VISITED
+	ld e,POPUP_TIMEPORTAL_SPOT
+	jr z,_minimapPopupType_portalSpot
+	ld a,<ROOM_AGES_113
++
 	call _getTreeWarpDataForRoom
 	ret c
 	inc hl
@@ -8014,13 +8087,11 @@ _mapMenu_drawWarpSites:
 	jr z,@nextTree
 
 	; If so, draw the sprite
+	call checkForRoomExceptions
+	jr c,@setRoom_paramA
+
 	ld a,c
-
-	cp $84
-	jr c,+
-	ld a,$77
-+
-
+@setRoom_paramA
 	ld hl,wTmpcec0
 	call _mapMenu_drawSpriteAtRoomIndex
 @nextTree:
@@ -8224,8 +8295,19 @@ _mapMenu_clearUnvisitedTiles:
 	ld a,:w4TileMap
 	ld ($ff00+R_SVBK),a
 
+	ld a,(wTilesetFlags)
+	and TILESETFLAG_PAST
 	ldde OVERWORLD_HEIGHT, OVERWORLD_WIDTH
 	ld hl,w4TileMap + OVERWORLD_MAP_START_Y*$20 + OVERWORLD_MAP_START_X
+	jr z,+
+
+	ldde $03,$03
+	call @beginBlanking
+	ld hl,w4TileMap + (OVERWORLD_MAP_START_Y+$03)*$20 + OVERWORLD_MAP_START_X
+	ldde OVERWORLD_HEIGHT-$03,OVERWORLD_WIDTH/2
+	jr @rowLoop
++
+	
 
 .ifdef ROM_SEASONS
 	; Different dimensions for subrosia map
@@ -8237,6 +8319,7 @@ _mapMenu_clearUnvisitedTiles:
 +
 .endif
 
+@beginBlanking:
 	ld b,$00
 
 @rowLoop:
@@ -9043,18 +9126,22 @@ mapIconOamTable:
 		.db @subst4 - CADDR
 		.db @subst5 - CADDR
 		.db @subst6 - CADDR
+		.db @subst7 - CADDR
+		.db @subst8 - CADDR
+		.db @subst9 - CADDR
+		.db @substA - CADDR
+		.db @substB - CADDR
 
 	; Data format:
 	;  b0: Height/width of rectangular area to copy (or $00 to stop)
 	;  w1: Address to write to
 	;  w2: Address to read from (alternate layouts are stored just off-screen)
 
-	@subst0: ; Animal companion region: dimitri
-		dbww $33 w4TileMap+$068 w4TileMap+$075
+	@subst0: ; Not Ages nor Seasons
+		dbww $24 w4TileMap+$008 w4TileMap+$055
 		.db  $00
 
-	@subst1: ; Animal companion region: moosh
-		dbww $33 w4TileMap+$068 w4TileMap+$078
+	@subst1: ; Blanked
 		.db  $00
 
 	@subst2: ; Ring appraisal screen: L-1 ring box
@@ -9066,12 +9153,33 @@ mapIconOamTable:
 	@subst4: ; Ring appraisal screen: L-3 ring box
 		.db  $00
 
-	@subst5: ; Symmetry city: restored to balance
-		dbww $23 w4TileMap+$045 w4TileMap+$07b
+	@subst5: ; Blanked
 		.db  $00
 
 	@subst6: ; Talus peaks: water shifted
-		dbww $23 w4TileMap+$0c3 w4TileMap+$0d5
+		;dbww $23 w4TileMap+$0c3 w4TileMap+$0d5
+		dbww $57 w4TileMap+$103 w4TileMap+$115
+		.db  $00
+
+	@subst7: ; Summer
+		dbww $22 w4TileMap+$009 w4TileMap+$017
+		.db  $00
+
+	@subst8: ; Fall
+		dbww $22 w4TileMap+$009 w4TileMap+$019
+		.db  $00
+
+	@subst9: ; Winter
+		dbww $22 w4TileMap+$009 w4TileMap+$01b
+		.db $00
+
+	@substA: ; Spring
+		dbww $22 w4TileMap+$009 w4TileMap+$015
+		.db  $00
+
+	@substB: ; Badge edge
+		dbww $21 w4TileMap+$008 w4TileMap+$059
+		dbww $21 w4TileMap+$00b w4TileMap+$05a
 		.db  $00
 
 .else; ROM_SEASONS
@@ -9135,29 +9243,29 @@ mapIconOamTable:
 ; b1: Bits 0-6: Text index to use if the dungeon hasn't been entered.
 ;               If it HAS been entered, the index will be $02XX, where XX is the index
 ;               used for this table's lookup (a dungeon index).
-;     Bit 7: 0=group 4, 1=group 5
+;     Bit 7: 1=group 4, 0=group 5
 _mapMenu_dungeonEntranceText:
 
 	.ifdef ROM_AGES
-		.db $d3  	 (<TX_0307)
-		.db $24  	 (<TX_0309)
-		.db $5a  	 (<TX_0337)
-		.db $50  $80|(<TX_0311)
-		.db $2a  $80|(<TX_0303)
+		.db <ROOM_AGES_5d3,      (<TX_0307) ; $00
+		.db <ROOM_AGES_424  $80|(<TX_0309) ; $01
+		.db <ROOM_AGES_45a  $80|(<TX_0311) ; $02
+		.db <ROOM_AGES_550,      (<TX_0319) ; $03
+		.db <ROOM_AGES_52a,      (<TX_0303) ; $04
 
-		.db $bb  $80|(<TX_0305)
-		.db $26      (<TX_0306)
-		.db $56      (<TX_030a)
-		.db $aa      (<TX_0336)
-		.db $01  $80|(<TX_0332)
-		.db $f4      (<TX_0332)
+		.db <ROOM_AGES_45e  $80|(<TX_0330);.db $bb  $80|(<TX_0305) ; $05
+		.db <ROOM_AGES_526,      (<TX_0306) ; $06
+		.db <ROOM_AGES_556,      (<TX_030a) ; $07
+		.db <ROOM_AGES_5aa,     (<TX_0336) ; $08
+		.db <ROOM_AGES_401  $80|(<TX_0332) ; $09
+		.db <ROOM_AGES_5f4,      (<TX_0332) ; $0a
 
-		.db $43  	 (<TX_0305)
-		.db $77      (<TX_0336)
+		.db <ROOM_AGES_443  $80|(<TX_0305) ; $0b
+		.db <ROOM_AGES_477  $80|(<TX_0336) ; $0c
 		
-		.db $0d  $80|(<TX_0332)
-		.db $01      (<TX_0332)
-		.db $01  $80|(<TX_0332)
+		.db <ROOM_AGES_40d  $80|(<TX_0332) ; $0d
+		.db <ROOM_AGES_501,      (<TX_0332) ; $0e
+		.db <ROOM_AGES_401  $80|(<TX_0332) ; $0f
 
 	.else; ROM_SEASONS
 

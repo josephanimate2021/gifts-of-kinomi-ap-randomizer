@@ -3022,13 +3022,13 @@ _zora_subid12:
 
 @subid10:
 	call getThisRoomFlags
-	and $20
+	and ROOMFLAG_ITEM ;$20
 	jp nz,interactionDelete
-	ld a,(wEssencesObtained)
-	bit 6,a
-	jp z,interactionDelete
-	ld a,$03
-	call interactionSetAnimation
+	;ld a,(wEssencesObtained)
+	;bit 6,a
+	;jp z,interactionDelete
+	;ld a,$03
+	;call interactionSetAnimation
 	jp interactionIncState
 
 @subid11:

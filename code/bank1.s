@@ -4552,6 +4552,7 @@ getNextActiveRoom:
 	.dw screenTransitionEyePuzzle
 	.dw screenTransitionSeasonsShrine ; to get to dungeon
 	.dw screenTransitionForestScrambler ; area before forest
+	.dw screenTransitionAgesSea
 .else
 	.dw screenTransitionLostWoods
 	.dw screenTransitionSwordUpgrade
@@ -4610,6 +4611,11 @@ clearEyePuzzleVars:
 		.db $00
 
 	mapTransitionGroup1Data:
+		.db <ROOM_AGES_16d $06 ; Ages Sea
+		.db <ROOM_AGES_17a $06 ; Ages Sea
+		.db <ROOM_AGES_17b $06 ; Ages Sea
+		.db <ROOM_AGES_17c $06 ; Ages Sea
+		.db <ROOM_AGES_17d $06 ; Ages Sea
 	mapTransitionGroup2Data:
 	mapTransitionGroup3Data:
 	mapTransitionGroup4Data:
@@ -4930,6 +4936,7 @@ screenTransitionSeasonsShrine:
 	scf
 	ret
 
+.ifdef ROM_SEASONS
 ;;
 ; Can't proceed in onox's dungeon until enemies are dead. Also, going to the left or right
 ; rooms always send you back near the entrance.
@@ -4965,7 +4972,7 @@ screenTransitionOnoxDungeon:
 	scf
 	ret
 
-;.endif ; ROM_SEASONS
+.endif ; ROM_SEASONS
 
 
 ;;
@@ -4998,6 +5005,41 @@ screenTransitionEyePuzzle:
 @rightOrLeft:
 	scf
 	ret
+
+screenTransitionAgesSea:
+	ld a,(wActiveRoom)
+	sub <ROOM_AGES_17a
+	jr c,@room16D
+
+	add a ; 2x
+	add a ; 2x
+	ld b,a
+	ld a,(wScreenTransitionDirection)
+	add b
+	ld hl,@agesSeaDirections
+	rst_addAToHl
+	ld a,(hl)
+	or a
+	jp z,screenTransitionStandard
+	jr @setRoom
+
+@room16D:
+	ld a,(wScreenTransitionDirection)
+	cp DIR_DOWN
+	jp nz,screenTransitionStandard
+	ld a,<ROOM_AGES_16d
+
+@setRoom:
+	ld (wActiveRoom),a
+	scf
+	ret
+
+@agesSeaDirections:
+	.db $00 $00 <ROOM_AGES_17d $00 ; 17A
+	.db $00 $00 <ROOM_AGES_17d $00 ; 17B
+	.db $00 <ROOM_AGES_16d <ROOM_AGES_17d $00 ; 17C
+	.db <ROOM_AGES_17c <ROOM_AGES_17d <ROOM_AGES_17d <ROOM_AGES_17d ; 17D
+
 
 ;;
 updateSeedTreeRefillData:

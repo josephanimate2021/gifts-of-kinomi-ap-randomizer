@@ -6409,30 +6409,44 @@ _tryBreakTileWithSword:
 
 	; Play a different sound effect on bombable walls
 @bombableWallClink:
+	push bc
 	sub TILEINDEX_RED_TOGGLE_BLOCK
 	cp $03
-	ld a,SND_CLINK2
 	jr nc,@@noSpecialCase
 
-	; Spawn an instance of this object with subid 1.
-	ld a,(wccb0)
+	ld a,(wDungeonIndex)
 	ld c,a
-	ld b,>wRoomLayout
-	ld a,(bc)
+	ld hl,@@acceptableDungeons
+-
+	ldi a,(hl)
+	or a
+	jr z,@@noSpecialCase
+	cp c
+	jr z,@@dungeonAcceptable
+	jr -
+
+@@dungeonAcceptable:
+	ld a,(wccb0) ; tile position
+	ld c,a
+	ld a,(wccaf) ; tile index
 	inc a
 	cp TILEINDEX_RED_TOGGLE_BLOCK+3
 	jr c,+
 	ld a,TILEINDEX_RED_TOGGLE_BLOCK
-+	
++
 	ldh (<hFF92),a
-	call setTile
-	ldh a,(<hFF92)
-	ld b,a
-	call setTileInRoomLayoutBuffer
+	call setTileInAllBuffers
+
 	ld a,SND_GETSEED
+	jr @@playReplacedSound
+
+@@acceptableDungeons:
+	.db $01 $02 $03 $04 $0b $0c $00
 
 @@noSpecialCase:
-
+	ld a,SND_CLINK2
+@@playReplacedSound:
+	pop bc
 	call playSound
 
 	; Set bit 7 of subid to prevent 'clink' interaction from also playing a sound
@@ -7523,11 +7537,11 @@ _somariaHoleTiles:
 @collisions0: ; Overworld
 	.db $f3 $3a ; Hole
 
-	.db $e4 $3a ; Lava
-	.db $e5 $3a
-	.db $e6 $3a
-	.db $e7 $3a
-	.db $e8 $3a
+	;.db $e4 $3a ; Lava
+	;.db $e5 $3a
+	;.db $e6 $3a
+	;.db $e7 $3a
+	;.db $e8 $3a
 	.db $00
 
 @collisions1: ; Indoors, dungeons
@@ -7537,11 +7551,11 @@ _somariaHoleTiles:
 	.db $4a $a0
 	.db $4b $a0
 
-	.db $61 $a0 ; Lava
-	.db $62 $a0
-	.db $63 $a0
-	.db $64 $a0
-	.db $65 $a0
+	;.db $61 $a0 ; Lava
+	;.db $62 $a0
+	;.db $63 $a0
+	;.db $64 $a0
+	;.db $65 $a0
 
 	.db $f3 $a0 ; Normal holes
 	.db $f4 $a0

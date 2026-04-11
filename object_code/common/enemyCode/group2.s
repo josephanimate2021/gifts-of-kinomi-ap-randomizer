@@ -3431,6 +3431,8 @@ enemyCode3a:
 
 
 _waterTektite_state_uninitialized:
+	call _ecom_setPositionAtRandomWaterTile
+	ret nc
 	call objectSetVisible82
 
 _waterTektike_decideNewAngle:
@@ -6075,7 +6077,7 @@ _ballAndChain_stateA:
 _ballAndChain_spawnSpikedBall:
 	; BUG: This checks for 4 enemy slots, but we actually need 4 part slots...
 	ld b,$04
-	call checkBEnemySlotsAvailable
+	call checkBPartSlotsAvailable;checkBEnemySlotsAvailable
 	ret nz
 
 	; Spawn the ball
