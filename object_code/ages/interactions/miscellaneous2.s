@@ -468,7 +468,7 @@ _interactiondc_subid14:
 	ret nz
 	call getThisRoomFlags
 	set ROOMFLAG_BIT_80,(hl)
-	ld b,INTERACID_DECORATION
+	ld b,INTERAC_DECORATION
 	call objectCreateInteractionWithSubid00
 @delete:
 	jp interactionDelete

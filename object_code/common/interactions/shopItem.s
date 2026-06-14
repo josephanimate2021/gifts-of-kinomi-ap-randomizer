@@ -564,12 +564,12 @@ shopItemTreasureToGive:
 	/* $0b */ .db  TREASURE_BOMBCHUS      $05
 	/* $0c */ .db  $00                    $00
 ;.ifdef ROM_AGES
-	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECTID_DIMITRI
+	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECT_DIMITRI
 	/* $0e */ .db  TREASURE_GASHA_SEED    $01
 	/* $0f */ .db  TREASURE_SWORD		  $02;TREASURE_RING          GBA_TIME_RING
 
 ;.else
-;	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECTID_MOOSH
+;	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECT_MOOSH
 ;	/* $0e */ .db  TREASURE_GASHA_SEED    $01
 ;	/* $0f */ .db  TREASURE_RING          GBA_NATURE_RING
 ;.endif

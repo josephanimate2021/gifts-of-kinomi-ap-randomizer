@@ -122,7 +122,7 @@ partCode24:
   ld e,Part.subid
   ld a,(de)
   or a
-  jr z,@subid00  
+  jr z,@subid00
 ;  pop de
   pop af  ; Restore AF
 
@@ -138,7 +138,7 @@ partCode24:
   ld a,$01
   call partSetAnimation
   ; sarcophagus when it breaks
-  ldbc, INTERACID_SARCOPHAGUS $80
+  ldbc, INTERAC_SARCOPHAGUS $80
   jp objectCreateInteraction
 @normalStatus:
   ld e,Part.state
@@ -165,7 +165,7 @@ partCode24:
 @subid00:
 ;  pop de
   pop af  ; Restore AF
-  
+
   jr z,@normalStatus01
   ld b,b
 
@@ -184,7 +184,7 @@ partCode24:
   ld h,$cf
   ld (hl),$0a
   call objectSetVisible83
-  
+
   ld e,Part.var2a
   ld a,(de)
   bit 7,a
@@ -198,7 +198,7 @@ partCode24:
 	ld (wDisableLinkCollisionsAndMenu),a
 	ld (wcde0),a
 	call clearAllItemsAndPutLinkOnGround
-  
+
   ret
 
 
@@ -241,7 +241,7 @@ partCode25:
   ld a,$21
   ld (de),a
   ld hl,_table_6080
-  
+
   ld e,$c2
   ld a,(de)
   rst_addDoubleIndex
@@ -875,7 +875,7 @@ partCode2e:
 @speedValues:
   .db $3c $32 $28 $1e
   .db $19 $14 $0f $0a
-  
+
 harmfulWaterTilesCollisionTable:
   .dw @overworld
   .dw @stub
@@ -899,7 +899,7 @@ harmfulWaterTilesCollisionTable:
   .db $3e $02
   .db $3f $02
   .db $00
-  
+
 ;;
 ; Entries are the 4 directional currents tiles
 currentsCollisionTable:
@@ -930,7 +930,7 @@ currentsCollisionTable:
 ; ==============================================================================
 partCode2f:
   jp nz,partDelete
-  ld a,Object.health 
+  ld a,Object.health
   call objectGetRelatedObject1Var
   ld a,(hl)
   or a
@@ -1030,7 +1030,7 @@ partCode33:
   .dw @subid1
   .dw @subid2
   .dw @subid3
-  
+
 @subid0:
   ld a,(de)
   or a
@@ -1085,7 +1085,7 @@ partCode33:
   ld l,$c4
   inc (hl)
   ret
-  
+
 @subid1:
   ld a,(de)
   jr z,@@state0
@@ -1116,7 +1116,7 @@ partCode33:
   ld a,h
   ld (de),a
   ret
-  
+
 @subid2:
   ld a,(de)
   or a
@@ -1158,7 +1158,7 @@ partCode33:
   ld (de),a
   ld a,b
   jp partSetAnimation
-  
+
 @table_6598:
   .db $06 $04
   .db $04 $04
@@ -1476,7 +1476,7 @@ partCode35:
   inc (hl)
   ld bc,$fe80
   jp objectSetSpeedZ
-  
+
 @func_675e:
   ld a,$78
   jr ++
@@ -1604,7 +1604,7 @@ partCode35:
   dec a
   ld (de),a
   jp objectApplySpeed
-  
+
 @state3func_681a:
   call _func_693b
   call objectGetRelativeAngle
@@ -1647,7 +1647,7 @@ partCode35:
   swap a
   call setFlag
   jr ++
-  
+
 @state3func_6864:
   call objectSetInvisible
 ++
@@ -1684,7 +1684,7 @@ partCode35:
   ld l,$e4
   res 7,(hl)
   jp objectAddToGrabbableObjectBuffer
-  
+
 @state4func_689e:
   ld a,SND_EXPLOSION
   call playSound
@@ -1786,7 +1786,7 @@ partCode35:
   ld (hl),a
 +
   jp @func_6762
-  
+
 _func_693b:
   ld e,Part.subid
   ld a,(de)
@@ -2024,7 +2024,7 @@ _veranProjectile_subid0:
   jp partAnimate
 
 @delete:
-  ldbc INTERACID_PUFF,$80
+  ldbc INTERAC_PUFF,$80
   call objectCreateInteraction
   jp partDelete
 
@@ -2113,7 +2113,7 @@ partCode38:
   .dw @state1
   .dw @state2
   .dw @state3
-  
+
 @state0:
   ld h,d
   ld l,e
@@ -2143,7 +2143,7 @@ partCode38:
   .db $00 $00 $00 $00
   .db $00 $00 $00 $00
   .db $00 $00 $00 $00
-  
+
 @state1:
   call objectCheckWithinScreenBoundary
   jp nc,_func_6c17
@@ -2153,10 +2153,10 @@ partCode38:
   jr nc,@objectApplySpeed
   jp z,_func_6c17
   jp _func_6bf6
-  
+
 @objectApplySpeed:
   jp objectApplySpeed
-  
+
 @func_6b00:
   scf
   push af
@@ -2169,7 +2169,7 @@ partCode38:
 +
   pop af
   ret
-  
+
 @state2:
   ld a,$03
   ld (de),a
@@ -2185,7 +2185,7 @@ partCode38:
   ld l,$c9
   ld (hl),a
   ret
-  
+
 @state3:
   call objectCheckWithinScreenBoundary
   jp nc,_func_6c17
@@ -2211,14 +2211,14 @@ partCode38:
   call _func_6b5f
   call partAnimate
   jp objectApplySpeed
-  
+
 _func_6b5f:
   ld e,$cd
   ld a,(de)
   add b
   ld (de),a
   ret
-  
+
 _func_6b65:
   call objectGetTileAtPosition
   ld a,l
@@ -2226,7 +2226,7 @@ _func_6b65:
   ld c,(hl)
   call _func_6b71
   jr _func_6bca
-  
+
 _func_6b71:
   ld a,$ff
   ld ($cfd5),a
@@ -2262,7 +2262,7 @@ _func_6b9f:
   ld hl,$ccd6
   dec (hl)
   ret
-  
+
 _table_6bab:
   .db $d9
   .db $d7
@@ -2291,11 +2291,11 @@ _func_6bca:
   ld a,$04
 --
   ldh (<hFF8B),a
-  ldbc, INTERACID_FALLING_ROCK $04
+  ldbc, INTERAC_FALLING_ROCK $04
   ld a,($cfd5)
   cp $02
   jr c,+
-  ldbc, INTERACID_FALLING_ROCK $05
+  ldbc, INTERAC_FALLING_ROCK $05
 +
   call objectCreateInteraction
   jr nz,+
@@ -2320,7 +2320,7 @@ _func_6bf6:
 _func_6c02:
   call _func_6c0e
   jp _func_6b65
-  
+
 _func_6c08:
   call _func_6c0e
   jp _func_6b65
@@ -2331,7 +2331,7 @@ _func_6c0e:
   ld hl,$ccd6
   inc (hl)
   ret
-  
+
 _func_6c17:
   xor a
   ld ($cfd6),a
@@ -2446,7 +2446,7 @@ partCode39:
 ; PARTID_VIRE_PROJECTILE
 ; ==============================================================================
 partCode3a:
-  jr z,+   
+  jr z,+
   ld e,$ea
   ld a,(de)
   res 7,a
@@ -2462,7 +2462,7 @@ partCode3a:
   .dw @subid1
   .dw @subid2
   .dw @subid3
-  
+
 @subid0:
   ld a,(de)
   or a
@@ -2479,7 +2479,7 @@ partCode3a:
   ld (de),a
   call _func_6e5d
   jp objectSetVisible80
-  
+
 @subid1:
   ld a,(de)
   or a
@@ -2541,7 +2541,7 @@ partCode3a:
   ld a,$01
   call partSetAnimation
   jp objectSetVisible82
-  
+
 @fimc_6d5e:
   call _func_6e50
   ld l,$f0
@@ -2564,7 +2564,7 @@ partCode3a:
   ld a,b
   ld (de),a
   jp objectSetVisible80
-  
+
 @subid2_state1:
   ld h,d
   ld l,$f0
@@ -2586,7 +2586,7 @@ partCode3a:
   add $02
   cp $05
   jr nc,@func_6dba
-  ldbc INTERACID_PUFF $02
+  ldbc INTERAC_PUFF $02
   call objectCreateInteraction
   ret nz
   ld e,$d8
@@ -2606,7 +2606,7 @@ partCode3a:
   ld (de),a
   call objectApplySpeed
   jp partAnimate
-  
+
 @subid2_state2:
   ld a,$21
   call objectGetRelatedObject2Var
@@ -2637,7 +2637,7 @@ partCode3a:
   jp objectSetVisible82
 @table_6df8:
   .db $03 $08 $0d $13 $18
-  
+
 @subid3:
   ld a,(de)
   or a
@@ -2667,7 +2667,7 @@ partCode3a:
   call objectGetAngleTowardEnemyTarget
   ld e,$c9
   ld (de),a
-  
+
 _func_6e2f:
   ld a,$29
   call objectGetRelatedObject1Var
@@ -2700,7 +2700,7 @@ _func_6e50:
   add (hl)
   ld (hl),a
   ret
-  
+
 _func_6e5d:
   ld a,$29
   call objectGetRelatedObject1Var
@@ -2730,7 +2730,7 @@ partCode3b:
   or a
   jr z,@subid0
   jp @subid1
-  
+
 @subid0:
   ld a,(de)
   rst_jumpTable
@@ -2800,7 +2800,7 @@ partCode3b:
 @@table_6ee9:
   .db $04 $09 $06 $0b $09
   .db $0c $0a $0d $0b $0e
-  
+
 @subid1:
   ld a,(de)
   rst_jumpTable
@@ -4117,7 +4117,7 @@ _func_733d:
   ldi a,(hl)
   ld (de),a
   inc e
-  ldi a,(hl)  
+  ldi a,(hl)
   ld (de),a
   inc e
   ldi a,(hl)
@@ -4191,7 +4191,7 @@ partCode44:
 
   ; Spawn explosion
   call getFreeInteractionSlot
-  ld (hl),INTERACID_EXPLOSION
+  ld (hl),INTERAC_EXPLOSION
   ld l,Interaction.var03
   ld (hl),$01 ; Give it a higher draw priority?
   ld bc,$f000
@@ -4252,7 +4252,7 @@ partCode45:
 @state1:
   call partCommon_decCounter1IfNonzero
   ret nz
-  
+
   ld l,e
   inc (hl)
   ld l,Part.collisionType
@@ -4282,19 +4282,19 @@ partCode45:
   call objectUpdateSpeedZ_paramC
   call z,@bounceRandomlyDownwards
   call objectApplySpeed
-  
+
   ld e,Part.yh
   ld a,(de)
   cp $88
   jp c,partAnimate
-  
+
   ld h,d
   ld l,Part.state
   dec (hl)
-  
+
   ld l,Part.collisionType
   res 7,(hl)
-  
+
   ld l,Part.counter1
   ld (hl),$b4
   ld e,Part.var30
@@ -4441,7 +4441,7 @@ partCode49:
   .dw @state3
   .dw @state4
   .dw @state5
-  
+
 @state0:
   ld h,d
   ld l,$c2
@@ -4459,7 +4459,7 @@ partCode49:
   ld a,SND_POOF
   call playSound
   call objectSetVisiblec1
-  
+
 @state1:
   call objectApplySpeed
   ld h,d
@@ -4481,7 +4481,7 @@ partCode49:
   ld l,$c6
   ld (hl),$14
   jp partAnimate
-  
+
 @state2:
   inc e
   ld a,(de)
@@ -4501,7 +4501,7 @@ partCode49:
 @@substate3:
   call objectSetVisiblec2
   jr @func_77b1
-  
+
 @state3:
   ld h,d
   ld l,$c6
@@ -4526,7 +4526,7 @@ partCode49:
   ld a,SND_EXPLOSION
   call playSound
   jp objectSetVisible83
-  
+
 @state4:
   call partAnimate
   ld e,$e1
@@ -4539,7 +4539,7 @@ partCode49:
   inc e
   ld (de),a
   ret
-  
+
 @state5:
   ld h,d
   ld l,$f0
@@ -4550,7 +4550,7 @@ partCode49:
   call _func_77f0
   jp z,partDelete
   jr _func_7858
-  
+
 _func_77f0:
   ld h,d
   ld l,$c6
@@ -4563,7 +4563,7 @@ _func_77f0:
   ld a,$01
   ld ($cfc0),a
   ret
-  
+
 _func_7805:
   ld l,$f0
   ld (hl),a
@@ -4573,7 +4573,7 @@ _func_7805:
   ld (hl),a
   or d
   ret
-  
+
 _table_780f:
   .db $3c $01
   .db $3c $01
@@ -4612,7 +4612,7 @@ _table_780f:
   .db $14 $02
   .db $b4 $02
   .db $ff
-  
+
 _func_7858:
   xor a
   ld e,$f2
@@ -4655,7 +4655,7 @@ _func_786f:
   ld h,d
   ld l,$f2
   jp setFlag
-  
+
 _table_789d:
   .db $00 $01 $05 $06 $0a $0b $0f $00
   .db $01 $02 $06 $07 $0b $0c $0d $01
@@ -4671,7 +4671,7 @@ _func_78bd:
   jr nc,_func_78ce
   xor a
   jr ++
-  
+
 _func_78ce:
   ld a,$01
   jr ++
@@ -4682,7 +4682,7 @@ _func_78d2:
   jr nc,_func_78dd
   ld a,$02
   jr ++
-  
+
 _func_78dd:
   ld a,$03
 ++
@@ -4803,22 +4803,22 @@ _func_79ab:
   cp $57
   jr z,_func_79d9
   ret
-  
+
 _func_79c4:
   ld hl,_table_79e3
   ld e,$ca
   jr ++
-  
+
 _func_79cb:
   ld hl,_table_79e1
   ld e,$cc
   jr ++
-  
+
 _func_79d2:
   ld hl,_table_79e1
   ld e,$ca
   jr ++
-  
+
 _func_79d9:
   ld hl,_table_79e3
   ld e,$cc
@@ -4949,7 +4949,7 @@ partCode4f:
   .dw @state0
   .dw @state1
   .dw @state2
-  
+
 @state0:
   ld a,$01
   ld (de),a
@@ -4959,7 +4959,7 @@ partCode4f:
   ld a,$28
   ld (de),a
   jp objectSetVisible80
-  
+
 @state1:
   call partAnimate
   ld a,$02
@@ -4978,7 +4978,7 @@ partCode4f:
   ld e,$c4
   ld a,$02
   ld (de),a
-  
+
 @state2:
   call partAnimate
   call partCommon_decCounter1IfNonzero
@@ -5018,7 +5018,7 @@ partCode54:
   inc l
   inc (hl)
   ret
-  
+
 _func_7ad3:
   ld h,d
   ld l,e
@@ -5026,7 +5026,7 @@ _func_7ad3:
   ld l,$c6
   ld (hl),$96
   ret
-  
+
 _func_7adb:
   ld a,(de)
   or a
@@ -5059,14 +5059,14 @@ _func_7adb:
   ld e,$cf
   ld (de),a
   jp objectSetVisiblec1
-  
+
 _func_7b0a:
   ld c,$20
   call objectUpdateSpeedZ_paramC
   jp nz,partAnimate
   call objectReplaceWithAnimationIfOnHazard
   jr c,@delete
-  ld b,INTERACID_ROCKDEBRIS
+  ld b,INTERAC_ROCKDEBRIS
   call objectCreateInteractionWithSubid00
 @delete:
   jp partDelete
@@ -5223,7 +5223,7 @@ partCode56:
   .dw @subid1
   .dw @subid2
   .dw @subid3
-  
+
 @subid0:
   ld a,(de)
   or a
@@ -5271,7 +5271,7 @@ partCode56:
 @func_7c28:
   call objectCreatePuff
   jp partDelete
-  
+
 @func_7c2e:
   ld h,d
   ld l,e
@@ -5282,7 +5282,7 @@ partCode56:
 @beamSound:
   ld a,SND_BEAM2
   jp playSound
-  
+
 @subid1:
   ld a,$02
   call objectGetRelatedObject1Var
@@ -5301,7 +5301,7 @@ partCode56:
   .dw @@state2
   .dw @@state3
   .dw @@state4
-  
+
 @@state0:
   ld h,d
   ld l,e
@@ -5337,7 +5337,7 @@ partCode56:
   ld (de),a
   call objectSetVisible81
   jr @beamSound
-  
+
 @@state1:
   call partCommon_decCounter1IfNonzero
   jr nz,+
@@ -5371,14 +5371,14 @@ partCode56:
   xor $10
   ld (hl),a
   ret
-  
+
 @@state2:
   call partCommon_decCounter1IfNonzero
   ret nz
   ld l,$c4
   inc (hl)
   ret
-  
+
 @@state3:
   call objectApplySpeed
   ld e,$f0
@@ -5417,7 +5417,7 @@ partCode56:
   ld l,$c4
   inc (hl)
   ret
-  
+
 @@state4:
   ld hl,$d005
   ld a,(hl)
@@ -5425,7 +5425,7 @@ partCode56:
   jp z,partDelete
   ld bc,$0600
   jp objectTakePositionWithOffset
-  
+
 @subid2:
   ld a,(de)
   or a
@@ -5444,14 +5444,14 @@ partCode56:
   ret c
 @@delete:
   jp partDelete
-  
+
 @func_7d39:
   inc a
   ld (de),a
   inc a
   call partSetAnimation
   jp objectSetVisible80
-  
+
 @subid3:
   ld a,(de)
   or a
@@ -5646,7 +5646,7 @@ partCode58:
   ld a,SND_BEAM
   call playSound
   call objectSetVisible83
-  
+
 @state1:
   call partCommon_decCounter1IfNonzero
   jr z,@@incState
@@ -5657,7 +5657,7 @@ partCode58:
 @@incState:
   ld l,e
   inc (hl)
-  
+
 @state2:
   call objectApplySpeed
   ld e,$cb
@@ -5665,7 +5665,7 @@ partCode58:
   cp $b0
   ret c
   jp partDelete
-  
+
 @state3:
   call partCommon_decCounter1IfNonzero
   jp z,partDelete
@@ -5724,7 +5724,7 @@ partCode59:
 
 @table_7ebd:
   .db $01 $14 $28 $3c
-  
+
 @state1:
   call partCommon_decCounter1IfNonzero
   ret nz
@@ -5741,7 +5741,7 @@ partCode59:
   ld a,SND_LIGHTTORCH
   call playSound
   jp objectSetVisible83
-  
+
 @state2:
   call partCommon_decCounter1IfNonzero
   jr nz,@animate
@@ -5749,7 +5749,7 @@ partCode59:
   ld l,e
   inc (hl)
   jr @animate
-  
+
 @state3:
   call partCommon_decCounter1IfNonzero
   jr nz,@animate
@@ -5764,7 +5764,7 @@ partCode59:
   ld l,$c6
   ld (hl),$10
   jr @animate
-  
+
 @state4:
   ld h,d
   ld l,$f0
@@ -5789,7 +5789,7 @@ partCode59:
   inc l
   inc (hl)
   jr @animate
-  
+
 @moveToBC:
   call objectGetRelativeAngleWithTempVars
   ld e,$c9
@@ -5797,7 +5797,7 @@ partCode59:
   call objectApplySpeed
 @animate:
   jp partAnimate
-  
+
 @state5:
   call partCommon_decCounter1IfNonzero
   jr nz,@animate
@@ -5867,7 +5867,7 @@ partCode5b:
 	ld a,SND_POOF
 	call playSound
 	jp objectSetVisible83
-	
+
 _func_6853:
 	push af
 	xor a

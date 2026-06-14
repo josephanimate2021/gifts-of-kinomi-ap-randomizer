@@ -116,7 +116,7 @@ interactionCode80:
 
 
 ; ==============================================================================
-; INTERACID_SWORDS_DECORATION
+; INTERAC_SWORDS_DECORATION
 ; ==============================================================================
 interactionCode85:
 	ld e,Interaction.enabled

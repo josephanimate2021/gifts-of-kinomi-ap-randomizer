@@ -227,7 +227,7 @@ checkNpcShouldExistAtGameStage_body:
 	.dw @data6
 	.dw @data7
 
-@data0: ; INTERACID_FEMALE_VILLAGER subids 1-2
+@data0: ; INTERAC_FEMALE_VILLAGER subids 1-2
 	.dw @@subid1
 	.dw @@subid2
 @@subid1:
@@ -236,7 +236,7 @@ checkNpcShouldExistAtGameStage_body:
 	.db $03 $04 $05 $ff
 
 
-@data1: ; INTERACID_FEMALE_VILLAGER subids 3-4
+@data1: ; INTERAC_FEMALE_VILLAGER subids 3-4
 	.dw @@subid3
 	.dw @@subid4
 @@subid3:
@@ -245,13 +245,13 @@ checkNpcShouldExistAtGameStage_body:
 	.db $01 $ff
 
 
-@data2: ; INTERACID_FEMALE_VILLAGER subid 5
+@data2: ; INTERAC_FEMALE_VILLAGER subid 5
 	.dw @@subid5
 @@subid5:
 	.db $00 $01 $02 $03 $05 $06 $ff
 
 
-@data3: ; INTERACID_VILLAGER subids 4-5
+@data3: ; INTERAC_VILLAGER subids 4-5
 	.dw @@subid4
 	.dw @@subid5
 @@subid4:
@@ -260,7 +260,7 @@ checkNpcShouldExistAtGameStage_body:
 	.db $04 $ff
 
 
-@data4: ; INTERACID_VILLAGER subids 6-7
+@data4: ; INTERAC_VILLAGER subids 6-7
 	.dw @@subid6
 	.dw @@subid7
 
@@ -270,7 +270,7 @@ checkNpcShouldExistAtGameStage_body:
 	.db $03 $04 $05 $06 $07 $ff
 
 
-@data5: ; INTERACID_PAST_GUY subids 1-2
+@data5: ; INTERAC_PAST_GUY subids 1-2
 	.dw @@subid1
 	.dw @@subid2
 
@@ -280,7 +280,7 @@ checkNpcShouldExistAtGameStage_body:
 	.db $03 $04 $07 $ff
 
 
-@data6: ; INTERACID_MISC_MAN_2 subids 2-3
+@data6: ; INTERAC_MISC_MAN_2 subids 2-3
 	.dw @@subid2
 	.dw @@subid3
 	.dw @@subid4
@@ -291,7 +291,7 @@ checkNpcShouldExistAtGameStage_body:
 @@subid4:
 	.db $07 $08 $ff
 
-@data7: ; INTERACID_OLD_LADY subids 0-5
+@data7: ; INTERAC_OLD_LADY subids 0-5
 	.dw @@subid0
 	.dw @@subid1
 	.dw @@subid2

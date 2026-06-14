@@ -238,7 +238,7 @@ syrup_subid1:
 	ldi (hl),a
 	ld (hl),$02 ; [counter2]
 
-	ldbc INTERACID_SPARKLE, $04
+	ldbc INTERAC_SPARKLE, $04
 	call objectCreateInteraction
 	ld l,Interaction.counter1
 	ld (hl),120
@@ -247,7 +247,7 @@ syrup_subid1:
 	ld b,$00
 --
 	push bc
-	ldbc INTERACID_SPARKLE, $0a
+	ldbc INTERAC_SPARKLE, $0a
 	call objectCreateInteraction
 	pop bc
 	ld l,Interaction.angle
@@ -301,7 +301,7 @@ syrup_subid1:
 	ld a,(wFrameCounter)
 	and $07
 	ret nz
-	ldbc INTERACID_SPARKLE, $02
+	ldbc INTERAC_SPARKLE, $02
 	call objectCreateInteraction
 	ld a,(wFrameCounter)
 	and $1f

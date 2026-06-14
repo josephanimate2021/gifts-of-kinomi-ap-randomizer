@@ -1,5 +1,5 @@
 ; ==============================================================================
-; INTERACID_USED_ROD_OF_SEASONS
+; INTERAC_USED_ROD_OF_SEASONS
 ; ==============================================================================
 interactionCodee7:
 	ld a,(wMenuDisabled)
@@ -74,7 +74,7 @@ interactionCodee7:
 	jr @findingVisitedFloor
 
 ; ==============================================================================
-; INTERACID_HEROS_CAVE_SWORD_CHEST
+; INTERAC_HEROS_CAVE_SWORD_CHEST
 ; ==============================================================================
 interactionCodee8:
 	ld e,Interaction.state		;$44
@@ -130,7 +130,7 @@ interactionCodee8:
 	ld (de),a
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),TREASURE_SWORD
 	inc l
@@ -157,7 +157,7 @@ interactionCodee8:
 	m_HardcodedWarpA ROOM_AGES_003 $0e $16 $83
 
 ; ==============================================================================
-; INTERACID_MISC_STATIC_OBJECTS
+; INTERAC_MISC_STATIC_OBJECTS
 ; ==============================================================================
 interactionCodee4:
 	;ld e,Interaction.subid
@@ -193,7 +193,7 @@ interactionCodee4:
 
 
 ; ==============================================================================
-; INTERACID_QUICKSAND
+; INTERAC_QUICKSAND
 ; ==============================================================================
 interactionCodee9:
 	call returnIfScrollMode01Unset
@@ -331,7 +331,7 @@ matchSkullNumberWithSubid:
 
 ; Checks for Pirate Skull, Bomb, Used Scent Seed, or Item Drop to pull into the center
 findPirateSkullAddress:
-	ld c,INTERACID_USED_ROD_OF_SEASONS		;INTERACID_PIRATE_SKULL
+	ld c,INTERAC_USED_ROD_OF_SEASONS		;INTERAC_PIRATE_SKULL
 	call objectFindSameTypeObjectWithID
 	ret nz
 	ld l,Interaction.zh
@@ -381,13 +381,13 @@ moveObjectIfGrounded:
 	ret
 
 findBombOrScentSeedAddress:
-	ld c,ITEMID_BOMB
+	ld c,ITEM_BOMB
 	call findItemWithID
 	call z,objectIsItem
-	ld c,ITEMID_BOMB
+	ld c,ITEM_BOMB
 	call findItemWithID_startingAfterH
 	call z,objectIsItem
-	ld c,ITEMID_SCENT_SEED
+	ld c,ITEM_SCENT_SEED
 	call findItemWithID
 	ret nz
 
@@ -398,7 +398,7 @@ objectIsItem:
 	jr moveObjectIfGrounded
 
 ; ==============================================================================
-; INTERACID_SOMARIA_BLOCK
+; INTERAC_SOMARIA_BLOCK
 ;
 ; Loads Cane of Somaria blocks at interaction's position
 ; ==============================================================================
@@ -439,7 +439,7 @@ interactionCodeea:
 ;	ld l,Item.start
 	inc (hl)
 	inc l
-	ld (hl),ITEMID_18
+	ld (hl),ITEM_18
 	call objectCopyPosition
 
 	ld e,Interaction.relatedObj1
@@ -454,7 +454,7 @@ interactionCodeea:
 
 
 ; ==============================================================================
-; INTERACID_SPRINGBLOOM_FLOWER
+; INTERAC_SPRINGBLOOM_FLOWER
 ; ==============================================================================
 interactionCodeeb:
 	ld e,Interaction.state

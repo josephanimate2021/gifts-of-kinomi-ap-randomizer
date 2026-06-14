@@ -2380,7 +2380,7 @@ wInShop: ; $ccd3/$ccea
 
 .ifdef ROM_SEASONS
 wcceb: ; $cceb
-; used in INTERACID_GET_ROD_OF_SEASONS for rod aura
+; used in INTERAC_GET_ROD_OF_SEASONS for rod aura
 	db
 .endif
 

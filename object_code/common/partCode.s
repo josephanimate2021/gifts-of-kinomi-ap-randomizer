@@ -256,7 +256,7 @@ partCode01:
 @swordOrShieldDrop:
 	ld a,(bc)
 	cp $03
-	jr nc,@deleteSelf	
+	jr nc,@deleteSelf
 	ld (hl),20
 	ld a,e
 	call playSound
@@ -517,7 +517,7 @@ _itemDrop_checkOnHazard:
 	rrca
 	ret nc
 
-	ld b,INTERACID_SPLASH
+	ld b,INTERAC_SPLASH
 	xor a
 	jr @onWaterSidescrolling
 
@@ -525,7 +525,7 @@ _itemDrop_checkOnHazard:
 	rrca
 	jr c,@onWater
 	rrca
-	ld b,INTERACID_LAVASPLASH
+	ld b,INTERAC_LAVASPLASH
 	jr nc,@replaceWithAnimation
 
 	call objectCreateFallingDownHoleInteraction
@@ -539,7 +539,7 @@ _itemDrop_checkOnHazard:
 	ret
 
 @onWater:
-	ld b,INTERACID_SPLASH
+	ld b,INTERAC_SPLASH
 	ld a,(wTilesetFlags)
 	and TILESETFLAG_SIDESCROLL
 	jr z,@replaceWithAnimation
@@ -1934,7 +1934,7 @@ partCode0f:
 	call objectCopyPosition
 
 @doneItemDropSpawn:
-	ld b,INTERACID_GRASSDEBRIS
+	ld b,INTERAC_GRASSDEBRIS
 	call objectCreateInteractionWithSubid00
 
 @normalStatus:
@@ -2564,7 +2564,7 @@ partCode13:
 	ld c,(hl)
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_SPARKLE
+	ld (hl),INTERAC_SPARKLE
 .ifdef ROM_SEASONS
 	; substate
 	inc l
@@ -5166,7 +5166,7 @@ partCode4e:
 	ret nc
 
 @destroy:
-	ld b,INTERACID_SNOWDEBRIS
+	ld b,INTERAC_SNOWDEBRIS
 	call objectCreateInteractionWithSubid00
 	jp partDelete
 
@@ -5407,7 +5407,7 @@ partCode51:
 @state2:
 	call partCommon_checkTileCollisionOrOutOfBounds
 	jr nc,+
-	ld b,INTERACID_EXPLOSION
+	ld b,INTERAC_EXPLOSION
 	call objectCreateInteractionWithSubid00
 	ld a,$3c
 	call z,setScreenShakeCounter

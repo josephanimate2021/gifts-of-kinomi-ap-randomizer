@@ -223,7 +223,7 @@ itemCode18:
 	call @removeBlock
 @deleteSelfWithPuff:
 	; OOH hack: when the somaria block deletes itself, it actually creates an instance
-	; of ITEMID_1f which will attempt to replace hole tiles.
+	; of ITEM_1f which will attempt to replace hole tiles.
 	ld h,d
 	ld l,Item.var2f
 	bit 4,(hl)
@@ -733,7 +733,7 @@ caneHook3:
 	ret nz
 	ld (hl),1
 	inc l
-	ld (hl),ITEMID_1f
+	ld (hl),ITEM_1f
 	ld e,Item.direction
 	ld l,e
 	ld a,(de)
@@ -752,7 +752,7 @@ caneHook4:
 	call interactionDelete
 	pop de
 
-	; Calculate direction to copy to ITEMID_1f before deleting self
+	; Calculate direction to copy to ITEM_1f before deleting self
 	ld e,Item.angle
 	ld a,(de)
 	call convertAngleToDirection

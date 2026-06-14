@@ -840,7 +840,7 @@ interaction6b_checkLinkPressedUpAtScreenEdge:
 	ret
 
 _interaction6b_subid19:
-	ldbc INTERACID_TREASURE,TREASURE_AUTUMN_STONE
+	ldbc INTERAC_TREASURE,TREASURE_AUTUMN_STONE
 @merge:
 	call checkInteractionState
 	ret nz
@@ -859,7 +859,7 @@ _interaction6b_subid1a:
 	or a
 	ret nz
 
-	ldbc INTERACID_TREASURE,TREASURE_SPRING_STONE
+	ldbc INTERAC_TREASURE,TREASURE_SPRING_STONE
 	jr _interaction6b_subid19@merge
 
 interaction6b_scriptTable:

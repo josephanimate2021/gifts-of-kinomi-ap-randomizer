@@ -123,7 +123,7 @@ cornersCaveScript_minecartRoom:
 ;	setcoords $58, $78
 ;	asm15 objectCreatePuff
 ;	wait 30
-;	spawninteraction INTERACID_MOVING_PLATFORM, $09, $50, $78
+;	spawninteraction INTERAC_MOVING_PLATFORM, $09, $50, $78
 ;	playsound SND_SOLVEPUZZLE
 ;	scriptend
 
@@ -174,7 +174,7 @@ seasonsShrineScript_minibossDeath:
 	checknoenemies
 	asm15 scriptHelp.seasonsShrine_minibossDeath
 	wait 20
-	spawninteraction INTERACID_MINIBOSS_PORTAL, $00, $00, $00
+	spawninteraction INTERAC_MINIBOSS_PORTAL, $00, $00, $00
 
 enableLinkAndMenu:
 	writememory wDisableLinkCollisionsAndMenu, $00

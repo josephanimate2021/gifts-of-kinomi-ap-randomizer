@@ -768,7 +768,7 @@ interaction21_subid1a:
 
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_BRIDGE_SPAWNER
+	ld (hl),PART_BRIDGE_SPAWNER
 	ld l,Part.yh
 	ld (hl),b
 	ld l,Part.angle

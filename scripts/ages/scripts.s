@@ -4576,7 +4576,7 @@ dumbbellManScript:
 
 
 ; ==============================================================================
-; INTERACID_OLD_MAN
+; INTERAC_OLD_MAN
 ; ==============================================================================
 oldManScript_givesLabrinthKey:
 	loadscript scriptHelp.oldManScript_givesLabrinthKey
@@ -4935,7 +4935,7 @@ bearSubid02Script:
 
 
 ; ==============================================================================
-; INTERACID_SYRUP
+; INTERAC_SYRUP
 ; ==============================================================================
 syrupScript_notTradedMushroomYet:
 	checkabutton
@@ -9259,7 +9259,7 @@ knowItAllBirdScript:
 	scriptjump @loop
 
 ; ==============================================================================
-; INTERACID_GET_ROD_OF_SEASONS
+; INTERAC_GET_ROD_OF_SEASONS
 ; ==============================================================================
 gettingRodOfSeasonsScript:
 	setcoords $40, $50
@@ -9282,7 +9282,7 @@ gettingRodOfSeasonsScript:
 	checkpalettefadedone
 	delay 5
 
-	spawninteraction INTERACID_GET_ROD_OF_SEASONS, $02, $38, $50
+	spawninteraction INTERAC_GET_ROD_OF_SEASONS, $02, $38, $50
 	asm15 fadeinFromWhiteWithDelay, $04
 	checkpalettefadedone
 	checkflagset $00, wcceb
@@ -9302,7 +9302,7 @@ gettingRodOfSeasonsScript_setCounter1To32:
 	scriptend
 
 ; ==============================================================================
-; INTERACID_WATER_PUSHBLOCK
+; INTERAC_WATER_PUSHBLOCK
 ; ==============================================================================
 waterPushblock_screenShake:
 	playsound SNDCTRL_STOPMUSIC

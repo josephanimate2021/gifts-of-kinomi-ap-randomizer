@@ -224,7 +224,7 @@ D8armosCheckIfWillMove:
 
 	call getFreeEnemySlot
 	jr nz,+
-	ld (hl),ENEMYID_ARMOS
+	ld (hl),ENEMY_ARMOS
 	ld l,Enemy.yh
 ;tile index to use
 	ld (hl),$26								;$27
@@ -243,7 +243,7 @@ D8armosCheckIfWillMove:
 	ld (de),a
 	ret
 ; ==============================================================================
-; INTERACID_BIPIN
+; INTERAC_BIPIN
 ; ==============================================================================
 
 ;;
@@ -3690,7 +3690,7 @@ poeScript:
 	scriptend
 
 ; ==============================================================================
-; INTERACID_OLD_ZORA
+; INTERAC_OLD_ZORA
 ; ==============================================================================
 
 ; Zora who trades you the broken sword for a guitar.
@@ -8026,7 +8026,7 @@ vire_activateMusic:
 
 /*
 ; ==============================================================================
-; INTERACID_SYMMETRY_NPC
+; INTERAC_SYMMETRY_NPC
 ; ==============================================================================
 ;;
 ; Puts a value in wTmpcfc0.genericCutscene.cfc1:
@@ -8799,7 +8799,7 @@ interactiondc_setRoom001LayoutSwap:
 	ret
 
 ; ==============================================================================
-; INTERACID_GET_ROD_OF_SEASONS
+; INTERAC_GET_ROD_OF_SEASONS
 ; ==============================================================================
 
 spawnRodOfSeasonsSparkles:
@@ -8852,7 +8852,7 @@ forceLinksDirection:
 
 
 ; ==============================================================================
-; INTERACID_WATER_PUSHBLOCK
+; INTERAC_WATER_PUSHBLOCK
 ; ==============================================================================
 simpleScript_waterfallEmptyingAbove:
 	ss_wait 20

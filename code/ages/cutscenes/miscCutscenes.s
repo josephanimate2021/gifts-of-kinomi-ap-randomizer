@@ -2902,7 +2902,7 @@ func_03_7619:
 ;	dec l
 ;	ld (hl),$11
 ;	inc l
-;	ld (hl),ENEMYID_SEEDS_ON_TREE
+;	ld (hl),ENEMY_SEEDS_ON_TREE
 ;	inc l
 ;	ld (hl),$08
 ;	ret
