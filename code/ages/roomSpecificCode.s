@@ -114,28 +114,28 @@ setMiniMapVars:
 
 setMinimapVars_Group3Map18:
 	ld a,<ROOM_AGES_016
-	jr _setMiniMapVarsGroup0
+	jr setMiniMapVarsGroup0
 
 setMinimapVars_Group3Map78:
 	ld a,<ROOM_AGES_027
-	jr _setMiniMapVarsGroup0
+	jr setMiniMapVarsGroup0
 
 setMinimapVars_Group3Map79:
 	ld a,<ROOM_AGES_006
-	jr _setMiniMapVarsGroup0
+	jr setMiniMapVarsGroup0
 
 setMinimapVars_Group0Map78:
 	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
 	call setGlobalFlag
 setMinimapVars_Group0Map77:
 	ld a,<ROOM_AGES_077
-	jr _setMiniMapVarsGroup0
+	jr setMiniMapVarsGroup0
 
 
 setMinimapVars_Group1Map02:
 	ld a,<ROOM_AGES_102
 	ld b,>ROOM_AGES_102
-	jr _setMiniMapVars
+	jr setMiniMapVars
 
 
 setRoomFlags_Group5Map30:

@@ -379,21 +379,21 @@ interactiond7SubidData:
 	m_InteractionSubidData $81 $04 $33
 	m_InteractionSubidData $81 $08 $13 ; $7b
 
-	m_InteractionSubidData OBJGFXH_7c $10 $10 ; $7c (Magnet Gloves)
-	m_InteractionSubidData OBJGFXH_7c $02 $40 ; $7d (Slingshot)
+	m_InteractionSubidData $7c $10 $10 ; $7c (Magnet Gloves)
+	m_InteractionSubidData $7c $02 $40 ; $7d (Slingshot)
 	m_InteractionSubidData $e0 $00 $50 ; $7e (Hyper Slingshot)
-	m_InteractionSubidData OBJGFXH_84 $04 $40 ; $7f (Magic Boomerang)
-	m_InteractionSubidData OBJGFXH_7d $1a $50 ; $80 (Roc's Cape)
+	m_InteractionSubidData $84 $04 $40 ; $7f (Magic Boomerang)
+	m_InteractionSubidData $7d $1a $50 ; $80 (Roc's Cape)
 
 	;; TODO: Crossitems was using these, now they conflict with jewels/stones?
 	;; m_InteractionSubidData $7d $10 $20 ; $81 (Rod of Seasons)
 	;; m_InteractionSubidData $7d $14 $00 ; $82 (Fool's Ore)
 
 ; jewels/stones
-	m_InteractionSubidData OBJGFXH_82 $00 $10 ; $81
-	m_InteractionSubidData OBJGFXH_82 $02 $20 ; $82
-	m_InteractionSubidData OBJGFXH_82 $04 $30 ; $83
-	m_InteractionSubidData OBJGFXH_82 $06 $00 ; $84
+	m_InteractionSubidData $82 $00 $10 ; $81
+	m_InteractionSubidData $82 $02 $20 ; $82
+	m_InteractionSubidData $82 $04 $30 ; $83
+	m_InteractionSubidData $82 $06 $00 ; $84
 
 	m_InteractionSubidData $57 $04 $00 ; $85 Green Rupee
 	m_InteractionSubidData $57 $06 $03 ; $86 Big Green Rupee
@@ -571,7 +571,7 @@ interactione0SubidData:
 	m_InteractionSubidData $67 $08 $20
 	m_InteractionSubidData $67 $10 $30
 	m_InteractionSubidData $67 $18 $10
-	m_InteractionSubidData $67 $80 $00
+	m_InteractionSubidData $67 $00 $00
 interaction47SubidData:
 	m_InteractionSubidData $7c $00 $50		;seed satchel $79 $14 $10
 	m_InteractionSubidData $78 $02 $59		;heart		  $78 $02 $59

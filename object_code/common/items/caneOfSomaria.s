@@ -465,72 +465,6 @@ itemCode18:
 	dec (hl)
 	ret
 
-caneHook1:
-	ldd (hl),a
-	dec l
-	ld (hl),c
-
-	; Also copy direction so the cane knows which way to create blocks
-	ld l,Item.direction
-	ld e,l
-	ld a,(de)
-	ld (hl),a
-	ret
-
-caneHook2:
-	; Only play the sound if we're not creating floors.
-	call objectGetTileAtPosition
-	ld hl,somariaHoleTiles
-	call lookupCollisionTable
-	ret c
-	ld a,SND_MYSTERY_SEED
-	call playSound
-	ret
-
-; This is the list of tiles that the cane of somaria will replace with floor.
-somariaHoleTiles:
-	.dw @collisions0
-	.dw @collisions1
-	.dw @collisions2
-	.dw @collisions3
-	.dw @collisions4
-	.dw @collisions5
-
-@collisions0: ; Overworld
-	.db $f3 $3a ; Hole
-
-	;.db $e4 $3a ; Lava
-	;.db $e5 $3a
-	;.db $e6 $3a
-	;.db $e7 $3a
-	;.db $e8 $3a
-	.db $00
-
-@collisions1: ; Indoors, dungeons
-@collisions2:
-	.db $48 $a0 ; Floor-transfer holes
-	.db $49 $a0
-	.db $4a $a0
-	.db $4b $a0
-
-	;.db $61 $a0 ; Lava
-	;.db $62 $a0
-	;.db $63 $a0
-	;.db $64 $a0
-	;.db $65 $a0
-
-	.db $f3 $a0 ; Normal holes
-	.db $f4 $a0
-	.db $f5 $a0
-	.db $f6 $a0
-	.db $f7 $a0
-	.db $00
-
-@collisions3: ; Sidescrolling
-@collisions4: ; Underwater
-@collisions5: ; ?
-	.db $00
-
 
 
 ; Cane of somaria creating a "bridge"
@@ -659,7 +593,7 @@ itemCode1f:
 
 
 ; This is the list of tiles that the cane of somaria will replace with floor.
-_somariaHoleTiles:
+somariaHoleTiles:
 	.dw @collisions0
 	.dw @collisions1
 	.dw @collisions2
@@ -768,7 +702,7 @@ caneHook4:
 ;	jr z,+
 
 	; If on the ground...
-	call _itemBounce
+	call itemBounce
 	ret nc
 ;	jr c,@stoppedBouncing
 

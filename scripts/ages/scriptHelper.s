@@ -57,7 +57,7 @@ tokayTempleSetRoomflag40:
 createBridgeSpawner:
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_BRIDGE_SPAWNER
+	ld (hl),PART_BRIDGE_SPAWNER
 	ld l,Part.counter2
 	ld (hl),b
 	ld l,Part.angle
@@ -3070,7 +3070,7 @@ oldManScript_givesLabrinthKey:
 @acceptedTrade:
 	showtextlowindex <TX_0b22
 	wait 30
-	giveitem TREASURE_LIBRARY_KEY_SUBID_00
+	giveitem TREASURE_OBJECT_LIBRARY_KEY_00
 	wait 30
 	showtextlowindex <TX_0b23
 	enableinput

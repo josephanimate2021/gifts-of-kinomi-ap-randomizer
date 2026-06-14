@@ -189,7 +189,7 @@ dungeonScript_bossDeath:
 	stopifitemflagset
 	setcoords $58, $78
 
-spawnHeartContainer:
+spawnHeartContainer2:
 	spawnitem TREASURE_HEART_CONTAINER, $00
 	scriptjump enableLinkAndMenu
 
@@ -209,7 +209,7 @@ wingDungeonScript_bossDeath:
 ; @spawnHeart:
 ; 	stopifitemflagset
 ; 	setcoords $98, $78
-; 	scriptjump spawnHeartContainer
+; 	scriptjump spawnHeartContainer2
 
 
 ; Spawn stairs to the bracelet room when the two torches are lit.

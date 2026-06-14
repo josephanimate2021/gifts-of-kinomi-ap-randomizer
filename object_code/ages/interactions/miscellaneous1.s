@@ -839,7 +839,7 @@ interaction6b_checkLinkPressedUpAtScreenEdge:
 	and BTN_UP
 	ret
 
-_interaction6b_subid19:
+interaction6b_subid19:
 	ldbc INTERAC_TREASURE,TREASURE_AUTUMN_STONE
 @merge:
 	call checkInteractionState
@@ -854,13 +854,13 @@ _interaction6b_subid19:
 	jp interactionIncState
 
 
-_interaction6b_subid1a:
+interaction6b_subid1a:
 	ld a,(wNumEnemies)
 	or a
 	ret nz
 
 	ldbc INTERAC_TREASURE,TREASURE_SPRING_STONE
-	jr _interaction6b_subid19@merge
+	jr interaction6b_subid19@merge
 
 interaction6b_scriptTable:
 	.dw mainScripts.interaction6b_stubScript

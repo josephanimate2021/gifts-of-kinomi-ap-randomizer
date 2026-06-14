@@ -636,7 +636,7 @@ interactiondc_subid19:
 
 	; Tile has changed
 	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
-	call _isHeartPieceOrRupee
+	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 	ld a,SND_SOLVEPUZZLE
@@ -658,7 +658,7 @@ interactiondc_subid1a:
 
 
 	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
-	call _isHeartPieceOrRupee
+	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 	ld a,SND_SOLVEPUZZLE
@@ -680,7 +680,7 @@ isHeartPieceOrRupee:
 	ld b,TREASURE_HEART_PIECE
 	ret
 
-_interactiondc_subid02:
+interactiondc_subid02:
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_ITEM,a
 	jp nz,interactionDelete
@@ -697,7 +697,7 @@ _interactiondc_subid02:
 	ret nc
 
 	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
-	call _isHeartPieceOrRupee
+	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 	jp interactionDelete

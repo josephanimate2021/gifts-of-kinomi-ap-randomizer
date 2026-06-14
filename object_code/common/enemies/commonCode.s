@@ -1,4 +1,4 @@
-; This code is included at the start of every enemy code bank (banks $0d-$10, inclusive). 
+; This code is included at the start of every enemy code bank (banks $0d-$10, inclusive).
 ;
 ; Although the function names are the same in each bank, they won't cause conflicts
 ; because each bank is in its own namespace.
@@ -1227,7 +1227,7 @@ ecom_fallToGroundAndSetState:
 	ld (hl),b
 	ret
 
-_ecom_setPositionAtRandomWaterTile:
+ecom_setPositionAtRandomWaterTile:
 	call getRandomNumber_noPreserveVars
 	cp (SCREEN_WIDTH<<4)-8
 	ret nc

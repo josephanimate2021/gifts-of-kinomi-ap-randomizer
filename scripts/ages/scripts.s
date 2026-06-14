@@ -8561,7 +8561,7 @@ zoraSubid10Script:
 	showtext TX_3430
 	wait 30
 
-	giveitem TREASURE_ZORA_SCALE_SUBID_00
+	giveitem TREASURE_OBJECT_ZORA_SCALE_00
 	wait 10
 	showtext TX_3431
 

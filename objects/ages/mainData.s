@@ -2919,7 +2919,7 @@ group4Map4bObjectData:
 	obj_End
 
 group4Map4cObjectData:
-	obj_Pointer objectData4056
+	obj_Pointer objectData_respawningBushScentSeeds
 	obj_Pointer group4Map4cEnemyObjectData
 	obj_End
 
@@ -2929,7 +2929,7 @@ group4Map4dObjectData:
 	obj_End
 
 group4Map4eObjectData:
-	obj_Pointer objectData4056
+	obj_Pointer objectData_respawningBushScentSeeds
 	obj_Pointer group4Map4eEnemyObjectData
 	obj_Interaction $12 $01 $58 $58
 	obj_End

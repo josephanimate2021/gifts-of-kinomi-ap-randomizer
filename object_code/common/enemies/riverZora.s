@@ -44,7 +44,7 @@ enemyCode08:
 
 ; Resurfacing in a random position
 @state_09:
-	call _ecom_setPositionAtRandomWaterTile
+	call ecom_setPositionAtRandomWaterTile
 	ret nc
 
 /*

@@ -1635,7 +1635,7 @@ pregameIntroCutsceneHandler:
 	ld a,$00  ; Set scroll mode to 0
 	ld (wScrollMode),a
 
-	jp _clearFadingPalettes2
+	jp clearFadingPalettes2
 @wait150State:
 	ld e,$96  ; Load 150 into register E; will be put into cbb3 later
 --

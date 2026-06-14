@@ -61,7 +61,7 @@ loadRememberedCompanion:
 .ifdef ROM_AGES
 @raft:
 	ld a,(wCurrentSeason)
-	and SEASON_FALL
+	and SEASON_AUTUMN
 	ret z
 
 	call getFreeInteractionSlot

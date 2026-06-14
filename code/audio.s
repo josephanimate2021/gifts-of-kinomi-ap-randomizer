@@ -804,7 +804,7 @@ channelCmdf7:
 	and %01111111
 	ld hl,wChannelLoopPointers
 	call nz,loadHLIntoAddressPointer
-	jp _doNextChannelCommand
+	jp doNextChannelCommand
 
 ;;
 ; endSec
@@ -815,7 +815,7 @@ channelCmdfa:
 
 ;; transpose
 channelCmdfb:
-	call _getNextChannelByte
+	call getNextChannelByte
 	ld hl,wChannelTranspose
 	call loadChannelVariable
 	ld (hl),a

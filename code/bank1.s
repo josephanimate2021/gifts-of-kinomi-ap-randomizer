@@ -4847,7 +4847,7 @@ screenTransitionLostWoods:
 	jr @checkTransition
 
 @@transition1:
-	ldbc DIR_DOWN, SEASON_SPRING ;DIR_LEFT, SEASON_FALL
+	ldbc DIR_DOWN, SEASON_SPRING ;DIR_LEFT, SEASON_AUTUMN
 	ld hl,wLostWoodsTransitionCounter2
 	jr @checkTransition
 
@@ -4857,7 +4857,7 @@ screenTransitionLostWoods:
 	jr @checkTransition
 
 @@transition3:
-	ldbc DIR_LEFT, SEASON_FALL ;DIR_LEFT, SEASON_SUMMER
+	ldbc DIR_LEFT, SEASON_AUTUMN ;DIR_LEFT, SEASON_SUMMER
 	ld hl,wLostWoodsTransitionCounter2
 	call @checkTransition
 	ld a,(hl)
@@ -4887,12 +4887,12 @@ screenTransitionLostWoods:
 	jr @@checkTransition
 
 @@transition1:
-	ldbc DIR_UP, SEASON_SUMMER ;DIR_LEFT, SEASON_FALL
+	ldbc DIR_UP, SEASON_SUMMER ;DIR_LEFT, SEASON_AUTUMN
 	ld hl,wLostWoodsTransitionCounter1
 	jr @@checkTransition
 
 @@transition2:
-	ldbc DIR_DOWN, SEASON_FALL ;DIR_LEFT, SEASON_SPRING
+	ldbc DIR_DOWN, SEASON_AUTUMN ;DIR_LEFT, SEASON_SPRING
 	ld hl,wLostWoodsTransitionCounter1
 	jr @@checkTransition
 

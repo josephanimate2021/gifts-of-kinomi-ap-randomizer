@@ -633,9 +633,9 @@ shopItemTextTable:
 .else
 	/* $05 */ .db <TX_006c
 .endif
-	/* $06 */ .db <TX_0094
+	/* $06 */ .db <TX_00_GET_SLINGSHOT
 	/* $07 */ .db <TX_006d
-	/* $08 */ .db <TX_0095
+	/* $08 */ .db <TX_00_GET_HYPERSLINGSHOT
 	/* $09 */ .db <TX_006d
 	/* $0a */ .db <TX_004b
 	/* $0b */ .db <TX_0032

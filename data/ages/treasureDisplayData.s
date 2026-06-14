@@ -206,7 +206,7 @@ treasureDisplayData_trade:
 	.db TREASURE_TRADEITEM $d4 $01 $d5 $01 $ff, <TX_090c ; Broken Sword	Tasty meat
 	.db TREASURE_TRADEITEM $cd $02 $ce $02 $ff, <TX_090d ; Sparring Book	Doggy mask
 	.db TREASURE_TRADEITEM $c9 $05 $ca $05 $ff, <TX_090e ; Mushroom
-						  ,
+
 	.db TREASURE_TRADEITEM $cb $03 $cb $23 $ff, <TX_090f ; Cheesy mustache
 	.db TREASURE_TRADEITEM $cc $03 $cc $23 $ff, <TX_0910 ; Funny joke
 	.db TREASURE_TRADEITEM $cd $01 $ce $01 $ff, <TX_0911 ; Touching book

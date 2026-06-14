@@ -1336,7 +1336,7 @@ tileReplacement_group0Mape0:
   call nz,setTileToDoor
   ld c,$1b
 ;;
-_createInteraction90:
+createInteraction90:
   call getFreeInteractionSlot
   ret nz
 
@@ -1349,7 +1349,7 @@ _createInteraction90:
 ; Present, on top of maku tree (middle)
 tileReplacement_group0Mape1:
   ld c,$1c
-  call _createInteraction90
+  call createInteraction90
   ld a,(wEssencesObtained)
   rrca
   ld l,$26

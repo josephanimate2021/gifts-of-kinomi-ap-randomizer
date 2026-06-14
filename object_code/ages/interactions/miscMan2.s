@@ -124,6 +124,60 @@ interactionCode44:
 ;			$05 if got the maku seed (saw twinrova cutscene);
 ;			$06 if beat veran but not twinrova (linked only);
 ;			$07 if game finished (unlinked only)
+getGameProgress_2:
+	ld b,$07
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	call checkIsLinkedGame
+	jr z,+
+	ld hl,wGroup4RoomFlags+$fc
+	bit 7,(hl)
+	ret nz
++
+	dec b
+	ld a,GLOBALFLAG_SAW_TWINROVA_BEFORE_ENDGAME
+	call checkGlobalFlag
+	ret nz
+
+	ld a,TREASURE_ESSENCE
+	call checkTreasureObtained
+	jr nc,@noEssences
+
+	call getHighestSetBit
+	ld c,a
+	ld b,$04
+	cp $06
+	ret nc
+
+	dec b
+	ld a,GLOBALFLAG_SAVED_NAYRU
+	call checkGlobalFlag
+	ret nz
+
+	dec b
+	ld a,c
+	cp $03
+	ret nc
+	dec b
+	ld a,c
+	cp $01
+	ret nc
+
+@noEssences:
+	ld b,$00
+	ret
+;;
+; @param[out]	b	$00 before beating d2;
+;			$01 if beat d2;
+;			$02 if beat d4;
+;			$03 if saved nayru;
+;			$04 if beat d7;
+;			$05 if got the maku seed (saw twinrova cutscene);
+;			$06 if beat veran but not twinrova (linked only);
+;			$07 if game finished (unlinked only)
 ;Gamma's version
 getGameProgress_3:
 	ld b,$07

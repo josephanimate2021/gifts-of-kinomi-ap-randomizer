@@ -443,7 +443,7 @@ treeGfxLocationsTable:
 seasonsTable:
 	; <hFF93 - use $04 for no change
 	.db $02	;SEASON_SUMMER, gale
-	.db $01	;SEASON_FALL, 	pegasus
+	.db $01	;SEASON_AUTUMN,	pegasus
 	.db $00	;SEASON_WINTER, scent
 	.db $03	;SEASON_SPRING, mystery
 

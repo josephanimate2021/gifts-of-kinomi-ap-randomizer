@@ -431,20 +431,20 @@ shopkeeperScript_purchaseItem:
 
 @haveSecondUpgradeableItem:
 	showtextnonexitablelowindex <TX_0e0a
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $02
 	scriptend
 
 @buyUpgradeableItem2:
 ;	jumpifc6xxset <wSlingshotLevel $01 @haveSecondUpgradeableItem2
 	showtextnonexitablelowindex <TX_0e2c
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $04
 	scriptend
 
 @haveSecondUpgradeableItem2:
 	showtextnonexitablelowindex <TX_0e2d
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $08
 	scriptend
 
@@ -472,7 +472,7 @@ shopkeeperScript_purchaseItem:
 
 @buyMagicPotion:
 	showtextnonexitablelowindex <TX_0e2e
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems2, $10
 	scriptend
 
@@ -535,12 +535,12 @@ shopkeeperScript_purchaseItem:
 
 @buyL2Sword:
 	showtextnonexitablelowindex <TX_0e2f
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyL3Sword:
 	showtextnonexitablelowindex <TX_0e30
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyNormalShopGashaSeed:

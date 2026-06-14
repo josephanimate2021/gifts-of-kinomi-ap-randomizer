@@ -5912,7 +5912,7 @@ inventorySubscreen2_drawTreasures:
 	add (hl)
 	ld (hl),a
 
-	call checkWhetherToDisplaySymbolInSubscreen
+	call checkWhetherToDisplaySeasonInSubscreen
 	ld hl,w4TileMap+$4d
 	ldbc $04,$06
 	jp z,fillRectangleInTileMapWithMenuBlock	;nz
@@ -6751,17 +6751,17 @@ mapMenu_state0:
 	ld hl,wRoomPack
 	ld a,$04
 	sub (hl)
-	call z,_mapMenu_performTileSubstitutions
+	call z,mapMenu_performTileSubstitutions
 
 	bit 7,(hl)
 	jr z,@past
 
 	ld a,(wCurrentSeason)
 	add $07
-	call _mapMenu_performTileSubstitutions
+	call mapMenu_performTileSubstitutions
 
 	ld a,$0b
-	call _mapMenu_performTileSubstitutions
+	call mapMenu_performTileSubstitutions
 
 @past:
 	; Check the position of the stone in talus peaks which changes water flow

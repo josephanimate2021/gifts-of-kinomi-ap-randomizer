@@ -11,7 +11,7 @@ fileManagementFunction:
 
 ;;
 initializeFile:
-	ld hl,initialFileVariables
+	ld hl,initialFileVariablesTable
 	call initializeFileVariables
 
 	; Load in a: wFileIsHeroGame (bit 1), wFileIsLinkedGame (bit 0)

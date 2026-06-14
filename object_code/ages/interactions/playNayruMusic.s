@@ -8,7 +8,7 @@ interactionCode2f:
 	jp nz,interactionDelete
 */
 	ld hl,wActiveMusic
-	ld a,MUS_LEVEL6 ; Seasons shrine
+	ld a,MUS_MERMAIDS_CAVE ; Seasons shrine
 	cp (hl)
 	jr z,+
 

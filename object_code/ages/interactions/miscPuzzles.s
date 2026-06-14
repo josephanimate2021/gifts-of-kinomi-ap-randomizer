@@ -1492,7 +1492,7 @@ miscPuzzles_subid23:
 +
 	jp interactionDelete
 
-_miscPuzzles_subid24:
+miscPuzzles_subid24:
 ;tombstones puzzle
 	ld e,Interaction.state
 	ld a,(de)

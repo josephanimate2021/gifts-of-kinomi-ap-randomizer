@@ -19,7 +19,7 @@ interactionCodee6:
 
 @subid0:
 	ld a,(wCurrentSeason)
-	cp SEASON_FALL
+	cp SEASON_AUTUMN
 	jp nz,interactionDelete
 
 ; Subid 1: A raft that's put there through the room's object list; it must check that
@@ -49,7 +49,7 @@ interactionCodee6:
 	or a
 	jr nz,+
 	ld a,(wCurrentSeason)
-	cp SEASON_FALL
+	cp SEASON_AUTUMN
 	jp nz,interactionDelete
 +
 	push de

@@ -390,7 +390,7 @@ interactionCode33:
 ; Clearing out all blocks on-screen in preparation for next phase
 @stateA:
 ; delete the somaria block
-	ld c,ITEMID_18	;somaria block
+	ld c,ITEM_18	;somaria block
 	call findItemWithID
 	ld l,Item.var2f
 	set 5,(hl)
@@ -476,7 +476,7 @@ interactionCode33:
 	ld (de),a
 
 	ld c,l
-	ld a,TILE_INDEX_HOLE+1  ;DUNGEON_a3
+	ld a,TILEINDEX_HOLE+1  ;DUNGEON_a3
 	call setTile
 	jp objectCreatePuff
 

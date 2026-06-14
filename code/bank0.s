@@ -11784,7 +11784,7 @@ loadScreenMusicAndSetRoomPack:
 ;	ld (wCurrentSeason),a
 	ret
 seasonsGroupTable:
-	.db SEASON_SUMMER SEASON_SPRING SEASON_WINTER SEASON_FALL
+	.db SEASON_SUMMER SEASON_SPRING SEASON_WINTER SEASON_AUTUMN
 ;;
 dismountCompanionAndSetRememberedPositionToScreenCenter:
 	ldh a,(<hRomBank)
@@ -12485,24 +12485,6 @@ updateTilesetUniqueGfx:
 uniqueGfxFunc_380b:
 	jp panic
 
-
-;;
-; HACK-BASE: This function used exclusively for reloading tileset graphics during screen-scroll
-; transitions.
-;
-; It's important not to reload the tileset on every single screen transition, otherwise dungeon
-; toggle blocks in Ages will be reverted to their original state (graphically).
-;
-; On the other hand, this function can't be used when closing a menu, because even though the
-; tileset won't have changed, a full gfx reload is required.
-loadTilesetGfxIfChanged:
-	ld a,(wTilesetIndex)
-	and $7f
-	ld b,a
-	ld a,(wLoadedTilesetIndex)
-	cp b
-	ret z
-	; Fall through
 
 ;;
 ; HACK-BASE: This function used exclusively for reloading tileset graphics during screen-scroll

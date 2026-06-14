@@ -42,8 +42,8 @@ interaction21_subid01:
 	ld hl,subid01_tileData
 */
 interaction21_subid02:
-	call _interactionDeleteAndRetIfItemFlagSet
-	ld hl,_subid02_tileData
+	call interactionDeleteAndRetIfItemFlagSet
+	ld hl,subid02_tileData
 
 verifyTilesAndDropSmallKey:
 	call verifyTiles
@@ -396,11 +396,11 @@ interaction21_subid0d:
 
 
 ; d3: Small key falls when a block is pushed into place
-_interaction21_subid0e:
+interaction21_subid0e:
 	call interactionDeleteAndRetIfEnabled02
-	call _interactionDeleteAndRetIfItemFlagSet
+	call interactionDeleteAndRetIfItemFlagSet
 	ld hl,@tileData
-	jp _verifyTilesAndDropSmallKey
+	jp verifyTilesAndDropSmallKey
 
 @tileData:
 	.db TILEINDEX_PUSHABLE_BLOCK $55 $56 $57 $58 $59 $00
@@ -425,9 +425,9 @@ interaction21_subid0f:
 
 
 ; d4: A small key falls when a certain froor pattern is achieved
-_interaction21_subid10:
+interaction21_subid10:
 	call interactionDeleteAndRetIfEnabled02
-	call _interactionDeleteAndRetIfItemFlagSet
+	call interactionDeleteAndRetIfItemFlagSet
 	ld hl,@tileData
 	jp verifyTilesAndDropSmallKey
 
@@ -784,7 +784,7 @@ interaction21_subid1a:
 	jp interactionDelete
 
 ;writes to wActiveTriggers if no holes exist
-_interaction21_subid1b:
+interaction21_subid1b:
 	call getThisRoomFlags
 	and ROOMFLAG_ITEM
 	jp nz,interactionDelete
@@ -833,7 +833,7 @@ _interaction21_subid1b:
 	ld e,Interaction.var03
 	ld a,(de)
 	cp $ff
-	jr z,spawnSmallKeyFromCeiling
+	jp z,spawnSmallKeyFromCeiling
 
 	ld hl,wActiveTriggers
 	call setFlag

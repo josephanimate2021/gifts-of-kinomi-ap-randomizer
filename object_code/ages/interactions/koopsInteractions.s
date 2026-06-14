@@ -342,7 +342,7 @@ findItemDropAddress:
 -
 	ld l,Part.id
 	ld a,(hl)
-	cp PARTID_ITEM_DROP
+	cp PART_ITEM_DROP
 	call z,objectIsPart
 	inc h
 	ld a,h
