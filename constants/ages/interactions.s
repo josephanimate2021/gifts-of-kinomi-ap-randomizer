@@ -1016,6 +1016,7 @@
 ; @subid_02{Rod of seasons}
 ; @subid_03{Aura around Rod of seasons}
 .define INTERAC_GET_ROD_OF_SEASONS	$94
+.define INTERAC_PATCH $94 ; TODO: shouldn't be here
 
 ;;
 ; Ball used by villagers. Subid is controlled by $cfd3.
@@ -1095,7 +1096,7 @@
 ;;
 ; Given to Maple
 ;.define INTERAC_TOUCHING_BOOK $a5
-.define INTERAC_TGHASTLY_DOLL $a5
+.define INTERAC_GHASTLY_DOLL $a5
 
 ;;
 ; See also INTERAC_MAKU_SEED_AND_ESSENCES

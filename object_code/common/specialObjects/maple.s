@@ -1341,7 +1341,7 @@ mapleSpawnItemDrops:
 ;.ifdef ROM_AGES
 ;	ld b,INTERAC_TOUCHING_BOOK
 ;.else
-	ld b,INTERAC_LON_LON_EGG
+	ld b,INTERAC_GHASTLY_DOLL ; TODO: Should be LON_LON_EGG?
 ;.endif
 	call objectCreateInteractionWithSubid00
 	ret nz

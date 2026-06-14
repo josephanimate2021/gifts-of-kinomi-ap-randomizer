@@ -23,7 +23,7 @@ soundPointers:
 	m_soundPointer spiritTemple;sound15;floroCaverns
 	m_soundPointer sound16
 	m_soundPointer sound17
-	m_soundPointer theGreatPalace ;sound18
+	m_soundPointer spiritTemple
 	m_soundPointer sound19
 	m_soundPointer sound1a
 	m_soundPointer sound1b

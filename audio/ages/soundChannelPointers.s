@@ -573,7 +573,6 @@ hyruleCastle:
 	.db $06
 	.dw hyruleCastleChannel6
 	.db $ff
-*/
 
 theGreatPalace:
 	.db $00
@@ -585,6 +584,7 @@ theGreatPalace:
 	.db $06
 	.dw theGreatPalaceChannel6
 	.db $ff
+*/
 
 ; replaced
 /*

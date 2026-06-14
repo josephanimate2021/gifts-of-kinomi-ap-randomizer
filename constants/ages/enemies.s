@@ -236,3 +236,7 @@
 
 ;;
 .define ENEMY_KING_MOBLIN $7f
+
+
+;; TODO: Must remove this
+.define ENEMY_SHADOW_HAG ENEMY_GLEEOK
