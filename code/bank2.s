@@ -4422,9 +4422,9 @@ inventoryMenuState0:
 	ld (wInventory.cbba),a
 	dec a
 	ld (wInventory.activeText),a
-	call checkWhetherToDisplaySeasonInSubscreen
-	jr z,+
-	ld a,$01
+	call checkWhetherToDisplaySymbolInSubscreen
+	jr nz,+
+	inc a
 +
 	ld (wInventory.submenu2CursorPos2),a
 
@@ -5164,9 +5164,9 @@ inventorySubmenu1CheckDirectionButtons:
 ;;
 inventorySubmenu2CheckDirectionButtons:
 	ld e,$80
-	call checkWhetherToDisplaySeasonInSubscreen
-	jr z,+
-	ld e,$00
+	call checkWhetherToDisplaySymbolInSubscreen
+	jr nz,+
+	ld e,a
 +
 
 	ld hl,@offsets
@@ -5217,7 +5217,7 @@ inventorySubmenu2CheckDirectionButtons:
 ;;
 ; @param[out]	zflag	Set if the season should NOT be displayed. (Unset in dungeons,
 ;			subrosia, etc.)
-checkWhetherToDisplaySeasonInSubscreen:
+checkWhetherToDisplaySymbolInSubscreen:
 	ld a,(wRoomPack)
 	or a
 	ret z
@@ -5912,7 +5912,7 @@ inventorySubscreen2_drawTreasures:
 	add (hl)
 	ld (hl),a
 
-	call checkWhetherToDisplaySeasonInSubscreen
+	call checkWhetherToDisplaySymbolInSubscreen
 	ld hl,w4TileMap+$4d
 	ldbc $04,$06
 	jp z,fillRectangleInTileMapWithMenuBlock	;nz
@@ -6923,31 +6923,31 @@ checkForRoomExceptions:
 	jp lookupKey
 
 @roomOverwriteDataGroup0:
-	.db <ROOM_AGES_008 <ROOM_AGES_046
-	.db <ROOM_AGES_018 <ROOM_AGES_046
-	.db <ROOM_AGES_028 <ROOM_AGES_046
-	.db <ROOM_AGES_038 <ROOM_AGES_046
-	.db <ROOM_AGES_03a <ROOM_AGES_040
-	.db <ROOM_AGES_078 <ROOM_AGES_077
-	.db <ROOM_AGES_084 <ROOM_AGES_077
-	.db <ROOM_AGES_085 <ROOM_AGES_077
-	.db <ROOM_AGES_086 <ROOM_AGES_077
-	.db <ROOM_AGES_087 <ROOM_AGES_077
-	.db <ROOM_AGES_088 <ROOM_AGES_077
+	.db <ROOM_AGES_008, <ROOM_AGES_046
+	.db <ROOM_AGES_018, <ROOM_AGES_046
+	.db <ROOM_AGES_028, <ROOM_AGES_046
+	.db <ROOM_AGES_038, <ROOM_AGES_046
+	.db <ROOM_AGES_03a, <ROOM_AGES_040
+	.db <ROOM_AGES_078, <ROOM_AGES_077
+	.db <ROOM_AGES_084, <ROOM_AGES_077
+	.db <ROOM_AGES_085, <ROOM_AGES_077
+	.db <ROOM_AGES_086, <ROOM_AGES_077
+	.db <ROOM_AGES_087, <ROOM_AGES_077
+	.db <ROOM_AGES_088, <ROOM_AGES_077
 	.db $00
 
 @roomOverwriteDataGroup1:
-	.db <ROOM_AGES_103 <ROOM_AGES_102
-	.db <ROOM_AGES_113 <ROOM_AGES_102
-	.db <ROOM_AGES_123 <ROOM_AGES_102
-	.db <ROOM_AGES_15c <ROOM_AGES_140
-	.db <ROOM_AGES_15d <ROOM_AGES_140
-	.db <ROOM_AGES_16c <ROOM_AGES_140
-	.db <ROOM_AGES_16d <ROOM_AGES_140
-	.db <ROOM_AGES_17a <ROOM_AGES_140
-	.db <ROOM_AGES_17b <ROOM_AGES_140
-	.db <ROOM_AGES_17c <ROOM_AGES_140
-	.db <ROOM_AGES_17d <ROOM_AGES_140
+	.db <ROOM_AGES_103, <ROOM_AGES_102
+	.db <ROOM_AGES_113, <ROOM_AGES_102
+	.db <ROOM_AGES_123, <ROOM_AGES_102
+	.db <ROOM_AGES_15c, <ROOM_AGES_140
+	.db <ROOM_AGES_15d, <ROOM_AGES_140
+	.db <ROOM_AGES_16c, <ROOM_AGES_140
+	.db <ROOM_AGES_16d, <ROOM_AGES_140
+	.db <ROOM_AGES_17a, <ROOM_AGES_140
+	.db <ROOM_AGES_17b, <ROOM_AGES_140
+	.db <ROOM_AGES_17c, <ROOM_AGES_140
+	.db <ROOM_AGES_17d, <ROOM_AGES_140
 	.db $00
 
 
