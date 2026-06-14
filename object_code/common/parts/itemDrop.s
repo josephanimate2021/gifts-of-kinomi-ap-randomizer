@@ -230,12 +230,35 @@ partCode01:
 	ld c,(hl)
 	ld a,b
 	call giveTreasure
+
 	ld e,Part.subid
 	ld a,(de)
+
+/*
 	cp ITEM_DROP_50_ORE_CHUNKS
 	jr nz,@deleteSelf
 	call getThisRoomFlags
 	set 5,(hl)
+*/
+	ld bc,wSwordLevel
+	ld hl,wSwordBreakCounter
+	ld e,SND_SWORDBEAM
+	sub ITEM_DROP_L2_SWORD
+	jr z,@swordOrShieldDrop
+
+	dec a ; ITEM_DROP_L2_SHIELD
+	jr nz,@deleteSelf
+	ld c,<wShieldLevel
+	inc l ;wShieldBreakCounter
+	ld e,SND_SHIELD
+
+@swordOrShieldDrop:
+	ld a,(bc)
+	cp $03
+	jr nc,@deleteSelf
+	ld (hl),20
+	ld a,e
+	call playSound
 @deleteSelf:
 	jp partDelete
 
@@ -256,8 +279,8 @@ partCode01:
 	.db TREASURE_PEGASUS_SEEDS, $00,            $05, $0a ; ITEM_DROP_PEGASUS_SEEDS
 	.db TREASURE_GALE_SEEDS,    $00,            $05, $0a ; ITEM_DROP_GALE_SEEDS
 	.db TREASURE_MYSTERY_SEEDS, $00,            $05, $0a ; ITEM_DROP_MYSTERY_SEEDS
-	.db $00,                    $00,            $00, $00 ; ITEM_DROP_0a
-	.db $00,                    $00,            $00, $00 ; ITEM_DROP_0b
+	.db TREASURE_SWORD,         $00,            $02, $03 ; ITEM_DROP_L2_SWORD
+	.db TREASURE_SHIELD,        $00,            $02, $03 ; ITEM_DROP_L2_SHIELD
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_1,   RUPEEVAL_2   ; ITEM_DROP_1_ORE_CHUNK
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_10,  RUPEEVAL_20  ; ITEM_DROP_10_ORE_CHUNKS
 	.db TREASURE_ORE_CHUNKS,    GREEN_JOY_RING, RUPEEVAL_50,  RUPEEVAL_100 ; ITEM_DROP_50_ORE_CHUNKS

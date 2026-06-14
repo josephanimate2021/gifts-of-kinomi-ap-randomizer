@@ -115,10 +115,10 @@
 ;;
 ; @subid_00{Blue}
 ; @subid_01{Red}
-;.define PART_PLASMARINE_PROJECTILE $43
+.define PART_PLASMARINE_PROJECTILE $43
 
 ; Gleeok
-.define PART_43 $43
+;.define PART_43 $43
 
 ;;
 ; relatedObj1 must be set to the tingle object (INTERAC_TINGLE).

@@ -270,6 +270,7 @@ partCode15:
 	.db TREASURE_HEART_REFILL,  BLUE_JOY_RING, $04 $08
 	.db TREASURE_RUPEES,        RED_JOY_RING,  RUPEEVAL_005 RUPEEVAL_010
 	.db TREASURE_RUPEES,        RED_JOY_RING,  RUPEEVAL_001 RUPEEVAL_002
+	.db TREASURE_SWORD,	    	$ff,           $02, $02 ; ITEM_DROP_L2_SWORD
 
 @setOamData:
 	ld e,Part.subid
@@ -309,6 +310,7 @@ partCode15:
 	.db $02 $05 $01
 	.db $06 $05 $03
 	.db $04 $00 $02
+	.db $1c $05 $05; ITEM_DROP_L2_SWORD
 
 @setDroppedItemPosition:
 	ld h,d

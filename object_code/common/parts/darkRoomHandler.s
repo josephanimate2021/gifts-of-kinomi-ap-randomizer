@@ -59,7 +59,11 @@ partCode08:
 	inc l
 	ld e,l
 	ld a,(de)
-	ld (hl),a ; [child.subid] = [this.subid]
+	ldi (hl),a ; [child.subid] = [this.subid]
+
+	inc e
+	ld a,(de)
+	ld (hl),a ; [child.var03] = [this.var03]
 
 	; Set length of time the torch can remain lit
 	ld e,Part.yh
@@ -91,8 +95,15 @@ partCode08:
 	ld c,a
 
 	; Search for lightable torches
-	ld hl,wRoomLayout
+	ld a,(wDungeonIndex)
+	inc a
 	ld b,LARGE_ROOM_HEIGHT << 4
+	jr nz,+
+	call darkenRoom
+	ld b,SMALL_ROOM_HEIGHT << 4
++
+	ld hl,wRoomLayout
+
 --
 	ld a,(hl)
 	cp TILEINDEX_UNLIT_TORCH

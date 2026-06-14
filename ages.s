@@ -808,6 +808,9 @@ m_section_free Bank_11 NAMESPACE partCode
 	.include "object_code/ages/parts/blackTowerMovingFlames.s"
 	.include "object_code/ages/parts/triforceStone.s"
 
+	;; Facade hole
+	.include "object_code/seasons/parts/2e.s"
+
 	.include "code/ages/garbage/bank11End.s"
 .ends
 

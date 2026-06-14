@@ -11,9 +11,16 @@ partCode06:
 	cp $02
 	jr z,@normalStatus
 
-	ld l,Part.counter2
+	ld l,Part.var03
+	ld a,(hl)
+	or a
+	ld l,Part.counter1
+	jr nz,+
+	inc l		;Part.counter2
 	ldd a,(hl)
-	ld (hl),a ; [counter1] = [counter2]
++
+	ldi (hl),a ; [counter1] = [counter2]
+	ld (hl),a
 	ld l,Part.state
 	ld (hl),$02
 

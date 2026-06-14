@@ -1,7 +1,8 @@
 ; ==================================================================================================
 ; PART_2e
 ; ==================================================================================================
-partCode2e:
+;partCode2e:
+partCode5b:
 	ld e,$c4
 	ld a,(de)
 	or a
@@ -19,7 +20,7 @@ partCode2e:
 	ld a,$01
 	ld (de),a
 	call objectGetTileAtPosition
-	cp $f3
+	cp TILEINDEX_HOLE
 	jp z,partDelete
 	ld h,$ce
 	ld a,(hl)
@@ -28,7 +29,7 @@ partCode2e:
 	ld a,SND_POOF
 	call playSound
 	jp objectSetVisible83
-	
+
 func_6853:
 	push af
 	xor a
@@ -44,5 +45,5 @@ func_6853:
 +
 	ld a,(hl)
 	ld (de),a
-	ld (hl),$f3
+	ld (hl),TILEINDEX_HOLE
 	ret
