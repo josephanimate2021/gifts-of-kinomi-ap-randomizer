@@ -61,3 +61,5 @@ checkLinkCanStandOnTile:
 @invalidTile:
 	ld c,$01
 	ret
+
+.include "data/ages/tile_properties/timewarpInvalidTiles.s"

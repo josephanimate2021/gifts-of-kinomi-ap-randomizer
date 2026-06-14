@@ -301,6 +301,7 @@ m_section_free Ages_Interactions_Bank8 NAMESPACE agesInteractionsBank08
 	.include "object_code/ages/interactions/femaleVillager.s"
 	.include "object_code/ages/interactions/boy.s"
 	.include "object_code/ages/interactions/oldLady.s"
+	.include "object_code/ages/interactions/armosButtonPuzzle.s"
 .ends
 
 

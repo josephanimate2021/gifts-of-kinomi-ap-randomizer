@@ -110,7 +110,7 @@ checkTilesetOverride:
 	ld a,(wLoadingRoomPack)
 	bit 7,a				;animal companion stuff
 	;cp $7f
-	jr z,@noChange
+	jr z,@@noChange
 
 	ld a,(wCurrentSeason)
 	or a

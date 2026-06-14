@@ -1572,3 +1572,71 @@ miscPuzzles_subid24:
 	call getThisRoomFlags
 	set ROOMFLAG_BIT_80,(hl)
 	jp interactionDelete
+
+
+miscPuzzles_subid27:
+	call getThisRoomFlags
+	and ROOMFLAG_40
+	jr nz,@deleteArmos
+
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+; this is setting the flag even if haven't killed them
+	ld e,Interaction.var03
+	ld a,(de)
+	ld h,a
+	ld l,Enemy.enabled
+	ld a,(hl)
+	or a
+	ret nz
+
+	call getThisRoomFlags
+	set ROOMFLAG_BIT_40,(hl)
+@delete:
+	jp interactionDelete
+
+;find armos
+@state0:
+	call @findArmos
+
+	ld l,Enemy.var30
+	ld a,TILEINDEX_OVERWORLD_STANDARD_GROUND
+	ld (hl),a
+	ld e,Interaction.var03
+	ld a,h
+	ld (de),a
+
+	inc e ; Interaction.state
+	ld a,$01
+	ld (de),a
+	ret
+
+@deleteArmos:
+	call @findArmos
+	push de
+	push hl
+	pop de
+	call enemyDelete
+	pop de
+	jp interactionDelete
+
+@findArmos:
+	ldhl FIRST_ENEMY_INDEX,Enemy.id
+-
+	ld a,ENEMY_ARMOS
+	cp (hl)
+	jr z,+
+--
+	inc h
+	ld a,h
+	cp $e0
+	jr nz,-
+	jr @delete
++
+	dec l
+	ldi a,(hl)
+	cp $11
+	jr nz,--
+	ret
