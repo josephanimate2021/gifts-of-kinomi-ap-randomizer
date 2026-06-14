@@ -171,12 +171,12 @@ label_04_033:
 	jr nz,loadRoomPack
 	ldh a,(<hFF8B)
 	cp $03
-	jr c,checkRoomPackAfterWarp
+	jr c,@checkRoomPackAfterWarp
 	jr z,loadRoomPack
 	ld a,(wDungeonIndex)
 	cp $ff
 	jr z,loadRoomPack
-checkRoomPackAfterWarp:
+@checkRoomPackAfterWarp:
 	call loadScreenMusicAndSetRoomPack
 	jp checkRoomPackAfterWarp
 loadRoomPack:
