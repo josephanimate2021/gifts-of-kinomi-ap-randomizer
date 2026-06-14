@@ -69,13 +69,13 @@ treasureDisplayData2:
 ; Rows marked with "X" are unused as they are multi-level items with separate tables.
 
 treasureDisplayData_standard:
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_NONE (0x00)
-	.db $00				$07 $00 $00 $00 $00 <TX_0900 ; (filler) TREASURE_SHIELD (0x01)
-	.db $00				$00 $00 $00 $00 $ff <TX_0900 ; TREASURE_PUNCH (0x02)
-	.db TREASURE_BOMBS		$9e $04 $00 $00 $01 <TX_0926 ; TREASURE_BOMBS (0x03)
-	.db $00				$9d $02 $00 $00 $ff <TX_093c ; TREASURE_CANE_OF_SOMARIA (0x04)
-	.db $00				$07 $00 $07 $00 $00 <TX_0900 ; (filler) TREASURE_SWORD (0x05)
-	.db TREASURE_BOOMERANG		$9c $05 $00 $00 $ff <TX_0927 ; TREASURE_BOOMERANG (0x06)
+	.db $00				$00 $00 $00 $00 $ff, <TX_0900 ; TREASURE_NONE (0x00)
+	.db $00				$07 $00 $00 $00 $00, <TX_0900 ; (filler) TREASURE_SHIELD (0x01)
+	.db $00				$00 $00 $00 $00 $ff, <TX_0900 ; TREASURE_PUNCH (0x02)
+	.db TREASURE_BOMBS		$9e $04 $00 $00 $01, <TX_0926 ; TREASURE_BOMBS (0x03)
+	.db $00				$9d $02 $00 $00 $ff, <TX_093c ; TREASURE_CANE_OF_SOMARIA (0x04)
+	.db $00				$07 $00 $07 $00 $00, <TX_0900 ; (filler) TREASURE_SWORD (0x05)
+	.db TREASURE_BOOMERANG		$9c $05 $00 $00 $ff, <TX_0927 ; TREASURE_BOOMERANG (0x06)
 	;TREASURE_BOOMERANG		$9c $05 $00 $00 $ff <TX_0927
 	.db TREASURE_ROD_OF_SEASONS	$18 $02 $00 $00 $02, <TX_09_RODOFSEASONS ; TREASURE_ROD_OF_SEASONS (0x07)
 								;$98 $02 $00 $00 $02 $41
