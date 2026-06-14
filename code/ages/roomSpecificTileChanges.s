@@ -193,7 +193,7 @@ tileReplacement_group1Map58:
   ret
 
 ;;
-; Twinrova/ganon fight
+; Twinrova/ganon fight - same as seasons
 tileReplacement_group5Mapf5:
   ld a,(wTwinrovaTileReplacementMode)
   or a
@@ -216,7 +216,7 @@ tileReplacement_group5Mapf5:
 
 @val03:
   ld (wTwinrovaTileReplacementMode),a
-  ld a,GFXH_b9
+  ld a,GFXH_TWINROVA_NORMAL_LAYOUT
   jp loadGfxHeader
 
 @fillWithIce:
@@ -229,7 +229,7 @@ tileReplacement_group5Mapf5:
 
 @val01:
   ld (wTwinrovaTileReplacementMode),a
-  ld a,GFXH_b8
+  ld a,GFXH_TWINROVA_LAVA_LAYOUT
   jp loadGfxHeader
 
 ;;
@@ -248,6 +248,9 @@ tileReplacement_group4Map1b:
   ; The programmers forgot a "ret" here! This causes a bug where chests
   ; are inserted into dungeon 1 after buying everything from the secret
   ; shop.
+.ifdef ENABLE_BUGFIXES
+	ret
+.endif
 
 ;;
 ; Secret shop: replace item area with blank floor and 2 chests, if you've
@@ -443,7 +446,7 @@ tileReplacement_group0Map11:
   ldi (hl),a
   ld a,$1b
   ld (hl),a
-  
+
   ; Second row of water tiles
   ld a,$1b
   ld hl,wRoomLayout + $32
@@ -454,7 +457,7 @@ tileReplacement_group0Map11:
   ldi (hl),a
   ldi (hl),a
   ld (hl),a
-  
+
   ; Third row of water tiles
   ld a,$1a
   ld hl,wRoomLayout + $43
@@ -462,7 +465,7 @@ tileReplacement_group0Map11:
   ld a,$f9
   ldi (hl),a
   ld (hl),$1b
-  
+
   ; Waterfall left column
   ld a,$4d
   ld hl,wRoomLayout + $03
@@ -470,14 +473,14 @@ tileReplacement_group0Map11:
   ld a,$5d
   ld hl,wRoomLayout + $13
   ld (hl),a
-  
+
   ; Waterfall middle column
   ld a,$d0
   ld hl,wRoomLayout + $04
   ld (hl),a
   ld hl,wRoomLayout + $14
   ld (hl),a
-  
+
   ; Waterfall right column
   ld a,$4d
   ld hl,wRoomLayout + $05
@@ -485,7 +488,7 @@ tileReplacement_group0Map11:
   ld a,$5d
   ld hl,wRoomLayout + $15
   ld (hl),a
-  
+
   ret
 
 ;;
@@ -513,13 +516,13 @@ tileReplacement_group5Map25:
   and $40
   ret nz
 
-  ld hl,_d6RetractingWallRectPresent
+  ld hl,d6RetractingWallRectPresent
   call fillRectInRoomLayout
   jr ++
 
-_d6RetractingWallRectPresent:
+d6RetractingWallRectPresent:
   .db $17 $09 $04 $a6
-_d6RetractingWallRectPast:
+d6RetractingWallRectPast:
   .db $17 $09 $04 $a7
 
 ;;
@@ -529,7 +532,7 @@ tileReplacement_group5Map43:
   and $40
   jr nz,@pastRetracted
 
-  ld hl,_d6RetractingWallRectPast
+  ld hl,d6RetractingWallRectPast
   call fillRectInRoomLayout
 ++
   ld hl,@wallEdge1
@@ -775,7 +778,7 @@ tileReplacement_group5Map5d:
 tileReplacement_group7Map4a:
   ;added
   ret
-  
+
   call getThisRoomFlags
   and $80
   ret z
@@ -1103,7 +1106,7 @@ initializeVinePositions:
   jp copyMemoryReverse
 
 @defaultVinePositions:
-  .include "build/data/defaultVinePositions.s"
+	.include {"{GAME_DATA_DIR}/defaultVinePositions.s"}
 
 ;;
 ; Present, bridge to nuun highlands
@@ -1330,7 +1333,7 @@ tileReplacement_group0Mape0:
   ld a,(wEssencesObtained)
   bit 4,a
   ld l,$46
-  call nz,_setTileToDoor
+  call nz,setTileToDoor
   ld c,$1b
 ;;
 _createInteraction90:
@@ -1350,18 +1353,18 @@ tileReplacement_group0Mape1:
   ld a,(wEssencesObtained)
   rrca
   ld l,$26
-  call c,_setTileToDoor
+  call c,setTileToDoor
   rrca
   ret nc
 
   ld l,$53
-  jr _setTileToDoor
+  jr setTileToDoor
 
 ;;
 ; Present, on top of maku tree (right)
 tileReplacement_group0Mape2:
   ld c,$1d
-  call _createInteraction90
+  call createInteraction90
   ld a,(wEssencesObtained)
   bit 2,a
   ret z
@@ -1369,7 +1372,7 @@ tileReplacement_group0Mape2:
   ld l,$54
 
 ;;
-_setTileToDoor:
+setTileToDoor:
   ld h,>wRoomLayout
   ld (hl),$dd
   ret
@@ -1597,7 +1600,7 @@ tileReplacement_group5Map37:
   ld hl, wRoomLayout + $7b
   ld (hl),TILEINDEX_LIT_TORCH
   ld hl,@bridge2Data
-  jp fillRectInRoomLayout  
+  jp fillRectInRoomLayout
 
 ; - Top-left position (YX)
 ; - Height
@@ -1606,9 +1609,9 @@ tileReplacement_group5Map37:
   @bridge1Data:
   .db $55 $01 $05 $6d
   @bridge2Data:
-  .db $7c $01 $02 $6d 
+  .db $7c $01 $02 $6d
 
-  
+
 tileReplacement_group0Map40:
 	ld a,(wPastRoomFlags+<ROOM_AGES_120)
 	bit 0,a
@@ -1644,7 +1647,7 @@ tileReplacement_group4Map45:
   ret nz
 
   ld hl,@wallReplacement
-  jp fillRectInRoomLayout  
+  jp fillRectInRoomLayout
 
 ; - Top-left position (YX)
 ; - Height
@@ -1653,7 +1656,7 @@ tileReplacement_group4Map45:
 @wallReplacement:
   .db $30 $05 $01 $b3
 
-tileReplacement_group4Map43: 
+tileReplacement_group4Map43:
   call getThisRoomFlags
   and ROOMFLAG_80
   ret z
@@ -1673,7 +1676,7 @@ tileReplacement_group4Map3b:
   ld hl,wRoomLayout + $3e
   ld (hl),$b1
 -
-  ret  
+  ret
 
 tileReplacement_group0Map33:
   ld a,(wPastRoomFlags+<ROOM_AGES_133)

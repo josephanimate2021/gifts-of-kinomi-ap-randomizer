@@ -3,44 +3,44 @@ runRoomSpecificCode:
 	ld a,GLOBALFLAG_MAKE_MENU_ERROR
 	call unsetGlobalFlag
 	ld a,(wActiveRoom)
-	ld hl, _roomSpecificCodeGroupTable
+	ld hl, roomSpecificCodeGroupTable
 	call findRoomSpecificData
 	ret nc
 	rst_jumpTable
-	.dw _disableMapMenu
-	.dw _setMinimapVars_Group3Map08
-	.dw _setMinimapVars_Group3Map18
-	.dw _setMinimapVars_Group3Map78
-	.dw _setMinimapVars_Group0Map78
-	.dw _setMinimapVars_Group3Map79
-	.dw _setRoomFlags_Group5Map30
-	.dw _setMinimapVars_Group0Map77
-	.dw _setMinimapVars_Group1Map02
-;	.dw _roomSpecificCode5
+	.dw disableMapMenu
+	.dw setMinimapVars_Group3Map08
+	.dw setMinimapVars_Group3Map18
+	.dw setMinimapVars_Group3Map78
+	.dw setMinimapVars_Group0Map78
+	.dw setMinimapVars_Group3Map79
+	.dw setRoomFlags_Group5Map30
+	.dw setMinimapVars_Group0Map77
+	.dw setMinimapVars_Group1Map02
+;	.dw roomSpecificCode5
 ;	.dw setDeathRespawnPoint
-;	.dw _roomSpecificCode7
-;	.dw _roomSpecificCode8
-;	.dw _roomSpecificCode9
-;	.dw _roomSpecificCodeA
-;	.dw _roomSpecificCodeB
-;	.dw _roomSpecificCodeC
+;	.dw roomSpecificCode7
+;	.dw roomSpecificCode8
+;	.dw roomSpecificCode9
+;	.dw roomSpecificCodeA
+;	.dw roomSpecificCodeB
+;	.dw roomSpecificCodeC
 
 	; Random stub not called by anything?
 	ret
 
-_roomSpecificCodeGroupTable:
-	.dw _roomSpecificCodeGroup0Table
-	.dw _roomSpecificCodeGroup1Table
-	.dw _roomSpecificCodeGroup2Table
-	.dw _roomSpecificCodeGroup3Table
-	.dw _roomSpecificCodeGroup4Table
-	.dw _roomSpecificCodeGroup5Table
-	.dw _roomSpecificCodeGroup6Table
-	.dw _roomSpecificCodeGroup7Table
+roomSpecificCodeGroupTable:
+	.dw roomSpecificCodeGroup0Table
+	.dw roomSpecificCodeGroup1Table
+	.dw roomSpecificCodeGroup2Table
+	.dw roomSpecificCodeGroup3Table
+	.dw roomSpecificCodeGroup4Table
+	.dw roomSpecificCodeGroup5Table
+	.dw roomSpecificCodeGroup6Table
+	.dw roomSpecificCodeGroup7Table
 
 ; Format: room index
 
-_roomSpecificCodeGroup0Table:
+roomSpecificCodeGroup0Table:
 	.db <ROOM_AGES_008 $00
 	.db <ROOM_AGES_018 $00
 	.db <ROOM_AGES_028 $00
@@ -56,7 +56,7 @@ _roomSpecificCodeGroup0Table:
 ;	.db $39 $08
 ;	.db $3a $09
 	.db $00
-_roomSpecificCodeGroup1Table:
+roomSpecificCodeGroup1Table:
 	.db <ROOM_AGES_103 $08
 	.db <ROOM_AGES_113 $08
 	.db <ROOM_AGES_123 $08
@@ -65,10 +65,10 @@ _roomSpecificCodeGroup1Table:
 ;	.db $97 $07
 ;	.db $0e $0a
 	.db $00
-_roomSpecificCodeGroup2Table:
+roomSpecificCodeGroup2Table:
 ;	.db $0e $05
 	.db $00
-_roomSpecificCodeGroup3Table:
+roomSpecificCodeGroup3Table:
 	.db $49 $00
 	.db $59 $00
 	.db $58 $00
@@ -81,64 +81,64 @@ _roomSpecificCodeGroup3Table:
 
 ;	.db $0f $0b
 	.db $00
-_roomSpecificCodeGroup4Table:
+roomSpecificCodeGroup4Table:
 ;	.db $60 $01
 ;	.db $52 $02
 ;	.db $e6 $0c
 	.db $00
-_roomSpecificCodeGroup5Table:
+roomSpecificCodeGroup5Table:
 	.db $30 $06
 	.db $3c $06
 	.db $20 $06
 	.db $14 $06
 ;	.db $d2 $04
-_roomSpecificCodeGroup6Table:
-_roomSpecificCodeGroup7Table:
+roomSpecificCodeGroup6Table:
+roomSpecificCodeGroup7Table:
 	.db $00
 
 ;;
-_disableMapMenu:
+disableMapMenu:
 	ld a,GLOBALFLAG_MAKE_MENU_ERROR
 	jp setGlobalFlag
 
 ;;
-_setMinimapVars_Group3Map08:
+setMinimapVars_Group3Map08:
 	ld a,$24
-_setMiniMapVarsGroup0:
+setMiniMapVarsGroup0:
 	ld b,$00
-_setMiniMapVars:
+setMiniMapVars:
 	ld hl,wMinimapRoom
 	ldd (hl),a
 	ld (hl),b
 	ret
 
-_setMinimapVars_Group3Map18:
+setMinimapVars_Group3Map18:
 	ld a,<ROOM_AGES_016
 	jr _setMiniMapVarsGroup0
 
-_setMinimapVars_Group3Map78:
+setMinimapVars_Group3Map78:
 	ld a,<ROOM_AGES_027
 	jr _setMiniMapVarsGroup0
 
-_setMinimapVars_Group3Map79:
+setMinimapVars_Group3Map79:
 	ld a,<ROOM_AGES_006
 	jr _setMiniMapVarsGroup0
-	
-_setMinimapVars_Group0Map78:
+
+setMinimapVars_Group0Map78:
 	ld a,GLOBALFLAG_DONT_UPDATE_MINIMAP
 	call setGlobalFlag
-_setMinimapVars_Group0Map77:
+setMinimapVars_Group0Map77:
 	ld a,<ROOM_AGES_077
 	jr _setMiniMapVarsGroup0
 
 
-_setMinimapVars_Group1Map02:
+setMinimapVars_Group1Map02:
 	ld a,<ROOM_AGES_102
 	ld b,>ROOM_AGES_102
 	jr _setMiniMapVars
 
 
-_setRoomFlags_Group5Map30:
+setRoomFlags_Group5Map30:
 	call getThisRoomFlags
 	and ROOMFLAG_80
 	ret z
@@ -159,7 +159,7 @@ _setRoomFlags_Group5Map30:
 
 /*
 ;;
-;_roomSpecificCode0:
+;roomSpecificCode0:
 	ld a,GLOBALFLAG_WON_FAIRY_HIDING_GAME
 	call checkGlobalFlag
 	ret nz
@@ -168,7 +168,7 @@ _setRoomFlags_Group5Map30:
 	jp clearMemory
 
 ;;
-;_roomSpecificCode1:
+;roomSpecificCode1:
 	ld a, GLOBALFLAG_D3_CRYSTALS
 	call checkGlobalFlag
 	ret nz
@@ -184,7 +184,7 @@ _setRoomFlags_Group5Map30:
 	ret
 
 ;;
-;_roomSpecificCode2:
+;roomSpecificCode2:
 	ld a,GLOBALFLAG_D3_CRYSTALS
 	call checkGlobalFlag
 	ret z
@@ -192,7 +192,7 @@ _setRoomFlags_Group5Map30:
 	jr ---
 
 ;;
-;_roomSpecificCode3:
+;roomSpecificCode3:
 	call getThisRoomFlags
 	bit 6,a
 	ret nz
@@ -211,7 +211,7 @@ _setRoomFlags_Group5Map30:
 	ret
 
 ;;
-_roomSpecificCode7:
+roomSpecificCode7:
 	ld a,GLOBALFLAG_GAVE_ROPE_TO_RAFTON
 	call checkGlobalFlag
 	ret z
@@ -223,7 +223,7 @@ _roomSpecificCode7:
 	ret
 
 ;;
-_roomSpecificCode5:
+roomSpecificCode5:
 	ld a,GLOBALFLAG_SAVED_NAYRU
 	call checkGlobalFlag
 	ret nz
@@ -233,7 +233,7 @@ _roomSpecificCode5:
 
 ;;
 ; Something in ambi's palace
-;_roomSpecificCode4:
+;roomSpecificCode4:
 	ld a,$06
 	ld (wMinimapRoom),a
 	ld hl,wPastRoomFlags+$06
@@ -242,7 +242,7 @@ _roomSpecificCode5:
 
 ;;
 ; Check to play ralph music for ralph entering portal cutscene
-_roomSpecificCode8:
+roomSpecificCode8:
 	ld a,(wScreenTransitionDirection)
 	cp DIR_RIGHT
 	ret nz
@@ -255,7 +255,7 @@ _roomSpecificCode8:
 
 ;;
 ; Play nayru music on impa's house screen, for some reason
-_roomSpecificCode9:
+roomSpecificCode9:
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
 	ret z
@@ -265,7 +265,7 @@ _roomSpecificCode9:
 
 ;;
 ; Correct minimap in mermaid's cave present
-_roomSpecificCodeA:
+roomSpecificCodeA:
 	ld hl,wMinimapGroup
 	ld (hl),$00
 	inc l
@@ -274,7 +274,7 @@ _roomSpecificCodeA:
 
 ;;
 ; Correct minimap in mermaid's cave past
-_roomSpecificCodeB:
+roomSpecificCodeB:
 	ld hl,wMinimapGroup
 	ld (hl),$01
 	inc l
@@ -283,7 +283,7 @@ _roomSpecificCodeB:
 
 ;;
 ; Something happening on vire black tower screen
-_roomSpecificCodeC:
+roomSpecificCodeC:
 	ld hl,wActiveMusic
 	ld a,(hl)
 	or a

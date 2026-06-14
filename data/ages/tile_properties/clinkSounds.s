@@ -1,0 +1,56 @@
+; Defines tiles which have different "sword clink" behaviour.
+;
+; 2 lists per entry, each ending with $00:
+; - The first is a list of tiles which produce an alternate "clinking" sound indicating they're
+; bombable.
+; - The second is a list of tiles which don't produce clinks at all.
+
+clinkSoundTable:
+	.dw @overworld
+	.dw @indoors
+	.dw @dungeons
+	.dw @sidescrolling
+	.dw @underwater
+	.dw @five
+
+@overworld:
+	.db $c1 $c2 $c4 $d1 $cf
+	.db $00
+
+	.db $fd $fe $ff
+	.db $00
+	.db $00
+@underwater:
+	.db $c1 $c2 $c4 $d1 $cf
+	.db $00
+
+	.db $fd $fe $ff TILEINDEX_STUMP TILEINDEX_MUSHROOM
+	.db $00
+	.db $00
+
+@indoors:
+	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
+	.db $00
+
+	.db $0a $0b TILEINDEX_DUNGEON_STUMP TILEINDEX_DUNGEON_MUSHROOM
+	.db $00
+@dungeons:
+	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
+	.db TILEINDEX_RED_TOGGLE_BLOCK TILEINDEX_YELLOW_TOGGLE_BLOCK TILEINDEX_BLUE_TOGGLE_BLOCK
+	.db $00
+
+	.db $0a $0b
+	.db $00
+
+@five:
+	.db $1f $30 $31 $32 $33 $38 $39 $3a $3b $68 $69
+	.db $00
+
+	.db $0a $0b
+	.db $00
+
+@sidescrolling:
+	.db $12
+	.db $00
+
+	.db $00

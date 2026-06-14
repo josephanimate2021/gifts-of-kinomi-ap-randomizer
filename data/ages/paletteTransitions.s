@@ -14,14 +14,14 @@
 
 
 paletteTransitionData:
-	.db paletteTransitionGroup0-CADDR
-	.db paletteTransitionGroup1-CADDR
-	.db paletteTransitionGroup2-CADDR
-	.db paletteTransitionGroup3-CADDR
-	.db paletteTransitionGroup4-CADDR
-	.db paletteTransitionGroup5-CADDR
-	.db paletteTransitionGroup6-CADDR
-	.db paletteTransitionGroup7-CADDR
+	dbrel paletteTransitionGroup0
+	dbrel paletteTransitionGroup1
+	dbrel paletteTransitionGroup2
+	dbrel paletteTransitionGroup3
+	dbrel paletteTransitionGroup4
+	dbrel paletteTransitionGroup5
+	dbrel paletteTransitionGroup6
+	dbrel paletteTransitionGroup7
 
 
 paletteTransitionGroup3:
@@ -58,8 +58,8 @@ paletteTransitionGroup0:
 	.db $ff
 
 paletteTransitionGroup1:
-	dbbww DIR_DOWN <ROOM_AGES_112 paletteData4ca0 paletteData4d00
-	dbbww DIR_DOWN  $30  paletteData4d00 paletteData4be0	
+	dbbww DIR_DOWN, <ROOM_AGES_112, paletteData4ca0, paletteData4d00
+	dbbww DIR_DOWN  $30  paletteData4d00 paletteData4be0
 ;	dbbww DIR_UP    $12  paletteData4d00 paletteData4ca0
 ;	dbbww DIR_DOWN  $22  paletteData4ca0 paletteData4d00
 ;	dbbww DIR_UP    $14  paletteData4d00 paletteData4ca0
@@ -72,4 +72,3 @@ paletteTransitionGroup2:
 	dbbww DIR_UP    $90  paletteData4eb0 paletteData4e80
 	dbbww DIR_DOWN  $a0  paletteData4e80 paletteData4eb0
 	.db $ff
-

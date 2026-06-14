@@ -1128,10 +1128,18 @@ group0Map81ObjectData:
 
 group0Map82ObjectData:
 	obj_Interaction $6c $00
+.ifdef REGION_JP
+	obj_Interaction $49 $05 $48 $68
+.else
 	obj_Interaction $49 $05 $58 $68
+.endif
 	obj_Interaction $49 $08 $58 $58
 	obj_Interaction $49 $09 $48 $38
+.ifdef REGION_JP
+	obj_Interaction $49 $0a $38 $68
+.else
 	obj_Interaction $49 $0a $28 $68
+.endif
 	obj_Interaction $49 $0e $58 $50
 	obj_Interaction $49 $0f $40 $38
 	obj_Interaction $49 $10 $40 $68
@@ -1825,7 +1833,11 @@ group1MapacObjectData:
 	obj_End
 
 group1MapadObjectData:
+.ifdef REGION_JP
+	obj_Interaction $48 $15 $58 $68
+.else
 	obj_Interaction $48 $15 $56 $68
+.endif
 	obj_End
 
 group1MapbbObjectData:
@@ -2104,18 +2116,27 @@ group2MapfbObjectData:
 
 group2MapfdObjectData:
 	obj_Interaction $66 $08 $58 $88
+.ifndef REGION_JP
 	obj_Interaction $66 $10 $40 $38
+.endif
 	obj_Interaction $66 $0c $18 $38 $03
 	obj_Interaction $68 $01 $28 $28
 	obj_End
 
 group2MapffObjectData:
 	obj_Interaction $66 $08 $58 $88
-	obj_Interaction $66 $10 $40 $38
+.ifdef REGION_JP
+	obj_Interaction $66 $0c $68 $18 $04
+	obj_Interaction $66 $0c $38 $38 $05
+	obj_Interaction $4e $02 $38 $18 $00
+	obj_Interaction $4e $02 $38 $28 $01
+.else
+	obj_Interaction $66 $10 $40 $38 ; Not in JP
 	obj_Interaction $66 $0c $68 $18 $04
 	obj_Interaction $66 $0c $18 $38 $05
 	obj_Interaction $4e $02 $18 $18
 	obj_Interaction $4e $02 $18 $28 $01
+.endif
 	obj_End
 
 group3Map0fObjectData:
@@ -2397,7 +2418,7 @@ group4Mapd3ObjectData:
 
 group4Mapd4ObjectData:
 	obj_SpecificEnemyA $00 $02 $00 $40 $78
-	obj_Pointer objectData404a
+	obj_Pointer objectData_respawningBushBombs
 	obj_End
 
 group4Mape0ObjectData:

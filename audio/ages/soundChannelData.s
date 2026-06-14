@@ -1,3 +1,5 @@
+m_section_superfree AudioData1
+
 sounddeStart:
 
 sounddeChannel0:
@@ -73,9 +75,13 @@ soundbdChannel2:
 	.dsb 162 $ff
 .endif
 
+.ends
+
 
 .BANK $73 SLOT 1	;$3a
 .ORG 0
+
+m_section_superfree AudioData2
 
 bank3aChannelFallback:
 	cmdff
@@ -185,8 +191,12 @@ sound7aChannel2:
 .endif
 
 
+.ends
+
 .BANK $74 SLOT 1	;$3b
 .ORG 0
+
+m_section_superfree AudioData3
 
 bank3bChannelFallback:
 	cmdff
@@ -236,8 +246,13 @@ soundcaChannel7:
 .endif
 
 
+.ends
+
+
 .BANK $75 SLOT 1	;$3c
 .ORG 0
+
+m_section_superfree AudioData4
 
 bank3cChannelFallback:
 	cmdff
@@ -257,7 +272,7 @@ bank3cChannelFallback:
 .include "audio/mus/custom//hyruleCastle.s"
 
 ;.include "audio/mus/ages/mermaidsCave.s"
-.include "audio/mus/custom/theGreatPalace.s"
+;.include "audio/mus/custom/theGreatPalace.s" ; TODO
 .include "audio/mus/ages/skullDungeon.s"
 .include "audio/mus/ages/blackTower.s"
 .include "audio/mus/ages/fairyForest.s"
@@ -284,8 +299,13 @@ bank3cChannelFallback:
 .endif
 
 
+.ends
+
+
 .BANK $76 SLOT 1	;$3d
 .ORG 0
+
+m_section_superfree AudioData5
 
 bank3dChannelFallback:
 	cmdff
@@ -330,8 +350,14 @@ sound94Channel2:
 .endif
 
 
+.ends
+
+
 .BANK $77 SLOT 1	;$3e
 .ORG 0
+
+m_section_superfree AudioData6
+
 
 bank3eChannelFallback:
 	cmdff
@@ -485,5 +511,7 @@ soundddChannel6:
 .ifdef BUILD_VANILLA
 	.dsb 3 $ff
 .endif
+
+.ends
 
 .undefine MUSIC_CHANNEL_FALLBACK

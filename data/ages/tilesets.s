@@ -729,7 +729,6 @@ tilesetData: ; 4:4f9c
 	.db $16 $02 $10
 
 	; HACK-BASE: Stub tilesets for expanded tilesets patch
-	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x67
 ; Tileset 0x67
 	.db $14 $08
 	.db UNIQGFXH_00
@@ -737,24 +736,24 @@ tilesetData: ; 4:4f9c
 	.db PALH_68
 	.db $28 $05 $10
 
-	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x68
-; Tileset 0x68	
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x68
+; Tileset 0x68
 	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_69
 	.db $28 $05 $10
 
-	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x69
-; Tileset 0x69	
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x69
+; Tileset 0x69
 	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
 	.db PALH_6a
 	.db $28 $05 $10
 
-	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x6a
-; Tileset 0x6a	
+	;.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6a
+; Tileset 0x6a
 	.db $14 $08
 	.db UNIQGFXH_00
 	.db GFXH_68
@@ -768,25 +767,25 @@ tilesetData: ; 4:4f9c
 	.db PALH_6c
 	.db $15 $03 $10
 
-	;.db $0f $04 $00 $00 PALH_00 $00 $03 $00 ; Area 0x6b
+	;.db $0f $04 $00 $00 PALH_00 $00 $03 $00 ; Tileset 0x6b
 
-	.db $0f $01 $00 $00 PALH_99 $00 $01 $00 ; Area 0x6c
-	.db $4f $01 $00 $00 PALH_68 $00 $00 $06 ; Area 0x6d
-	.db $4f $01 $00 $00 PALH_69 $00 $01 $06 ; Area 0x6e
-	.db $4f $01 $00 $00 PALH_6a $00 $03 $06 ; Area 0x6f
-	.db $4f $01 $00 $00 PALH_6b $00 $02 $06 ; Area 0x70
-	.db $0f $01 $00 $00 PALH_00 $00 $00 $00 ; Area 0x71
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x72
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x73
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x74
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x75
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x76
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x77
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x78
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x79
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7a
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7b
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7c
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7d
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7e
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Area 0x7f
+	.db $0f $01 $00 $00 PALH_99 $00 $01 $00 ; Tileset 0x6c
+	.db $4f $01 $00 $00 PALH_68 $00 $00 $06 ; Tileset 0x6d
+	.db $4f $01 $00 $00 PALH_69 $00 $01 $06 ; Tileset 0x6e
+	.db $4f $01 $00 $00 PALH_6a $00 $03 $06 ; Tileset 0x6f
+	.db $4f $01 $00 $00 PALH_6b $00 $02 $06 ; Tileset 0x70
+	.db $0f $01 $00 $00 PALH_00 $00 $00 $00 ; Tileset 0x71
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x72
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x73
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x74
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x75
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x76
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x77
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x78
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x79
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7a
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7b
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7c
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7d
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7e
+	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x7f

@@ -49,7 +49,7 @@ cutscene02:
 @state1:
 	ld a,SND_DOORCLOSE
 	call playSound
-	ld a,UNCMP_GFXH_3e
+	ld a,UNCMP_GFXH_AGES_3e
 	call loadUncompressedGfxHeader
 	jr ---
 
@@ -94,7 +94,7 @@ cutscene02:
 	call getFreeInteractionSlot
 	jr nz,+
 
-	ld (hl),INTERACID_ROCKDEBRIS
+	ld (hl),INTERAC_ROCKDEBRIS
 	ld l,Interaction.yh
 	call setShortPosition_paramC
 +

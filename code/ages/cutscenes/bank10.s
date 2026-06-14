@@ -1,6 +1,6 @@
 ; TODO: Some code in this file is shared with "code/seasons/cutscenes/endgameCutscenes.s"
 
- m_section_superfree Cutscenes_Bank10 NAMESPACE cutscenesBank10
+m_section_superfree Cutscenes_Bank10 NAMESPACE cutscenesBank10
 
 ; Input values for the intro cutscene in the temple
 templeIntro_simulatedInput:
@@ -76,7 +76,7 @@ agesFunc_10_70f6:
 	call clearOam
 	xor a
 	ld ($cfde),a
-	ld a,$95
+	ld a,GFXH_CREDITS_SCROLL
 	call loadGfxHeader
 	ld a,PALH_a0
 	call loadPaletteHeader
@@ -85,8 +85,8 @@ agesFunc_10_70f6:
 	call fadeinFromWhite
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_CREDITS_TEXT_VERTICAL
-	ld l,$4b
+	ld (hl),INTERAC_CREDITS_TEXT_VERTICAL
+	ld l,Interaction.yh
 	ld (hl),$e8
 	inc l
 	inc l
@@ -125,7 +125,7 @@ agesFunc_10_70f6:
 -
 	call getFreeInteractionSlot
 	jr nz,+
-	ld (hl),INTERACID_INTRO_SPRITES_1
+	ld (hl),INTERAC_INTRO_SPRITES_1
 	inc l
 	ld (hl),$09
 	inc l
@@ -162,7 +162,7 @@ agesFunc_10_70f6:
 	call flashScreen
 	ret z
 	call disableLcd
-	ld a,$9a
+	ld a,GFXH_CREDITS_LINKED_WAVING_GOODBYE
 	call loadGfxHeader
 	ld a,PALH_9f
 	call loadPaletteHeader
@@ -171,7 +171,7 @@ agesFunc_10_70f6:
 -
 	call getFreeInteractionSlot
 	jr nz,+
-	ld (hl),INTERACID_cf
+	ld (hl),INTERAC_cf
 	inc l
 	dec b
 	ld (hl),b
@@ -276,9 +276,11 @@ agesFunc_10_7298:
 	.dw @substate6
 	.dw @substate7
 	.dw @substate8
+.ifndef REGION_JP
 	.dw @substate9
 	.dw @substateA
 	.dw @substateB
+.endif
 @substate0:
 	call checkIsLinkedGame
 	call nz,agesFunc_10_70f6@func_71fd
@@ -292,7 +294,7 @@ agesFunc_10_7298:
 	call clearOam
 	call checkIsLinkedGame
 	jp z,@func_72ec
-	ld a,$99
+	ld a,GFXH_CREDITS_LINKED_THE_END
 	call loadGfxHeader
 	ld a,PALH_aa
 	call loadPaletteHeader
@@ -300,7 +302,7 @@ agesFunc_10_7298:
 	call parseGivenObjectData
 	jr ++
 @func_72ec:
-	ld a,$98
+	ld a,GFXH_CREDITS_THE_END
 	call loadGfxHeader
 	ld a,PALH_a9
 	call loadPaletteHeader
@@ -391,7 +393,7 @@ agesFunc_10_7298:
 	ld a,TEXT_BANK
 	ld ($ff00+R_SVBK),a
 	ld hl,w7SecretText1
-	ld de,$d800
+	ld de,w7d800
 	ld bc,$1800
 -
 	ldi a,(hl)
@@ -401,14 +403,14 @@ agesFunc_10_7298:
 	pop af
 	ld ($ff00+R_SVBK),a
 	
-	ld a,$97
+	ld a,GFXH_SECRET_FOR_LINKED_GAME
 	call loadGfxHeader
 	ld a,PALH_05
 	call loadPaletteHeader
 	ld a,UNCMP_GFXH_2b
 	call loadUncompressedGfxHeader
 	call checkIsLinkedGame
-	ld a,$06
+	ld a,GFXH_HEROS_SECRET_TEXT
 	call nz,loadGfxHeader
 	call clearDynamicInteractions
 	call clearOam
@@ -468,12 +470,16 @@ agesFunc_10_7298:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
+
+.ifdef REGION_JP
+	jp resetGame
+.else
 	call checkIsLinkedGame
 	jp nz,resetGame
 	call disableLcd
 	call clearOam
 	call incCbc2
-	ld a,$96
+	ld a,GFXH_TO_BE_CONTINUED
 	call loadGfxHeader
 	ld a,PALH_a7
 	call loadPaletteHeader
@@ -515,5 +521,7 @@ agesFunc_10_7298:
 	or a
 	ret nz
 	jp resetGame
+
+.endif ; !REGION_JP
 
 .ends

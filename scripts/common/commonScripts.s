@@ -1,5 +1,5 @@
 ; Scripts for interactions are in this file. You may want to cross-reference with the corresponding
-; assembly code to get the full picture (run "git grep INTERACID_X" to search for its code).
+; assembly code to get the full picture (run "git grep INTERAC_X" to search for its code).
 
 stubScript:
 	scriptend
@@ -12,18 +12,18 @@ genericNpcScript:
 	scriptjump --
 
 
-; ==============================================================================
-; INTERACID_FARORE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_FARORE
+; ==================================================================================================
 
 faroreScript:
 	jumptable_memoryaddress wIsLinkedGame
-	.dw _faroreUnlinked
-	.dw _faroreLinked
+	.dw faroreUnlinked
+	.dw faroreLinked
 
 ; When talking to farore in a completed unlinked game, you can tell her secrets, but all
 ; she'll do is direct you to the person you're supposed to tell them to.
-_faroreUnlinked:
+faroreUnlinked:
 	jumpifglobalflagset GLOBALFLAG_FINISHEDGAME, @finishedGame
 	rungenericnpclowindex <TX_5501
 
@@ -71,7 +71,7 @@ _faroreUnlinked:
 
 ; When talking to Farore in a linked game, you can tell her secrets and she'll respond by
 ; giving you an item if it's correct.
-_faroreLinked:
+faroreLinked:
 	initcollisions
 	checkabutton
 	setdisabledobjectsto91
@@ -127,9 +127,9 @@ _faroreLinked:
 	scriptjump @npcLoop
 
 
-; ==============================================================================
-; INTERACID_DUNGEON_STUFF
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DUNGEON_STUFF
+; ==================================================================================================
 
 dropSmallKeyWhenNoEnemiesScript:
 	stopifitemflagset ; Stop if already got the key
@@ -161,9 +161,9 @@ setRoomFlagBit7WhenNoEnemiesScript:
 	scriptend
 
 
-; ==============================================================================
-; INTERACID_FARORES_MEMORY
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_FARORES_MEMORY
+; ==================================================================================================
 faroresMemoryScript:
 	initcollisions
 --
@@ -182,7 +182,7 @@ faroresMemoryScript:
 
 
 ; ==================================================
-; INTERACID_DOOR_CONTROLLER.
+; INTERAC_DOOR_CONTROLLER.
 ; ==================================================
 ;
 ; Door opener/closer scripts.
@@ -193,7 +193,7 @@ faroresMemoryScript:
 ;   $03: closes the door
 ;
 ; Variables:
-;   angle: the type and direction of door (see interactionTypes.s)
+;   angle: the type and direction of door (see interactions.s)
 ;   speed: for subids $14-$17, this is the number of torches that must be lit.
 ;   var3d: Bitmask to check on wActiveTriggers (value of "X" parameter converted to
 ;          a bitmask)
@@ -202,7 +202,7 @@ faroresMemoryScript:
 ;          var3d)
 
 
-_doorController_updateRespawnWhenLinkNotTouching:
+doorController_updateRespawnWhenLinkNotTouching:
 	checknotcollidedwithlink_ignorez
 	asm15 scriptHelp.doorController_updateLinkRespawn
 	retscript
@@ -219,7 +219,7 @@ doorOpenerScript:
 
 ; Subid $04
 doorController_controlledByTriggers:
-	callscript _doorController_updateRespawnWhenLinkNotTouching
+	callscript doorController_updateRespawnWhenLinkNotTouching
 @loop:
 	asm15 scriptHelp.doorController_decideActionBasedOnTriggers
 	jumptable_memoryaddress wTmpcfc0.normal.doorControllerState
@@ -239,8 +239,8 @@ doorController_controlledByTriggers:
 ;   Door shuts itself until [wNumEnemies] == 0.
 
 doorController_shutUntilEnemiesDead:
-	jumpifnoenemies _doorController_open
-	callscript _doorController_updateRespawnWhenLinkNotTouching
+	jumpifnoenemies doorController_open
+	callscript doorController_updateRespawnWhenLinkNotTouching
 	jumpifnoenemies @end
 	setstate $03
 	checknoenemies
@@ -250,21 +250,21 @@ doorController_shutUntilEnemiesDead:
 @end:
 	scriptend
 
-_doorController_open:
+doorController_open:
 	setstate $02
 	scriptend
 
-_doorController_openOnMinecartCollision:
+doorController_openOnMinecartCollision:
 	asm15 scriptHelp.doorController_checkMinecartCollidedWithDoor
 	jumptable_memoryaddress wTmpcfc0.normal.doorControllerState
-	.dw _doorController_openOnMinecartCollision
+	.dw doorController_openOnMinecartCollision
 	.dw @incState
 
 @incState:
 	incstate
 
-_doorController_closeDoorWhenLinkNotTouching:
-	callscript _doorController_updateRespawnWhenLinkNotTouching
+doorController_closeDoorWhenLinkNotTouching:
+	callscript doorController_updateRespawnWhenLinkNotTouching
 	setstate $03
 	scriptend
 
@@ -273,8 +273,8 @@ _doorController_closeDoorWhenLinkNotTouching:
 doorController_minecart:
 	asm15 scriptHelp.doorController_checkTileIsMinecartTrack
 	jumptable_memoryaddress wTmpcfc0.normal.doorControllerState
-	.dw _doorController_openOnMinecartCollision ; Not minecart track (door is closed)
-	.dw _doorController_closeDoorWhenLinkNotTouching ; Minecart track (door is open)
+	.dw doorController_openOnMinecartCollision ; Not minecart track (door is closed)
+	.dw doorController_closeDoorWhenLinkNotTouching ; Minecart track (door is open)
 
 
 
@@ -285,7 +285,7 @@ doorController_minecart:
 ;   tile and replaces it with an interaction of this type.
 
 doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0:
-	callscript _doorController_updateRespawnWhenLinkNotTouching
+	callscript doorController_updateRespawnWhenLinkNotTouching
 	setstate $03
 	xorcfc0bit 0
 	scriptend
@@ -293,8 +293,8 @@ doorController_closeDoorWhenLinkNotTouchingAndFlipcfc0:
 ; Subids $14-$17:
 ;   Door opens when a number of torches are lit.
 
-_doorController_shutUntilTorchesLit:
-	callscript _doorController_updateRespawnWhenLinkNotTouching
+doorController_shutUntilTorchesLit:
+	callscript doorController_updateRespawnWhenLinkNotTouching
 	setstate $03
 @loop:
 	asm15 scriptHelp.doorController_checkEnoughTorchesLit
@@ -313,14 +313,14 @@ doorController_openWhenTorchesLit_up_2Torches:
 	setcollisionradii $0a, $08
 	setangle $10
 	setspeed $02
-	scriptjump _doorController_shutUntilTorchesLit
+	scriptjump doorController_shutUntilTorchesLit
 
 ; Subid $15
 doorController_openWhenTorchesLit_left_2Torches:
 	setcollisionradii $08, $0a
 	setangle $16
 	setspeed $02
-	scriptjump _doorController_shutUntilTorchesLit
+	scriptjump doorController_shutUntilTorchesLit
 
 .ifdef ROM_AGES
 ; Subid $16
@@ -328,20 +328,20 @@ doorController_openWhenTorchesLit_down_1Torch:
 	setcollisionradii $0a, $08
 	setangle $14
 	setspeed $01
-	scriptjump _doorController_shutUntilTorchesLit
+	scriptjump doorController_shutUntilTorchesLit
 
 ; Subid $17
 doorController_openWhenTorchesLit_left_1Torch:
 	setcollisionradii $08, $0a
 	setangle $16
 	setspeed $01
-	scriptjump _doorController_shutUntilTorchesLit
+	scriptjump doorController_shutUntilTorchesLit
 .endif
 
 
-; ==============================================================================
-; INTERACID_SHOPKEEPER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SHOPKEEPER
+; ==================================================================================================
 
 .ifdef ROM_SEASONS
 shopkeeperScript_blockLinkAccess:
@@ -425,7 +425,7 @@ shopkeeperScript_purchaseItem:
 .else; ROM_SEASONS
 	showtextnonexitablelowindex <TX_0e1c
 .endif
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $01
 	scriptend
 
@@ -433,7 +433,7 @@ shopkeeperScript_purchaseItem:
 	showtextnonexitablelowindex <TX_0e0a
 	callscript _shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $02
-	scriptend	
+	scriptend
 
 @buyUpgradeableItem2:
 ;	jumpifc6xxset <wSlingshotLevel $01 @haveSecondUpgradeableItem2
@@ -451,22 +451,22 @@ shopkeeperScript_purchaseItem:
 
 @buy3Hearts:
 	showtextnonexitablelowindex <TX_0e02
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyL1Shield:
 	showtextnonexitablelowindex <TX_0e03
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buy10Bombs:
 	showtextnonexitablelowindex <TX_0e04
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyHiddenShopGashaSeed1:
 	showtextnonexitablelowindex <TX_0e1d
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $02
 	scriptend
 
@@ -480,12 +480,12 @@ shopkeeperScript_purchaseItem:
 @buyHiddenShopOtherItem:
 .ifdef ROM_AGES
 	showtextnonexitablelowindex <TX_0e25
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $08
 	scriptend
 .else; ROM_SEASONS
 	showtextnonexitablelowindex <TX_0e1e
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $08
 	showtextlowindex <TX_0e27
 	scriptend
@@ -493,13 +493,13 @@ shopkeeperScript_purchaseItem:
 
 @buyHiddenShopGashaSeed2:
 	showtextnonexitablelowindex <TX_0e1d
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $04
 	scriptend
 
 @buyStrangeFlute:
 	showtextnonexitablelowindex <TX_0e1b
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 .ifdef ROM_SEASONS
 	ormemory wRickyState, $20
 .endif
@@ -507,30 +507,30 @@ shopkeeperScript_purchaseItem:
 
 @buyAdvanceShopGashaSeed:
 	showtextnonexitablelowindex <TX_0e1d
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems2, $01
 	scriptend
 
 @buyAdvanceShopGbaRing:
 	showtextnonexitablelowindex <TX_0e23
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems2, $02
 	scriptend
 
 @buyAdvanceShopRing:
 	showtextnonexitablelowindex <TX_0e25
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems2, $04
 	scriptend
 
 @buyL2Shield:
 	showtextnonexitablelowindex <TX_0e29
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyL3Shield:
 	showtextnonexitablelowindex <TX_0e2a
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	scriptend
 
 @buyL2Sword:
@@ -545,19 +545,19 @@ shopkeeperScript_purchaseItem:
 
 @buyNormalShopGashaSeed:
 	showtextnonexitablelowindex <TX_0e1d
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $20
 	scriptend
 
 .ifdef ROM_AGES
 @buyHiddenShopHeartPiece:
 	showtextnonexitablelowindex <TX_0e01
-	callscript _shopkeeperConfirmPurchase
+	callscript shopkeeperConfirmPurchase
 	ormemory wBoughtShopItems1, $40
 	scriptend
 .endif
 
-_shopkeeperConfirmPurchase:
+shopkeeperConfirmPurchase:
 	jumpiftextoptioneq $00, @answeredYes
 
 	; Answered no
@@ -567,28 +567,28 @@ _shopkeeperConfirmPurchase:
 	scriptend
 
 @answeredYes:
-	jumpifmemoryeq wShopHaveEnoughRupees, $00, _shopkeeperAttemptToPurchaseItem
+	jumpifmemoryeq wShopHaveEnoughRupees, $00, shopkeeperAttemptToPurchaseItem
 	showtextlowindex <TX_0e06
 
 
-_shopkeeperCancelPurchase:
+shopkeeperCancelPurchase:
 	writeobjectbyte Interaction.var3a, $ff
 	enableallobjects
 	scriptend
 
 
-_shopkeeperNotEnoughRupeesToReplayChestGame:
-	callscript _shopkeeperReturnToDeskAfterChestGame
+shopkeeperNotEnoughRupeesToReplayChestGame:
+	callscript shopkeeperReturnToDeskAfterChestGame
 
-_shopkeeperNotEnoughRupees:
+shopkeeperNotEnoughRupees:
 	showtextlowindex <TX_0e06
-	scriptjump _shopkeeperCancelPurchase
+	scriptjump shopkeeperCancelPurchase
 
 
-_shopkeeperAttemptToPurchaseItem:
+shopkeeperAttemptToPurchaseItem:
 	jumptable_objectbyte Interaction.var38
 	.dw @canBuy
-	.dw _shopkeeperCantBuy
+	.dw shopkeeperCantBuy
 
 @canBuy:
 	writememory wTextIsActive, $01
@@ -598,7 +598,7 @@ _shopkeeperAttemptToPurchaseItem:
 
 
 ; Can't buy an item because Link already has it
-_shopkeeperCantBuy:
+shopkeeperCantBuy:
 	writememory wcbad, $02
 	writememory wTextIsActive, $01
 	writeobjectbyte Interaction.var3a, $ff
@@ -665,7 +665,7 @@ shopkeeperChestGameScript:
 	scriptend
 
 @answeredYes:
-	jumpifmemoryeq wShootingGalleryccd5, $01, _shopkeeperNotEnoughRupees
+	jumpifmemoryeq wShootingGalleryccd5, $01, shopkeeperNotEnoughRupees
 	asm15 scriptHelp.shopkeeper_take10Rupees
 	setspeed SPEED_200
 	setcollisionradii $06, $06
@@ -705,11 +705,11 @@ shopkeeperScript_openedWrongChest:
 	jumpiftextoptioneq $01, @selectedNo
 
 	; Selected "Yes" to play again
-	jumpifmemoryeq wShopHaveEnoughRupees, $01, _shopkeeperNotEnoughRupeesToReplayChestGame
+	jumpifmemoryeq wShopHaveEnoughRupees, $01, shopkeeperNotEnoughRupeesToReplayChestGame
 	scriptjump shopkeeperChestGameScript@playAgain
 
 @selectedNo:
-	callscript _shopkeeperReturnToDeskAfterChestGame
+	callscript shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
 
@@ -747,7 +747,7 @@ shopkeeperScript_openedCorrectChest:
 	; Selected no; get round 3 prize
 	showtextlowindex <TX_0e14
 	writeobjectbyte Interaction.var3f, RUPEEVAL_100 ; Tier 3 ring
-	callscript _shopkeeperReturnToDeskAfterChestGame
+	callscript shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
 
@@ -758,7 +758,7 @@ shopkeeperScript_openedCorrectChest:
 	; Selected no; get round 4 prize
 	showtextlowindex <TX_0e14
 	writeobjectbyte Interaction.var3f, RUPEEVAL_200 ; Tier 2 ring
-	callscript _shopkeeperReturnToDeskAfterChestGame
+	callscript shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
 
@@ -766,7 +766,7 @@ shopkeeperScript_openedCorrectChest:
 	; Get round 5 prize
 	showtextlowindex <TX_0e16
 	writeobjectbyte Interaction.var3f, RUPEEVAL_500 ; Tier 1 ring
-	callscript _shopkeeperReturnToDeskAfterChestGame
+	callscript shopkeeperReturnToDeskAfterChestGame
 	enableallobjects
 	scriptend
 
@@ -779,7 +779,7 @@ shopkeeperScript_talkDuringChestGame:
 	; Script stops here since state has been changed.
 
 
-_shopkeeperReturnToDeskAfterChestGame:
+shopkeeperReturnToDeskAfterChestGame:
 	moveup   $08
 	moveleft $11
 	movedown $1a
@@ -797,9 +797,9 @@ shopkeeperScript_notOpenYet:
 
 
 .ifdef ROM_SEASONS
-; ==============================================================================
-; INTERACID_BOMB_FLOWER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_BOMB_FLOWER
+; ==================================================================================================
 
 ; bomb flower placed on rocks blocking temple of autumn
 bombflower_unblockAutumnTemple:
@@ -834,9 +834,9 @@ bombflower_unblockAutumnTemple:
 .endif ; ROM_SEASONS
 
 
-; ==============================================================================
-; INTERACID_SPINNER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SPINNER
+; ==================================================================================================
 
 spinnerScript_initialization:
 	setcollisionradii $09, $09
@@ -853,9 +853,9 @@ spinnerScript_waitForLink:
 	; Script stops here since we changed to state 2 (which reloads the script)
 
 
-; ==============================================================================
-; INTERACID_ESSENCE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_ESSENCE
+; ==================================================================================================
 essenceScript_essenceGetCutscene:
 	playsound MUS_ESSENCE
 	asm15 scriptHelp.essence_createEnergySwirl
@@ -872,9 +872,9 @@ essenceScript_essenceGetCutscene:
 	scriptend
 
 
-; ==============================================================================
-; INTERACID_VASU
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_VASU
+; ==================================================================================================
 
 vasuScript:
 	setcollisionradii $12, $06
@@ -1016,13 +1016,13 @@ vasuScript:
 ; Red snake before beating unlinked game
 redSnakeScript_preLinked:
 	showtextnonexitablelowindex <TX_3009
-	jumpiftextoptioneq $00, _redSnake_explain
+	jumpiftextoptioneq $00, redSnake_explain
 
 	writememory wTextIsActive, $01
 	enableinput
 	scriptend
 
-_redSnake_explain:
+redSnake_explain:
 	wait 30
 	showtextnonexitablelowindex <TX_300a
 	jumpiftextoptioneq $01, @explainBox
@@ -1034,7 +1034,7 @@ _redSnake_explain:
 @explainBox:
 	showtextnonexitablelowindex <TX_300c
 ++
-	jumpiftextoptioneq $00, _redSnake_explain
+	jumpiftextoptioneq $00, redSnake_explain
 	writememory wTextIsActive, $01
 	scriptend
 
@@ -1043,14 +1043,14 @@ _redSnake_explain:
 blueSnakeScript_preLinked:
 	showtextnonexitablelowindex <TX_301f
 	jumpiftextoptioneq $01, blueSnakeScript_doNotRemoveCable
-	scriptjump _blueSnake_linkOrFortune
+	scriptjump blueSnake_linkOrFortune
 
 ; Blue snake after beating linked game
 blueSnakeScript_linked:
 	showtextnonexitablelowindex <TX_3024
 	jumpiftextoptioneq $02, blueSnakeScript_doNotRemoveCable
 
-_blueSnake_linkOrFortune:
+blueSnake_linkOrFortune:
 	setdisabledobjectsto11
 	asm15 scriptHelp.blueSnake_linkOrFortune
 	wait 1
@@ -1115,9 +1115,9 @@ blueSnakeScript_successfulRingTransfer:
 	scriptend
 
 
-; ==============================================================================
-; INTERACID_GAME_COMPLETE_DIALOG
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_GAME_COMPLETE_DIALOG
+; ==================================================================================================
 gameCompleteDialogScript:
 	wait 30
 	showtext TX_550d
@@ -1138,9 +1138,9 @@ gameCompleteDialogScript:
 	scriptend
 
 
-; ==============================================================================
-; INTERACID_RING_HELP_BOOK
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_RING_HELP_BOOK
+; ==================================================================================================
 
 ringHelpBookSubid1Reset:
 	writememory wTextIsActive, $01

@@ -1,12 +1,18 @@
 ;;
 ; Called from loadTilesetData in bank 0. Function differs substantially in Ages and Seasons.
+;
+; HACK-BASE: This has been modified for the expanded tilesets patch.
 loadTilesetData_body:
 	call getTempleRemainsSeasonsTilesetData
-	jr c,+
+	jr c,@gotTilesetIndex
 	call getMoblinKeepSeasonsTilesetData
-	jr c,+
-	ld a,(wActiveGroup)
+	jr c,@gotTilesetIndex
 
+	; HACK-BASE: Use hFF8B to store the "layout group override"
+	ld a,$ff
+	ldh (<hFF8B),a
+
+	ld a,(wActiveGroup)
 	ld hl,roomTilesetsGroupTable
 	rst_addDoubleIndex
 	ldi a,(hl)
@@ -15,18 +21,19 @@ loadTilesetData_body:
 	ld a,(wActiveRoom)
 	rst_addAToHl
 	ld a,(hl)
-	and $80
-	ldh (<hFF8B),a
-	ld a,(hl)
+	ld (wTilesetIndex),a
 
+@gotTilesetIndex:
+	ld a,(wTilesetIndex)
 	and $7f
 	call multiplyABy8
 	ld hl,tilesetData
 	add hl,bc
 
+	; If it's a seasonal tileset, then dereference the next pointer
 	ld a,(hl)
 	inc a
-	jr nz,+
+	jr nz,@gotTilesetData
 	inc hl
 	ldi a,(hl)
 	ld h,(hl)
@@ -34,7 +41,8 @@ loadTilesetData_body:
 	ld a,(wRoomStateModifier)
 	call multiplyABy8
 	add hl,bc
-+
+
+@gotTilesetData:
 	ldi a,(hl)
 	ld e,a
 	and $0f
@@ -51,8 +59,9 @@ loadTilesetData_body:
 	ldi a,(hl)
 	ld (wTilesetFlags),a
 
-	ld b,$06
-	ld de,wTilesetUniqueGfx
+	ld b,$05
+	ld de,wTilesetIndex + 1
+	inc hl
 @copyloop:
 	ldi a,(hl)
 	ld (de),a
@@ -60,24 +69,23 @@ loadTilesetData_body:
 	dec b
 	jr nz,@copyloop
 
-	ld e,wTilesetUniqueGfx&$ff
-	ld a,(de)
-	ld b,a
+	; HACK-BASE: Set wLayoutGroupOverride (usually $ff for no override)
 	ldh a,(<hFF8B)
-	or b
-	ld (de),a
+	ld (wLayoutGroupOverride),a
 
-	ld a,(wActiveGroup)
-	or a
-	ret nz
-	ld a,(wActiveRoom)
-	cp <ROOM_SEASONS_096
-	ret nz
-	call getThisRoomFlags
-	and $80
-	ret nz
-	ld a,$20
-	ld (wTilesetUniqueGfx),a
+	; For gnarled root dungeon entrance: load "unique graphics" when opened
+	; HACK-BASE: TODO TODO TODO FIXME FIXME FIXME
+	;; ld a,(wActiveGroup)
+	;; or a
+	;; ret nz
+	;; ld a,(wActiveRoom)
+	;; cp <ROOM_SEASONS_096
+	;; ret nz
+	;; call getThisRoomFlags
+	;; and $80
+	;; ret nz
+	;; ld a,$20
+	;; ld (wTilesetUniqueGfx),a
 	ret
 
 getTempleRemainsSeasonsTilesetData:
@@ -88,13 +96,16 @@ getTempleRemainsSeasonsTilesetData:
 	call checkIsTempleRemains
 	ret nc
 
-	ld a,(wRoomStateModifier)
-	call multiplyABy8
-	ld hl,templeRemainsSeasons
-	add hl,bc
---
-	xor a
+	; HACK-BASE: This value will go to wLayoutGroupOverride (read from subrosia map).
+	; Normally it uses a modified tileset to set a different layout group, but we no longer
+	; allow tilesets to set the layout group themselves because of how incredibly confusing it
+	; is.
+	ld a,$04
 	ldh (<hFF8B),a
+
+	; Use this tileset
+	ld a,$17
+	ld (wTilesetIndex),a
 	scf
 	ret
 
@@ -128,13 +139,16 @@ getMoblinKeepSeasonsTilesetData:
 	call checkGlobalFlag
 	ret z
 
-	ld a,(wAnimalCompanion)
-	sub $0a
-	and $03
-	call multiplyABy8
-	ld hl,moblinKeepSeasons
-	add hl,bc
-	jr --
+	; HACK-BASE: This value will go to wLayoutGroupOverride (read from spring map).
+	; Same deal as temple remains code above.
+	ld a,$00
+	ldh (<hFF8B),a
+
+	; Use this tileset
+	ld a,$1a
+	ld (wTilesetIndex),a
+	scf
+	ret
 
 ;;
 ; @param[out]	cflag	Set if active room is in Moblin keep

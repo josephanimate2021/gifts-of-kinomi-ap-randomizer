@@ -1,17 +1,11 @@
-.macro m_EnemyData
-	.if NARGS == 4
-		.db \1 \2 \3 \4
-	.else
-		.db \1 \2
-		dwbe \3 | $8000
-	.endif
-.endm
-
 ; Data format:
-; 0: object gfx header to use (see data/objectGfxHeaders.s)
-; 1: Value for Enemy.enemyCollisionMode (bit 7 must be set for collisions to work)
-; 2/3: Either a pointer to subID-specific data, or 2 values which apply to all
-; subIDs. See below for what those 2 bytes do.
+;   b0: object gfx header to use (see data/objectGfxHeaders.s)
+;   b1: Value for Enemy.enemyCollisionMode (bit 7 must be set for collisions to work)
+;   b2: Bits 0-6 are an index for the extraEnemyData table below.
+;   b3: bits 4-7: palette + bank bit
+;       bits 0-3: oamTileIndexBase/2
+;
+;   Or, parameters 2/3 can be replaced with a pointer to subid data (see below).
 
 enemyData:
 	/* 0x00 */ m_EnemyData $00 $00 $00 $00
@@ -48,7 +42,7 @@ enemyData:
 	/* 0x1f */ m_EnemyData $da $9f $0e $68
 	/* 0x20 */ m_EnemyData $90 $91 enemy20SubidData
 	/* 0x21 */ m_EnemyData $98 $a0 enemy21SubidData
-	/* 0x22 */ m_EnemyData $9c $91 $0e $00
+	/* 0x22 */ m_EnemyData $9c $fe $0e $00
 	/* 0x23 */ m_EnemyData $8c $a1 $0c $30
 	/* 0x24 */ m_EnemyData $99 $22 $11 $36
 	/* 0x25 */ m_EnemyData $94 $a3 $0a $28
@@ -63,7 +57,7 @@ enemyData:
 	/* 0x2e */ m_EnemyData $a3 $a7 $03 $1d
 	/* 0x2f */ m_EnemyData $a3 $a8 $3c $40
 	/* 0x30 */ m_EnemyData $8f $91 enemy30SubidData
-	/* 0x31 */ m_EnemyData $9b $90 enemy31SubidData
+	/* 0x31 */ m_EnemyData $9b $fd enemy31SubidData
 	/* 0x32 */ m_EnemyData $9d $9f $07 $00
 	/* 0x33 */ m_EnemyData $4c $00 $01 $37
 	/* 0x34 */ m_EnemyData $97 $29 enemy34SubidData
@@ -87,7 +81,7 @@ enemyData:
 	/* 0x46 */ m_EnemyData $00 $00 $00 $00
 	/* 0x47 */ m_EnemyData $97 $ee $06 $2e
 	/* 0x48 */ m_EnemyData $98 $a0 enemy48SubidData
-	/* 0x49 */ m_EnemyData $9c $91 $0e $00
+	/* 0x49 */ m_EnemyData $9c $fe $0e $00
 	/* 0x4a */ m_EnemyData $90 $b6 enemy4aSubidData
 	/* 0x4b */ m_EnemyData $99 $b7 $16 $20
 	/* 0x4c */ m_EnemyData $93 $31 $11 $14
@@ -126,11 +120,10 @@ enemyData:
 	/* 0x6d */ m_EnemyData $00 $00 $00 $00
 	/* 0x6e */ m_EnemyData $00 $00 $00 $00
 	/* 0x6f */ m_EnemyData $00 $00 $00 $00
-	/* 0x70 */ m_EnemyData $ad     ENEMYCOLLISION_STANDARD_MINIBOSS $1c $50
-	/* 0x71 */ m_EnemyData $af $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1d $20
+	/* 0x70 */ m_EnemyData $ad $ff $1c $50
+	/* 0x71 */ m_EnemyData $af $c4 $1d $20
 	/* 0x72 */ m_EnemyData OBJGFXH_b1 ENEMYCOLLISION_MOTIONLESS_ENEMY	$1d $10 ;Facade			;$b1 $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1e $10
 	/* 0x73 */ m_EnemyData OBJGFXH_b4 $80|ENEMYCOLLISION_SYGER		$4a $30 ;$9b
-	;/* 0x73 */ m_EnemyData $b4 $80|ENEMYCOLLISION_STANDARD_MINIBOSS enemy73SubidData
 	/* 0x74 */ m_EnemyData $b7 $80|ENEMYCOLLISION_SMASHER 			$20 $30
 	/* 0x75 */ m_EnemyData $3c     ENEMYCOLLISION_VIRE 				$21 $20
 	/* 0x76 */ m_EnemyData $b8 $80|ENEMYCOLLISION_ANGLER_FISH 		$22 $10
@@ -145,87 +138,123 @@ enemyData:
 	/* 0x7e */ m_EnemyData $cb     ENEMYCOLLISION_PLASMARINE 		$2a $10
 	/* 0x7f */ m_EnemyData $a9 $80|ENEMYCOLLISION_KING_MOBLIN 		$36 $00
 
+
 ; Each 2 bytes are for a particular subID.
-; 0: Bits 0-6 are an index for the extraEnemyData table below.
-;    If bit 7 is set, the next subID is valid.
-; 1: bits 4-7: palette + bank bit
-;    bits 0-3: oamTileIndexBase/2
+; The two bytes are the same as bytes 2 & 3 documented at the top of the file.
+; The difference is that if subid tables are used, bytes 2 & 3 are specified differently for
+; different enemy subid values.
 
 enemy09SubidData:
-	.db $88 $20
-	.db $88 $20
-	.db $8c $10
-	.db $8c $10
-	.db $3f $30
+	m_EnemySubidData $08 $20
+	m_EnemySubidData $08 $20
+	m_EnemySubidData $0c $10
+	m_EnemySubidData $0c $10
+	m_EnemySubidData $3f $30
+	m_EnemySubidDataEnd
+
 enemy0aSubidData:
-	.db $8c $20
-	.db $11 $10
+	m_EnemySubidData $0c $20
+	m_EnemySubidData $11 $10
+	m_EnemySubidDataEnd
+
 enemy0bSubidData:
-	.db $8c $27
-	.db $8e $17
-	.db $0c $37
+	m_EnemySubidData $0c $27
+	m_EnemySubidData $0e $17
+	m_EnemySubidData $0c $37
+	m_EnemySubidDataEnd
+
 enemy0cSubidData:
-	.db $8c $20
-	.db $91 $10
-	.db $3f $30
+	m_EnemySubidData $0c $20
+	m_EnemySubidData $11 $10
+	m_EnemySubidData $3f $30
+	m_EnemySubidDataEnd
+
 enemy0dSubidData:
-	.db $97 $20
-	.db $9b $10
-	.db $3f $30
+	m_EnemySubidData $17 $20
+	m_EnemySubidData $1b $10
+	m_EnemySubidData $3f $30
+	m_EnemySubidDataEnd
+
 enemy0eSubidData:
-	.db $82 $20
-	.db $82 $10
-	.db $82 $30
-	.db $82 $00
-	.db $82 $00
-	.db $02 $00
+	m_EnemySubidData $02 $20
+	m_EnemySubidData $02 $10
+	m_EnemySubidData $02 $30
+	m_EnemySubidData $02 $00
+	m_EnemySubidData $02 $00
+	m_EnemySubidData $02 $00
+	m_EnemySubidDataEnd
+
 enemy17SubidData:
-	.db $9a $2b
-	.db $94 $2b
-	.db $16 $2b
+	m_EnemySubidData $1a $2b
+	m_EnemySubidData $14 $2b
+	m_EnemySubidData $16 $2b
+	m_EnemySubidDataEnd
+
 enemy20SubidData:
 enemy4aSubidData:
-	.db $8a $20
-	.db $0c $10
+	m_EnemySubidData $0a $20
+	m_EnemySubidData $0c $10
+	m_EnemySubidDataEnd
+
 enemy21SubidData:
 enemy48SubidData:
-	.db $94 $20
-	.db $99 $10
-	.db $3f $30
+	m_EnemySubidData $14 $20
+	m_EnemySubidData $19 $10
+	m_EnemySubidData $3f $30
+	m_EnemySubidDataEnd
+
 enemy2aSubidData:
-	.db $b8 $08
-	.db $b8 $18
-	.db $b8 $28
-	.db $38 $38
+	m_EnemySubidData $38 $08
+	m_EnemySubidData $38 $18
+	m_EnemySubidData $38 $28
+	m_EnemySubidData $38 $38
+	m_EnemySubidDataEnd
+
 enemy30SubidData:
-	.db $8a $3b
-	.db $0c $1b
+	m_EnemySubidData $0a $3b
+	m_EnemySubidData $0c $1b
+	m_EnemySubidDataEnd
+
 enemy31SubidData:
-	.db $8a $12
-	.db $8c $22
-	.db $8e $32
-	.db $0e $02
+	m_EnemySubidData $0a $12
+	m_EnemySubidData $0c $22
+	m_EnemySubidData $0e $32
+	m_EnemySubidData $0e $02
+	m_EnemySubidDataEnd
+
 enemy34SubidData:
-	.db $8a $00
-	.db $0c $20
+	m_EnemySubidData $0a $00
+	m_EnemySubidData $0c $20
+	m_EnemySubidDataEnd
+
 ; Unused data?
-	.db $80 $1b
-	.db $00 $1b
+	m_EnemySubidData $00 $1b
+	m_EnemySubidData $00 $1b
+	m_EnemySubidDataEnd
+
 enemy3cSubidData:
-	.db $8e $1c
-	.db $43 $1c
+	m_EnemySubidData $0e $1c
+	m_EnemySubidData $43 $1c
+	m_EnemySubidDataEnd
+
 enemy3dSubidData:
-	.db $8d $20
-	.db $12 $10
+	m_EnemySubidData $0d $20
+	m_EnemySubidData $12 $10
+	m_EnemySubidDataEnd
+
 enemy40SubidData:
-	.db $8e $00
-	.db $91 $20
-	.db $15 $10
+	m_EnemySubidData $0e $00
+	m_EnemySubidData $11 $20
+	m_EnemySubidData $15 $10
+	m_EnemySubidDataEnd
+
 enemy73SubidData:
-	.db $9a $10
-	.db $9a $10
-	.db $b1 $20
-	.db $32 $30
+	m_EnemySubidData $1a $10
+	m_EnemySubidData $1a $10
+	m_EnemySubidData $31 $20
+	m_EnemySubidData $32 $30
+	m_EnemySubidDataEnd
+
 
 manhandlaSubidData:
 	.db $80|$00 $00
@@ -234,10 +263,10 @@ manhandlaSubidData:
 	.db 	$49 $60
 
 ; Data format:
-; 0: value for Enemy.collisionRadiusY
-; 1: value for Enemy.collisionRadiusX
-; 2: value for Enemy.damage (how much damage it deals)
-; 3: value for Enemy.health
+;   b0: value for Enemy.collisionRadiusY
+;   b1: value for Enemy.collisionRadiusX
+;   b2: value for Enemy.damage (how much damage it deals)
+;   b3: value for Enemy.health
 
 extraEnemyData:
 	.db $00 $00 $00 $7f ; 0x00
@@ -309,10 +338,10 @@ extraEnemyData:
 	.db $04 $06 $f8 $06 ; 0x42
 	.db $04 $02 $fc $01 ; 0x43
 	.db $02 $02 $00 $02 ; 0x44
-	
+
 	.db $08 $08 $fa $14 ; 0x45
 	.db $06 $03 $fe $10	; 0x46	;$f8 $19
 	.db $0c $06 $f8 $7f ; 0x47	Manhandla Body
-	.db $04 $04 $fc $02 ; 0x48	
+	.db $04 $04 $fc $02 ; 0x48
 	.db $06 $06 $f8 $06 ; 0x49	Manhandla Head
 	.db $06 $06 $fc $10 ; 0x4a

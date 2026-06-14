@@ -1,10 +1,10 @@
-; ==============================================================================
-; INTERACID_DUNGEON_SCRIPT
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DUNGEON_SCRIPT
+; ==================================================================================================
 D3spawnPitSpreader:
 	; Part $0a, subid $00, yh $72
 	ld bc,$0072
-	jp _spawnPitSpreader
+	jp spawnPitSpreader
 
 
 D3StatuePuzzleCheck:
@@ -37,17 +37,17 @@ D3StatuePuzzleCheck:
 	ret
 
 
-_solvedPuzzleSetRoomFlag07:
+solvedPuzzleSetRoomFlag07:
 	call getThisRoomFlags
 	set 7,(hl)
 	ld a,SND_SOLVEPUZZLE
 	jp playSound
 
 
-_createBridgeSpawner:
+createBridgeSpawner:
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_BRIDGE_SPAWNER
+	ld (hl),PART_BRIDGE_SPAWNER
 	ld l,Part.counter2
 	ld (hl),b
 	ld l,Part.angle
@@ -58,10 +58,10 @@ _createBridgeSpawner:
 
 
 D4spawnBridgeB2:
-	call _solvedPuzzleSetRoomFlag07
+	call solvedPuzzleSetRoomFlag07
 	ld bc,$0601
 	ld e,$59
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
 D7spawnDarknutBridge:
@@ -69,34 +69,34 @@ D7spawnDarknutBridge:
 	call playSound
 	ld bc,$0801
 	ld e,$77
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
 D8VerticalBridgeUnlockedByOrb:
-	call _solvedPuzzleSetRoomFlag07
+	call solvedPuzzleSetRoomFlag07
 	ld bc,$0c02
 	ld e,$3c
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
 D8VerticalBridgeInLava:
-	call _solvedPuzzleSetRoomFlag07
+	call solvedPuzzleSetRoomFlag07
 	ld bc,$0e00
 	ld e,$7b
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
 D8HorizontalBridgeByMoldorms:
-	call _solvedPuzzleSetRoomFlag07
+	call solvedPuzzleSetRoomFlag07
 	ld bc,$0e03
 	ld e,$88
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
-_spawnPitSpreader:
+spawnPitSpreader:
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_HOLES_FLOORTRAP
+	ld (hl),PART_HOLES_FLOORTRAP
 	inc l
 	; subid
 	ld (hl),b
@@ -119,7 +119,7 @@ D3openEssenceDoorIfBossBeat_body:
 	bit 7,a
 	ret z
 	call getFreeInteractionSlot
-	ld (hl),INTERACID_DOOR_CONTROLLER
+	ld (hl),INTERAC_DOOR_CONTROLLER
 	ld l,Interaction.angle
 	; shutter
 	ld (hl),ANGLE_DOWN
@@ -132,19 +132,19 @@ D6setFlagBit7InRoomWithLowIndexInAngle:
 	ld e,Interaction.angle
 	ld a,(de)
 	ld l,a
-	jr _setFlagBit7InRoomLowIndexInL
+	jr setFlagBit7InRoomLowIndexInL
 
 
 D6setFlagBit7InFirst4FRoom:
 	ld l,<ROOM_SEASONS_4d4
-	jr _setFlagBit7InRoomLowIndexInL
+	jr setFlagBit7InRoomLowIndexInL
 
 
 D6setFlagBit7InLast4FRoom:
 	ld l,<ROOM_SEASONS_4d3
 
 
-_setFlagBit7InRoomLowIndexInL:
+setFlagBit7InRoomLowIndexInL:
 	ld a,(wDungeonFlagsAddressH)
 	ld h,a
 	set 7,(hl)
@@ -170,13 +170,13 @@ D6spawnFloorDestroyerAndEscapeBridge:
 	call getFreePartSlot
 	ret nz
 
-	ld (hl),PARTID_HOLES_FLOORTRAP
+	ld (hl),PART_HOLES_FLOORTRAP
 	inc l
 	ld (hl),$04
 
 	ld bc,$0603
 	ld e,$14
-	jp _createBridgeSpawner
+	jp createBridgeSpawner
 
 
 D6spawnChestAfterCrystalTrapRoom_body:
@@ -214,12 +214,12 @@ D7randomlyPlaceNonEnemyArmos_body:
 	call getFreeEnemySlot
 	ret nz
 
-	ld (hl),ENEMYID_ARMOS
+	ld (hl),ENEMY_ARMOS
 	inc l
 	ld (hl),$00
-	ld l,$8b
+	ld l,Enemy.yh
 	ld (hl),$27
-	ld l,$8d
+	ld l,Enemy.xh
 	ld (hl),$a0
 	ret
 @armosPositions:
@@ -255,7 +255,7 @@ D7MagnetBallRoom_addChest:
 D7dropKeyDownAFloor:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),$30
 	inc l
@@ -303,7 +303,7 @@ D8armosCheckIfWillMove:
 
 	call getFreeEnemySlot
 	jr nz,+
-	ld (hl),ENEMYID_ARMOS
+	ld (hl),ENEMY_ARMOS
 	ld l,Enemy.yh
 	ld (hl),$27
 	ld l,Enemy.xh
@@ -334,8 +334,8 @@ D8SpawnLimitedFireKeese:
 	ld a,(wDisabledObjects)
 	or a
 	ret nz
-	ld b,ENEMYID_FIRE_KEESE
-	call _countFireKeese
+	ld b,ENEMY_FIRE_KEESE
+	call countFireKeese
 	cp $04
 	ret nc
 	call getRandomNumber
@@ -343,13 +343,13 @@ D8SpawnLimitedFireKeese:
 	ret c
 	call getFreeEnemySlot_uncounted
 	ret nz
-	ld (hl),ENEMYID_FIRE_KEESE
+	ld (hl),ENEMY_FIRE_KEESE
 	inc l
 	ld (hl),$01
 	jp objectCopyPosition
 
 
-_countFireKeese:
+countFireKeese:
 	ld c,$00
 	ld hl,$d080
 -
@@ -395,7 +395,7 @@ D6RandomButtonSpawnRopes:
 -
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_ROPE
+	ld (hl),ENEMY_ROPE
 	inc l
 	ld (hl),$01
 	call @spawnRopeAtRandomPosition
@@ -421,7 +421,7 @@ D6RandomButtonSpawnRopes:
 	ld a,(bc)
 	or a
 	jr nz,@spawnRopeAtRandomPosition
-	ld l,$8b
+	ld l,Enemy.yh
 	jp setShortPosition_paramC
 
 
@@ -444,13 +444,13 @@ createD7Trampoline:
 	ld e,Interaction.angle
 	ld a,(de)
 	ld c,a
-	ld b,INTERACID_TRAMPOLINE
+	ld b,INTERAC_TRAMPOLINE
 	jp objectCreateInteraction
 
 
 D9forceRoomClearsOnDungeonEntry:
 	call getThisRoomFlags
-	ld l,$93
+	ld l,<ROOM_SEASONS_593
 	res 6,(hl)
 	inc l
 	res 6,(hl)
@@ -464,21 +464,21 @@ D8createFiresGoingOut:
 	call findTileInRoom
 	ret nz
 
-	call _createLightableTorches
+	call createLightableTorches
 -
 	ld a,TILEINDEX_UNLIT_TORCH
 	call backwardsSearch
 	ret nz
-	call _createLightableTorches
+	call createLightableTorches
 	jr -
 
 
-_createLightableTorches:
+createLightableTorches:
 	push hl
 	ld c,l
 	call getFreePartSlot
 	jr nz,+
-	ld (hl),PARTID_LIGHTABLE_TORCH
+	ld (hl),PART_LIGHTABLE_TORCH
 	inc l
 	ld (hl),$01
 	ld l,Part.counter2
@@ -491,9 +491,9 @@ _createLightableTorches:
 	ret
 
 
-; ==============================================================================
-; INTERACID_MAKU_CUTSCENES
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MAKU_CUTSCENES
+; ==================================================================================================
 seasonsFunc_15_571a:
 	call fadeoutToBlackWithDelay
 	jr +
@@ -540,7 +540,7 @@ seasonsFunc_15_5748:
 
 makuTree_checkGateHit:
 	ld a,(w1WeaponItem.id)
-	cp ITEMID_SWORD
+	cp ITEM_SWORD
 	ret nz
 	ld a,(wcc63)
 	or a
@@ -562,7 +562,7 @@ seasonsFunc_15_576c:
 	; not linked, or not outside d5
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_LINKED_CUTSCENE
+	ld (hl),INTERAC_LINKED_CUTSCENE
 	inc l
 	ld (hl),$04
 	ld l,Interaction.y
@@ -572,16 +572,16 @@ seasonsFunc_15_576c:
 	ret
 
 
-; ==============================================================================
-; INTERACID_SEASON_SPIRITS_SCRIPTS
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SEASON_SPIRITS_SCRIPTS
+; ==================================================================================================
 seasonsSpirit_createSwirl:
-	ld e,$57
+	ld e,Interaction.relatedObj1+1
 	ld a,(de)
 	ld h,a
-	ld l,$4b
+	ld l,Interaction.yh
 	ld b,(hl)
-	ld l,$4d
+	ld l,Interaction.xh
 	ld c,(hl)
 	ld a,$6e
 	jp createEnergySwirlGoingIn
@@ -597,17 +597,17 @@ spawnSeasonsSpiritSubId01:
 +
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_SEASONS_FAIRY
-	ld e,$43
+	ld (hl),INTERAC_SEASONS_FAIRY
+	ld e,Interaction.var03
 	ld a,(de)
 	inc l
 	ldi (hl),a
 	ld (hl),b
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$18
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),$70
-	ld e,$57
+	ld e,Interaction.relatedObj1+1
 	ld a,h
 	ld (de),a
 	ret
@@ -618,21 +618,21 @@ seasonsSpirits_checkPostSeasonGetText:
 	add a
 	call getNumSetBits
 	ld h,d
-	ld l,$7f
+	ld l,Interaction.var3f
 	ld (hl),$00
 	cp $04
 	ret nz
 	inc (hl)
 	ld a,(wActiveRoom)
-	cp $f5
+	cp <ROOM_SEASONS_5f5
 	ret z
 	inc (hl)
 	ret
 
 
-; ==============================================================================
-; INTERACID_MALON
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MALON
+; ==================================================================================================
 checkTalonReturned:
 	ld a,>ROOM_SEASONS_5b6
 	ld b,<ROOM_SEASONS_5b6
@@ -642,23 +642,23 @@ checkTalonReturned:
 	jr nz,+
 	xor a
 +
-	ld e,$7c
+	ld e,Interaction.var3c
 	ld (de),a
 	ret
 
 
-; ==============================================================================
-; INTERACID_DUNGEON_WISE_OLD_MAN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DUNGEON_WISE_OLD_MAN
+; ==================================================================================================
 dungeonWiseOldMan_setLinksInvincibilityCounterTo0:
 	xor a
 	ld (w1Link.invincibilityCounter),a
 	ret
 
 
-; ==============================================================================
-; INTERACID_SOKRA
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SOKRA
+; ==================================================================================================
 sokra_alert:
 	ld a,$04
 	call interactionSetAnimation
@@ -737,9 +737,9 @@ seasonsFunc_15_5847:
 	ret
 
 
-; ==============================================================================
-; INTERACID_BIPIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_BIPIN
+; ==================================================================================================
 
 ;;
 ; Show some text based on bipin's subid (expected to be 1-9).
@@ -764,9 +764,9 @@ bipin_showText_subid1To9:
 	.db <TX_4308
 
 
-; ==============================================================================
-; INTERACID_BLOSSOM
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_BLOSSOM
+; ==================================================================================================
 
 ;;
 ; @param	a	Value to write
@@ -795,7 +795,7 @@ checkc6e2BitSet:
 	ret
 
 ;;
-; @param	a	Rupee value (see constants/rupeeValues.s)
+; @param	a	Rupee value (see constants/common/rupeeValues.s)
 blossom_checkHasRupees:
 	call cpRupeeValue
 	ld e,Interaction.var3c
@@ -837,9 +837,9 @@ blossom_openNameEntryMenu:
 	jp openMenu
 
 
-; ==============================================================================
-; INTERACID_S_SUBROSIAN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SUBROSIAN
+; ==================================================================================================
 subrosianFunc_58ac:
 	ld hl,$cfde
 	jr +
@@ -896,7 +896,7 @@ subrosian_giveFoolsOre:
 	jp giveTreasure
 
 
-; ==============================================================================
+; ==================================================================================================
 
 linkedNpc_checkSecretBegun:
 	ld a,GLOBALFLAG_FIRST_SEASONS_BEGAN_SECRET
@@ -956,9 +956,9 @@ linkedNpc_calcLowTextIndex:
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_SUBROSIAN (cont.)
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SUBROSIAN (cont.)
+; ==================================================================================================
 subrosian_checkSignsDestroyed:
 	ld a,(wTotalSignsDestroyed)
 	ld b,a
@@ -1009,11 +1009,11 @@ subrosianFunc_5968:
 	ret
 
 
-; ==============================================================================
-; INTERACID_DATING_ROSA_EVENT
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_ROSA
+; ==================================================================================================
 rosa_tradeRibbon:
-	ld e,$77
+	ld e,Interaction.var37
 	xor a
 	ld (de),a
 	ld a,TREASURE_RIBBON
@@ -1021,20 +1021,20 @@ rosa_tradeRibbon:
 
 rosa_startDate:
 	ld h,d
-	ld l,$42
+	ld l,Interaction.subid
 	ld (hl),$01
-	ld l,$44
+	ld l,Interaction.state
 	xor a
 	ldi (hl),a
 	ld (hl),a
-	ld a,$27
+	ld a,MUS_ROSA_DATE
 	ld (wActiveMusic),a
 	jp playSound
 
 
-; ==============================================================================
-; INTERACID_CHILD
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_CHILD
+; ==================================================================================================
 
 ;;
 ; @param	a	Value to add
@@ -1092,10 +1092,10 @@ child_giveRupees:
 	jp giveTreasure
 
 
-; ==============================================================================
-; INTERACID_MAYORS_HOUSE_NPC
-; INTERACID_S_GORON
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MAYORS_HOUSE_NPC
+; INTERAC_GORON
+; ==================================================================================================
 getNextRingboxLevel:
 	ld a,(wRingBoxLevel)
 	dec a
@@ -1111,10 +1111,10 @@ getNextRingboxLevel:
 	ret
 
 
-; ==============================================================================
-; INTERACID_PIRATIAN
-; INTERACID_PIRATIAN_CAPTAIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_PIRATIAN
+; INTERAC_PIRATIAN_CAPTAIN
+; ==================================================================================================
 showPiratianTextBasedOnD6Done:
 	ld b,a
 	ld e,$42
@@ -1128,19 +1128,19 @@ showPiratianTextBasedOnD6Done:
 	jp showText
 @subidTable:
 	; D6 not done - D6 done
-	.db <TX_3a00 <TX_3a01
-	.db <TX_3a02 <TX_3a03
-	.db <TX_3a04 <TX_3a05
-	.db <TX_3a06 <TX_3a07
-	.db <TX_3a08 <TX_3a08
-	.db <TX_3a09 <TX_3a09
+	.db <TX_3a00, <TX_3a01
+	.db <TX_3a02, <TX_3a03
+	.db <TX_3a04, <TX_3a05
+	.db <TX_3a06, <TX_3a07
+	.db <TX_3a08, <TX_3a08
+	.db <TX_3a09, <TX_3a09
 
 piratian_waitUntilJumpDone:
 	ld c,$30
 	call objectUpdateSpeedZ_paramC
 	ret nz
 	ld h,d
-	ld l,$7d
+	ld l,Interaction.var3d
 	ld (hl),$01
 	ret
 
@@ -1169,24 +1169,24 @@ headToPirateShip:
 piratesDeparting_spawnPirateFromShip:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_PIRATIAN
+	ld (hl),INTERAC_PIRATIAN
 	inc l
 	ld (hl),$0c
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$28
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),$78
 	ret
 
 linkedGame_spawnAmbi:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_S_AMBI
+	ld (hl),INTERAC_AMBI
 	inc l
 	ld (hl),$03
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$88
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),$50
 	ret
 
@@ -1194,6 +1194,7 @@ piratianCaptain_simulatedInput:
 	ld hl,@simulatedInput
 	ld a,:@simulatedInput
 	jp setSimulatedInputAddress
+
 @simulatedInput:
 	dwb 80 BTN_RIGHT
 	dwb  4 $00
@@ -1202,13 +1203,13 @@ piratianCaptain_simulatedInput:
 	.dw $ffff
 
 piratianCaptain_setLinkInvisible:
-	ld hl,$d01a
+	ld hl,w1Link.visible
 	res 7,(hl)
 	ret
 
 piratianCaptain_setInvisible:
 	ld h,d
-	ld l,$5a
+	ld l,Interaction.visible
 	res 7,(hl)
 	ret
 
@@ -1264,9 +1265,9 @@ unluckySailor_increaseBombCapacityAndCount:
 	jp setStatusBarNeedsRefreshBit1
 
 
-; ==============================================================================
-; INTERACID_S_ZELDA
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_ZELDA
+; ==================================================================================================
 zelda_checkIfLinkFullyHealed:
 	ld hl,wLinkMaxHealth
 	ld a,(wLinkHealth)
@@ -1278,7 +1279,8 @@ zelda_checkIfLinkFullyHealed:
 	ret
 
 
-	ld hl,$c6a2
+; Unused function?
+	ld hl,wLinkHealth
 	ld a,($cbe4)
 	cp (hl)
 	ret nz
@@ -1301,9 +1303,9 @@ resetBit5ofRoomFlags:
 	ret
 
 
-; ==============================================================================
-; INTERACID_DIN_DANCING_EVENT
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DIN_DANCING_EVENT
+; ==================================================================================================
 dinDancing_spinLink:
 	ld hl,w1Link.direction
 	ld a,(hl)
@@ -1327,9 +1329,9 @@ dinDancingEvent_setTextAdd_0a_ifLinked:
 	ret
 
 
-; ==============================================================================
-; INTERACID_BIGGORON
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_BIGGORON
+; ==================================================================================================
 biggoron_loadAnimationData:
 	jp loadAnimationData
 
@@ -1337,7 +1339,7 @@ biggoron_checkSoupGiven:
 	ld a,TREASURE_TRADEITEM
 	call checkTreasureObtained
 	ld h,d
-	ld l,$7f
+	ld l,Interaction.var3f
 	jr nc,+
 	cp $05
 	jr c,+
@@ -1350,17 +1352,17 @@ biggoron_checkSoupGiven:
 biggoron_createSparkleAtLink:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_SPARKLE
+	ld (hl),INTERAC_SPARKLE
 	push de
-	ld de,$d00b
+	ld de,w1Link.yh
 	call objectCopyPosition_rawAddress
 	pop de
 	ret
 	
 	
-; ==============================================================================
-; INTERACID_HEAD_SMELTER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_HEAD_SMELTER
+; ==================================================================================================
 headSmelter_loseBombFlower:
 	ld a,TREASURE_BOMB_FLOWER_LOWER_HALF
 	call loseTreasure
@@ -1370,26 +1372,26 @@ headSmelter_loseBombFlower:
 headSmelter_loadHideFromBombScript:
 	ld hl,$cfde
 	ld bc,mainScripts.headSmelterAtTempleScript_hideFromBomb
-	jr _headSmelter_loadScriptIntoWram
+	jr headSmelter_loadScriptIntoWram
 
 headSmelter_loadDanceMovements:
 	ld a,$0b
 	ld ($cc6a),a
-	ld hl,$d00b
+	ld hl,w1Link.yh
 	ld a,$68
 	sub (hl)
 	ld ($cc6c),a
-	ld l,$08
-	ld (hl),$02
-	ld l,$09
-	ld (hl),$10
+	ld l,<w1Link.direction
+	ld (hl),DIR_DOWN
+	ld l,<w1Link.angle
+	ld (hl),ANGLE_DOWN
 	ld hl,$cfde
 	ld bc,mainScripts.headSmelterScript_danceMovementText1
-	call _headSmelter_loadScriptIntoWram
+	call headSmelter_loadScriptIntoWram
 	ld hl,$cfdc
 	ld bc,mainScripts.headSmelterScript_danceMovementText2
 
-_headSmelter_loadScriptIntoWram:
+headSmelter_loadScriptIntoWram:
 	ldi a,(hl)
 	ld l,(hl)
 	ld h,a
@@ -1405,16 +1407,16 @@ headSmelter_throwRedOreIn:
 headSmelter_throwBlueOreIn:
 	ld c,$05
 ++
-	ld b,INTERACID_MISC_STATIC_OBJECTS
+	ld b,INTERAC_MISC_STATIC_OBJECTS
 	jp objectCreateInteraction
 
 headSmelter_smeltingDone:
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_BOSS_DEATH_EXPLOSION
-	ld l,$cb
+	ld (hl),PART_BOSS_DEATH_EXPLOSION
+	ld l,Part.yh
 	ld (hl),$1c
-	ld l,$cd
+	ld l,Part.xh
 	ld (hl),$70
 	ret
 
@@ -1425,12 +1427,12 @@ headSmelter_giveHardOre:
 	call loseTreasure
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),TREASURE_HARD_ORE
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$1c
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),$70
 	ret
 
@@ -1476,29 +1478,29 @@ headSmelter_enableScreenTransitions:
 	jr --
 
 
-; ==============================================================================
-; INTERACID_SUBROSIAN_AT_D8
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SUBROSIAN_AT_VOLCANO
+; ==================================================================================================
 subrosianAtD8_spawnitem:
 	call refreshObjectGfx
 	ldh a,(<hActiveObject)
 	ld d,a
-	ld b,INTERACID_SUBROSIAN_AT_D8_ITEMS
+	ld b,INTERAC_SUBROSIAN_AT_VOLCANO_ITEMS
 	jp objectCreateInteractionWithSubid00
 
 
-; ==============================================================================
-; INTERACID_INGO
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_INGO
+; ==================================================================================================
 ingo_animatePlaySound:
 	ld h,d
-	ld l,$50
-	ld (hl),$28
-	ld l,$54
+	ld l,Interaction.speed
+	ld (hl),SPEED_100
+	ld l,Interaction.speedZ
 	ld (hl),$00
 	inc hl
 	ld (hl),$fe
-	ld a,$53
+	ld a,SND_JUMP
 	jp playSound
 
 ingo_jump:
@@ -1506,14 +1508,14 @@ ingo_jump:
 	call objectUpdateSpeedZ_paramC
 	ret nz
 	ld h,d
-	ld l,$7d
+	ld l,Interaction.var3d
 	ld (hl),$01
 	ret
 
 
-; ==============================================================================
-; INTERACID_BLAINO_SCRIPT
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_BLAINO_SCRIPT
+; ==================================================================================================
 blainoScript_saveVariables:
 	ld a,GLOBALFLAG_CHEATED_BLAINO
 	call checkGlobalFlag
@@ -1584,7 +1586,7 @@ blainoScript_spawnBlainoEnemy:
 	ld (hl),$02
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_BLAINO
+	ld (hl),ENEMY_BLAINO
 	ld l,Enemy.yh
 	ld (hl),$40
 	ld l,Enemy.xh
@@ -1602,7 +1604,7 @@ blainoScript_setBlainoPosition:
 	call clearEnemies
 	pop de
 	ld bc,$4040
-	call _spawnBlainoAtPosition
+	call spawnBlainoAtPosition
 	ret nz
 	ld l,Interaction.yh
 	ld b,(hl)
@@ -1618,10 +1620,10 @@ blainoScript_setBlainoPosition:
 
 blainoScript_spawnBlaino:
 	ld bc,$4050
-_spawnBlainoAtPosition:
+spawnBlainoAtPosition:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_BLAINO
+	ld (hl),INTERAC_BLAINO
 	ld l,Interaction.yh
 	ld (hl),b
 	ld l,Interaction.xh
@@ -1649,7 +1651,7 @@ putAwayLinksItems:
 	ld e,<$cfde
 	call @saveItemToB
 	ld a,b
-	cp ITEMID_BIGGORON_SWORD
+	cp ITEM_BIGGORON_SWORD
 	call nz,@storeItemInInventory
 	jp disableActiveRing
 
@@ -1676,7 +1678,8 @@ putAwayLinksItems:
 	ret
 
 
-; unknown
+; TODO: This is possibly a function for restoring Link's items after the blaino fight, which may be
+; used in the Japanese version only?
 seasonsFunc_15_5cf0:
 	ld a,($ccec)
 	cp $03
@@ -1685,7 +1688,7 @@ seasonsFunc_15_5cf7:
 	push de
 	ld a,$ff
 	ld ($cbea),a
-	ld h,$c6
+	ld h,>wc600Block
 	ld de,$cfdf
 	ld c,$80
 	call seasonsFunc_15_5d12
@@ -1710,9 +1713,9 @@ seasonsFunc_15_5d12:
 	ret
 
 
-; ==============================================================================
-; INTERACID_DANCE_HALL_MINIGAME
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DANCE_HALL_MINIGAME
+; ==================================================================================================
 seasonsFunc_15_5d20:
 	ld a,$01
 	ld ($cfd2),a
@@ -1752,15 +1755,15 @@ seasonsFunc_15_5d45:
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_MISCELLANEOUS_1
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MISCELLANEOUS_1
+; ==================================================================================================
 floodgateKeeper_checkStage:
 	call getThisRoomFlags
 	bit 7,(hl)
 	ld a,$03
 	jr nz,+
-	ld hl,wPresentRoomFlags|<ROOM_SEASONS_081
+	ld hl,wOverworldRoomFlags+(<ROOM_SEASONS_081)
 	bit 7,(hl)
 	ld a,$02
 	jr nz,+
@@ -1797,25 +1800,25 @@ floodgate_enableObjects:
 	ret
 
 
-; ==============================================================================
-; INTERACID_ROSA_HIDING
-; INTERACID_STRANGE_BROTHERS_HIDING
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_ROSA_HIDING
+; INTERAC_STRANGE_BROTHERS_HIDING
+; ==================================================================================================
 strangeBrothersFunc_15_5d9a:
-	ld h,$d7
+	ld h,FIRST_DYNAMIC_ITEM_INDEX
 --
-	ld l,$01
+	ld l,Item.id
 	ld a,(hl)
-	sub $03
+	sub ITEM_BOMB
 	jr nz,+
-	ld l,$1a
+	ld l,Item.visible
 	ld (hl),a
-	ld l,$2f
+	ld l,Item.var2f
 	set 5,(hl)
 +
 	inc h
 	ld a,h
-	cp $dc
+	cp LAST_DYNAMIC_ITEM_INDEX+1
 	jr c,--
 	ret
 
@@ -1825,7 +1828,7 @@ subrosianHiding_store02Intocc9e:
 	ret
 
 rosaHiding_hidingFinishedSetInitialRoomsFlags:
-	ld hl,wPresentRoomFlags|<ROOM_SEASONS_0cb
+	ld hl,wOverworldRoomFlags+(<ROOM_SEASONS_0cb)
 	set 7,(hl)
 	xor a
 	ld ($cc9e),a
@@ -1835,59 +1838,59 @@ rosaHiding_hidingFinishedSetInitialRoomsFlags:
 strangeBrothersFunc_15_5dc4:
 	ld a,$1e
 	call addToGashaMaturity
-	ld hl,$c6e3
+	ld hl,wNumTimesPlayedStrangeBrothersGame
 	call incHlRefWithCap
 	call getThisRoomFlags
 	bit 5,(hl)
-	jr nz,_strangeBrothersFunc_15_5ddb
+	jr nz,strangeBrothersFunc_15_5ddb
 	ldbc TREASURE_FEATHER $02
-	jr _strangeBrothersFunc_15_5e00
+	jr strangeBrothersFunc_15_5e00
 	
-_strangeBrothersFunc_15_5ddb:
-	ld a,($c6e3)
+strangeBrothersFunc_15_5ddb:
+	ld a,(wNumTimesPlayedStrangeBrothersGame)
 	cp $08
-	jr z,_strangeBrothersFunc_15_5dee
+	jr z,strangeBrothersFunc_15_5dee
 	call getRandomNumber
 	cp $60
-	jr nc,_strangeBrothersFunc_15_5e13
+	jr nc,strangeBrothersFunc_15_5e13
 --
 	ldbc TREASURE_GASHA_SEED $02
-	jr _strangeBrothersFunc_15_5e00
+	jr strangeBrothersFunc_15_5e00
 	
-_strangeBrothersFunc_15_5dee:
+strangeBrothersFunc_15_5dee:
 	call seasonsFunc_15_5e20
 	jr c,--
 	ld c,$03
 	call createRingTreasure
-	call _strangeBrothersFunc_15_5e0a
+	call strangeBrothersFunc_15_5e0a
 	ld a,GLOBALFLAG_S_14
 	jp setGlobalFlag
 
-_strangeBrothersFunc_15_5e00:
+strangeBrothersFunc_15_5e00:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),b
 	inc l
 	ld (hl),c
-_strangeBrothersFunc_15_5e0a:
-	ld l,$4b
+strangeBrothersFunc_15_5e0a:
+	ld l,Interaction.yh
 	ld (hl),$48
 	inc l
 	inc l
 	ld (hl),$28
 	ret
 
-_strangeBrothersFunc_15_5e13:
+strangeBrothersFunc_15_5e13:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_S_MISCELLANEOUS_1
+	ld (hl),INTERAC_MISCELLANEOUS_1
 	inc l
 	ld (hl),$09
 	inc l
 	inc (hl)
-	jr _strangeBrothersFunc_15_5e0a
+	jr strangeBrothersFunc_15_5e0a
 
 seasonsFunc_15_5e20:
 	call getRandomNumber
@@ -1918,32 +1921,33 @@ seasonsFunc_15_5e20:
 	pop bc
 	ld b,a
 	ret
+
 @table_5e4a:
-	.db $3e $3d $1f $1a
+	.db WHIMSICAL_RING, FIST_RING, BLUE_HOLY_RING, GREEN_LUCK_RING
 
 subrosianHiding_createDetectionHelper:
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_DETECTION_HELPER
-	ld l,$d6
-	ld a,$40
+	ld (hl),PART_DETECTION_HELPER
+	ld l,Part.relatedObj1
+	ld a,Interaction.start
 	ldi (hl),a
 	ld (hl),d
 	jp objectCopyPosition
 
 
-; ==============================================================================
-; INTERACID_STEALING_FEATHER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_STEALING_FEATHER
+; ==================================================================================================
 stealingFeather_spawnSelfWithSubId0:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_STEALING_FEATHER
-	ld l,$4b
-	ld a,($d00b)
+	ld (hl),INTERAC_STEALING_FEATHER
+	ld l,Interaction.yh
+	ld a,(w1Link.yh)
 	ldi (hl),a
 	inc l
-	ld a,($d00d)
+	ld a,(w1Link.xh)
 	ld (hl),a
 	ret
 
@@ -1954,74 +1958,74 @@ stealingFeather_putLinkOnGround:
 stealingFeather_spawnStrangeBrothers:
 	ld bc,$30a8
 	ld e,$10
-	call _func_5e82
+	call func_5e82
 	ld bc,$34b8
 	ld e,$11
-_func_5e82:
+func_5e82:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_S_SUBROSIAN
+	ld (hl),INTERAC_SUBROSIAN
 	inc l
 	ld (hl),e
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),b
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),c
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_COMPANION_SCRIPTS
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_COMPANION_SCRIPTS
+; ==================================================================================================
 seasonsFunc_15_5e91:
-	ld hl,$d114
+	ld hl,w1Companion.speedZ
 	ld (hl),$c0
 	inc l
 	ld (hl),$fe
-	ld l,$3f
+	ld l,<w1Companion.var3f
 	ld (hl),$0b
-	ld l,$03
+	ld l,<w1Companion.var03
 	ld (hl),$03
-	ld l,$1c
+	ld l,<w1Companion.oamFlags
 	ld (hl),$09
 	ret
 
 seasonsFunc_15_5ea6:
-	ld hl,$d103
+	ld hl,w1Companion.var03
 	ld (hl),$04
-	ld l,$1a
+	ld l,<w1Companion.visible
 	ld (hl),$c0
-	ld l,$3f
+	ld l,<w1Companion.var3f
 	ld (hl),$19
 	ret
 
 seasonsFunc_15_5eb4:
 	ld a,$18
 	ld (wLinkAngle),a
-	ld hl,$d009
+	ld hl,w1Link.angle
 	ld (hl),a
-	ld l,$10
-	ld (hl),$32
+	ld l,<w1Link.speed
+	ld (hl),SPEED_140
 	ld a,$1d
-	ld ($d13f),a
+	ld (w1Companion.var3f),a
 	ret
 
 seasonsFunc_15_5ec7:
-	ld a,$02
-	ld ($d008),a
-	ld hl,$d108
-	ld (hl),$02
+	ld a,DIR_DOWN
+	ld (w1Link.direction),a
+	ld hl,w1Companion.direction
+	ld (hl),DIR_DOWN
 	inc l
-	ld (hl),$10
-	ld l,$03
+	ld (hl),ANGLE_DOWN
+	ld l,<w1Companion.var03
 	ld (hl),$06
 	ld a,$03
-	ld ($d13f),a
+	ld (w1Companion.var3f),a
 	ret
 
 seasonsFunc_15_5ede:
 	ld a,(wAnimalCompanion)
-	cp SPECIALOBJECTID_MOOSH
+	cp SPECIALOBJECT_MOOSH
 	ld a,$01
 	jr z,+
 	xor a
@@ -2031,9 +2035,9 @@ seasonsFunc_15_5ede:
 	ret
 
 
-; ==============================================================================
-; INTERACID_SUNKEN_CITY_BULLIES
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SUNKEN_CITY_BULLIES
+; ==================================================================================================
 sunkenCityBullies_lookToLink:
 	call objectGetAngleTowardLink
 	ld e,$49
@@ -2044,9 +2048,9 @@ sunkenCityBullies_lookToLink:
 	jp interactionSetAnimation
 
 
-; ==============================================================================
-; INTERACID_TRAMPOLINE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_TRAMPOLINE
+; ==================================================================================================
 trampoline_bounce:
 	ld a,LINK_STATE_BOUNCING_ON_TRAMPOLINE
 	ld (wLinkForceState),a
@@ -2062,23 +2066,23 @@ trampoline_bounce:
 	xor $0f
 	ldh (<hFF8C),a
 	ld a,(wActiveGroup)
-	ld hl,_trampoline_group4Warps
+	ld hl,trampoline_group4Warps
 	cp $04
 	jr z,+
-	ld hl,_trampoline_group5Warps
+	ld hl,trampoline_group5Warps
 +
 	ld a,(wActiveRoom)
 	ld e,a
 -
 	ldi a,(hl)
 	or a
-	jr z,_trampoline_couldntFindRoom
+	jr z,trampoline_couldntFindRoom
 	cp e
-	jr z,_trampoline_foundRoom
+	jr z,trampoline_foundRoom
 	inc hl
 	inc hl
 	jr -
-_trampoline_foundRoom:
+trampoline_foundRoom:
 	ldi a,(hl)
 	ld h,(hl)
 	ld l,a
@@ -2111,31 +2115,31 @@ _trampoline_foundRoom:
 	ld a,c
 	ld ($cc6b),a
 	ret
-_trampoline_couldntFindRoom:
+trampoline_couldntFindRoom:
 	ld a,$03
 	ld ($cc6b),a
 	ret
 
-_trampoline_group4Warps:
-	dbw $3e _trampoline_group4Room3e
-	dbw $3f _trampoline_group4Room3f
-	dbw $43 _trampoline_group4Room43
-	dbw $b4 _trampoline_group4Roomb4
-	dbw $c1 _trampoline_group4Roomc1
-	dbw $c2 _trampoline_group4Roomc2
-	dbw $d3 _trampoline_group4Roomd3
+trampoline_group4Warps:
+	dbw $3e trampoline_group4Room3e
+	dbw $3f trampoline_group4Room3f
+	dbw $43 trampoline_group4Room43
+	dbw $b4 trampoline_group4Roomb4
+	dbw $c1 trampoline_group4Roomc1
+	dbw $c2 trampoline_group4Roomc2
+	dbw $d3 trampoline_group4Roomd3
 	.db $00
 
-_trampoline_group5Warps:
-	dbw $37 _trampoline_group5Room37
-	dbw $38 _trampoline_group5Room38
-	dbw $3a _trampoline_group5Room3a
-	dbw $45 _trampoline_group5Room45
-	dbw $49 _trampoline_group5Room49
-	dbw $4d _trampoline_group5Room4d
+trampoline_group5Warps:
+	dbw $37 trampoline_group5Room37
+	dbw $38 trampoline_group5Room38
+	dbw $3a trampoline_group5Room3a
+	dbw $45 trampoline_group5Room45
+	dbw $49 trampoline_group5Room49
+	dbw $4d trampoline_group5Room4d
 	.db $00
 
-_trampoline_group4Room3e:
+trampoline_group4Room3e:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2148,7 +2152,7 @@ _trampoline_group4Room3e:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group4Room3f:
+trampoline_group4Room3f:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2161,7 +2165,7 @@ _trampoline_group4Room3f:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group4Room43:
+trampoline_group4Room43:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2174,7 +2178,7 @@ _trampoline_group4Room43:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group4Roomb4:
+trampoline_group4Roomb4:
 	.dw %1111111111111111
 	.dw %1001111111111111
 	.dw %1011111111111111
@@ -2187,7 +2191,7 @@ _trampoline_group4Roomb4:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group4Roomc1:
+trampoline_group4Roomc1:
 	.dw %1111111111111111
 	.dw %1111111111100011
 	.dw %1111111111100011
@@ -2200,7 +2204,7 @@ _trampoline_group4Roomc1:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group4Roomc2:
+trampoline_group4Roomc2:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2213,7 +2217,7 @@ _trampoline_group4Roomc2:
 	.dw %1001111111001111
 	.dw %1111111111111111
 
-_trampoline_group4Roomd3:
+trampoline_group4Roomd3:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2226,7 +2230,7 @@ _trampoline_group4Roomd3:
 	.dw %1111110001100111
 	.dw %1111111111111111
 
-_trampoline_group5Room37:
+trampoline_group5Room37:
 	.dw %1111111111111111
 	.dw %1111111111110011
 	.dw %1111111111110011
@@ -2239,7 +2243,7 @@ _trampoline_group5Room37:
 	.dw %1111111111110011
 	.dw %1111111111111111
 
-_trampoline_group5Room38:
+trampoline_group5Room38:
 	.dw %1111111111111111
 	.dw %1111111100011111
 	.dw %1111111111111111
@@ -2264,7 +2268,7 @@ _trampoline_group5Room38:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group5Room3a:
+trampoline_group5Room3a:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111000000011111
@@ -2289,7 +2293,7 @@ _trampoline_group5Room3a:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group5Room45:
+trampoline_group5Room45:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111011111111111
@@ -2302,7 +2306,7 @@ _trampoline_group5Room45:
 	.dw %1000000111111111
 	.dw %1111111111111111
 
-_trampoline_group5Room49:
+trampoline_group5Room49:
 	.dw %1111111111111111
 	.dw %1000111111111111
 	.dw %1111111111111111
@@ -2315,7 +2319,7 @@ _trampoline_group5Room49:
 	.dw %1111111111111111
 	.dw %1111111111111111
 
-_trampoline_group5Room4d:
+trampoline_group5Room4d:
 	.dw %1111111111111111
 	.dw %1111111111111111
 	.dw %1111111111111111
@@ -2329,9 +2333,9 @@ _trampoline_group5Room4d:
 	.dw %1111111111111111
 
 
-; ==============================================================================
-; INTERACID_MAKU_TREE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MAKU_TREE
+; ==================================================================================================
 makuTree_setMakuMapText:
 	ld hl,wMakuMapTextPresent
 	ld (hl),a
@@ -2346,11 +2350,11 @@ makuTree_showTextAndSetMapTextBasedOnStage:
 	jr +
 
 makuTree_showTextAndSetMapText:
-	call _makuTree_setMapText
+	call makuTree_setMapText
 	jr +
 
 makuTree_showText:
-	call _makuTree_add1bToLowTextIfLinked
+	call makuTree_add1bToLowTextIfLinked
 +
 	ld b,>TX_1700
 	jp showText
@@ -2360,13 +2364,13 @@ makuTree_setMapTextBasedOnStage:
 	ld hl,makuTreeTextIndices
 	rst_addAToHl
 	ld a,(hl)
-_makuTree_setMapText:
-	call _makuTree_add1bToLowTextIfLinked
+makuTree_setMapText:
+	call makuTree_add1bToLowTextIfLinked
 	ld hl,wMakuMapTextPresent
 	ld (hl),c
 	ret
 
-_makuTree_add1bToLowTextIfLinked:
+makuTree_add1bToLowTextIfLinked:
 	ld c,a
 	call checkIsLinkedGame
 	ret z
@@ -2384,7 +2388,7 @@ makuTreeTextIndices:
 makuTree_storeIntoVar37SpawnBubbleIf0:
 	cp $00
 	jr nz,+
-	call _makuTree_spawnBubble
+	call makuTree_spawnBubble
 	ld a,$00
 +
 	ld e,Interaction.var37
@@ -2394,7 +2398,7 @@ makuTree_storeIntoVar37SpawnBubbleIf0:
 makuTree_dropGnarledKey:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),TREASURE_GNARLED_KEY
 	inc l
@@ -2418,10 +2422,10 @@ makuTree_dropGnarledKey:
 	ld (ws_c6e0),a
 	ret
 
-_makuTree_spawnBubble:
+makuTree_spawnBubble:
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_MAKU_TREE_BUBBLE
+	ld (hl),ENEMY_MAKU_TREE_BUBBLE
 	inc l
 	ld e,Interaction.subid
 	ld a,(de)
@@ -2441,7 +2445,7 @@ _makuTree_spawnBubble:
 	ret
 
 makuTree_dropMakuSeed:
-	ldbc INTERACID_S_MAKU_SEED $01
+	ldbc INTERAC_MAKU_SEED $01
 	jp objectCreateInteraction
 
 makuTree_OnoxTauntingAfterMakuSeedGet:
@@ -2463,35 +2467,35 @@ seasonsFunc_15_619a:
 	or a
 	ret nz
 	call setLinkForceStateToState08
-	ld hl,$d008
-	ld (hl),$00
-	ld l,$0b
+	ld hl,w1Link.direction
+	ld (hl),DIR_UP
+	ld l,<w1Link.yh
 	ld (hl),$68
-	ld l,$0d
+	ld l,<w1Link.xh
 	ld (hl),$50
-	ld l,$0f
+	ld l,<w1Link.zh
 	ld (hl),$00
 	ret
 
 
-; ==============================================================================
-; INTERACID_JEWEL_HELPER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_JEWEL_HELPER
+; ==================================================================================================
 jewelHelper_createPuff:
-	ld bc,_table_61ca
+	ld bc,table_61ca
 	call addDoubleIndexToBc
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_PUFF
-	ld l,$4b
+	ld (hl),INTERAC_PUFF
+	ld l,Interaction.yh
 	ld a,(bc)
 	ld (hl),a
 	inc bc
-	ld l,$4d
+	ld l,Interaction.xh
 	ld a,(bc)
 	ld (hl),a
 	ret
-_table_61ca:
+table_61ca:
 	.db $26 $26
 	.db $26 $30
 	.db $26 $3a
@@ -2505,22 +2509,22 @@ _table_61ca:
 jewelHelper_createMoldorm:
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_MOLDORM
-	ld l,$8b
+	ld (hl),ENEMY_MOLDORM
+	ld l,Enemy.yh
 	ld (hl),$30
-	ld l,$8d
+	ld l,Enemy.xh
 	ld (hl),$30
 	ret
 
 
-; ==============================================================================
-; INTERACID_KING_MOBLIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_KING_MOBLIN
+; ==================================================================================================
 kingMoblin_func_61eb:
 	ld a,$01
 	call interactionSetAnimation
 	ld h,d
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$30
 	inc l
 	inc l
@@ -2528,13 +2532,13 @@ kingMoblin_func_61eb:
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_MOBLIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MOBLIN
+; ==================================================================================================
 moblin_spawnMaskedMoblin:
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_MASKED_MOBLIN
+	ld (hl),ENEMY_MASKED_MOBLIN
 	inc l
 	ld (hl),$01
 	jp objectCopyPosition
@@ -2542,15 +2546,15 @@ moblin_spawnMaskedMoblin:
 moblin_spawnSwordMaskedMoblin:
 	call getFreeEnemySlot
 	ret nz
-	ld (hl),ENEMYID_SWORD_MASKED_MOBLIN
+	ld (hl),ENEMY_SWORD_MASKED_MOBLIN
 	jp objectCopyPosition
 
 
-; ==============================================================================
-; INTERACID_S_OLD_MAN_WITH_RUPEES
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_OLD_MAN_WITH_RUPEES
+; ==================================================================================================
 oldMan_takeRupees:
-	ld hl,$c6a5
+	ld hl,wNumRupees
 	ldi a,(hl)
 	or (hl)
 	ld e,$7f
@@ -2560,7 +2564,7 @@ oldMan_takeRupees:
 	ld (de),a
 	ld e,$42
 	ld a,(de)
-	ld hl,_oldMan_rupeeValues
+	ld hl,oldMan_rupeeValues
 	rst_addAToHl
 	ld a,(hl)
 	jp removeRupeeValue
@@ -2568,13 +2572,13 @@ oldMan_takeRupees:
 oldMan_giveRupees:
 	ld e,$42
 	ld a,(de)
-	ld hl,_oldMan_rupeeValues
+	ld hl,oldMan_rupeeValues
 	rst_addAToHl
 	ld c,(hl)
 	ld a,$28
 	jp giveTreasure
 
-_oldMan_rupeeValues:
+oldMan_rupeeValues:
 	.db RUPEEVAL_300
 	.db RUPEEVAL_200
 	.db RUPEEVAL_100
@@ -2585,9 +2589,9 @@ _oldMan_rupeeValues:
 	.db RUPEEVAL_100
 
 
-; ==============================================================================
-; INTERACID_IMPA
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_IMPA
+; ==================================================================================================
 impa_checkIf4thEssenceGotten:
 	ld a,TREASURE_ESSENCE
 	call checkTreasureObtained
@@ -2601,32 +2605,32 @@ impa_checkIf4thEssenceGotten:
 	ret
 
 
-; ==============================================================================
-; INTERACID_SAMASA_DESERT_GATE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SAMASA_DESERT_GATE
+; ==================================================================================================
 samasaDesertGate_createNext2Puffs:
 	call samasaDesertGate_createNextPuff
 
 samasaDesertGate_createNextPuff:
 	ld h,d
-	ld l,$7e
+	ld l,Interaction.var3e
 	ld a,(hl)
 	inc (hl)
-	ld bc,_samasaDesertGate_puffLocations
+	ld bc,samasaDesertGate_puffLocations
 	call addDoubleIndexToBc
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_PUFF
-	ld l,$4b
+	ld (hl),INTERAC_PUFF
+	ld l,Interaction.yh
 	ld a,(bc)
 	ld (hl),a
 	inc bc
-	ld l,$4d
+	ld l,Interaction.xh
 	ld a,(bc)
 	ld (hl),a
 	ret
 
-_samasaDesertGate_puffLocations:
+samasaDesertGate_puffLocations:
 	; yh - xh of puffs
 	.db $1e $2e
 	.db $1e $42
@@ -2661,9 +2665,9 @@ _samasaDesertGate_puffLocations:
 	.db $1a $68
 
 
-; ==============================================================================
-; INTERACID_SUBROSIAN_SMITHY
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SUBROSIAN_SMITHY
+; ==================================================================================================
 subrosianSmith_takeHardOre:
 	ld a,TREASURE_HARD_ORE
 	call loseTreasure
@@ -2681,7 +2685,7 @@ subrosianSmith_giveUpgradedShield:
 	ld c,a
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_TREASURE
+	ld (hl),INTERAC_TREASURE
 	inc l
 	ld (hl),TREASURE_SHIELD
 	inc l
@@ -2693,9 +2697,9 @@ subrosianSmith_giveUpgradedShield:
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_DIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DIN
+; ==================================================================================================
 din_animateAndLookAtLink:
 	call objectGetAngleTowardLink
 	call convertAngleToDirection
@@ -2714,9 +2718,9 @@ seasonsFunc_15_62d9:
 	jp objectCreateExclamationMark
 
 
-; ==============================================================================
-; INTERACID_MOBLIN_KEEP_SCENES
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MOBLIN_KEEP_SCENES
+; ==================================================================================================
 moblinKeepScene_warpOutOfMoblinKeep:
 	ld a,GLOBALFLAG_MOBLINS_KEEP_DESTROYED
 	call setGlobalFlag
@@ -2739,10 +2743,10 @@ moblinKeepScene_putLinkOnGround:
 	jp putLinkOnGround
 
 
-; ==============================================================================
-; INTERACID_SHIP_PIRATIAN
-; INTERACID_SHIP_PIRATIAN_CAPTAIN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_SHIP_PIRATIAN
+; INTERAC_SHIP_PIRATIAN_CAPTAIN
+; ==================================================================================================
 shipPiratian_incCbb3:
 	ld hl,$cbb3
 	inc (hl)
@@ -2755,9 +2759,9 @@ shipPiratian_setRandomAnimation:
 
 shipPiratian_linkBoarding:
 	call setLinkForceStateToState08
-	ld hl,$d008
+	ld hl,w1Link.direction
 	ld (hl),DIR_RIGHT
-	ld l,$1a
+	ld l,<w1Link.visible
 	set 7,(hl)
 	ret
 
@@ -2769,9 +2773,9 @@ shipPiratian_setAnimationIfLinkNear:
 	jp interactionSetAnimation
 
 
-; ==============================================================================
-; INTERACID_LINKED_CUTSCENE
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_LINKED_CUTSCENE
+; ==================================================================================================
 seasonsFunc_15_632f:
 	call darkenRoom
 	jr ++
@@ -2796,12 +2800,12 @@ seasonsFunc_15_634c:
 ++
 	call getFreePartSlot
 	ret nz
-	ld (hl),PARTID_LIGHTNING
+	ld (hl),PART_LIGHTNING
 	inc l
 	inc (hl)
-	ld l,$cb
+	ld l,Part.yh
 	ld (hl),b
-	ld l,$cd
+	ld l,Part.xh
 	ld (hl),c
 	ret
 
@@ -2814,7 +2818,7 @@ seasonsFunc_15_6363:
 ++
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_bf
+	ld (hl),INTERAC_bf
 	inc l
 	ld a,(bc)
 	inc bc
@@ -2830,8 +2834,8 @@ seasonsTable_15_6375:
 seasonsFunc_15_6378:
 	ld a,$01
 	ld (wLoadedTreeGfxIndex),a
-	ld a,$b4
-	ld ($cc1d),a
+	ld a,INTERAC_b4
+	ld (wInteractionIDToLoadExtraGfx),a
 	ret
 
 seasonsFunc_15_6383:
@@ -2841,17 +2845,17 @@ seasonsFunc_15_6383:
 seasonsFunc_15_638c:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_b4
+	ld (hl),INTERAC_b4
 	inc l
 	ld a,(bc)
 	inc bc
 	ld (hl),a
 seasonsFunc_15_6396:
-	ld l,$4b
+	ld l,Interaction.yh
 	ld a,(bc)
 	inc bc
 	ld (hl),a
-	ld l,$4d
+	ld l,Interaction.xh
 	ld a,(bc)
 	ld (hl),a
 	ret
@@ -2865,19 +2869,19 @@ seasonsTable_15_63a3:
 seasonsFunc_15_63a6:
 	call getFreeInteractionSlot
 	ret nz
-	ld (hl),INTERACID_MAKU_CUTSCENES
+	ld (hl),INTERAC_MAKU_CUTSCENES
 	inc l
 	ld (hl),$09
-	ld l,$4b
+	ld l,Interaction.yh
 	ld (hl),$40
-	ld l,$4d
+	ld l,Interaction.xh
 	ld (hl),$50
 	ret
 
 
-; ==============================================================================
+; ==================================================================================================
 ; Generic
-; ==============================================================================
+; ==================================================================================================
 faceOppositeDirectionAsLink:
 	ld hl,w1Link.direction
 	ld a,(hl)
@@ -2890,9 +2894,9 @@ linkedScript_giveRing:
 	jp giveRingToLink
 
 playLinkCutscene2:
-	ld a,SPECIALOBJECTID_LINK_CUTSCENE
+	ld a,SPECIALOBJECT_LINK_CUTSCENE
 	call setLinkIDOverride
-	ld l,$02
+	ld l,<w1Link.subid
 	ld (hl),$08
 	ret
 
@@ -2902,26 +2906,26 @@ forceLinkState8AndSetDirection:
 	jp setLinkForceStateToState08
 
 
-; ==============================================================================
-; INTERACID_ZELDA_KIDNAPPED_ROOM
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_ZELDA_KIDNAPPED_ROOM
+; ==================================================================================================
 zeldaKidnappedRoom_loadImpa:
-	ld bc,_zeldaKidnapped_impaData
-	jr _zeldaKidnapped_spawnInteraction
+	ld bc,zeldaKidnapped_impaData
+	jr zeldaKidnapped_spawnInteraction
 	
 zeldaKidnappedRoom_loadZeldaAndMoblins:
-	ld bc,_zeldaKidnapped_kingMoblinData
-	call _zeldaKidnapped_spawnInteraction
+	ld bc,zeldaKidnapped_kingMoblinData
+	call zeldaKidnapped_spawnInteraction
 	
-	ld bc,_zeldaKidnapped_zeldaData
-	call _zeldaKidnapped_spawnInteraction
+	ld bc,zeldaKidnapped_zeldaData
+	call zeldaKidnapped_spawnInteraction
 	
-	ld bc,_zeldaKidnapped_moblinData
-	call _zeldaKidnapped_spawnInteraction
-	call _zeldaKidnapped_spawnInteraction
-	call _zeldaKidnapped_spawnInteraction
+	ld bc,zeldaKidnapped_moblinData
+	call zeldaKidnapped_spawnInteraction
+	call zeldaKidnapped_spawnInteraction
+	call zeldaKidnapped_spawnInteraction
 	
-_zeldaKidnapped_spawnInteraction:
+zeldaKidnapped_spawnInteraction:
 	call getFreeInteractionSlot
 	ret nz
 	ld a,(bc)
@@ -2933,31 +2937,31 @@ _zeldaKidnapped_spawnInteraction:
 	ld a,(bc)
 	ldi (hl),a
 	inc bc
-	ld l,$4b
+	ld l,Interaction.yh
 	ld a,(bc)
 	ld (hl),a
 	inc bc
-	ld l,$4d
+	ld l,Interaction.xh
 	ld a,(bc)
 	ld (hl),a
 	inc bc
 	ret
 
 ; id - subid - var03 - yh - xh
-_zeldaKidnapped_kingMoblinData:
-	.db INTERACID_KING_MOBLIN, $05 $00 $14 $50
+zeldaKidnapped_kingMoblinData:
+	.db INTERAC_KING_MOBLIN, $05 $00 $14 $50
 
-_zeldaKidnapped_zeldaData:
-	.db INTERACID_S_ZELDA,     $06 $00 $48 $50
+zeldaKidnapped_zeldaData:
+	.db INTERAC_ZELDA,     $06 $00 $48 $50
 
-_zeldaKidnapped_impaData:
-	.db INTERACID_ba,          $03 $00 $88 $40
+zeldaKidnapped_impaData:
+	.db INTERAC_ba,          $03 $00 $88 $40
 
-_zeldaKidnapped_moblinData:
-	.db INTERACID_S_MOBLIN,    $06 $00 $48 $38
-	.db INTERACID_S_MOBLIN,    $06 $01 $48 $68
-	.db INTERACID_S_MOBLIN,    $05 $02 $28 $30
-	.db INTERACID_S_MOBLIN,    $05 $03 $28 $70
+zeldaKidnapped_moblinData:
+	.db INTERAC_MOBLIN,    $06 $00 $48 $38
+	.db INTERAC_MOBLIN,    $06 $01 $48 $68
+	.db INTERAC_MOBLIN,    $05 $02 $28 $30
+	.db INTERAC_MOBLIN,    $05 $03 $28 $70
 
 
 linkedFunc_15_6430:
@@ -2972,9 +2976,9 @@ linkedFunc_15_6430:
 	ret
 
 
-; ==============================================================================
-; INTERACID_TROY
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_TROY
+; ==================================================================================================
 seasonsFunc_15_6443:
 	ld hl,$ccf7
 	xor a
@@ -3007,43 +3011,43 @@ seasonsFunc_15_6464:
 	call clearParts
 	pop de
 	xor a
-	ld ($cc30),a
+	ld (wNumEnemies),a
 	ld a,$01
 	ld (wLoadedTreeGfxIndex),a
 	call setLinkForceStateToState08
-	ld hl,$d008
-	ld (hl),$00
-	ld l,$0b
+	ld hl,w1Link.direction
+	ld (hl),DIR_UP
+	ld l,<w1Link.yh
 	ld (hl),$88
-	ld l,$0d
+	ld l,<w1Link.xh
 	ld (hl),$78
-	ld l,$0f
+	ld l,<w1Link.zh
 	ld (hl),$00
 	ret
 
 createSwirlAtLink:
-	ld a,($d00b)
+	ld a,(w1Link.yh)
 	ld b,a
-	ld a,($d00d)
+	ld a,(w1Link.xh)
 	ld c,a
 	ld a,$6e
 	jp createEnergySwirlGoingIn
 
 troyMinigame_createSparkle:
-	ldbc INTERACID_SPARKLE $00
+	ldbc INTERAC_SPARKLE $00
 	jp objectCreateInteraction
 
 
-; ==============================================================================
-; INTERACID_S_LINKED_GAME_GHINI
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_LINKED_GAME_GHINI
+; ==================================================================================================
 seasonsFunc_15_64a0:
 	ld h,d
-	ld l,$7c
-	ld a,($cba5)
+	ld l,Interaction.var3c
+	ld a,(wSelectedTextOption)
 	xor $01
 	cp (hl)
-	ld l,$7f
+	ld l,Interaction.var3f
 	jr nz,+
 	ld (hl),$00
 	ret
@@ -3060,20 +3064,20 @@ linkedGhini_setVisible:
 
 linkedGhini_forceLinksPositionAndState:
 	call setLinkForceStateToState08
-	ld hl,$d008
-	ld (hl),$00
-	ld l,$0b
+	ld hl,w1Link.direction
+	ld (hl),DIR_UP
+	ld l,<w1Link.yh
 	ld (hl),$5c
-	ld l,$0d
+	ld l,<w1Link.xh
 	ld (hl),$50
-	ld l,$0f
+	ld l,<w1Link.zh
 	ld (hl),$00
 	ret
 
 
-; ==============================================================================
-; INTERACID_GOLDEN_CAVE_SUBROSIAN
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_GOLDEN_CAVE_SUBROSIAN
+; ==================================================================================================
 goldenCaveSubrosian_emptyLinksItemsAndSetPosition:
 	call clearAllParentItems
 	call dropLinkHeldItem
@@ -3090,18 +3094,18 @@ goldenCaveSubrosian_faceLinkUp:
 
 seasonsFunc_15_64e9:
 	ld h,d
-	ld l,$79
+	ld l,Interaction.var39
 	ld a,(hl)
 	or a
 	ret nz
-	ld l,$78
+	ld l,Interaction.var38
 	ld a,(hl)
 	ld b,$00
 	cp $03
 	jr nc,+
 	ld b,$01
 +
-	ld l,$79
+	ld l,Interaction.var39
 	ld (hl),b
 	ret
 
@@ -3111,11 +3115,11 @@ goldenCaveSubrosian_refreshRoom:
 	ld a,$84
 	ldi (hl),a
 	ld a,$f0
-	ldi (hl),a
+	ldi (hl),a ; [wWarpDestRoom]
 	ld a,$0f
-	ldi (hl),a
+	ldi (hl),a ; [wWarpDestTransition]
 	ld a,b
-	ldi (hl),a
+	ldi (hl),a ; [wWarpDestPos]
 	ld a,$00
 	ld (wWarpTransition),a
 	ld a,$03
@@ -3124,7 +3128,7 @@ goldenCaveSubrosian_refreshRoom:
 
 seasonsFunc_15_6518:
 	ld h,d
-	ld l,$73
+	ld l,Interaction.var33
 	ld (hl),$4c
 	ld b,$25
 	call getThisRoomFlags
@@ -3134,7 +3138,7 @@ seasonsFunc_15_6518:
 	ld b,$27
 +
 	ld a,b
-	ld e,$72
+	ld e,Interaction.var32
 	ld (de),a
 	ret
 
@@ -3163,9 +3167,9 @@ seasonsFunc_15_6545:
 	ret
 
 
-; ==============================================================================
-; INTERACID_S_MASTER_DIVER
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_MASTER_DIVER
+; ==================================================================================================
 seasonsFunc_15_654e:
 	ld hl,wcce1
 	xor a
@@ -3181,13 +3185,13 @@ seasonsFunc_15_6558:
 
 masterDiver_forceLinkState:
 	call setLinkForceStateToState08
-	ld hl,$d008
+	ld hl,w1Link.direction
 	ld (hl),$00
-	ld l,$0b
+	ld l,<w1Link.yh
 	ld (hl),$60
-	ld l,$0d
+	ld l,<w1Link.xh
 	ld (hl),$50
-	ld l,$0f
+	ld l,<w1Link.zh
 	ld (hl),$00
 	ret
 
@@ -3208,7 +3212,7 @@ masterDiver_checkIfDoneIn30Seconds:
 masterDiver_retryChallenge:
 	ld hl,@warpDestVariables
 	call setWarpDestVariables
-	ld a,$8d
+	ld a,SND_TELEPORT
 	jp playSound
 @warpDestVariables:
 	m_HardcodedWarpA ROOM_SEASONS_7e8 $00 $06 $83
@@ -3216,15 +3220,15 @@ masterDiver_retryChallenge:
 masterDiver_exitChallenge:
 	ld hl,@warpDestVariables
 	call setWarpDestVariables
-	ld a,$8d
+	ld a,SND_TELEPORT
 	jp playSound
 @warpDestVariables:
 	m_HardcodedWarpA ROOM_SEASONS_3b6 $00 $45 $83
 
 
-; ==============================================================================
-; INTERACID_DEKU_SCRUB
-; ==============================================================================
+; ==================================================================================================
+; INTERAC_DEKU_SCRUB
+; ==================================================================================================
 dekuScrub_upgradeSatchel:
 	ld e,TREASURE_EMBER_SEEDS
 -
@@ -3233,10 +3237,10 @@ dekuScrub_upgradeSatchel:
 	ret nc
 	inc e
 	ld a,e
-	cp $25
+	cp TREASURE_MYSTERY_SEEDS+1
 	jr c,-
 	ld a,(wSeedSatchelLevel)
-	ld hl,_table_65cf-1
+	ld hl,table_65cf-1
 	rst_addAToHl
 	ld b,(hl)
 	ld hl,wNumEmberSeeds
@@ -3246,11 +3250,11 @@ dekuScrub_upgradeSatchel:
 	ret nz
 	inc l
 	ld a,l
-	cp $ba
+	cp <(wNumMysterySeeds+1)
 	jr c,-
 	ld h,d
-	ld l,$78
+	ld l,Interaction.var38
 	ld (hl),$01
 	ret
-_table_65cf:
+table_65cf:
 	.db $20 $50 $99

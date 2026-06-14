@@ -6,7 +6,7 @@
 ; The RAMSECTION names are referenced in the linkfiles (linkfile_ages, linkfile_seasons) in order to
 ; place them at the correct addresses. Their banks and slots are also set in the linkfile.
 
-.RAMSECTION "Wram0_c000"
+.RAMSECTION Wram0_c000
 
 wMusicReadFunction: ; $c000
 ; Function copied to RAM to read a byte from another bank.
@@ -136,7 +136,7 @@ wChannelLoopCounters: ; $c093
 
 ; TODO: Make this a ramsection. Currently it creates annoying warnings when made a ramsection due to
 ; some strange arithmetic done between slots; the warning needs to be muted in wla-dx.
-;.RAMSECTION "Wram0_c0a0"
+;.RAMSECTION Wram0_c0a0
 .ENUM $c0a0
 
 wMusicQueue: ; $c0a0
@@ -192,7 +192,7 @@ wThreadStateBuffer: ; $c2e0
 .define wGameState	 wThreadStateBuffer + $e ; $c2ee
 
 ; Writing a value here triggers a cutscene.
-; (See constants/cutsceneIndices.s)
+; (See constants/common/cutsceneIndices.s)
 .define wCutsceneIndex		wThreadStateBuffer + $f ; $c2ef
 
 ; This is the amount to add to each color component to produce the "faded" palettes.
@@ -200,7 +200,7 @@ wThreadStateBuffer: ; $c2e0
 .define wPaletteThread_fadeOffset	wThreadStateBuffer + $1f ; $c2ff
 
 
-.RAMSECTION "Wram0_c300"
+.RAMSECTION Wram0_c300
 
 wBigBuffer: ; $c300
 ; General purpose $100 byte buffer. This has several, mutually exclusive uses:
@@ -324,7 +324,7 @@ wPuddleAnimationPointer: ; $c4ba
 .ENDS
 
 
-.RAMSECTION "Wram0_c4c0"
+.RAMSECTION Wram0_c4c0
 
 wTerrainEffectsBuffer: ; $c4c0
 ; This might only be used for drawing objects' shadows, though in theory it could also be
@@ -351,11 +351,11 @@ wChannelLoopPointers: ; $c080
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Everything from this point ($c5b0) up to $caff goes into the save data ($550 bytes).
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "Wram0_c5b0"
+.RAMSECTION Wram0_c5b0
 
 wFileStart: ; $c5b0
 ; Start of file data (same address as checksum)
@@ -377,7 +377,7 @@ wDoorTileIndex: ; $c4bb
 .ENDS
 
 
-.RAMSECTION "Wram0_c5c0"
+.RAMSECTION Wram0_c5c0
 
 wUnappraisedRings: ; $c5c0
 ; List of unappraised rings. each byte always seems to have bit 6 set, indicating that the
@@ -388,14 +388,14 @@ wUnappraisedRings: ; $c5c0
 wUnappraisedRingsEnd: ; $c600
 	.db
 
-; ========================================================================================
+; ==================================================================================================
 ; C6xx block: deals largely with inventory, also global flags
-; ========================================================================================
+; ==================================================================================================
 
 wc600Block: ; $c600
 	.db
 
-; $c600-c615 treated as a block in at least one place (game link)
+; Addresses $c600-c615 are copied across the link cable when a "game link" is performed.
 
 wGameID: ; $c600
 ; The unique game ID that is used to make secrets exclusive to a particular set of files.
@@ -448,6 +448,10 @@ wObtainedRingBox: ; $c615
 ; There's also a global flag for this, so its only purpose may be keeping track of it for
 ; linked games?
 	db
+
+
+; END of $16 byte "file header" that gets copied over from file linking.
+
 
 wRingsObtained: ; $c616
 ; Bitset of rings obtained
@@ -520,10 +524,10 @@ wMapleKillCounter: ; $c641/$c63e
 	db
 
 wBoughtShopItems1: ; $c642/$c63f
-; Bit 0: Bought ring box upgrade from hidden shop.
+; Bit 0: Bought ring box (ages) or satchel (seasons) upgrade from hidden shop.
 ; Bit 1: Bought gasha seed 1 from hidden shop.
 ; Bit 2: Bought gasha seed 2 from hidden shop.
-; Bit 3: Bought ring from hidden shop.
+; Bit 3: Bought ring (ages) or treasure map (seasons) from hidden shop.
 ; Bit 5: Bought gasha seed from normal shop (linked game only).
 ; Bit 7: Set the first time you talk to the shopkeeper for the chest game.
 	db
@@ -535,7 +539,7 @@ wBoughtShopItems2: ; $c643/$c640
 ; Bit 3: Set if the flute should be sold instead of hearts (calculated on the fly)
 ; Bit 4: Set iff link has bombchus (calculated on the fly)
 ; Bit 5: Set iff link doesn't have bombchus (calculated on the fly)
-; Bit 6: Bought heart piece from hidden shop.
+; Bit 6: Bought heart piece from hidden shop (ages only).
 	db
 
 wMapleState: ; $c644/$c641
@@ -554,6 +558,7 @@ wBoughtSubrosianShopItems: ; $c645/$c642
 ; Bit 5: Bought ring 2
 ; Bit 6: Bought ring 3
 ; Bit 7: Bought ring 4
+; (Member's Card is considered "bought" if it's in your inventory)
 	db
 
 wCompanionStates: ; $c646
@@ -594,9 +599,13 @@ wMooshState: ; $c648/$c645
 ;     1: talked to Moosh after above
 ;     2: moblins lost and fleed
 ;     3: left after above, came back, and reinforcements arrived
+;     4: ?
+;     5: set if you have Moosh's flute
+;     6: set if Moosh should disappear from mt. cucco
+;     7: set after giving spring bananas to moosh
 	db
 wCompanionTutorialTextShown: ; $c649
-; Bits here are used by INTERACID_COMPANION_TUTORIAL to remember which pieces of
+; Bits here are used by INTERAC_COMPANION_TUTORIAL to remember which pieces of
 ; "tutorial" text have been seen.
 ; Bit 0: Ricky hopping over holes
 ; Bit 1: Ricky jumping over cliffs
@@ -703,8 +712,6 @@ wFluteIcon: ; $c6b5/$c6af
 
 .ifdef ROM_AGES
 
-wSlingshotLevel
-	.db
 wSwitchHookLevel: ; $c6b6
 	db
 wSelectedHarpSong: ; $c6b7
@@ -756,8 +763,6 @@ wNumPlacedSlates:	;$c6c1
 wc6c1: ; $c6c1
 	db
 
-wFeatherLevel:
-	.db 
 wTuniNutState: ; $c6c2
 ; 0: broken
 ; 1: not in inventory (doing patch's game)
@@ -774,11 +779,10 @@ wPirateBellState: ; -/$c6bd
 	db
 .endif
 
-wSatchelSelectedSeeds: ; $c6c4/$c6be
-	db
-wShooterSelectedSeeds: ; $c6c5/$c6bf
-; Can also be slingshot selected seeds for seasons
-	db
+wUnusedc6c4:
+; Used to have satchel/shooter selected seeds here
+	dsb 2
+
 wRingBoxContents: ; $c6c6/$c6c0
 	dsb 5
 wActiveRing: ; $c6cb/$c6c5
@@ -816,7 +820,7 @@ wc6e2: ; $c6e2/$c6dc
 ; Bit 4: Stage 6 done (answered a question from the child).
 ; Bit 5: Stage 8 done (depends on personality type)
 	db
-wChildStage8Response: ; $c6e3
+wChildStage8Response: ; $c6e3/$c6dd
 ; This is the response to the child's question or request at stage 8.
 	db
 wChildPersonality: ; $c6e4/$c6de
@@ -838,11 +842,17 @@ wc6e5: ; $c6e5/$c6df ; In seasons, growth of Maku tree
 
 ws_c6e0: ; TODO: figure out what this is
 	db
+
 wInsertedJewels: ; -/$c6e1
 ; Bitset of jewels inserted into tarm ruins entrance.
 	db
-ws_c6e2: ; TODO: figure out what this is
-	dsb 2
+
+wNumTimesPlayedSubrosianDance: ; -/$c6e2
+	db
+
+wNumTimesPlayedStrangeBrothersGame: ; -/$c6e3
+	db
+
 wTalkedToPirationCaptainState: ; -/$c6e4
 ; 0: Not yet talked to him after D6 beaten
 ; 1: Talked to him without a bell
@@ -888,6 +898,11 @@ wPirateShipX: ; $c6ee
 	db
 wPirateShipAngle: ; $c6ef
 	db
+
+wMagnetGlovePolarity: ; $c6f0
+; 0=S, 1=N
+	db
+
 wSwordBreakCounter: ; $c6f0
 	db
 wShieldBreakCounter: ; $c6f1
@@ -896,8 +911,9 @@ wGameProgress1:
 	db
 wGameProgress2:
 	db
+
 wc6f0: ; $c6f0
-	.dsb $7	;$b
+	dsb $1
 
 .endif ; ROM_AGES
 
@@ -921,44 +937,83 @@ wSecretType: ; $c6fe
 ; 3: 5-letter secret
 	db
 
+.ifdef ROM_SEASONS
+
+wSwitchHookLevel: ; -/$c6ea
+	db
+wBraceletLevel: ; -/$c6eb
+	db
+wSelectedHarpSong:
+	db
+
+.else
+
+wSlingshotLevel:
+	db
+wBoomerangLevel:
+	db
+wFeatherLevel:
+	db
+wObtainedSeasons:
+	db
+
+.endif
+
+wSatchelSelectedSeeds:
+	db
+wShooterSelectedSeeds:
+	db
+wSlingshotSelectedSeeds:
+	db
+
 .ENDS
 
 .define wSeedsAndHarpSongsObtained	wObtainedTreasureFlags+TREASURE_EMBER_SEEDS/8
 
 
-.RAMSECTION "Wram0_c700"
+.RAMSECTION Wram0_c700
 
-; Flags shared for above water and underwater
-wPresentRoomFlags: ; $c700
+; In Ages, flags are shared for above water and underwater. In Seasons, groups 1/2/3 are all
+; basically the same. So, groups 2 and 3 don't have their own flags.
+wGroup0RoomFlags: ; $c700
 	dsb $100
-wPastRoomFlags: ; $c800
+wGroup1RoomFlags: ; $c800
 	dsb $100
-
-wGroup4Flags: ; $c900
+wGroup4RoomFlags: ; $c900
 	dsb $100
-wGroup5Flags: ; $ca00
+wGroup5RoomFlags: ; $ca00
 	dsb $100
 
 .ENDS
 
-; Ages indoors in respective time's map. Seasons' Holodrum indoors in Subrosia's map
+
+; Per-game aliases for room flags
 .ifdef ROM_AGES
-.define wGroup2Flags wPresentRoomFlags
-.else
-.define wGroup2Flags wPastRoomFlags
+	.define wPresentRoomFlags, wGroup0RoomFlags
+	.define wPastRoomFlags,    wGroup1RoomFlags
+
+	; Steal 6 of the past room flags for vine seed positions.
+	; (Only 5 vines exist, but 6 bytes are used?)
+	.define wVinePositions, wPastRoomFlags+$f0
+
+	.define wD11RupeeRoomRupees wPastRoomFlags+$e0
+	.define wD12RupeeRoomRupees wPastRoomFlags+$e8
+
+.else ;ROM_SEASONS
+	.define wOverworldRoomFlags, wGroup0RoomFlags
+	.define wSubrosiaRoomFlags,  wGroup1RoomFlags
+
+	; Steal 16 of subrosia's room flags for rupee room rupees gotten
+	.define wD2RupeeRoomRupees, wSubrosiaRoomFlags+$f0
+	.define wD6RupeeRoomRupees, wSubrosiaRoomFlags+$f8
 .endif
 
-; Steal 6 of the past room flags for vine seed positions
-.define wVinePositions wPastRoomFlags+$f0
-; Steal 16 of subrosia's room flags for rupee room rupees gotten
-.define wD11RupeeRoomRupees wPastRoomFlags+$e0
-.define wD12RupeeRoomRupees wPastRoomFlags+$e8
 
-; ========================================================================================
+; ==================================================================================================
 ; $cb00: END of data that goes into the save file
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "Wram0_cb00"
+.RAMSECTION Wram0_cb00
 
 wOam: ; $cb00
 	dsb $a0
@@ -1059,7 +1114,8 @@ wMenuUnionStart:
 	textInputMaxCursorPos: ; $cbb8
 	; The number of characters that can be entered on a text input screen (minus one)
 		db
-	cbb9:
+	kanaMode: ; $cbb9
+	; 0: hiragana, 1: katakana (japanese version only)
 		db
 	fontXor: ; $cbba
 		db
@@ -1072,6 +1128,8 @@ wMenuUnionStart:
 	textInputCursorPos: ; $cbbe
 		db
 	linkTimer: ; $cbbf
+		db
+	cbc0: ; $cbc0
 		db
 
 .nextu wMapMenu
@@ -1439,8 +1497,8 @@ wOpenedMenuType: ; $cbcb
 ;  $04: ring appraisal
 ;  $05: warp menu
 ;  $06: secret input
-;  $07: name input
-;  $08: linking
+;  $07: child name input
+;  $08: ring linking
 ;  $09: fake reset
 ;  $0a: farore's secret list
 	db
@@ -1562,7 +1620,7 @@ wAItemDisplayMode: ; $cbf3
 .ENDS
 
 
-.RAMSECTION "Wram0_cc00"
+.RAMSECTION Wram0_cc00
 
 wcc00Block: ; $cc00
 	.db
@@ -1583,7 +1641,7 @@ wCutsceneState: ; $cc03
 
 wCutsceneTrigger: ; $cc04/$cc04
 ; Gets copied to wCutsceneIndex. So, writing a value here triggers a cutscene.
-; (See constants/cutsceneIndices.s)
+; (See constants/common/cutsceneIndices.s)
 	db
 
 .ifdef ROM_AGES
@@ -1655,7 +1713,7 @@ wcc1e: ; -/$cc1e
 ; Seasons: Starts at $cc3b. Appended to "Wram0_FloatingSection2" section.
 ;          (Addrs $cc1f-$cc3a are used but defined later, in the aforementioned section.)
 
-.RAMSECTION "Wram0_FloatingSection1"
+.RAMSECTION Wram0_FloatingSection1
 
 wcc1f: ; $cc1f/$cc3b
 ; Used in Seasons during a cutscene?
@@ -1714,7 +1772,7 @@ wActiveGroup: ; $cc2d/$cc49
 ;   6-7: Dungeons in sidescrolling mode?
 	db
 
-wRoomIsLarge: ; $cc2e
+wRoomIsLarge: ; $cc2e/$cc4a
 ; $00 for normal-size rooms, $01 for large rooms
 	db
 
@@ -1726,20 +1784,26 @@ wRoomPack: ; $cc31/$cc4d
 	db
 
 wRoomStateModifier: ; $cc32/$cc4e
-; Can have values from 00-02: incremented by 1 when underwater, and when map flag 0 is
-; set.
-; Also set to $00-$02 depending on the animal companion region.
-; Used by interaction 0 for conditional interactions.
-; In seasons, this might determine the season?
+; In Seasons: This is the current season. Value from 00-03 (see constants/seasons/seasons.s).
+;
+; In Ages, this can have values from 00-02: incremented by 1 when underwater, and when map flag 0 is
+; set. Also set to $00-$02 depending on the animal companion region.
+;
+; In either game, objects can be conditionally enabled depending on the value of this variable.
 	db
 
 wActiveCollisions: ; $cc33/$cc4f
 ; wActiveCollisions should be a value from 0-5.
-; 0: overworld, 1: indoors, 2: dungeons, 3: sidescrolling, 4: underwater, 5?
+;
+; Ages values:
+; 0: overworld, 1: indoors, 2: dungeons, 3: sidescrolling, 4: underwater, 5: unused?
+;
+; Seasons values:
+; 0: overworld, 1: subrosia, 2: maku tree, 3: indoors, 4: dungeons, 5: sidescrolling
 	db
 
 wTilesetFlags: ; $cc34/$cc50
-; See constants/areaFlags.
+; See constants/common/tilesetFlags.s.
 	db
 
 wActiveMusic: ; $cc35/$cc51
@@ -1785,7 +1849,7 @@ wDungeonMapData: ; $cc3d
 	.db
 
 wDungeonFlagsAddressH: ; $cc3d/$cc59
-; The high byte of the dungeon flags (wGroup4Flags/wGroup5Flags)
+; The high byte of the dungeon flags (wGroup4RoomFlags/wGroup5RoomFlags)
 	db
 wDungeonWallmasterDestRoom: ; $cc3e
 ; Warp destination index to use when a wallmaster grabs you
@@ -1818,14 +1882,15 @@ wWarpDestVariables: ; $cc47/$cc63
 	.db
 
 wWarpDestGroup: ; $cc47/$cc63
-; Like wActiveGroup, except among other things, bit 7 can be set. Dunno what
-; that means.
+; Group to warp to. If bit 7 is set, you warp directly to "wWarpDestGroup"/"wWarpDestRoom". If it is
+; not set, then "wWarpDestRoom" is actually interpreted as an index for "warpDestTable"; the actual
+; room value is written there shortly afterward.
 	db
 wWarpDestRoom: ; $cc48/$cc64
 ; This first holds the warp destination index, then (later) the room index.
 	db
 wWarpTransition: ; $cc49/$cc65
-; Bits 0-3 are the half-byte given in WarpDest or StandardWarp macros. See "constants/transitions.s".
+; Bits 0-3 are the half-byte given in WarpDest or StandardWarp macros. See "constants/common/transitions.s".
 ; Bit 6 determines link's direction for screen-edge warps (0 for up, 1 for down)?
 ; Bit 7 set if this is the "destination" part of the warp?
 	db
@@ -1917,7 +1982,7 @@ wLinkGrabState: ; $cc5a/$cc75
 
 wLinkGrabState2: ; $cc5b/$cc76
 ; bit 7: set when pulling a lever?
-; bits 4-6: weight of object (0-4 or 0-5?). (See _itemWeights.)
+; bits 4-6: weight of object (0-4 or 0-5?). (See itemWeights.)
 ; bits 0-3: should equal 0, 4, or 8; determines where the grabbed object is placed
 ;           relative to Link. (See "updateGrabbedObjectPosition".)
 	db
@@ -2115,7 +2180,7 @@ wEnteredWarpPosition: ; $cc8e/$cca8
 wNumTorchesLit: ; $cc8f/$cca9
 	db
 
-wcc90: ; $cc90/$ccaa
+wDisableWarpTiles: ; $cc90/$ccaa
 ; Disables warp tiles if nonzero?
 	db
 
@@ -2205,7 +2270,7 @@ wActiveTriggers: ; $cca0/$ccba
 	db
 
 ; $cca1-$cca2: Changes behaviour of chests in shops? (For the chest game probably)
-wcca1: ; $cca1/$ccbb?
+wcca1: ; $cca1/$ccbb
 	db
 wcca2: ; $cca2/$ccbc
 ; Position of a chest?
@@ -2225,18 +2290,21 @@ wBlockPushAngle: ; $cca6/$ccc0
 	db
 
 .ifdef ROM_SEASONS
-wPirateSkullRandomNumber: ; $ccc1
-; Set to a random number from $01-$04 from var38 of INTERACID_PIRATE_SKULL
-; Bit 7 set if INTERACID_QUICKSAND subid matches
+
+wPirateSkullRandomNumber: ; -/$ccc1
+; Set to a random number from $01-$04 from var38 of INTERAC_PIRATE_SKULL.
+; Bit 7 set if INTERAC_QUICKSAND subid matches.
 ; Used to determine whether the right quicksand pit has been found (for the bell)
 	db
 
 .else ; ROM_AGES
+
 wcca7: ; $cca7
+; Probably unused
 	db
 .endif
 
-wcca8: ; $cca8/$ccc2
+wUpgradesObtained: ; $cca8/$ccc2
 	db
 
 .ifdef ROM_SEASONS ; TODO: related to springbloom flower state
@@ -2248,7 +2316,7 @@ wTwinrovaTileReplacementMode: ; $cca9/$ccc4
 ; 0: Do nothing
 ; 1: Fill room with lava
 ; 2: Fill room with ice
-; 3: ?
+; 3: Return to normal empty layout
 ; 4+: Use "seizure tiles" (when controls are reversed in ganon fight)
 	db
 wccaa: ; $ccaa/$ccc5
@@ -2282,12 +2350,12 @@ wccb0: ; $ccb0/$ccc7
 	db
 
 wccb1: ; $ccb1
-; Disables PARTID_BUTTON when nonzero?
+; Disables PART_BUTTON when nonzero?
 	db
 
 .ifdef ROM_AGES
 wDisableWarps: ; $ccb2
-; Used by INTERACID_BLACK_TOWER_DOOR_HANDLER to stop the warp from sending you anywhere.
+; Used by INTERAC_BLACK_TOWER_DOOR_HANDLER to stop the warp from sending you anywhere.
 	db
 .endif
 
@@ -2334,7 +2402,7 @@ wcceb: ; $cceb
 
 wShootingGalleryccd5: ; $ccd5
 ; Shooting gallery: ?
-; (Also used by target carts with INTERACID_TROY?)
+; (Also used by target carts with INTERAC_TROY?)
 	.db
 wShopHaveEnoughRupees: ; $ccd5/$ccec
 ; Shop: Set to 0 if you have enough money for an item, 1 otherwise
@@ -2422,7 +2490,14 @@ wcceb:	; $cce9
 	db
 .endif
 
-wcce9: ; $cce9
+.ifdef ROM_SEASONS
+wSwitchHookState: ; -/$ccff
+; Used when swapping with the switch hook.
+	db
+.endif
+
+
+wcce9: ; $cce9/$cd00
 ; This might be a marker for the end of data in the $cc00 block?
 	.db
 
@@ -2433,7 +2508,7 @@ wcce9: ; $cce9
 .define wScreenVariables.size $30
 
 
-.RAMSECTION "Wram0_cd00"
+.RAMSECTION Wram0_cd00
 
 wScreenVariables: ; $cd00
 	.db
@@ -2453,7 +2528,7 @@ wcd01: ; $cd01
 	db
 
 wScreenTransitionDirection: ; $cd02
-; See constants/directions.s for what the directions are.
+; See constants/common/directions.s for what the directions are.
 ; Set bit 7 to force a transition to occur.
 	db
 
@@ -2564,7 +2639,10 @@ wTilesetPalette: ; $cd22
 	db
 wTilesetLayout: ; $cd23
 	db
-wTilesetLayoutGroup: ; $cd24
+wLayoutGroupOverride: ; $cd24
+; HACK-BASE: Replaced wTilesetLayoutGroup variable with wLayoutGroupOverride.
+; Instead of tilesets specifying the layout group, this is always set to value $ff unless some code
+; decides to override it. If left at $ff, the layout group is determined based on wActiveGroup.
 	db
 wTilesetAnimation: ; $cd25
 ; Note: intro cutscene hardcoded to use animation $10
@@ -2600,7 +2678,7 @@ wLastDungeonIndex: ; $cd2e
 .ENDS
 
 
-.RAMSECTION "Wram0_cd30"
+.RAMSECTION Wram0_cd30
 
 wAnimationState: ; $cd30
 ; Bits 0-3 determine whether to use animation data 1-4
@@ -2631,7 +2709,7 @@ wAnimationPointer4: ; $cd3b
 .ENDS
 
 
-.RAMSECTION "Wram0_cd40"
+.RAMSECTION Wram0_cd40
 
 wTmpVramBuffer: ; $cd40
 ; Used temporarily for vram transfers, dma, etc.
@@ -2654,7 +2732,7 @@ wStaticObjects: ; $cd80
 ; Ages: Starts at $cdc0. Appended to "Wram0_cd40" section just above
 ; Seasons: Starts at $cc1f. Appended to "Wram0_cc00" section from a bit earlier.
 
-.RAMSECTION "Wram0_FloatingSection2"
+.RAMSECTION Wram0_FloatingSection2
 
 wEnemiesKilledList: ; $cdc0/$cc1f
 ; This remembers the enemies that have been killed in the last 8 visited rooms.
@@ -2683,7 +2761,7 @@ wSwitchState: ; $cdd3/$cc32
 	db
 
 wSpinnerState: ; $cdd4/$cc33
-; Used by INTERACID_SPINNER.
+; Used by INTERAC_SPINNER.
 ; Each bit holds the state of one spinner (0 for blue, 1 for red).
 ; Persists between rooms within a dungeon.
 	db
@@ -2704,7 +2782,8 @@ wcdd9: ; $cdd9
 	db
 
 .ifdef ROM_SEASONS
-ws_cc39: ; TODO: figure out what this is
+ws_cc39:
+; Maku tree stage (largely depends on # of essences)
 	db
 .endif
 
@@ -2769,7 +2848,7 @@ wLostWoodsTransitionCounter3: ; $cde5
 .ENDS
 
 
-.RAMSECTION "Wram0_ce00"
+.RAMSECTION Wram0_ce00
 
 wRoomCollisions: ; $ce00
 ; $10 bytes larger than it needs to be?
@@ -2791,7 +2870,7 @@ wEnemyPlacement: instanceof EnemyPlacementStruct
 .ENDS
 
 
-.RAMSECTION "Wram0_cee0"
+.RAMSECTION Wram0_cee0
 
 .union
 	wShootingGalleryTileLayoutsToShow: ; $cee0
@@ -2816,7 +2895,7 @@ wEnemyPlacement: instanceof EnemyPlacementStruct
 
 
 
-.RAMSECTION "Wram0_cf00"
+.RAMSECTION Wram0_cf00
 
 wRoomLayout: ; $cf00
 ; $10 bytes larger than it needs to be; the row below the last row is reserved and filled
@@ -2832,7 +2911,7 @@ wRoomLayoutEnd: ; $cfc0
 ; $cfc0:
 ;  * Bit 0 is set whenever a keyhole in the overworld is opened. This triggers the
 ;    corresponding cutscene (which appears to be dependent on the room you're in).
-;  * Set to nonzero by PARTID_SEED_ON_TREE to indicate that it's shown the "you can't
+;  * Set to nonzero by PART_SEED_ON_TREE to indicate that it's shown the "you can't
 ;    pick up these seeds" text
 ; $cfc1:
 ;  * Used by door controllers
@@ -2973,7 +3052,7 @@ wRoomLayoutEnd: ; $cfc0
 	targetConfiguration: ; $cfd4
 		db
 	beganGameWithTroy:
-	; Used by INTERACID_TROY (minigame for bombchus).
+	; Used by INTERAC_TROY (minigame for bombchus).
 		db
 	prizeIndex: ; $cfd6
 		db
@@ -3082,10 +3161,10 @@ wRoomLayoutEnd: ; $cfc0
 	cfd2: ; $cfd2
 		db
 	cfd3: ; $cfd3
-	; Link's position is stored here by INTERACID_HARDHAT_WORKER
+	; Link's position is stored here by INTERAC_HARDHAT_WORKER
 		db
 	cfd4: ; $cfd4
-	; Link's direction is stored here by INTERACID_HARDHAT_WORKER
+	; Link's direction is stored here by INTERAC_HARDHAT_WORKER
 		db
 	cfd5: ; $cfd5
 	; Used as a position value? Maybe a focus position for npcs in certain cutscenes?
@@ -3199,7 +3278,7 @@ wRoomLayoutEnd: ; $cfc0
 .ENDS
 
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 1: objects
 ; Each object occupies $40 bytes in this bank. 4 main types:
 ; ITEMs		($dx00-$dx3f)
@@ -3209,7 +3288,7 @@ wRoomLayoutEnd: ; $cfc0
 ;
 ; There can also be special objects in the ITEM slots from $d000-$d53f,
 ; including link and his companions.
-; ========================================================================================
+; ==================================================================================================
 
 .ENUM $d000 export
 	w1Link:			instanceof SpecialObjectStruct
@@ -3252,7 +3331,7 @@ wRoomLayoutEnd: ; $cfc0
 
 .ENUM $dc00 export
 	; The item that Link is holding / throwing. Even if Link is holding some other
-	; object like an enemy or Dimitri, this object still exists as ITEMID_BRACELET,
+	; object like an enemy or Dimitri, this object still exists as ITEM_BRACELET,
 	; or at least it does while the object is being thrown. This invisible object will
 	; copy its position to the actual object being thrown each frame, and update that
 	; object's state accordingly (ie. ENEMYSTATE_GRABBED).
@@ -3265,7 +3344,7 @@ wRoomLayoutEnd: ; $cfc0
 
 .ENUM $de00 export
 	; Doesn't have collisions? (comes after LAST_STANDARD_ITEM_INDEX)
-	; Used to store positions for switch hook (ITEMID_SWITCH_HOOK_HELPER).
+	; Used to store positions for switch hook (ITEM_SWITCH_HOOK_HELPER).
 	w1ReservedItemE:	instanceof ItemStruct
 .ENDE
 
@@ -3310,32 +3389,42 @@ wRoomLayoutEnd: ; $cfc0
 ; Reserved interaction slots
 .define PIRATE_SHIP_INTERACTION_INDEX	$d1
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 2: used for palettes & other things
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "RAM 2" BANK 2 SLOT 3
+.RAMSECTION RAM_2 BANK 2 SLOT 3
 
-; $d000 used as part of the routine for redrawing the collapsed d2 cave in the present
-w2TmpGfxBuffer:			dsb $0800
+; $d000 used as part of the routine for redrawing the collapsed d2 cave in the present, and some
+; other things. Sometimes used for gfx data, sometimes for mapping/attribute data.
+w2TmpGfxBuffer:			dsb $0400
+w2TmpAttrBuffer:		dsb $0400
+
+
+; Memory layout of this part differs a fair bit between games, as Seasons uses a chunk of this
+; memory for the pirate ship escape cutscene. With that not being present in Ages,
+; "wxSeedTreeRefillData" was moved to the space it was occupying in Ages.
+.ifdef ROM_SEASONS
+
+	.union
+	w2WaveScrollValues:	dsb $80		; $d800/$d800
+	.nextu
+	w2PirateShipBgTiles:	dsb $180	; -/$d800
+	.endu
+
+.else ;ROM_AGES
 
 ; This is a list of values for scrollX or scrollY registers to make the screen turn all
-; wavy (ie. in underwater areas).
+; wavy (ie. in underwater areas). Exists in both games (see above for seasons definition).
 w2WaveScrollValues:		dsb $80	; $d800/$d800
 
 w2Filler7:			dsb $80
-
-.ifdef ROM_SEASONS
-
-w2Filler9:			dsb $80
-
-.else; ROM_AGES
 
 ; Tree refill data also used for child and an event in room $2f7.
 ; Located elsewhere in seasons.
 wxSeedTreeRefillData:		dsb NUM_SEED_TREES*8 ; 2:d900/3:dfc0
 
-.endif
+.endif ;ROM_AGES
 
 ; Bitset of positions where objects (mostly npcs) are residing. When one of these bits is
 ; set, this will prevent Link from time-warping onto the corresponding tile.
@@ -3380,20 +3469,18 @@ w2FadingSprPalettes:	dsb $40		; $dfc0
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 3: tileset data
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "RAM 3" BANK 3 SLOT 3
+.RAMSECTION RAM_3 BANK 3 SLOT 3
 
 ; 8 bytes per tile: 4 for tile indices, 4 for tile attributes
 w3TileMappingData:	dsb $800	; $d000
 
 ; Room tiles in a format which can be written straight to vram. Each row is $20 bytes.
 ; TODO: Contrast with w4TileMap
-w3VramTiles:		dsb $100	; $d800
-
-w3Filler1:		dsb $200
+w3VramTiles:		dsb $300	; $d800
 
 ; Each byte is the collision mode for that tile.
 ; The lower 4 bits seem to indicate which quarters are solid.
@@ -3408,6 +3495,7 @@ w3VramAttributes:	.db		; $dc00
 w3TileMappingIndices:	dsb $200	; $dc00
 
 
+; Most likely unused
 w3Filler2:		dsb $100
 
 w3RoomLayoutBuffer:	dsb $c0	; $df00
@@ -3419,11 +3507,13 @@ wxSeedTreeRefillData:		dsb NUM_SEED_TREES*8 ; 2:d900/3:dfc0
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 4
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "Ram 4" BANK 4 SLOT 3
+.define SERIAL_WRAM_BANK 4
+
+.RAMSECTION Ram_4 BANK 4 SLOT 3
 
 .union
 	w4RandomBuffer:		dsb $100	; $d000-$d0ff
@@ -3445,195 +3535,334 @@ w4ItemIconGfx:			dsb $80		; $d680
 
 w4Filler5:			dsb $80
 
+; File info for file select screen, either from this cartridge or copied over from another one
 w4FileDisplayVariables:		INSTANCEOF FileDisplayStruct 3	; $d780
 
 w4Filler7:			dsb 8
 
-w4NameBuffer:			dsb 6		; $d7a0
-w4Filler6:			dsb $1a
+; Used as a buffer for up to 3 names? (3 * 6 bytes)
+w4NameBuffer:			dsb $20		; $d7a0
+
 w4SecretBuffer:			dsb $20		; $d7c0
 w4Filler8:			dsb $20
 
 w4SavedVramTiles:		dsb $180	; $d800
 
-w4Filler1:			dsb $0d		; $d980
-w4RingFortuneStuff:		dsb $16*3	; $d98d: $16 bytes per file?
-w4Filler2:			dsb $231
+w4d980:				db		; $d980
+
+; Index of next byte to send in the packet being sent
+w4PacketByteIndex:		db		; $d981
+
+w4PacketChecksum:		db		; $d982
+
+w4d983:				db		; $d983
+
+w4d984:				db		; $d984
+
+w4DisableLinkTimeout:		db		; $d985
+
+; When this reaches 5, the game gives up trying to communicate.
+w4LinkRetryCounter:		db		; $d986
+
+; Number of bytes left to be sent/received in the packet
+w4NumPacketBytes:		db		; $d987
+
+; Can be $00 (not sending), $01 (sending), or $80?
+w4WaitingForNextByte:		db		; $d988
+w4FileLinkTimer:		dw		; $d989
+w4d98b:				db		; $d98b
+w4d98c:				db		; $d98c
+
+; TODO: Rename this? It seems to be a temporary buffer. Sometimes it consists of the first $16 bytes
+; of a file ($c600-$c615) copied across the link cable.
+w4RingFortuneStuff:		dsb $16*3	; $d98d
+
+w4Filler1:			dsb $16		; $d9cf
+
+; First byte should be the length of the packet (including itself).
+w4PacketBuffer:			dsb $21b	; $d9e5
+
 w4GfxBuf1:			dsb $200	; $dc00
 w4GfxBuf2:			dsb $200	; $de00
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 5
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "Ram 5" BANK 5 SLOT 3
+.RAMSECTION Ram_5 BANK 5 SLOT 3
 
-w5NameEntryCharacterGfx:	dsb $100	; $d000
+; Also used for seasons intro scene
+w5NameEntryCharacterGfx:	dsb $800 ; $d000
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 6
-; ========================================================================================
+; ==================================================================================================
 
-.RAMSECTION "Ram 6" BANK 6 SLOT 3
+.RAMSECTION Ram_6 BANK 6 SLOT 3
 
-w6Filler1:			dsb $600
+; This appears to be used for another purpose in ages, maybe it should be given another name
+w6DragonOnoxTileMap1:           dsb $3c0 ; $d000
 
-w6SpecialObjectGfxBuffer:	dsb $100	; $d600
+w6d3c0:                         dsb $40  ; $d3c0
+
+w6DragonOnoxTileAttr1:          dsb $200 ; $d400
+
+w6SpecialObjectGfxBuffer:       dsb $100 ; $d600
+
+w6Filler3:                      dsb $c0
+
+w6d7c0:                         dsb $40 ; $d7c0
+
+w6DragonOnoxTileMap2:           dsb $300 ; $d800
+w6DragonOnoxTileAttr2:          dsb $100 ; $db00
+
+w6TileBuffer:                   dsb $200 ; $dc00
+w6AttributeBuffer:              dsb $200 ; $de00
 
 .ENDS
 
-; ========================================================================================
+; ==================================================================================================
 ; Bank 7: used for text
-; ========================================================================================
+; ==================================================================================================
 
 .define TEXT_BANK $07
 
+.RAMSECTION RAM_7 BANK 7 SLOT 3
+
+w7TextboxMap: ; $d000
 ; Mapping for textbox. Goes with w7TextboxAttributes.
-; Each row is $20 bytes, and there are 5 rows. So this should take $a0 bytes.
-.define w7TextboxMap	$d000
+; Each row is $20 bytes, and there are 5 rows. So this should take $a0 bytes, but it seems to have
+; room for an extra row.
+	dsb $c0
 
-.define w7TextDisplayState $d0c0
+w7TextDisplayState: ; $d0c0
+	db
 
+w7d0c1: ; $d0c1
 ; When bit 0 is set, text skips to the end of a line (A or B was pressed)
+; When bit 2 is set, an "\opt()" command has been encountered.
 ; When bit 3 is set, an option prompt has already been shown?
 ; When bit 4 is set, an extra text index will be shown when this text is done.
-; See _getExtraTextIndex.
+; See getExtraTextIndex.
 ; When bit 5 is set, it shows the heart icon like when you get a piece of heart.
-.define w7d0c1		$d0c1
+	db
 
-; This is $00 when the text is done, $01 when a newline is encountered, and $ff
-; for anything else?
-.define w7TextStatus		$d0c2
+w7TextStatus: ; $d0c2
+; This is $00 when the text is done, $01 when a newline is encountered, and $ff for anything else?
+	db
 
-; w7SoundEffect is a one-off sound effect, while w7TextSound is the sound that
-; each character makes as it's displayed.
-.define w7SoundEffect	$d0c3
-.define w7TextSound	$d0c4
+w7SoundEffect: ; $d0c3
+; A sound effect that's played once
+	db
 
+w7TextSound: ; $d0c4
+; The sound that each character makes as it's displayed
+	db
+
+w7CharacterDisplayLength: ; $d0c6
 ; How many frames each character is displayed for before the next appears
-.define w7CharacterDisplayLength	$d0c5
+	db
+
+w7CharacterDisplayTimer: ; $d0c6
 ; The timer until the next character will be displayed
-.define w7CharacterDisplayTimer		$d0c6
+	db
 
-; The attribute byte for subsequent characters. This is the byte that is
-; written into vram bank 1, which determines which palette to use and stuff
-; like that.
-.define w7TextAttribute	$d0c7
+w7TextAttribute: ; $d0c7
+; The attribute byte for subsequent characters. This is the byte that is written into vram bank 1,
+; which determines which palette to use and stuff like that.
+	db
 
+w7TextArrowState: ; $d0c8
 ; Whether or not the little red arrow in the bottom-right is being displayed.
 ; This can be eiher $02 (not displayed) or $03 (displayed).
 ; This changes every 16 frames.
-.define w7TextArrowState $d0c8
+	db
 
-; These 3 bytes specify where the tilemap for the textbox is located. It points
-; to the start of the row where it should be displayed.
-.define w7TextboxPosBank $d0c9
-.define w7TextboxPosL	$d0ca
-.define w7TextboxPosH	$d0cb
-; d0cc: low byte of where to save the tiles under the textbox?
-.define w7d0cc		$d0cc
+w7TextboxPosBank: ; $d0c9
+; w7TextboxPosBank/w7TextboxPos specify where the tilemap for the textbox is located. It points to
+; the start of the row where it should be displayed.
+	db
+w7TextboxPos: ; $d0ca
+	dw
 
+w7d0cc: ; $d0cc
+; Low byte of where to save the tiles under the textbox?
+	db
+
+w7d0cd: ; $d0cd
+	db
+
+w7d0ce: ; $d0ce
+	db
+
+w7d0cf: ; $d0cf
+	db
+
+w7NextTextColumnToDisplay: ; $d0d0
 ; The next column of text to be shown
-.define w7NextTextColumnToDisplay	$d0d0
+	db
 
+w7d0d1: ; $d0d1
+	db
+
+w7TextGfxSource: ; $d0d2
 ; This variable is used by the retrieveTextCharacter function.
 ; 0: read a normal character
 ; 1: read a kanji
 ; 2: read a trade item symbol
-.define w7TextGfxSource	$d0d2
+	db
 
+w7d0d3: ; $d0d3
 ; Textbox position?
-.define w7d0d3		$d0d3
+	db
 
-.define w7ActiveBank	$d0d4
-; d0d5/6: address of text being read?
-.define w7TextAddressL	$d0d5
-.define w7TextAddressH	$d0d6
+w7ActiveBank: ; $d0d4
+	db
+w7TextAddress: ; $d0d5
+; Address of text being read
+	dw
 
+w7TextSlowdownTimer: ; $d0d7
 ; d0d7: counter for how long to slow down the text? (Used for getting essences)
-.define w7TextSlowdownTimer $d0d7
+	db
 
+w7TextboxVramPos: ; $d0d8
 ; Similar to w7TextboxPos, but this points to the vram where it ends up.
-.define w7TextboxVramPosL $d0d8
-.define w7TextboxVramPosH $d0d9
+	dw
 
-.define w7InvTextScrollTimer	$d0de
+w7d0da: ; $d0da
+	dsb 4
+
+w7InvTextScrollTimer: ; $d0de
+	db
+w7InvTextSpaceCounter: ; $d0df
 ; Number of spaces to be inserted before looping back to the start of the text.
-.define w7InvTextSpaceCounter	$d0df
+	db
 
-; This is 8 bytes. Each byte correspond to a position for an available option
-; in the text prompt.
-; The bytes can be written straight to w7TextboxMap as the indices for the
-; tiles that would normally be in those positions. They can also be converted
-; into an INDEX for w7TextboxMap with the _getAddressInTextboxMap function.
-.define w7TextboxOptionPositions $d0e0
+w7TextboxOptionPositions: ; $d0e0
+; This is 8 bytes. Each byte correspond to a position for an available option in the text prompt.
+; The bytes can be written straight to w7TextboxMap as the indices for the tiles that would normally
+; be in those positions. They can also be converted into an INDEX for w7TextboxMap with the
+; getAddressInTextboxMap function.
+	dsb 8
 
+w7SelectedTextOption: ; $d0e8
 ; Note that this is distinct from wSelectedTextOption, but they behave very
 ; similarly. This is just used internally in text routines.
-.define w7SelectedTextOption	$d0e8
+	db
+
+w7SelectedTextPosition: ; $d0e9
 ; The corresponding value from w7TextboxOptionPositions.
-.define w7SelectedTextPosition		$d0e9
+	db
 
-.define w7d0ea		$d0ea
+w7d0ea: ; $d0ea
+	db
 
+w7TextboxTimer: ; $d0eb
 ; Number of frames until the textbox closes itself.
-.define w7TextboxTimer		$d0eb
-.define w7TextIndexL_backup			$d0ec
+	db
 
-; How many spaces to put after the name of the item.
+w7TextIndexL_backup: ; $d0ec
+	db
+
+w7InvTextSpacesAfterName: ; $d0ed
+; How many spaces to put after the name of the item (for the inventory menu).
 ; This is calculated so that the item name appears in the middle.
-.define w7InvTextSpacesAfterName	$d0ed
+	db
 
+w7TextSoundCooldownCounter: ; $d0ee
 ; Frame counter until the next time a character should play its sound effect.
 ; While nonzero, the text scrolling sound doesn't play (although explicit sound
 ; effects do play).
-.define w7TextSoundCooldownCounter	$d0ee
+	db
 
-.define w7d0ef		$d0ef
+w7d0ef: ; $d0ef
+	db
 
-.define w7TextTableAddr $d0f0
-.define w7TextTableBank $d0f2
+w7TextTableAddr: ; $d0f0
+	dw
+w7TextTableBank: ; $d0f2
+	db
 
-; How big is this?
-.define w7TextboxAttributes	$d100
+w7d0f3: ; $d0f3
+	dsb $d
 
-; $20 bytes total, 4 bytes per entry. When looking up a word in a dictionary,
-; this remembers the position it left off at.
-; b0: bank of text where it left off
-; b1/2: address of text where it left off
-; b3: high byte of text index
-.define w7TextStack	$d1c0
+w7TextboxAttributes: ; $d100
+; This goes with w7TextboxMap, so it should be the same size.
+	dsb $c0
 
-; Holds a line of text graphics. $200 bytes.
-.define w7TextGfxBuffer $d200
+w7TextStack: ; $d1c0
+; $20 bytes total, 4 bytes per entry. When looking up a word in a dictionary, this remembers the
+; position it left off at.
+; Entry format:
+;   b0: bank of text where it left off
+;   b1/2: address of text where it left off
+;   b3: high byte of text index
+	dsb $20
 
+w7d1e0: ; $d1e0
+	dsb $20
+
+w7TextGfxBuffer:
+; Holds a line of text graphics.
+	dsb $200
+
+w7LineTextBuffer: ; $d400
 ; The text for the line
-.define w7LineTextBuffer	$d400
+	dsb $10
+
+w7LineAttributesBuffer: ; $d410
 ; The attributes for the line
-.define w7LineAttributesBuffer $d410
+	dsb $10
+
+w7LineDelaysBuffer: ; $d420
 ; The number of frames each character is displayed before the next appears.
-.define w7LineDelaysBuffer	$d420
+	dsb $10
+
+w7LineSoundsBuffer: ; $d430
 ; The sound each character will play as it's displayed.
-.define w7LineSoundsBuffer	$d430
+	dsb $10
+
+w7LineSoundEffectsBuffer: ; $d440
 ; Sound effects created by the "sfx" command (ie. goron noise)
-.define w7LineSoundEffectsBuffer	$d440
-; Bit 0 of a byte in this buffer is set if the text can be advanced with the
-; A/B buttons.
-.define w7LineAdvanceableBuffer		$d450
+	dsb $10
 
-.define w7SecretText1		$d460
-.define w7SecretText2		$d46c
+w7LineAdvanceableBuffer: ; $d450
+; Bit 0 of a byte in this buffer is set if the text can be advanced with the A/B buttons.
+	dsb $10
 
+w7TextVariablesEnd: ; $d460
+; Everything from the start of the bank ($d000) up to here is cleared when "initTextbox" is called.
+	.db
+
+
+w7SecretText1: ; $d460
+	dsb $c
+
+w7SecretText2: ; $d46c
+	dsb $c
+
+w7SecretGenerationBuffer: ; $d478
 ; This is a 20-byte buffer containing the symbols generated so far (byte form, not ascii).
 ; Each symbol is 6 bits long (value from $00-$3f).
-; When encoding data into a secret, bits are inserted one at a time to the end of this
-; buffer, causing all existing data to be shifted forward by one bit.
-.define w7SecretGenerationBuffer	$d478
+; When encoding data into a secret, bits are inserted one at a time to the end of this buffer,
+; causing all existing data to be shifted forward by one bit.
+	dsb 20
 
-; $d5e0: Used at some point for unknown purpose
+.ENDS
 
-.define w7d800			$d800 ; $300 bytes? Secret text gets written here?
+
+.define w7d5e0 $d5e0 ; ?
+
+
+.RAMSECTION RAM_7_Extra BANK 7 SLOT 3
+
+w7d800:
+; Used for a lot of various graphical storage things?
+	dsb $800
+
+.ENDS

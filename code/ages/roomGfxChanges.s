@@ -47,9 +47,9 @@ func_02_7a77:
 	ret z
 	ld a,(wToggleBlocksState)
 	or a
-	ld a,UNCMP_GFXH_3d
+	ld a,UNCMP_GFXH_AGES_3d
 	jr z,+
-	ld a,UNCMP_GFXH_3f
+	ld a,UNCMP_GFXH_AGES_3f
 +
 	jp loadUncompressedGfxHeader
 
@@ -67,17 +67,17 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 	call findRoomSpecificData
 	ret nc
 	rst_jumpTable
-	.dw _roomTileChangesAfterLoad00
-	.dw _roomTileChangesAfterLoad01
-	.dw _roomTileChangesAfterLoad02
-	.dw _roomTileChangesAfterLoad03
-	.dw _roomTileChangesAfterLoad04
-	.dw _roomTileChangesAfterLoad05
-	.dw _roomTileChangesAfterLoad06
-	.dw _roomTileChangesAfterLoad07
-	.dw _roomTileChangesAfterLoad08
-	.dw _roomTileChangesAfterLoad09
-	.dw _roomTileChangesAfterLoad0a
+	.dw roomTileChangesAfterLoad00
+	.dw roomTileChangesAfterLoad01
+	.dw roomTileChangesAfterLoad02
+	.dw roomTileChangesAfterLoad03
+	.dw roomTileChangesAfterLoad04
+	.dw roomTileChangesAfterLoad05
+	.dw roomTileChangesAfterLoad06
+	.dw roomTileChangesAfterLoad07
+	.dw roomTileChangesAfterLoad08
+	.dw roomTileChangesAfterLoad09
+	.dw roomTileChangesAfterLoad0a
 
 ;;
 ; Unused stub
@@ -175,7 +175,7 @@ applyRoomSpecificTileChangesAfterGfxLoad:
 ; no visual effect. The only purpose is to make it so that when Link stands on these
 ; tiles, he gets the "pond" animation at his feet.
 ;
-_roomTileChangesAfterLoad0a:
+roomTileChangesAfterLoad0a:
 	ld hl,wRoomLayout+$79
 --
 	ld a,(hl)
@@ -193,7 +193,7 @@ _roomTileChangesAfterLoad0a:
 ; mermaid statue tiles with the base for the Link statue. (The statue itself is an object,
 ; so it's not drawn here.)
 ;
-_roomTileChangesAfterLoad09:
+roomTileChangesAfterLoad09:
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
 	ret z
@@ -213,13 +213,13 @@ _roomTileChangesAfterLoad09:
 ;
 ; A portal gets put on top of the staircase, so you don't see it.
 ;
-_roomTileChangesAfterLoad06:
-	call _roomTileChangesAfterLoad0a
+roomTileChangesAfterLoad06:
+	call roomTileChangesAfterLoad0a
 	call checkIsLinkedGame
 	ret z
 
 	; Check a flag in the room Veran is fought in
-	ld a,(wGroup4Flags+$fc)
+	ld a,(wGroup4RoomFlags+$fc)
 	and $80
 	ret z
 
@@ -231,7 +231,7 @@ _roomTileChangesAfterLoad06:
 ; Crown Dungeon entrance screen: redraw the tiles for the entrance if it has not been
 ; opened yet.
 ;
-_roomTileChangesAfterLoad07:
+roomTileChangesAfterLoad07:
 	call getThisRoomFlags
 	and $80
 	ret nz
@@ -263,9 +263,9 @@ drawCrownDungeonOpeningTiles:
 	jp drawRectangleToVramTiles
 
 @tileReplacementTable:
-	.db @tiles0-CADDR
-	.db @tiles1-CADDR
-	.db @tiles2-CADDR
+	dbrel @tiles0
+	dbrel @tiles1
+	dbrel @tiles2
 
 @tiles0:
 	.dw w3VramTiles+$6c
@@ -303,7 +303,7 @@ drawCrownDungeonOpeningTiles:
 ;;
 ; Dungeon 2 present screen: redraw the cave if it's collapsed.
 ;
-_roomTileChangesAfterLoad00:
+roomTileChangesAfterLoad00:
 	call getThisRoomFlags
 	and $80
 	ret z
@@ -311,7 +311,7 @@ _roomTileChangesAfterLoad00:
 ;;
 drawCollapsedWingDungeon:
 	; Load the tile data for the cave to 2:$d000
-	ld a,GFXH_53
+	ld a,GFXH_WING_DUNGEON_COLLAPSED
 	call loadGfxHeader
 
 	ld hl,@tileReplacement
@@ -336,16 +336,16 @@ drawCollapsedWingDungeon:
 ;;
 ; This is unused in Ages.
 ;
-_roomTileChangesAfterLoad02:
+roomTileChangesAfterLoad02:
 	call getThisRoomFlags
 	and $01
 	ret z
-	jr _roomTileChangesAfterLoad01
+	jr roomTileChangesAfterLoad01
 
 ;;
 ; Present tokay island screen with scent tree: draw the tree if room flags are set.
 ;
-_roomTileChangesAfterLoad03:
+roomTileChangesAfterLoad03:
 	call getThisRoomFlags
 	and $80
 	ret z
@@ -353,7 +353,7 @@ _roomTileChangesAfterLoad03:
 ;;
 ; Each screen with a tree on it calls this to load the tree's graphics.
 ;
-_roomTileChangesAfterLoad01:
+roomTileChangesAfterLoad01:
 	ld a,(wActiveGroup)
 	ld hl,treeGfxLocationsTable
 	rst_addDoubleIndex
@@ -391,7 +391,7 @@ _roomTileChangesAfterLoad01:
 	cp $04
 	ret nc
 	jr ++
-+	
++
 	ld a,b			;tree type->a
 ++
 	ldh (<hFF93),a
@@ -421,7 +421,7 @@ treeGfxLocationsTable:
 
 @present:
 	dbbw <ROOM_AGES_084 $02 w3VramTiles+$048
-	dbbw <ROOM_AGES_085 $01 w3VramTiles+$048 
+	dbbw <ROOM_AGES_085 $01 w3VramTiles+$048
 	dbbw <ROOM_AGES_087 $03 w3VramTiles+$048
 	dbbw <ROOM_AGES_071 $00 w3VramTiles+$048
 
@@ -432,7 +432,7 @@ treeGfxLocationsTable:
 @past:
 	dbbw <ROOM_AGES_112 $02 w3VramTiles+$08e
 	dbbw <ROOM_AGES_171 $00 w3VramTiles+$048
-	dbbw <ROOM_AGES_113 $03 w3VramTiles+$0c8	
+	dbbw <ROOM_AGES_113 $03 w3VramTiles+$0c8
 	;dbbw $08 $01 w3VramTiles+$086
 	;dbbw $25 $00 w3VramTiles+$0ca
 	;dbbw $2d $03 w3VramTiles+$10c
@@ -473,7 +473,7 @@ treeTilesTable:
 ; Rooms with gasha spots call this to replace the "soft soil" with tree graphics if
 ; necessary.
 ;
-_roomTileChangesAfterLoad08:
+roomTileChangesAfterLoad08:
 	; Return if a gasha seed is not planted in this room.
 	ld a,(wActiveRoom)
 	call getIndexOfGashaSpotInRoom_body
@@ -525,7 +525,7 @@ _roomTileChangesAfterLoad08:
 ; Of course, this is after w3VramTiles has been generated, so there is no visual change.
 ; It seems that this is done to allow Link to throw bombs up the ledge.
 ;
-_roomTileChangesAfterLoad05:
+roomTileChangesAfterLoad05:
 	ld hl,wRoomLayout+$33
 	ld a,$0a
 	ldi (hl),a
@@ -698,7 +698,7 @@ copyRectangleToRoomLayoutAndCollisions_paramDe:
 
 ;;
 ; This is called in shops to load "price" graphics and set bit 1 of "wInShop".
-_roomTileChangesAfterLoad04:
+roomTileChangesAfterLoad04:
 	ld hl,wInShop
 	set 1,(hl)
 	ld a,TREE_GFXH_03
@@ -724,7 +724,7 @@ checkLoadPastSignAndChestGfx:
 	ret z
 
 
-	ld a,UNCMP_GFXH_37
+	ld a,UNCMP_GFXH_AGES_37
 	jp loadUncompressedGfxHeader
 
 

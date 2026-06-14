@@ -1,6 +1,12 @@
 This file describes the format of the yaml files in the "text/ages" and
 "text/seasons" directories.
 
+By default, precompressed assets are used to generate a 1:1 copy of the ROM.
+So, editing the text yaml files won't actually change anything. Disable
+precompressed assets by switching to the "hack-base" branch or by editing the
+first line of the Makefile; then, you will be able to edit text (and graphics,
+etc).
+
 IMPORTANT NOTE: If a line of text is more than 16 characters, the game will
 break, badly. Newlines are inserted automatically to prevent this, but it can
 still happen if you have 17 consecutive non-space characters in a row.
@@ -136,7 +142,7 @@ Below is a list of these commands.
 \secret1, \secret2:
   Display the secret at "w7SecretBuffer1" or "w7SecretBuffer2".
 \sfx(X):
-  Plays sound effect "X" (see constants/music.s for values)
+  Plays sound effect "X" (see constants/common/music.s for values)
 \slow:
   Disable fast-forwarding to the end of a line for a certain amount of time.
   The game uses this when you get an essence.

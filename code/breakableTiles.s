@@ -5,14 +5,14 @@
 ; @param	ff8f	Type of breakage (digging, sword slashing). Set bit 7 if no tiles
 ;			should be modified, in that case this function will only check if
 ;			it can be broken.
-; @param[out]	hFF8D	4th parameter from "_breakableTileModes"
+; @param[out]	hFF8D	4th parameter from "breakableTileModes"
 ; @param[out]	hFF8E	The interaction ID to create when the tile is destroyed
 ; @param[out]	hFF92	Former tile index
 ; @param[out]	hFF93	Tile position
 ; @param[out]	cflag	Set if the tile was broken (or can be broken).
 ;
 ; Internal variables:
-;  ff8d-ff8e: values read from _breakableTileModes
+;  ff8d-ff8e: values read from breakableTileModes
 ;  ff90: Y
 ;  ff91: X
 ;
@@ -33,18 +33,18 @@ tryToBreakTile_body:
 	ld a,l
 	ldh (<hFF93),a
 ;inputs tile index and uses breakableTileCollisionTable to find collision, ret if cannot
-	ld hl,_breakableTileCollisionTable
+	ld hl,breakableTileCollisionTable
 	call lookupCollisionTable_paramE
 	ret nc
 ;finds entry for correct tile
-	; hl = _breakableTileModes + a*5	(a is index for tile collision)
+	; hl = breakableTileModes + a*5	(a is index for tile collision)
 	ld e,a
 	add a
-	ld hl,_breakableTileModes
+	ld hl,breakableTileModes
 	rst_addDoubleIndex
 	ld a,e
 	rst_addAToHl
-;
+++
 	ldh a,(<hFF8F)
 	ld e,a
 	and $1f
@@ -109,10 +109,14 @@ tryToBreakTile_body:
 	call setTile
 
 @doneSettingTile:
-	ldh a,(<hFF92)
-
 .ifdef ROM_AGES
+	ldh a,(<hFF92)
 	cp TILEINDEX_SOMARIA_BLOCK
+	jr z,@somariaBlock
+.else
+	call getSomariaBlockIndex
+	ldh a,(<hFF92)
+	cp b
 	jr z,@somariaBlock
 .endif
 
@@ -140,26 +144,25 @@ tryToBreakTile_body:
 +
 	ldh a,(<hFF8D)
 	or a
-	call nz,func_483d
+	call nz,decideItemDropForBrokenTile
 ++
 	ldh a,(<hFF8F)
-	or a
+	or a ; BREAKABLETILESOURCE_BRACELET
 	jr z,@done
-	cp $0c
+	cp BREAKABLETILESOURCE_EMBER_SEED
 	jr z,@done
-	cp $08
+	cp BREAKABLETILESOURCE_SWITCH_HOOK
 	jr z,@done
-	cp $12
+	cp BREAKABLETILESOURCE_DIMITRI_EAT
 	ldh a,(<hFF8E)
-	call nz,_makeInteractionForBreakableTile
+	call nz,makeInteractionForBreakableTile
 @done:
 	pop de
 	scf
 	ret
 
-.ifdef ROM_AGES
 @somariaBlock:
-	ld c,ITEMID_18
+	ld c,ITEM_18
 	call findItemWithID
 	jr nz,@done
 
@@ -181,7 +184,6 @@ tryToBreakTile_body:
 	ld l,Item.var2f
 	set 5,(hl)
 	ret
-.endif ; ROM_AGES
 
 ;;
 ; Makes an interaction for a breakable tile at the item's location.
@@ -197,7 +199,7 @@ itemMakeInteractionForBreakableTile:
 	ld l,Item.var03
 	ld a,(hl)
 ;;
-_makeInteractionForBreakableTile:
+makeInteractionForBreakableTile:
 	and $1f
 	cp $1f
 	ret z
@@ -228,39 +230,45 @@ _makeInteractionForBreakableTile:
 	ret
 
 ;;
-; @param	a	Item drop type?
-func_483d:
+; Spawn an item drop for a broken tile if applicable.
+;
+; @param	a	Item drop type? (param 4 from m_BreakableTileData)
+decideItemDropForBrokenTile:
 	push hl
 	call decideItemDrop
 	jr z,@done
 
 	call getFreePartSlot
 	jr nz,@done
-
-	ld (hl),PARTID_ITEM_DROP
+	ld (hl),PART_ITEM_DROP
 	inc l
-	ld (hl),c
+	ld (hl),c ; [subid]
+
 	ld l,Part.yh
 	ldh a,(<hFF90)
 	ldi (hl),a
 	inc l
 	ldh a,(<hFF91)
 	ld (hl),a
+
+	; Copy link's direction to the item drop's, in case of shovel digs
 	ld a,(w1Link.direction)
 	swap a
 	rrca
 	ld l,Part.angle
 	ld (hl),a
+
 	ld l,Part.var03
 	ld a,c
-	cp $0f
+	cp ITEM_DROP_100_RUPEES_OR_ENEMY
 	jr nz,+
-	ld (hl),$02
+	ld (hl),$02 ; [var03]
 +
+	; Change value of var03 for shovel digs
 	ldh a,(<hFF8F)
-	cp $06
+	cp BREAKABLETILESOURCE_SHOVEL
 	jr nz,@done
-	inc (hl)
+	inc (hl) ; [var03]
 @done:
 	pop hl
 	ret

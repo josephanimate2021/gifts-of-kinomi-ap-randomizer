@@ -1018,17 +1018,6 @@ groups:
       carry more
       \col(1)seeds\col(0)!
 
-  - name: TX_0081
-    index: 0x81
-    text: |-
-      \slow()You got the
-      \col(1)Rod of Seasons\col(0)!
-      With the powers
-      of the \col(3)Season
-      Spirits\col(0), it can
-      change the
-      seasons!
-
   - name: TX_0082
     index: 0x82
     text: |-
@@ -1041,23 +1030,14 @@ groups:
     text: |-
       You got
       \col(1)Din's Gift\col(0)!
-      You're sure she'll love this!  
-
-  - name: TX_0084
-    index: 0x84
-    text: |-
-      You got \col(1)Roc's
-      Cape\col(0)! Press and
-      hold the button
-      to do a double
-      jump!
+      You're sure she'll love this!
 
   - name: TX_0085
     index: 0x85
     text: |-
       You found the
       \col(1)Summer Stone\col(0)!
-      
+
   - name: TX_0086
     index: 0x86
     text: |-
@@ -1153,22 +1133,75 @@ groups:
       \col(1)777 Rupees\col(0)!
       What tremendous luck!
 
-  - name: TX_0094
-    index: 0x94
+  # CROSSITEMS: Text for obtaining Seasons items.
+  - name: TX_00_GET_MAGNETGLOVES
+    index: auto
+    text: |-
+      You got the
+      \col(1)Magnetic Gloves\col(0)!
+      Their magnetic
+      might attracts
+      and repels.
+      Press the button
+      to reverse
+      polarity.
+
+  - name: TX_00_GET_SLINGSHOT
+    index: auto
     text: |-
       You got the
       \col(1)Slingshot\col(0)!
       Choose your
       \col(1)seeds\col(0) and
       take aim!
-    
-  - name: TX_0095
-    index: 0x95
+
+  - name: TX_00_GET_HYPERSLINGSHOT
+    index: auto
     text: |-
       You got the
       \col(1)Hyper Slingshot\col(0)!
       It shoots three
       seeds at a time!
+
+  - name: TX_00_GET_MAGICBOOMERANG
+    index: auto
+    text: |-
+      It's the \col(1)Magical
+      Boomerang\col(0)!
+      Press \col(0x84)\item(0x00)\col(0)
+      while holding
+      the button to
+      control its
+      flight path!
+
+  - name: TX_00_GET_ROCSCAPE
+    index: auto
+    text: |-
+      You got \col(1)Roc's
+      Cape\col(0)! Press and
+      hold the button
+      to do a double
+      jump!
+
+  - name: TX_00_GET_RODOFSEASONS
+    index: auto
+    text: |-
+      You got the
+      \col(1)Rod of Seasons\col(0)!
+      With the powers
+      of the \col(3)Season
+      Spirits\col(0), it can
+      change the
+      seasons!
+
+  - name: TX_00_GET_FOOLSORE
+    index: auto
+    text: |-
+      You got
+      \col(1)Fool's Ore\col(0)!\stop
+      But that's no
+      good! Get your
+      \col(1)feather\col(0) back!
 
 - group: 0x01
   data:
@@ -3514,7 +3547,7 @@ groups:
       You didn't know
       that they shared
       a birthday? Scoff!
-      You should go 
+      You should go
       find some gifts
       for them or else
       they will be mad
@@ -3542,7 +3575,7 @@ groups:
       Twinrova have taken
       the Oracles without
       us knowing!
-      You must save them! 
+      You must save them!
       \pos(1)\Link,
       I always hope
       for your safe
@@ -4705,13 +4738,13 @@ groups:
     index: 0x69
     text: |-
       The season is
-      winter. 
+      winter.
 
   - name: TX_096a
     index: 0x6a
     text: |-
       The season is
-      spring.     
+      spring.
 
   - name: TX_096b
     index: 0x6b
@@ -4719,13 +4752,6 @@ groups:
       Rod of Seasons
       Best used from
       atop a stump.
-
-  - name: TX_096c
-    index: 0x6c
-    text: |-
-      Roc's Cape
-      A wind-riding
-      cape.
 
   - name: TX_096d
     index: 0x6d
@@ -4759,19 +4785,55 @@ groups:
     text: |-
       east in spring.
 
-  - name: TX_0973
-    index: 0x73
+  # CROSSITEMS: Text for Seasons items on the subscreen.
+  - name: TX_09_MAGNETGLOVES
+    index: auto
+    text: |-
+      Magnetic Gloves
+      Magnetically
+      attractive!
+
+  - name: TX_09_SLINGSHOT
+    index: auto
     text: |-
       Slingshot
       Used to shoot
       seeds.
 
-  - name: TX_0974
-    index: 0x74
+  - name: TX_09_HYPERSLINGSHOT
+    index: auto
     text: |-
       Hyper Slingshot
       Shoots in three
       directions.
+
+  - name: TX_09_MAGICBOOMERANG
+    index: auto
+    text: |-
+      Magic Boomerang
+      A remote-control
+      weapon.
+
+  - name: TX_09_ROCSCAPE
+    index: auto
+    text: |-
+      Roc's Cape
+      A wind-riding
+      cape.
+
+  - name: TX_09_RODOFSEASONS
+    index: auto
+    text: |-
+      Rod of Seasons
+      Best used from
+      atop a stump.
+
+  - name: TX_09_FOOLSORE
+    index: auto
+    text: |-
+      Traded Ore
+      Not as useful
+      as a feather.
 
 - group: 0x0a
   data:
@@ -5260,7 +5322,7 @@ groups:
     text: |-
       \sfx(0xb6)I visited the graveyard just northwest of our desert. So many weeds!\stop
       \sfx(0xb6)Today, I saw there was a \col(1)pattern\col(0) on the floor in our \col(1)Temple\col(0).\stop
-      \sfx(0xb6)What could it mean? 
+      \sfx(0xb6)What could it mean?
 
   - name: TX_0a41
     index: 0x41
@@ -5487,7 +5549,7 @@ groups:
   - name: TX_0a65
     index: 0x65
     text: |-
-      \sfx(0xb6)Hello! I am the chief of the Tokay in this small desert.\stop      
+      \sfx(0xb6)Hello! I am the chief of the Tokay in this small desert.\stop
       \sfx(0xb6)There's a
       winding maze
       beneath this
@@ -5568,7 +5630,7 @@ groups:
     index: 0x6c
     text: |-
       \sfx(0xb6)I don't know what these \col(3)statues\col(0) are used for, but they are all over the desert.
-      
+
 
 - group: 0x0b
   data:
@@ -5696,7 +5758,7 @@ groups:
       you were looking.\stop
       I have a couple of swords that you might be interested in, adventurer.
       Both could substantially upgrade your strength.
-      
+
   - name: TX_0b10
     index: 0x10
     text: |-
@@ -5794,7 +5856,7 @@ groups:
   - name: TX_0b1e
     index: 0x1e
     text: |-
-      My library is free to use, but it seems one of my books hasn't been returned.      
+      My library is free to use, but it seems one of my books hasn't been returned.
 
   - name: TX_0b1f
     index: 0x1f
@@ -6655,7 +6717,7 @@ groups:
     text: |-
       \col(1)Mirror Shield\col(0)\stop
        \num1 Rupees
-      \jump(TX_0e2b)       
+      \jump(TX_0e2b)
     null_terminator: False
 
   - name: TX_0e2b
@@ -6684,7 +6746,7 @@ groups:
       Can reverse the fall of a hero.
        \num1 Rupees
       \jump(TX_0e2b)
-    null_terminator: False    
+    null_terminator: False
 
   - name: TX_0e2f
     index: 0x2f
@@ -7493,7 +7555,7 @@ groups:
       There was a loud
       sound far off,
       like a magic
-      barrier being 
+      barrier being
       weakened!
 
   - name: TX_1201
@@ -8210,7 +8272,7 @@ groups:
     - 0x3f
     - 0x40
     text: |-
-      I'd be careful wandering around this villa further than the main halls! 
+      I'd be careful wandering around this villa further than the main halls!
 
   - name: TX_1441
     index: 0x41
@@ -8892,7 +8954,7 @@ groups:
       still taken to
       work on the
       \col(3)Black Tower\col(0).
-      I want him back.   
+      I want him back.
 
 - group: 0x1a
   data:
@@ -14329,7 +14391,7 @@ groups:
   - name: TX_2e17
     index: 0x17
     text: |-
-      \left 
+      \left
       Shrine of Spring\stop
       Gales reach all shrines!
 
@@ -18632,7 +18694,7 @@ groups:
     index: 0x01
     text: |-
       A cold day stays
-      away while the 
+      away while the
       crystals remain.
 
   - name: TX_3902
@@ -20729,7 +20791,7 @@ groups:
     index: 0x13
     text: |-
       Large mushroom
-      ripe for picking!  
+      ripe for picking!
 
 - group: 0x54
   data:

@@ -1,4 +1,4 @@
-_soundPointers:
+soundPointers:
 	m_soundPointer sound00
 	m_soundPointer sound01
 	m_soundPointer sound02
