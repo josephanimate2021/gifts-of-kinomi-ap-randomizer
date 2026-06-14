@@ -924,6 +924,8 @@ m_section_free Bank16_2 NAMESPACE bank16
 ;
 ; @param	b	Floor state (0/1)
 loadD6ChangingFloorPatternToBigBuffer:
+	jp panic
+/*
 	ld a,b
 	add a
 	ld hl,@changingFloorData
@@ -986,6 +988,7 @@ loadD6ChangingFloorPatternToBigBuffer:
 	.db $a0 $a0 $a0 $a0 $a0 $a0 $f4 $f4 $a0 $ff
 	.db $a0 $a0 $f4 $a0
 	.db $00
+	*/
 
 .ends
 

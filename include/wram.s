@@ -891,11 +891,12 @@ wMakuTreeSeedSatchelXPosition: ; $c6eb
 
 wPirateShipRoom: ; $c6ec
 ; Low room index the pirate ship is in
-	db
+; NOTE: Collapsed these variables together to make more WRAM space
+	.db
 wPirateShipY: ; $c6ed
-	db
+	.db
 wPirateShipX: ; $c6ee
-	db
+	.db
 wPirateShipAngle: ; $c6ef
 	db
 

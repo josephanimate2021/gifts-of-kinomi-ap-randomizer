@@ -2,6 +2,8 @@
 ; INTERAC_BLOSSOM
 ; ==================================================================================================
 interactionCode2b:
+	jp interactionDelete
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -69,3 +71,5 @@ interactionCode2b:
 	.dw mainScripts.blossomScript7
 	.dw mainScripts.blossomScript8
 	.dw mainScripts.blossomScript9
+
+*/

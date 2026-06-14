@@ -11,6 +11,8 @@
 ;   var35: Bit 0 set if already showed veran's "taunting" text after using switch hook
 ; ==================================================================================================
 enemyCode61:
+	jp enemyDelete
+/*
 	jr z,@normalStatus
 	sub ENEMYSTATUS_NO_HEALTH
 	ret c
@@ -978,3 +980,5 @@ veranPossessionBoss_wasHit:
 
 	ld a,SNDCTRL_STOPMUSIC
 	jp playSound
+
+	*/
