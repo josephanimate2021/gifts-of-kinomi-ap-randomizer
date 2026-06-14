@@ -22210,13 +22210,13 @@ groups:
 
   - name: TX_5915
     index: 0x15
-    text: |-
+    text: >-
       This is \col(2)Zelda's\col(0)
       \col(3)summer villa\col(0) that
       she uses to spend time with the Oracles.
 
   - name: TX_5916
     index: 0x16
-    text: |-
+    text: >-
       Be careful! Without a \col(1)shield\col(0),
       monsters will try to ram into you!
