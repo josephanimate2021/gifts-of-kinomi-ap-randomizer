@@ -42,7 +42,7 @@ enemyData:
 	/* 0x1f */ m_EnemyData $da $9f $0e $68
 	/* 0x20 */ m_EnemyData $90 $91 enemy20SubidData
 	/* 0x21 */ m_EnemyData $98 $a0 enemy21SubidData
-	/* 0x22 */ m_EnemyData $9c $fe $0e $00
+	/* 0x22 */ m_EnemyData $9c $91 $0e $00
 	/* 0x23 */ m_EnemyData $8c $a1 $0c $30
 	/* 0x24 */ m_EnemyData $99 $22 $11 $36
 	/* 0x25 */ m_EnemyData $94 $a3 $0a $28
@@ -57,7 +57,7 @@ enemyData:
 	/* 0x2e */ m_EnemyData $a3 $a7 $03 $1d
 	/* 0x2f */ m_EnemyData $a3 $a8 $3c $40
 	/* 0x30 */ m_EnemyData $8f $91 enemy30SubidData
-	/* 0x31 */ m_EnemyData $9b $fd enemy31SubidData
+	/* 0x31 */ m_EnemyData $9b $90 enemy31SubidData
 	/* 0x32 */ m_EnemyData $9d $9f $07 $00
 	/* 0x33 */ m_EnemyData $4c $00 $01 $37
 	/* 0x34 */ m_EnemyData $97 $29 enemy34SubidData
@@ -81,7 +81,7 @@ enemyData:
 	/* 0x46 */ m_EnemyData $00 $00 $00 $00
 	/* 0x47 */ m_EnemyData $97 $ee $06 $2e
 	/* 0x48 */ m_EnemyData $98 $a0 enemy48SubidData
-	/* 0x49 */ m_EnemyData $9c $fe $0e $00
+	/* 0x49 */ m_EnemyData $9c $91 $0e $00
 	/* 0x4a */ m_EnemyData $90 $b6 enemy4aSubidData
 	/* 0x4b */ m_EnemyData $99 $b7 $16 $20
 	/* 0x4c */ m_EnemyData $93 $31 $11 $14
@@ -120,23 +120,23 @@ enemyData:
 	/* 0x6d */ m_EnemyData $00 $00 $00 $00
 	/* 0x6e */ m_EnemyData $00 $00 $00 $00
 	/* 0x6f */ m_EnemyData $00 $00 $00 $00
-	/* 0x70 */ m_EnemyData $ad $ff $1c $50
+	/* 0x70 */ m_EnemyData $ad $c4 $1c $50
 	/* 0x71 */ m_EnemyData $af $c4 $1d $20
-	/* 0x72 */ m_EnemyData $b1 ENEMYCOLLISION_MOTIONLESS_ENEMY	$1d $10 ;Facade			;$b1 $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1e $10
-	/* 0x73 */ m_EnemyData $b4 $80|ENEMYCOLLISION_SYGER		$4a $30 ;$9b
-	/* 0x74 */ m_EnemyData $b7 $80|ENEMYCOLLISION_SMASHER 			$20 $30
-	/* 0x75 */ m_EnemyData $3c     ENEMYCOLLISION_VIRE 				$21 $20
-	/* 0x76 */ m_EnemyData $b8 $80|ENEMYCOLLISION_ANGLER_FISH 		$22 $10
-	/* 0x77 */ m_EnemyData $b9 $80|ENEMYCOLLISION_BLUE_STALFOS 		$45 $10		;$23 $10
-	/* 0x78 */ m_EnemyData $bc $80|ENEMYCOLLISION_PUMPKIN_HEAD_BODY $24 $30
-	/* 0x79 */ m_EnemyData $bf $80|ENEMYCOLLISION_HEAD_THWOMP 		$25 $00
-	/* 0x7a */ m_EnemyData $c2 $80|ENEMYCOLLISION_MANHANDLA_BODY manhandlaSubidData
-	;/* 0x7a */ m_EnemyData $c2     ENEMYCOLLISION_SHADOW_HAG 		$26 $30
-	/* 0x7b */ m_EnemyData $c4 $80|ENEMYCOLLISION_EYESOAR 			$27 $10
-	/* 0x7c */ m_EnemyData $c5 $80|ENEMYCOLLISION_SMOG 				$28 $30
-	/* 0x7d */ m_EnemyData $c9 $80|ENEMYCOLLISION_GLEEOK 			$46 $60		;Gleeok $c8 $ce $29 $20
-	/* 0x7e */ m_EnemyData $cb     ENEMYCOLLISION_PLASMARINE 		$2a $10
-	/* 0x7f */ m_EnemyData $a9 $80|ENEMYCOLLISION_KING_MOBLIN 		$36 $00
+	/* 0x72 */ m_EnemyData $b1, ENEMYCOLLISION_MOTIONLESS_ENEMY,	$1d, $10 ;Facade			;$b1 $80|ENEMYCOLLISION_STANDARD_MINIBOSS $1e $10
+	/* 0x73 */ m_EnemyData $b4, $80|ENEMYCOLLISION_SYGER,		$4a, $30 ;$9b
+	/* 0x74 */ m_EnemyData $b7, $80|ENEMYCOLLISION_SMASHER, 			$20, $30
+	/* 0x75 */ m_EnemyData $3c,     ENEMYCOLLISION_VIRE, 				$21, $20
+	/* 0x76 */ m_EnemyData $b8, $80|ENEMYCOLLISION_ANGLER_FISH, 		$22, $10
+	/* 0x77 */ m_EnemyData $b9, $80|ENEMYCOLLISION_BLUE_STALFOS, 		$45, $10		;$23 $10
+	/* 0x78 */ m_EnemyData $bc, $80|ENEMYCOLLISION_PUMPKIN_HEAD_BODY, $24, $30
+	/* 0x79 */ m_EnemyData $bf, $80|ENEMYCOLLISION_HEAD_THWOMP, 		$25, $00
+	/* 0x7a */ m_EnemyData $c2, $80|ENEMYCOLLISION_MANHANDLA_BODY, manhandlaSubidData
+	;/* 0x7a */ m_EnemyData $c,2     ENEMYCOLLISION_SHADOW_HAG 		$26 $30
+	/* 0x7b */ m_EnemyData $c4, $80|ENEMYCOLLISION_EYESOAR, 			$27, $10
+	/* 0x7c */ m_EnemyData $c5, $80|ENEMYCOLLISION_SMOG, 				$28, $30
+	/* 0x7d */ m_EnemyData $c9, $80|ENEMYCOLLISION_GLEEOK, 			$46, $60		;Gleeok $c8 $ce $29 $20
+	/* 0x7e */ m_EnemyData $cb,     ENEMYCOLLISION_PLASMARINE, 		$2a, $10
+	/* 0x7f */ m_EnemyData $a9, $80|ENEMYCOLLISION_KING_MOBLIN, 		$36, $00
 
 
 ; Each 2 bytes are for a particular subID.
