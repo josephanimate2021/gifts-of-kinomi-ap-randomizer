@@ -144,6 +144,8 @@ itemPassableTilesTable:
 
 @indoors:
 	.db $94 $95 $0a
+	.db $90 $91 $92 $93 $96 $97 $98 $99
+	.db $9a $9b $0b $0e $0f
 	.db $00
 
 @dungeons:

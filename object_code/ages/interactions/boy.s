@@ -143,7 +143,7 @@ interactionCode3c:
 
 	ldbc INTERAC_BALL,$00
 	call objectCreateInteraction
-	ld bc,$4a75
+	ld bc,$6a75;$4a75 ;moved boy and dad down
 	call interactionHSetPosition
 
 	pop af

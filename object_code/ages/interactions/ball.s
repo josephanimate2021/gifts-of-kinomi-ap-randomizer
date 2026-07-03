@@ -39,7 +39,7 @@ interactionCode95:
 	ld (hl),a
 	cp $02
 	jr nz,++
-	ld bc,$5075
+	ld bc,$6075;$5075
 	call interactionHSetPosition
 	ld l,Interaction.zh
 	ld (hl),-$06
@@ -61,7 +61,7 @@ interactionCode95:
 	jr z,@subid2
 
 	dec a
-	ld bc,$4a3c
+	ld bc,$6a3c;$4a3c ;moved boy and dad down
 	jr z,+
 	ld c,$75
 +

@@ -135,7 +135,7 @@ chestGroup5Data:
 	m_ChestData $17 $57 $3103
 	m_ChestData $8d $69 $3302
 	m_ChestData $6b $51 $3003
-	m_ChestData $17 $60 $0603
+	m_ChestData $17 $60 TREASURE_OBJECT_BOOMERANG_03
 	m_ChestData $12 $63 $3003
 	m_ChestData $6c $66 $2809
 	m_ChestData $2a $56 $3001

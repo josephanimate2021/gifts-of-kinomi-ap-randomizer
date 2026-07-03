@@ -644,7 +644,6 @@ interactiondc_subid19:
 	jp interactionDelete
 
 interactiondc_subid1a:
-	;ld b,b
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_ITEM,a
 	jp nz,interactionDelete
@@ -661,8 +660,6 @@ interactiondc_subid1a:
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
-	;ld a,SND_SOLVEPUZZLE
-	;call playSound
 	jp interactionDelete
 
 isHeartPieceOrRupee:

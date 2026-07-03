@@ -3627,10 +3627,8 @@ groups:
       Witch will be
       mad!
       And I have to
-      get that \col(1)picture
-      book\col(0). Who could
-      have that \col(0x84)\item(0x09)
-      \col(1)book\col(0)?\stop
+      get my \col(1)picture
+      doll\col(0) back. Who could have that \col(0x84)\item(0x01) \col(1)book\col(0)?\stop
       Well, it's all
       made me mad! So
       I'm gonna take
@@ -3786,8 +3784,7 @@ groups:
       made. Syrup
       never gave me
       any compliments
-      on it. I'll be keeping
-      this doll.
+      on it. I'll be keep- ing this doll.
       (Sniff!)
 
   - name: TX_0712

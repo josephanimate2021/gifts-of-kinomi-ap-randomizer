@@ -23,6 +23,7 @@ interactionCode78:
 	cp b
 	ret z
 
+	ld hl,@tileReplacement
 	ld a,(wActiveGroup)
 	sub $03
 	jr c,+
@@ -35,7 +36,6 @@ interactionCode78:
 	ld (de),a
 	ld e,Interaction.xh
 	ld a,(de)
-	ld hl,@tileReplacement
 	rst_addDoubleIndex
 	ld e,Interaction.subid
 	ld a,(de)
