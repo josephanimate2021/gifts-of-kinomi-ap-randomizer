@@ -1,5 +1,5 @@
 ; ==============================================================================
-; ENEMYID_FACADE
+; ENEMY_FACADE
 ; ==============================================================================
 ;enemyCode71:
 enemyCode72:
@@ -16,7 +16,7 @@ enemyCode72:
 	ld a,(de)
 	or a
 	jp nz,enemyDie
-	jp _enemyBoss_dead
+	jp enemyBoss_dead
 
 @normalStatus:
 	ld e,Enemy.state			;$84
@@ -37,7 +37,7 @@ enemyCode72:
 	.dw @stateC
 
 @state0:
-	call _ecom_setSpeedAndState8
+	call ecom_setSpeedAndState8
 	ld l,Enemy.yh				;$8b
 	ld (hl),$58
 	ld l,Enemy.xh				;$8d
@@ -47,7 +47,7 @@ enemyCode72:
 	or a
 	ld a,$ff
 	ld b,$00
-	jp z,_enemyBoss_initializeRoom
+	jp z,enemyBoss_initializeRoom
 	ld l,Enemy.counter1			;$86
 	ld (hl),60					;$3c
 	ld l,Enemy.state			;$84
@@ -71,7 +71,7 @@ enemyCode72:
 	jp playSound
 
 @state9:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	ret nz
 	ld a,120					;$78
 	ld (hl),a
@@ -105,7 +105,7 @@ enemyCode72:
 	.db $02
 
 @stateA:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	jr z,+
 	ld a,(hl)
 	and $1f
@@ -148,7 +148,7 @@ enemyCode72:
 	ret
 
 @@substate1:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	ret nz
 	ld (hl),70					;$46
 	ld l,e
@@ -156,7 +156,7 @@ enemyCode72:
 	ret
 
 @@substate2:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $0f
@@ -196,7 +196,7 @@ enemyCode72:
 	jp objectSetInvisible
 
 @@substate2:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $1f
@@ -221,7 +221,7 @@ enemyCode72:
 	jp enemySetAnimation
 
 @@substate1:
-	call _ecom_decCounter1
+	call ecom_decCounter1
 	jp z,@incStateAndSetAnimation02
 	ld a,(hl)
 	and $0f
@@ -248,8 +248,8 @@ enemyCode72:
 	jp objectSetInvisible
 
 @spawnBeetle:
-	ld b,ENEMYID_BEETLE
-	call _ecom_spawnEnemyWithSubid01
+	ld b,ENEMY_BEETLE
+	call ecom_spawnEnemyWithSubid01
 	ret nz
 	ld l,Enemy.relatedObj1		;$96
 	ld a,Enemy.start			;$80
@@ -275,12 +275,12 @@ enemyCode72:
 
 ; Spawns holes at random locations
 @spawnHoles:
-	ld b,PARTID_FACADE_HOLE		;PARTID_2e
-	call _ecom_spawnProjectile
+	ld b,PART_FACADE_HOLE		;PARTID_2e
+	call ecom_spawnProjectile
 	ret nz
 	push hl
 	ld bc,$1f1f
-	call _ecom_randomBitwiseAndBCE
+	call ecom_randomBitwiseAndBCE
 	pop hl
 	ldh a,(<hEnemyTargetY)
 	add b
@@ -300,8 +300,8 @@ enemyCode72:
 
 ; Spawns a rock
 @spawnFire:
-	ld b,PARTID_VOLCANO_ROCK
-	call _ecom_spawnProjectile
+	ld b,PART_VOLCANO_ROCK
+	call ecom_spawnProjectile
 	ret nz
 	ld l,Part.subid				;$c2
 	inc (hl)
@@ -320,8 +320,8 @@ enemyCode72:
 -
 	ld l,Enemy.id				;$81
 	ld a,(hl)
-	cp ENEMYID_BEETLE			;$51
-	call z,_ecom_killObjectH
+	cp ENEMY_BEETLE			;$51
+	call z,ecom_killObjectH
 	inc h
 	ld a,h
 	cp $e0
