@@ -1,6 +1,15 @@
 .enum 0
+.ifdef ROM_SEASONS
 	SEASON_SPRING	db ; $00
 	SEASON_SUMMER	db ; $01
 	SEASON_AUTUMN	db ; $02
 	SEASON_WINTER	db ; $03
+.else
+	SEASON_SUMMER	db ; $00
+	SEASON_AUTUMN		db ; $01
+	SEASON_WINTER	db ; $02
+	SEASON_SPRING	db ; $03
+.endif
 .ende
+
+.redefine SEASON_FALL SEASON_AUTUMN

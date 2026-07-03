@@ -41,6 +41,11 @@ greatFairy_state1:
 
 	ld l,Enemy.counter1
 	ld (hl),$11
+; added check for if in dungeon; if so, don't change music
+	ld a,(wDungeonIndex)
+	cp $ff
+	ret nz
+
 	ld a,MUS_FAIRY_FOUNTAIN
 	ld (wActiveMusic),a
 	ret

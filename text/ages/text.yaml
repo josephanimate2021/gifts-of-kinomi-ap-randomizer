@@ -1706,7 +1706,7 @@ groups:
     index:
     - 0x00
     text: |2-
-      Hyrule Castle
+      Summer Villa
 
   - name: TX_0201
     index: 0x01
@@ -8318,15 +8318,7 @@ groups:
   - name: TX_1500
     index: 0x00
     text: |-
-      The Queen was
-      very kind until
-      only recently.
-      You can ask the
-      village elder
-      about the Queen.
-      He lives across
-      the river, near
-      the tower.
+      We're glad you were also able to make it, \Link! Welcome to our small village.
 
   - name: TX_1501
     index: 0x01
@@ -8502,10 +8494,7 @@ groups:
   - name: TX_1520
     index: 0x20
     text: |-
-      They're building
-      a tower on the
-      other side of
-      the river.
+      It's nice when Zelda comes to visit. Her parties are always fun!
 
   - name: TX_1521
     index: 0x21
@@ -14337,7 +14326,7 @@ groups:
   - name: TX_2e0e
     index: 0x0e
     text: |-
-      \right Maku Tree
+      \right Spirit's Grotto
 
   - name: TX_2e0f
     index: 0x0f

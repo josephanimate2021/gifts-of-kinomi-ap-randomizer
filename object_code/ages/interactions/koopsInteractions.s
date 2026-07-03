@@ -473,7 +473,7 @@ interactionCodeeb:
 	ld a,$01
 	ld (de),a
 	ld a,(wCurrentSeason) ; wRoomStateModifier
-	cp SEASON_SPRING ; or a
+	cpa SEASON_SPRING ; or a
 	jp nz,interactionDelete
 	ld a,$06
 	call objectSetCollideRadius

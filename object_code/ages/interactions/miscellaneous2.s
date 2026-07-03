@@ -644,25 +644,25 @@ interactiondc_subid19:
 	jp interactionDelete
 
 interactiondc_subid1a:
+	;ld b,b
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_ITEM,a
 	jp nz,interactionDelete
 
-	ld a,(wNumEnemies)
-	or a
-	ret nz
-
 	ld a,(wScrollMode)
 	and $08 ; in screen transition
-	jp z,interactionDelete
+	ret nz
 
+	ld a,(wNumEnemies)
+	cpa $00
+	ret nz
 
 	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
-	ld a,SND_SOLVEPUZZLE
-	call playSound
+	;ld a,SND_SOLVEPUZZLE
+	;call playSound
 	jp interactionDelete
 
 isHeartPieceOrRupee:

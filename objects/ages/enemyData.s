@@ -160,6 +160,7 @@ group5Mapb0EnemyObjectData:
 	obj_EndPointer
 
 group5Mapb1EnemyObjectData:
+	obj_SpecificEnemyA $00 ENEMY_SEEDS_ON_TREE $00 $00 $00
 	obj_EndPointer
 
 group5Mapb2EnemyObjectData:
@@ -2361,6 +2362,7 @@ group5Map61EnemyObjectData:
 
 group5Mapb6BeforeEventObjectData:
 	obj_SpecificEnemyA 0 $7e $00 $50 $78
+	obj_SpecificEnemyA $02 ENEMY_FIREBALL_SHOOTER $01 $09 $00
 	obj_EndPointer
 
 group5Map64BeforeEventObjectData:
