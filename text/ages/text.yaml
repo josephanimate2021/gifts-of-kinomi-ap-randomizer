@@ -1018,6 +1018,17 @@ groups:
       carry more
       \col(1)seeds\col(0)!
 
+  - name: TX_0081
+    index: 0x81
+    text: |-
+      \slow()You got the
+      \col(1)Rod of Seasons\col(0)!
+      With the powers
+      of the \col(3)Season
+      Spirits\col(0), it can
+      change the
+      seasons!
+      
   - name: TX_0082
     index: 0x82
     text: |-

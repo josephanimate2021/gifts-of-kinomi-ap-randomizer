@@ -130,7 +130,7 @@ enemyData:
 	/* 0x77 */ m_EnemyData $b9, $80|ENEMYCOLLISION_BLUE_STALFOS, 		$45, $10		;$23 $10
 	/* 0x78 */ m_EnemyData $bc, $80|ENEMYCOLLISION_PUMPKIN_HEAD_BODY, $24, $30
 	/* 0x79 */ m_EnemyData $bf, $80|ENEMYCOLLISION_HEAD_THWOMP, 		$25, $00
-	/* 0x7a */ m_EnemyData $c2, $80|ENEMYCOLLISION_MANHANDLA_BODY, manhandlaSubidData
+	/* 0x7a */ m_EnemyData $c2, $80|ENEMYCOLLISION_MANHANDLA_BODY_INVULNERABLE, manhandlaSubidData
 	;/* 0x7a */ m_EnemyData $c,2     ENEMYCOLLISION_SHADOW_HAG 		$26 $30
 	/* 0x7b */ m_EnemyData $c4, $80|ENEMYCOLLISION_EYESOAR, 			$27, $10
 	/* 0x7c */ m_EnemyData $c5, $80|ENEMYCOLLISION_SMOG, 				$28, $30
