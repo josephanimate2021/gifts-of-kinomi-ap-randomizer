@@ -157,7 +157,7 @@ _state1:
 	inc (hl)
 	ld a,(hl)
 	and $0f
-	ld hl,@@seasonsTable_15_705f
+	ld hl,@@hoverOffset;seasonsTable_15_705f
 	rst_addAToHl
 	ld a,(hl)
 	add $f0
@@ -185,7 +185,7 @@ _state1:
 	inc (hl)
 	ret
 
-@@seasonsTable_15_705f:
+@@hoverOffset:;seasonsTable_15_705f:
 	.db $00 $00 $ff $ff
 	.db $ff $fe $fe $fe
 	.db $fe $fe $fe $ff

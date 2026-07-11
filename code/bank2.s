@@ -4446,7 +4446,7 @@ inventoryMenuState0:
 	ld a,(wBoomerangLevel)
 	cp $02
 	jr nz,+
-	ld a,UNCMP_GFXH_MAGIC_BOOMERANG_INV
+	ld a,$41;UNCMP_GFXH_MAGIC_BOOMERANG_INV
 	call loadUncompressedGfxHeader
 +
 	; Do the same with the hyper slingshot.

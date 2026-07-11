@@ -671,9 +671,9 @@ calculateRoomStateModifier:
 
 	; Group 0: check for animal companion regions
 	ld a,(wRoomPack)
-	res 7,a
+	;res 7,a
 	cp $7f
-	jr z,@companionRegion
+	jr nc,@companionRegion
 
 @standard:
 	ld a,(wTilesetFlags)
@@ -684,9 +684,9 @@ calculateRoomStateModifier:
 +
 	call getThisRoomFlags
 	and ROOMFLAG_LAYOUTSWAP
-	jr z,+
+	jr z,++
 	inc b
-+
+++
 	ld (wRoomStateModifier),a
 	ret
 
@@ -695,10 +695,9 @@ calculateRoomStateModifier:
 	or a
 	jr z,@standard
 
-	sub SPECIALOBJECT_RICKY
+	;sub SPECIALOBJECT_RICKY
 	ld (wRoomStateModifier),a
 	ret
-
 
 ;;
 ; If there are whirlpools or pollution tiles on the screen, this creates a part of type

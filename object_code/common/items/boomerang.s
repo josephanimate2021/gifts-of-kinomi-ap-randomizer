@@ -16,7 +16,7 @@ itemCode06:
 	ld e,Item.subid
 	ld a,(de)
 .ifdef ROM_AGES
-	add UNCMP_GFXH_AGES_L1_BOOMERANG
+	add $45; UNCMP_GFXH_AGES_L1_BOOMERANG
 .else
 	add UNCMP_GFXH_18 ; Either this or UNCMP_GFXH_19
 .endif

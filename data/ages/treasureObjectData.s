@@ -138,7 +138,7 @@ treasureObjectData06:
 	m_TreasureSubid $0a, $01, $22, $1c, TREASURE_OBJECT_BOOMERANG_00
 	m_TreasureSubid $10, $01, $22, $1c, TREASURE_OBJECT_BOOMERANG_01
 	m_TreasureSubid $02, $01, $22, $1c, TREASURE_OBJECT_BOOMERANG_02
-	m_TreasureSubid $32, $02, $22, $1c, TREASURE_OBJECT_BOOMERANG_03
+	m_TreasureSubid $3a, $02, $22, $7f, TREASURE_OBJECT_BOOMERANG_03
 
 treasureObjectData0a:
 	m_BeginTreasureSubids TREASURE_SWITCH_HOOK

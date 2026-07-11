@@ -18,7 +18,7 @@ itemCode07:
 	ld a,SND_SWORDSLASH
 	call playSound
 .ifdef ROM_AGES
-	ld a,UNCMP_GFXH_AGES_ROD_OF_SEASONS
+	ld a,$40;UNCMP_GFXH_AGES_ROD_OF_SEASONS
 .else
 	ld a,UNCMP_GFXH_SEASONS_1c
 .endif

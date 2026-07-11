@@ -160,7 +160,7 @@ interactionData:
 	/* $91 */ m_InteractionData $00 $16 $90
 	/* $92 */ m_InteractionData interaction92SubidData
 	/* $93 */ m_InteractionData $2c $00 $02
-	/* $94 */ m_InteractionData interaction94SubidData
+	/* $94 */ m_InteractionData interaction94SubidData ;GET_ROD_OF_SEASONS
 	/* $95 */ m_InteractionData $45 $06 $20
 	/* $96 */ m_InteractionData interaction96SubidData
 	/* $97 */ m_InteractionData $00 $00 $00
@@ -281,7 +281,7 @@ interaction63SubidData:
 	m_InteractionSubidData $7d $16 $40
 	m_InteractionSubidData $7d $18 $40	;5boomerang
 	m_InteractionSubidData $00 $00 $00
-	m_InteractionSubidData $7d $14 $20;$00 $00 $00	;rod
+	m_InteractionSubidData $7d $10 $20;$00 $00 $00	;rod
 	m_InteractionSubidData $7d $1e $40
 	m_InteractionSubidData $7c $00 $50 ; $20
 	m_InteractionSubidData $7c $14 $50 ; CROSSITEMS: Seed Shooter gfx moved
@@ -399,6 +399,9 @@ interactiond7SubidData:
 	m_InteractionSubidData $57 $06 $03 ; $86 Big Green Rupee
 	m_InteractionSubidData $7c $02 $40 ; $87 (Slingshot)
 	m_InteractionSubidData $7c $04 $50 ; $88 (Hyper Slingshot)
+
+	m_InteractionSubidData $7d $10 $20 ; $89 (Rod of Seasons)
+	m_InteractionSubidData $7d $14 $00 ; $8a (Fool's Ore)
 
 	m_InteractionSubidDataEnd
 
@@ -748,7 +751,7 @@ interaction92SubidData:
 interaction94SubidData:
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $8e $18 $00
-	m_InteractionSubidData $7d $14 $21
+	m_InteractionSubidData $7d $10 $21
 	m_InteractionSubidData $76 $06 $42
 	m_InteractionSubidDataEnd
 
