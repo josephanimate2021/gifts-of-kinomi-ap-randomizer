@@ -123,24 +123,21 @@ checkTilesetOverride:
 	add b
 	ldh (<hFF8D),a
 
+	; Summer $00 = layout group 0
+	; Autumn $01 = layout group 1
+	; Winter $02 = layout group 3
+	; Spring $03 = layout group 2
 	ld a,b
 	cp $02
 	jr c,@@changed
 	xor $01
 /*
-	ld a,b
 	; Change tileset for dimitri/moosh
 	; Tileset $0d = ricky (default) (layout group 0)
 	; Tileset $0e = dimitri         (layout group 1)
 	; Tileset $0f = moosh           (layout group 3)
-	; Summer $00 = layout group 0
-	; Autumn $01 = layout group 1
-	; Winter $02 = layout group 3
-	; Spring $03 = layout group 2
 	;
 	; HACK-BASE: Instead of changing the tileset for dimitri/moosh, just change the layout group.
-
-
 
 	; Dimitri
 	dec a
@@ -154,8 +151,6 @@ checkTilesetOverride:
 	ldh (<hFF8B),a
 	scf
 	ret
-
-
 
 @@noChange:
 	xor a

@@ -20,6 +20,7 @@ singleTileChangeGroupTable:
 ; b3: New tile to put at that position
 
 singleTileChangeGroup0Data:
+	.db <ROOM_AGES_008 ROOMFLAG_80 $27 $ed
 	.db <ROOM_AGES_032 ROOMFLAG_40 $55 TILEINDEX_OVERWORLD_STANDARD_GROUND
 	.db <ROOM_AGES_057 ROOMFLAG_40 $56 TILEINDEX_OVERWORLD_STANDARD_GROUND
 	

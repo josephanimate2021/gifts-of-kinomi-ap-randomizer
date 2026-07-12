@@ -4678,16 +4678,17 @@ screenTransitionForestScrambler:
 
 	ld a,(wActiveRoom)
 	sub <ROOM_AGES_044 ;$70
+
 	ld b,a	;save net index
-	and $f0	;take column index
+	and $f0	;take row index
 	swap a	;$10 -> $01
 	;ld c,a	;save into c
 	add a	;double
 	;add c	;triple
 	ld c,a
 	ld a,b	;net index
-	and $0f	;take row index
-	add c	;add column index
+	and $0f	;take column index
+	add c	;add row index
 	add a	;double
 	add a	;quadruple (to have all 4 directions)
 	ld b,a	;save
@@ -4706,14 +4707,14 @@ screenTransitionForestScrambler:
 
 ; UP, RIGHT, DOWN, LEFT
 @forestScramblerTable:
-	.db $00			  $00			  <ROOM_AGES_075 $00
-	.db $00			  $00			  $00			 $00
-	.db $00			   <ROOM_AGES_075  $00			 <ROOM_AGES_054 ; $54
-	.db <ROOM_AGES_074 <ROOM_AGES_055 <ROOM_AGES_064 <ROOM_AGES_074 ; $55
-	.db <ROOM_AGES_064 <ROOM_AGES_055 <ROOM_AGES_075 <ROOM_AGES_064 ; $64
-	.db <ROOM_AGES_054 <ROOM_AGES_065 <ROOM_AGES_055 <ROOM_AGES_054 ; $65
-	.db <ROOM_AGES_075 <ROOM_AGES_065 <ROOM_AGES_065 <ROOM_AGES_064 ; $74
-	.db $00			   $00			  <ROOM_AGES_054 $00			; $75
+	.db $00,			$00,			<ROOM_AGES_075, $00			; $44
+	.db $00,			$00,			$00,			$00			; $45
+	.db $00,			<ROOM_AGES_075, $00,			<ROOM_AGES_054 ; $54
+	.db <ROOM_AGES_074, <ROOM_AGES_055, <ROOM_AGES_064, <ROOM_AGES_074 ; $55
+	.db <ROOM_AGES_064, <ROOM_AGES_055, <ROOM_AGES_075, <ROOM_AGES_064 ; $64
+	.db <ROOM_AGES_054, <ROOM_AGES_065, <ROOM_AGES_055, <ROOM_AGES_054 ; $65
+	.db <ROOM_AGES_075, <ROOM_AGES_065, <ROOM_AGES_065, <ROOM_AGES_064 ; $74
+	.db $00,			$00,			<ROOM_AGES_054, $00			; $75
 /*
 	.db $00			  $00			  <ROOM_AGES_075 $00
 	.db $00			  $00			  $00			 $00
@@ -4908,7 +4909,7 @@ screenTransitionLostWoods:
 	ld a,b
 -
 	call checkTreasureObtained
-	ret nc
+	jr nc,@@wrongWay
 	inc b
 	ld a,b
 	cp TREASURE_SPRING_STONE+1
@@ -4925,6 +4926,11 @@ screenTransitionLostWoods:
 
 @@checkTransition:
 	jp @checkTransition
+
+@@wrongWay:
+	xor a
+	ld (hl),a
+	ret
 
 ;;
 ; The sword upgrade screen is actually located where you'd expect the maku tree to be, so

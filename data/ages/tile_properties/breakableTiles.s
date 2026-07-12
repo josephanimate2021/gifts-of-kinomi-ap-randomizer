@@ -215,4 +215,4 @@ breakableTileModes:
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $3a ; $35	snow
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $a0 ; $36	dungeon snow
 	m_BreakableTileData %01110000 %10010000 %0111 $4 $0a $de ; $37	dungeon snow
-	m_BreakableTileData %00100001 %00000000 %0000 $0 $c6 $ed ; $38
+	m_BreakableTileData %10000100 %00000000 %0000 $0 $c6 $ed ; $38  portal under rock

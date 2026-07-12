@@ -436,7 +436,7 @@ interactiondc_subid13:
 
 @subid13Data:
 	.db $14 $24 $34 $ff
-
+/*
 interactiondc_subid14:
 	call returnIfScrollMode01Unset
 	ld de,@subid14Data
@@ -444,7 +444,7 @@ interactiondc_subid14:
 
 @subid14Data:
 	.db $21 $31 $27 $37 $64 $74 $ff
-
+*/
 setRoomLayoutBlock:
 	ld b,TILEINDEX_OVERWORLD_LAVA_1
 	ld hl,wRoomLayout
@@ -460,9 +460,9 @@ setRoomLayoutBlock:
 	jr -
 
 
-/*
+
 ; Spawns portal to final dungeon from maku tree
-_interactiondc_subid14:
+interactiondc_subid14:
 	call objectGetTileAtPosition
 	cp $ed ; TODO
 	ret nz
@@ -472,7 +472,7 @@ _interactiondc_subid14:
 	call objectCreateInteractionWithSubid00
 @delete:
 	jp interactionDelete
-*/
+
 
 
 ; Sets present sea of storms chest contents (changes if linked)

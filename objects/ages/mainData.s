@@ -5182,7 +5182,7 @@ group3Map79ObjectData:
 	obj_End
 
 group0Map08ObjectData:
-	obj_Interaction $dc $14 $28 $78
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $14 $28 $78
 	obj_Interaction $12 $02 $18 $28
 	obj_Pointer group0Map08EnemyObjectData
 	obj_End

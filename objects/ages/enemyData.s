@@ -2557,7 +2557,7 @@ group1Map38EnemyObjectData:
 	obj_EndPointer
 
 group0Map08EnemyObjectData:
-	obj_SpecificEnemyA 0 $09 $04 $38 $48
+	obj_SpecificEnemyA 0 ENEMY_LYNEL $01 $38 $48
 	obj_EndPointer
 
 group0Map38EnemyObjectData:
