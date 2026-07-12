@@ -1215,6 +1215,7 @@ goronDanceScriptTable:
 ;			$08 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Ages:
+	push de
 	ld de,wGameProgress2
 	ld hl,@itemTable2
 	ldbc $08,$02 ;Essence 2
@@ -1226,6 +1227,7 @@ getGameProgress_Ages:
 	.db TREASURE_BRACELET
 	.db TREASURE_SEED_SATCHEL
 	.db TREASURE_SWORD
+	.db $00
 
 ;;
 ; @param[out]	b
@@ -1240,24 +1242,31 @@ getGameProgress_Ages:
 ;			$08 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Seasons:
+	push de
 	ld de,wGameProgress1
 	ld hl,@itemTable1
 	ldbc $08,$01 ;Essence 1
 @getProgress:
+	push hl
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
-	ret nz
+	pop hl
+	jr nz,@ret
+	dec b
 	ld a,(wEssencesObtained)
 	and c
-	ret nz
+	jr nz,@ret
 
 @checkItemObtained:
 	dec b
-	ret z
+	jr z,@ret
 	ldi a,(hl)
 	call checkTreasureObtained
 	jr nc,@checkItemObtained
+	ld a,b
 	ld (de),a
+@ret:
+	pop de
 	ret
 
 @itemTable1:
@@ -1267,7 +1276,7 @@ getGameProgress_Seasons:
 	.db TREASURE_BOOMERANG
 	.db TREASURE_BOMBS
 	.db TREASURE_SWORD
-
+	.db $00
 
 ;;
 ; @param[out]	b	$00 before beating d3;

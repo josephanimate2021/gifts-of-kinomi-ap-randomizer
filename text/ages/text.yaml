@@ -1028,7 +1028,7 @@ groups:
       Spirits\col(0), it can
       change the
       seasons!
-      
+
   - name: TX_0082
     index: 0x82
     text: |-
@@ -5879,9 +5879,7 @@ groups:
   - name: TX_0b21
     index: 0x21
     text: |-
-      The man seems to be
-      fixated on the
-      \col(0x84)\item(0x05) \col(1)Sparring Book\col(0) in your pocket...
+      The man seems to be fixated on the \col(0x84)\item(0x05) \col(1)Sparring Book\col(0) in your pocket...
       Give him the \col(0x84)\item(0x05)
       \col(1)Sparring Book\col(0)?
         \opt()Yes \opt()No
@@ -5890,7 +5888,8 @@ groups:
     index: 0x22
     text: |-
       That's the one!
-      What can I give you in return...?
+      What can I give you in return...?\stop
+      How about this key! It leads into a vast labrinth to the southwest of here.
 
   - name: TX_0b23
     index: 0x23
@@ -6386,7 +6385,7 @@ groups:
     index: 0x0a
     text: |-
       \pos(2)\col(1)Bombchu\col(0)
-      5 for 100 Rupees
+      15 for 100 Rupees
         \opt()OK \opt()No thanks\cmd8(0x11)
 
   - name: TX_0d0b
@@ -17352,6 +17351,7 @@ groups:
     text: |-
       Huh? How did you get here?
       Are you also a researcher of this mysterious Lost Woods?
+      I am Cisypherestus.
       There is a \col(3)Shrine\col(0) somewhere between the trees,
       but I have struggled finding the means to reach it.
       These books are all useless, but I at least know that
@@ -17362,14 +17362,7 @@ groups:
   - name: TX_3303
     index: 0x03
     text: |-
-      A man walked through an ominous wood.
-      He first felt a chilly wind,
-      but the unease heated his skin like the sun.
-      He looked to the west, the north, then the south.
-      But in the east he saw a great beast approach.
-      The man fell to a flashing light and sprung up,
-      running away.
-      Never again did he travel those woods.
+      null
 
   - name: TX_3304
     index: 0x04
@@ -19064,9 +19057,7 @@ groups:
   - name: TX_4109
     index: 0x09
     text: |-
-      As thanks, I will
-      create portal spots
-      around the forest!
+      As thanks, I will create portal spots around the forest!
 
 - group: 0x42
   data:

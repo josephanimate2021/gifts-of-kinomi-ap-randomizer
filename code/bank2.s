@@ -4366,7 +4366,7 @@ showItemText2:
 	ld e,TREASURE_WINTER_STONE
 -
 	ld a,e
-	cp <TX_0972+1
+	cp TREASURE_SPRING_STONE+1
 	jr z,@endStoneCheck
 	call checkTreasureObtained
 	jr nc,+
@@ -7620,7 +7620,7 @@ minimapPopupType_seedTree:
 	add <ROOM_AGES_084-2 ; Room $84 is warp index $02
 +
 ; check for mine warp
-	ld b,b
+	;ld b,b
 	cp <ROOM_AGES_102
 	jr nz,+
 	ld a,(wPastRoomFlags + <ROOM_AGES_113)

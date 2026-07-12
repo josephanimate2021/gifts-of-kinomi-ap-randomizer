@@ -623,7 +623,7 @@ group0Map12ObjectData:
 
 group0Map13ObjectData:
 	obj_Pointer group0Map13EnemyObjectData
-	obj_Interaction $3d $01 $48 $68
+	obj_Interaction $3d $02 $48 $68
 	obj_End
 
 group0Map14ObjectData:
@@ -2229,6 +2229,7 @@ group3MapecObjectData:
 group3MapedObjectData:
 	obj_Interaction $5f $00 $28 $20 $80
 	obj_Interaction $c9 $80 $68 $78
+	obj_AfterEvent group3MapedAfterEventObjectData
 	obj_End
 
 group3MapefObjectData:
@@ -5168,7 +5169,7 @@ group3Map1aObjectData:
 	obj_End
 
 group2Map28ObjectData:
-	obj_Interaction $3d $02 $28 $68
+	obj_Interaction INTERAC_OLD_LADY $04 $28 $68
 	obj_End
 
 group3Map69ObjectData:

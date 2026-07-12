@@ -452,18 +452,18 @@ shopItemGetTilesForRupeeDisplay:
 	.dw w3VramTiles+$69 ; $04
 	.dw w3VramTiles+$6e ; $05
 	.dw w3VramTiles+$6a ; $06
-	.dw w3VramTiles+$68 ; $07
-	.dw w3VramTiles+$6a;$6d ; $08
-	.dw w3VramTiles+$6e;$6b ; $09
+	.dw w3VramTiles+$6a ; $07
+	.dw w3VramTiles+$6e ; $08
+	.dw w3VramTiles+$6e ; $09
 	.dw w3VramTiles+$6f ; $0a
-	.dw w3VramTiles+$68;$67 ; $0b
+	.dw w3VramTiles+$67 ; $0b
 	.dw $ffff			; $0c
 	.dw w3VramTiles+$6f ; $0d
 	.dw w3VramTiles+$67 ; $0e
-	.dw w3VramTiles+$6b;$6b ; $0f
+	.dw w3VramTiles+$6b ; $0f
 	.dw w3VramTiles+$6e ; $10
-	.dw w3VramTiles+$67;$6c ; $11
-	.dw w3VramTiles+$63;$6c ; $12
+	.dw w3VramTiles+$67 ; $11
+	.dw w3VramTiles+$63 ; $12
 	.dw w3VramTiles+$6c ; $13
 .ifdef ROM_AGES
 	.dw w3VramTiles+$66 ; $14
@@ -561,7 +561,7 @@ shopItemTreasureToGive:
 	/* $08 */ .db  TREASURE_SLINGSHOT     $02 ;TREASURE_GASHA_SEED $01
 	/* $09 */ .db  TREASURE_POTION        $01
 	/* $0a */ .db  TREASURE_GASHA_SEED    $01
-	/* $0b */ .db  TREASURE_BOMBCHUS      $05
+	/* $0b */ .db  TREASURE_BOMBCHUS      $15;$05
 	/* $0c */ .db  $00                    $00
 ;.ifdef ROM_AGES
 	/* $0d */ .db  TREASURE_FLUTE         SPECIALOBJECT_DIMITRI

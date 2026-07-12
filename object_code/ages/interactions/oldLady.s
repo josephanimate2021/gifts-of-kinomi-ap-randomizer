@@ -13,8 +13,8 @@ interactionCode3d:
 	ld (de),a
 
 	call interactionInitGraphics
+	call @@initSubid
 	call objectSetVisiblec2
-	call @initSubid
 
 	ld e,Interaction.enabled
 	ld a,(de)
@@ -22,6 +22,38 @@ interactionCode3d:
 	jp nz,objectMarkSolidPosition
 	ret
 
+@@initSubid:
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld e,Interaction.subid
+	ld a,(de)
+	cp b
+	jp c,interactionDelete
+
+@@loadScript:
+	;ld e,Interaction.subid
+	;ld a,(de)
+	ld hl,oldLadyScriptTable
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@state1:
+	call interactionRunScript
+	jp npcFaceLinkAndAnimate
+
+oldLadyScriptTable:
+	.dw mainScripts.oldLady_stubScript ; before quest
+	.dw mainScripts.oldLady_stubScript ; got sword
+	.dw mainScripts.oldLadySubid2Script ; got bracelet
+	.dw mainScripts.oldLady_stubScript ; got trade item
+	.dw mainScripts.oldLadySubid4Script ; got Harp
+	.dw mainScripts.oldLady_stubScript ; got Cane
+	.dw mainScripts.oldLady_stubScript ; got gift		
+
+
+/*
 @initSubid:
 	ld e,Interaction.subid
 	ld a,(de)
@@ -61,10 +93,11 @@ interactionCode3d:
 
 @initSubid2:
 	; This NPC only exists between saving Nayru and beating d7?
-	callab agesInteractionsBank09.getGameProgress_1
-	ld e,Interaction.subid
-	ld a,(de)
-	cp b
+	callab agesInteractionsBank09.getGameProgress_Ages;getGameProgress_1
+	cp $04 ; spawn if have a trade item
+	;ld e,Interaction.subid
+	;ld a,(de)
+	;cp b
 	jp nz,interactionDelete
 	jr @loadScript
 
@@ -216,3 +249,4 @@ oldLadyScriptTable:
 	.dw mainScripts.oldLadySubid1Script
 	.dw mainScripts.oldLadySubid2Script
 	.dw mainScripts.oldLadySubid3Script
+*/

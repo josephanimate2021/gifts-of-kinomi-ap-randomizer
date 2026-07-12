@@ -3130,10 +3130,11 @@ func_03_7619:
 	ld a,(wActiveMusic2)
 	ld (wActiveMusic),a
 	call playSound
-	ld a,CUTSCENE_LOADING_ROOM
+	ld a,CUTSCENE_INGAME;CUTSCENE_LOADING_ROOM
 	ld (wCutsceneIndex),a
 	ld a,DIR_DOWN
 	ld (w1Link.direction),a
+
 	ld a,GLOBALFLAG_WATER_POLLUTION_FIXED
 	call setGlobalFlag
 	jp setDeathRespawnPoint

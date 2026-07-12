@@ -3113,18 +3113,15 @@ boySubid0fScript:
 ; INTERAC_OLD_LADY
 ; ==================================================================================================
 
-oldLadySubid0Script:
-	rungenericnpc TX_1809
-
-oldLadySubid1Script:
-	rungenericnpc TX_180a
-
-oldLadySubid3Script:
-	rungenericnpc TX_180b
+oldLady_stubScript:
+	scriptend
 
 oldLadySubid2Script:
+	rungenericnpc TX_180a
+
+oldLadySubid4Script:
 @waiting:
-	initcollisions
+	initcollisions $06, $06
 	checkabutton
 @pressedA:
 	disableinput
@@ -3163,6 +3160,18 @@ oldLadySubid2Script:
 	checktext
 	enableinput
 	scriptjump @waiting
+/*
+oldLadySubid0Script:
+	rungenericnpc TX_1809
+
+oldLadySubid1Script:
+	rungenericnpc TX_180a
+
+oldLadySubid3Script:
+	rungenericnpc TX_180b
+
+
+*/
 
 ; ==================================================================================================
 ; INTERAC_VERAN_GHOST
@@ -4969,9 +4978,10 @@ syrupScript_notTradedMushroomYet:
 	scriptjump -
 
 syrupScript_spawnShopItems:
-	spawninteraction INTERAC_SHOP_ITEM, $0b, $28, $44
-	spawninteraction INTERAC_SHOP_ITEM, $07, $28, $4c
-	spawninteraction INTERAC_SHOP_ITEM, $08, $28, $74
+	spawninteraction INTERAC_SHOP_ITEM, $0b, $28, $40
+	spawninteraction INTERAC_SHOP_ITEM, $07, $28, $60
+	;spawninteraction INTERAC_SHOP_ITEM, $08, $28, $80 ;gasha seed
+;; TODO: Add a third item here to replace the gasha seed?
 	scriptend
 
 syrupScript_showWelcomeText:

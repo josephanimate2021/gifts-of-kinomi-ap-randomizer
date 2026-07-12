@@ -23,11 +23,15 @@ interactionCode52:
 
 
 @@state0:
+	ld e,Interaction.state
+	ld a,$01
+	ld (de),a
+
 	ld e,Interaction.oamFlags
 	ld a,$03
 	ld (de),a
 
-	callab getGameProgress_2
+	callab getGameProgress_Ages
 	ld a,$04
 	cp b			;has trade item
 	jr z,+

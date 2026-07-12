@@ -371,6 +371,8 @@ group0Map43EnemyObjectData:
 	obj_EndPointer
 
 group0Map16EnemyObjectData:
+	obj_Condition $04
+	obj_SpecificEnemyA $00 ENEMY_WATER_TEKTITE $00 $48 $28
 	obj_EndPointer
 
 group0Map27EnemyObjectData:
@@ -2776,7 +2778,7 @@ group4Map60EnemyObjectData:
 	obj_EndPointer
 
 group3Map69EnemyObjectData:
-	obj_Interaction $52 $04 $18 $18
+	obj_Interaction $52 $03 $18 $18
 	obj_EndPointer
 
 group0Map47EnemyObjectData:
@@ -2965,4 +2967,8 @@ group3Map0dEnemyObjectData:
 group3Map1dEnemyObjectData:
 	obj_SpecificEnemyA 0 $13 $00 $68 $18
 	obj_SpecificEnemyA     $32 $00 $38 $88
+	obj_EndPointer
+
+
+group3MapedAfterEventObjectData:
 	obj_EndPointer

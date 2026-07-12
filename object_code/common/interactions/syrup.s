@@ -231,8 +231,8 @@ syrup_subid1:
 	call interactionIncState
 	call interactionSetAlwaysUpdateBit
 
-	ld l,Interaction.zh
-	ld (hl),$f0
+	;ld l,Interaction.zh
+	;ld (hl),$f0
 	ld l,Interaction.counter1
 	ld a,180
 	ldi (hl),a
