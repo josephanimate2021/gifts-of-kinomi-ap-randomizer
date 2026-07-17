@@ -1929,7 +1929,7 @@ group2Map3eObjectData:
 	obj_End
 
 group2Map4eObjectData:
-	obj_Interaction $52 $07 $40 $40
+	obj_Interaction $52 $02 $40 $40
 	obj_End
 
 group2Map3fObjectData:
@@ -5175,6 +5175,12 @@ group2Map28ObjectData:
 group3Map69ObjectData:
 	obj_Interaction $80 $00 $48 $88
 	obj_Pointer group3Map69EnemyObjectData
+	obj_Interaction INTERAC_OLD_MAN $03 $38 $38
+	obj_Interaction INTERAC_OLD_MAN $04 $18 $30
+	obj_Interaction INTERAC_OLD_MAN $05 $38 $38
+	obj_Interaction INTERAC_OLD_MAN $03 $18 $18 $01
+	obj_Interaction INTERAC_OLD_MAN $04 $68 $18 $01
+	obj_Interaction INTERAC_OLD_MAN $05 $68 $78 $01
 	obj_End
 
 group3Map79ObjectData:

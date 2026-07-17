@@ -4590,19 +4590,25 @@ dumbbellManScript:
 oldManScript_givesLabrinthKey:
 	loadscript scriptHelp.oldManScript_givesLabrinthKey
 
-oldManScriptSubid01:
+oldManScript_noTrade:
 	setcollisionradii $12,$02
 	makeabuttonsensitive
 	rungenericnpclowindex <TX_0b24
 
+/*
 oldManScript_givesBookOfSeals:
 	loadscript scriptHelp.oldManScript_givesBookOfSeals
 
 oldManScript_givesFairyPowder:
 	loadscript scriptHelp.oldManScript_givesFairyPowder
-
+*/
 oldManScript_givesSeedSatchel:
   loadscript scriptHelp.oldManScript_givesSeedSatchel
+
+/*
+oldManScript_stubScript:
+	scriptend
+*/
 
 oldManScript_generic:
 	makeabuttonsensitive

@@ -70,7 +70,7 @@ group0WarpDestTable:
 	m_WarpDest $00 $11 $0 $1
 	m_WarpDest $53 $52 $0 $e
 	m_WarpDest $4d $38 $0 $1
-	m_WarpDest $02 $27 $0 $0
+	m_WarpDest $02 $27 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $55 $42 $0 $1
 	m_WarpDest $02 $27 $0 $1
 	m_WarpDest $34 $11 $0 $1

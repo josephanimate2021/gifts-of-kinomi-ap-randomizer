@@ -3795,7 +3795,7 @@ groups:
       made. Syrup
       never gave me
       any compliments
-      on it. I'll be keep- ing this doll.
+      on it. I'll be keeping this doll.
       (Sniff!)
 
   - name: TX_0712
@@ -17349,69 +17349,36 @@ groups:
   - name: TX_3302
     index: 0x02
     text: |-
-      Huh? How did you get here?
-      Are you also a researcher of this mysterious Lost Woods?
-      I am Cisypherestus.
-      There is a \col(3)Shrine\col(0) somewhere between the trees,
-      but I have struggled finding the means to reach it.
-      These books are all useless, but I at least know that
-      you must collect four gems to learn the right path.
-      Good luck in your endeavors, adventurer!
-
+      Huh? How did you get here? Are you also a researcher of this mysterious Lost Woods?
+      I am \col(1)Cisypherestus\col(0) and I live here with my friend \col(3)Horatio\col(0). There is a \col(3)Shrine\col(0) somewhere between the trees, but I have struggled finding the means to reach it. These books are all useless, but I at least know that you must collect four gems to learn the right path. Good luck in your endeavors, adventurer!
 
   - name: TX_3303
     index: 0x03
     text: |-
-      null
+      Did \col(1)Cisypherestus\col(0) send you on an impossible quest? If that's the case, one of my books tell me that defeating a powerful \col(3)blue\col(0) beast in a familiar swamp will help you in locating \col(1)two\col(0) stones.
 
   - name: TX_3304
     index: 0x04
     text: |-
-      The \col(3)Fairy Queen\col(0)
-      used to live on
-      the island west
-      of here, but
-      she vanished
-      recently...
-      Surely the \col(3)Fairy
-      Queen\col(0) could do
-      something for
-      these seas...
+      You fought the \col(3)blue\col(0) beast? Where was he? What did he give you? Flippers? What strange technology...\stop
+      In another of my books, it tells of how \col(1)caves\col(0) can \col(2)freeze\col(0) in the harsh cold of winter. 
 
   - name: TX_3305
     index: 0x05
     text: |-
-      You're the one
-      who saved the
-      \col(3)Fairy Queen\col(0)?
-      Then you're the
-      hero who saved
-      the \col(3)Zora Seas\col(0).
+      Were you successful in finding the stones? \col(3)Horatio\col(0) told me the hedge maze to the east of here may hide passages where the armos once stood.
 
   - name: TX_3306
     index: 0x06
     text: |-
-      \col(1)Fairy Powder\col(0) is
-      locked away in
-      back, but with-
-      out another \col(1)Book
-      of Seals\col(0), no one
-      can reach the\x20
-      \col(1)powder\col(0). By the
-      way, what is
-      \col(1)Fairy Powder\col(0)?
+      What was the treasure of the \col(1)shrine\col(0)?\stop
+      A cape of winds!! How fantastic!\stop
+      I must tell \col(1)Cisypherestus\col(0). 
 
   - name: TX_3307
     index: 0x07
     text: |-
-      I never thought
-      one who could
-      solve the riddle
-      would come...
-      From whence did
-      you bring the
-      missing
-      \col(1)Book of Seals\col(0)?
+      You made it to the \col(1)shrine\col(0)? Was it as magnificent as the books say?
 
   - name: TX_3308
     index: 0x08

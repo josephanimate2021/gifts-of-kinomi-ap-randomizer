@@ -2856,7 +2856,7 @@ oldManWarpLinkToLibrary:
 
 ;;
 oldManSetAnimationToVar38:
-	ld e,$78
+	ld e,Interaction.var38;$78
 label_15_097:
 	ld a,(de)
 	jp interactionSetAnimation

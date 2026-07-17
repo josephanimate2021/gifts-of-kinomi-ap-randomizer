@@ -9,6 +9,7 @@ interactionCode59:
 	jr nz,@state1
 
 @state0:
+ld b,b
 	ld a,TREASURE_GRAVEYARD_KEY
 	call checkTreasureObtained
 	jp c,interactionDelete ; Delete the poe if the player already obtained the key

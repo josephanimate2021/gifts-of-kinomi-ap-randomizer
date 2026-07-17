@@ -354,6 +354,7 @@ m_section_free Ages_Interactions_Bank9 NAMESPACE agesInteractionsBank09
 	.include "object_code/ages/interactions/raftwreckCutsceneHelper.s"
 	.include "object_code/ages/interactions/comedian.s"
 	.include "object_code/ages/interactions/goron.s"
+	.include "object_code/ages/interactions/getGameProgress.s"
 .ends
 
 
