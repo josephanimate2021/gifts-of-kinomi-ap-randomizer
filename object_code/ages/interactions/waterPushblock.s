@@ -194,7 +194,7 @@ interactionCode9e:
 	jp @playPuzzleSound
 
 @subid0WarpDestVariables:
-	.db $80|>ROOM_AGES_120 <ROOM_AGES_120 $01 $55 $03					;$c0 $0d $01 $23 $03
+	.db $80|(>ROOM_AGES_120), <ROOM_AGES_120, $01, $55, $03					;$c0 $0d $01 $23 $03
 
 @playPuzzleSound:
 	ld a,SNDCTRL_STOPSFX
@@ -283,7 +283,7 @@ interactionCode9e:
 	jp @playPuzzleSound
 
 @subid1WarpDestVariables:
-	.db $80|>ROOM_AGES_120 <ROOM_AGES_120 $01 $52 $03					;$c0 $0d $01 $23 $03
+	.db $80|>ROOM_AGES_120, <ROOM_AGES_120, $01, $52, $03					;$c0 $0d $01 $23 $03
 
 ;;
 ; Swap the room layouts in all rooms affected by the flooding.
