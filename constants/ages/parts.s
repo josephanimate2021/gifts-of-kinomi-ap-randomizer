@@ -198,3 +198,5 @@
 .define PART_TRIFORCE_STONE $5a
 
 .define PART_FACADE_HOLE $5b
+
+.define PART_GLEEOK_FIRE $5c

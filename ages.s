@@ -642,7 +642,7 @@ m_section_free Enemy_Code_Bank0f NAMESPACE bank0f
 	.include "object_code/ages/enemies/giantGhini.s"
 	.include "object_code/ages/enemies/swoop.s"
 	.include "object_code/ages/enemies/facade.s";subterror.s"
-	.include "object_code/ages/enemies/armosWarrior.s"
+	.include "object_code/ages/enemies/syger.s";armosWarrior.s"
 	.include "object_code/ages/enemies/smasher.s"
 	.include "object_code/common/enemies/vire.s"
 	.include "object_code/ages/enemies/anglerFish.s"
@@ -652,7 +652,7 @@ m_section_free Enemy_Code_Bank0f NAMESPACE bank0f
 	.include "object_code/ages/enemies/manhandla.s";shadowHag.s"
 	.include "object_code/ages/enemies/eyesoar.s"
 	.include "object_code/ages/enemies/smog.s"
-	.include "object_code/ages/enemies/octogon.s"
+	.include "object_code/ages/enemies/gleeok.s";octogon.s"
 	.include "object_code/ages/enemies/hardhatBeetlesBoss.s";plasmarine.s"
 	.include "object_code/ages/enemies/kingMoblin.s"
 
@@ -811,7 +811,7 @@ m_section_free Bank_11 NAMESPACE partCode
 
 	;; Facade hole
 	.include "object_code/seasons/parts/2e.s"
-
+	.include "object_code/ages/parts/gleeokFire.s"
 	.include "code/ages/garbage/bank11End.s"
 .ends
 

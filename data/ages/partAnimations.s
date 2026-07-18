@@ -91,6 +91,7 @@ partAnimationTable:
 	.dw part59Animations
 	.dw part5aAnimations
 	.dw part5bAnimations
+	.dw part5cAnimations
 
 partOamDataTable: ; 0x5b71e
 	.dw part00OamDataPointers
@@ -185,6 +186,7 @@ partOamDataTable: ; 0x5b71e
 	.dw part59OamDataPointers
 	.dw part5aOamDataPointers
 	.dw part5bOamDataPointers
+	.dw part5cOamDataPointers
 
 part00Animations:
 part05Animations:
@@ -332,7 +334,8 @@ part47Animations:
 part49Animations:
 	.dw partAnimation5ba94
 	.dw partAnimation5ba9f
-part43Animations:	;Gleeok projectile
+part43Animations: ; hacked plasmarine projectile
+part5cAnimations:	;Gleeok projectile
 	.dw partAnimationGleeokProjectile0 ; 57586
 	.dw partAnimationGleeokProjectile1 ; 57604
 	.dw partAnimation5ba32 ; 5760f
@@ -1126,6 +1129,7 @@ part42OamDataPointers: ; 0x5bd52
 	.dw partOamData531f2
 
 part43OamDataPointers: ; 0x5bd58
+part5cOamDataPointers:
 	.dw partOamData532ba ; 4f3f9
 	.dw partOamData532c3 ; 4f402
 	.dw partOamData532cc ; 4f40b

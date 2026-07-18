@@ -146,7 +146,7 @@ chestGroup5Data:
 	m_ChestData $27 $be $3003
 	m_ChestData $3d $bd $3003
 	m_ChestData $57 $b0 $3003
-	m_ChestData $17 $2c $1704
+	m_ChestData $17 $2c TREASURE_OBJECT_FEATHER_04
 	m_ChestData $57, <ROOM_AGES_545 $3401
 	m_ChestData $18 $4d $3401
 	m_ChestData $12 $4e $0a01

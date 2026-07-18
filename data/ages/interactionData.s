@@ -383,7 +383,7 @@ interactiond7SubidData:
 	m_InteractionSubidData $7c $02 $40 ; $7d (Slingshot)
 	m_InteractionSubidData $e0 $00 $50 ; $7e (Hyper Slingshot)
 	m_InteractionSubidData $84 $04 $40 ; $7f (Magic Boomerang)
-	m_InteractionSubidData $7d $1a $50 ; $80 (Roc's Cape)
+	m_InteractionSubidData $7d $0e $50 ; $80 (Roc's Cape)
 
 	;; TODO: Crossitems was using these, now they conflict with jewels/stones?
 	;; m_InteractionSubidData $7d $10 $20 ; $81 (Rod of Seasons)

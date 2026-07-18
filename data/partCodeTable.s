@@ -92,6 +92,7 @@ partCodeTable:
 	.dw partCode59 ; 0x59
 	.dw partCode5a ; 0x5a
 	.dw partCode5b ; 0x5b
+	.dw partCode5c ; 0x5c
 .else
 	.dw partCode00
 	.dw partCode01
