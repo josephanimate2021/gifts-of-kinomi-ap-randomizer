@@ -79,7 +79,7 @@ interactionCode52:
 
 @@state1:
 	call interactionRunScript
-	jp npcFaceLinkAndAnimate
+	jp interactionAnimateAsNpc;npcFaceLinkAndAnimate
 
 @@state0:
 	ld a,$01
@@ -89,11 +89,12 @@ interactionCode52:
 	call checkNpcAppear_seasons
 	jp nz,interactionDelete
 
-	call interactionInitGraphics
-
 	ld hl,@oldManTextIndices
 	call loadNpcText
+	ld a,>TX_3300
+	ld (de),a
 
+	call interactionInitGraphics
 ; loads animation,oamFlags,collision
 	ld e,Interaction.collisionRadiusX
 	ld a,$06
@@ -212,8 +213,6 @@ loadNpcText:
 	ld (de),a
 
 	inc e ; Interaction.textID+1
-	ld a,>TX_3300
-	ld (de),a
 	ret
 
 /*

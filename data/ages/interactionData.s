@@ -430,7 +430,7 @@ interaction7bSubidData:
 	m_InteractionSubidDataEnd
 
 interaction7fSubidData:
-	m_InteractionSubidData $7f $00 $00
+	m_InteractionSubidData $7f $00 $00 ; $60
 	m_InteractionSubidData $76 $00 $40
 	m_InteractionSubidData $76 $06 $43
 	m_InteractionSubidData $3a $00 $00

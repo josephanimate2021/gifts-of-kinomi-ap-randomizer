@@ -5203,7 +5203,7 @@ inventorySubmenu2CheckDirectionButtons:
 
 @@leftSide:
 	add (hl)
-	and $07
+	and $01 ;and $07 ; only two options
 
 ++
 	ld (hl),a
@@ -5366,7 +5366,7 @@ inventorySubmenu2_drawCursor:
 	bit 7,a
 	jr z,+
 	ld a,(wInventory.submenu2CursorPos2)
-	add $08
+	add $02;add $08
 +
 	ld e,a
 	ld hl,@offsets
@@ -5375,7 +5375,7 @@ inventorySubmenu2_drawCursor:
 	ld b,a
 	ld c,(hl)
 	ld a,e
-	cp $08
+	cpa $02;cp $08
 	ld hl,@sprites1
 	jr c,+
 	ld hl,@sprites2
@@ -5383,6 +5383,10 @@ inventorySubmenu2_drawCursor:
 	jp addSpritesToOam_withOffset
 
 @offsets:
+	.db $38 $28 ; Naryu's Gift
+	.db $5e $28 ; Din's Gift
+
+/*
 	.db $30 $20
 	.db $30 $38
 	.db $40 $48
@@ -5391,9 +5395,11 @@ inventorySubmenu2_drawCursor:
 	.db $68 $20
 	.db $58 $10
 	.db $40 $10
+*/
 	.db $28 $70
 	.db $58 $70
 	.db $70 $70
+
 
 @sprites1:
 	.db $02
@@ -5843,7 +5849,8 @@ inventorySubscreen2_drawTreasures:
 
 	; Loop through all essences; delete the ones we don't own.
 	; (They're already all drawn to the screen.)
-	ld b,$08
+
+	ld b,$02;$08
 @drawEssence:
 	ld a,b
 	dec a
@@ -5864,7 +5871,7 @@ inventorySubscreen2_drawTreasures:
 	call fillRectangleInTilemap
 	pop bc
 	ld a,b
-	ld hl,$d3df
+	ld hl,w4SubscreenTextIndices-1
 	rst_addAToHl
 	ld (hl),$00
 @nextEssence:
@@ -5954,8 +5961,10 @@ inventorySubscreen2_drawTreasures:
 	jp drawTreasureDisplayDataToBg
 
 itemSubmenu2EssencePositions:
-	.dw w4TileMap+$084 w4TileMap+$087 w4TileMap+$0c9 w4TileMap+$129
-	.dw w4TileMap+$167 w4TileMap+$164 w4TileMap+$122 w4TileMap+$0c2
+	.dw w4TileMap+$0a5 ; Nayru's Gift
+	.dw w4TileMap+$145 ; Din's Gift
+	;.dw w4TileMap+$084 w4TileMap+$087 w4TileMap+$0c9 w4TileMap+$129
+	;.dw w4TileMap+$167 w4TileMap+$164 w4TileMap+$122 w4TileMap+$0c2
 
 
 ; Display data for time/season blurb in subscreen 2.

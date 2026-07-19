@@ -3597,7 +3597,15 @@ pastGuySubid6Script:
 ; ==================================================================================================
 ; INTERAC_MISC_MAN_2
 ; ==================================================================================================
+miscMan2Script_generic:
+	makeabuttonsensitive
+@npcLoop:
+	checkabutton
+	showloadedtext
+	scriptjump @npcLoop
 
+
+/*
 pastHobo2Script:
 	jumpifglobalflagset GLOBALFLAG_0b, +
 	rungenericnpc TX_1620
@@ -3657,7 +3665,7 @@ pastHoboScript_postGame:
 	rungenericnpc TX_1607
 +
 	rungenericnpc TX_160a
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_PAST_OLD_LADY

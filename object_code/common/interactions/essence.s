@@ -91,8 +91,8 @@ interaction7f_subid00:
 
 	; [var03] = index of oam data?
 	ld l,Interaction.var03
-	ld (hl),a
-
+	;ld (hl),a
+	ld a,(hl)
 	; a *= 3
 	ld b,a
 	add a
@@ -121,14 +121,18 @@ interaction7f_subid00:
 ;   b2: which layout to use (2-tile or 4-tile)
 @essenceOamData:
 .ifdef ROM_AGES
-	.db $00 $01 $01 ; Nayru's Gift
-	.db $08 $02 $02 ;.db $04 $00 $02 ; Din's Gift
+	.db $12 $03 $01 ; Nayru's Gift
+	.db $16 $03 $02 ; Din's Gift
+/*
+	.db $00 $01 $01
+	.db $08 $02 $02 ;.db $04 $00 $02
 	.db $06 $03 $02
 	.db $08 $02 $02
 	.db $0a $00 $02
 	.db $0c $00 $02
 	.db $0e $01 $01
 	.db $12 $05 $01
+*/
 .else
 	.db $14 $00 $02
 	.db $10 $01 $02
@@ -284,14 +288,16 @@ interaction7f_subid00:
 	jp giveTreasure
 
 @getEssenceTextTable:
-	.db <TX_000e
-	.db <TX_000f
+	.db <TX_000e ; Nayru's Gift
+	.db <TX_000f ; Din's Gift
+/*
 	.db <TX_0010
 	.db <TX_0011
 	.db <TX_0012
 	.db <TX_0013
 	.db <TX_0014
 	.db <TX_0015
+*/
 
 
 ; State 5: waiting for textbox to close
@@ -335,8 +341,8 @@ interaction7f_subid00:
 	ld a,$83
 	ld (wWarpTransition2),a
 
-	xor a
-	ld (wActiveMusic),a
+	;xor a
+	;ld (wActiveMusic),a
 
 	jp clearStaticObjects
 
@@ -348,6 +354,9 @@ interaction7f_subid00:
 ;   b3: wWarpTransition
 @essenceWarps:
 .ifdef ROM_AGES
+	.db $80|>ROOM_AGES_078, <ROOM_AGES_078, $45, TRANSITION_DEST_X_SHIFTED ; Nayru's Gift
+	.db $80|>ROOM_AGES_078, <ROOM_AGES_078, $45, TRANSITION_DEST_X_SHIFTED ; Din's Gift
+/*
 	.db $80, $8d, $26, TRANSITION_DEST_SET_RESPAWN
 	.db $81, $83, $25, TRANSITION_DEST_SET_RESPAWN
 	.db $80, $ba, $55, TRANSITION_DEST_SET_RESPAWN
@@ -356,6 +365,7 @@ interaction7f_subid00:
 	.db $83, $0f, $16, TRANSITION_DEST_SET_RESPAWN
 	.db $82, $90, $45, TRANSITION_DEST_X_SHIFTED
 	.db $81, $5c, $15, TRANSITION_DEST_X_SHIFTED
+*/
 .else
 	.db $80, $96, $44, TRANSITION_DEST_SET_RESPAWN
 	.db $80, $8d, $24, TRANSITION_DEST_SET_RESPAWN
@@ -384,6 +394,14 @@ interaction7f_subid01:
 	call objectGetTileAtPosition
 	dec h
 	ld (hl),$0f
+	dec l
+	ld (hl),$0f
+	ld a,-$10
+	add l
+	ld l,a
+	ld (hl),$01
+	inc l
+	ld (hl),$02
 
 .ifdef ROM_SEASONS
 	ld a,(wDungeonIndex)

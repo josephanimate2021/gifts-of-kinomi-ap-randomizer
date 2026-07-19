@@ -2778,6 +2778,7 @@ group4Map60EnemyObjectData:
 	obj_EndPointer
 
 group3Map69EnemyObjectData:
+	obj_Interaction $52 $03 $18 $18
 	obj_EndPointer
 
 group0Map47EnemyObjectData:
@@ -2970,4 +2971,7 @@ group3Map1dEnemyObjectData:
 
 
 group3MapedAfterEventObjectData:
+	obj_EndPointer
+
+group0Map78AfterEventObjectData:
 	obj_EndPointer

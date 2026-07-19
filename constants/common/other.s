@@ -184,3 +184,9 @@
 
 	.define POPUP_STUMP $03
 	.define POPUP_SYRUP	$07
+
+
+.enum 0
+	UPGRADE_BIT_BOMBS	db ; $00
+.ende
+	.define UPGRADE_BOMBS $01 

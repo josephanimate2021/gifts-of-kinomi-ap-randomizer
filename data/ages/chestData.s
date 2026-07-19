@@ -49,7 +49,7 @@ chestGroup2Data:
 
 chestGroup3Data:
 	m_ChestData $35 $0d $1500
-	m_ChestData $14 $1a $6101
+	m_ChestData $14 $1a TREASURE_OBJECT_BOMB_UPGRADE_01
 	m_ChestData $14 $48 $2818
 	m_ChestData $18 $2b $2804
 	m_ChestData $24 $3b $3a00

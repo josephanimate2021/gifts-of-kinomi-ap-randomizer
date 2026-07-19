@@ -1,7 +1,60 @@
 ; ==================================================================================================
 ; INTERAC_MISC_MAN_2
 ; ==================================================================================================
+; See INTERAC_OLD_MAN for further detail.
 interactionCode44:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	ld a,$01
+	ld (de),a
+
+	ld hl,@miscMan2SubidAppearances
+	call checkNpcAppear_seasons
+	jp nz,interactionDelete
+
+	ld hl,@miscMan2TextIndices
+	call loadNpcText
+	ld a,>TX_1600
+	ld (de),a
+
+	call interactionInitGraphics
+	ld a,$06
+	call objectSetCollideRadius
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+	ld hl,mainScripts.miscMan2Script_generic
+	jp interactionSetScript
+
+@miscMan2SubidAppearances:
+	.dw @@var03_00
+
+@@var03_00:
+	.db $01 $01 $02 $02
+	.db $02 $02 $02 $03
+	.db $03
+
+@miscMan2TextIndices:
+	.dw @@var03_00
+; First old man in woods house
+@@var03_00:
+	.db <TX_1610 ; 0x00 before quest
+	.db <TX_1610 ; 0x01 got sword
+	.db <TX_1611 ; 0x02 got bombs
+	.db <TX_1611 ; 0x03 got boomerang
+	.db <TX_1611 ; 0x04 got Rod of Seasons
+	.db <TX_1611 ; 0x05 got flippers
+	.db <TX_1611 ; 0x06 got feather
+	.db <TX_1612 ; 0x07 got gift
+	.db <TX_1612 ; 0x08 game finished
+
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	rst_jumpTable
@@ -114,7 +167,7 @@ interactionCode44:
 	call interactionSetScript
 	jp interactionIncState
 
-
+*/
 ;;
 ; @param[out]	b	$00 before beating d2;
 ;			$01 if beat d2;
@@ -169,6 +222,7 @@ getGameProgress_2:
 @noEssences:
 	ld b,$00
 	ret
+/*
 ;;
 ; @param[out]	b	$00 before beating d2;
 ;			$01 if beat d2;
@@ -236,7 +290,7 @@ unusedFunc5598:
 	ld l,a
 	call interactionSetScript
 	jp interactionIncState
-
+*/
 ;;
 ; Contains some preset data for checking whether certain interactions should exist at
 ; certain points in the game?
@@ -360,7 +414,7 @@ checkNpcShouldExistAtGameStage_body:
 	.db $07 $08 $ff
 
 
-
+/*
 miscMan2ScriptTable:
 	.dw mainScripts.pastHobo2Script
 	.dw mainScripts.npcTurnedToOldManCutsceneScript
@@ -387,3 +441,4 @@ pastHoboScriptTable:
 	.dw mainScripts.pastHoboScript_afterGotMakuSeed
 	.dw mainScripts.pastHoboScript_twinrovaKidnappedZelda
 	.dw mainScripts.pastHoboScript_postGame
+*/

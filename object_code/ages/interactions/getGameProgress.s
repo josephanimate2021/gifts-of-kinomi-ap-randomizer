@@ -11,11 +11,11 @@
 ;			$08 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Ages:
-	push de
-	ld de,wGameProgress2
 	ld hl,@itemTable2
-	ldbc $08,$02 ;Essence 2
-	jr getGameProgress_Seasons@getProgress
+	ldbc $08,$01 ;Essence 1
+	call getGameProgress_Seasons@getProgress
+	ld (wGameProgress1),a
+	ret
 @itemTable2:
 	.db TREASURE_CANE_OF_SOMARIA
 	.db TREASURE_HARP
@@ -38,31 +38,33 @@ getGameProgress_Ages:
 ;			$08 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Seasons:
-	push de
-	ld de,wGameProgress1
 	ld hl,@itemTable1
-	ldbc $08,$01 ;Essence 1
+	ldbc $08,$02 ;Essence 2
+	call @getProgress
+	ld a,b
+	ld (wGameProgress2),a
+	ret
+
 @getProgress:
 	push hl
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
 	pop hl
-	jr nz,@ret
+	ret nz
+
 	dec b
 	ld a,(wEssencesObtained)
 	and c
-	jr nz,@ret
+	ret nz
 
 @checkItemObtained:
 	dec b
-	jr z,@ret
+	ret z
+	ret z
+
 	ldi a,(hl)
 	call checkTreasureObtained
 	jr nc,@checkItemObtained
-	ld a,b
-	ld (de),a
-@ret:
-	pop de
 	ret
 
 @itemTable1:

@@ -77,11 +77,20 @@ parentItemCode_bomb:
 
 	call parentItemLoadAnimationAndIncState
 	ld e,$01
+
+; Bomb upgrade obtained in ROOM_AGES_31A
+	ld a,UPGRADE_BIT_BOMBS
+	ld hl,wUpgradesObtained
+	call checkFlag
+	jr nz,+
+
 	ld a,BOMBERS_RING
 	call cpActiveRing
-	jr nz,+
-	inc e
+	jr nz,++
 +
+	inc e
+	inc e
+++
 	call itemCreateChild
 	jp c,clearParentItem
 

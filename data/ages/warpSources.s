@@ -154,9 +154,9 @@ warpSource49f5:
 	m_WarpListEndWithDefault
 
 warpSource49fd:
-	m_PositionWarp $25 $34 $3 TRANSITION_SRC_FADEOUT
-	m_PositionWarp $13 $54 $3 TRANSITION_SRC_FADEOUT
-	m_PositionWarp $31 $20 $5 TRANSITION_SRC_FADEOUT
+	m_PositionWarp $25 $34 $3 $4
+	m_PositionWarp $13 $54 $3 $4
+	m_PositionWarp $31 $20 $5 $4
 	m_WarpListEndWithDefault
 
 warpSource4a09:
@@ -203,7 +203,7 @@ warpSource4a4d:
 
 warpSource4a51:
 	m_PositionWarp $51 $2f $5 $2
-	m_PositionWarp $35 $69 $0 $8
+	m_PositionWarp $58 $69 $0 $8
 	m_WarpListEndWithDefault
 
 warpSource4a59:

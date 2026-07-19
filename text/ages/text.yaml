@@ -112,26 +112,17 @@ groups:
     index: 0x0e
     text: |-
       \pos(2)\slow()You got the
-      song of the
-      \col(1)Eternal Spirit\col(0),
-      your gift to Nayru!\stop
-      Even after life
-      ends, it speaks
-      across time to
-      the heart.
+      \col(1)Song of Eternity\col(0).\stop
+      \slow()This is your gift to Nayru!\stop
+      It is an ancient melody that soothes the down- trodden.
 
   - name: TX_000f
     index: 0x0f
     text: |-
       \pos(2)\slow()You got the
-      torch of the
-      \col(1)Burning Flame\col(0),
-      your gift to Din!\stop
-      It reignites
-      wavering hearts
-      with a hero's
-      burning
-      passion.
+      \col(1)Wings of Passion\col(0).\stop
+      \slow()This is your gift to Din!\stop
+      It soars high and glides low as it sweeps across the hearts of the people.
 
   - name: TX_0010
     index: 0x10
@@ -888,9 +879,7 @@ groups:
   - name: TX_006e
     index: 0x6e
     text: |-
-      You can now hold
-      more \col(1)Bombs\col(0) than
-      before!
+      You can now place more \col(1)Bombs\col(0) than before!
 
   - name:
     - TX_006f
@@ -4063,18 +4052,14 @@ groups:
   - name: TX_0901
     index: 0x01
     text: |-
-      Eternal Spirit
-      It speaks across
-      time to the
-      heart!
+      Song of Enternity
+      A gift for Nayru.
 
   - name: TX_0902
     index: 0x02
     text: |-
-      Ancient Wood
-      It speaks only
-      truth to closed
-      ears.
+      Wings of Passion
+      A gift for Din.
 
   - name: TX_0903
     index: 0x03
