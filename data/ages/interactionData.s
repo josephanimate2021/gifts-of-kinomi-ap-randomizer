@@ -169,7 +169,7 @@ interactionData:
 	/* $9a */ m_InteractionData $60 $00 $10
 	/* $9b */ m_InteractionData $00 $00 $00
 	/* $9c */ m_InteractionData interaction9cSubidData
-	/* $9d */ m_InteractionData $5f $14 $02
+	/* $9d */ m_InteractionData $5f $14 $12 ; Tokkey
 	/* $9e */ m_InteractionData $6c $1c $50
 	/* $9f */ m_InteractionData interaction9fSubidData
 	/* $a0 */ m_InteractionData interactiona0SubidData
@@ -584,7 +584,7 @@ interaction47SubidData:
 	m_InteractionSubidData $79 $08 $00
 	m_InteractionSubidData $7c $02 $40 ;slingshot ;$79 $0a $10
 	m_InteractionSubidData $79 $00 $23
-	m_InteractionSubidData $7c $04 $50 ;hyper slingshot ;$79 $0a $10
+	m_InteractionSubidData $e1 $00 $50;$7c $04 $50 ;hyper slingshot ;$79 $0a $10
 	m_InteractionSubidData $79 $00 $23
 	m_InteractionSubidData $79 $0a $10
 	m_InteractionSubidData $7e $00 $50

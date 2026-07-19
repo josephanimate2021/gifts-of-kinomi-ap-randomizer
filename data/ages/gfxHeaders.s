@@ -111,8 +111,8 @@ m_GfxHeaderStart $09, GFXH_INVENTORY_SUBSCREEN_1
 	m_GfxHeaderEnd
 
 m_GfxHeaderStart $0a, GFXH_INVENTORY_SUBSCREEN_2
-	m_GfxHeader map_inventory_screen_2, w4TileMap+$060
-	m_GfxHeader flg_inventory_screen_2, w4AttributeMap+$060
+	m_GfxHeader map_inventory_screen_2, w4TileMap+$040
+	m_GfxHeader flg_inventory_screen_2, w4AttributeMap+$040
 	m_GfxHeaderEnd
 
 m_GfxHeaderStart $0b, GFXH_INVENTORY_SUBSCREEN_3

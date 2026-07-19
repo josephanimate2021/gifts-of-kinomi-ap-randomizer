@@ -2590,7 +2590,7 @@ group1Map12EnemyObjectData:
 	obj_EndPointer
 
 group1Map60EnemyObjectData:
-	obj_SpecificEnemyA $00 $4a $00 $38 $70
+	obj_RandomEnemy $20 ENEMY_SWORD_MASKED_MOBLIN $00
 	obj_EndPointer
 
 group4Map43EnemyObjectData:
@@ -2974,4 +2974,11 @@ group3MapedAfterEventObjectData:
 	obj_EndPointer
 
 group0Map78AfterEventObjectData:
+	obj_EndPointer
+
+group5MapcfAfterEventObjectData:
+	obj_EndPointer
+
+group0Map29AfterEventObjectData:
+	obj_Interaction INTERAC_MAKU_TREE $02 $40 $50
 	obj_EndPointer

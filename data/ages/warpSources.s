@@ -800,7 +800,7 @@ group4WarpSources:
 	m_StandardWarp $0 $1a $03 $6 $2
 	m_StandardWarp $0 $17 $05 $6 $2
 	m_StandardWarp $0 $15 $06 $6 $2
-	m_StandardWarp $0 $7f $3c $3 $2
+	m_StandardWarp $0 $7f $52 $2 $2
 	m_StandardWarp $0 $0e $74 $0 $2
 	m_StandardWarp $0 $5f $0b $1 $2
 	m_WarpListEndNoDefault

@@ -778,8 +778,8 @@ group0Map27ObjectData:
 
 group0Map29ObjectData:
 	obj_Pointer group0Map29EnemyObjectData
-	obj_Interaction $87 $02 $40 $50
 	obj_Interaction $80 $00 $58 $28
+	obj_AfterEvent group0Map29AfterEventObjectData
 	obj_End
 
 group0Map2aObjectData:
@@ -2943,6 +2943,7 @@ group4Map4fObjectData:
 	obj_Interaction $25 $00 $98 $d8
 	obj_Interaction $21 $11 $58 $78
 	obj_Interaction $dc $11
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $08 $81 $40 $1b
 	obj_End
 
 group4Map50ObjectData:
@@ -4914,7 +4915,9 @@ group5Mapb5ObjectData:
 	obj_End
 
 group5MapcfObjectData:
-	obj_Interaction $10 $00 $28 $58
+	obj_Interaction INTERAC_TOKKEY $00 $28 $38
+	obj_AfterEvent group5MapcfAfterEventObjectData
+	obj_Interaction INTERAC_FARORE $00 $28 $58
 	obj_End
 
 group5Mapd0ObjectData:

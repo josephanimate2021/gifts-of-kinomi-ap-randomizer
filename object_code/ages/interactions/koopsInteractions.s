@@ -31,7 +31,7 @@ interactionCodee7:
 	jr nz,@setDungeonWarp
 	;if not all crystals are broken, skip room $41 (winter)
 	ld a,(wActiveRoom)
-	cp $2d
+	cp <ROOM_AGES_52d;$2d
 	ld a,c
 	ld hl,wDungeonVisitedFloors+$04		;Seasons Shrine
 	call z,@findingVisitedFloor

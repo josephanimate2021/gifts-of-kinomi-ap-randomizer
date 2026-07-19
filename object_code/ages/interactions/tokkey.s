@@ -35,7 +35,7 @@ interactionCode9d:
 	ret nc
 
 	ld a,(wActiveTilePos)
-	cp $32
+	cp $43;$32
 	jr z,++
 	ld bc,TX_2c05
 	jp showText

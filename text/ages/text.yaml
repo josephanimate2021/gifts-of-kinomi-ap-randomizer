@@ -112,7 +112,7 @@ groups:
     index: 0x0e
     text: |-
       \pos(2)\slow()You got the
-      \col(1)Song of Eternity\col(0).\stop
+      \col(1)Enternal Song\col(0)!\stop
       \slow()This is your gift to Nayru!\stop
       It is an ancient melody that soothes the down- trodden.
 
@@ -120,7 +120,7 @@ groups:
     index: 0x0f
     text: |-
       \pos(2)\slow()You got the
-      \col(1)Wings of Passion\col(0).\stop
+      \col(1)Wings of Passion\col(0)!\stop
       \slow()This is your gift to Din!\stop
       It soars high and glides low as it sweeps across the hearts of the people.
 
@@ -914,7 +914,7 @@ groups:
       You got the
       \col(1)Cane of Somaria\col(0)!
       Use it to create
-      special blocks.
+      special blocks and to fill holes.
 
   - name: TX_0074
     index: 0x74
@@ -4052,7 +4052,7 @@ groups:
   - name: TX_0901
     index: 0x01
     text: |-
-      Song of Enternity
+      Eternal Song
       A gift for Nayru.
 
   - name: TX_0902
@@ -13481,17 +13481,8 @@ groups:
   - name: TX_2c00
     index: 0x00
     text: |-
-      \pos(2)I am \col(3)Tokkey\col(0). I
-      research time.
-      After many years
-      of research, I'm
-      one step away
-      from perfecting
-      a \col(1)tune\col(0) that lets
-      one move forward
-      in time, but it
-      seems I've hit
-      a roadblock.\n
+      \pos(2)I am \col(3)Mooskey\col(0). My great great grandfather researched time. After many years of researching his studies, I'm one step away from recreating the \col(1)tune\col(0) he mastered ages ago.
+      The \col(1)tune\col(0) lets one move forward in time, but it seems I've hit a roadblock.\n
     null_terminator: False
 
   - name: TX_2c01

@@ -4453,7 +4453,7 @@ inventoryMenuState0:
 	ld a,(wSlingshotLevel)
 	cp $02
 	jr nz,+
-	ld a,UNCMP_GFXH_HYPER_SLINGSHOT_INV
+	ld a,$42;UNCMP_GFXH_HYPER_SLINGSHOT_INV
 	call loadUncompressedGfxHeader
 +
 
@@ -5063,7 +5063,7 @@ inventorySubscreen0CheckDirectionButtons:
 
 	ld hl,wInventorySubmenu0CursorPos
 	add (hl)
-	and $0f
+	and $0f ;16 positions
 	ld (hl),a
 	ld a,SND_MENU_MOVE
 	jp playSound
@@ -5073,11 +5073,55 @@ inventorySubscreen0CheckDirectionButtons:
 
 ;;
 ; Same as above, but for the second submenu.
+; [param] a wKeysJustPressed
 inventorySubmenu1CheckDirectionButtons:
+	ld b,a
+	ld hl,@positions
+	ld a,(wInventorySubmenu1CursorPos)
+	add a
+	add a
+	rst_addAToHl
+
+	ld a,b
+	call getDirectionButtonOffsetFromHl
+	ret nc
+
+	ld (wInventorySubmenu1CursorPos),a
+/*
 	ld hl,@offsets
 	call getDirectionButtonOffsetFromHl
 	ret nc
 
+	ld hl,wInventorySubmenu1CursorPos
+	add (hl)
+	and $07
+	ld (hl),a
+*/
+	ld a,SND_MENU_MOVE
+	jp playSound
+
+; DIR_RIGHT,DIR_LEFT,DIR_UP,DIR_DOWN
+@positions:
+	.db $01 $09 $04 $04 ; 0x00
+	.db $02 $00 $05 $05 ; 0x01
+	.db $03 $01 $08 $06 ; 0x02
+	.db $04 $02 $09 $07 ; 0x03
+
+	.db $05 $03 $00 $00 ; 0x04
+	.db $06 $04 $01 $01 ; 0x05
+	.db $07 $05 $02 $08 ; 0x06
+	.db $08 $06 $03 $09 ; 0x07
+
+	.db $09 $07 $06 $02 ; 0x08
+	.db $00 $08 $07 $03 ; 0x09
+
+;$01 $ff $fc $04 
+
+/*
+	ld hl,@offsets
+	call getDirectionButtonOffsetFromHl
+	ret nc
+	
 	ld c,a
 	ld b,a
 	inc b
@@ -5157,9 +5201,11 @@ inventorySubmenu1CheckDirectionButtons:
 	.db $0e $14 $04
 	.db $0a $0f $00
 
+
 ; Cursor offsets when the corresponding direction button is pressed
 @offsets:
-	.db $01 $ff $fb $05
+	.db $01 $ff $fc $04 ;$fb $05
+*/
 
 ;;
 inventorySubmenu2CheckDirectionButtons:
@@ -5199,6 +5245,13 @@ inventorySubmenu2CheckDirectionButtons:
 .endif
 	cp $03
 	jr nc,--
+; check if on Seasons/Ages blurb
+	cpa $00
+	jr nz,+
+	call checkWhetherToDisplaySymbolInSubscreen
+	jr z,--
++
+
 	jr ++
 
 @@leftSide:
@@ -5311,15 +5364,15 @@ inventorySubmenu1_drawCursor:
 	ld d,$02
 	ld a,e
 
-	cp $04
+	cp $03;$04
 	jr z,+
-
+/*
 .ifdef ROM_AGES
 	cp $09
 	jr z,+
 .endif
-
-	sub $0e
+*/
+	sub $07;$0e
 	jr z,+
 
 	dec d
@@ -5337,10 +5390,15 @@ inventorySubmenu1_drawCursor:
 	jp addSpritesToOam_withOffset
 
 @data:
-	.db $52 $55 $58 $5b $5e $82 $85 $88
-	.db $8b $8e $b2 $b5 $b8 $bb $be $e0
-	.db $e3 $e6 $e9 $ec $ef
-
+	.db $52 $55 $5b $5e
+	.db $82 $85 $8b $8e
+	.db         $bb $be
+/*
+	.db $52 $55 $58 $5b $5e
+	.db $82 $85 $88 $8b $8e
+	.db $b2 $b5 $b8 $bb $be
+	.db $e0 $e3 $e6 $e9 $ec $ef
+*/
 @spritesTable:
 	.dw @sprites0
 	.dw @sprites1
@@ -6383,12 +6441,32 @@ subscreen1TreasureData:
 
 	.ifdef ROM_AGES
 		; Row 1
+	.db TREASURE_GRAVEYARD_KEY		$01 $00
+	.db TREASURE_LIBRARY_KEY		$04 $01
+	.db TREASURE_FLIPPERS 			$0a $02
+	.db TREASURE_SLATE				$0d $03
+
+		; Row 2
+	.db TREASURE_OLD_MERMAID_KEY	$31 $04
+	.db TREASURE_CROWN_KEY			$34 $05
+	.db TREASURE_SPRING_STONE		$3a $06
+	.db TREASURE_WINTER_STONE		$3b $06
+	.db TREASURE_SUMMER_STONE		$2a $06
+	.db TREASURE_AUTUMN_STONE		$2b $06
+	.db TREASURE_TRADEITEM			$3d $07
+
+		; Row 3
+	.db TREASURE_POTION				$6a $08
+	.db TREASURE_GASHA_SEED			$6d $09
+
+	.db $00
+/*
+		; Row 1
 		.db TREASURE_DINS_GIFT			$01 $00		;FLIPPERS
 		.db TREASURE_NAYRUS_GIFT		$04 $01		;MERMAID_SUIT		$01 $00
 		.db TREASURE_POTION				$07 $02		;$04 $01
 		.db TREASURE_TRADEITEM			$0a $03
 		.db TREASURE_SLATE				$0d $04
-
 		.db TREASURE_EMPTY_BOTTLE		$0a $03
 		.db TREASURE_FAIRY_POWDER		$0a $03
 		.db TREASURE_ZORA_SCALE			$0a $03
@@ -6436,7 +6514,7 @@ subscreen1TreasureData:
 		.db TREASURE_BOOK_OF_SEALS		$6a $0d
 		.db TREASURE_RING				$6d $0e
 		.db $00
-
+*/
 	.else; ROM_SEASONS
 
 		; Row 1

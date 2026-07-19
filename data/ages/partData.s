@@ -70,7 +70,7 @@ partData:
 	.db $8e $f6 $33 $fc $01 $16 $04 $00 ; $3a
 	.db $96 $84 $55 $fc $01 $00 $05 $00 ; $3b
 	.db $8e $86 $44 $f8 $40 $14 $02 $00 ; $3c
-	.db $8e $77 $44 $00 $01 $14 $04 $00 ; $3d
+	.db $8e ENEMYCOLLISION_BABY_BALL $44 $00 $01 $14 $04 $00 ; $3d ; Blue Stalfos Projectile
 	.db $00 $00 $00 $00 $40 $00 $04 $00 ; $3e
 	.db $ab $78 $66 $f8 $01 $04 $01 $00 ; $3f
 	.db $00 $00 $00 $00 $40 $00 $00 $00 ; $40
@@ -100,5 +100,5 @@ partData:
 	.db $d7 $86 $62 $f8 $40 $1e $06 $00 ; $58
 	.db $00 $86 $55 $fc $40 $08 $0a $00 ; $59
 	.db $3d $00 $00 $00 $01 $00 $06 $00 ; $5a
-	.db $a7 $00 $66 $00 $40 $18 $04 $00 ; $5b Facade Hole SEASON_OBJGFXH_8f
-	.db $cb $86 $55 $fe $40 $02 $02 $00 ; $5c Gleeok fire  $90 $86 $55 $fc $40 $02 $02 $00	
+	.db $a7 ENEMYCOLLISION_00 $66 $00 $40 $18 $04 $00 ; $5b Facade Hole SEASON_OBJGFXH_8f
+	.db $cb $80|ENEMYCOLLISION_PROJECTILE $55 $fe $40 $02 $02 $00 ; $5c Gleeok fire  $90 $86 $55 $fc $40 $02 $02 $00	

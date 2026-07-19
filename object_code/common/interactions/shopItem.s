@@ -453,7 +453,7 @@ shopItemGetTilesForRupeeDisplay:
 	.dw w3VramTiles+$6e ; $05
 	.dw w3VramTiles+$6a ; $06
 	.dw w3VramTiles+$6a ; $07
-	.dw w3VramTiles+$6e ; $08
+	.dw w3VramTiles+$6a ; $08
 	.dw w3VramTiles+$6e ; $09
 	.dw w3VramTiles+$6f ; $0a
 	.dw w3VramTiles+$67 ; $0b
@@ -602,7 +602,7 @@ shopItemReplacementTable:
 	/* $08 */ .db <wBoughtShopItems1  $08 $ff $10 ; 2nd slingshot
 	/* $09 */ .db <wBoughtShopItems1  $10 $ff $00
 	/* $0a */ .db <wBoughtShopItems2  $08 $ff $00
-	/* $0b */ .db <wNumBombchus		  $99 $ff $00
+	/* $0b */ .db <wNumBombchus		  $00 $ff $00
 	/* $0c */ .db <wBoughtShopItems1  $00 $ff $00
 	/* $0d */ .db <wBoughtShopItems2  $00 $ff $00
 	/* $0e */ .db <wBoughtShopItems2  $01 $ff $00

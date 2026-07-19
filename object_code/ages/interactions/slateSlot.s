@@ -16,10 +16,12 @@ interactionCodedb:
 	; Check if slate already placed
 	ld e,Interaction.subid
 	ld a,(de)
+
 	ld bc,bitTable
 	add c
 	ld c,a
-	call getThisRoomFlags
+	;call getThisRoomFlags
+	ld hl,wNumPlacedSlates
 	ld a,(bc)
 	and (hl)
 	jp nz,interactionDelete

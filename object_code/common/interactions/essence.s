@@ -121,7 +121,7 @@ interaction7f_subid00:
 ;   b2: which layout to use (2-tile or 4-tile)
 @essenceOamData:
 .ifdef ROM_AGES
-	.db $12 $03 $01 ; Nayru's Gift
+	.db $12 $04 $01 ; Nayru's Gift
 	.db $16 $03 $02 ; Din's Gift
 /*
 	.db $00 $01 $01
@@ -342,7 +342,8 @@ interaction7f_subid00:
 	ld (wWarpTransition2),a
 
 	;xor a
-	;ld (wActiveMusic),a
+	ld a,MUS_ESSENCE_ROOM
+	ld (wActiveMusic),a
 
 	jp clearStaticObjects
 
@@ -354,7 +355,7 @@ interaction7f_subid00:
 ;   b3: wWarpTransition
 @essenceWarps:
 .ifdef ROM_AGES
-	.db $80|>ROOM_AGES_078, <ROOM_AGES_078, $45, TRANSITION_DEST_X_SHIFTED ; Nayru's Gift
+	.db $80|>ROOM_AGES_47f, <ROOM_AGES_47f, $37, TRANSITION_DEST_SET_RESPAWN ; Nayru's Gift
 	.db $80|>ROOM_AGES_078, <ROOM_AGES_078, $45, TRANSITION_DEST_X_SHIFTED ; Din's Gift
 /*
 	.db $80, $8d, $26, TRANSITION_DEST_SET_RESPAWN
