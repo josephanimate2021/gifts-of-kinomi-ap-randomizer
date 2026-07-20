@@ -4512,6 +4512,7 @@ updateActiveRoom:
 	jr nz,+
 	ld a,(wDungeonFloor)
 	inc a
+	and $03
 	xor $03
 	ld (wCurrentSeason),a
 +
