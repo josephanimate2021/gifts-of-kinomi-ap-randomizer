@@ -229,7 +229,7 @@ bank3bChannelFallback:
 .include "audio/sfx/common/enemyJump.s"
 .include "audio/sfx/common/galeSeed.s"
 .include "audio/mus/ages/tokayHouse.s"
-
+.include "audio/mus/custom/theGreatPalace.s" ; TODO
 
 soundcaStart:
 soundcaChannel2:
@@ -272,7 +272,6 @@ bank3cChannelFallback:
 .include "audio/mus/custom//hyruleCastle.s"
 
 ;.include "audio/mus/ages/mermaidsCave.s"
-;.include "audio/mus/custom/theGreatPalace.s" ; TODO
 .include "audio/mus/ages/skullDungeon.s"
 .include "audio/mus/ages/blackTower.s"
 .include "audio/mus/ages/fairyForest.s"

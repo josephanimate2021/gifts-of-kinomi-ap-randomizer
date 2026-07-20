@@ -112,9 +112,9 @@ groups:
     index: 0x0e
     text: |-
       \pos(2)\slow()You got the
-      \col(1)Enternal Song\col(0)!\stop
+      \col(1)Eternal Song\col(0)!\stop
       \slow()This is your gift to Nayru!\stop
-      It is an ancient melody that soothes the down- trodden.
+      It is an ancient melody that soothes the down-trodden.
 
   - name: TX_000f
     index: 0x0f
@@ -17331,7 +17331,7 @@ groups:
   - name: TX_3303
     index: 0x03
     text: |-
-      Did \col(1)Cisypherestus\col(0) send you on an impossible quest? If that's the case, one of my books tell me that defeating a powerful \col(3)blue\col(0) beast in a familiar swamp will help you in locating \col(1)two\col(0) stones.
+      Did \col(1)Cisypherestus\col(0) send you on an impossible quest? If that's the case, one of my books tells me that defeating a powerful \col(3)blue\col(0) beast in a familiar swamp will help you in locating \col(1)two\col(0) stones.
 
   - name: TX_3304
     index: 0x04

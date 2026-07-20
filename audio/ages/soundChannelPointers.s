@@ -573,18 +573,18 @@ hyruleCastle:
 	.db $06
 	.dw hyruleCastleChannel6
 	.db $ff
-
-theGreatPalace:
-	.db $00
-	.dw theGreatPalaceChannel0
-	.db $01
-	.dw theGreatPalaceChannel1
-	.db $04
-	.dw theGreatPalaceChannel4
-	.db $06
-	.dw theGreatPalaceChannel6
-	.db $ff
 */
+musTheGreatPalace:
+	.db $00
+	.dw musTheGreatPalaceChannel0
+	.db $01
+	.dw musTheGreatPalaceChannel1
+	.db $04
+	.dw musTheGreatPalaceChannel4
+	.db $06
+	.dw musTheGreatPalaceChannel6
+	.db $ff
+
 
 ; replaced
 /*

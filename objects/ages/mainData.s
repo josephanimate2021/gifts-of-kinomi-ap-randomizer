@@ -5306,7 +5306,6 @@ group2Map50ObjectData:
 	obj_End
 
 group2Map1aObjectData:
-	obj_Interaction $80 $00 $18 $68
 	obj_Interaction $dc $08 $23 $40 $1b
 	obj_Interaction $48 $13 $48 $68
 	obj_Interaction $48 $14 $68 $28
