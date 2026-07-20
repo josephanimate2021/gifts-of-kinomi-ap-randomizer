@@ -6,6 +6,7 @@ interactionCode52:
 	ld a,(de)
 	cpa $02
 	jr nc,@genericNpc
+	rst_jumpTable
 	.dw @subid00
 	.dw @subid01
 	.dw @subid02

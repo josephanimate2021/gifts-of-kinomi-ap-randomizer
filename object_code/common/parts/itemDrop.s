@@ -320,8 +320,8 @@ itemDrop_initGfx:
 	.db $16 $01 ; ITEM_DROP_PEGASUS_SEEDS
 	.db $18 $01 ; ITEM_DROP_GALE_SEEDS
 	.db $1a $00 ; ITEM_DROP_MYSTERY_SEEDS
-	.db $1c $00 ; ITEM_DROP_0a
-	.db $1e $00 ; ITEM_DROP_0b
+	.db $1c $05 ; ITEM_DROP_0a
+	.db $1e $05 ; ITEM_DROP_0b
 	.db $0c $01 ; ITEM_DROP_1_ORE_CHUNK
 	.db $0c $02 ; ITEM_DROP_10_ORE_CHUNKS
 	.db $0c $03 ; ITEM_DROP_50_ORE_CHUNKS

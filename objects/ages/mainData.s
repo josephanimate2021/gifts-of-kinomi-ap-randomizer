@@ -2155,7 +2155,6 @@ group3Map2eObjectData:
 	obj_End
 
 group3Map3eObjectData:
-	obj_Interaction $66 $0b $38 $50
 	obj_End
 
 group3Map3fObjectData:
@@ -2163,8 +2162,6 @@ group3Map3fObjectData:
 	obj_End
 
 group3Map4eObjectData:
-	obj_Interaction $6b $13 $10 $38
-	obj_Interaction $6b $14 $10 $68
 	obj_End
 
 group3Map4fObjectData:
@@ -2189,11 +2186,9 @@ group3MapffObjectData:
 	obj_End
 
 group3Map5eObjectData:
-	obj_Interaction $4e $03 $38 $50
 	obj_End
 
 group3Map5fObjectData:
-	obj_Interaction $66 $0e $28 $50 $06
 	obj_End
 
 group3Map6eObjectData:
@@ -2201,19 +2196,15 @@ group3Map6eObjectData:
 	obj_End
 
 group3Map6fObjectData:
-	obj_Interaction $bf $07 $38 $78
 	obj_End
 
 group3Map7eObjectData:
-	obj_Interaction $bf $0a $28 $48
 	obj_End
 
 group3Map7fObjectData:
-	obj_Interaction $bf $0b $28 $58
 	obj_End
 
 group3Map8eObjectData:
-	obj_Interaction $bf $04 $38 $28
 	obj_End
 
 group3MapeaObjectData:
@@ -2244,7 +2235,6 @@ group3Map8fObjectData:
 	obj_End
 
 group3Map90ObjectData:
-	obj_Interaction $ba $00 $40 $50
 	obj_End
 
 group3Map9eObjectData:
@@ -2252,7 +2242,6 @@ group3Map9eObjectData:
 	obj_End
 
 group3Mapa0ObjectData:
-	obj_Interaction $ab $17 $28 $28
 	obj_End
 
 group3MapaeObjectData:
@@ -2264,11 +2253,9 @@ group3MapafObjectData:
 	obj_End
 
 group3Mapb1ObjectData:
-	obj_Interaction $ab $18 $38 $48
 	obj_End
 
 group3Mapc0ObjectData:
-	obj_Interaction $ab $19 $48 $48
 	obj_End
 
 group3MapceObjectData:
@@ -2280,7 +2267,6 @@ group3MapcfObjectData:
 	obj_End
 
 group3Mapd1ObjectData:
-	obj_Interaction $ab $1a $48 $58
 	obj_End
 
 group3Mapd6ObjectData:

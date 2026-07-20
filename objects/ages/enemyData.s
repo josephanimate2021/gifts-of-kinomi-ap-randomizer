@@ -294,8 +294,6 @@ group3Map3fEnemyObjectData:
 	obj_EndPointer
 
 group3Map4fEnemyObjectData:
-	obj_Part $28 $00 $45
-	obj_Part $28 $00 $49
 	obj_EndPointer
 
 group3Mapf6EnemyObjectData:
