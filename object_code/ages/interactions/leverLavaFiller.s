@@ -196,6 +196,35 @@ interactionCoded8:
 
 ; D4, 1st lava-filler room
 @subid0Script:
+	.db $14 $15 $00
+	.db $1b $1c $00
+
+	.db $24 $25 $16 $00
+	.db $2b $1a $2c $00
+
+	.db $35 $34 $26 $00
+	.db $3b $2a $3c $00
+
+	.db $33 $44 $00
+	.db $2d $3d $00
+
+	.db $36 $27 $37 $00
+	.db $29 $3a $39 $00
+
+	.db $43 $54 $00
+	.db $4c $4d $00
+
+	.db $53 $00
+	.db $5d $00
+
+	.db $46 $47 $48 $57 $00
+	.db $4a $00
+
+	.db $58 $59 $00
+	.db $49 $5a $00
+	.db $00
+	
+/*
 	.db $2a $00
 	.db $2b $00
 	.db $29 $00
@@ -383,3 +412,4 @@ interactionCoded8:
 	.db $2b $2d $00
 	.db $1b $1d $00
 	.db $00
+*/
