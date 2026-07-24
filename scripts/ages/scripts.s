@@ -8484,6 +8484,16 @@ tokkeyScriptFunc_hopAcrossDesk:
 ; ==================================================================================================
 ; INTERAC_DIN
 ; ==================================================================================================
+dinScript_generic:
+	makeabuttonsensitive
+@npcLoop:
+	checkabutton
+	turntofacelink
+	showloadedtext
+	;asm15 scriptHelp.oldManSetAnimationToVar38
+	scriptjump @npcLoop
+
+/*
 ; Unused? (Identical to "zeldaSubid00Script")
 dinScript:
 	setanimation $05
@@ -8497,7 +8507,7 @@ dinScript:
 	wait 60
 	writememory wCutsceneTrigger, CUTSCENE_ROOM_OF_RITES_COLLAPSE
 	scriptend
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_ZORA

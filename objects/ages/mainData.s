@@ -647,6 +647,7 @@ group0Map00ObjectData:
 
 group0Map01ObjectData:
 	obj_Pointer group0Map01EnemyObjectData
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $02
 	obj_End
 
 group0Map02ObjectData:
@@ -762,6 +763,7 @@ group0Map22ObjectData:
 group0Map24ObjectData:
 	obj_Pointer group0Map24EnemyObjectData
 	obj_Interaction $49 $02 $18 $88
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $03
 	obj_End
 
 group0Map25ObjectData:
@@ -1092,6 +1094,7 @@ group0Map78ObjectData:
 	obj_Interaction INTERAC_DECORATION $00 $58 $88
 	obj_Interaction INTERAC_ESSENCE $00 $36 $50 $01
 	obj_AfterEvent group0Map78AfterEventObjectData
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $01
 	obj_End
 
 group0Map79ObjectData:
@@ -1351,7 +1354,6 @@ group1Map25ObjectData:
 	obj_End
 
 group1Map78ObjectData:
-	obj_Interaction $7f $00 $28 $50
 	obj_End
 
 group1Map79ObjectData:
@@ -1444,6 +1446,7 @@ group1Map20ObjectData:
 	obj_Pointer group1Map20EnemyObjectData
 	obj_Interaction $9e $00 $58 $48
 	obj_Interaction $9e $01 $58 $38
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $01 $00 $00 $04
 	obj_End
 
 group1Map21ObjectData:
@@ -3242,6 +3245,7 @@ group4Map7eObjectData:
 group4Map7fObjectData:
 	obj_Pointer group4Map7fEnemyObjectData
 	obj_Interaction $7f $00 $28 $78
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00
 	obj_End
 
 group4Map80ObjectData:
@@ -4879,6 +4883,8 @@ group5Mapb1ObjectData:
 	obj_Interaction $ad $07 $38 $78
 	obj_Interaction $40 $0d $50 $50
 	obj_Interaction $40 $0d $50 $a0 $02
+	obj_Interaction INTERAC_NAYRU $00 $88 $58
+	obj_Interaction INTERAC_DIN $00 $88 $98
 	obj_End
 
 group5Mapb2ObjectData:

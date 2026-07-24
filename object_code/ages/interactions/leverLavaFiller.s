@@ -188,11 +188,11 @@ interactionCoded8:
 ;   If data starts with "$00", the list is done being read.
 @scriptTable:
 	.dw @subid0Script
-	.dw @subid1Script
-	.dw @subid2Script
-	.dw @subid3Script
-	.dw @subid4Script
-	.dw @subid5Script
+	;.dw @subid1Script
+	;.dw @subid2Script
+	;.dw @subid3Script
+	;.dw @subid4Script
+	;.dw @subid5Script
 
 ; D4, 1st lava-filler room
 @subid0Script:

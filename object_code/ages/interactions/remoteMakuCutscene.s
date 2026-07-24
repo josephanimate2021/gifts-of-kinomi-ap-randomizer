@@ -39,6 +39,54 @@ interactionCode8a:
 	ld e,Interaction.var03
 	ld a,(de)
 	rst_jumpTable
+	.dw @val00 ; obtained Nayru's Gift 
+	.dw @val01 ; obtained Din's Gift 
+	.dw @val02 ; obtained Ghastly doll
+	.dw @val03 ; obtained Rod of Seasons
+	.dw @val04 ; pushed rock first time
+
+@val00:
+	lda $00
+	call @checkEssenceObtained
+	jp z,@deleteSelfAndReturn
+
+	ld c,<TX_05b0
+	jr +
+@val01:
+	lda $01
+	call @checkEssenceObtained
+	jp z,@deleteSelfAndReturn
+
+	ld c,<TX_05b1
++
+	ld b,$00
+; Both essences obtained?	
+	ld a,(wEssencesObtained)
+	and $03
+	cp $03
+	jp nz,@setTextForScript
+	ld c,<TX_05b2
+	jp @setTextForScript
+
+@val02:
+	lda TREASURE_TRADEITEM
+	call checkTreasureObtained
+	jp nc,@deleteSelfAndReturn
+	ldbc $00,<TX_05b3
+	jp @setTextForScript
+
+@val03:
+	lda TREASURE_ROD_OF_SEASONS
+	call checkTreasureObtained
+	jp nc,@deleteSelfAndReturn
+	ldbc $00,<TX_05b4
+	jp @setTextForScript
+@val04:
+	jp @deleteSelfAndReturn
+
+
+/*	
+	rst_jumpTable
 	.dw @val00
 	.dw @val01
 	.dw @val02
@@ -51,6 +99,7 @@ interactionCode8a:
 	.dw @val09
 	.dw @val0a
 	.dw @val0b
+
 
 @val00:
 	xor a
@@ -135,7 +184,7 @@ interactionCode8a:
 @val0b:
 	ldbc $00, <TX_05bb
 	jp @setTextForScript
-
+*/
 
 @deleteSelfAndReturn:
 	pop af

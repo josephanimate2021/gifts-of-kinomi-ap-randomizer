@@ -3157,13 +3157,9 @@ groups:
     - 0xb0
     - 0xc0
     text: |-
-      It's me, the
-      \col(3)Maku Tree\col(4)! I
-      hear an \col(2)essence\col(4)
-      echoing in the
-      \col(3)Western Woods\col(4).
-      Can you go
-      there?
+      It's me, \col(3)Zelda\col(4)! Did you find a gift for \col(3)Nayru\col(4) yet?\stop
+      Oh! How delightful! \col(3)Nayru\col(4) is going to just love it!\stop
+      If it's a gift for \col(2)Din\col(4) that you seek next, that should be to the \col(2)east\col(4).
 
   - name:
     - TX_05b1
@@ -3172,23 +3168,9 @@ groups:
     - 0xb1
     - 0xc1
     text: |-
-      \Link, are
-      you all right?
-      Now you can't
-      get inside! The
-      rock you blasted
-      was a support
-      stone that held
-      up the cave.
-      Too bad \col(3)Nayru\col(4)
-      can't give us
-      some advice...\stop
-      Maybe there's
-      something in
-      \col(3)Nayru's House\col(4)
-      that can help!
-      Why don't you
-      go look?
+      It's me, \col(3)Zelda\col(4)! Did you find a gift for \col(2)Din\col(4) yet?\stop
+      Oh, it's just beautiful! \col(2)Din\col(4) is going to just love it!\stop
+      If it's a gift for \col(3)Nayru\col(4) that you seek next, that should be to the \col(2)west\col(4).
 
   - name:
     - TX_05b2
@@ -3197,19 +3179,7 @@ groups:
     - 0xb2
     - 0xc2
     text: |-
-      \Link, that's
-      the \col(2)Harp of
-      Ages\col(4)! Maybe you
-      can use it to
-      open Time
-      Portals and sail
-      through time!\stop
-      The cave has
-      crumbled in this
-      age, but perhaps
-      in the past you
-      can find a way
-      in!
+      \Link! Did you get both oracles a gift? Hurry back then to the \col(2)villa\col(4)! We want to start the party!
 
   - name:
     - TX_05b3
@@ -3218,14 +3188,9 @@ groups:
     - 0xb3
     - 0xc3
     text: |-
-      \Link! I
-      sense an \col(2)Essence
-      of Time\col(4) on the
-      south sea's
-      \col(3)Crescent Island\col(4)!
-      Find a way there
-      from the town's
-      coast!
+      \Link! It's \col(3)Zelda\col(4)! What was that you got from the \col(3)Spirit's Grotto\col(4)?\stop
+      A \col(2)doll\col(4)? I don't think either oracle would like that!! Maybe you could \col(2)trade\col(4) it for something better!\stop
+      Hurry, \Link! The party is almost started! Remember that Nayru is the Oracle of \col(3)Ages\col(4).
 
   - name:
     - TX_05b4
@@ -3234,23 +3199,10 @@ groups:
     - 0xb4
     - 0xc4
     text: |-
-      \Link! You have
-      the \col(2)Echoing
-      Howl\col(4)! But things
-      are not going
-      well. The \col(3)Black
-      Tower\col(4) is nearing
-      completion in
-      the past.
-      Terrible things
-      will happen if
-      you don't hurry.
-      I hear an
-      \col(2)essence\col(4) echoing
-      from the peaks
-      northwest of
-      \col(3)Lynnna City\col(4).
-      Can you go?
+      \Link! It's \col(3)Zelda\col(4)! Did the \col(3)Four Corners' Cave\col(4) have anything?\stop
+      No, a boomerang won't do...\stop
+      The \col(2)Rod of Seasons\col(4)! Din may not like you gifting her something she already owns as the Oracle of \col(2)Seasons\col(4).\stop
+      \Link, you must hurry! The guests have all arrived. Why don't you use the \col(2)Rod\col(4) to explore further southeast?
 
   - name:
     - TX_05b5
@@ -3259,12 +3211,9 @@ groups:
     - 0xb5
     - 0xc5
     text: |-
-      I am remembering
-      more and more.
-      The ridge north
-      of \col(3)Nayru's House\col(4)
-      must be related
-      to the \col(2)essences\col(4).
+      \Link, you seem very far away now! What is taking you so long? When are you coming back?\stop
+      There seem to be some new creatures here at the party, calling themselves the \col(2)Tokay\col(4). They say they've settled in this land for generations, but I don't remember them yesterday!\stop
+      \Link, please find out what happened to our \col(3)present time\col(4)!
 
   - name:
     - TX_05b6

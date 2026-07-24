@@ -2,6 +2,88 @@
 ; INTERAC_DIN
 ; ==================================================================================================
 interactionCodeaa:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp c,interactionDelete
+	jp interactionAnimateAsNpc
+
+@state0:
+	ld a,$01
+	ld (de),a
+
+	call interactionInitGraphics
+	ld a,$06
+	call objectSetCollideRadius
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Seasons
+	ld hl,@dinSubidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl	
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Text
+	ld hl,@dinTextIndices
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld a,(hl)
+	ld e,Interaction.textID
+	ld (de),a
+	inc e ; Interaction.textID+1
+	ld a,>TX_1c00
+	ld (de),a
+
+; set animation/graphics?
+
+; Scripts
+	ld hl,@dinScripts
+	ld a,b ; game progress in b
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+
+@dinSubidAppearances:
+	.db $00 $01 $02 $03
+	.db $04 $05 $06 $07
+	.db $08
+
+@dinTextIndices:
+	.db <TX_1c00 ; $00
+	.db <TX_1c01 ; $01
+	.db <TX_1c02 ; $02
+	.db <TX_1c03 ; $03
+	.db <TX_1c04 ; $04
+	.db <TX_1c05 ; $05
+	.db <TX_1c06 ; $06
+	.db <TX_1c07 ; $07
+	.db <TX_1c08 ; $08
+
+@dinScripts:
+	.dw mainScripts.dinScript_generic ; $00
+	.dw mainScripts.dinScript_generic ; $01
+	.dw mainScripts.dinScript_generic ; $02
+	.dw mainScripts.dinScript_generic ; $03
+	.dw mainScripts.dinScript_generic ; $04
+	.dw mainScripts.dinScript_generic ; $05
+	.dw mainScripts.dinScript_generic ; $06
+	.dw mainScripts.dinScript_generic ; $07
+	.dw mainScripts.dinScript_generic ; $08
+
+
+
+/*
+interactionCodeaa:
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -124,3 +206,4 @@ interactionCodeaa:
 @beginJump:
 	ld bc,-$100
 	jp objectSetSpeedZ
+*/

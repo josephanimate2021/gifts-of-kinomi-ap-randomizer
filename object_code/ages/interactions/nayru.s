@@ -2,6 +2,26 @@
 ; INTERAC_NAYRU
 ; ==================================================================================================
 interactionCode36:
+	jp interactionDelete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+interactionCode36:
+
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -9,7 +29,9 @@ interactionCode36:
 	.dw nayruState1
 
 ;;
+*/
 nayruState0:
+/*
 	ld a,$01
 	ld (de),a
 	call interactionInitGraphics
@@ -66,7 +88,7 @@ nayruState0:
 
 	ld hl,mainScripts.nayruScript01
 	call interactionSetScript
-
+*/
 @init0e: ; This is also called from ambi subids 4 and 5 (to initialize possessed palettes)
 	ld a,$06
 	ld e,Interaction.oamFlags
@@ -76,7 +98,7 @@ nayruState0:
 	; Load the possessed version of her palette into palette 6.
 	ld a,PALH_97
 	jp loadPaletteHeader
-
+/*
 @init02:
 	ld a,($cfd0)
 	cp $03
@@ -292,7 +314,7 @@ nayruState1:
 	.dw interactionAnimate
 	.dw nayruSubid13
 
-
+*/
 ; Subid $00: cutscene at the beginning of the game (Nayru talks, gets possessed, goes back
 ; in time).
 ; Variables:
@@ -302,6 +324,7 @@ nayruState1:
 ;             palette. These are copied to var39. Her "possessed" counter gets longer while
 ;             the other gets shorter.
 nayruSubid00:
+/*
 	ld e,Interaction.substate
 	ld a,(de)
 	rst_jumpTable
@@ -331,6 +354,7 @@ nayruSubid00:
 	ld hl,mainScripts.nayruScript00_part1
 	jp interactionSetScript
 
+*/
 ; This is also called from outside subid 0
 @createMusicNotes:
 	ld h,d
@@ -346,7 +370,7 @@ nayruSubid00:
 +
 	ld b,$fc
 	jp objectCreateFloatingMusicNote
-
+/*
 
 ; Palette is flickering while being possessed
 @substate1:
@@ -565,6 +589,7 @@ nayruSubid02:
 	.dw nayruSubid02Substate2
 
 ;;
+*/
 nayruSubid02Substate0: ; This is also called by Ralph in the same cutscene
 	ld a,($cfd0)
 	cp $07
@@ -588,7 +613,7 @@ nayruSubid02Substate0: ; This is also called by Ralph in the same cutscene
 nayruAnimateAndRunScript:
 	call interactionAnimateBasedOnSpeed
 	jp interactionRunScript
-
+/*
 ;;
 nayruSubid02Substate1:
 	ld a,($cfd0)
@@ -603,6 +628,7 @@ nayruSubid02Substate1:
 	ld a,$01
 	jp interactionSetAnimation
 
+*/
 ;;
 ; This is also called by Ralph in the same cutscene
 nayruFlipDirectionAtRandomIntervals:
@@ -624,7 +650,7 @@ nayruSetCounter1Randomly:
 	ld e,Interaction.counter1
 	ld (de),a
 	ret
-
+/*
 nayruSubid02Substate2:
 	call nayruAnimateAndRunScript
 	ret nc
@@ -877,6 +903,7 @@ nayruSubid13:
 	call nayruSubid00@createMusicNotes
 
 ;;
+*/
 ; This is called by Ralph as well
 nayruRunScriptWithConditionalAnimation:
 	call interactionRunScript
