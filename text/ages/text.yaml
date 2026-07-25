@@ -14356,10 +14356,8 @@ groups:
   - name: TX_2e1a
     index: 0x1a
     text: |-
-      \up King Zora's
-         Palace
-      \left Jabu-Jabu's
-         Shrine
+      Warning! Old Labrynth Entrance!
+      Sealed for safety!
 
   - name: TX_2e1b
     index: 0x1b
