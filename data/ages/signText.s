@@ -18,13 +18,13 @@ signTextGroupTable:
 signTextGroup0Data:
 	.db $53, <ROOM_AGES_024, <TX_2e01 ; Link's house
 	.db $37, <ROOM_AGES_014, <TX_2e02 ; directions,east in village
-	.db $44, <ROOM_AGES_015, <TX_2e04 ; directions,back to village
+	.db $41, <ROOM_AGES_015, <TX_2e04 ; directions,back to village
 	.db $26, <ROOM_AGES_012, <TX_2e0c ; directions,west to village
 	.db $41, <ROOM_AGES_022, <TX_2e0d ; directions,to falls
 	.db $21, <ROOM_AGES_001, <TX_2e0e ; D1 entrance (present)
 	.db $46, <ROOM_AGES_043, <TX_2e0f ; to mountains (& $10 to desert)
-	.db $57, <ROOM_AGES_075, <TX_2e09
-	.db $13, <ROOM_AGES_036, <TX_2e0a
+	.db $57, <ROOM_AGES_075, <TX_2e09 ; To deeper woods, six spirits
+	.db $13, <ROOM_AGES_036, <TX_2e0a ; To hedges, sword on snow
 	.db $48, <ROOM_AGES_084, <TX_2e14 ; Summer roof
 	.db $48, <ROOM_AGES_085, <TX_2e15 ; Autumn roof
 	.db $48, <ROOM_AGES_086, <TX_2e16 ; Winter roof
@@ -32,11 +32,11 @@ signTextGroup0Data:
 	.db $00
 
 signTextGroup1Data:
-	.db $14, <ROOM_AGES_110, <TX_2e07	; Entrance1
-	.db $18, <ROOM_AGES_102, <TX_2e08 ; Entrance2
-	.db $51, <ROOM_AGES_112, <TX_2e09 ; Gale seed tree house
-	.db $48, <ROOM_AGES_130, <TX_2e10 ; Syrup's House
-	.db $31, <ROOM_AGES_172, <TX_2e0b ; right of tree, near actual entrance
+	.db $14, <ROOM_AGES_110, <TX_2e07 ; Ruptured Mine 1
+	.db $28, <ROOM_AGES_102, <TX_2e08 ; Ruptured Mine 2
+	.db $51, <ROOM_AGES_112, <TX_2e18 ; Gale seed tree house
+	.db $48, <ROOM_AGES_130, <TX_2e13 ; Syrup's House
+	.db $31, <ROOM_AGES_172, <TX_2e0b ; right of tree, near Labrynth entrance
 	.db $51, <ROOM_AGES_111, <TX_2e12 ; fairy fountain
 	.db $00
 
@@ -50,12 +50,12 @@ signTextGroup3Data:
 
 signTextGroup4Data:
 	;.db $67 $7e $11
-	.db $72, <ROOM_AGES_447, $11
+	.db $72, <ROOM_AGES_447, <TX_2e11 ; Slingshot hint
 	.db $00
 
 signTextGroup5Data:
 	.db $77 $2c $03
-	.db $53, <ROOM_AGES_5fc, $13
+	.db $53, <ROOM_AGES_5fc, <TX_2e19 ; return to plain
 
 signTextGroup6Data:
 signTextGroup7Data:

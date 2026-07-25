@@ -7766,14 +7766,15 @@ remoteMakuCutsceneScript:
 	resetmusic
 	orroomflag $40
 	asm15 incMakuTreeState
-	jumpifobjectbyteeq Interaction.var03, $07, @spawnGoronAfterCrownDungeon
+	;jumpifobjectbyteeq Interaction.var03, $07, @spawnGoronAfterCrownDungeon
 	enableinput
 	scriptend
 
+/*
 @spawnGoronAfterCrownDungeon:
 	spawninteraction INTERAC_GORON, $03, $58, $a8
 	scriptend
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_GORON_ELDER

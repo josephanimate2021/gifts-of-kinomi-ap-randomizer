@@ -1814,29 +1814,29 @@ groups:
   - name: TX_0304
     index: 0x04
     text: |-
-      Fiorla Hedges
+      Forgotten Hedges
 
   - name:
     - TX_0305
     index:
     - 0x05
     text: |-
-      Abadonni Quarry
+      Revinna's Quarry
 
   - name: TX_0306
     index: 0x06
     text: |-
-      Revinna Cliffs
+      Byzitam Cliffs
 
   - name: TX_0307
     index: 0x07
     text: |-
-      Hyrule Castle Town
+      Town of Byzitam
 
   - name: TX_0308
     index: 0x08
     text: |-
-      Revinna Oasis
+      Revinna's Oasis
 
   - name: TX_0309
     index: 0x09
@@ -1919,7 +1919,7 @@ groups:
     - 0x18
     - 0x19
     text: |-
-      Tepid Forest
+      Byzitam Plain
 
   - name: TX_031a
     index: 0x1a
@@ -3990,7 +3990,7 @@ groups:
     index: 0x1d
     text: |-
       No need to bring the Rod to the towers, \Link!\stop
-      Call us upon a stump when you get back in Hyrule!
+      Call us upon a stump when you get back in Byzitam!
 
 - group: 0x09
   data:
@@ -14178,13 +14178,13 @@ groups:
   - name: TX_2e01
     index: 0x01
     text: |-
-      \Link's House
+      \Link's Cottage
 
   - name: TX_2e02
     index: 0x02
     text: |-
-      \up Hyrule Castle
-      \right Tepid Forest
+      \up Town of Byzitam
+      \right Byzitam Plain
 
   - name: TX_2e03
     index: 0x03
@@ -14195,7 +14195,8 @@ groups:
   - name: TX_2e04
     index: 0x04
     text: |-
-      \left Hyrule Castle Town
+      \left Town of 
+          Byzitam
 
   - name: TX_2e05
     index: 0x05
@@ -14205,76 +14206,91 @@ groups:
   - name: TX_2e06
     index: 0x06
     text: |-
-      \right Return to Hyrule
+      \right Return to 
+            Byzitam
 
   - name: TX_2e07
     index: 0x07
     text: |-
-      \up Target Carts
-        Great Fun!
+      \up Ruptured Mine
 
   - name: TX_2e08
     index: 0x08
     text: |-
-      \up Goron Gallery
-        Great Fun!
+      Warning!
+      Danger ahead!!
+      \up Ruptured Mine
+
+      \down Springwater 
+            Crag
 
   - name: TX_2e09
     index: 0x09
     text: |-
-      \right Lost Woods
+      \right Deeper Woods
 
       Six spirits guard this wood.
-
       Watch your back.
 
   - name: TX_2e0a
     index: 0x0a
     text: |-
-      \up Tepid Forest
+      \up Byzitam Plain
 
       \left To Hedge
         Maze
       Warning! Peril!
+      If snowy, a sword will help!
 
   - name: TX_2e0b
     index: 0x0b
     text: |-
-      \right Big Bang Game
-      \down Target Carts
+      \left Lost Labrynth Entrance
 
   - name: TX_2e0c
     index: 0x0c
     text: |-
-      Wanted:
-       Energy Drink
-        Big Bang Owner
+      \up Danger ahead!
+
+      \right Town of 
+          Byzitam
+
+      \down Byzitam Cliffs
 
   - name: TX_2e0d
     index: 0x0d
     text: |-
-      Hyrule Castle
+      \left Forever Falls
 
   - name: TX_2e0e
     index: 0x0e
     text: |-
-      \right Spirit's Grotto
+      \right Spirit's 
+          Grotto
 
   - name: TX_2e0f
     index: 0x0f
     text: |-
-      \right Yoll Graveyard
+      \down Revinna's
+          Quarry
+
+      Beware of 
+          monsters!
 
   - name: TX_2e10
     index: 0x10
     text: |-
-      \up Symmetry City
-      \right Lynna City
+      \down Tokay Desert
+
+      Beware of 
+          quicksand!
 
   - name: TX_2e11
     index: 0x11
     text: |-
-      \up Symmetry City
+      Slingshots:
+      Sold at 
+        Byzitam Store!
 
   - name: TX_2e12
     index: 0x12
@@ -14286,7 +14302,14 @@ groups:
   - name: TX_2e13
     index: 0x13
     text: |-
-      \right Tepid Forest
+      \up Syrup's House
+
+      If you don't have a key, don't come in!
+
+      Seeking: 
+          Mushrooms.
+
+      \right Byzitam Cliffs
 
   - name: TX_2e14
     index: 0x14
@@ -14319,13 +14342,16 @@ groups:
   - name: TX_2e18
     index: 0x18
     text: |-
-      \right Cheval's House
+      \right Come right in!
+
+      \left Bomb Fairy 
+          Spring
 
   - name: TX_2e19
     index: 0x19
     text: |-
-      \left Zora Village
-      \right Sea of Storms
+      \right Return to 
+         Byzitam Plain
 
   - name: TX_2e1a
     index: 0x1a
@@ -17274,7 +17300,7 @@ groups:
   - name: TX_3302
     index: 0x02
     text: |-
-      Huh? How did you get here? Are you also a researcher of this mysterious Lost Woods?
+      Huh? How did you get here? Are you also a researcher of this mysterious \col(1)Deeper Woods\col(0)?
       I am \col(1)Cisypherestus\col(0) and I live here with my friend \col(3)Horatio\col(0). There is a \col(3)Shrine\col(0) somewhere between the trees, but I have struggled finding the means to reach it. These books are all useless, but I at least know that you must collect four gems to learn the right path. Good luck in your endeavors, adventurer!
 
   - name: TX_3303
@@ -19668,7 +19694,7 @@ groups:
       To get to the
       old man's house
       out of the
-      lost woods, you must keep traveling north!
+      deeper woods, you must keep traveling north!
       \sfx(0xc6)
 
       ...weather?
@@ -19680,7 +19706,7 @@ groups:
       \sfx(0xc6)I surrender!
       In return, I
       offer my advice!
-      To get to the crazed salesman's house out of the lost woods,
+      To get to the crazed salesman's house out of the deeper woods,
       you must travel east, south, north, then west!
       \sfx(0xc6)
       Oh, and the season must start its coldest and progress naturally!

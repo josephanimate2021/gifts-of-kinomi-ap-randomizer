@@ -2887,7 +2887,7 @@ group4Map49EnemyObjectData:
 
 group4Map4aEnemyObjectData:
 	obj_RandomEnemy $40 $32 $00
-	obj_SpecificEnemyA 0 $55 $00 $28 $d8
+	obj_SpecificEnemyA 0 $55 $00 $38 $d8
 	obj_SpecificEnemyA     $55 $00 $88 $b8
 	obj_SpecificEnemyA     $12 $00 $68 $48
 	obj_EndPointer

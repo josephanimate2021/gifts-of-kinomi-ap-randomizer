@@ -2800,6 +2800,7 @@ group4Map39ObjectData:
 	obj_Interaction $12 $05 $98 $38
 	obj_Interaction $1d $00
 	obj_ItemDrop 0 $00 $51
+	obj_Interaction INTERAC_SARCOPHAGUS $00 $10 $b8
 	obj_End
 
 group4Map3aObjectData:
