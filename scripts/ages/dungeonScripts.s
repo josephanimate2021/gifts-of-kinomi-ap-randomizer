@@ -168,6 +168,7 @@ dungeonScript_minibossDeath:
 	orroomflag $80
 	wait 20
 	spawninteraction INTERAC_MINIBOSS_PORTAL, $00, $00, $00
+	scriptjump enableLinkAndMenu
 
 seasonsShrineScript_minibossDeath:
 	stopifroomflag80set
