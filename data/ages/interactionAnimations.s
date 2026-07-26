@@ -234,7 +234,7 @@ interactionAnimationTable:
 	.dw interactione8Animations
 ; $e9 - $ea
 .rept 2
-	.db $00 $00 
+	.db $00 $00
 .endr
 	.dw interactionebAnimations
 
@@ -474,7 +474,7 @@ interactionOamDataTable: ; 0x59a23
 	.dw interactione8OamDataPointers
 ; $e9 - $ea
 .rept 2
-	.db $00 $00 
+	.db $00 $00
 .endr
 	.dw interactionebOamDataPointers
 
@@ -1193,12 +1193,10 @@ interactiona7Animations:
 interactiona9Animations:
 	.dw interactionAnimation5a358
 interactionaaAnimations:
-	.dw interactionAnimation5a468
-	.dw interactionAnimation5a5a6
-	.dw interactionAnimation5a60c
-	.dw interactionAnimation5a653
-	.dw interactionAnimation5a369
-	.dw interactionAnimation5a71b
+	.dw interactionAnimation51d5f
+	.dw interactionAnimation51d87
+	.dw interactionAnimation51d97
+	.dw interactionAnimation51da7
 interactionadAnimations:
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6
@@ -4632,7 +4630,7 @@ interactione6OamDataPointers: ; 0x5b660
 	.dw interactionOamData502b9
 	.dw interactionOamData502e6
 	.dw interactionOamData505bf
-	
+
 interactionebOamDataPointers:
 	.dw interactionOamDataFlowerBloom_00
 	.dw interactionOamDataFlowerBloom_01
@@ -4647,7 +4645,29 @@ interactionebOamDataPointers:
 	.dw interactionOamDataFlowerBloom_00
 	.dw interactionOamDataFlowerBloom_01
 	.dw interactionOamDataFlowerBloom_0a
-	
+
 interactiona5OamDataPointers: ; 0x5af0c
 	.dw interactionOamData5020e	;interactionOamData500ae		;ghastly doll
 	.dw interactionOamData50205	;fairy powder
+
+
+; Din animations
+interactionAnimation51d5f:
+	.db $10 $00 $00
+	.db $10 $02 $00
+	m_AnimationLoop interactionAnimation51d5f
+
+interactionAnimation51d87:
+	.db $10 $04 $00
+	.db $10 $06 $00
+	m_AnimationLoop interactionAnimation51d87
+
+interactionAnimation51d97:
+	.db $10 $08 $00
+	.db $10 $0a $00
+	m_AnimationLoop interactionAnimation51d97
+
+interactionAnimation51da7:
+	.db $10 $0c $00
+	.db $10 $0e $00
+	m_AnimationLoop interactionAnimation51da7

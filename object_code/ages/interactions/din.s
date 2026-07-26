@@ -24,11 +24,14 @@ interactionCodeaa:
 	callab agesInteractionsBank09.getGameProgress_Seasons
 	ld hl,@dinSubidAppearances
 	ld a,b ; game progress in b
-	rst_addAToHl	
+	rst_addAToHl
 	ld e,Interaction.subid
 	ld a,(de)
 	cp (hl)
 	jp nz,interactionDelete
+
+	ld a,INTERAC_DIN
+	ld (wInteractionIDToLoadExtraGfx),a
 
 ; Text
 	ld hl,@dinTextIndices

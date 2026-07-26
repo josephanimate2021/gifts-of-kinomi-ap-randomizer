@@ -806,7 +806,7 @@ interactiona9SubidData:
 	m_InteractionSubidDataEnd
 
 interactionaaSubidData:
-	m_InteractionSubidData $14 $00 $05
+	m_InteractionSubidData $13 $00 $05
 	m_InteractionSubidData $13 $00 $04
 	m_InteractionSubidData $13 $00 $02
 	m_InteractionSubidDataEnd
