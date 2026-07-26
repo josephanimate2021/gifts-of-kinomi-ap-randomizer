@@ -3898,14 +3898,21 @@ cutscene04:
 	jr ++
 
 offsetForDungeonStump:
+	; Adjust link's position if on a stump
+	ld a,(wLinkObjectIndex)
+	ld d,a
+	call objectGetTileAtPosition
+	cp TILEINDEX_DUNGEON_STUMP
 	ld a,(wLinkObjectIndex)
 	ld h,a
+	jr nz,+
 
 	ld l,<w1Link.yh
 	ld a,$fa
 	add (hl)
 	ld (hl),a
 	ld (wLinkLocalRespawnY),a
++
 	ld a,(wLoadingRoomPack)
 	sub $80
 	ret c
