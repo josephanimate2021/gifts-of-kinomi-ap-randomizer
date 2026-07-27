@@ -2,17 +2,64 @@
 ; INTERAC_NAYRU
 ; ==================================================================================================
 interactionCode36:
-	jp interactionDelete
+	;jp interactionDelete
 
+@subid09:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @@state0 ; $00
+	.dw nayruAnimateAndRunScript ; $01
+	.dw @checkRelatedObjState ; $02
+	.dw @checkRelatedObjState ; $03
+	;.dw nayruAnimateAndRunScript ; $04
+	.dw interactionDelete
 
+; Din has spawned her, initialize
+@@state0:
+	call interactionIncState
 
+	call interactionInitGraphics
+	ld a,$06
+	call objectSetCollideRadius
+	;call objectMarkSolidPosition
+	call objectSetVisiblec2
 
+	ld a,>TX_1d00
+	call interactionSetHighTextIndex
 
+	ld hl,mainScripts.nayruScript_zeldaKidnapped
+	jp interactionSetScript
 
+; check Din's state
+; inc state if Din's state changed
+@checkRelatedObjState:
+	ld a,Object.state
+	call objectGetRelatedObject1Var
 
+	ld e,Interaction.substate
+	ld a,(de)
+	cpa $00
+	jr z,@@substate0
 
+	ld e,Interaction.var2f
+	ld a,(de)
+	cp (hl)
+	jp z,nayruAnimateAndRunScript
 
+	call interactionIncState
+	inc l ; Interaction.substate
+	ld (hl),$00
+	ret
 
+@@substate0:
+	ld a,$01
+	ld (de),a
+
+	ld e,Interaction.var2f
+	ld a,(hl)
+	ld (de),a
+	ret
 
 
 

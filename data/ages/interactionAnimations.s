@@ -1193,10 +1193,10 @@ interactiona7Animations:
 interactiona9Animations:
 	.dw interactionAnimation5a358
 interactionaaAnimations:
-	.dw interactionAnimation51d5f
-	.dw interactionAnimation51d87
-	.dw interactionAnimation51d97
-	.dw interactionAnimation51da7
+	.dw interactionAnimation51d5f ; up
+	.dw interactionAnimation51d87 ; right
+	.dw interactionAnimation51d97 ; down
+	.dw interactionAnimation51da7 ; left
 interactionadAnimations:
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6

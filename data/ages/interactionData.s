@@ -182,7 +182,7 @@ interactionData:
 	/* $a7 */ m_InteractionData interactiona7SubidData
 	/* $a8 */ m_InteractionData $00 $00 $00
 	/* $a9 */ m_InteractionData interactiona9SubidData
-	/* $aa */ m_InteractionData interactionaaSubidData
+	/* $aa */ m_InteractionData $13 $00 $02;interactionaaSubidData
 	/* $ab */ m_InteractionData $44 $00 $12
 	/* $ac */ m_InteractionData $00 $00 $00
 	/* $ad */ m_InteractionData $11 $00 $02
@@ -805,11 +805,13 @@ interactiona9SubidData:
 	m_InteractionSubidData $8a $00 $70
 	m_InteractionSubidDataEnd
 
+/*
 interactionaaSubidData:
-	m_InteractionSubidData $13 $00 $05
+	m_InteractionSubidData $13 $00 $02;$05
 	m_InteractionSubidData $13 $00 $04
 	m_InteractionSubidData $13 $00 $02
 	m_InteractionSubidDataEnd
+*/
 
 interactionbfSubidData:
 	m_InteractionSubidData $4f $10 $12

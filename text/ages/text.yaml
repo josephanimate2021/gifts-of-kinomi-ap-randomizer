@@ -9010,75 +9010,130 @@ groups:
 
 - group: 0x1c
   data:
-  - name:
-    - TX_1c00
-    - TX_1c01
-    - TX_1c02
-    - TX_1c03
-    - TX_1c04
-    - TX_1c05
-    - TX_1c06
-    index:
-    - 0x00
-    - 0x01
-    - 0x02
-    - 0x03
-    - 0x04
-    - 0x05
-    - 0x06
+  - name: TX_1c00
+    index: 0x00
     text: |-
-      What's with this
-      village? It has
-      no energy!
+      You didn't know \col(3)Nayru\col(0) and I shared a birthday?
+      It only makes sense!\stop
+      So, \Link... what did you get \col(1)me\col(0)? I know it's something amaz- ing!
+
+  - name: TX_1c01
+    index: 0x01
+    text: |-
+      \Link, you already found a \col(1)toy\col(0) to play hero!
+      Even in a \col(1)strange land\col(0) like this, you can't resist adventure!
+
+  - name: TX_1c02
+    index: 0x02
+    text: |-
+      What's taking so long, \Link?
+      I thought you'd give me your \col(1)present\col(0) by now!\stop
+      Are you crawling in a bunch of \col(1)caves\col(0) again?
+
+  - name: TX_1c03
+    index: 0x03
+    text: |-
+      Ooh, is that a \col(1)boomerang\col(0) in your pocket?
+      I think I'd like one of those!\stop
+      But you seem to have your heart on this one, so I think you got me something else!\stop
+      What is it?
+      What is it?
+
+  - name: TX_1c04
+    index: 0x04
+    text: |-
+      \Link, \col(2)Zelda\col(0) told me about the \col(1)Rod\col(0). Just keep it safe! Don't make me come save you again, tee hee.\stop
+      You remember how it works, right? Swing it on a stump!
+      Seasons will change the environment around you.
+      \col(4)Spring\col(0) opens \col(1)flowers\col(0)...\stop
+      \col(4)Summer\col(0) \col(1)dries\col(0) up ponds and \col(1)vines\col(0) will grow...\stop
+      \col(2)Autumn\col(0) will make \col(1)leaves\col(0) fall and \col(1)mushrooms\col(0) will become ripe for picking...\stop
+      \col(3)Winter\col(0) will \col(1)freeze water\col(0) and cause \col(1)snow\col(0) to pile up!\stop
+      Just don't play around too much before the party starts!
+
+  - name: TX_1c05
+    index: 0x05
+    text: |-
+      When the \col(1)oracles\col(0) lived here, our power flowed into the sur- rounding areas. 
+      From ancient times, there was a mystic \col(1)shrine\col(0) built deep in the \col(1)southeast woods\col(0) to honor my kin and the seasons.
+      This is not like the \col(1)Temple of Seasons\col(0) you saw in Holodrum, but rather a tower with many but also only one floor!
+      Each floor is dedicated to one of the four seasons, and falling from one floor to the next will land you in the next season, even if it seems you should have reached the basement!
+      It is almost like you are using the \col(1)Rod\col(0)!
+      Spring to summer to autumn to winter and back to spring.\stop
+      But I've not been there in many years and the way there has been lost to the repeating woods it resides in.
+      Maybe there are still some worshippers in the woods who could guide you there!
+      Although the party is starting soon, I bet you could find it in a pinch!\stop
+      Who knows what will be there? Of course, you already have your \col(1)gift\col(0) for me so I can't imagine much!
+
+  - name: TX_1c06
+    index: 0x06
+    text: |-
+      \Link, this mystic \col(1)shrine\col(0) dedicated to the seasons...
+      What did you think? Was it wonderful\stop
+      Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as wel!
+      Then people from all lands could witness my famous dancing! 
+      Oh, I hope the party starts soon so we can dance together!
+
+  - name: TX_1c07
+    index: 0x07
+    text: |-
+      What's that behind your back? Is that your \col(1)gift\col(0)? Is that for me? Oh, give it, give it!\stop
+      \slow()No fair!
+
+  - name: TX_1c08
+    index: 0x08
+    text: |-
+      I'm so happy everything is normal again!
+      Oh, \Link, I'm so happy for my \col(1)gift\col(0)!
+      Now I can \col(1)fly\col(0) and show my dancing to all kinds of people!
+
+  - name: TX_1c09
+    index: 0x09
+    text: |-
+      \col(2)Zelda\col(0) has been kidnapped!
+
+  - name: TX_1c0a
+    index: 0x0a
+    text: |-
+      \pos(2)I just checked with the head guard. He said a \col(1)big monster\col(0) came to the villa and took the \col(2)princess\col(0)!
+
+  - name: TX_1c0b
+    index: 0x0b
+    text: |-
+      \Link, what will we do? 
+
+  - name: TX_1c0c
+    index: 0x0c
+    text: |-
+      \Link, you must find her! The guard said the \col(1)monster\col(0) went west before disappearing around \col(1)Forever Falls\col(0)!\stop
+      Do you think there's another entrance to the \col(1)Lost Labrynth\col(0)?
+
+  - name: TX_1c0d
+    index: 0x0d
+    text: |-
+      \pos(2)Why would it go west?\stop
+      Oh this is terrible! What about the party? I wanted my gift!
+
+  - name: TX_1c0e
+    index: 0x0e
+    text: |-
+      \Link, if he went there, then you must know this!\stop
+      Long ago, there was a mine high above the spring where Forever Falls is now.
+      But I think it became haunted and was locked for safety! The key must have been hidden away in the Labrynth somwhere... but where?
 
   - name:
-    - TX_1c07
-    - TX_1c08
-    - TX_1c09
-    - TX_1c0a
-    - TX_1c0b
-    - TX_1c0c
-    - TX_1c0d
-    - TX_1c0e
-    - TX_1c0f
+    - TX_1c0f    
     index:
-    - 0x07
-    - 0x08
-    - 0x09
-    - 0x0a
-    - 0x0b
-    - 0x0c
-    - 0x0d
-    - 0x0e
     - 0x0f
     text: |-
-      Everyone's
-      energy has
-      returned!
+      \pos(2)Please, \Link, save \col(2)Princess Zelda\col(0)!
 
   - name: TX_1c10
     index: 0x10
     text: |-
-      Hi! Do you
-      remember me?
-      ................\stop
-      I'm \col(3)Rosa\col(0)! You,
-      like, forgot we
-      dated?!? This is
-      my first long
-      trip in, like,
-      forever!
-      And I saw some
-      weirdo with this
-      \col(1)Shovel\col(0) I had
-      seen before, so
-      I, like, asked
-      if he knew you.\stop
-      Then he, like,
-      got all excited
-      and went leapin'
-      off somewhere.
-      What a weirdo.
+      How could this happen? \col(3)Nayru\col(0) and I weren't gone for long and then this!\stop
+      As \col(3)Nayru\col(0) said, you must go find a \col(1)key\col(0) in the Labrynth to enter an ancient mine.
+      Be careful!
 
   - name: TX_1c11
     index: 0x11

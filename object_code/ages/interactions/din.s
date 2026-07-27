@@ -2,17 +2,25 @@
 ; INTERAC_DIN
 ; ==================================================================================================
 interactionCodeaa:
-	call checkInteractionState
-	jr z,@state0
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $09
+	jr c,@generic
+	rst_jumpTable
+	.dw @subid09
+	;.dw @subid0a
 
-@state1:
+@generic:
+	call checkInteractionState
+	jr z,@@state0
+
+@@state1:
 	call interactionRunScript
 	jp c,interactionDelete
-	jp interactionAnimateAsNpc
+	jp npcFaceLinkAndAnimate;interactionAnimateAsNpc
 
-@state0:
-	ld a,$01
-	ld (de),a
+@@state0:
+	call interactionIncState
 
 	call interactionInitGraphics
 	ld a,$06
@@ -22,7 +30,7 @@ interactionCodeaa:
 
 ; Whether to delete
 	callab agesInteractionsBank09.getGameProgress_Seasons
-	ld hl,@dinSubidAppearances
+	ld hl,@@dinSubidAppearances
 	ld a,b ; game progress in b
 	rst_addAToHl
 	ld e,Interaction.subid
@@ -34,7 +42,7 @@ interactionCodeaa:
 	ld (wInteractionIDToLoadExtraGfx),a
 
 ; Text
-	ld hl,@dinTextIndices
+	ld hl,@@dinTextIndices
 	ld a,b ; game progress in b
 	rst_addAToHl
 	ld a,(hl)
@@ -44,7 +52,7 @@ interactionCodeaa:
 	ld a,>TX_1c00
 	ld (de),a
 
-; set animation/graphics?
+; TODO: set animation/graphics?
 
 ; Scripts
 	ld hl,@dinScripts
@@ -53,24 +61,24 @@ interactionCodeaa:
 	ldi a,(hl)
 	ld h,(hl)
 	ld l,a
-	jp interactionSetScript
+	call interactionSetScript
+	jp @@state1
 
-
-@dinSubidAppearances:
+@@dinSubidAppearances:
 	.db $00 $01 $02 $03
 	.db $04 $05 $06 $07
 	.db $08
 
-@dinTextIndices:
-	.db <TX_1c00 ; $00
-	.db <TX_1c01 ; $01
-	.db <TX_1c02 ; $02
-	.db <TX_1c03 ; $03
-	.db <TX_1c04 ; $04
-	.db <TX_1c05 ; $05
-	.db <TX_1c06 ; $06
-	.db <TX_1c07 ; $07
-	.db <TX_1c08 ; $08
+@@dinTextIndices:
+	.db <TX_1c00 ; $00 Before sword - ROOM_AGES_5b1
+	.db <TX_1c01 ; $01 After sword - ROOM_AGES_5b1
+	.db <TX_1c02 ; $02 After bombs - ROOM_AGES_023
+	.db <TX_1c03 ; $03 After boomerang - ROOM_AGES_013
+	.db <TX_1c04 ; $04 Afrer Rod - ROOM_AGES_5b1
+	.db <TX_1c05 ; $05 After flippers - ROOM_AGES_5c4
+	.db <TX_1c06 ; $06 After feather - ROOM_AGES_5cb
+	.db <TX_1c07 ; $07 After gift - ROOM_AGES_003
+	.db <TX_1c08 ; $08 After game win
 
 @dinScripts:
 	.dw mainScripts.dinScript_generic ; $00
@@ -82,6 +90,98 @@ interactionCodeaa:
 	.dw mainScripts.dinScript_generic ; $06
 	.dw mainScripts.dinScript_generic ; $07
 	.dw mainScripts.dinScript_generic ; $08
+
+@subid09:
+	ld e,Interaction.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @@state0 ; $00 initialize
+	.dw dinAnimateAndRunScript ; $01 spawn Nayru
+	.dw @@state2 ; $02 get Nayru's vars
+	.dw checkRelatedObjState ; $03 wait for Nayru to walk up
+	.dw dinAnimateAndRunScript ; $04 turn to Nayru, and turn back to Link
+	.dw checkRelatedObjState ; $05
+	.dw dinAnimateAndRunScript ; $06
+
+;spawned Nayru, now find her
+@@state2:
+	ld bc,$d041
+-
+	ld a,(bc)
+	cp INTERAC_NAYRU
+	jr z,@@@foundNayru
+	inc b
+	ld a,$e0
+	cp b
+	jr nz,-
+	jp dinAnimateAndRunScript
+
+@@@foundNayru:
+	ld e,Interaction.relatedObj1+1
+	ld a,b
+	ld (de),a
+	dec e ; Interaction.relatedObj1
+	ld a,Interaction.start
+	ld (de),a
+; saves Din in Nayru's vars
+	ld c,e ; Interaction.relatedObj1
+	ld (bc),a
+	inc c ; Interaction.relatedObj1+1
+	ld a,d
+	ld (bc),a
+	jp interactionIncState
+
+;initialization
+@@state0:
+	call interactionIncState
+
+	call interactionInitGraphics
+	ld a,$06
+	call objectSetCollideRadius
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+	ld a,>TX_1c00
+	call interactionSetHighTextIndex
+
+	ld a,INTERAC_DIN
+	ld (wInteractionIDToLoadExtraGfx),a
+
+	ld hl,mainScripts.dinScript_zeldaKidnapped
+	call interactionSetScript
+
+dinAnimateAndRunScript:
+	call interactionAnimateBasedOnSpeed
+	jp interactionRunScript
+
+; check Nayru's state
+checkRelatedObjState:
+	ld a,Object.state
+	call objectGetRelatedObject1Var
+
+	ld e,Interaction.substate
+	ld a,(de)
+	cpa $00
+	jr z,@substate0
+
+	ld e,Interaction.var2f
+	ld a,(de)
+	cp (hl)
+	jp z,dinAnimateAndRunScript
+
+	call interactionIncState
+	inc l ; Interaction.substate
+	ld (hl),$00
+	ret
+
+@substate0:
+	ld a,$01
+	ld (de),a
+
+	ld e,Interaction.var2f
+	ld a,(hl)
+	ld (de),a
+	ret
 
 
 

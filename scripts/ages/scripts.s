@@ -1727,7 +1727,35 @@ childScript_stage9_singer:
 ; ==================================================================================================
 ; INTERAC_NAYRU
 ; ==================================================================================================
+nayruScript_zeldaKidnapped:
+; state $00, $01
+	initcollisions
+	checkobjectbyteeq Interaction.state, $01
+	playsound SND_ENTERCAVE
+	wait 15
+	setspeed SPEED_180
+	movedown $21
+	setangleandanimation ANGLE_RIGHT
+	setspeed SPEED_000
+	wait 60
+	incstate
+; state $02
+	setangleandanimation ANGLE_DOWN
+	turntofacelink
+	checkobjectbyteeq Interaction.state, $02
+; state $03
+	checkobjectbyteeq Interaction.state, $03
+	setangleandanimation ANGLE_UP
+	wait 5
+	setspeed SPEED_180
+	moveup $21
+	wait 10
+	playsound SND_ENTERCAVE
+	incstate
+	scriptend
 
+
+/*
 ; Subid $00: Cutscene at the beginning of game (talking to Link, then gets possessed)
 nayruScript00_part1:
 	setanimation $02
@@ -1974,7 +2002,7 @@ nayruScript11:
 
 nayruScript13:
 	loadscript scriptHelp.nayruScript13
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_RALPH
@@ -8486,7 +8514,7 @@ tokkeyScriptFunc_hopAcrossDesk:
 ; INTERAC_DIN
 ; ==================================================================================================
 dinScript_generic:
-	makeabuttonsensitive
+	initcollisions
 @npcLoop:
 	checkabutton
 	turntofacelink
@@ -8494,6 +8522,63 @@ dinScript_generic:
 	;asm15 scriptHelp.oldManSetAnimationToVar38
 	scriptjump @npcLoop
 
+dinScript_zeldaKidnapped:
+	makeabuttonsensitive
+; state $01
+	checkabutton
+	disableinput
+	playsound SNDCTRL_STOPMUSIC
+	turntofacelink
+	showtextlowindex <TX_1c09
+	checktext
+	setmusic MUS_DISASTER
+	wait 15
+	spawninteraction INTERAC_NAYRU, $09, $18, $58
+	incstate
+; state $02, $03
+	setangleandanimation ANGLE_UP
+	wait 40
+	setangleandanimation ANGLE_LEFT
+	checkobjectbyteeq Interaction.state, $04
+; state $04
+	wait 60
+	showtextlowindex <TX_1c0a
+	checktext
+	wait 15
+	turntofacelink
+	showtextlowindex <TX_1c0b
+	checktext
+	wait 15
+	showtextlowindex <TX_1c0c
+	checktext
+	wait 15
+	showtextlowindex <TX_1c0d
+	checktext
+	wait 15
+	showtextlowindex <TX_1c0e
+	checktext
+	wait 15
+	showtextlowindex <TX_1c0f
+	checktext
+	incstate
+; state $05
+	setangleandanimation ANGLE_UP
+	checkobjectbyteeq Interaction.state, $06
+; state $06
+	wait 60
+	turntofacelink
+	showtextlowindex <TX_1c10
+	checktext
+
+	resetmusic
+	enableinput
+@npc:
+	checkabutton
+	showtextlowindex <TX_1c10
+	checktext
+	scriptjump @npc
+
+	scriptend
 /*
 ; Unused? (Identical to "zeldaSubid00Script")
 dinScript:
