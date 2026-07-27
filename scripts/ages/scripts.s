@@ -8523,7 +8523,8 @@ dinScript_generic:
 	scriptjump @npcLoop
 
 dinScript_zeldaKidnapped:
-	makeabuttonsensitive
+	initcollisions
+	jumpifroomflagset ROOMFLAG_80, @npcLoop
 ; state $01
 	checkabutton
 	disableinput
@@ -8572,11 +8573,12 @@ dinScript_zeldaKidnapped:
 
 	resetmusic
 	enableinput
-@npc:
+	orroomflag ROOMFLAG_80
+@npcLoop:
 	checkabutton
 	showtextlowindex <TX_1c10
 	checktext
-	scriptjump @npc
+	scriptjump @npcLoop
 
 	scriptend
 /*

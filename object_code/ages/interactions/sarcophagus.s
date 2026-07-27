@@ -4,15 +4,16 @@
 interactionCode82:
 	ld e,Interaction.subid
 	ld a,(de)
-	or a
-	jr z,+
-	cp $80		;if from grotto crystal
-	jr z,+
-; if subid is nonzero, check if desert
+	cpa $01
+	jr nz,+
+	cpa $80		;if from grotto crystal
+	jr z,++
++
+; if subid is $01, check if desert
 	ld a,(wPastRoomFlags+<ROOM_AGES_120)
 	bit 0,a
 	jp z,interactionDelete
-+
+++
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable

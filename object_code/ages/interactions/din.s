@@ -28,6 +28,9 @@ interactionCodeaa:
 	call objectMarkSolidPosition
 	call objectSetVisiblec2
 
+	ld a,INTERAC_DIN
+	ld (wInteractionIDToLoadExtraGfx),a
+
 ; Whether to delete
 	callab agesInteractionsBank09.getGameProgress_Seasons
 	ld hl,@@dinSubidAppearances
@@ -38,14 +41,21 @@ interactionCodeaa:
 	cp (hl)
 	jp nz,interactionDelete
 
-	ld a,INTERAC_DIN
-	ld (wInteractionIDToLoadExtraGfx),a
-
+; overwrite text if subid $07 and have both essences
+	cp $07
+	jr nz,+
+	ld a,(wEssencesObtained)
+	xor %00000011
+	jr nz,+
+	ld a,<TX_1c10
+	jr ++
++
 ; Text
 	ld hl,@@dinTextIndices
 	ld a,b ; game progress in b
 	rst_addAToHl
 	ld a,(hl)
+++
 	ld e,Interaction.textID
 	ld (de),a
 	inc e ; Interaction.textID+1

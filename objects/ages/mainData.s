@@ -660,8 +660,8 @@ group0Map03ObjectData:
 	obj_Interaction $42 $01 $68 $38
 	obj_Interaction $40 $0d $28 $48
 	obj_Interaction $40 $0d $28 $78
-	obj_Interaction INTERAC_DIN $09 $48 $68
 	obj_AfterEvent group0Map03AfterEventObjectData
+	obj_BeforeEvent group0Map03BeforeEventObjectData
 	obj_End
 
 group0Map04ObjectData:
@@ -2784,7 +2784,8 @@ group4Map39ObjectData:
 	obj_Interaction $12 $05 $98 $38
 	obj_Interaction $1d $00
 	obj_ItemDrop 0 $00 $51
-	obj_Interaction INTERAC_SARCOPHAGUS $00 $10 $b8
+	obj_BeforeEvent group4Map39BeforeEventObjectData
+	obj_Interaction INTERAC_SARCOPHAGUS $02 $10 $b8
 	obj_End
 
 group4Map3aObjectData:

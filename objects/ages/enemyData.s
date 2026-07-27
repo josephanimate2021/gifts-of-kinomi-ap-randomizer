@@ -2976,3 +2976,10 @@ group0Map29AfterEventObjectData:
 group0Map03AfterEventObjectData:
 	obj_Interaction INTERAC_DIN $07 $38 $88
 	obj_EndPointer
+
+group0Map03BeforeEventObjectData:
+	obj_Interaction INTERAC_DIN $09 $48 $68
+	obj_EndPointer
+
+group4Map39BeforeEventObjectData:
+	obj_EndPointer
