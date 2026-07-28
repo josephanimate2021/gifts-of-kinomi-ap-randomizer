@@ -162,6 +162,7 @@ interactionCodeaa:
 
 dinAnimateAndRunScript:
 	call interactionAnimateBasedOnSpeed
+	call interactionPushLinkAwayAndUpdateDrawPriority
 	jp interactionRunScript
 
 ; check Nayru's state
