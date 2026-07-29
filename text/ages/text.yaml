@@ -551,7 +551,7 @@ groups:
     index: 0x3d
     text: |-
       You got the
-      \col(1)Old Labrinth Key\col(0)!
+      \col(1)Old Mining Key\col(0)!
 
   - name: TX_003e
     index: 0x3e
@@ -4508,7 +4508,7 @@ groups:
   - name: TX_094c
     index: 0x4c
     text: |-
-      Old Labrinth Key
+      Old Mining Key
       A rusted key to an elaborate maze.
 
   - name: TX_094d
@@ -8629,10 +8629,7 @@ groups:
   - name: TX_1613
     index: 0x13
     text: |-
-      Have you seen
-      the ghost ship
-      that sails the
-      southern seas?
+      'e 'rinces' 'as 'een ki'na't!!
 
   - name: TX_1614
     index: 0x14
@@ -9042,7 +9039,7 @@ groups:
   - name: TX_1c04
     index: 0x04
     text: |-
-      \Link, \col(2)Zelda\col(0) told me about the \col(1)Rod\col(0). Just keep it safe! Don't make me come save you again, tee hee.\stop
+      \Link, \col(3)Zelda\col(0) told me about the \col(1)Rod\col(0). Just keep it safe! Don't make me come save you again, tee hee.\stop
       You remember how it works, right? Swing it on a stump!
       Seasons will change the environment around you.
       \col(4)Spring\col(0) opens \col(1)flowers\col(0)...\stop
@@ -9070,9 +9067,10 @@ groups:
     text: |-
       \Link, this mystic \col(1)shrine\col(0) dedicated to the seasons...
       What did you think? Was it wonderful\stop
-      Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as wel!
+      Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as well!
       Then people from all lands could witness my famous dancing! 
-      Oh, I hope the party starts soon so we can dance together!
+      Oh, I hope the party starts soon so we can dance together!\stop
+      \col(4)Nayru\col(0) and I are thinking of going out to see some of Byzatim before the party. Don't be late!
 
   - name: TX_1c07
     index: 0x07
@@ -9090,34 +9088,34 @@ groups:
   - name: TX_1c09
     index: 0x09
     text: |-
-      \col(2)Zelda\col(0) has been kidnapped!
+      \pos(1)\col(3)Zelda\col(0) has been kidnapped!
 
   - name: TX_1c0a
     index: 0x0a
     text: |-
-      \pos(2)I just checked with the head guard. He said a \col(1)big monster\col(0) came to the villa and took the \col(2)princess\col(0)!
+      \pos(2)I just checked with the head guard. He said a \col(1)big monster\col(0) came to the villa and took the \col(3)princess\col(0)!
 
   - name: TX_1c0b
     index: 0x0b
     text: |-
-      \Link, what will we do? 
+      \pos(1)\Link, what will we do? 
 
   - name: TX_1c0c
     index: 0x0c
     text: |-
-      \Link, you must find her! The guard said the \col(1)monster\col(0) went west before disappearing around \col(1)Forever Falls\col(0)!\stop
+      \pos(2)\Link, you must find her! The guard said the \col(1)monster\col(0) went \col(1)west\col(0) before disappearing around \col(1)Forever Falls\col(0)!\stop
       Do you think there's another entrance to the \col(1)Lost Labrynth\col(0)?
 
   - name: TX_1c0d
     index: 0x0d
     text: |-
-      \pos(2)Why would it go west?\stop
+      \pos(1)Why would it go west?\stop
       Oh this is terrible! What about the party? I wanted my gift!
 
   - name: TX_1c0e
     index: 0x0e
     text: |-
-      \Link, if he went there, then you must know this!\stop
+      \pos(2)\Link, if he went there, then you must know this!\stop
       Long ago, there was a mine high above the spring where Forever Falls is now.
       But I think it became haunted and was locked for safety! The key must have been hidden away in the Labrynth somwhere... but where?
 
@@ -9126,7 +9124,7 @@ groups:
     index:
     - 0x0f
     text: |-
-      \pos(2)Please, \Link, save \col(2)Princess Zelda\col(0)!
+      \pos(1)Please, \Link, save \col(3)Princess Zelda\col(0)!
 
   - name: TX_1c10
     index: 0x10
@@ -9193,156 +9191,81 @@ groups:
   - name: TX_1d00
     index: 0x00
     text: |-
-      Thank you.\stop
-      You've come all
-      the way from
-      \col(3)Hyrule\col(0), correct?
-      Pleased to meet
-      you. I am \col(3)Nayru\col(0).
-      I've been very
-      worried after
-      hearing that
-      \col(3)Labrynna\col(0) would
-      face many evil
-      troubles.
+      Isn't it great that we could all visit \col(3)Zelda's villa\col(0) this summer? And just in time for our \col(1)birthdays\col(0)!\stop
+      Oh, yes, you're right, \Link. It's a bit late, but \col(3)Zelda\col(0) didn't want to let us pass the year without cele- brating!\stop
+      I know \col(1)Din\col(0) is incredibly excited for the party! As am I, but you know how she can be.
 
   - name: TX_1d01
     index: 0x01
     text: |-
-      \pos(2)\Link...
-      Hah! You've done
-      well! First you
-      let me through
-      the barrier, now
-      you bring me
-      \col(1)Mystery Seeds\col(0)!
-      Such a nice boy!
-      Taking advantage
-      of people's
-      kindness is
-      too easy!
-      This makes one
-      less thing that
-      can obstruct my
-      ambitions. But
-      my, these
-      \col(1)Mystery Seeds\col(0)
-      are unpleasant!
-      Their sight and
-      smell... Hmph!
-      Anyhow!
+      \Link, shouldn't you be helping prepare for the party?
+      Why do you have a \col(1)sword\col(0)?\stop
+      I don't think we could stop you from adventure, but please get back soon!
 
   - name: TX_1d02
     index: 0x02
     text: |-
-      \pos(2)\col(3)Queen Ambi\col(0)...
-      Now, with my
-      powers, the flow
-      of time is yours
-      to command.
-      For you, I shall
-      create a day
-      that never ends,
-      so the people
-      will never
-      sleep, and work
-      on the tower can
-      continue. And
-      when the tower
-      reaches the
-      heavens, you
-      shall go down in
-      history as the
-      greatest queen
-      to ever live!
+      Oh, who gave you those \col(1)seeds\col(0), \Link?
+      Just be careful! Don't want you burning anything down out there, but come back safely!\stop
+      \col(1)Din\col(0) keeps asking me to guess what your present is, but I'd rather be surprised!
 
   - name: TX_1d03
     index: 0x03
     text: |-
-      \pos(1)Heh heh heh heh!
-      We are closer
-      to the Age of
-      Shadow! But it's
-      still premature.
-      The true shadow
-      will fall when
-      the \col(3)Black Tower\col(4)
-      reaches the
-      heavens and I
-      climb to its
-      highest turret!
-      Then it will
-      come...
-      Heh heh heh...
-      Hah hah hah hah!
+      \Link! What is that in your pocket? Is it something you'd like me to have? I'm sure what- ever it is will be fine...\stop
+      But wait until the party, okay? Maybe \col(1)someone else\col(0) would want it more than me before then.\stop
+      And beware of a \col(1)labrynth\col(0) at the \col(1)southwest\col(0) edge of this land. We don't want you lost before the party even be- gins!
 
   - name: TX_1d04
     index: 0x04
     text: |-
-      Huhhn...
-      \Link..?
-      Where are we?
+      \Link, I'm not certain what caused you to pick up the \col(1)Harp of Ages\col(0) again. What could be in the \col(1)past\col(0) that we can't enjoy now?\stop
+      \slow()Don't be silly!\stop
+      No, I won't teach you any- more songs! I think the \col(1)Tune of Echoes\col(0) is all you'd need right now!\stop
+      Thinking of the past... ages ago, there was a \col(1)Forest of Time\col(0) where the quarry now stands.
+      The \col(1)labrynth\col(0) was a lot more dan- gerous too since back then it hadn't been dug up with the quarry yet.
+      Oh, \Link, don't go! I can't be certain you'll \col(1)be able to re- turn\col(0) since not every age has time portals to wake.\stop
+      If you find yourself stran- ded, be certain to ask any \col(1)locals\col(0) for help.
 
   - name: TX_1d05
     index: 0x05
     text: |-
-      \col(3)Ralph\col(0)!!! I'm\stop
-      sorry to make
-      you worry. I'm
-      fine now. Let us
-      return to our
-      own age!
+      Hey, is that the \col(1)Cane of Somaria\col(0)? I see it has been blessed with a \col(1)special power\col(0) in this land that you may not have witnessed be- fore.\stop
+      Its blocks can instantly fill in holes! Isn't that some ama- zing magic?\stop
+      It emanates from the powers of the \col(3)Oracle of Ages\col(0), and as such it cannot function outside of the lands \col(1)west\col(0) of the town.\stop
+      Where are you going to use that, anyway?
+      It must have been helpful in the \col(1)labrynth\col(0) when it still stood, but you promised you would't ever go there!
 
   - name: TX_1d06
     index: 0x06
     text: |-
-      Thank you,
-      \Link!\stop
-      You've safely
-      pried me from
-      \col(3)Veran's\col(0) grip.
-      Now all the
-      strange things
-      that happened in
-      the land should
-      return to
-      normal.
+      What? You went into a \col(1)temple\col(0)? The party is about to begin, and you can't hold yourself back!
+      \Link, I'm just begging that you'll return safely to the villa soon...\stop
+      I was preparing to \col(1)sing\col(0) for the guests tonight, but I saw \col(1)Din\col(0) and \col(3)Zelda\col(0) chat- ting.
+      It got me won- dering if you even have a present for \col(1)us\col(0).\stop
+      \slow()Did you forget?\stop
+      Don't worry if you did, but you have to be honest!\stop
+      Also, \Link, \col(1)Din\col(0) and I will be out shopping right before the party. Don't be late!
 
   - name: TX_1d07
     index: 0x07
     text: |-
-      \col(3)Ralph\col(0)...
-      Just like you
-      said, I'll help
-      in what little
-      way I can!
+      You're finally back! But that look on your face tells me you're not done out there... 
+      What is it now? \Link, just tell me! Is it some- thing for \col(1)Din\col(0)?
+      I could help!\stop
+      Then again, you've had us wait this long. Why don't you go out and get what you need? See you in a few, and good luck! \heart
 
   - name: TX_1d08
     index: 0x08
     text: |-
-      There is little
-      else I can do,
-      so I'll return
-      home for now.
-      Stop by anytime.
+      Oh, this is so wonderful! You've brought \col(3)Zelda\col(0) back and the party has begun!\stop
+      \Link, thank you for your \col(1)gift\col(0)! It sounds beau- tiful, and I can't wait to fully learn it for my friends back at home!\stop
+      Enjoy the party!
 
   - name: TX_1d09
     index: 0x09
     text: |-
-      \Link,
-      you have the
-      \col(1)Harp of Ages\col(0).\stop
-      I want you to
-      keep it for now.
-      I'm sure it will
-      continue to aid
-      you. Now let me
-      teach you the
-      last \col(1)tune\col(0), which
-      will unlock the
-      true power of
-      the \col(1)Harp of
-      Ages\col(0).
+      The guards have blocked off the \col(1)villa\col(0) to prevent further attacks! \col(1)Din\col(0) and I weren't gone for long...
 
   - name: TX_1d0a
     index: 0x0a
@@ -14543,8 +14466,8 @@ groups:
     index: 0x0a
     text: |-
       \pos(2)But I shall not
-      fall like \col(3)Knox\col(0)
-      and \col(3)Veran\col(0)! See
+      fall like \col(3)Gleeok\col(0)
+      and \col(3)Smog\col(0)! See
       my true power!
 
   - name: TX_2f0b

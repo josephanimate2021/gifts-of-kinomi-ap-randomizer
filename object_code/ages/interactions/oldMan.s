@@ -134,11 +134,11 @@ interactionCode52:
 @@var03_00:
 	.db $03 $03 $03 $03
 	.db $03 $04 $05 $05
-	.db $05
+	.db $05 $05
 @@var03_01:
 	.db $03 $03 $03 $03
 	.db $03 $04 $05 $05
-	.db $05
+	.db $05 $05
 
 @oldManTextIndices:
 	.dw @@var03_00
@@ -154,7 +154,8 @@ interactionCode52:
 	.db <TX_3305 ; 0x05 got flippers
 	.db <TX_3307 ; 0x06 got feather
 	.db <TX_3307 ; 0x07 got gift
-	.db <TX_3307 ; 0x08 game finished
+	.db <TX_3307 ; 0x08 got both gifts
+	.db <TX_3307 ; 0x09 game finished
 
 ; Second old man in woods house
 @@var03_01:
@@ -166,7 +167,8 @@ interactionCode52:
 	.db <TX_3304 ; 0x05 got flippers
 	.db <TX_3306 ; 0x06 got feather
 	.db <TX_3306 ; 0x07 got gift
-	.db <TX_3306 ; 0x08 game finished
+	.db <TX_3306 ; 0x08 got both gifts
+	.db <TX_3306 ; 0x09 game finished
 
 ; b0: collisionRadiusY
 ; b1: oamFlagsBackup

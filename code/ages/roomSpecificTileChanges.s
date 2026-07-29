@@ -77,7 +77,8 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group0Map51 ; $45
   .dw tileReplacement_group0HedgeMazeMap75 ; $46
   .dw tileReplacement_group4RupeeRoomMap34 ; $47
-  .dw tileReplacement_group4RupeeRoomMap7c
+  .dw tileReplacement_group4RupeeRoomMap7c ; $48
+  .dw tileReplacement_group5Mapd3 ; $49
 
 
 roomTileChangerCodeGroupTable:
@@ -175,6 +176,7 @@ roomTileChangerCodeGroup5Data:
   ;.db $e3 $2a
   .db $26 $38
   .db $16 $38
+  .db <ROOM_AGES_5d3, $49 ; Blocks for when Zelda is kidnapped
   .db $00
 roomTileChangerCodeGroup6Data:
   .db $00
@@ -1758,6 +1760,36 @@ tileReplacement_group4RupeeRoomMap7c:
 	ld de,wD12RupeeRoomRupees
 	jp replaceRupeeRoomRupees
 */
+
+; Blocks for when Zelda is kidnapped
+tileReplacement_group5Mapd3:
+  ld a,(wEssencesObtained)
+  xor %00000011
+  ret nz
+/*
+  lda >ROOM_AGES_003
+  ld b,<ROOM_AGES_003
+  call getRoomFlags
+  and ROOMFLAG_80
+  ret z
+*/
+  lda GLOBALFLAG_FINISHEDGAME
+  call checkGlobalFlag
+  ret nz
+
+  ld hl,@rectFill1
+  call fillRectInRoomLayout
+  ld hl,@rectFill2
+  call fillRectInRoomLayout
+  ld hl,@rectFill3
+  jp fillRectInRoomLayout
+
+@rectFill1:
+  .db $65 $01 $05 $1d
+@rectFill2:
+  .db $85 $02 $01 $1d
+@rectFill3:
+  .db $89 $02 $01 $1d
 
 ;;
 ; @param	bc	$0808

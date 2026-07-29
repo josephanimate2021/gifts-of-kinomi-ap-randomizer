@@ -86,7 +86,7 @@ interactionCode12:
 ; One byte per dungeon.
 @initialSpinnerValues:
 	.db $00 $00 %00000001 $01 $00 $00 $02 $00
-	.db $01 $00 $00 %00001101 %00001101 $00 $00 $00
+	.db $01 $00 $00 %00011101 %00001101 $00 $00 $00
 .endif
 
 

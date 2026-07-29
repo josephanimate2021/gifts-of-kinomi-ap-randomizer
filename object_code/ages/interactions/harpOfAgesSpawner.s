@@ -114,7 +114,7 @@ interactionCodeb3:
 	ret nz
 	ld (hl),INTERAC_NAYRU
 	inc l
-	ld (hl),$07 ; [subid]
+	ld (hl),$0a;$07 ; [subid]
 	call objectCopyPosition
 
 	jp interactionDelete

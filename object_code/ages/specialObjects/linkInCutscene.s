@@ -1192,6 +1192,8 @@ linkCutscene_updateAngleOnPath:
 	.dw @@path0
 	.dw @@path1
 	.dw @@path2
+	.dw @@path3
+	.dw @@path4
 
 ; Data format:
 ;  b0: 0 for y, 1 for x
@@ -1211,3 +1213,12 @@ linkCutscene_updateAngleOnPath:
 @@path2: ; Funny joke cutscene in trading sequence
 	.db $00 $48
 	.db $ff
+
+@@path4: ; inverse of path3
+	.db $01 $78
+@@path3: ; Din tells Link that Zelda was kidnapped, if he is to the left
+	.db $00 $5c
+	.db $01 $60
+	.db $00 $58
+	.db $ff
+

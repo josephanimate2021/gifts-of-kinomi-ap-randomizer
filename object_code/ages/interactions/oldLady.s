@@ -50,7 +50,9 @@ oldLadyScriptTable:
 	.dw mainScripts.oldLady_stubScript ; got trade item
 	.dw mainScripts.oldLadySubid4Script ; got Harp
 	.dw mainScripts.oldLady_stubScript ; got Cane
-	.dw mainScripts.oldLady_stubScript ; got gift		
+	.dw mainScripts.oldLady_stubScript ; got gift
+	.dw mainScripts.oldLady_stubScript ; got both gifts	
+	.dw mainScripts.oldLady_stubScript ; game finished	
 
 
 /*

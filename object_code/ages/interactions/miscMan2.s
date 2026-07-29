@@ -38,7 +38,7 @@ interactionCode44:
 @@var03_00:
 	.db $01 $01 $02 $02
 	.db $02 $02 $02 $03
-	.db $03
+	.db $03 $03
 
 @miscMan2TextIndices:
 	.dw @@var03_00
@@ -52,7 +52,8 @@ interactionCode44:
 	.db <TX_1611 ; 0x05 got flippers
 	.db <TX_1611 ; 0x06 got feather
 	.db <TX_1612 ; 0x07 got gift
-	.db <TX_1612 ; 0x08 game finished
+	.db <TX_1613 ; 0x08 got both gifts
+	.db <TX_1612 ; 0x09 game finished
 
 /*
 	ld e,Interaction.subid

@@ -619,6 +619,7 @@ group5MapffObjectData:
 
 group0Map12ObjectData:
 	obj_Pointer group0Map12EnemyObjectData
+	obj_Interaction INTERAC_NAYRU $04 $28 $78
 	obj_End
 
 group0Map13ObjectData:
@@ -630,6 +631,7 @@ group0Map13ObjectData:
 group0Map14ObjectData:
 	obj_Pointer group0Map14EnemyObjectData
 	obj_Interaction $3b $03 $38 $38
+	obj_Interaction INTERAC_NAYRU $07 $38 $48
 	obj_Condition $02
 	obj_End
 
@@ -662,6 +664,7 @@ group0Map03ObjectData:
 	obj_Interaction $40 $0d $28 $78
 	obj_AfterEvent group0Map03AfterEventObjectData
 	obj_BeforeEvent group0Map03BeforeEventObjectData
+	obj_Interaction INTERAC_DIN $07 $38 $88
 	obj_End
 
 group0Map04ObjectData:
@@ -766,7 +769,7 @@ group0Map22ObjectData:
 group0Map24ObjectData:
 	obj_Pointer group0Map24EnemyObjectData
 	obj_Interaction $49 $02 $18 $88
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $03
+	obj_Interaction INTERAC_NAYRU $05 $28 $68
 	obj_End
 
 group0Map25ObjectData:
@@ -830,6 +833,7 @@ group0Map35ObjectData:
 
 group0Map36ObjectData:
 	obj_Pointer group0Map36EnemyObjectData
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $03
 	obj_End
 
 group0Map37ObjectData:
@@ -2760,7 +2764,7 @@ group4Map34ObjectData:
 group4Map35ObjectData:
 	obj_Pointer group4Map35EnemyObjectData
 	obj_Interaction $7d $00 $7a $10 $08
-	obj_Interaction $7d $01 $53 $08 $10
+	obj_Interaction $7d $01 $43 $08 $10
 	obj_Interaction $15 $00
 	obj_Interaction $21 $02 $48 $88
 	obj_End
@@ -4741,6 +4745,7 @@ group5MapbbObjectData:
 	obj_Interaction $3c $00 $88 $98
 	obj_Interaction $40 $0d $28 $48 $0b
 	obj_Interaction $40 $0d $28 $a8 $0b
+	obj_Interaction INTERAC_NAYRU $06 $78 $48
 	obj_End
 
 group5MapbcObjectData:
@@ -4771,6 +4776,7 @@ group5Mapc2ObjectData:
 group5MapcaObjectData:
 	obj_Interaction $40 $0d $38 $68 $04
 	obj_Interaction $3a $01 $38 $98
+	obj_Interaction INTERAC_NAYRU $01 $58 $a8
 	obj_End
 
 group5MapccObjectData:
@@ -4808,6 +4814,7 @@ group5Mapd3ObjectData:
 	obj_Interaction $12 $00 $88 $78
 	obj_Interaction $40 $0d $88 $28 $03
 	obj_Interaction $40 $0d $38 $c8 $01
+	obj_Interaction INTERAC_NAYRU $08 $78 $68
 	obj_End
 
 group5Mapd4ObjectData:
@@ -4872,6 +4879,7 @@ group5Mapb1ObjectData:
 	obj_Interaction $40 $0d $50 $50
 	obj_Interaction $40 $0d $50 $a0 $02
 	obj_Interaction INTERAC_NAYRU $00 $88 $58
+	obj_Interaction INTERAC_NAYRU $02 $78 $18
 	obj_Interaction INTERAC_DIN $00 $88 $98
 	obj_Interaction INTERAC_DIN $01 $98 $c8
 	obj_Interaction INTERAC_DIN $04 $48 $88
@@ -5202,6 +5210,7 @@ group0Map23ObjectData:
 
 group2Map18ObjectData:
 	obj_Interaction $52 $00 $28 $50
+	obj_Interaction INTERAC_NAYRU $03 $28 $28
 	obj_End
 
 group5MapbaObjectData:
@@ -5263,6 +5272,7 @@ group0Map61ObjectData:
 	obj_Interaction $82 $01 $30 $18
 	obj_Pointer group0Map61EnemyObjectData
 	obj_Interaction $e9 $00 $50 $50
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $19 $68 $18 $0d
 	obj_End
 
 group1Map50ObjectData:

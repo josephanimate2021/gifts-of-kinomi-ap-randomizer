@@ -3,24 +3,31 @@
 ;			$00 before starting quest
 ;			$01 if got sword
 ;			$02 if got satchel
-;			$03 if got bracelet
-;			$04 if got a trade item
-;			$05 if got Harp of Ages
-;			$06 if got Cane
+;			$03 if got a trade item
+;			$04 if got Harp of Ages
+;			$05 if got Cane
+;			$06 if got Power Gloves
 ;			$07 if got gift
-;			$08 if game finished (unlinked only)
+;			$08 if got both gifts
+;			$09 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Ages:
 	ld hl,@itemTable2
-	ldbc $08,$01 ;Essence 1
+	ldbc $09,$01 ;Essence 1
 	call getGameProgress_Seasons@getProgress
+	jr z,+
+	dec b
+	ld a,(wBraceletLevel)
+	cpa $02
+	call c,getGameProgress_Seasons@checkItemObtained
++
+	ld a,b
 	ld (wGameProgress1),a
 	ret
 @itemTable2:
 	.db TREASURE_CANE_OF_SOMARIA
 	.db TREASURE_HARP
 	.db TREASURE_TRADEITEM
-	.db TREASURE_BRACELET
 	.db TREASURE_SEED_SATCHEL
 	.db TREASURE_SWORD
 	.db $00
@@ -35,12 +42,14 @@ getGameProgress_Ages:
 ;			$05 if got flippers
 ;			$06 if got feather
 ;			$07 if got gift
-;			$08 if game finished (unlinked only)
+;			$08 if got both gifts
+;			$09 if game finished (unlinked only)
 ;ZerotoK's version
 getGameProgress_Seasons:
 	ld hl,@itemTable1
-	ldbc $08,$02 ;Essence 2
+	ldbc $09,$02 ;Essence 2
 	call @getProgress
+	call nz,@checkItemObtained
 	ld a,b
 	ld (wGameProgress2),a
 	ret
@@ -54,13 +63,18 @@ getGameProgress_Seasons:
 
 	dec b
 	ld a,(wEssencesObtained)
-	and c
-	ret nz
+	xor %00000011
+	ret z ; return if all obtained
+
+	dec b
+	xor c ; should be $00 if right one obtained
+	ret 
+
 
 @checkItemObtained:
 	dec b
 	ret z
-	ret z
+	;ret z
 
 	ldi a,(hl)
 	call checkTreasureObtained

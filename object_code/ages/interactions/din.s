@@ -4,11 +4,11 @@
 interactionCodeaa:
 	ld e,Interaction.subid
 	ld a,(de)
-	sub $09
+	sub $0a
 	jr c,@generic
 	rst_jumpTable
-	.dw @subid09
-	;.dw @subid0a
+	.dw @subid0a
+	;.dw @subid0b
 
 @generic:
 	call checkInteractionState
@@ -41,21 +41,12 @@ interactionCodeaa:
 	cp (hl)
 	jp nz,interactionDelete
 
-; overwrite text if subid $07 and have both essences
-	cp $07
-	jr nz,+
-	ld a,(wEssencesObtained)
-	xor %00000011
-	jr nz,+
-	ld a,<TX_1c10
-	jr ++
-+
 ; Text
 	ld hl,@@dinTextIndices
-	ld a,b ; game progress in b
+	ld e,Interaction.subid
+	ld a,(de)
 	rst_addAToHl
 	ld a,(hl)
-++
 	ld e,Interaction.textID
 	ld (de),a
 	inc e ; Interaction.textID+1
@@ -77,7 +68,7 @@ interactionCodeaa:
 @@dinSubidAppearances:
 	.db $00 $01 $02 $03
 	.db $04 $05 $06 $07
-	.db $08
+	.db $08 $09
 
 @@dinTextIndices:
 	.db <TX_1c00 ; $00 Before sword - ROOM_AGES_5b1
@@ -88,6 +79,7 @@ interactionCodeaa:
 	.db <TX_1c05 ; $05 After flippers - ROOM_AGES_5c4
 	.db <TX_1c06 ; $06 After feather - ROOM_AGES_5cb
 	.db <TX_1c07 ; $07 After gift - ROOM_AGES_003
+	.db <TX_1c10 ; $08 After both gifts - ROOM_AGES_003
 	.db <TX_1c08 ; $08 After game win
 
 @dinScripts:
@@ -100,8 +92,9 @@ interactionCodeaa:
 	.dw mainScripts.dinScript_generic ; $06
 	.dw mainScripts.dinScript_generic ; $07
 	.dw mainScripts.dinScript_generic ; $08
+	.dw mainScripts.dinScript_generic ; $09
 
-@subid09:
+@subid0a:
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -115,6 +108,11 @@ interactionCodeaa:
 
 ;spawned Nayru, now find her
 @@state2:
+	call objectGetAngleTowardLink
+	call convertAngleToDirection
+	ld e,Interaction.var3f
+	ld (de),a
+
 	ld bc,$d041
 -
 	ld a,(bc)
@@ -139,6 +137,7 @@ interactionCodeaa:
 	inc c ; Interaction.relatedObj1+1
 	ld a,d
 	ld (bc),a
+
 	jp interactionIncState
 
 ;initialization

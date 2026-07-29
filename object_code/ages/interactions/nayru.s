@@ -2,9 +2,94 @@
 ; INTERAC_NAYRU
 ; ==================================================================================================
 interactionCode36:
-	;jp interactionDelete
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $0a
+	jr c,@generic
+	rst_jumpTable
+	.dw nayruSubid0a
+	.dw @subid0b
 
-@subid09:
+@generic:
+	call checkInteractionState
+	jr z,@@state0
+
+@@state1:
+	call interactionRunScript
+	jp c,interactionDelete
+	jp npcFaceLinkAndAnimate;interactionAnimateAsNpc
+
+@@state0:
+	call interactionIncState
+
+	call interactionInitGraphics
+	ld a,$06
+	call objectSetCollideRadius
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@@dinSubidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+; Text
+	ld hl,@@dinTextIndices
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld a,(hl)
+	ld e,Interaction.textID
+	ld (de),a
+	inc e ; Interaction.textID+1
+	ld a,>TX_1d00
+	ld (de),a
+
+; TODO: set animation/graphics?
+
+; Scripts
+	ld hl,@dinScripts
+	ld a,b ; game progress in b
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	call interactionSetScript
+	jp @@state1
+
+@@dinSubidAppearances:
+	.db $00 $01 $02 $03
+	.db $04 $05 $06 $07
+	.db $08 $09
+
+@@dinTextIndices:
+	.db <TX_1d00 ; $00 Before sword - ROOM_AGES_5b1
+	.db <TX_1d01 ; $01 After sword - ROOM_AGES_5ca
+	.db <TX_1d02 ; $02 After satchel - ROOM_AGES_5b1
+	.db <TX_1d03 ; $03 After trade item - ROOM_AGES_218
+	.db <TX_1d04 ; $04 Afrer Harp - ROOM_AGES_012
+	.db <TX_1d05 ; $05 After Cane - ROOM_AGES_024
+	.db <TX_1d06 ; $06 After Power Gloves - ROOM_AGES_5bb
+	.db <TX_1d07 ; $07 After gift - ROOM_AGES_014
+	.db <TX_1d09 ; $08 After both gifts - ROOM_AGES_5d3
+	.db <TX_1d08 ; $09 After game win
+
+@dinScripts:
+	.dw mainScripts.nayruScript_generic ; $00
+	.dw mainScripts.nayruScript_generic ; $01
+	.dw mainScripts.nayruScript_generic ; $02
+	.dw mainScripts.nayruScript_generic ; $03
+	.dw mainScripts.nayruScript_generic ; $04
+	.dw mainScripts.nayruScript_generic ; $05
+	.dw mainScripts.nayruScript_generic ; $06
+	.dw mainScripts.nayruScript_generic ; $07
+	.dw mainScripts.nayruScript_generic ; $08
+	.dw mainScripts.nayruScript_generic ; $09
+
+@subid0b:
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -839,10 +924,12 @@ nayruUpdatePossessionPaletteDurations:
 	cp $10
 	ret nz
 	ret
-
+*/
 ;;
 ; Subid $07: Cutscene with the vision of Nayru teaching you Tune of Echoes
-nayruSubid07:
+nayruSubid0a:
+	; uses TX_1d10
+;nayruSubid07:
 	call checkInteractionSubstate
 	jr nz,@substate1
 
@@ -900,7 +987,7 @@ nayruSubid07:
 	ldh a,(<hActiveObject)
 	ld d,a
 	jp interactionDelete
-
+/*
 ;;
 nayruAsNpc:
 	call interactionRunScript

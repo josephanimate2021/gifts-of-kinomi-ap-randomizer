@@ -2704,7 +2704,6 @@ group4Map14EnemyObjectData:
 
 group4Map48BeforeEventObjectData:
 	obj_SpecificEnemyA 0 $75 $00 $58 $78
-	obj_Part PART_GOPONGA_PROJECTILE $00 $00 $00 $00
 	obj_EndPointer
 
 group4Map70BeforeEventObjectData:
@@ -2974,11 +2973,11 @@ group0Map29AfterEventObjectData:
 	obj_EndPointer
 
 group0Map03AfterEventObjectData:
-	obj_Interaction INTERAC_DIN $07 $38 $88
+	obj_Interaction INTERAC_DIN $08 $48 $68
 	obj_EndPointer
 
 group0Map03BeforeEventObjectData:
-	obj_Interaction INTERAC_DIN $09 $48 $68
+	obj_Interaction INTERAC_DIN $0a $48 $68
 	obj_EndPointer
 
 group4Map39BeforeEventObjectData:

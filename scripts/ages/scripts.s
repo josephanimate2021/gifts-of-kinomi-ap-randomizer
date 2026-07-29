@@ -1727,12 +1727,22 @@ childScript_stage9_singer:
 ; ==================================================================================================
 ; INTERAC_NAYRU
 ; ==================================================================================================
+nayruScript_generic:
+	initcollisions
+@npcLoop:
+	checkabutton
+	turntofacelink
+	showloadedtext
+	;asm15 scriptHelp.oldManSetAnimationToVar38
+	scriptjump @npcLoop
+
 nayruScript_zeldaKidnapped:
 ; state $00, $01
 	initcollisions
 	checkobjectbyteeq Interaction.state, $01
 	playsound SND_ENTERCAVE
 	wait 15
+	checkmemoryeq w1Link.subid, $00
 	setspeed SPEED_180
 	movedown $21
 	setangleandanimation ANGLE_RIGHT
@@ -1740,11 +1750,14 @@ nayruScript_zeldaKidnapped:
 	wait 60
 	incstate
 ; state $02
-	setangleandanimation ANGLE_DOWN
-	turntofacelink
 	checkobjectbyteeq Interaction.state, $02
+; corresponds to right before first text from Nayru about guards
+	checkmemoryeq w1Link.subid, $00
+	wait 50
+	setangleandanimation ANGLE_DOWN
 ; state $03
 	checkobjectbyteeq Interaction.state, $03
+; cutscene done, Nayru leaves
 	setangleandanimation ANGLE_UP
 	wait 5
 	setspeed SPEED_180
@@ -1922,10 +1935,10 @@ nayruScript05:
 	checkmemoryeq wTmpcfc0.genericCutscene.state, $05
 	setanimation $03
 	scriptend
-
+*/
 nayruScript07:
 	loadscript scriptHelp.nayruScript07
-
+/*
 ; Subid $08: Cutscene after saving Zelda?
 nayruScript08:
 	checkmemoryeq wTmpcfc0.genericCutscene.state, $03
@@ -8534,19 +8547,36 @@ dinScript_zeldaKidnapped:
 	checktext
 	setmusic MUS_DISASTER
 	wait 15
-	spawninteraction INTERAC_NAYRU, $09, $18, $58
+
+	spawninteraction INTERAC_NAYRU, $0b, $18, $58
 	incstate
 ; state $02, $03
+	wait 20
+	jumptable_objectbyte Interaction.var3f
+	.dw @up
+	.dw @right
+	.dw @down
+	.dw @left
+@up:
+	asm15 scriptHelp.moveLinkToPosition, $04
+	scriptjump @endMoveLink
+@left:
+@down:
+@right:
+	asm15 scriptHelp.moveLinkToPosition, $03
+
+@endMoveLink:
 	setangleandanimation ANGLE_UP
-	wait 40
+	wait 30
 	setangleandanimation ANGLE_LEFT
+	checkmemoryeq w1Link.subid, $00
 	checkobjectbyteeq Interaction.state, $04
 ; state $04
-	wait 60
+	wait 45
 	showtextlowindex <TX_1c0a
+	turntofacelink
 	checktext
 	wait 15
-	turntofacelink
 	showtextlowindex <TX_1c0b
 	checktext
 	wait 15
@@ -8576,10 +8606,10 @@ dinScript_zeldaKidnapped:
 	orroomflag ROOMFLAG_80
 @npcLoop:
 	checkabutton
+	turntofacelink
 	showtextlowindex <TX_1c10
 	checktext
 	scriptjump @npcLoop
-
 	scriptend
 /*
 ; Unused? (Identical to "zeldaSubid00Script")
