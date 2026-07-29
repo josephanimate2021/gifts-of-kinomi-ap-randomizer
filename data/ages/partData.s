@@ -36,18 +36,18 @@ partData:
 	.db $8f $87 $22 $fc $40 $0c $03 $00 ; $18
 	.db $00 $87 $22 $fc $40 $1c $0a $00 ; $19
 	.db $8e $86 $22 $fc $40 $00 $02 $00 ; $1a
-	.db $95 $ef $22 $fa $40 $1a $05 $00 ; $1b
+	.db $95 ($80|ENEMYCOLLISION_LYNEL_BEAM) $22 $fa $40 $1a $05 $00 ; $1b
 	.db $9b $86 $22 $fc $40 $0a $02 $00 ; $1c
-	.db $00 $f0 $11 $fc $40 $00 $00 $00 ; $1d
+	.db $00 ($80|ENEMYCOLLISION_ENEMY_SWORD) $11 $fc $40 $00 $00 $00 ; $1d
 	.db $8d $86 $21 $fc $40 $18 $05 $00 ; $1e
 	.db $9f $86 $55 $fa $40 $0a $00 $00 ; $1f
-	.db $00 $f1 $55 $fc $40 $08 $0a $00 ; $20
+	.db $00 ($80|ENEMYCOLLISION_FIRE) $55 $fc $40 $08 $0a $00 ; $20
 	.db $8e $86 $22 $fc $40 $0a $04 $00 ; $21
-	.db $4c $f1 $66 $f8 $40 $00 $02 $00 ; $22
-	.db $00 $72 $55 $f8 $40 $0a $0a $00 ; $23
+	.db $4c ($80|ENEMYCOLLISION_FIRE) $66 $f8 $40 $00 $02 $00 ; $22
+	.db $00 ENEMYCOLLISION_FALLING_FIRE $55 $f8 $40 $0a $0a $00 ; $23
 	.db $76 $83 $44 $00 $40 $12 $01 $00 ; $24
 	.db $00 $00 $00 $00 $40 $00 $00 $00 ; $25
-	.db $6b $73 $00 $00 $40 $0c $01 $00 ; $26
+	.db $6b ENEMYCOLLISION_WALL_FLAME $00 $00 $40 $0c $01 $00 ; $26
 	.db $a6 $04 $00 $f8 $40 $0e $04 $00 ; $27
 	.db $78 $81 $44 $00 $01 $00 $02 $00 ; $28
 	.db $a7 $87 $33 $fc $40 $08 $04 $00 ; $29
@@ -56,18 +56,18 @@ partData:
 	.db $a8 $84 $21 $f0 $40 $08 $02 $00 ; $2c
 	.db $8e $86 $22 $f8 $40 $14 $01 $00 ; $2d
 	.db $00 $00 $00 $00 $00 $00 $00 $00 ; $2e
-	.db $8e $f7 $44 $f0 $40 $14 $01 $00 ; $2f
+	.db $8e ($80|ENEMYCOLLISION_BABY_BALL) $44 $f0 $40 $14 $01 $00 ; $2f
 	.db $78 $00 $00 $00 $01 $02 $05 $00 ; $30
 	.db $00 $86 $22 $fc $40 $1c $0a $00 ; $31
 	.db $b3 $00 $00 $00 $40 $00 $06 $00 ; $32
-	.db $73 $f5 $00 $00 $40 $1a $02 $00 ; $33
+	.db $73 ($80|ENEMYCOLLISION_ROTATABLE_SEED_THING) $00 $00 $40 $1a $02 $00 ; $33
 	.db $ce $84 $a4 $fc $40 $18 $05 $00 ; $34
 	.db $ce $84 $44 $f8 $40 $00 $01 $00 ; $35
 	.db $00 $84 $44 $f8 $40 $06 $0a $00 ; $36
 	.db $8e ENEMYCOLLISION_VIRE_PROJECTILE $66 $f8 $40 $14 $02 $00 ; $37 ; Vire Projectile
 	.db $45 $b8 $22 $fc $01 $06 $02 $00 ; $38
 	.db $a4 $84 $55 $fc $01 $00 $02 $00 ; $39
-	.db $8e $f6 $33 $fc $01 $16 $04 $00 ; $3a
+	.db $8e ($80|ENEMYCOLLISION_VIRE_PROJECTILE) $33 $fc $01 $16 $04 $00 ; $3a
 	.db $96 $84 $55 $fc $01 $00 $05 $00 ; $3b
 	.db $8e $86 $44 $f8 $40 $14 $02 $00 ; $3c
 	.db $8e ENEMYCOLLISION_BABY_BALL $44 $00 $01 $14 $04 $00 ; $3d ; Blue Stalfos Projectile
@@ -79,17 +79,17 @@ partData:
 	.db $8e $84 $44 $f8 $40 $18 $00 $00 ; $43
 	.db $55 $82 $44 $00 $01 $18 $02 $00 ; $44
 	.db $96 $04 $44 $fc $40 $00 $05 $00 ; $45
-	.db $8c $f9 $88 $00 $40 $1e $00 $00 ; $46
+	.db $8c ($80|ENEMYCOLLISION_SEED_EYE_STATUE) $88 $00 $40 $1e $00 $00 ; $46
 	.db $78 $04 $00 $fc $40 $10 $04 $00 ; $47
 	.db $8e $86 $44 $f8 $40 $14 $05 $00 ; $48
 	.db $78 $04 $33 $00 $40 $10 $04 $00 ; $49
 	.db $c7 $86 $44 $fe $01 $00 $04 $00 ; $4a
-	.db $9d $7a $66 $f8 $40 $10 $05 $00 ; $4b
+	.db $9d ENEMYCOLLISION_TWINROVA_PROJECTILE $66 $f8 $40 $10 $05 $00 ; $4b
 	.db $9d $86 $63 $fc $40 $14 $02 $00 ; $4c
-	.db $de $7a $66 $f8 $40 $00 $04 $00 ; $4d
+	.db $de ENEMYCOLLISION_TWINROVA_PROJECTILE $66 $f8 $40 $00 $04 $00 ; $4d
 	.db $de $06 $66 $fc $40 $02 $01 $00 ; $4e
 	.db $8e $86 $44 $fc $01 $14 $04 $00 ; $4f
-	.db $1d $fb $6c $f4 $40 $00 $01 $00 ; $50
+	.db $1d ($80|ENEMYCOLLISION_GANON_TRIDENT) $6c $f4 $40 $00 $01 $00 ; $50
 	.db $1c $86 $aa $f0 $40 $00 $02 $00 ; $51
 	.db $1c $86 $55 $f8 $40 $0e $05 $00 ; $52
 	.db $87 $00 $00 $00 $40 $00 $04 $00 ; $53
@@ -101,4 +101,4 @@ partData:
 	.db $00 $86 $55 $fc $40 $08 $0a $00 ; $59
 	.db $3d $00 $00 $00 $01 $00 $06 $00 ; $5a
 	.db $a7 ENEMYCOLLISION_00 $66 $00 $40 $18 $04 $00 ; $5b Facade Hole SEASON_OBJGFXH_8f
-	.db $cb $80|ENEMYCOLLISION_PROJECTILE $55 $fe $40 $02 $02 $00 ; $5c Gleeok fire  $90 $86 $55 $fc $40 $02 $02 $00	
+	.db $cb ($80|ENEMYCOLLISION_PROJECTILE) $55 $fe $40 $02 $02 $00 ; $5c Gleeok fire  $90 $86 $55 $fc $40 $02 $02 $00

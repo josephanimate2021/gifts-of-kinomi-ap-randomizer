@@ -79,7 +79,7 @@ enemyData:
 	/* 0x44 */ m_EnemyData $a5 $00 $00 $10
 	/* 0x45 */ m_EnemyData $92 $34 $11 $20
 	/* 0x46 */ m_EnemyData $00 $00 $00 $00
-	/* 0x47 */ m_EnemyData $97 $ee $06 $2e
+	/* 0x47 */ m_EnemyData $97, ($80|ENEMYCOLLISION_COLOR_CHANGING_GEL), $06, $2e
 	/* 0x48 */ m_EnemyData $98 $a0 enemy48SubidData
 	/* 0x49 */ m_EnemyData $9c $91 $0e $00
 	/* 0x4a */ m_EnemyData $90 $b6 enemy4aSubidData
