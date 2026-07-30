@@ -5363,18 +5363,36 @@ checkLinkJumpingOffCliff:
 	push hl
 	call objectGetRelativeTile
 	ldh (<hFF8B),a
+
+	; Hardcoded check: Tiles c7-c9 are snow tiles in the seasons dungeon, but otherwise they
+	; should not be considered cliffs.
+	sub $c7
+	cp 3
+	jr c,@@snowTile
+
+	ldh a,(<hFF8B)
 	ld hl,cliffTilesTable
 	call lookupCollisionTable
 	pop hl
 	ret nc
 
 	ld c,a
+@@checkAngle:
 	ld e,SpecialObject.angle
 	ld a,(de)
 	cp c
 	scf
 	ret z
 
+	xor a
+	ret
+
+@@snowTile:
+	pop hl
+	ld a,(wTilesetIndex)
+	cp $69
+	ld c,$10
+	jr z,@@checkAngle
 	xor a
 	ret
 
