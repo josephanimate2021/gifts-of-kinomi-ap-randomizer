@@ -8783,7 +8783,15 @@ zeldaSubid00Script:
 	writememory wCutsceneTrigger, CUTSCENE_ROOM_OF_RITES_COLLAPSE
 	scriptend
 
-
+zeldaScript_generic:
+	initcollisions
+@npcLoop:
+	checkabutton
+	turntofacelink
+	showloadedtext
+	;asm15 scriptHelp.oldManSetAnimationToVar38
+	scriptjump @npcLoop
+/*
 zeldaSubid01Script:
 	loadscript scriptHelp.zeldaSubid01Script_body
 
@@ -8884,7 +8892,7 @@ zeldaSubid09Script:
 
 	asm15 scriptHelp.createExclamationMark, 30
 	scriptend
-
+*/
 
 ; ==============================================================================$08
 ; INTERAC_TWINROVA_IN_CUTSCENE

@@ -7892,7 +7892,7 @@ zora_moveLinkDown:
 ; ==================================================================================================
 ; INTERAC_ZELDA
 ; ==================================================================================================
-
+/*
 ;;
 zelda_warpOutOfVireMinigame:
 	ld a,SNDCTRL_STOPMUSIC
@@ -8004,7 +8004,7 @@ zeldaSubid05Script_body:
 
 	writememory wTmpcfc0.genericCutscene.cfdf, $ff
 	scriptend
-
+*/
 
 ; ==============================================================================$08
 ; INTERAC_TWINROVA_IN_CUTSCENE

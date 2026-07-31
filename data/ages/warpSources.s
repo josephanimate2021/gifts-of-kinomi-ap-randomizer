@@ -125,7 +125,7 @@ group0WarpSources:
 	m_PointerWarp     $46 warpSource4a09
 	m_StandardWarp $0 $88 $85 $5 $4
 	m_PointerWarp     $47 warpSource49ed
-	m_StandardWarp $0 $76 $86 $5 $2
+	m_StandardWarp $0 $76 $7b $5 $2
 	m_StandardWarp $0 $35 $5d $3 $4
 	m_StandardWarp $0 $17 $4b $3 $4
 	m_StandardWarp $0 $27 $35 $5 $2

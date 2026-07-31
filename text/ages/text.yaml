@@ -1826,12 +1826,12 @@ groups:
   - name: TX_0306
     index: 0x06
     text: |-
-      Byzitam Cliffs
+      Jiku Cliffs
 
   - name: TX_0307
     index: 0x07
     text: |-
-      Town of Byzitam
+      Town of Kinomi
 
   - name: TX_0308
     index: 0x08
@@ -1919,7 +1919,7 @@ groups:
     - 0x18
     - 0x19
     text: |-
-      Byzitam Plain
+      Daichi Plain
 
   - name: TX_031a
     index: 0x1a
@@ -3423,71 +3423,6 @@ groups:
   - name: TX_0600
     index: 0x00
     text: |-
-      \pos(0)I know it is
-      hard, but don't
-      give up. If you
-      maintain hope,
-      I am sure your
-      father will play
-      with you like he
-      used to.
-
-  - name: TX_0601
-    index: 0x01
-    text: |-
-      Thank you for
-      rescuing me.
-      My name is
-      \col(3)Zelda\col(0). You are
-      \Link, right?
-      I knew it at
-      first glance.
-      Take this as
-      thanks for
-      rescuing me.
-
-  - name: TX_0602
-    index: 0x02
-    text: |-
-      Shall we go
-      outside?
-
-  - name: TX_0603
-    index: 0x03
-    text: |-
-      I'm sorry I made
-      you worry...
-      But I saw it...
-      A world filled
-      with sorrow and
-      despair...
-      Withering away!
-
-  - name: TX_0604
-    index: 0x04
-    text: |-
-      \Link,\stop
-      the \sym(0x57) on your
-      left hand is the
-      mark of a hero.
-      We cannot let
-      \col(3)Veran\col(0) do as she
-      pleases! Only
-      you can thwart
-      \col(3)Twinrova\col(0)
-      and save the
-      world!\stop
-      Please,
-      \Link, chase
-      the darkness
-      away with your
-      mighty hand and
-      protect this
-      land!
-
-  - name: TX_0605
-    index: 0x05
-    text: |-
       I've invited
       \col(3)Nayru\col(0) and \col(1)Din\col(0)
       to my villa to
@@ -3502,60 +3437,303 @@ groups:
       they will be mad
       at you!
 
+  - name: TX_0601
+    index: 0x01
+    text: >-
+      \Link, I see you found a \col(1)treasure\col(0) in the basement of the villa.
+
+      While I don't think that would be a good \col(1)gift\col(0) for either Oracle,
+      maybe you can use it to explore the rest of \col(1)Kinomi\col(0)?
+
+  - name: TX_0602
+    index: 0x02
+    text: >-
+      So you've seen a bit of Daichi to the east?
+      Aren't the trees just beautiful in the plain?
+      I've seen a few \col(1)caves\col(0) there, but I've never gone inside!
+
+  - name: TX_0603
+    index: 0x03
+    text: >-
+      Hi, \Link!\stop
+
+      Do you know anything about this land of Kinomi?\n
+    null_terminator: False
+
+  - name: TX_0604
+    index: 0x04
+    text: >-
+      I've been coming here since my childhood.
+
+      There are two bodies of water on the plains.
+      The one south of town is the \col(1)Lake of Memories\col(0).
+      
+      In the fall, I'd sit and watch the waters at the bank.
+      
+      It's not so pretty in the \col(1)summer\col(0) as that is when it \col(1)dries up\col(0).
+
+  - name: TX_0605
+    index: 0x05
+    text: >-
+      So you've seen a bit of Jiku to the west?
+      \col(1)Forever Falls\col(0) may seem gloomy,
+      but the rushing waters and mist on your face can be soothing.
+
+      There was a man who lived just \col(1)outside of town\col(0)
+      that kept watch for monsters, but he passed before I started coming.
+      
+      \col(3)Nayru\col(0) told me he was a kind soul in life.
+      
+      She suggested to me that he didn't go quite as peacefully as his friends thought.
+      
+      I hope he made it to the after- life safely!
+
   - name: TX_0606
     index: 0x06
-    text: |-
-      You found a gift
-      for \col(1)Din\col(0)! Hooray!
-      Don't forget about \col(3)Nayru\col(0)!
+    text: >-
+      \call(TX_0602)
 
+      There are also some \col(1)caves\col(0) in \col(1)Forever Falls\col(0)!
+
+      I wonder if you'd ever take me in one.
 
   - name: TX_0607
     index: 0x07
-    text: |-
-      You found a gift
-      for \col(3)Nayru\col(0)! Hooray!
-      Don't forget about \col(1)Din\col(0)!
+    text: >-
+      \Link, I see you're getting a few trinkets,
+      teehee. \heart
+
+      How is the search for those gifts?
+      Do you know anything about this place?
+
+      \jump(TX_0604)
+    null_terminator: False
 
   - name: TX_0608
     index: 0x08
-    text: |-
-      \pos(2)The evil witches
-      Twinrova have taken
-      the Oracles without
-      us knowing!
-      You must save them!
-      \pos(1)\Link,
-      I always hope
-      for your safe
-      return!\stop
+    text: >-
+      \Link, speaking with \col(1)Din\col(0),
+      she's concerned you've picked up the \col(1)Rod\col(0).
+
+      Just don't swing it too hard!
+
+      \jump(TX_0604)
+    null_terminator: False
 
   - name: TX_0609
     index: 0x09
-    text: |-
-      AAHHHHHH!!!
+    text: >-
+      Oh, \Link! Are those \col(1)flippers\col(0)?
+      Perfect for the season, I'd say!\stop
+      
+      I know some of the lakes dry up in the summer,
+      but we can cer- tainly still find places to swim!
 
   - name: TX_060a
     index: 0x0a
-    text: |-
-      I asked \col(3)Nayru\col(0) to
-      bring me here.
-      \col(3)Impa\col(0) tried to
-      stop me, but I
-      can't stand by
-      alone and do
-      nothing.
+    text: >-
+      Did you find another \col(1)cape\col(0)?
+      I'm sorry your old one got tat- tered!\stop
+
+      Serves you right for using it so much!\stop
+
+      Where did you get it?\stop
+
+      A mystic \col(1)shrine\col(0) deep in the east woods?
+      Wow! \col(1)Din\col(0) was telling me a bit about this earlier.
+      
+      I'd been coming to Kinomi since my childhood,
+      but I would have never known about that!
+      I'm so glad the Oracles finally have come back to
+      a place that is so meaningful to their kin.
 
   - name: TX_060b
     index: 0x0b
+    text: >-
+      Oh, fantastic! You already have a gift for \col(1)Din\col(0)!
+
+      May I see it?\stop
+      Oh, that is so sweet! She will just love it!
+
+  - name: TX_060c
+    index: 0x0c
+    text: >-
+      Do your pockets ever get full?
+
+      You'd think you'd be strug- gling to carry all those items!
+
+  - name: TX_060d
+    index: 0x0d
+    text: >-
+      Past the \col(1)Lake of Memories\col(0) is a wild maze that you will get you easily lost.
+      Further on I've heard you will find a \col(1)deep woods\col(0), but I've never been there.
+      I hope someday you might be able to take me!
+
+      I can already see it on your face that you're heading that way. \heart
+
+  - name: TX_060e
+    index: 0x0e
+    text: >-
+      \Link, have you had any luck finding gifts for the Oracles?
+      It's not that you absolutely need to find one,
+      but I'm sure you'd want to get something for their birthday!
+      They did save the world with your help after all!\stop
+
+      \slow()What about the woods deep in south Daichi?\stop
+
+      \jump(TX_0609)
+    null_terminator: False
+
+  - name: TX_060f
+    index: 0x0f
+    text: >-
+      I'm visiting the \col(1)library\col(0) with \col(3)Nayru\col(0).
+      I think she much prefers books over the games \col(1)Din\col(0) is playing outside.\stop
+      
+      She was telling me about a \col(1)Labyrinth\col(0) in the south Jiku region.
+      Can you believe that it's lasted for \col(1)hundreds of years\col(0) now?
+
+      It must be in ruin!\stop
+
+      What's that?
+      \jump(TX_060a)
+    null_terminator: False
+
+  - name: TX_0610
+    index: 0x10
+    text: >-
+      \call(TX_060b)\stop
+
+      The libary here has many books,
+      but some people \col(1)do not return\col(0) their books.
+      
+      It's really unfortunate, though I suppose it makes sense
+      if they were \col(1)far far away\col(0) from anyone.
+
+      I wish we had a system here so people can bring them back for the borrower!
+
+  - name: TX_0611
+    index: 0x11
+    text: >-
+      \col(3)Nayru's Harp\col(0)? \col(1)Din's Rod\col(0)?
+      \Link, isn't it a bit shameful to be taking other people's stuff?
+
+      And on their birthday?
+
+      I hope you know what you're doing...\stop
+
+      I am fascinated with the magical efficacy of that \col(1)Harp\col(0),
+      but I'd rather spend my vacation relax- ing.\stop
+
+      \jump(TX_0604)
+    null_terminator: False
+
+  - name: TX_0612
+    index: 0x12
+    text: >-
+      \call(TX_0621)\stop
+
+      \jump(TX_0609)
+    null_terminator: False
+
+  - name: TX_0613
+    index: 0x13
+    text: >-
+      \call(TX_0621)\stop
+
+      Oh,
+      \jump(TX_060a)
+    null_terminator: False
+
+  - name: TX_0614
+    index: 0x14
+    text: >-
+      \call(TX_060b)\stop
+
+      \jump(TX_0621)
+    null_terminator: False
+
+  - name: TX_0615
+    index: 0x15
     text: |-
-      Let me take care
-      of the
-      villagers.
-      \Link, you
-      must take care
-      of \col(3)Veran\col(0) and
-      \col(3)Ralph\col(0)!
+      Getting cane and Rod
+
+  - name: TX_0616
+    index: 0x16
+    text: |-
+      Getting cane and flippers
+
+  - name: TX_0617
+    index: 0x17
+    text: |-
+      Getting Din's gift and cane
+
+  - name: TX_0618
+    index: 0x18
+    text: |-
+      Getting gloves and Rod
+
+  - name: TX_0619
+    index: 0x19
+    text: |-
+      Getting gloves and flippers
+
+  - name: TX_061a
+    index: 0x1a
+    text: |-
+      Getting gloves and Din's gift
+
+  - name: TX_061b
+    index: 0x1b
+    text: |-
+      Getting Nayru's gift and Rod
+
+  - name: TX_061c
+    index: 0x1c
+    text: |-
+      Getting Nayru's gift and flippers
+
+  - name: TX_061d
+    index: 0x1d
+    text: |-
+      Getting Nayru's gift and feather
+
+  - name: TX_061e
+    index: 0x1e
+    text: |-
+      Getting both gifts
+
+  - name: TX_061f
+    index: 0x1f
+    text: |-
+      Game complete
+
+  - name: TX_0620
+    index: 0x020
+    text: |-
+      \col(1)WARNING\col(0)
+      If you see this text, then this is a bug.
+      Please report it.   -ZTK
+
+  - name: TX_0621
+    index: 0x021
+    text: >-
+      Can't the harp take you to the past if you spot a portal?
+      Have you used it yet? Don't get stuck in the past, please!
+      We have a party soon!!
+
+  - name: TX_0622
+    index: 0x022
+    text: >-
+      I've been thinking about that \col(1)labyrinth\col(0) 
+      \col(3)Nayru\col(0) told me about.
+
+      What sort of artifacts may be hidden in there?
+      I read about a magical \col(1)block\col(0) that can be carried 
+      along distaces and when tossed in a hole, 
+      it can fill it as if there was always land there!
+      
+      I hope I get to witness such a thing once!
 
 - group: 0x07
   data:
@@ -3990,7 +4168,7 @@ groups:
     index: 0x1d
     text: |-
       No need to bring the Rod to the towers, \Link!\stop
-      Call us upon a stump when you get back in Byzitam!
+      Call us upon a stump when you get back in Daichi!
 
 - group: 0x09
   data:
@@ -9070,7 +9248,7 @@ groups:
       Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as well!
       Then people from all lands could witness my famous dancing! 
       Oh, I hope the party starts soon so we can dance together!\stop
-      \col(4)Nayru\col(0) and I are thinking of going out to see some of Byzatim before the party. Don't be late!
+      \col(4)Nayru\col(0) and I are thinking of going out to see some of Kinomi before the party. Don't be late!
 
   - name: TX_1c07
     index: 0x07
@@ -9104,7 +9282,7 @@ groups:
     index: 0x0c
     text: |-
       \pos(2)\Link, you must find her! The guard said the \col(1)monster\col(0) went \col(1)west\col(0) before disappearing around \col(1)Forever Falls\col(0)!\stop
-      Do you think there's another entrance to the \col(1)Lost Labrynth\col(0)?
+      Do you think there's another entrance to the \col(1)Lost Labyrinth\col(0)?
 
   - name: TX_1c0d
     index: 0x0d
@@ -9117,7 +9295,7 @@ groups:
     text: |-
       \pos(2)\Link, if he went there, then you must know this!\stop
       Long ago, there was a mine high above the spring where Forever Falls is now.
-      But I think it became haunted and was locked for safety! The key must have been hidden away in the Labrynth somwhere... but where?
+      But I think it became haunted and was locked for safety! The key must have been hidden away in the Labyrinth somwhere... but where?
 
   - name:
     - TX_1c0f    
@@ -9130,7 +9308,7 @@ groups:
     index: 0x10
     text: |-
       How could this happen? \col(3)Nayru\col(0) and I weren't gone for long and then this!\stop
-      As \col(3)Nayru\col(0) said, you must go find a \col(1)key\col(0) in the Labrynth to enter an ancient mine.
+      As \col(3)Nayru\col(0) said, you must go find a \col(1)key\col(0) in the Labyrinth to enter an ancient mine.
       Be careful!
 
   - name: TX_1c11
@@ -9214,7 +9392,7 @@ groups:
     text: |-
       \Link! What is that in your pocket? Is it something you'd like me to have? I'm sure what- ever it is will be fine...\stop
       But wait until the party, okay? Maybe \col(1)someone else\col(0) would want it more than me before then.\stop
-      And beware of a \col(1)labrynth\col(0) at the \col(1)southwest\col(0) edge of this land. We don't want you lost before the party even be- gins!
+      And beware of a \col(1)labyrinth\col(0) at the \col(1)southwest\col(0) edge of this land. We don't want you lost before the party even be- gins!
 
   - name: TX_1d04
     index: 0x04
@@ -9223,7 +9401,7 @@ groups:
       \slow()Don't be silly!\stop
       No, I won't teach you any- more songs! I think the \col(1)Tune of Echoes\col(0) is all you'd need right now!\stop
       Thinking of the past... ages ago, there was a \col(1)Forest of Time\col(0) where the quarry now stands.
-      The \col(1)labrynth\col(0) was a lot more dan- gerous too since back then it hadn't been dug up with the quarry yet.
+      The \col(1)labyrinth\col(0) was a lot more dan- gerous too since back then it hadn't been dug up with the quarry yet.
       Oh, \Link, don't go! I can't be certain you'll \col(1)be able to re- turn\col(0) since not every age has time portals to wake.\stop
       If you find yourself stran- ded, be certain to ask any \col(1)locals\col(0) for help.
 
@@ -9234,7 +9412,7 @@ groups:
       Its blocks can instantly fill in holes! Isn't that some ama- zing magic?\stop
       It emanates from the powers of the \col(3)Oracle of Ages\col(0), and as such it cannot function outside of the lands \col(1)west\col(0) of the town.\stop
       Where are you going to use that, anyway?
-      It must have been helpful in the \col(1)labrynth\col(0) when it still stood, but you promised you would't ever go there!
+      It must have been helpful in the \col(1)labyrinth\col(0) when it still stood, but you promised you would't ever go there!
 
   - name: TX_1d06
     index: 0x06
@@ -14161,8 +14339,8 @@ groups:
   - name: TX_2e02
     index: 0x02
     text: |-
-      \up Town of Byzitam
-      \right Byzitam Plain
+      \up Town of Kinomi
+      \right Daichi Plain
 
   - name: TX_2e03
     index: 0x03
@@ -14174,7 +14352,7 @@ groups:
     index: 0x04
     text: |-
       \left Town of 
-          Byzitam
+          Kinomi
 
   - name: TX_2e05
     index: 0x05
@@ -14185,7 +14363,7 @@ groups:
     index: 0x06
     text: |-
       \right Return to 
-            Byzitam
+            Kinomi
 
   - name: TX_2e07
     index: 0x07
@@ -14213,7 +14391,7 @@ groups:
   - name: TX_2e0a
     index: 0x0a
     text: |-
-      \up Byzitam Plain
+      \up Daichi Plain
 
       \left To Hedge
         Maze
@@ -14223,7 +14401,7 @@ groups:
   - name: TX_2e0b
     index: 0x0b
     text: |-
-      \left Lost Labrynth Entrance
+      \left Lost Labyrinth Entrance
 
   - name: TX_2e0c
     index: 0x0c
@@ -14231,9 +14409,9 @@ groups:
       \up Danger ahead!
 
       \right Town of 
-          Byzitam
+          Kinomi
 
-      \down Byzitam Cliffs
+      \down Jiku Cliffs
 
   - name: TX_2e0d
     index: 0x0d
@@ -14268,7 +14446,7 @@ groups:
     text: |-
       Slingshots:
       Sold at 
-        Byzitam Store!
+        Kinomi Store!
 
   - name: TX_2e12
     index: 0x12
@@ -14287,7 +14465,7 @@ groups:
       Seeking: 
           Mushrooms.
 
-      \right Byzitam Cliffs
+      \right Jiku Cliffs
 
   - name: TX_2e14
     index: 0x14
@@ -14329,12 +14507,12 @@ groups:
     index: 0x19
     text: |-
       \right Return to 
-         Byzitam Plain
+         Daichi Plain
 
   - name: TX_2e1a
     index: 0x1a
     text: |-
-      Warning! Old Labrynth Entrance!
+      Warning! Old Labyrinth Entrance!
       Sealed for safety!
 
   - name: TX_2e1b

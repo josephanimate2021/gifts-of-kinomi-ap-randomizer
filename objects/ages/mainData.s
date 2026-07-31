@@ -722,6 +722,7 @@ group0Map11ObjectData:
 
 group0Map15ObjectData:
 	obj_Pointer group0Map15EnemyObjectData
+	obj_Interaction INTERAC_ZELDA $01 $68 $38
 	obj_End
 
 group0Map16ObjectData:
@@ -4875,7 +4876,7 @@ group5Mapb0ObjectData:
 
 group5Mapb1ObjectData:
 	obj_Pointer group5Mapb1EnemyObjectData
-	obj_Interaction $ad $07 $38 $78
+	obj_Interaction $ad $01 $38 $78
 	obj_Interaction $40 $0d $50 $50
 	obj_Interaction $40 $0d $50 $a0 $02
 	obj_Interaction INTERAC_NAYRU $00 $88 $58
