@@ -8791,6 +8791,57 @@ zeldaScript_generic:
 	showloadedtext
 	;asm15 scriptHelp.oldManSetAnimationToVar38
 	scriptjump @npcLoop
+
+zeldaScript_pacingHorizontal:
+	asm15 scriptHelp.soldierSetSpeed80AndVar3fTo01
+	initcollisions
+	checkmemoryeq wcde0, $00
+	wait 10
+	asm15 objectUnmarkSolidPosition
+@loop:
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_LEFT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
+	callscript zelda_moveForVar3cFrames
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_RIGHT
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
+	callscript zelda_moveForVar3cFrames
+	scriptjump @loop
+
+zeldaScript_pacingVertical:
+	asm15 scriptHelp.soldierSetSpeed80AndVar3fTo01
+	initcollisions
+	checkmemoryeq wcde0, $00
+	asm15 objectUnmarkSolidPosition
+@loop:
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_DOWN
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
+	callscript zelda_moveForVar3cFrames
+	asm15 scriptHelp.hardhatWorker_setPatrolDirection, DIR_UP
+	asm15 scriptHelp.hardhatWorker_setPatrolCounter, $40
+	callscript zelda_moveForVar3cFrames
+	scriptjump @loop
+
+zelda_moveForVar3cFrames:
+	jumpifobjectbyteeq Interaction.pressedAButton, $01, @turnToLinkAndShowText
+	asm15 scriptHelp.hardhatWorker_decPatrolCounter
+	jumpifmemoryset wcddb, $80, @wait20Frames
+	asm15 objectApplySpeed
+	scriptjump zelda_moveForVar3cFrames
+
+@wait20Frames:
+	wait 20
+	retscript
+
+@turnToLinkAndShowText:
+	disableinput
+	writeobjectbyte, Interaction.pressedAButton, $00
+	asm15 scriptHelp.turnToFaceLink
+	showloadedtext
+	wait 30
+	asm15 scriptHelp.hardhatWorker_updatePatrolAnimation
+	enableinput
+	scriptjump zelda_moveForVar3cFrames
+
 /*
 zeldaSubid01Script:
 	loadscript scriptHelp.zeldaSubid01Script_body

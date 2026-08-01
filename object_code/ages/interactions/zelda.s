@@ -15,7 +15,11 @@ zelda_subid01:
 @state1:
 	call interactionRunScript
 	jp c,interactionDelete
-	jp interactionAnimateAsNpc
+	ld e,Interaction.var03
+	ld a,(de)
+	cpa $05 ; number of walking Zeldas - see @zeldaScripts
+	jp c,interactionAnimateAsNpc
+	jp npcFaceLinkAndAnimate
 
 @state0:
 	call interactionIncState
@@ -27,10 +31,12 @@ zelda_subid01:
 	call objectSetVisiblec2
 
 ; Whether to delete
-	;callab agesInteractionsBank09.getGameProgress_Ages
-	;callab agesInteractionsBank09.getGameProgress_Seasons
-	;ld a,b
-	ld a,(wGameProgress2)
+	callab agesInteractionsBank09.getGameProgress_Ages
+	callab agesInteractionsBank09.getGameProgress_Seasons
+	;ld a,(wGameProgress2)
+	;ld b,a
+
+	ld a,b
 	add a ; x2
 	ld c,a
 	add a ; x4
@@ -50,7 +56,7 @@ zelda_subid01:
 
 ; Text
 	ld a,c
-	ld e,Interaction.var3f
+	ld e,Interaction.var3e
 	ld (de),a
 
 	ld hl,@zeldaTextTable
@@ -73,31 +79,42 @@ zelda_subid01:
 
 
 @zeldaScripts:
-	.dw mainScripts.nayruScript_generic ; $00
+	.dw mainScripts.zeldaScript_pacingVertical ; $00 - ROOM_AGES_308
+	.dw mainScripts.zeldaScript_pacingVertical ; $01 - ROOM_AGES_5d3
+	.dw mainScripts.zeldaScript_pacingHorizontal ; $02 - ROOM_AGES_5b1
+	.dw mainScripts.zeldaScript_pacingHorizontal ; $03 - ROOM_AGES_012
+	.dw mainScripts.zeldaScript_pacingHorizontal ; $04 - ROOM_AGES_015
+	.dw mainScripts.zeldaScript_generic ; $05 - ROOM_AGES_5b1
+	.dw mainScripts.zeldaScript_generic ; $06 - ROOM_AGES_218
+	.dw mainScripts.zeldaScript_generic ; $07 - ROOM_AGES_023
+	.dw mainScripts.zeldaScript_generic ; $08 - ROOM_AGES_013
+	.dw mainScripts.zeldaScript_generic ; $09 - ROOM_AGES_024
+	.dw mainScripts.zeldaScript_generic ; $0a - ROOM_AGES_014
+	.dw mainScripts.zeldaScript_generic ; $0b - ROOM_AGES_003
 
 
 @var03AppearanceTable:
 ; 		Start	Swd.	Stchl.	Trade	Harp	Cane	Gloves	Nayru 	Both	Game
 ; Start
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $05 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff
 ; Sword
-	.db $00 	$00 	$00		$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$05 	$02		$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff
 ; Bombs
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$07 	$07 	$08 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff
 ; Boomerang
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$08 	$08 	$00 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff
 ; Rod
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$05 	$01 	$0b 	$00 	$09 	$04 	$0a 	$ff 	$ff
 ; Flippers
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$ff 	$05 	$06 	$03 	$09 	$02 	$01 	$ff 	$ff
 ; Feather
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$ff 	$01 	$06 	$03 	$04 	$05 	$0a 	$ff 	$ff
 ; Din Gift
-	.db $00 	$00		$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$ff		$0b 	$06 	$03 	$0b 	$0b 	$ff 	$ff 	$ff
 ; Both
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$01 	$ff
 ; Game finished
-	.db $00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00 	$00
+	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$01
 
 @zeldaTextTable:
 ; 		Start	Swd.	Stchl.	Trade	Harp	Cane	Gloves	Nayru 	Both	Game
@@ -234,6 +251,12 @@ zelda_subid00:
 	call checkInteractionState
 	jr nz,@state1
 
+; added by ZTK
+	ld a,$01
+	ld (de),a ; [state]
+	call interactionInitGraphics
+	call objectSetVisiblec2
+; vanilla code
 	call getThisRoomFlags
 	bit 7,a
 	jr z,@commonInitWithExtraGraphics

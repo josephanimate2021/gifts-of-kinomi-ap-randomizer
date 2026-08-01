@@ -30,7 +30,10 @@ interactionCode36:
 
 ; Whether to delete
 	callab agesInteractionsBank09.getGameProgress_Ages
-	ld hl,@@dinSubidAppearances
+	;ld a,(wGameProgress1)
+	;ld b,a
+
+	ld hl,@@nayruSubidAppearances
 	ld a,b ; game progress in b
 	rst_addAToHl
 	ld e,Interaction.subid
@@ -38,7 +41,7 @@ interactionCode36:
 	cp (hl)
 	jp nz,interactionDelete
 ; Text
-	ld hl,@@dinTextIndices
+	ld hl,@@nayruTextIndices
 	ld a,b ; game progress in b
 	rst_addAToHl
 	ld a,(hl)
@@ -51,7 +54,7 @@ interactionCode36:
 ; TODO: set animation/graphics?
 
 ; Scripts
-	ld hl,@dinScripts
+	ld hl,@nayruScripts
 	ld a,b ; game progress in b
 	rst_addDoubleIndex
 	ldi a,(hl)
@@ -60,12 +63,12 @@ interactionCode36:
 	call interactionSetScript
 	jp @@state1
 
-@@dinSubidAppearances:
+@@nayruSubidAppearances:
 	.db $00 $01 $02 $03
 	.db $04 $05 $06 $07
 	.db $08 $09
 
-@@dinTextIndices:
+@@nayruTextIndices:
 	.db <TX_1d00 ; $00 Before sword - ROOM_AGES_5b1
 	.db <TX_1d01 ; $01 After sword - ROOM_AGES_5ca
 	.db <TX_1d02 ; $02 After satchel - ROOM_AGES_5b1
@@ -77,7 +80,7 @@ interactionCode36:
 	.db <TX_1d09 ; $08 After both gifts - ROOM_AGES_5d3
 	.db <TX_1d08 ; $09 After game win
 
-@dinScripts:
+@nayruScripts:
 	.dw mainScripts.nayruScript_generic ; $00
 	.dw mainScripts.nayruScript_generic ; $01
 	.dw mainScripts.nayruScript_generic ; $02

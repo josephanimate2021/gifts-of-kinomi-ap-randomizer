@@ -33,6 +33,9 @@ interactionCodeaa:
 
 ; Whether to delete
 	callab agesInteractionsBank09.getGameProgress_Seasons
+	;ld a,(wGameProgress2)
+	;ld b,a
+
 	ld hl,@@dinSubidAppearances
 	ld a,b ; game progress in b
 	rst_addAToHl

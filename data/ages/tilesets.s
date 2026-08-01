@@ -769,12 +769,12 @@ tilesetData: ; 4:4f9c
 
 	;.db $0f $04 $00 $00 $00 $00 $03 $00 ; Tileset 0x6b
 
-	.db $0f $01 $00 $00 $99 $00 $01 $00 ; Tileset 0x6c
+	.db $0f $01 $00 $00 PALH_99 $00 $01 $01 ; Tileset 0x6c
 	.db $4f $01 $00 $00 $68 $00 $00 $06 ; Tileset 0x6d
 	.db $4f $01 $00 $00 $69 $00 $01 $06 ; Tileset 0x6e
 	.db $4f $01 $00 $00 $6a $00 $03 $06 ; Tileset 0x6f
 	.db $4f $01 $00 $00 $6b $00 $02 $06 ; Tileset 0x70
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x71
+	.db $0f $01 $00 $00 PALH_99 $00 $00 $00 ; Tileset 0x71
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x72
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x73
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x74

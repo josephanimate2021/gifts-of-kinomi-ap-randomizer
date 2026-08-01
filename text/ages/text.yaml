@@ -3655,58 +3655,130 @@ groups:
 
   - name: TX_0615
     index: 0x15
-    text: |-
-      Getting cane and Rod
+    text: >-
+      My favorite part about visiting Kinomi is meet- ing with all the locals!
+
+      This land is very ancient.\stop
+      \col(3)Nayru\col(0) told me all about how \col(1)Jiku\col(0) to the west
+      and \col(1)Daichi\col(0) to the east held special tribute to the oracles.
+
+      They created great and vast buildings in their honor, and
+      the oracles lived in the \col(1)villa\col(0) presiding over the lands.
+
+      I just love that we get to stay at a place with great history!  
 
   - name: TX_0616
     index: 0x16
-    text: |-
-      Getting cane and flippers
+    text: >-
+      \Link, what is that? That \col(1)cane\col(0) looks like the Rod of Seasons!
+      But who made the cane? Where did you find it? 
+
+      \col(3)Nayru\col(0) knows a lot about the \col(1)Jiku\col(0) region,
+      and \col(1)Din\col(0) does for \col(1)Daichi\col(0).
+
+      Those lands were dedicated to the oracles long ago, before it was resettled by Hylians.
+      What do you think the people were like?\stop
+
+      \jump(TX_0609)
+    null_terminator: False
 
   - name: TX_0617
     index: 0x17
-    text: |-
-      Getting Din's gift and cane
+    text: >-
+      \call(TX_060b)
+
+      \col(1)Din\col(0) says she is going to dance the whole night!
+
+      I hope the other guests can match her energy! 
+
+      \col(1)Din\col(0) may be the \col(1)Oracle of Seasons\col(0) but she really knows how to party!
+      Do you think it's in her blood? 
 
   - name: TX_0618
     index: 0x18
-    text: |-
-      Getting gloves and Rod
+    text: >-
+      \Link, why are you wearing those \col(1)gloves\col(0)?\stop
+
+      What could possibly need that much strength?\stop
+
+      \jump(TX_0607)
+    null_terminator: False
 
   - name: TX_0619
     index: 0x19
-    text: |-
-      Getting gloves and flippers
+    text: >-
+      My hope is that tomorrow after the party,
+      we'll be able to go out to the \col(1)Lake of Memories\col(0)
+      and swim to our content!
+      Hopefully it is not too shallow from \col(1)drying up\col(0).
+
+      \col(1)Din\col(0) told me there might be some \col(1)secrets\col(0) under the water.\stop
+
+      I don't care if there are any monsters, we should go!
+      Just take off those \col(1)gloves\col(0), please!
+      
+      I don't want you sinking into the water.
+      You have to protect me!\stop
+
+      Maybe the day after, \col(3)Nayru\col(0) can
+      show us more of the \col(1)Jiku Cliffs\col(0).
+      She said that a spring used to be at the top of
+      the cliffs which supplied water to a vast forest!
+
+      I wonder what happened to that forest...
 
   - name: TX_061a
     index: 0x1a
-    text: |-
-      Getting gloves and Din's gift
+    text: >-
+      \call(TX_060b)\stop
+
+      \jump(TX_0619)
+    null_terminator: False
 
   - name: TX_061b
     index: 0x1b
-    text: |-
-      Getting Nayru's gift and Rod
+    text: >-
+      \call(TX_0623)\stop
+
+      \jump(TX_0615)
+    null_terminator: False   
 
   - name: TX_061c
     index: 0x1c
-    text: |-
-      Getting Nayru's gift and flippers
+    text: >-
+      \call(TX_0623)\stop
+
+      \jump(TX_0619)
+    null_terminator: False   
 
   - name: TX_061d
     index: 0x1d
-    text: |-
-      Getting Nayru's gift and feather
+    text: >-
+      \call(TX_0623)\stop
+
+      What's that?
+
+      \jump(TX_060a)
+    null_terminator: False   
 
   - name: TX_061e
     index: 0x1e
-    text: |-
-      Getting both gifts
+    text: >-
+      You found gifts for both of the oracles? 
+      
+      Oh this is fantastic and wonderful!
+      I'm sure they will love them at the party!
 
   - name: TX_061f
     index: 0x1f
-    text: |-
-      Game complete
+    text: >-
+      Thank you again for saving me, \Link.\stop      
+
+      The party is just perfect,
+      and I'm glad the oracles loved their gifts,
+      especially the ones from you.
+
+      Do you think we could host a party like this every year?
 
   - name: TX_0620
     index: 0x020
@@ -3734,6 +3806,15 @@ groups:
       it can fill it as if there was always land there!
       
       I hope I get to witness such a thing once!
+
+  - name: TX_0623
+    index: 0x023
+    text: >-
+      Is that your gift to \col(3)Nayru\col(0)?
+
+      I wish you could play it for me, but I'm busy right now.
+
+      I'm sure she and the rest of the guests will love to hear it at the party!
 
 - group: 0x07
   data:
@@ -9401,7 +9482,7 @@ groups:
       \slow()Don't be silly!\stop
       No, I won't teach you any- more songs! I think the \col(1)Tune of Echoes\col(0) is all you'd need right now!\stop
       Thinking of the past... ages ago, there was a \col(1)Forest of Time\col(0) where the quarry now stands.
-      The \col(1)labyrinth\col(0) was a lot more dan- gerous too since back then it hadn't been dug up with the quarry yet.
+      The \col(1)labyrinth\col(0) was a lot more dangerous too since back then it hadn't been dug up with the quarry yet.
       Oh, \Link, don't go! I can't be certain you'll \col(1)be able to re- turn\col(0) since not every age has time portals to wake.\stop
       If you find yourself stran- ded, be certain to ask any \col(1)locals\col(0) for help.
 

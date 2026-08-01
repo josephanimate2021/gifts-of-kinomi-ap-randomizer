@@ -527,9 +527,7 @@ group1MapbcEnemyObjectData:
 	obj_SpecificEnemyA     $09 $02 $48 $58
 	obj_EndPointer
 
-group1MapabEnemyObjectData:
 group1MapcaEnemyObjectData:
-group1MapdbEnemyObjectData:
 	obj_RandomEnemy $40 $09 $02
 group1MapccEnemyObjectData:
 	obj_RandomEnemy $20 $0b $00
@@ -2981,4 +2979,10 @@ group0Map03BeforeEventObjectData:
 	obj_EndPointer
 
 group4Map39BeforeEventObjectData:
+	obj_EndPointer
+
+group1MapabEnemyObjectData:
+	obj_EndPointer
+
+group1MapdbEnemyObjectData:
 	obj_EndPointer
