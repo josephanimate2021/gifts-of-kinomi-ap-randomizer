@@ -57,7 +57,8 @@ cutscene0f:
 ; CUTSCENE_THE_END_SCREEN
 cutscene22:
 	call func_1613
-	ld e,
+	ld e,$04
+	jp endgameCutsceneHandler
 
 ;;
 ; CUTSCENE_CREDITS

@@ -1799,3 +1799,34 @@ func_60f1:
 	ldi (hl),a
 	ld (hl),b
 	jp enableActiveRing
+
+endgameCutsceneHandler_22:
+	call @runStates
+	jp func_3539
+
+@runStates:
+	ld de,$cbc1
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+
+@state0:
+;ldb,b
+	callab bank3Cutscenes.cutscene_clearTmpCBB3
+	ld a,$01
+	ld ($cbc1),a
+	ld a,$04
+	jp fadeoutToWhiteWithDelay
+
+@state1:
+	ld a,(wPaletteThread_mode)
+	or a
+	ret nz
+
+	ld d,>w1Link.start
+	call objectSetInvisible
+	ld de,$cbc2
+	lda $00
+	ld (de),a
+	jpab cutscenesBank10.agesFunc_10_7298

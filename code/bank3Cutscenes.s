@@ -2153,6 +2153,7 @@ endgameCutsceneHandler_body:
 	.dw endgameCutsceneHandler_0f
 .ifdef ROM_AGES
 	.dw endgameCutsceneHandler_20
+	.dw endgameCutsceneHandler_22
 .endif
 
 ;;

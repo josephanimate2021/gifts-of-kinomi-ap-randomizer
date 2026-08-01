@@ -11,9 +11,15 @@ interactionCodeda:
 @state0:
 	ld a,$01
 	ld (de),a
+
+	ld e,Interaction.subid
+	cpa $00
+	ret nz
+
 	call getThisRoomFlags
 	and ROOMFLAG_80
 	jp nz,interactionDelete
+
 	ld a,PALH_ac
 	jp loadPaletteHeader
 
@@ -43,14 +49,14 @@ interactionCodeda:
 
 	ld e,Interaction.subid
 	cpa $00
-	jr z,@subid00
+	jr z,@@subid00
 ; subid01
 	ld a,CUTSCENE_THE_END_SCREEN
 	ld (wCutsceneTrigger),a
 	ld (wMenuDisabled),a
 	jp interactionDelete
 
-@subid00:
+@@subid00:
 	; Link has approached, start the cutscene
 	ld a,CUTSCENE_WARP_TO_TWINROVA_FIGHT
 	ld (wCutsceneTrigger),a
