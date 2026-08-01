@@ -210,9 +210,28 @@ spiritsGraveScript_respawnPots:
 	.db $00
 
 D8armosCheckIfWillMove:
+	; Must not be using an item
 	ld a,(wLinkUsingItem1)
 	or a
-	jr nz,+
+	jr nz,@reset
+
+	; Must not be moving
+	ld a,(wLinkAngle)
+	inc a
+	jr nz,@reset
+
+	; Must be facing armos
+	ld a,(w1Link.direction)
+	cp DIR_DOWN
+	jr nz,@reset
+
+	; Must be on samae column
+	ld a,(w1Link.xh)
+	swap a
+	and $0f
+	cp $0d
+	jr nz,@reset
+
 	ld a,(wFrameCounter)
 	rrca
 	ret c
@@ -242,6 +261,13 @@ D8armosCheckIfWillMove:
 	ld a,$01
 	ld (de),a
 	ret
+
+@reset:
+	ld h,d
+	ld l,Interaction.direction
+	ld (hl),150
+	ret
+
 ; ==============================================================================
 ; INTERAC_BIPIN
 ; ==============================================================================

@@ -255,7 +255,7 @@ spawnHeartContainer:
 
 swordAndShieldMazeScript_armosBlockingStairs:
 	stopifroomflag80set
-	writeobjectbyte Interaction.direction, $96
+	writeobjectbyte Interaction.direction, 150
 
 @checkIfWillMove:
 	asm15 scriptHelp.D8armosCheckIfWillMove

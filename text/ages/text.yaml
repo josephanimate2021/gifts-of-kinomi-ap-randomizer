@@ -14636,6 +14636,13 @@ groups:
       light feet.
         Cheval
 
+  - name: TX_2e21
+    index: 0x21
+    text: |-
+      Warning!!!\stop
+      Vincent is bashful and does not like to be stared at.\stop
+      Leave him alone for your safety!
+
 - group: 0x2f
   data:
   - name: TX_2f00
