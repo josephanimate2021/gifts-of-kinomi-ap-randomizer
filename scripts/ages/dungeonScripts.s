@@ -228,7 +228,7 @@ spiritsGraveScript_stairsToBraceletRoom:
 
 tokayTempleScript_gloveRoom:
 	stopifitemflagset
-	checkmemoryeq wActiveTriggers, $03
+	checkmemoryeq wActiveTriggers, $07
 	playsound SND_SOLVEPUZZLE
 	spawnitem TREASURE_BRACELET $05
 	scriptend
