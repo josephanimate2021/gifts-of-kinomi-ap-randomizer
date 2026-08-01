@@ -320,7 +320,7 @@ interactionCodece:
 @rupeeValues:
 .ifdef ROM_AGES
 	.db RUPEEVAL_50
-	.db RUPEEVAL_100
+	.db RUPEEVAL_80
 	.db RUPEEVAL_150
 	.db RUPEEVAL_30
 	.db RUPEEVAL_50
@@ -359,7 +359,7 @@ interactionCodece:
 @itemPrices:
 .ifdef ROM_AGES
 	.dw $0050
-	.dw $0100
+	.dw $0080
 	.dw $0150
 	.dw $0030
 	.dw $0050
