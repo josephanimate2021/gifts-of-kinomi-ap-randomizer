@@ -79,6 +79,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group4RupeeRoomMap34 ; $47
   .dw tileReplacement_group4RupeeRoomMap7c ; $48
   .dw tileReplacement_group5Mapd3 ; $49
+  .dw tileReplacement_group0Map30 ; $4a
 
 
 roomTileChangerCodeGroupTable:
@@ -123,6 +124,7 @@ roomTileChangerCodeGroup0Data:
   .db $a5 $37
   ;.db $76 $36
   .db <ROOM_AGES_075 $46
+  .db <ROOM_AGES_030 $4a
   .db $00
 roomTileChangerCodeGroup1Data:
   .db $30 $40
@@ -1790,6 +1792,21 @@ tileReplacement_group5Mapd3:
   .db $85 $02 $01 $1d
 @rectFill3:
   .db $89 $02 $01 $1d
+
+
+; Graveyard puzzle
+tileReplacement_group0Map30:
+	call getThisRoomFlags
+	and $81
+	cp $81
+	ret nz
+
+	ld h,>wRoomLayout
+	ld l,$21
+	ld (hl),$d8
+	ld l,$31
+	ld (hl),$dc ; staircase
+	ret
 
 ;;
 ; @param	bc	$0808

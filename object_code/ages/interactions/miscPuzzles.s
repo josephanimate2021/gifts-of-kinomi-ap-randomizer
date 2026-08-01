@@ -1504,7 +1504,7 @@ miscPuzzles_subid24:
 @state0:
 	call getThisRoomFlags
 	and ROOMFLAG_80
-	jp nz,@state2
+	jp nz,interactionDelete
 	ld a,$01
 	ld (de),a
 
