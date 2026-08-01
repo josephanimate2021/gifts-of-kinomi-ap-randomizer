@@ -91,6 +91,7 @@ zelda_subid01:
 	.dw mainScripts.zeldaScript_generic ; $09 - ROOM_AGES_024
 	.dw mainScripts.zeldaScript_generic ; $0a - ROOM_AGES_014
 	.dw mainScripts.zeldaScript_generic ; $0b - ROOM_AGES_003
+	.dw mainScripts.zeldaScript_generic ; $0c - ROOM_AGES_013
 
 
 @var03AppearanceTable:
@@ -112,9 +113,9 @@ zelda_subid01:
 ; Din Gift
 	.db $ff 	$ff		$0b 	$06 	$03 	$0b 	$0b 	$ff 	$ff 	$ff
 ; Both
-	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$01 	$ff
+	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$05 	$ff
 ; Game finished
-	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$01
+	.db $ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$ff 	$0c
 
 @zeldaTextTable:
 ; 		Start	Swd.	Stchl.	Trade	Harp	Cane	Gloves	Nayru 	Both	Game
