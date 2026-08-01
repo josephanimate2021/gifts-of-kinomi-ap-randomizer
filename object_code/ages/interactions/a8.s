@@ -53,6 +53,7 @@ interactionCodea8:
 	.dw @thing4
 	.dw @thing5
 	.dw @thing6
+	.dw @thing7
 
 @thing2:
 @thing3:
@@ -109,6 +110,14 @@ interactionCodea8:
 	ld hl,@linkSwordDemonstrationInput
 	ld a,:@linkSwordDemonstrationInput
 	jr @beginSimulatedInput
+
+; Added by ZTK - TEST
+@thing7:
+	ld hl,w1Link.id
+	ld (hl),SPECIALOBJECT_LINK
+	;inc l
+	;ld (hl),a
+	jp interactionDelete
 
 
 ; Seasons-only (address $5edf)

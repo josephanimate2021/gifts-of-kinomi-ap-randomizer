@@ -1204,7 +1204,7 @@ endgameCutsceneHandler_0f:
 	or a
 	ret nz
 	call incCbc2
-	ld a,$11
+	ld a,$15;$11
 	ld ($cfde),a
 	call cutscene_loadRoomObjectSetAndFadein
 	ld a,$04
@@ -1279,6 +1279,13 @@ endgameCutsceneHandler_0f:
 	ld (hl),$02
 	jp incCbc2
 @@substate7:
+/*
+; TEST
+	ld a,CUTSCENE_INGAME
+	ld (wCutsceneIndex),a
+	ret
+*/
+
 	ld a,($cfc0)
 	cp $09
 	ret nz

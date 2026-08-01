@@ -229,7 +229,6 @@ group2Map00ObjectData:
 group2Map01ObjectData:
 group2Map02ObjectData:
 group2Map03ObjectData:
-group2Map04ObjectData:
 group2Map05ObjectData:
 group2Map06ObjectData:
 group2Map07ObjectData:
@@ -422,7 +421,6 @@ group3Map14ObjectData:
 group3Map15ObjectData:
 group3Map16ObjectData:
 group3Map17ObjectData:
-group3Map1cObjectData:
 group3Map1eObjectData:
 group3Map20ObjectData:
 group3Map21ObjectData:
@@ -721,6 +719,7 @@ group0Map10ObjectData:
 group0Map11ObjectData:
 	obj_Pointer group0Map11EnemyObjectData
 	obj_Interaction $dc $01
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $1a $58 $78
 	obj_End
 
 group0Map15ObjectData:
@@ -1087,7 +1086,6 @@ group0Map74ObjectData:
 
 group0Map77ObjectData:
 	obj_Pointer group0Map77EnemyObjectData
-	obj_Interaction $dc $1a $40 $50
 	obj_End
 
 group0Map78ObjectData:
@@ -5432,4 +5430,13 @@ group3Map1dObjectData:
 group2Map13ObjectData:
 	obj_Interaction INTERAC_SOLDIER $0d $58 $18
 	obj_Interaction INTERAC_SOLDIER $0d $68 $18
+	obj_End
+
+group2Map04ObjectData:
+	obj_SpecificEnemyA $00 ENEMY_SEEDS_ON_TREE $01 $00 $00
+	obj_End
+
+group3Map1cObjectData:
+	obj_Interaction INTERAC_DECORATION $00 $28 $18
+	obj_Interaction INTERAC_a8 $00
 	obj_End

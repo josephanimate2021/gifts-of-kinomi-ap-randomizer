@@ -2821,7 +2821,7 @@ groups:
       you did it! I
       knew you could!
       Leave this to
-      me!
+      us!
 
   - name:
     - TX_0564
@@ -3592,8 +3592,8 @@ groups:
       
       She was telling me about a \col(1)Labyrinth\col(0) in the south Jiku region.
       Can you believe that it's lasted for \col(1)hundreds of years\col(0) now?
-
-      It must be in ruin!\stop
+      She says there are many entrances to it,
+      and the interior map's entrances \col(1)lines up\col(0) to  the map of Jiku.\stop
 
       What's that?
       \jump(TX_060a)

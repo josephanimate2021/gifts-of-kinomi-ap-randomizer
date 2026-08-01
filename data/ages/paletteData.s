@@ -799,9 +799,9 @@ paletteData44a8:
 	m_RGB16 $02 $04 $0e
 	m_RGB16 $00 $00 $05
 
-	m_RGB16 $07 $10 $13
-	m_RGB16 $03 $0c $0e
-	m_RGB16 $02 $04 $0c
+	m_RGB16 $1b $19 $04
+	m_RGB16 $09 $0b $0b
+	m_RGB16 $05 $06 $08
 	m_RGB16 $00 $00 $05
 
 paletteData44d8:

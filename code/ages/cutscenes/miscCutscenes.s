@@ -1994,26 +1994,28 @@ cutscene_disableLcdLoadRoomResetCamera:
 	jp resetCamera
 
 @data:
-	dwbe ROOM_AGES_098
-	dwbe ROOM_AGES_05a
-	dwbe ROOM_AGES_20e
-	dwbe ROOM_AGES_039
-	dwbe ROOM_AGES_039
-	dwbe ROOM_AGES_20e
-	dwbe ROOM_AGES_05a
-	dwbe ROOM_AGES_038
-	dwbe ROOM_AGES_149
-	dwbe ROOM_AGES_184
-	dwbe ROOM_AGES_165
-	dwbe ROOM_ZELDA_IN_FINAL_DUNGEON
-	dwbe ROOM_AGES_165
-	dwbe ROOM_AGES_149
-	dwbe ROOM_AGES_184
-	dwbe ROOM_AGES_4f6
-	dwbe ROOM_ZELDA_IN_FINAL_DUNGEON
-	dwbe ROOM_AGES_038
-	dwbe ROOM_AGES_149
-	dwbe ROOM_AGES_038
+	dwbe ROOM_AGES_098 ; $00
+	dwbe ROOM_AGES_05a ; $01
+	dwbe ROOM_AGES_20e ; $02
+	dwbe ROOM_AGES_039 ; $03
+	dwbe ROOM_AGES_039 ; $04
+	dwbe ROOM_AGES_20e ; $05
+	dwbe ROOM_AGES_05a ; $06
+	dwbe ROOM_AGES_038 ; $07
+	dwbe ROOM_AGES_149 ; $08
+	dwbe ROOM_AGES_184 ; $09
+	dwbe ROOM_AGES_165 ; $0a
+	dwbe ROOM_ZELDA_IN_FINAL_DUNGEON ; $0b
+	dwbe ROOM_AGES_165 ; $0c
+	dwbe ROOM_AGES_149 ; $0d
+	dwbe ROOM_AGES_184 ; $0e
+	dwbe ROOM_AGES_4f6 ; $0f
+	dwbe ROOM_ZELDA_IN_FINAL_DUNGEON ; $10
+	dwbe ROOM_AGES_038 ; $11
+	dwbe ROOM_AGES_149 ; $12
+	dwbe ROOM_AGES_038 ; $13
+	.dw $0000 ; $14
+	dwbe ROOM_AGES_31c ; $15
 
 
 cutscene_tickDownCBB4ThenSetTo30:

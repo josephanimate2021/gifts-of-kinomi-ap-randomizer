@@ -1,24 +1,31 @@
 objectTable2:
-	.dw objectData7705
-	.dw objectData7717
-	.dw objectData771b
-	.dw objectData7725
-	.dw objectData7733
-	.dw objectData7741
-	.dw objectData774b
-	.dw objectData7733
-	.dw objectData5462
-	.dw objectData5470
-	.dw objectData_blackTowerEscape_ambiAndGuards
-	.dw objectData55a2
-	.dw objectData543c
-	.dw objectData774f
-	.dw objectData7761
-	.dw objectData7765
-	.dw objectData776f
-	.dw objectData5492
-	.dw objectData777c
-	.dw objectData7792
+	.dw objectData7705 ; $00
+	.dw objectData7717 ; $01
+	.dw objectData771b ; $02
+	.dw objectData7725 ; $03
+	.dw objectData7733 ; $04
+	.dw objectData7741 ; $05
+	.dw objectData774b ; $06
+	.dw objectData7733 ; $07
+	.dw objectData5462 ; $08
+	.dw objectData5470 ; $09
+	.dw objectData_blackTowerEscape_ambiAndGuards ; $0a
+	.dw objectData55a2 ; $0b
+	.dw objectData543c ; $0c
+	.dw objectData774f ; $0d
+	.dw objectData7761 ; $0e
+	.dw objectData7765 ; $0f
+	.dw objectData776f ; $10
+	.dw objectData5492 ; $11
+	.dw objectData777c ; $12
+	.dw objectData7792 ; $13
+	.dw objectData7798 ; $14
+	.dw objectDataLinksHouse ;$15
+
+objectDataLinksHouse:
+	obj_Interaction $80 $00 $28 $18
+	obj_Interaction $a8 $17 $48 $48
+	obj_End
 
 objectData7705:
 	obj_Interaction $3a $00 $42 $78

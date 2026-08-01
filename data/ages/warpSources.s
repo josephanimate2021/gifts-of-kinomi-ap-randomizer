@@ -513,6 +513,7 @@ group2WarpSources:
 	m_StandardWarp $4 $2b $4d $1 $3
 	m_StandardWarp $8 $2c $4c $1 $3
 	m_StandardWarp $c $1c $4e $1 $3
+	m_StandardWarp $0 $24 $3c $3 $4
 	m_WarpListEndNoDefault
 
 warpSource4dd9:
@@ -655,6 +656,7 @@ group3WarpSources:
 	m_StandardWarp $4 $0c $84 $0 $3
 	m_PointerWarp     $0c warpSource4f99
 	m_StandardWarp $0 $1d $8d $0 $2
+	m_StandardWarp $04 $1c $5a $2 $4
 	m_WarpListEndNoDefault
 
 warpSource4f91:
