@@ -1499,7 +1499,6 @@ miscPuzzles_subid24:
 	rst_jumpTable
 	.dw @state0
 	.dw @state1
-	.dw @state2
 
 @state0:
 	call getThisRoomFlags
@@ -1509,28 +1508,17 @@ miscPuzzles_subid24:
 	ld (de),a
 
 @state1:
-	inc e		;ld e,Interaction.substate
-
-	;a has substate
-	ld a,(de)
-;	inc a
-	inc a
-	ld h,d
-	ld l,Interaction.var03
-	call checkFlag
-	jp nz,interactionDelete
-
+	ld e,Interaction.var03
+	xor a
+	ld (de),a
+	ld e,Interaction.substate
 	ld a,(de)
 	rst_jumpTable
 	.dw @@substate0
 	.dw @@substate1
 	.dw @@substate2
 	.dw @@substate3
-	.dw interactionIncState
-
-@@substate0
-	ldbc $23,$33
-;	jp @@checkIfGraveMoved
+	.dw @@substate4
 
 @@checkIfGraveMoved:
 	ld a,c
@@ -1538,39 +1526,60 @@ miscPuzzles_subid24:
 	rst_addAToHl
 	ld a,(hl)
 	cp TILEINDEX_OVERWORLD_STANDARD_GROUND
-	ret nz
+	jr nz,@@ret
 
 	ld a,b
 	ld hl,wRoomLayout
 	rst_addAToHl
 	ld a,(hl)
 	cp TILEINDEX_GRAVE_STATIONARY
-	ret nz
+	jr nz,@@ret
 
+	; Check passed, but is it too soon?
+	ld e,Interaction.var03
+	ld a,(de)
+	or a
+	jr z,+
+	pop af
+	jp interactionDelete
++
 	call interactionIncSubstate
-	ld a,(hl)
-	dec a
 	ld l,Interaction.var03
-	jp setFlag
+	ld a,1
+	ld (hl),a
+	ret
+
+@@ret:
+	pop af
+	ret
+
+@@substate0
+	ldbc $23,$33
+	call @@checkIfGraveMoved
 
 @@substate1:
 	ldbc $53,$52
-	jr @@checkIfGraveMoved
+	call @@checkIfGraveMoved
 
 @@substate2:
 	ldbc $34,$35
-	jr @@checkIfGraveMoved
+	call @@checkIfGraveMoved
 
 @@substate3:
 	ldbc $44,$54
-	jr @@checkIfGraveMoved
-
-@state2:
+	call @@checkIfGraveMoved
 	ld hl,wRoomLayout + $31
-	ld a,TILEINDEX_GRAVE_HIDING_DOOR
-	ld (hl),a
+	ld (hl),TILEINDEX_GRAVE_HIDING_DOOR
+	ret
+
+@@substate4:
+	ld hl,wRoomLayout + $31
+	ld a,(hl)
+	cp TILEINDEX_GRAVE_HIDING_DOOR
+	ret z
 	call getThisRoomFlags
-	set ROOMFLAG_BIT_80,(hl)
+	or $80
+	ld (hl),a
 	jp interactionDelete
 
 
