@@ -17,7 +17,14 @@ interactionCode36:
 @@state1:
 	call interactionRunScript
 	jp c,interactionDelete
-	jp npcFaceLinkAndAnimate;interactionAnimateAsNpc
+
+	ld e,Interaction.subid
+	ld a,(de)
+	cpa $09 ; endgame Nayru
+	jp nz,npcFaceLinkAndAnimate
+
+	call interactionAnimateAsNpc
+	jp nayruSubid00@createMusicNotes
 
 @@state0:
 	call interactionIncState
@@ -52,7 +59,6 @@ interactionCode36:
 	ld (de),a
 
 ; TODO: set animation/graphics?
-
 ; Scripts
 	ld hl,@nayruScripts
 	ld a,b ; game progress in b
@@ -61,6 +67,15 @@ interactionCode36:
 	ld h,(hl)
 	ld l,a
 	call interactionSetScript
+
+	ld e,Interaction.subid
+	ld a,(de)
+	cp $09
+	jr nz,+
+	ld a,$04
+	call interactionSetAnimation
+	call interactionLoadExtraGraphics
++
 	jp @@state1
 
 @@nayruSubidAppearances:
@@ -90,7 +105,7 @@ interactionCode36:
 	.dw mainScripts.nayruScript_generic ; $06
 	.dw mainScripts.nayruScript_generic ; $07
 	.dw mainScripts.nayruScript_generic ; $08
-	.dw mainScripts.nayruScript_generic ; $09
+	.dw mainScripts.nayruScript_endgame ; $09
 
 @subid0b:
 	ld e,Interaction.state

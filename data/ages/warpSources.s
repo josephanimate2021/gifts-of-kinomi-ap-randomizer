@@ -656,7 +656,7 @@ group3WarpSources:
 	m_StandardWarp $4 $0c $84 $0 $3
 	m_PointerWarp     $0c warpSource4f99
 	m_StandardWarp $0 $1d $8d $0 $2
-	m_StandardWarp $04 $1c $5a $2 $4
+	m_StandardWarp $04 $1c $5a $2 TRANSITION_SRC_LEAVESCREEN
 	m_WarpListEndNoDefault
 
 warpSource4f91:

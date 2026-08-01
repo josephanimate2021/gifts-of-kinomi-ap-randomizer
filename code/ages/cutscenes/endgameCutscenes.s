@@ -1254,7 +1254,7 @@ endgameCutsceneHandler_0f:
 	ld a,$04
 	ld b,$02
 	call cutscene_loadAObjectGfxBTimes
-	ld a,MUS_CREDITS_1
+	ld a,MUS_INDOORS;MUS_CREDITS_1
 	call playSound
 	ld hl,wTmpcbb3
 	ld (hl),$3c
@@ -1279,12 +1279,17 @@ endgameCutsceneHandler_0f:
 	ld (hl),$02
 	jp incCbc2
 @@substate7:
-/*
-; TEST
+; ZTK - end cutscene early
+	ld a,($cfc0)
+	cp $02
+	ret c
+
+; TODO: Fix Link facing up immediately after completing cutscene
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call setGlobalFlag
 	ld a,CUTSCENE_INGAME
 	ld (wCutsceneIndex),a
 	ret
-*/
 
 	ld a,($cfc0)
 	cp $09

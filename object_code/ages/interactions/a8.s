@@ -113,12 +113,8 @@ interactionCodea8:
 
 ; Added by ZTK - TEST
 @thing7:
-	ld hl,w1Link.id
-	ld (hl),SPECIALOBJECT_LINK
-	;inc l
-	;ld (hl),a
-	jp interactionDelete
-
+	ld a,$0d
+	jp @initLinkInCutscene
 
 ; Seasons-only (address $5edf)
 @unusedInputData:

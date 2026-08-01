@@ -59,8 +59,10 @@ getGameProgress_Seasons:
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call checkGlobalFlag
 	pop hl
-	ret nz
-
+	jr z,+
+	xor a
+	ret
++
 	dec b
 	ld a,(wEssencesObtained)
 	xor %00000011

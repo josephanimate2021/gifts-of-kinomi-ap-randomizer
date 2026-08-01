@@ -24,7 +24,7 @@ objectTable2:
 
 objectDataLinksHouse:
 	obj_Interaction $80 $00 $28 $18
-	obj_Interaction $a8 $17 $48 $48
+	obj_Interaction $a8 $74 $40 $50
 	obj_End
 
 objectData7705:

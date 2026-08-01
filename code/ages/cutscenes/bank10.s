@@ -302,7 +302,7 @@ agesFunc_10_7298:
 	call parseGivenObjectData
 	jr ++
 @func_72ec:
-	ld a,GFXH_CREDITS_THE_END
+	ld a,GFXH_CREDITS_THE_END ; HERE
 	call loadGfxHeader
 	ld a,PALH_a9
 	call loadPaletteHeader

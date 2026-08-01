@@ -3636,6 +3636,7 @@ standardGameState:
 	.dw cutscene1f
 	.dw cutscene20
 	.dw cutscene21
+	.dw cutscene22 ; CUTSCENE_THE_END_SCREEN
 .endif
 
 

@@ -18,6 +18,8 @@ specialObjectCode_linkInCutscene:
 	.dw linkCutsceneA
 	.dw linkCutsceneB
 	.dw linkCutsceneC
+; ZTK
+	.dw linkCutsceneEndgame ; $0d
 
 
 ;;
@@ -1222,3 +1224,36 @@ linkCutscene_updateAngleOnPath:
 	.db $00 $58
 	.db $ff
 
+linkCutsceneEndgame:
+	ld e,SpecialObject.state
+	ld a,(de)
+	rst_jumpTable
+	.dw @state0
+	.dw @state1
+
+@state0:
+	call linkCutscene_initOam_setVisible_incState
+	call objectSetInvisible
+
+	call linkCutsceneA@checkShieldEquipped
+	ld a,$0b
+	jr nz,+
+	ld a,$0f
++
+	jp specialObjectSetAnimation
+
+@state1:
+	ld a,($cfc0)
+	cp $01
+	ret nz
+
+	call itemIncSubstate
+	call objectSetVisible82
+
+	ld hl,w1Link.id
+	ld (hl),SPECIALOBJECT_LINK
+/*
+	inc l
+	ld (hl),a
+*/
+	ret

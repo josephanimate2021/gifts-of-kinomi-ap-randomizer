@@ -1767,6 +1767,18 @@ nayruScript_zeldaKidnapped:
 	incstate
 	scriptend
 
+nayruScript_endgame:
+	initcollisions
+@npcLoop:
+	checkabutton
+	turntofacelink
+	;setanimationfromangle
+	showloadedtext
+	checktext
+	wait 20
+	setanimation $04
+	scriptjump @npcLoop	
+
 
 /*
 ; Subid $00: Cutscene at the beginning of game (talking to Link, then gets possessed)

@@ -41,6 +41,16 @@ interactionCodeda:
 	cp $09
 	ret nc
 
+	ld e,Interaction.subid
+	cpa $00
+	jr z,@subid00
+; subid01
+	ld a,CUTSCENE_THE_END_SCREEN
+	ld (wCutsceneTrigger),a
+	ld (wMenuDisabled),a
+	jp interactionDelete
+
+@subid00:
 	; Link has approached, start the cutscene
 	ld a,CUTSCENE_WARP_TO_TWINROVA_FIGHT
 	ld (wCutsceneTrigger),a
