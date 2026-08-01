@@ -1197,6 +1197,7 @@ interactionaaAnimations:
 	.dw interactionAnimation51d87 ; right
 	.dw interactionAnimation51d97 ; down
 	.dw interactionAnimation51da7 ; left
+	.dw interactionAnimation5a369 ; dancing
 interactionadAnimations:
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6
