@@ -1,14 +1,6 @@
 ;;
 updatePirateShip:
-	ld a,GLOBALFLAG_PIRATES_GONE
-	call checkGlobalFlag
-	ret nz
-
-	call checkLoadPirateShip
-	call updatePirateShipChangedTile
-	call updatePirateShipAngle
-	call updatePirateShipPosition
-	jp updatePirateShipRoom
+	ret ; Stub: No pirate ship
 
 ;;
 checkLoadPirateShip:
