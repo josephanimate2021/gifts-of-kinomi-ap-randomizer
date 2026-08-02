@@ -1495,8 +1495,8 @@ endgameCutsceneHandler_0a:
 	dwbe ROOM_AGES_116
 
 @@table_5f24:
-	.db $2d $0f
-	.db $2d $0f
+	.db UNCMP_GFXH_2d, UNCMP_GFXH_0f
+	.db UNCMP_GFXH_2d, UNCMP_GFXH_0f
 
 @@table_5f28:
 	.db $30 $2d
@@ -1810,12 +1810,15 @@ endgameCutsceneHandler_22:
 	rst_jumpTable
 	.dw @state0
 	.dw @state1
+	.dw @state2
 
 @state0:
 ;ld b,b
 	callab bank3Cutscenes.cutscene_clearTmpCBB3
-	ld a,$01
+	ld a,$01 ; set to 3 since this is what the original was at
 	ld ($cbc1),a
+	lda $00
+	ld ($cbc2),a
 	ld a,$04
 	jp fadeoutToWhiteWithDelay
 
@@ -1823,10 +1826,18 @@ endgameCutsceneHandler_22:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
+	ld hl,$cbc1
+	inc (hl)
+	ld a,GFXH_CREDITS_SCROLL
+	call loadGfxHeader
+	ld a,$ff
+	ld (wTilesetAnimation),a
 
-	ld d,>w1Link.start
-	call objectSetInvisible
-	ld de,$cbc2
-	lda $00
+	ld d,>w1Link.id
+	ld e,<w1Link.id
+	ld a,SPECIALOBJECT_LINK_CUTSCENE
 	ld (de),a
+	call objectSetInvisible
+@state2:
+
 	jpab cutscenesBank10.agesFunc_10_7298

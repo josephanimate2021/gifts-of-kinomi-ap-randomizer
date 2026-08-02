@@ -14612,7 +14612,10 @@ groups:
       Original idea for the hack conceived by \col(1)ZerotoKoops\col(0) and \col(1)Gamma\col(0).\stop
       Finally, thank you all for playing my hack! 
       If you any feedback, please share it on the Wind Fishes' Breeze discord!
-      And if this has made you interested in making your own romhack, please join the discord if you haven't already!
+      And if this has made you interested in making your own romhack,
+      please join the discord if you haven't already!
+
+      Enter the villa to save and reset the game. \heart
 
   - name: TX_2e1c
     index: 0x1c

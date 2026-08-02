@@ -270,12 +270,12 @@ agesFunc_10_7298:
 	.dw @substate0
 	.dw @substate1
 	.dw @substate2
-	.dw @substate3
-	.dw @substate4
-	.dw @substate5
-	.dw @substate6
+	.dw @substate3 ; waiting for Link to press A to go to secret screen
+	;.dw @substate4 ; load secret screen
+	;.dw @substate5
+	;.dw @substate6
 	.dw @substate7
-	.dw @substate8
+	.dw @substate8 ; load to be continued screen
 .ifndef REGION_JP
 	.dw @substate9
 	.dw @substateA
@@ -373,10 +373,13 @@ agesFunc_10_7298:
 	add (hl)
 	cp $02
 	ret z
+
 	ld a,(wKeysJustPressed)
 	and (BTN_A|BTN_B|BTN_START)
 	ret z
 	call incCbc2
+	jp saveFile
+/*
 	jp fadeoutToWhite
 @substate4:
 	ld a,(wPaletteThread_mode)
@@ -439,21 +442,25 @@ agesFunc_10_7298:
 	call fileSelect_redrawDecorations
 	call decCbb3
 	ret nz
+
 	call checkIsLinkedGame
 	jr nz,+
 	call getFreeInteractionSlot
 	jr nz,+
-	ld (hl),$d1
+	ld (hl),INTERAC_GAME_COMPLETE_DIALOG
 	xor a
 	ld ($cfde),a
 +
 	jp incCbc2
+*/
 @substate7:
+/*
 	call fileSelect_redrawDecorations
+
 	call checkIsLinkedGame
 	jr z,@func_7407
 	ld a,(wKeysJustPressed)
-	and $01
+	and (BTN_A|BTN_B|BTN_START);$01
 	jr nz,++
 	ret
 @func_7407:
@@ -461,12 +468,13 @@ agesFunc_10_7298:
 	or a
 	ret z
 ++
+*/
 	call incCbc2
 	ld a,SNDCTRL_FAST_FADEOUT
 	call playSound
 	jp fadeoutToWhite
 @substate8:
-	call fileSelect_redrawDecorations
+	;call fileSelect_redrawDecorations
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
@@ -474,6 +482,8 @@ agesFunc_10_7298:
 .ifdef REGION_JP
 	jp resetGame
 .else
+	jp resetGame ; added by ZTK
+
 	call checkIsLinkedGame
 	jp nz,resetGame
 	call disableLcd
