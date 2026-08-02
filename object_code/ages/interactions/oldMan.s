@@ -4,14 +4,14 @@
 interactionCode52:
 	ld e,Interaction.subid
 	ld a,(de)
-	cpa $02
+	cpa $03
 	jr nc,@genericNpc
 	rst_jumpTable
 	.dw @subid00
 	.dw @subid01
 	.dw @subid02
 
-; Old man in village library who does not trade 
+; Old man in village library who does not trade
 @subid01:
 ; Old man who gives you the seed satchel
 @subid02
@@ -197,7 +197,7 @@ checkNpcAppear_seasons:
 	ld e,Interaction.subid
 	ld a,(de)
 	cp (hl)
-	ret 
+	ret
 
 ; [in] hl like @oldManTextIndices
 loadNpcText:
