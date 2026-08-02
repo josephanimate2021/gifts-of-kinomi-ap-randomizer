@@ -1199,6 +1199,32 @@ miscPuzzles_subid1e:
 	jp nz,interactionDelete
 	ld a,SND_SOLVEPUZZLE
 	call playSound
+
+	; Spawn objects after room is loaded here, due to too many enemy objects in the previous
+	; causing deloading issues. Can't place them normally.
+
+	; Sword drop
+	call getFreeEnemySlot_uncounted
+	ld (hl),ENEMY_ITEM_DROP_PRODUCER
+	inc l
+	ld (hl),$0a
+	ld l,Enemy.yh
+	ld (hl),$68
+	inc l
+	inc l
+	ld (hl),$58
+
+	; Shield drop
+	call getFreeEnemySlot_uncounted
+	ld (hl),ENEMY_ITEM_DROP_PRODUCER
+	inc l
+	ld (hl),$0b
+	ld l,Enemy.yh
+	ld (hl),$68
+	inc l
+	inc l
+	ld (hl),$98
+
 	jp interactionDelete
 
 

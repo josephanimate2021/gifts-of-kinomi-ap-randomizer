@@ -1328,9 +1328,6 @@ group1Map4dObjectData:
 	obj_End
 
 group1MapbaObjectData:
-	obj_Interaction $80 $05 $52 $46
-	obj_Interaction $80 $06 $52 $6a
-	obj_Interaction $c4 $04 $5a $68
 	obj_SpecificEnemyA $00 $62 $02 $00 $00
 	obj_End
 
