@@ -14598,9 +14598,21 @@ groups:
 
   - name: TX_2e1b
     index: 0x1b
-    text: |-
-      \right Eyeglass Isle
-         Library
+    text: >-
+      \col(3)[Tile of Game]\col(0)
+
+      A hack by \col(1)ZerotoKoops\col(0).\stop
+      Special thanks for \col(1)Stewmat\col(0)
+      for helping me finish this hack!
+      It has been in development for many years,
+      and I'm so happy it's finally released for
+      our growing community to enjoy.\stop
+      Additionaly thanks to \col(1)Kaip\col(0) for
+      assistance on graphics when \col(1)Gamma\col(0) and I were new to hacking.\stop
+      Original idea for the hack conceived by \col(1)ZerotoKoops\col(0) and \col(1)Gamma\col(0).\stop
+      Finally, thank you all for playing my hack! 
+      If you any feedback, please share it on the Wind Fishes' Breeze discord!
+      And if this has made you interested in making your own romhack, please join the discord if you haven't already!
 
   - name: TX_2e1c
     index: 0x1c

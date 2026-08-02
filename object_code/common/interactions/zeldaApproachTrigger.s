@@ -13,6 +13,7 @@ interactionCodeda:
 	ld (de),a
 
 	ld e,Interaction.subid
+	ld a,(de)
 	cpa $00
 	ret nz
 
@@ -48,6 +49,7 @@ interactionCodeda:
 	ret nc
 
 	ld e,Interaction.subid
+	ld a,(de)
 	cpa $00
 	jr z,@@subid00
 ; subid01
