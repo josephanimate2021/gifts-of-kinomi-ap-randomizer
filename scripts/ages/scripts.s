@@ -7858,12 +7858,7 @@ miscPuzzles_crownDungeonOpeningScript:
 	checkcfc0bit 0
 	setmusic SNDCTRL_STOPMUSIC
 	wait 60
-	asm15 scriptHelp.miscPuzzles_drawCrownDungeonOpeningFrame1
-	wait 30
-	asm15 scriptHelp.miscPuzzles_drawCrownDungeonOpeningFrame2
-	wait 30
-	asm15 scriptHelp.miscPuzzles_drawCrownDungeonOpeningFrame3
-	wait 30
+	playsound SND_DOORCLOSE
 	settilehere TILEINDEX_DUNGEON_DOOR_1
 
 miscPuzzles_justOpenedKeyDoor:
