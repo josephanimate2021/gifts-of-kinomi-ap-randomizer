@@ -5211,6 +5211,7 @@ group0Map52ObjectData:
 	obj_Condition $02
 	obj_Interaction $e9 $02 $30 $70
 	obj_Pointer group0Map52EnemyObjectData
+	obj_Interaction INTERAC_TOKAY $19 $48 $28
 	obj_End
 
 group4Map67ObjectData:

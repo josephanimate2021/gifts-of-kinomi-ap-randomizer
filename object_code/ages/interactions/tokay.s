@@ -385,6 +385,7 @@ interactionCode48:
 @initSubid16:
 @initSubid17:
 @initSubid18:
+@initSubid19:
 	ld e,Interaction.subid
 	ld a,(de)
 	sub $12
@@ -403,12 +404,7 @@ interactionCode48:
 	.db <TX_0a61 ; Subid $16
 	.db <TX_0a62 ; Subid $17
 	.db <TX_0a63 ; Subid $18
-
-
-; Present NPC in charge of the wild tokay museum
-@initSubid19:
-	call @initSubid0d
-	jp tokayLoadScript
+	.db <TX_0a67 ; Subid $19
 
 
 ; Subid $1a-$ac: Tokay "statues" in the wild tokay museum
@@ -869,7 +865,6 @@ wildTokayParticipantSubstate1:
 
 ; Past and present NPCs in charge of wild tokay game
 tokayRunSubid0d:
-tokayRunSubid19:
 	ld e,Interaction.substate
 	ld a,(de)
 	rst_jumpTable
@@ -966,6 +961,7 @@ tokayRunSubid15:
 tokayRunSubid16:
 tokayRunSubid17:
 tokayRunSubid18:
+tokayRunSubid19:
 tokayRunSubid1f:
 	call interactionRunScript
 	jp npcFaceLinkAndAnimate
@@ -1137,7 +1133,7 @@ tokayScriptTable:
 	/* $16 */ .dw mainScripts.genericNpcScript
 	/* $17 */ .dw mainScripts.genericNpcScript
 	/* $18 */ .dw mainScripts.genericNpcScript
-	/* $19 */ .dw mainScripts.tokayGameManagerScript_present
+	/* $19 */ .dw mainScripts.genericNpcScript
 	/* $1a */ .dw $0000
 	/* $1b */ .dw $0000
 	/* $1c */ .dw $0000

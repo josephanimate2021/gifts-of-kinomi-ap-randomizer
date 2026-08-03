@@ -5521,8 +5521,8 @@ groups:
     - 0x3f
     - 0x40
     text: |-
-      \sfx(0xb6)Today, I saw there was a \col(1)pattern\col(0) on the floor in our \col(1)Temple\col(0)!\stop
-      \sfx(0xb6)It reminded me of the \col(3)graveyard\col(0) just northwest of our desert.\stop
+      \sfx(0xb6)Today, I saw there was a \col(1)strange pattern\col(0) on the floor in our \col(1)Temple\col(0)!\stop
+      \sfx(0xb6)It reminded me of the \col(3)gravestones\col(0) just northwest of our desert.\stop
       \sfx(0xb6)What could it mean?
 
   - name: TX_0a41
@@ -5769,20 +5769,9 @@ groups:
   - name: TX_0a67
     index: 0x67
     text: |-
-      \sfx(0xb6)This is the Wild
-      Tokay Museum.
-      We Tokay used
-      to play here
-      long ago, but
-      not anymore. The
-      Tokay on your
-      left and right
-      are real...
-      I mean real-
-      looking Tokay.
-      They won't
-      respond if you
-      talk to them.
+      \sfx(0xb6)Our \col(1)Temple\col(0) has \col(3)five rooms\col(0) with a \col(1)strange pattern\col(0) on the floor.\stop
+      \sfx(0xb6)The \col(1)Temple\col(0) is trying to tell us something!\stop
+      \sfx(0xb6)What? Um... I'm not sure!
 
   - name: TX_0a68
     index: 0x68
