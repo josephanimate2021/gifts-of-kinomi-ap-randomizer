@@ -3467,9 +3467,9 @@ groups:
 
       There are two bodies of water on the plains.
       The one south of town is the \col(1)Lake of Memories\col(0).
-      
+
       In the fall, I'd sit and watch the waters at the bank.
-      
+
       It's not so pretty in the \col(1)summer\col(0) as that is when it \col(1)dries up\col(0).
 
   - name: TX_0605
@@ -3481,11 +3481,11 @@ groups:
 
       There was a man who lived just \col(1)outside of town\col(0)
       that kept watch for monsters, but he passed before I started coming.
-      
+
       \col(3)Nayru\col(0) told me he was a kind soul in life.
-      
+
       She suggested to me that he didn't go quite as peacefully as his friends thought.
-      
+
       I hope he made it to the after- life safely!
 
   - name: TX_0606
@@ -3525,7 +3525,7 @@ groups:
     text: >-
       Oh, \Link! Are those \col(1)flippers\col(0)?
       Perfect for the season, I'd say!\stop
-      
+
       I know some of the lakes dry up in the summer,
       but we can cer- tainly still find places to swim!
 
@@ -3541,7 +3541,7 @@ groups:
 
       A mystic \col(1)shrine\col(0) deep in the east woods?
       Wow! \col(1)Din\col(0) was telling me a bit about this earlier.
-      
+
       I'd been coming to Kinomi since my childhood,
       but I would have never known about that!
       I'm so glad the Oracles finally have come back to
@@ -3589,7 +3589,7 @@ groups:
     text: >-
       I'm visiting the \col(1)library\col(0) with \col(3)Nayru\col(0).
       I think she much prefers books over the games \col(1)Din\col(0) is playing outside.\stop
-      
+
       She was telling me about a \col(1)Labyrinth\col(0) in the south Jiku region.
       Can you believe that it's lasted for \col(1)hundreds of years\col(0) now?
       She says there are many entrances to it,
@@ -3606,7 +3606,7 @@ groups:
 
       The libary here has many books,
       but some people \col(1)do not return\col(0) their books.
-      
+
       It's really unfortunate, though I suppose it makes sense
       if they were \col(1)far far away\col(0) from anyone.
 
@@ -3665,13 +3665,13 @@ groups:
       They created great and vast buildings in their honor, and
       the oracles lived in the \col(1)villa\col(0) presiding over the lands.
 
-      I just love that we get to stay at a place with great history!  
+      I just love that we get to stay at a place with great history!
 
   - name: TX_0616
     index: 0x16
     text: >-
       \Link, what is that? That \col(1)cane\col(0) looks like the Rod of Seasons!
-      But who made the cane? Where did you find it? 
+      But who made the cane? Where did you find it?
 
       \col(3)Nayru\col(0) knows a lot about the \col(1)Jiku\col(0) region,
       and \col(1)Din\col(0) does for \col(1)Daichi\col(0).
@@ -3689,10 +3689,10 @@ groups:
 
       \col(1)Din\col(0) says she is going to dance the whole night!
 
-      I hope the other guests can match her energy! 
+      I hope the other guests can match her energy!
 
       \col(1)Din\col(0) may be the \col(1)Oracle of Seasons\col(0) but she really knows how to party!
-      Do you think it's in her blood? 
+      Do you think it's in her blood?
 
   - name: TX_0618
     index: 0x18
@@ -3716,7 +3716,7 @@ groups:
 
       I don't care if there are any monsters, we should go!
       Just take off those \col(1)gloves\col(0), please!
-      
+
       I don't want you sinking into the water.
       You have to protect me!\stop
 
@@ -3741,7 +3741,7 @@ groups:
       \call(TX_0623)\stop
 
       \jump(TX_0615)
-    null_terminator: False   
+    null_terminator: False
 
   - name: TX_061c
     index: 0x1c
@@ -3749,7 +3749,7 @@ groups:
       \call(TX_0623)\stop
 
       \jump(TX_0619)
-    null_terminator: False   
+    null_terminator: False
 
   - name: TX_061d
     index: 0x1d
@@ -3759,20 +3759,20 @@ groups:
       What's that?
 
       \jump(TX_060a)
-    null_terminator: False   
+    null_terminator: False
 
   - name: TX_061e
     index: 0x1e
     text: >-
-      You found gifts for both of the oracles? 
-      
+      You found gifts for both of the oracles?
+
       Oh this is fantastic and wonderful!
       I'm sure they will love them at the party!
 
   - name: TX_061f
     index: 0x1f
     text: >-
-      Thank you again for saving me, \Link.\stop      
+      Thank you again for saving me, \Link.\stop
 
       The party is just perfect,
       and I'm glad the oracles loved their gifts,
@@ -3797,14 +3797,14 @@ groups:
   - name: TX_0622
     index: 0x022
     text: >-
-      I've been thinking about that \col(1)labyrinth\col(0) 
+      I've been thinking about that \col(1)labyrinth\col(0)
       \col(3)Nayru\col(0) told me about.
 
       What sort of artifacts may be hidden in there?
-      I read about a magical \col(1)block\col(0) that can be carried 
-      along distaces and when tossed in a hole, 
+      I read about a magical \col(1)block\col(0) that can be carried
+      along distaces and when tossed in a hole,
       it can fill it as if there was always land there!
-      
+
       I hope I get to witness such a thing once!
 
   - name: TX_0623
@@ -7272,7 +7272,7 @@ groups:
       there is a spring that feeds the whole forest.
 
       I just can't imagine if the waters
-      stopped flowing! 
+      stopped flowing!
 
       Oh it would be horrible!
 
@@ -7347,7 +7347,7 @@ groups:
     index: 0x0e
     text: >-
       \pos(2)Mister, you're back!\stop
-      
+
       Oh, I'm so happy! We should celebrate!
 
       What did you find in the mine?
@@ -8642,7 +8642,7 @@ groups:
     text: >-
       Did you talk with my mom yet?
 
-      She's so controlling!     
+      She's so controlling!
 
   - name:
     - TX_1447
@@ -8925,11 +8925,11 @@ groups:
     index: 0x24
     text: >-
       I'm so listless.
-      
+
       I don't feel
-      
+
       like doing
-      
+
       anything.
 
       When is the party going to start?
@@ -9510,7 +9510,7 @@ groups:
   - name: TX_1c05
     index: 0x05
     text: |-
-      When the \col(1)oracles\col(0) lived here, our power flowed into the sur- rounding areas. 
+      When the \col(1)oracles\col(0) lived here, our power flowed into the sur- rounding areas.
       From ancient times, there was a mystic \col(1)shrine\col(0) built deep in the \col(1)southeast woods\col(0) to honor my kin and the seasons.
       This is not like the \col(1)Temple of Seasons\col(0) you saw in Holodrum, but rather a tower with many but also only one floor!
       Each floor is dedicated to one of the four seasons, and falling from one floor to the next will land you in the next season, even if it seems you should have reached the basement!
@@ -9527,7 +9527,7 @@ groups:
       \Link, this mystic \col(1)shrine\col(0) dedicated to the seasons...
       What did you think? Was it wonderful\stop
       Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as well!
-      Then people from all lands could witness my famous dancing! 
+      Then people from all lands could witness my famous dancing!
       Oh, I hope the party starts soon so we can dance together!\stop
       \col(4)Nayru\col(0) and I are thinking of going out to see some of Kinomi before the party. Don't be late!
 
@@ -9557,7 +9557,7 @@ groups:
   - name: TX_1c0b
     index: 0x0b
     text: |-
-      \pos(1)\Link, what will we do? 
+      \pos(1)\Link, what will we do?
 
   - name: TX_1c0c
     index: 0x0c
@@ -9579,7 +9579,7 @@ groups:
       But I think it became haunted and was locked for safety! The key must have been hidden away in the Labyrinth somwhere... but where?
 
   - name:
-    - TX_1c0f    
+    - TX_1c0f
     index:
     - 0x0f
     text: |-
@@ -9709,7 +9709,7 @@ groups:
   - name: TX_1d07
     index: 0x07
     text: |-
-      You're finally back! But that look on your face tells me you're not done out there... 
+      You're finally back! But that look on your face tells me you're not done out there...
       What is it now? \Link, just tell me! Is it some- thing for \col(1)Din\col(0)?
       I could help!\stop
       Then again, you've had us wait this long. Why don't you go out and get what you need? See you in a few, and good luck! \heart
@@ -14668,7 +14668,7 @@ groups:
   - name: TX_2e04
     index: 0x04
     text: |-
-      \left Town of 
+      \left Town of
           Kinomi
 
   - name: TX_2e05
@@ -14679,7 +14679,7 @@ groups:
   - name: TX_2e06
     index: 0x06
     text: |-
-      \right Return to 
+      \right Return to
             Kinomi
 
   - name: TX_2e07
@@ -14694,7 +14694,7 @@ groups:
       Danger ahead!!
       \up Ruptured Mine
 
-      \down Springwater 
+      \down Springwater
             Crag
 
   - name: TX_2e09
@@ -14725,7 +14725,7 @@ groups:
     text: |-
       \up Danger ahead!
 
-      \right Town of 
+      \right Town of
           Kinomi
 
       \down Jiku Cliffs
@@ -14738,7 +14738,7 @@ groups:
   - name: TX_2e0e
     index: 0x0e
     text: |-
-      \right Spirit's 
+      \right Spirit's
           Grotto
 
   - name: TX_2e0f
@@ -14747,7 +14747,7 @@ groups:
       \down Revinna's
           Quarry
 
-      Beware of 
+      Beware of
           monsters!
 
   - name: TX_2e10
@@ -14755,14 +14755,14 @@ groups:
     text: |-
       \down Tokay Desert
 
-      Beware of 
+      Beware of
           quicksand!
 
   - name: TX_2e11
     index: 0x11
     text: |-
       Slingshots:
-      Sold at 
+      Sold at
         Kinomi Store!
 
   - name: TX_2e12
@@ -14779,7 +14779,7 @@ groups:
 
       If you don't have a key, don't come in!
 
-      Seeking: 
+      Seeking:
           Mushrooms.
 
       \right Jiku Cliffs
@@ -14817,13 +14817,13 @@ groups:
     text: |-
       \right Come right in!
 
-      \left Bomb Fairy 
+      \left Bomb Fairy
           Spring
 
   - name: TX_2e19
     index: 0x19
     text: |-
-      \right Return to 
+      \right Return to
          Daichi Plain
 
   - name: TX_2e1a
@@ -14846,7 +14846,7 @@ groups:
       Additionaly thanks to \col(1)Kaip\col(0) for
       assistance on graphics when \col(1)Gamma\col(0) and I were new to hacking.\stop
       Original idea for the hack conceived by \col(1)ZerotoKoops\col(0) and \col(1)Gamma\col(0).\stop
-      Finally, thank you all for playing my hack! 
+      Finally, thank you all for playing my hack!
       If you any feedback, please share it on the Wind Fishes' Breeze discord!
       And if this has made you interested in making your own romhack,
       please join the discord if you haven't already!
@@ -17800,7 +17800,7 @@ groups:
     text: >-
       Huh? How did you get here? Are you also a
       researcher of this mysterious \col(1)Deeper Woods\col(0)?
-      
+
       I am \col(1)Cisypherestus\col(0) and I live
       here with my friend \col(3)Horatio\col(0).
       There is a \col(3)Shrine\col(0) somewhere between
@@ -17829,7 +17829,7 @@ groups:
     index: 0x04
     text: |-
       You fought the \col(3)blue\col(0) beast? Where was he? What did he give you? Flippers? What strange technology...\stop
-      In another of my books, it tells of how \col(1)caves\col(0) can \col(2)freeze\col(0) in the harsh cold of winter. 
+      In another of my books, it tells of how \col(1)caves\col(0) can \col(2)freeze\col(0) in the harsh cold of winter.
 
   - name: TX_3305
     index: 0x05
@@ -17841,7 +17841,7 @@ groups:
     text: |-
       What was the treasure of the \col(1)shrine\col(0)?\stop
       A cape of winds!! How fantastic!\stop
-      I must tell \col(1)Cisypherestus\col(0). 
+      I must tell \col(1)Cisypherestus\col(0).
 
   - name: TX_3307
     index: 0x07
