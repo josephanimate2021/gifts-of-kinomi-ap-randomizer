@@ -2763,8 +2763,6 @@ group4Map3bObjectData:
 group4Map3cObjectData:
 	obj_Pointer group4Map3cEnemyObjectData
 	obj_Interaction $ea $00 $28 $78
-	obj_Interaction $ea $00 $18 $88
-	obj_Interaction $ea $00 $18 $68
 	obj_Interaction $21 $1b $78 $78 $ff
 	obj_End
 
@@ -3039,8 +3037,6 @@ group4Map6aObjectData:
 	obj_Interaction $21 $1b $00 $00 $04
 	obj_Interaction $21 $17 $55 $10
 	obj_Interaction $ea $00 $28 $58
-	obj_Interaction $ea $00 $18 $48
-	obj_Interaction $ea $00 $18 $68
 	obj_End
 
 group4Map6bObjectData:
