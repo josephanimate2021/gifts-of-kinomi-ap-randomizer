@@ -8515,18 +8515,8 @@ groups:
 
   - name:
     - TX_1444
-    - TX_1447
-    - TX_1448
-    - TX_1449
-    - TX_144a
-    - TX_144b
     index:
     - 0x44
-    - 0x47
-    - 0x48
-    - 0x49
-    - 0x4a
-    - 0x4b
     text: >-
       I like when Zelda and the oracles visit.
       There's always something to do!
@@ -8559,7 +8549,54 @@ groups:
 
       She's so controlling!     
 
+  - name:
+    - TX_1447
+    index:
+    - 0x47
+    text: >-
+      My mom says it's okay to
+      go out now.
 
+      I'm not sure if you
+      said anything to her,
+      but thank you if you did!
+
+  - name:
+    - TX_1448
+    index:
+    - 0x48
+    text: >-
+      I wish my brother did
+      more than play catch
+      with his son all day!
+
+  - name:
+    - TX_1449
+    index:
+    - 0x49
+    text: >-
+      The oracles don't come
+      often, but it's nice
+      when they do!
+
+      I think I'd really like
+      to meet \col(1)Din\col(0)
+      if I can!
+
+      Is she as pretty as they say,
+      \Link?
+
+  - name:
+    - TX_144a
+    index:
+    - 0x4a
+    text: >-
+
+  - name:
+    - TX_144b
+    index:
+    - 0x4b
+    text: >-
 
 - group: 0x15
   data:

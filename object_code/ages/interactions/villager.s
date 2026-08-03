@@ -69,14 +69,14 @@ interactionCode3a:
 	.db $06 $07
 
 @scripts:
-	.dw mainScripts.man_subid0Script ; ROOM_AGES_004
-	.dw mainScripts.man_subid1Script ; ROOM_AGES_023
-	.dw mainScripts.man_subid2Script ; ROOM_AGES_004
-	.dw mainScripts.man_subid3Script ; ROOM_AGES_214 | ROOM_AGES_208
-	.dw mainScripts.teen_subid0Script ; ROOM_AGES_014
-	.dw mainScripts.teen_subid1Script ; ROOM_AGES_004
-	.dw mainScripts.teen_subid2Script ; ROOM_AGES_024
-	.dw mainScripts.teen_subid3Script ; ROOM_AGES_014 | ROOM_AGES_214
+	.dw mainScripts.teen_subid0Script ; ROOM_AGES_
+	.dw mainScripts.teen_subid1Script ; ROOM_AGES_
+	.dw mainScripts.teen_subid2Script ; ROOM_AGES_
+	.dw mainScripts.teen_subid3Script ; ROOM_AGES_
+	.dw mainScripts.man_subid0Script ; ROOM_AGES_
+	.dw mainScripts.man_subid1Script ; ROOM_AGES_
+	.dw mainScripts.man_subid2Script ; ROOM_AGES_
+	.dw mainScripts.man_subid3Script ; ROOM_AGES_
 
 
 

@@ -5120,7 +5120,7 @@ group3Map1aObjectData:
 	obj_End
 
 group2Map28ObjectData:
-	obj_Interaction INTERAC_OLD_LADY $02 $28 $68
+	obj_Interaction INTERAC_OLD_LADY $01 $28 $68
 	obj_End
 
 group3Map69ObjectData:
@@ -5148,6 +5148,7 @@ group0Map08ObjectData:
 group2Map08ObjectData:
 	obj_Interaction $3a $00 $28 $68
 	obj_Interaction INTERAC_FEMALE_VILLAGER $03 $38 $38
+	obj_Interaction INTERAC_MALE_VILLAGER $01 $48 $78
 	obj_End
 
 group0Map28ObjectData:
