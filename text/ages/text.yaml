@@ -14791,6 +14791,11 @@ groups:
       Vincent is bashful and does not like to be stared at.\stop
       Leave him alone for your safety!
 
+  - name: TX_2e22
+    index: 0x22
+    text: |-
+      Your red companion will pave your path forward.
+
 - group: 0x2f
   data:
   - name: TX_2f00
