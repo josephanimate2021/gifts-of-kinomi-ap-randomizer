@@ -98,8 +98,6 @@ roomTileChangerCodeGroup0Data:
   .db $01 $08
   .db $11 $17
   .db $33 $44
-  .db $51 $45
-  .db $62 $45
   ;.db $5c $14
   ;.db $73 $16
   .db $ac $18
