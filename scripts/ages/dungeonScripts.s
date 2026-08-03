@@ -219,11 +219,22 @@ spiritsGraveScript_stairsToBraceletRoom:
 ; lightable torches already spawned
 	checkmemoryeq wNumTorchesLit, $04
 	playsound SND_SOLVEPUZZLE
+	disableinput
+	wait 60
+	asm15 setCameraFocusedObject
+	wait 45
 	asm15 objectCreatePuff
 	settilehere TILEINDEX_INDOOR_UPSTAIRCASE
-	settileat $82, TILEINDEX_INDOOR_UPSTAIRCASE
+	wait 30
+	setcoords $88, $28
+	wait 90
+	asm15 objectCreatePuff
+	settilehere TILEINDEX_INDOOR_UPSTAIRCASE
+	wait 60
+	asm15 setCameraFocusedObjectToLink
 	orroomflag ROOMFLAG_40
 	asm15 scriptHelp.tokayTempleSetRoomflag40
+	enableinput
 	scriptend
 
 tokayTempleScript_gloveRoom:
