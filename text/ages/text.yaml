@@ -6990,6 +6990,7 @@ groups:
 
       But if you did find it, I guess you could
       access the mine.\stop
+
       But who knows what \col(3)evil spirits\col(0) lurk in there!
 
   - name: TX_0f03
@@ -6998,6 +6999,7 @@ groups:
       Did you find the \col(1)mine\col(0)?
 
       How did you survive?\stop
+
       What was in there?
       What sort of \col(1)treasure\col(0) did the \col(3)evil spirits\col(0) keep?
 
@@ -7197,6 +7199,7 @@ groups:
     text: >-
       \pos(2)I'm Triffie!
       Where did you come from?\stop
+
       Was it from that icky \col(1)labyrinth\col(0)?
 
       I keep getting lost when I go in!
@@ -7223,9 +7226,11 @@ groups:
     text: >-
       \pos(2)What's that, mister?
       Oh! Is that the \col(1)Cane\col(0)?\stop
+
       Let me have it!
 
       Let me have it!\stop
+
       I bet that would help get your through
       the \col(1)labyrinth\col(0)!
 
@@ -7245,6 +7250,7 @@ groups:
       forest will last forever?
 
       I hope so! It is my home!\stop
+
       I love playing pranks on
       my sisters and talking with
       the kind \col(1)witch\col(0)!
