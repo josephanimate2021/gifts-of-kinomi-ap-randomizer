@@ -2,19 +2,20 @@
 ; INTERAC_NAYRU
 ; ==================================================================================================
 interactionCode36:
-	ld e,Interaction.subid
-	ld a,(de)
-	sub $0a
-	jr c,@generic
-	rst_jumpTable
-	.dw nayruSubid0a
-	.dw @subid0b
-
 @generic:
 	call checkInteractionState
 	jr z,@@state0
 
 @@state1:
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $0a
+	jr c,+
+	rst_jumpTable
+	.dw nayruSubid0a
+	.dw @subid0b
+
++
 	call interactionRunScript
 	jp c,interactionDelete
 
@@ -27,8 +28,14 @@ interactionCode36:
 	jp nayruSubid00@createMusicNotes
 
 @@state0:
-	call interactionIncState
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $0a
+	jp z,nayruState0	
+	dec a
+	jp z,@subid0b@state0
 
+	call interactionIncState
 	call interactionInitGraphics
 	ld a,$06
 	call objectSetCollideRadius
@@ -181,7 +188,7 @@ interactionCode36:
 ;;
 */
 nayruState0:
-/*
+
 	ld a,$01
 	ld (de),a
 	call interactionInitGraphics
@@ -194,10 +201,14 @@ nayruState0:
 	jp nz,objectMarkSolidPosition
 	ret
 
+
 @initSubid:
 	ld e,Interaction.subid
 	ld a,(de)
+	sub $0a
 	rst_jumpTable
+	.dw @init07 ; changed to subid $0a
+/*
 	.dw @init00
 	.dw @init01
 	.dw @init02
@@ -295,14 +306,14 @@ nayruState0:
 @init06:
 	ld a,$07
 	jp interactionSetAnimation
-
+*/
 @init07:
 	ld e,Interaction.counter1
 	ld a,$1e
 	ld (de),a
 	call interactionLoadExtraGraphics
 	jp interactionSetAlwaysUpdateBit
-
+/*
 @init08:
 	ld hl,mainScripts.nayruScript08
 	call interactionSetScript
