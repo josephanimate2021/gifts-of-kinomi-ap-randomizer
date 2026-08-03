@@ -946,7 +946,7 @@ group0Map50ObjectData:
 	obj_Pointer group0Map50EnemyObjectData
 	obj_Interaction $e9 $01 $50 $50
 	obj_Interaction $e1 $00 $48 $58
-	obj_Interaction $e1 $00 $68 $88
+	obj_Interaction $e1 $00 $48 $88
 	obj_End
 
 group0Map51ObjectData:
