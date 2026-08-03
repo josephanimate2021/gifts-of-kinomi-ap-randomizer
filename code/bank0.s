@@ -10983,7 +10983,6 @@ initializeRoom:
 	call   refreshObjectGfx
 	callab roomSpecificCode.runRoomSpecificCode
 	callab roomInitialization.createSeaEffectsPartIfApplicable
-	callab bank1.checkLoadPirateShip
 
 	ldh a,(<hRomBank)
 	push af
