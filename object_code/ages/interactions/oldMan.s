@@ -56,7 +56,7 @@ interactionCode52:
 	ld (de),a
 
 	callab getGameProgress_Ages
-	ld a,$04
+	ld a,$03
 	cp b			;has trade item
 	jr z,+
 	ld h,d
