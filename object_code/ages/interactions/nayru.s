@@ -31,7 +31,7 @@ interactionCode36:
 	ld e,Interaction.subid
 	ld a,(de)
 	sub $0a
-	jp z,nayruState0	
+	jp z,nayruState0
 	dec a
 	jp z,@subid0b@state0
 
@@ -189,6 +189,7 @@ interactionCode36:
 */
 nayruState0:
 
+	ld e,Interaction.state
 	ld a,$01
 	ld (de),a
 	call interactionInitGraphics
