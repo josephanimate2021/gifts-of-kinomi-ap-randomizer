@@ -5521,8 +5521,8 @@ groups:
     - 0x3f
     - 0x40
     text: |-
-      \sfx(0xb6)I visited the graveyard just northwest of our desert. So many weeds!\stop
-      \sfx(0xb6)Today, I saw there was a \col(1)pattern\col(0) on the floor in our \col(1)Temple\col(0).\stop
+      \sfx(0xb6)Today, I saw there was a \col(1)pattern\col(0) on the floor in our \col(1)Temple\col(0)!\stop
+      \sfx(0xb6)It reminded me of the \col(3)graveyard\col(0) just northwest of our desert.\stop
       \sfx(0xb6)What could it mean?
 
   - name: TX_0a41
