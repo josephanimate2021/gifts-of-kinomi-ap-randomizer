@@ -1850,7 +1850,7 @@ group5Map5cEnemyObjectData:
 
 group5Map5dEnemyObjectData:
 	obj_SpecificEnemyA 0 $14 $00 $60 $30
-	obj_SpecificEnemyA     $14 $00 $70 $c8
+	obj_SpecificEnemyA     $14 $00 $48 $b8
 	obj_EndPointer
 
 group5Map64EnemyObjectData:

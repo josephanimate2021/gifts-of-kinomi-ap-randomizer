@@ -42,7 +42,7 @@ interactionCode44:
 
 @miscMan2TextIndices:
 	.dw @@var03_00
-; First old man in woods house
+; First old man in plains house
 @@var03_00:
 	.db <TX_1610 ; 0x00 before quest
 	.db <TX_1610 ; 0x01 got sword
@@ -53,7 +53,7 @@ interactionCode44:
 	.db <TX_1611 ; 0x06 got feather
 	.db <TX_1612 ; 0x07 got gift
 	.db <TX_1613 ; 0x08 got both gifts
-	.db <TX_1612 ; 0x09 game finished
+	.db <TX_1614 ; 0x09 game finished
 
 /*
 	ld e,Interaction.subid

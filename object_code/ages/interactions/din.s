@@ -16,8 +16,11 @@ interactionCodeaa:
 
 @@state1:
 	call interactionRunScript
-	jp c,interactionDelete
-	jp npcFaceLinkAndAnimate;interactionAnimateAsNpc
+	ld e,Interaction.subid
+	ld a,(de)
+	cpa $09 ; endgame Din
+	jp nz,npcFaceLinkAndAnimate
+	jp interactionAnimateAsNpc
 
 @@state0:
 	call interactionIncState
@@ -66,6 +69,15 @@ interactionCodeaa:
 	ld h,(hl)
 	ld l,a
 	call interactionSetScript
+
+	ld e,Interaction.subid
+	ld a,(de)
+	cp $09
+	jr nz,+
+	ld a,$04
+	call interactionSetAnimation
+	call interactionLoadExtraGraphics
++
 	jp @@state1
 
 @@dinSubidAppearances:
@@ -95,7 +107,7 @@ interactionCodeaa:
 	.dw mainScripts.dinScript_generic ; $06
 	.dw mainScripts.dinScript_generic ; $07
 	.dw mainScripts.dinScript_generic ; $08
-	.dw mainScripts.dinScript_generic ; $09
+	.dw mainScripts.nayruScript_endgame ; $09
 
 @subid0a:
 	ld e,Interaction.state

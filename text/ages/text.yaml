@@ -2818,7 +2818,7 @@ groups:
     - 0x63
     text: |-
       \Link,
-      you did it! I
+      you did it! We
       knew you could!
       Leave this to
       us!
@@ -8513,6 +8513,54 @@ groups:
       long.
       Nice one!!!
 
+  - name:
+    - TX_1444
+    - TX_1447
+    - TX_1448
+    - TX_1449
+    - TX_144a
+    - TX_144b
+    index:
+    - 0x44
+    - 0x47
+    - 0x48
+    - 0x49
+    - 0x4a
+    - 0x4b
+    text: >-
+      I like when Zelda and the oracles visit.
+      There's always something to do!
+
+      But I'm stuck in here...
+
+  - name:
+    - TX_1445
+    index:
+    - 0x45
+    text: >-
+     My mom keeps telling me to stay
+      inside or else I'm going to
+      be attached by monsters!
+
+      But I don't want to stay in here!
+      There's so much to see outside!
+
+      Could you tell her that it's fine for me
+      to go out?
+
+      I want to adventure like you!
+
+  - name:
+    - TX_1446
+    index:
+    - 0x46
+    text: >-
+      Did you talk with my mom yet?
+
+      She's so controlling!     
+
+
+
 - group: 0x15
   data:
   - name: TX_1500
@@ -8693,70 +8741,69 @@ groups:
 
   - name: TX_1520
     index: 0x20
-    text: |-
-      It's nice when Zelda comes to visit. Her parties are always fun!
+    text: >-
+      It's nice when Zelda comes to visit.
+      Her parties are always fun!
 
   - name: TX_1521
     index: 0x21
-    text: |-
-      Lately I've been
-      making breakfast
-      twice--on
-      accident.
+    text: >-
+      I live with my son here in town.
+      He hopes to someday adventure out,
+      but I hope he doesn't.\stop
+      It's too dangerous!!\stop
+      \Link, would you put some sense in him?
 
   - name: TX_1522
     index: 0x22
-    text: |-
-      Guess what! I
-      made lunch!
+    text: >-
+      Did you talk with my son?
+      What did he say?
 
   - name: TX_1523
     index: 0x23
-    text: |-
-      I made dinner
-      today for the
-      first time in
-      a while.
+    text: >-
+      I've talked with my son,
+      and made sure he understands the dangers.
+
+      I don't think I could keep him from
+      going out like you do, \Link,
+      but I hope he just stays safe.
 
   - name: TX_1524
     index: 0x24
-    text: |-
+    text: >-
       I'm so listless.
+      
       I don't feel
+      
       like doing
+      
       anything.
+
+      When is the party going to start?
 
   - name: TX_1525
     index: 0x25
-    text: |-
-      It's so hard to
-      cook meals for
-      morning, noon
-      and night!
+    text: >-
+      Mom says that we should get ready for the party.
+      I wish it were my birthday!
+
+      What makes the oracles so special?
 
   - name: TX_1526
     index: 0x26
-    text: |-
-      There used to
-      be something in
-      back for sealing
-      things away, but
-      now there's just
-      one crinkled old
-      \col(1)book\col(0).
+    text: >-
+      I met \col(3)Nayru\col(0).
+      She seems really cool!
+
+      I hope to sing like her someday.
 
   - name: TX_1527
     index: 0x27
     text: |-
-      An intelligent
-      beauty reading a
-      book in a
-      library by a
-      tranquil sea...
-      Isn't it a
-      romantic scene?
-      That's me, of
-      course!
+      I'm so happy everything is okay!
+      Isn't \col(3)Nayru\col(0) amazing?
 
 - group: 0x16
   data:
@@ -8893,12 +8940,10 @@ groups:
   - name: TX_1614
     index: 0x14
     text: |-
-      The tower got
-      bigger all of a
-      sudden, and that
-      top is so ugly.
-      What is that
-      thing?
+      'm glad 'a be 'ere to enjoy the fes'ivi'ies.
+      'y w'f' be 'ere too!
+
+      'a'nt' Din a b'ty?
 
   - name:
     - TX_1615
@@ -9112,35 +9157,29 @@ groups:
 
   - name: TX_1809
     index: 0x09
-    text: |-
-      Everyone says
-      it's bad luck to
-      go near the
-      tower.
+    text: >-
+      Zelda is always busy,
+      but I'm happy to have audience with her when I can.
+      I don't visit the town often,
+      but I want to be here for the \col(1)party\col(0).
 
   - name: TX_180a
     index: 0x0a
-    text: |-
-      My husband gave
-      \col(3)Queen Ambi\col(0) that
-      which pleases
-      her, but he was
-      still taken to
-      work on the
-      \col(3)Black Tower\col(0).
-      I want him back.
+    text: >-
+      My husband runs a bomb shop on
+      the \col(1)Daichi Plains\col(0).
+      He has to be there many nights
+      so no monsters wander in.
+      I hope to see him soon.
+
+      I'm here in town to pick up some supplies
+      and then I'm going back home to rest.
 
   - name: TX_180b
     index: 0x0b
     text: |-
-      My husband gave
-      \col(3)Queen Ambi\col(0) that
-      which pleases
-      her, but he was
-      still taken to
-      work on the
-      \col(3)Black Tower\col(0).
-      I want him back.
+      Isn't my husband the handsomest?\stop
+      Thank you again for the medicine, Mr. \Link. \heart
 
 - group: 0x1a
   data:
@@ -14599,7 +14638,7 @@ groups:
   - name: TX_2e1b
     index: 0x1b
     text: >-
-      \col(3)[Tile of Game]\col(0)
+      \col(3)Gifts of Kinomi\col(0)
 
       A hack by \col(1)ZerotoKoops\col(0).\stop
       Special thanks for \col(1)Stewmat\col(0)
@@ -17556,14 +17595,33 @@ groups:
 
   - name: TX_3302
     index: 0x02
-    text: |-
-      Huh? How did you get here? Are you also a researcher of this mysterious \col(1)Deeper Woods\col(0)?
-      I am \col(1)Cisypherestus\col(0) and I live here with my friend \col(3)Horatio\col(0). There is a \col(3)Shrine\col(0) somewhere between the trees, but I have struggled finding the means to reach it. These books are all useless, but I at least know that you must collect four gems to learn the right path. Good luck in your endeavors, adventurer!
+    text: >-
+      Huh? How did you get here? Are you also a
+      researcher of this mysterious \col(1)Deeper Woods\col(0)?
+      
+      I am \col(1)Cisypherestus\col(0) and I live
+      here with my friend \col(3)Horatio\col(0).
+      There is a \col(3)Shrine\col(0) somewhere between
+      the trees, but I have struggled finding the means to reach it.
+      These books are all useless, but I at least know that you must
+      collect four gems to learn the right path.
+      Good luck in your endeavors, adventurer!
 
   - name: TX_3303
     index: 0x03
-    text: |-
-      Did \col(1)Cisypherestus\col(0) send you on an impossible quest? If that's the case, one of my books tells me that defeating a powerful \col(3)blue\col(0) beast in a familiar swamp will help you in locating \col(1)two\col(0) stones.
+    text: >-
+      Did \col(1)Cisypherestus\col(0) send you on an impossible quest?
+      If that's the case, one of my books tells me that defeating a
+      powerful \col(3)blue\col(0) beast in a familiar swamp will
+      help you in locating \col(1)two\col(0) stones.
+
+      There might be a portal to that swamp in this very library,
+      but I have never seen it.
+
+      Cisypherestus and I have a friend who lives in a hovel
+      somewhere \col(1)hidden in these woods\col(0) that may lead you to that portal.
+
+      Good luck!
 
   - name: TX_3304
     index: 0x04
@@ -19955,7 +20013,9 @@ groups:
       \sfx(0xc6)
 
       ...weather?
-      I think it must get progressively warmer each step!
+      I think it must get progressively warmer each step!\stop
+      And please say hello to my brother in the \col(1)Jiku Cliffs\col(0)!
+      He may have more information for you!
 
   - name: TX_450f
     index: 0x0f

@@ -2,6 +2,71 @@
 ; INTERAC_OLD_LADY
 ; ==================================================================================================
 interactionCode3d:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	call interactionIncState
+
+	call interactionInitGraphics
+	;ld a,$06
+	;call objectSetCollideRadius
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@oldLadySubidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+	ld hl,@oldLadyScripts
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@oldLadySubidAppearances:
+	.db $00 $00 $02 $01
+	.db $01 $02 $02 $02
+	.db $02 $03
+
+@oldLadyScripts:
+	.dw mainScripts.oldLady_subid0Script ; ROOM_AGES_5cb
+	.dw mainScripts.oldLady_subid1Script ; ROOM_AGES_013
+	.dw mainScripts.oldLady_subid2Script ; ROOM_AGES_228
+	.dw mainScripts.oldLady_subid3Script ; ROOM_AGES_223
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -53,7 +118,7 @@ oldLadyScriptTable:
 	.dw mainScripts.oldLady_stubScript ; got gift
 	.dw mainScripts.oldLady_stubScript ; got both gifts	
 	.dw mainScripts.oldLady_stubScript ; game finished	
-
+*/
 
 /*
 @initSubid:

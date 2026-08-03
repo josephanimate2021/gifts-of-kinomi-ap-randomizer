@@ -336,7 +336,7 @@ group2WarpDestTable:
 	m_WarpDest $0d $16 $0 $4
 	m_WarpDest $0d $ff $0 $3
 	m_WarpDest $0b $52 $0 $4
-	m_WarpDest $24 $55 $0 TRANSITION_DEST_SET_RESPAWN
+	m_WarpDest $24 $55 $0 TRANSITION_DEST_DONT_SET_RESPAWN
 
 group3WarpDestTable:
 	m_WarpDest $0f $f4 $9 $3

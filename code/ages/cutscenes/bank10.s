@@ -378,6 +378,10 @@ agesFunc_10_7298:
 	and (BTN_A|BTN_B|BTN_START)
 	ret z
 	call incCbc2
+	ld a,$01
+	ld (wFileIsCompleted),a
+	ld a,GLOBALFLAG_FINISHEDGAME
+	call setGlobalFlag
 	jp saveFile
 /*
 	jp fadeoutToWhite

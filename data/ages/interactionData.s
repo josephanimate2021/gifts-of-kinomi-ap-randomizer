@@ -504,9 +504,18 @@ interaction35SubidData:
 interaction38SubidData:
 	m_InteractionSubidData $3f $1c $34
 interaction3aSubidData:
-	m_InteractionSubidData $4f $10 $12
+	m_InteractionSubidData $5c $10 $12 ; man
 	m_InteractionSubidData $5c $10 $12
-	m_InteractionSubidData $5b $00 $32
+	m_InteractionSubidData $5c $10 $12
+	m_InteractionSubidData $5c $10 $12
+	m_InteractionSubidData $4f $10 $12 ; boy
+	m_InteractionSubidData $4f $10 $12
+	m_InteractionSubidData $4f $10 $12
+	m_InteractionSubidData $4f $10 $12
+	m_InteractionSubidData $5c $10 $12 ; man playing catch
+/*
+	m_InteractionSubidData $5c $10 $12 ; man
+	m_InteractionSubidData $5b $00 $32 ; construction worker
 	m_InteractionSubidData $4f $10 $12
 	m_InteractionSubidData $4f $10 $12
 	m_InteractionSubidData $4f $10 $12
@@ -519,16 +528,18 @@ interaction3aSubidData:
 	m_InteractionSubidData $5c $10 $12
 	m_InteractionSubidData $5c $10 $12
 	m_InteractionSubidData $5c $10 $11
+*/
 interaction3bSubidData:
 	m_InteractionSubidData $3f $00 $22
 	m_InteractionSubidData $3f $00 $22
 	m_InteractionSubidData $3f $00 $22
-	m_InteractionSubidData $5c $00 $22
-	m_InteractionSubidData $5c $00 $22
-	m_InteractionSubidData $5c $00 $22
-	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $3f $00 $22
-	m_InteractionSubidData $3f $00 $22
+	m_InteractionSubidData $5c $00 $22
+	m_InteractionSubidData $5c $00 $22
+	m_InteractionSubidData $5c $00 $22
+	m_InteractionSubidData $5c $00 $22
+	;m_InteractionSubidData $3f $00 $22
+	;m_InteractionSubidData $3f $00 $22
 interaction3cSubidData:
 	m_InteractionSubidData $45 $10 $02
 	m_InteractionSubidData $45 $10 $02

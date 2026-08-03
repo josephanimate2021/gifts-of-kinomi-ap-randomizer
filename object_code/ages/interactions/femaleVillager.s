@@ -2,6 +2,80 @@
 ; INTERAC_FEMALE_VILLAGER
 ; ==================================================================================================
 interactionCode3b:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp npcFaceLinkAndAnimate
+	;jp interactionAnimateAsNpc
+
+@state0:
+	call interactionIncState
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	ld e,Interaction.subid
+	ld a,(de)
+	cp $04 ; number of woman subids + 1
+	jr nc,+
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@womanSubidAppearances
+	jr ++
++
+	callab agesInteractionsBank09.getGameProgress_Seasons
+	ld hl,@galSubidAppearances
+++
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+; a == [subid]
+	ld hl,@scripts
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@womanSubidAppearances:
+	.db $00 $00 $00 $01
+	.db $01 $01 $01 $02
+	.db $02 $03
+@galSubidAppearances:
+	.db $04 $04 $04 $05
+	.db $05 $06 $06 $06
+	.db $06 $07
+
+@scripts:
+	.dw mainScripts.woman_subid0Script ; ROOM_AGES_004
+	.dw mainScripts.woman_subid1Script ; ROOM_AGES_023
+	.dw mainScripts.woman_subid2Script ; ROOM_AGES_004
+	.dw mainScripts.woman_subid3Script ; ROOM_AGES_214 | ROOM_AGES_208
+	.dw mainScripts.gal_subid0Script ; ROOM_AGES_014
+	.dw mainScripts.gal_subid1Script ; ROOM_AGES_004
+	.dw mainScripts.gal_subid2Script ; ROOM_AGES_024
+	.dw mainScripts.gal_subid3Script ; ROOM_AGES_014 | ROOM_AGES_214
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -270,3 +344,4 @@ interactionCode3b:
 	.dw mainScripts.villagerGalSubid05Script_afterd7
 	.dw mainScripts.villagerGalSubid05Script_twinrovaKidnappedZelda
 	.dw mainScripts.villagerGalSubid05Script_twinrovaKidnappedZelda ; Not used
+*/

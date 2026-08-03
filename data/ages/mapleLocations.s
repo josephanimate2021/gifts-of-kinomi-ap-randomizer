@@ -26,7 +26,7 @@ maplePresentLocationsSummer:
 	dbrev %11111111 %11111111
 maplePresentLocationsAutumn:
 	dbrev %10011111 %11111111
-	dbrev %11011111 %11011111
+	dbrev %10011111 %11011111
 	dbrev %10111111 %11000111
 	dbrev %11011111 %11100011
 	dbrev %01111111 %11000011
@@ -43,7 +43,7 @@ maplePresentLocationsAutumn:
 	dbrev %11111111 %11111111
 maplePresentLocationsWinter:
 	dbrev %10011111 %11111111
-	dbrev %11011111 %11011111
+	dbrev %10011111 %11011111
 	dbrev %10111111 %11000111
 	dbrev %11011111 %11100011
 	dbrev %01111111 %11000011
@@ -61,7 +61,7 @@ maplePresentLocationsWinter:
 
 maplePresentLocationsSpring:
 	dbrev %10010100 %11111111
-	dbrev %11010011 %11011111
+	dbrev %10010011 %11011111
 	dbrev %10111111 %11000111
 	dbrev %11011111 %11100011
 	dbrev %01110111 %11000011

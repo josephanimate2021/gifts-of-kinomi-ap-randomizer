@@ -1768,7 +1768,8 @@ nayruScript_zeldaKidnapped:
 	scriptend
 
 nayruScript_endgame:
-	initcollisions
+	setcollisionradii $0c $06
+	makeabuttonsensitive
 @npcLoop:
 	checkabutton
 	turntofacelink
@@ -2631,7 +2632,31 @@ monkeySubid7Script_3:
 ; ==================================================================================================
 ; INTERAC_MALE_VILLAGER
 ; ==================================================================================================
+man_subid0Script:
+	rungenericnpc TX_1444
 
+man_subid1Script:
+	rungenericnpc TX_1445
+
+man_subid2Script:
+	rungenericnpc TX_1446
+
+man_subid3Script:
+	rungenericnpc TX_1447
+
+teen_subid0Script:
+	rungenericnpc TX_1448
+
+teen_subid1Script:
+	rungenericnpc TX_1449
+
+teen_subid2Script:
+	rungenericnpc TX_144a
+
+teen_subid3Script:
+	rungenericnpc TX_144b
+
+/*
 villagerSubid01Script:
 	initcollisions
 	settextid TX_1440
@@ -2745,7 +2770,7 @@ villagerSubid08Script_twinrovaKidnappedZelda:
 villagerSubid08Script_postGame:
 	rungenericnpc TX_1417
 
-
+*/
 ; Villager playing catch with son
 villagerSubid0cScript:
 	initcollisions
@@ -2762,7 +2787,7 @@ villagerThrowBallAnimation:
 
 script5bbf: ; Unused
 	scriptend
-
+/*
 
 ; Villager being restored from stone, resumes playing catch
 villagerSubid0bScript:
@@ -2816,12 +2841,36 @@ villagerSubid0dScript:
 	setglobalflag GLOBALFLAG_ENTER_PAST_CUTSCENE_DONE
 	enableinput
 	scriptend
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_FEMALE_VILLAGER
 ; ==================================================================================================
+woman_subid0Script:
+	rungenericnpc TX_1520
 
+woman_subid1Script:
+	rungenericnpc TX_1521
+
+woman_subid2Script:
+	rungenericnpc TX_1522
+
+woman_subid3Script:
+	rungenericnpc TX_1523
+
+gal_subid0Script:
+	rungenericnpc TX_1524
+
+gal_subid1Script:
+	rungenericnpc TX_1525
+
+gal_subid2Script:
+	rungenericnpc TX_1526
+
+gal_subid3Script:
+	rungenericnpc TX_1527
+
+/*
 ; Cutscene where guy is struck by lightning in intro
 villagerGalSubid00Script:
 	wait 90
@@ -2907,7 +2956,7 @@ villagerGalSubid05Script_afterd7:
 
 villagerGalSubid05Script_twinrovaKidnappedZelda:
 	rungenericnpc TX_1518
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_BOY
@@ -3166,13 +3215,16 @@ boySubid0fScript:
 ; INTERAC_OLD_LADY
 ; ==================================================================================================
 
-oldLady_stubScript:
-	scriptend
+oldLady_subid0Script:
+	rungenericnpc TX_1809
 
-oldLadySubid2Script:
+oldLady_subid2Script:
 	rungenericnpc TX_180a
 
-oldLadySubid4Script:
+oldLady_subid3Script:
+	rungenericnpc TX_180b
+
+oldLady_subid1Script:
 @waiting:
 	initcollisions $06, $06
 	checkabutton

@@ -7,6 +7,86 @@
 ;   var3d: Saved X position?
 ; ==================================================================================================
 interactionCode3a:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	ld e,Interaction.subid
+	ld a,(de)
+	cp $08
+	jp z,@runSubid0c
+
+	call interactionRunScript
+	jp npcFaceLinkAndAnimate
+	;jp interactionAnimateAsNpc
+
+@state0:
+	ld e,Interaction.subid
+	ld a,(de)
+	cpa $08
+	jp z,@initSubid0c
+
+	call interactionIncState
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	ld e,Interaction.subid
+	ld a,(de)
+	cp $04 ; number of woman subids + 1
+	jr nc,+
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@manSubidAppearances
+	jr ++
++
+	callab agesInteractionsBank09.getGameProgress_Seasons
+	ld hl,@teenSubidAppearances
+++
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+; a == [subid]
+	ld hl,@scripts
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@manSubidAppearances:
+	.db $00 $00 $00 $01
+	.db $01 $01 $01 $02
+	.db $02 $03
+@teenSubidAppearances:
+	.db $04 $04 $04 $05
+	.db $05 $06 $06 $06
+	.db $06 $07
+
+@scripts:
+	.dw mainScripts.man_subid0Script ; ROOM_AGES_004
+	.dw mainScripts.man_subid1Script ; ROOM_AGES_023
+	.dw mainScripts.man_subid2Script ; ROOM_AGES_004
+	.dw mainScripts.man_subid3Script ; ROOM_AGES_214 | ROOM_AGES_208
+	.dw mainScripts.teen_subid0Script ; ROOM_AGES_014
+	.dw mainScripts.teen_subid1Script ; ROOM_AGES_004
+	.dw mainScripts.teen_subid2Script ; ROOM_AGES_024
+	.dw mainScripts.teen_subid3Script ; ROOM_AGES_014 | ROOM_AGES_214
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -136,15 +216,28 @@ interactionCode3a:
 @initSubid0a:
 	ld h,d
 	jr @loadStoneAnimation
-
+*/
 @initAnimationAndLoadScript:
 	ld a,$01
 	call interactionSetAnimation
 	jp @loadScript
 
 @initSubid0c:
-	; Check whether the villager should be stone right now
+	ld e,Interaction.state
+	ld a,$01
+	ld (de),a
 
+	call interactionInitGraphics
+	call objectSetVisiblec2
+	call @initAnimationAndLoadScript
+
+	ld e,Interaction.enabled
+	ld a,(de)
+	or a
+	jp nz,objectMarkSolidPosition
+	ret
+	; Check whether the villager should be stone right now
+/*
 	; Have we beaten Veran?
 	ld hl,wGroup4RoomFlags+$fc
 	bit 7,(hl)
@@ -165,7 +258,6 @@ interactionCode3a:
 	call objectSetCollideRadius
 	ld a,$0d
 	jp interactionSetAnimation
-
 @initSubid0b:
 	ld h,d
 	call @loadStoneAnimation
@@ -184,7 +276,7 @@ interactionCode3a:
 	ld l,Interaction.oamFlags
 	ld (hl),$06
 	ld a,$0d
-	call interactionSetAnimation
+	jp interactionSetAnimation
 
 @state1:
 	ld e,Interaction.subid
@@ -414,7 +506,7 @@ interactionCode3a:
 	call z,interactionAnimateBasedOnSpeed
 	jp interactionRunScript
 
-
+*/
 ; Villager playing catch with son
 @runSubid0c:
 	call interactionPushLinkAwayAndUpdateDrawPriority
@@ -441,7 +533,7 @@ interactionCode3a:
 +
 	jp showText
 
-
+/*
 ; Cutscene when you first enter the past
 @runSubid0d:
 	call interactionRunScript
@@ -454,8 +546,9 @@ interactionCode3a:
 @runSubid0e:
 	ret
 
-
+*/
 @loadScript:
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	ld hl,@scriptTable
@@ -463,9 +556,11 @@ interactionCode3a:
 	ldi a,(hl)
 	ld h,(hl)
 	ld l,a
+*/	
+	ld hl,mainScripts.villagerSubid0cScript
 	jp interactionSetScript
 
-
+/*
 @scriptTable:
 	.dw mainScripts.stubScript
 	.dw mainScripts.villagerSubid01Script
@@ -515,3 +610,4 @@ interactionCode3a:
 	.dw mainScripts.villagerSubid08Script_afterGotMakuSeed
 	.dw mainScripts.villagerSubid08Script_twinrovaKidnappedZelda
 	.dw mainScripts.villagerSubid08Script_postGame
+*/
