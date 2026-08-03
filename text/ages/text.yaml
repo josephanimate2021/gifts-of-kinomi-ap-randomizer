@@ -14693,7 +14693,7 @@ groups:
     text: |-
       \left
       Shrine of Autumn\stop
-      Some switches only have affect in another season's shrine!
+      One switch does not take effect until the season to follow!
 
   - name: TX_2e16
     index: 0x16
