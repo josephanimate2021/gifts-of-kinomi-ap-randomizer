@@ -451,6 +451,6 @@ treasureObjectData4b:
 treasureObjectData61:
 	m_BeginTreasureSubids TREASURE_BOMB_UPGRADE
 	m_TreasureSubid $02, $00, $6e, $05, TREASURE_OBJECT_BOMB_UPGRADE_00
-	m_TreasureSubid $3a, $00, $6e, $05, TREASURE_OBJECT_BOMB_UPGRADE_01
+	m_TreasureSubid $3a, $01, $6e, $05, TREASURE_OBJECT_BOMB_UPGRADE_01
 
 .ends

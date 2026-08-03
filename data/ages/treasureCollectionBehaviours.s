@@ -519,8 +519,8 @@ treasureCollectionBehaviourTable:
 	.db SND_GETITEM
 
 	; TREASURE_BOMB_UPGRADE (0x61)
-	.db $00
-	.db $0b
+	.db <wBombersRingUpgrade
+	.db $05
 	.db SND_GETITEM
 
 	; TREASURE_SATCHEL_UPGRADE (0x62)

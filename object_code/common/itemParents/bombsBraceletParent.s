@@ -79,9 +79,8 @@ parentItemCode_bomb:
 	ld e,$01
 
 ; Bomb upgrade obtained in ROOM_AGES_31A
-	ld a,UPGRADE_BIT_BOMBS
-	ld hl,wUpgradesObtained
-	call checkFlag
+	ld a,(wBombersRingUpgrade)
+	or a
 	jr nz,+
 
 	ld a,BOMBERS_RING

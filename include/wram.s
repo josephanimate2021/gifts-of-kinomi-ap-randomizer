@@ -967,6 +967,9 @@ wShooterSelectedSeeds:
 wSlingshotSelectedSeeds:
 	db
 
+wBombersRingUpgrade:
+	db
+
 .ENDS
 
 .define wSeedsAndHarpSongsObtained	wObtainedTreasureFlags+TREASURE_EMBER_SEEDS/8
