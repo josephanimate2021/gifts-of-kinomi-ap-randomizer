@@ -19,6 +19,11 @@ interactionCodeb5:
 	set 6,(hl) ; [room flags]
 	call setDeathRespawnPoint
 
+	ld a,$01
+	ld (wDisabledObjects),a
+	ld hl,w1Link.visible
+	res 7,(hl)
+
 .ifdef ROM_SEASONS
 	ld a,$09
 	ld (wc6e5),a
