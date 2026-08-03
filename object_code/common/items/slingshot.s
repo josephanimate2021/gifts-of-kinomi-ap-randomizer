@@ -9,7 +9,7 @@ itemCode13:
 	ret nz
 
 .ifdef ROM_AGES
-	ld a,UNCMP_GFXH_AGES_SLINGSHOT
+	ld a,$44 ; UNCMP_GFXH_AGES_SLINGSHOT
 .else
 	ld a,UNCMP_GFXH_SEASONS_1d
 .endif
