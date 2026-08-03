@@ -9331,8 +9331,7 @@ groups:
     index: 0x0c
     text: |-
       I saw it with my own eyes!
-      A terrible beast ran \col(1)west\col(0) to the \col(1)Falls\col(0)!
-
+      A terrible beast ran \col(1)west\col(0) to the \col(1)Falls\col(0)!\stop
       I couldn't see where it went after it crossed the west-most river!\stop
       \Link, please save the princess!
       Never in my days have I seen such horror!
