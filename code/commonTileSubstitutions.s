@@ -160,7 +160,7 @@ replaceOpenedChest:
 	ret
 
 @exceptionTable:
-	.db <ROOM_AGES_040 <ROOM_AGES_051 <ROOM_AGES_060 <ROOM_AGES_061 <ROOM_AGES_070 $00
+	.db <ROOM_AGES_040, <ROOM_AGES_051, <ROOM_AGES_060, <ROOM_AGES_061, <ROOM_AGES_070, $00
 
 ;;
 ; Replaces switch tiles and whatever they control if the switch is set.
