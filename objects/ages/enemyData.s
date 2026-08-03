@@ -960,7 +960,7 @@ group4Map35EnemyObjectData:
 
 group4Map36EnemyObjectData:
 	obj_SpecificEnemyA 0 $35 $00 $50 $10
-	obj_RandomEnemy $45 $21 $01
+	obj_RandomEnemy $40 $21 $01
 	obj_RandomEnemy $40 $48 $01
 	obj_EndPointer
 
