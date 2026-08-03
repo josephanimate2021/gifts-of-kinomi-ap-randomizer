@@ -2130,9 +2130,6 @@ clearObjectsWithEnabled2_hlpr:
 	ret
 ;;
 playCompassSoundIfKeyInRoom:
-	ld a,(wMenuDisabled)
-	or a
-	ret nz
 	ld a,(wDungeonIndex)
 	cp $ff
 	ret z
