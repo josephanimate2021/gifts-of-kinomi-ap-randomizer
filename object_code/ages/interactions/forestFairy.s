@@ -2,6 +2,213 @@
 ; INTERAC_FOREST_FAIRY
 ; ==================================================================================================
 interactionCode49:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	ld a,$01
+	ld (de),a
+
+	ld e,Interaction.var03
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	callab agesInteractionsBank09.getGameProgress_Ages
+
+	ld hl,@subidAppearances
+	ld e,Interaction.var03
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+
+	ld a,b  ;game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+	ld hl,@textIndices
+	call loadNpcText
+	ld a,>TX_1100
+	ld (de),a
+
+	call interactionInitGraphics
+; loads animation,oamFlags,collision
+	ld e,Interaction.collisionRadiusX
+	ld a,$06
+	ld (de),a
+
+	ld e,Interaction.var03
+	ld a,(de)
+	ld c,a
+	add a
+	add c
+	ld hl,@baseVariables
+	rst_addAToHl
+
+	ld e,Interaction.collisionRadiusY
+	ldi a,(hl)
+	ld (de),a
+	ld e,Interaction.oamFlagsBackup
+	ldi a,(hl)
+	ld (de),a
+	inc e
+	ld (de),a
+	ld e,Interaction.var38
+	ld a,(hl)
+	ld (de),a
+	call interactionSetAnimation
+	call objectSetVisiblec2
+
+	ld hl,mainScripts.forestFairyScript_generic
+	jp interactionSetScript
+
+; If subid matches to the game progress, then don't delete NPC
+@subidAppearances:
+	.dw @@var03_00
+	.dw @@var03_01
+	.dw @@var03_02
+	.dw @@var03_03
+
+;;
+; $00 - ROOM_AGES_150
+; $01 - ROOM_AGES_130
+; $02 - ROOM_AGES_133
+@@var03_00:
+	.db $00 $00 $00 $00
+	.db $00 $01 $02 $02
+	.db $01 $01
+;;
+; $00 - ROOM_AGES_161
+; $01 - ROOM_AGES_170
+; $02 - ROOM_AGES_112
+; $03 - ROOM_AGES_140
+@@var03_01:
+	.db $00 $00 $00 $00
+	.db $00 $01 $02 $02
+	.db $02 $03
+;;
+; $00 - ROOM_AGES_152
+; $01 - ROOM_AGES_173
+; $02 - ROOM_AGES_120
+@@var03_02:
+	.db $00 $00 $00 $00
+	.db $00 $01 $02 $02
+	.db $02 $00
+;;
+; $00 - ROOM_AGES_131
+; $01 - ROOM_AGES_152
+; $02 - ROOM_AGES_112
+; $03 - ROOM_AGES_024 | ROOM_AGES_224
+@@var03_03:
+	.db $00 $00 $00 $00
+	.db $00 $01 $02 $02
+	.db $00 $03
+
+@textIndices:
+	.dw @@var03_00
+	.dw @@var03_01
+	.dw @@var03_02
+	.dw @@var03_03
+
+;			$00 before starting quest
+;			$01 if got sword
+;			$02 if got satchel
+;			$03 if got a trade item
+;			$04 if got Harp of Ages
+;			$05 if got Cane
+;			$06 if got Power Gloves
+;			$07 if got gift
+;			$08 if got both gifts
+;			$09 if game finished (unlinked only)
+
+; First fairy - Uffie
+@@var03_00:
+	.db <TX_1100 ; 0x00
+	.db <TX_1100 ; 0x01
+	.db <TX_1100 ; 0x02
+	.db <TX_1100 ; 0x03
+	.db <TX_1100 ; 0x04
+	.db <TX_1104 ; 0x05
+	.db <TX_1108 ; 0x06
+	.db <TX_1108 ; 0x07
+	.db <TX_110c ; 0x08
+	.db <TX_110e ; 0x09
+
+; Second fairy - Deffie
+@@var03_01:
+	.db <TX_1101 ; 0x00
+	.db <TX_1101 ; 0x01
+	.db <TX_1101 ; 0x02
+	.db <TX_1101 ; 0x03
+	.db <TX_1101 ; 0x04
+	.db <TX_1105 ; 0x05
+	.db <TX_1109 ; 0x06
+	.db <TX_1109 ; 0x07
+	.db <TX_1109 ; 0x08
+	.db <TX_110f ; 0x09
+
+; Third fairy - Triffie
+@@var03_02:
+	.db <TX_1102 ; 0x00
+	.db <TX_1102 ; 0x01
+	.db <TX_1102 ; 0x02
+	.db <TX_1102 ; 0x03
+	.db <TX_1102 ; 0x04
+	.db <TX_1106 ; 0x05
+	.db <TX_110a ; 0x06
+	.db <TX_110a ; 0x07
+	.db <TX_110a ; 0x08
+	.db <TX_1110 ; 0x09
+
+; Fourth fairy - Chloe
+@@var03_03:
+	.db <TX_1103 ; 0x00
+	.db <TX_1103 ; 0x01
+	.db <TX_1103 ; 0x02
+	.db <TX_1103 ; 0x03
+	.db <TX_1103 ; 0x04
+	.db <TX_1107 ; 0x05
+	.db <TX_110b ; 0x06
+	.db <TX_110b ; 0x07
+	.db <TX_110d ; 0x08
+	.db <TX_1111 ; 0x09
+
+
+; b0: collisionRadiusY
+; b1: oamFlagsBackup
+; b2: animation (can be thought of as direction to face?)
+@baseVariables:
+	.db $06 $03 $00 ;0x00 Orange
+	.db $06 $01 $00 ;0x01 Blue
+	.db $06 $02 $00 ;0x02 Red
+	.db $06 $00 $00 ;0x03 Green
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	ld e,Interaction.state
@@ -634,3 +841,4 @@ forestFairy_subid10:
 	.db <TX_1127, $01
 	.db <TX_1128, $12
 	.db <TX_1129, $13
+*/

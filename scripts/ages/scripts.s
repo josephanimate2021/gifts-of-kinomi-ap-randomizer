@@ -2033,7 +2033,25 @@ nayruScript13:
 ; ==================================================================================================
 ; INTERAC_RALPH
 ; ==================================================================================================
+ralph_subid0Script:
+	rungenericnpc TX_2a00
 
+ralph_subid1Script:
+	rungenericnpc TX_2a01
+
+ralph_subid2Script:
+	rungenericnpc TX_2a02
+
+ralph_subid3Script:
+	rungenericnpc TX_2a03
+
+ralph_subid4Script:
+	rungenericnpc TX_2a04
+
+ralph_subid5Script:
+	rungenericnpc TX_2a05
+
+/*
 ; Cutscene where Nayru gets possessed
 ralphSubid00Script:
 	wait 30
@@ -2512,7 +2530,7 @@ ralphSubid11Script:
 
 ralphSubid12Script:
 	rungenericnpc TX_2a23
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_PAST_GIRL
@@ -3329,6 +3347,8 @@ boy2_subid2Script:
 boy2_subid3Script:
 	rungenericnpc TX_2903
 
+boy2_subid4Script:
+	rungenericnpc TX_2904
 
 /*
 boy2Subid0Script:
@@ -4321,7 +4341,18 @@ tokayExplainingVinesScript:
 ; ==================================================================================================
 ; INTERAC_FOREST_FAIRY
 ; ==================================================================================================
+forestFairyScript_generic:
+	makeabuttonsensitive
+@npcLoop:
+	checkabutton
+	;turntofacelink
+	showloadedtext
+	;asm15 scriptHelp.oldManSetAnimationToVar38
+	scriptjump @npcLoop
 
+
+
+/*
 ; NPC for first fairy on "main" forest screen, after being found
 forestFairyScript_firstDiscovered:
 	makeabuttonsensitive
@@ -4392,7 +4423,7 @@ forestFairyScript_heartContainerSecret:
 @enableInput:
 	enableinput
 	scriptjump @npcLoop
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_RABBIT

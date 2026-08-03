@@ -7176,125 +7176,214 @@ groups:
   - name: TX_1100
     index: 0x00
     text: |-
-      \pos(2)This is our
+      \pos(2)Hello mister! I'm Uffie!
+      This is our
       playground!
+
+      Welcome to the
+      \col(1)Forest of Time\col(0)!\stop
+      Eh, are you worried you're stuck here?
+
+      If you can, go meet the
+      kind \col(1)witch\col(0)!
+      She would know how to help you!
 
   - name: TX_1101
     index: 0x01
-    text: |-
-      \pos(2)Won't you play
-      hide 'n' seek?
+    text: >-
+      \pos(2)Hi, I'm Deffie!
+      Won't you play
+      hide 'n' seek?\stop
+      No?\stop
+      Aw!
+
+      There is a \col(1)labyrinth\col(0) beneath
+      us that hides as well.
+
+      Us fairies like to poke in and out
+      of it, seeing where we'll end up!
 
   - name: TX_1102
     index: 0x02
-    text: |-
-      \pos(2)If you can't
-      find the three
-      of us, you can't
-      go on!
+    text: >-
+      \pos(2)I'm Triffie!
+      Where did you come from?\stop
+      Was it from that icky \col(1)labyrinth\col(0)?
+
+      I keep getting lost when I go in!
+
+      The kind \col(1)witch\col(0)
+      told us that she has many magical powers,
+      but she sometimes like to be left alone.
+
+      She locked her door and I think
+      the key is now hidden in the \col(1)labyrinth\col(0)!
 
   - name: TX_1103
     index: 0x03
-    text: |-
-      \pos(2)We'll hide, so
-      try to find us!
+    text: >-
+      \pos(2)I'm Chloe! The kind \col(1)witch\col(0)
+      to the west offers many remedies,
+      but I think she's looking for a mushroom!
+
+      But I don't know where to find one,
+      except maybe in that dark \col(1)labyrinth\col(0).
 
   - name: TX_1104
     index: 0x04
-    text: |-
-      \pos(2)Ready or not,
-      come find us!
+    text: >-
+      \pos(2)What's that, mister?
+      Oh! Is that the \col(1)Cane\col(0)?\stop
+      Let me have it!
+
+      Let me have it!\stop
+      I bet that would help get your through
+      the \col(1)labyrinth\col(0)!
 
   - name: TX_1105
     index: 0x05
-    text: |-
-      \pos(2)Dang! But there
-      are still two
-      more!
+    text: >-
+      \pos(2)The \col(1)labyrinth\col(0)
+      has an exit all the way
+      on top of the cliffs!
+
+      I wonder what's up there...
 
   - name: TX_1106
     index: 0x06
-    text: |-
-      \pos(2)You found me...
-      But the last one
-      is hardest!
+    text: >-
+      \pos(2)Do you think this
+      forest will last forever?
+
+      I hope so! It is my home!\stop
+      I love playing pranks on
+      my sisters and talking with
+      the kind \col(1)witch\col(0)!
+
+      She has a really sweet cucco
+      in her house.
+
+      I want to pet it.
 
   - name: TX_1107
     index: 0x07
-    text: |-
-      \pos(2)What? You found
-      us all? You're
-      good, mister!
+    text: >-
+      \pos(2)At the top of these cliffs,
+      there is a spring that feeds the whole forest.
+
+      I just can't imagine if the waters
+      stopped flowing! 
+
+      Oh it would be horrible!
 
   - name: TX_1108
     index: 0x08
-    text: |-
-      \pos(2)There are still
-      two left! Or do
-      you give up?
+    text: >-
+      \pos(2)Ooh, ooh!
+      Where did you get those?
+
+      I want to play with those \col(1)gloves\col(0)!
+      They look like they could lift many heavy objects!
+
+      But what would you need those for?
+      And where did they come from?
 
   - name: TX_1109
     index: 0x09
-    text: |-
-      \pos(2)One more!
-      One more!
+    text: >-
+      \pos(2)I made it up here, mister!
+      The spring is just as beautiful
+      as I imagined!
+
+      Have you met the fairy of the spring yet?
 
   - name: TX_110a
     index: 0x0a
-    text: |-
-      \pos(2)Aww... You found
-      us all. OK, we
-      won't tease you
-      anymore. We'll
-      put the forest
-      back in order.
+    text: >-
+      \pos(2)The kind \col(1)witch\col(0)
+      told us that there is a
+      cursed \col(1)mine\col(0)
+      connected to the \col(1)labyrinth\col(0)
+      even higher up on these cliffs.
+
+      It was locked away with a key
+      that \col(1)won't be found for
+      centuries\col(0)!
+
+      Oh, how I wish to never go there!
+      Imagine the horrible monsters that may
+      attack us!
 
   - name: TX_110b
     index: 0x0b
-    text: |-
-      \pos(2)That was fun!
-      Let's play again
-      sometime.
+    text: >-
+      \pos(2)I can't believe the waters to our
+      beautiful forest start from this
+      itty bitty spring!
 
   - name: TX_110c
     index: 0x0c
-    text: |-
-      Do you quit?
-        \opt()Yes \opt()No
+    text: >-
+      \pos(2)Are you going up to the
+      cursed \col(1)mine\col(0)?
+
+      You are now our friend,
+      so please be careful!
+
+      The kind \col(1)witch\col(0)
+      told us to avoid entering
+      the \col(1)labyrinth\col(0) up here near
+      the spring if we didn't want
+      to get caught near the \col(1)mine\col(0).
 
   - name: TX_110d
     index: 0x0d
-    text: |-
-      \pos(2)You won't find
-      us next time!
+    text: >-
+      \pos(2)Be careful up there, mister!
+
+      My sister, Uffie, is really concerned about your safety!
 
   - name: TX_110e
     index: 0x0e
-    text: |-
-      \pos(2)I have a strange
-      feeling.
-      Is something bad
-      about to happen?
+    text: >-
+      \pos(2)Mister, you're back!\stop
+      
+      Oh, I'm so happy! We should celebrate!
+
+      What did you find in the mine?
 
   - name: TX_110f
     index: 0x0f
-    text: |-
-      \pos(2)Let's play
-      again, mister!
+    text: >-
+      \pos(2)Uffie and Triffie couldn't stop
+      worrying about you!
+
+      You won't be going back there, right?\stop
+
+      A beautiful princess had been taken there?
+
+      Oh I bet you vanquished those monsters real good, mister!
 
   - name: TX_1110
     index: 0x10
-    text: |-
-      \pos(2)Let's play again
-      sometime.
+    text: >-
+      \pos(2)I'm happy you're back!
+
+      But about the spring...
+      Do you think we could make sure
+      the water always gets to the forest?
+
+      I wonder if we could do something about that big \col(1)rock\col(0) near the bank?
 
   - name: TX_1111
     index: 0x11
-    text: |-
-      \pos(2)Our forest will
-      be fine! Nothing
-      bad can happen
-      here!
+    text: >-
+      \pos(2)Pssst, mister!
+
+      Is this where you are from?
+      Oh, it very pretty!
+
+      I'll tell my sisters all about this!
 
   - name: TX_1112
     index: 0x12
@@ -13274,8 +13363,17 @@ groups:
       Waah! Too many monsters!!
       Grandma, save me!
 
+      It went \col(1)west\col(0) so
+      I ran this way!
+
+  - name: TX_2904
+    index: 0x04
+    text: >-
+      Grandma told me you saved the day!
+
+      Thank you!
+
   - name:
-    - TX_2904
     - TX_2905
     - TX_2906
     - TX_2907
@@ -13288,7 +13386,6 @@ groups:
     - TX_290e
     - TX_290f
     index:
-    - 0x04
     - 0x05
     - 0x06
     - 0x07
@@ -13340,60 +13437,66 @@ groups:
   data:
   - name: TX_2a00
     index: 0x00
-    text: |-
-      You're \col(3)Hyrule's\col(0)
-      messengers,
-      aren't you!
-      \col(3)Impa\col(0) and \Link,
-      right? A bird
-      brought message
-      of your arrival.\stop
-      My name is
-      \col(3)Ralph\col(0)! I am an
-      old friend of
-      \col(3)Nayru's\col(0). We're
-      counting on you.
+    text: >-
+      Room is secure!!\stop
+      Oh, hi \Link!
+
+      Glad to see you here!
+      Hey, did you want to spar later?
+
+      Nayru told me to keep busy by helping keep watch.
+      But it looks like I don't have to stay!
 
   - name: TX_2a01
     index: 0x01
-    text: |-
-      \pos(2)What are you
-      doing to \col(3)Nayru\col(0)?
-      I'll cut you in
-      two if you don't
-      let her go!
+    text: >-
+      I've been southwest to the Revinna Quarry,
+      but I think the Daichi Plains are more my style!
+
+      So many monsters to fight!
 
   - name: TX_2a02
     index: 0x02
-    text: |-
-      \pos(2)That \col(3)Veran\col(0)!
-      She couldn't
-      touch the stone
-      so she used you
-      to get in here!
+    text: >-
+      I'm trying to find a book on sparring!
+
+      I asked the librarian,
+      but he said that book was
+      checked out ages ago...
+
+      I hope to take that fiend by my blade and
+      ram him through!
 
   - name: TX_2a03
     index: 0x03
-    text: |-
-      \pos(2)I've known \col(3)Nayru\col(0)
-      was the Oracle
-      of Ages since
-      she was a child.\stop
-      I have always
-      been beside her,
-      protecting her.
+    text: >-
+      This fiend is undefeatable!
+
+      I tried swiping my sword against him,
+      but he just ignored me!
+
+      UNBELIEVABLE!
 
   - name: TX_2a04
     index: 0x04
-    text: |-
-      \pos(2)But now this!!!
-      \col(3)NAYRU\col(0)!!!
+    text: >-
+      I tried to find poor Zelda in here,
+      but nothing!
+
+      Some of the villagers said the \col(1)beast\col(0)
+      actually went across the river
+      here, but all I found was
+      a \col(1)dead tree\col(0).
+
+      Where could they be?
 
   - name: TX_2a05
     index: 0x05
-    text: |-
-      \col(3)Nayru\col(0)!!! Wait!
-      I'll save you!
+    text: >-
+      \Link, you did it!\stop
+      I think \col(3)Nayru\col(0) and I
+      will need to take another
+      vacation after the party is over.
 
   - name: TX_2a06
     index: 0x06

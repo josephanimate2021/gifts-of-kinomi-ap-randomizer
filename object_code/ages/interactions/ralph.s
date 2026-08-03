@@ -5,6 +5,54 @@
 ;   var3f: for some subids, ralph's animations only updates when this is 0.
 ; ==================================================================================================
 interactionCode37:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	call interactionIncState
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@subidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+	ld hl,@scripts
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@subidAppearances:
+	.db $00 $01 $02 $02
+	.db $01 $01 $03 $03
+	.db $04 $05
+
+@scripts:
+	.dw mainScripts.ralph_subid0Script ; ROOM_AGES_5be
+	.dw mainScripts.ralph_subid1Script ; ROOM_AGES_035
+	.dw mainScripts.ralph_subid2Script ; ROOM_AGES_218
+	.dw mainScripts.ralph_subid3Script ; ROOM_AGES_041
+	.dw mainScripts.ralph_subid4Script ; ROOM_AGES_014 | ROOM_AGES_213
+
+
+
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -1040,7 +1088,7 @@ ralphTurnLinkTowardSelf:
 	ld hl,w1Link.direction
 	ld (hl),b
 	jp setLinkForceStateToState08
-
+*/
 ;;
 startJump:
 	ld bc,-$1c0

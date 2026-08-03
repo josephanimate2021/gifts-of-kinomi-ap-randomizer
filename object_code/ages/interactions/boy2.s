@@ -37,7 +37,7 @@ interactionCode3f:
 
 @subidAppearances:
 	.db $00 $00 $01 $01
-	.db $02 $02 $01 $01
+	.db $02 $02 $02 $02
 	.db $03 $04
 
 @scripts:
@@ -45,15 +45,7 @@ interactionCode3f:
 	.dw mainScripts.boy2_subid1Script ; ROOM_AGES_013
 	.dw mainScripts.boy2_subid2Script ; ROOM_AGES_002
 	.dw mainScripts.boy2_subid3Script ; ROOM_AGES_015
-
-
-
-
-
-
-
-
-
+	.dw mainScripts.boy2_subid4Script ; ROOM_AGES_024
 
 
 /*
