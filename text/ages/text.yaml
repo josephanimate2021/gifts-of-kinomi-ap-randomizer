@@ -6980,29 +6980,37 @@ groups:
 
   - name: TX_0f01
     index: 0x01
-    text: |-
-      There are trees
-      in other places
-      that bear
-      \col(1)Mystical Seeds\col(0).
+    text: >-
+      Did you push the rock near my house?
+      I ask that you put it back!
+
+      Who knows what consequences may come
+      from what you've done!
 
   - name: TX_0f02
     index: 0x02
-    text: |-
-      The guards won't let me in until I get an invitation to the party.
+    text: >-
+      There is a \col(1)mine\col(0) above this crag.
+      Those who tried to excavate it
+      soon found themselves possessed by demons
+      so it was shut and the \col(1)key\col(0) locked deep in the
+      \col(1)Labyrinth\col(0).
+
+      You'd have to wait \col(1)hundreds of years\col(0)
+      in order to find that key!
+
+      But if you did find it, I guess you could
+      access the mine.\stop
+      But who knows what \col(3)evil spirits\col(0) lurk in there!
 
   - name: TX_0f03
     index: 0x03
-    text: |-
-      My family's been
-      fishing this
-      island since my
-      grandpa's day.\stop
-      The island is
-      drifting to the
-      west, so long
-      ago it was
-      farther east.
+    text: >-
+      Did you find the \col(1)mine\col(0)?
+
+      How did you survive?\stop
+      What was in there?
+      What sort of \col(1)treasure\col(0) did the \col(3)evil spirits\col(0) keep?
 
 - group: 0x10
   data:
@@ -8502,16 +8510,14 @@ groups:
 
   - name: TX_1443
     index: 0x43
-    text: |-
-      My son has
-      gotten so good
-      so quickly!
-      He must be so
-      happy since we
-      couldn't play
-      together for so
-      long.
-      Nice one!!!
+    text: >-
+      I'm so happy that Zelda has returned safely!
+      It was thanks to you and the power of the oracles.
+
+      Now I can keep playing catch with
+      my son all day long!
+
+      Hey! Nice one!!
 
   - name:
     - TX_1444
@@ -8570,6 +8576,11 @@ groups:
       more than play catch
       with his son all day!
 
+      He doesn't go out of the
+      town like I do!
+
+      Isn't this a great view?
+
   - name:
     - TX_1449
     index:
@@ -8583,20 +8594,34 @@ groups:
       to meet \col(1)Din\col(0)
       if I can!
 
-      Is she as pretty as they say,
-      \Link?
+      Is she as pretty as
+      they say, \Link?
 
   - name:
     - TX_144a
     index:
     - 0x4a
     text: >-
+      I don't think my brother
+      knows how to have as much fun
+      as me!
+      I've seen the cliffs of
+      Jiku and plains of Daichi
+      while he just sits at home
+      with his kid.
+
+      \Link, what did you think of the lands
+      outside our village?
 
   - name:
     - TX_144b
     index:
     - 0x4b
     text: >-
+      Hooray the princess is saved!
+      Thank you, \Link!
+
+      This is a great party too!
 
 - group: 0x15
   data:
@@ -9217,6 +9242,16 @@ groups:
     text: |-
       Isn't my husband the handsomest?\stop
       Thank you again for the medicine, Mr. \Link. \heart
+
+  - name: TX_180c
+    index: 0x0c
+    text: |-
+      I saw it with my own eyes!
+      A terrible beast ran \col(1)west\col(0) to the \col(1)Falls\col(0)!
+
+      I couldn't see where it went after it crossed the west-most river!\stop
+      \Link, please save the princess!
+      Never in my days have I seen such horror!
 
 - group: 0x1a
   data:
@@ -13209,11 +13244,37 @@ groups:
 
 - group: 0x29
   data:
+
+  - name: TX_2900
+    index: 0x00
+    text: >-
+      Grandma says I should wait here
+      before she gets back.
+
+      She's going to see the Princess!
+
+  - name: TX_2901
+    index: 0x01
+    text: >-
+      What is an oracle?
+
+      I hear that word so much but what does it mean!
+
+  - name: TX_2902
+    index: 0x02
+    text: >-
+      Grandma never lets me venture down south of the \col(1)cliffs\col(0).
+      What's there that she wouldn't want me to see?
+
+      Maybe it's more fun east of town!
+
+  - name: TX_2903
+    index: 0x03
+    text: >-
+      Waah! Too many monsters!!
+      Grandma, save me!
+
   - name:
-    - TX_2900
-    - TX_2901
-    - TX_2902
-    - TX_2903
     - TX_2904
     - TX_2905
     - TX_2906
@@ -13227,10 +13288,6 @@ groups:
     - TX_290e
     - TX_290f
     index:
-    - 0x00
-    - 0x01
-    - 0x02
-    - 0x03
     - 0x04
     - 0x05
     - 0x06

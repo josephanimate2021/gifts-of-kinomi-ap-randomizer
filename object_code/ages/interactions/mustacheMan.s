@@ -2,6 +2,65 @@
 ; INTERAC_MUSTACHE_MAN
 ; ==================================================================================================
 interactionCode42:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	call interactionIncState
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@subidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+	ld hl,@scripts
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@subidAppearances:
+	.db $00 $00 $00 $00
+	.db $00 $00 $01 $02
+	.db $02 $03
+
+@scripts:
+	.dw mainScripts.mustacheMan_subid0Script ; ROOM_AGES_20a
+	.dw mainScripts.mustacheMan_subid1Script ; ROOM_AGES_20a
+	.dw mainScripts.mustacheMan_subid2Script ; ROOM_AGES_112
+	.dw mainScripts.mustacheMan_subid3Script ; ROOM_AGES_20a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	rst_jumpTable
@@ -59,3 +118,4 @@ interactionCode42:
 @scriptTable:
 	.dw mainScripts.mustacheManScript
 	.dw mainScripts.genericNpcScript
+*/

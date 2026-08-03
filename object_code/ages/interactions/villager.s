@@ -61,22 +61,22 @@ interactionCode3a:
 
 @manSubidAppearances:
 	.db $00 $00 $00 $01
-	.db $01 $01 $01 $02
+	.db $01 $01 $02 $02
 	.db $02 $03
 @teenSubidAppearances:
-	.db $04 $04 $04 $05
-	.db $05 $06 $06 $06
+	.db $04 $04 $05 $05
+	.db $05 $05 $06 $05
 	.db $06 $07
 
 @scripts:
-	.dw mainScripts.teen_subid0Script ; ROOM_AGES_
-	.dw mainScripts.teen_subid1Script ; ROOM_AGES_
-	.dw mainScripts.teen_subid2Script ; ROOM_AGES_
-	.dw mainScripts.teen_subid3Script ; ROOM_AGES_
-	.dw mainScripts.man_subid0Script ; ROOM_AGES_
-	.dw mainScripts.man_subid1Script ; ROOM_AGES_
-	.dw mainScripts.man_subid2Script ; ROOM_AGES_
-	.dw mainScripts.man_subid3Script ; ROOM_AGES_
+	.dw mainScripts.man_subid0Script ; ROOM_AGES_027
+	.dw mainScripts.man_subid1Script ; ROOM_AGES_003
+	.dw mainScripts.man_subid2Script ; ROOM_AGES_013
+	.dw mainScripts.man_subid3Script ; ROOM_AGES_013 | ROOM_AGES_213
+	.dw mainScripts.teen_subid0Script ; ROOM_AGES_208
+	.dw mainScripts.teen_subid1Script ; ROOM_AGES_208
+	.dw mainScripts.teen_subid2Script ; ROOM_AGES_208
+	.dw mainScripts.teen_subid3Script ; ROOM_AGES_004 | ROOM_AGES_213
 
 
 
@@ -526,9 +526,12 @@ interactionCode3a:
 	xor a
 	ld (de),a
 	ld bc,TX_1442
-	ld hl,wGroup4RoomFlags+$fc
-	bit 7,(hl) ; Has Veran been beaten?
-	jr z,+
+	ld a,(wGameProgress1)
+	cp $09
+	jr nz,+
+	;ld hl,wGroup4RoomFlags+$fc
+	;bit 7,(hl) ; Has Veran been beaten?
+	;jr z,+
 	ld c,<TX_1443
 +
 	jp showText

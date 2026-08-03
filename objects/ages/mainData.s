@@ -615,6 +615,7 @@ group0Map12ObjectData:
 	obj_Pointer group0Map12EnemyObjectData
 	obj_Interaction INTERAC_NAYRU $04 $28 $78
 	obj_Interaction INTERAC_ZELDA $01 $38 $58 $03
+	obj_Interaction INTERAC_OLD_LADY $04 $58 $58
 	obj_End
 
 group0Map13ObjectData:
@@ -623,6 +624,9 @@ group0Map13ObjectData:
 	obj_Interaction INTERAC_DIN $03 $68 $38
 	obj_Interaction INTERAC_ZELDA $01 $68 $48 $08
 	obj_Interaction INTERAC_ZELDA $01 $58 $48 $0c
+	obj_Interaction INTERAC_MALE_VILLAGER $03 $68 $78
+	obj_Interaction INTERAC_MALE_VILLAGER $02 $68 $78
+	obj_Interaction INTERAC_BOY_2 $01 $48 $28
 	obj_End
 
 group0Map14ObjectData:
@@ -655,17 +659,19 @@ group0Map01ObjectData:
 
 group0Map02ObjectData:
 	obj_Pointer group0Map02EnemyObjectData
+	obj_Interaction INTERAC_BOY_2 $02 $58 $28
 	obj_End
 
 group0Map03ObjectData:
 	obj_Pointer group0Map03EnemyObjectData
-	obj_Interaction $42 $01 $68 $38
 	obj_Interaction $40 $0d $28 $48
 	obj_Interaction $40 $0d $28 $78
 	obj_AfterEvent group0Map03AfterEventObjectData
 	obj_BeforeEvent group0Map03BeforeEventObjectData
 	obj_Interaction INTERAC_DIN $07 $38 $88
 	obj_Interaction INTERAC_ZELDA $01 $38 $78 $0b
+	obj_Interaction INTERAC_MALE_VILLAGER $01 $68 $38
+	obj_Interaction INTERAC_BOY_2 $00 $38 $38
 	obj_End
 
 group0Map04ObjectData:
@@ -675,6 +681,7 @@ group0Map04ObjectData:
 	obj_Interaction $3b $00 $58 $38
 	obj_Interaction INTERAC_FEMALE_VILLAGER $05 $68 $28
 	obj_Interaction INTERAC_FEMALE_VILLAGER $02 $58 $28
+	obj_Interaction INTERAC_MALE_VILLAGER $07 $28 $88
 	obj_End
 
 group0Map05ObjectData:
@@ -727,6 +734,7 @@ group0Map11ObjectData:
 group0Map15ObjectData:
 	obj_Pointer group0Map15EnemyObjectData
 	obj_Interaction INTERAC_ZELDA $01 $48 $48 $04
+	obj_Interaction INTERAC_BOY_2 $02 $38 $18
 	obj_End
 
 group0Map16ObjectData:
@@ -789,6 +797,7 @@ group0Map26ObjectData:
 
 group0Map27ObjectData:
 	obj_Pointer group0Map27EnemyObjectData
+	obj_Interaction INTERAC_MALE_VILLAGER $00 $28 $68
 	obj_End
 
 group0Map29ObjectData:
@@ -862,11 +871,6 @@ group0Map39ObjectData:
 	obj_End
 
 group0Map3aObjectData:
-	obj_Interaction $36 $13 $48 $38
-	obj_Interaction $37 $11 $48 $58
-	obj_Interaction $3c $10 $58 $58
-	obj_Interaction $39 $07 $58 $28 $01
-	obj_Interaction $5d $02 $48 $18 $01
 	obj_Interaction $80 $00 $68 $88
 	obj_End
 
@@ -5146,9 +5150,10 @@ group0Map08ObjectData:
 	obj_End
 
 group2Map08ObjectData:
-	obj_Interaction $3a $00 $28 $68
+	obj_Interaction $3a $04 $28 $68
+	obj_Interaction INTERAC_MALE_VILLAGER $05 $48 $78
+	obj_Interaction INTERAC_MALE_VILLAGER $06 $28 $48
 	obj_Interaction INTERAC_FEMALE_VILLAGER $03 $38 $38
-	obj_Interaction INTERAC_MALE_VILLAGER $01 $48 $78
 	obj_End
 
 group0Map28ObjectData:
@@ -5195,6 +5200,7 @@ group1Map12ObjectData:
 	obj_Pointer group1Map12EnemyObjectData
 	obj_SpecificEnemyA 0 $5a $39 $00 $00
 	obj_Interaction $e1 $00 $28 $48
+	obj_Interaction INTERAC_MUSTACHE_MAN $02 $58 $28
 	obj_End
 
 group2Map30ObjectData:
@@ -5254,6 +5260,8 @@ group1Map30ObjectData:
 group2Map0aObjectData:
 	obj_Interaction $42 $00 $38 $78
 	obj_Interaction $dc $02 $68 $18
+	obj_Interaction INTERAC_MUSTACHE_MAN $01 $28 $28
+	obj_Interaction INTERAC_MUSTACHE_MAN $03 $28 $78
 	obj_End
 
 group4Map26ObjectData:
@@ -5297,9 +5305,8 @@ group2Map14ObjectData:
 	obj_Interaction $40 $0d $58 $88
 	obj_Interaction $40 $0d $68 $88
 	obj_Interaction INTERAC_NAYRU $09 $38 $28
-	obj_Interaction INTERAC_FEMALE_VILLAGER $07 $58 $28
+	obj_Interaction INTERAC_FEMALE_VILLAGER $07 $48 $48
 	obj_Interaction INTERAC_FEMALE_VILLAGER $03 $48 $18
-	obj_Interaction INTERAC_MUSTACHE_MAN $01 $48 $48
 	obj_Interaction INTERAC_MAMAMU_YAN $00 $1a $18
 	obj_End
 
@@ -5417,9 +5424,9 @@ group2Map13ObjectData:
 	obj_Interaction INTERAC_SOLDIER $0d $58 $18
 	obj_Interaction INTERAC_SOLDIER $0d $68 $18
 	obj_Interaction INTERAC_ZELDA $01 $58 $58 $0c
-	obj_Interaction INTERAC_MALE_VILLAGER $01 $68 $38
-	obj_Interaction INTERAC_MISC_MAN $00 $58 $38
+	obj_Interaction INTERAC_MALE_VILLAGER $03 $68 $38
 	obj_Interaction INTERAC_PAST_GUY $00 $48 $68
+	obj_Interaction INTERAC_MALE_VILLAGER $07 $58 $38
 	obj_End
 
 group2Map04ObjectData:
@@ -5432,7 +5439,7 @@ group3Map1cObjectData:
 
 group2Map23ObjectData:
 	obj_Interaction INTERAC_DIN $09 $30 $78
-	obj_Interaction INTERAC_MALE_VILLAGER $0c $68 $38
+	obj_Interaction INTERAC_MALE_VILLAGER $08 $68 $38
 	obj_Interaction INTERAC_BOY $0e $68 $78
 	obj_Interaction INTERAC_MISC_MAN_2 $03 $48 $58
 	obj_Interaction INTERAC_OLD_LADY $03 $28 $58

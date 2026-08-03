@@ -2633,28 +2633,28 @@ monkeySubid7Script_3:
 ; INTERAC_MALE_VILLAGER
 ; ==================================================================================================
 man_subid0Script:
-	rungenericnpc TX_1444
-
-man_subid1Script:
-	rungenericnpc TX_1445
-
-man_subid2Script:
-	rungenericnpc TX_1446
-
-man_subid3Script:
-	rungenericnpc TX_1447
-
-teen_subid0Script:
 	rungenericnpc TX_1448
 
-teen_subid1Script:
+man_subid1Script:
 	rungenericnpc TX_1449
 
-teen_subid2Script:
+man_subid2Script:
 	rungenericnpc TX_144a
 
-teen_subid3Script:
+man_subid3Script:
 	rungenericnpc TX_144b
+
+teen_subid0Script:
+	rungenericnpc TX_1444
+
+teen_subid1Script:
+	rungenericnpc TX_1445
+
+teen_subid2Script:
+	rungenericnpc TX_1446
+
+teen_subid3Script:
+	rungenericnpc TX_1447
 
 /*
 villagerSubid01Script:
@@ -3224,6 +3224,9 @@ oldLady_subid2Script:
 oldLady_subid3Script:
 	rungenericnpc TX_180b
 
+oldLady_subid4Script:
+	rungenericnpc TX_180c
+
 oldLady_subid1Script:
 @waiting:
 	initcollisions $06, $06
@@ -3314,7 +3317,20 @@ ghostVeranSubid1Script:
 ; ==================================================================================================
 ; INTERAC_BOY_2
 ; ==================================================================================================
+boy2_subid0Script:
+	rungenericnpc TX_2900
 
+boy2_subid1Script:
+	rungenericnpc TX_2901
+
+boy2_subid2Script:
+	rungenericnpc TX_2902
+
+boy2_subid3Script:
+	rungenericnpc TX_2903
+
+
+/*
 boy2Subid0Script:
 	rungenericnpclowindex <TX_2910
 
@@ -3328,7 +3344,7 @@ boy2Subid2Script:
 	writememory   wTmpcfc0.genericCutscene.cfd1, $02
 	checkmemoryeq wTmpcfc0.genericCutscene.cfd1, $03
 	scriptjump boyShakeWithFearThenRun
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_SOLDIER
@@ -3651,12 +3667,25 @@ lynnaManScript_postGame:
 ; ==================================================================================================
 ; INTERAC_MUSTACHE_MAN
 ; ==================================================================================================
+mustacheMan_subid0Script:
+	rungenericnpc TX_0f00
+
+mustacheMan_subid1Script:
+	rungenericnpc TX_0f01
+
+mustacheMan_subid2Script:
+	rungenericnpc TX_0f02
+
+mustacheMan_subid3Script:
+	rungenericnpc TX_0f03
+
+/*
 mustacheManScript:
 	jumpifglobalflagset GLOBALFLAG_0b, ++
 	rungenericnpclowindex <TX_0f00
 ++
 	rungenericnpclowindex <TX_0f01
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_PAST_GUY

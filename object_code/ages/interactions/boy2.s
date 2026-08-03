@@ -2,6 +2,61 @@
 ; INTERAC_BOY_2
 ; ==================================================================================================
 interactionCode3f:
+	call checkInteractionState
+	jr z,@state0
+
+@state1:
+	call interactionRunScript
+	jp interactionAnimateAsNpc
+
+@state0:
+	call interactionIncState
+	call interactionInitGraphics
+	call objectMarkSolidPosition
+	call objectSetVisiblec2
+
+; Whether to delete
+	callab agesInteractionsBank09.getGameProgress_Ages
+	ld hl,@subidAppearances
+	ld a,b ; game progress in b
+	rst_addAToHl
+	ld e,Interaction.subid
+	ld a,(de)
+	cp (hl)
+	jp nz,interactionDelete
+
+; Scripts
+	ld hl,@scripts
+	ld e,Interaction.subid
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	jp interactionSetScript
+
+@subidAppearances:
+	.db $00 $00 $01 $01
+	.db $02 $02 $01 $01
+	.db $03 $04
+
+@scripts:
+	.dw mainScripts.boy2_subid0Script ; ROOM_AGES_003
+	.dw mainScripts.boy2_subid1Script ; ROOM_AGES_013
+	.dw mainScripts.boy2_subid2Script ; ROOM_AGES_002
+	.dw mainScripts.boy2_subid3Script ; ROOM_AGES_015
+
+
+
+
+
+
+
+
+
+
+
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	rst_jumpTable
@@ -133,3 +188,4 @@ interactionCode3f:
 	.dw mainScripts.boy2Subid1Script
 	.dw mainScripts.boy2Subid2Script
 	.dw mainScripts.stubScript
+*/

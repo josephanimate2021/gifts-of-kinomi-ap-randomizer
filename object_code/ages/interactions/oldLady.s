@@ -41,13 +41,14 @@ interactionCode3d:
 @oldLadySubidAppearances:
 	.db $00 $00 $02 $01
 	.db $01 $02 $02 $02
-	.db $02 $03
+	.db $04 $03
 
 @oldLadyScripts:
 	.dw mainScripts.oldLady_subid0Script ; ROOM_AGES_5cb
 	.dw mainScripts.oldLady_subid1Script ; ROOM_AGES_013
 	.dw mainScripts.oldLady_subid2Script ; ROOM_AGES_228
 	.dw mainScripts.oldLady_subid3Script ; ROOM_AGES_223
+	.dw mainScripts.oldLady_subid4Script ; ROOM_AGES_012
 
 
 
