@@ -83,13 +83,6 @@ enemyCode75:
 	call enemySetAnimation
 
 @normalStatus:
-; Vire won't spawn if you haven't talked to Din yet
-	lda >ROOM_AGES_003
-	ld b,<ROOM_AGES_003
-	call getRoomFlags
-	and ROOMFLAG_80
-	jp z,enemyDelete
-
 	call ecom_getSubidAndCpStateTo08
 	jr c,@commonState
 
