@@ -1349,6 +1349,8 @@ endgameCutsceneHandler_0f:
 ;;
 ; CUTSCENE_CREDITS
 endgameCutsceneHandler_0a:
+	jp panic
+/*
 	call @runStates
 	jp func_3539
 
@@ -1595,6 +1597,7 @@ endgameCutsceneHandler_0a:
 
 @state3:
 	jpab cutscenesBank10.agesFunc_10_7298
+*/
 
 ;;
 ; Called from disableLcdAndLoadRoom in bank 0.
@@ -1774,6 +1777,7 @@ blackTowerEscapeCutscene_doorOpenReplacement:
 	.db $45 $ed
 	.db $54 $80
 	.db $55 $80
+
 
 ;;
 func_60e0:

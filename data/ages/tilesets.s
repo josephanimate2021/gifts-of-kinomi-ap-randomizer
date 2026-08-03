@@ -97,7 +97,7 @@ tilesetData: ; 4:4f9c
 	.db $4f $01
 	.db $10
 	.db $40
-	.db $5a
+	.db PALH_5a
 	.db $0d $00 $06
 
 ; Tileset 0x0e

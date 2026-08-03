@@ -520,3 +520,9 @@
 	m_GfxData oth_twinrova_lava_layout ; $0e2aa2
 	m_GfxData oth_twinrova_normal_layout ; $0e2ad7
 	m_GfxData spr_springflower_makuleaf_farorebook ; $0a8036
+; For Aquamentus title screen
+	m_GfxData spr_aquamentus_1 ; $0ac4b2
+	m_GfxData spr_aquamentus_2 ; $0ac673
+	m_GfxData spr_aquamentus_3 ; $0ac851
+	m_GfxData map_zerotokoops_screen
+	m_GfxData flg_zerotokoops_screen

@@ -183,7 +183,6 @@ interactionCode49:
 	.db <TX_110d ; 0x08
 	.db <TX_1111 ; 0x09
 
-
 ; b0: collisionRadiusY
 ; b1: oamFlagsBackup
 ; b2: animation (can be thought of as direction to face?)

@@ -25,7 +25,7 @@
 ; If this doesn't make sense, you should read some technical documentation on the gameboy's
 ; graphical hardware (ie. gameboy pandocs).
 
-.define NUM_GFX_HEADERS $bb
+.define NUM_GFX_HEADERS $bc;$bb
 
 gfxHeaderTable:
 	.repeat NUM_GFX_HEADERS index COUNT
@@ -964,4 +964,14 @@ m_GfxHeaderStart $b8, GFXH_TWINROVA_LAVA_LAYOUT
 
 m_GfxHeaderStart $b9, GFXH_TWINROVA_NORMAL_LAYOUT
 	m_GfxHeader oth_twinrova_normal_layout, wRoomLayout
+	m_GfxHeaderEnd
+
+m_GfxHeaderStart $bb, GFXH_ZEROTOKOOPS_SCREEN
+	m_GfxHeader spr_aquamentus_1, $8000
+	m_GfxHeader spr_aquamentus_2, $8200
+	m_GfxHeader spr_aquamentus_3, $8400
+	m_GfxHeader spr_credits_font, $8600 ;sprites
+	m_GfxHeader spr_credits_font, $8a00 ;background
+	m_GfxHeader map_zerotokoops_screen, $9800
+	m_GfxHeader flg_zerotokoops_screen, $9801
 	m_GfxHeaderEnd
