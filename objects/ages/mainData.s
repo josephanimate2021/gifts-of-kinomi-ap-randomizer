@@ -3054,8 +3054,9 @@ group4Map6dObjectData:
 
 group4Map6eObjectData:
 	obj_Pointer group4Map6eEnemyObjectData
-	obj_Part $09 $80 $85
-	obj_Part $09 $81 $88
+	obj_Part $09 $80 $84
+	obj_Part $09 $81 $87
+	obj_Part PART_BUTTON $82 $8a
 	obj_Interaction $20 $04 $88 $c8
 	obj_Interaction $bd $00
 	obj_Interaction $dc $17
