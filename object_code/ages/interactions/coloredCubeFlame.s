@@ -34,4 +34,4 @@ interactionCode1a:
 	ret
 
 @palettes:
-	.db $02 $03 $01
+	.db $02 $00 $01
