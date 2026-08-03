@@ -80,6 +80,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group4RupeeRoomMap7c ; $48
   .dw tileReplacement_group5Mapd3 ; $49
   .dw tileReplacement_group0Map30 ; $4a
+  .dw tileReplacement_group0Map20 ; $4b
 
 
 roomTileChangerCodeGroupTable:
@@ -123,6 +124,7 @@ roomTileChangerCodeGroup0Data:
   ;.db $76 $36
   .db <ROOM_AGES_075 $46
   .db <ROOM_AGES_030 $4a
+  .db <ROOM_AGES_020 $4b
   .db $00
 roomTileChangerCodeGroup1Data:
   .db $30 $40
@@ -1804,6 +1806,21 @@ tileReplacement_group0Map30:
 	ld (hl),$d8
 	ld l,$31
 	ld (hl),$dc ; staircase
+	ret
+
+; bush appears here after zelda is kidnapped
+tileReplacement_group0Map20:
+	ld a,(wGameProgress1)
+	cp 8
+	ret c
+	call getThisRoomFlags
+	and $80
+	ld a,$cf
+	ld hl,wRoomLayout+$61
+	jr z,+
+	ld a,TILEINDEX_OVERWORLD_DOWNSTAIRCASE
++
+	ld (hl),a
 	ret
 
 ;;
