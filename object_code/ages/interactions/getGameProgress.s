@@ -13,7 +13,7 @@
 ;ZerotoK's version
 getGameProgress_Ages:
 	ld hl,@itemTable2
-	ldbc $09,$01 ;Essence 1
+	ldbc $09,$02 ;Essence 1
 	call getGameProgress_Seasons@getProgress
 	jr z,+
 	dec b
@@ -47,7 +47,7 @@ getGameProgress_Ages:
 ;ZerotoK's version
 getGameProgress_Seasons:
 	ld hl,@itemTable1
-	ldbc $09,$02 ;Essence 2
+	ldbc $09,$01 ;Essence 2
 	call @getProgress
 	call nz,@checkItemObtained
 	ld a,b
