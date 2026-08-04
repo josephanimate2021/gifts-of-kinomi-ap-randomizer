@@ -4301,6 +4301,7 @@ group5Map74ObjectData:
 	obj_Pointer group5Map74EnemyObjectData
 	obj_Interaction $1e $04 $55 $00 $04
 	obj_Interaction $1e $04 $75 $00 $03
+	obj_Part PART_ORB $00 $20 $98 $00
 	obj_End
 
 group5Map75ObjectData:
