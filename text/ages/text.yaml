@@ -15041,10 +15041,9 @@ groups:
       henchman! I
       heard someone
       was trying to
-      stop \col(3)Twinrova\col(0), so
-      I came here. But
-      it's just some
-      kid!\stop
+      stop \col(3)Twinrova\col(0),
+      so I came here.
+      But it's just some kid!\stop
       Fine! I can
       handle you!
 
@@ -15082,11 +15081,8 @@ groups:
     index: 0x17
     text: |-
       \slow()OUCH..!\stop
-      I paid for my
-      overconfidence,
-      but I'll report
-      this to \col(3)Twinrova\col(0)!
-      Gar har har!
+      No matter!\stop
+      You thought you could pass, but only the \col(1)hands\col(0) know the secret!
 
   - name: TX_2f18
     index: 0x18
