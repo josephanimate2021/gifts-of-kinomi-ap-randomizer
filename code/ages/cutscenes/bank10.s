@@ -382,6 +382,21 @@ agesFunc_10_7298:
 	ld (wFileIsCompleted),a
 	ld a,GLOBALFLAG_FINISHEDGAME
 	call setGlobalFlag
+
+	; Set spawn to link's house
+	ld a,3
+	ld (wDeathRespawnBuffer.group),a
+	ld a,$08
+	ld (wDeathRespawnBuffer.room),a
+	ld a,DIR_DOWN
+	ld (wDeathRespawnBuffer.facingDir),a
+	ld a,$38
+	ld (wDeathRespawnBuffer.y),a
+	ld a,$50
+	ld (wDeathRespawnBuffer.x),a
+	xor a
+	ld (wDeathRespawnBuffer.stateModifier),a
+
 	jp saveFile
 /*
 	jp fadeoutToWhite
