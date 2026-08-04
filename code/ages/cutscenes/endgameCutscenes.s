@@ -1225,7 +1225,9 @@ endgameCutsceneHandler_0f:
 	ld a,$3c
 	ld (wTmpcbb3),a
 	ld a,$64
-	ld bc,$4850
+; where Link should spawn
+; (change $a8 YX in objects/ages/extraData3.s too)
+	ld bc,$4258;$4850 
 	jp createEnergySwirlGoingIn
 @@substate2:
 	call decCbb3
@@ -1838,10 +1840,18 @@ endgameCutsceneHandler_22:
 	ld a,$ff
 	ld (wTilesetAnimation),a
 
-	ld d,>w1Link.id
-	ld e,<w1Link.id
-	ld a,SPECIALOBJECT_LINK_CUTSCENE
-	ld (de),a
-	call objectSetInvisible
+	call clearDynamicInteractions
+	call clearEnemies
+	call clearParts
+	call clearAllItemsAndPutLinkOnGround
+	call clearAllParentItems
+	call clearPegasusSeedCounter
+	call clearOam
+	call clearLinkObject
+	;ld d,>w1Link.id
+	;ld e,<w1Link.id
+	;ld a,SPECIALOBJECT_LINK_CUTSCENE
+	;ld (de),a
+	;call objectSetInvisible
 @state2:
 	jpab cutscenesBank10.agesFunc_10_7298
