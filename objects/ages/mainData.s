@@ -927,7 +927,6 @@ group0Map48ObjectData:
 	obj_End
 
 group0Map49ObjectData:
-	obj_Interaction $2f $00
 	obj_End
 
 group0Map4bObjectData:

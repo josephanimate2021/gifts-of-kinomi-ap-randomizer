@@ -619,7 +619,7 @@ interaction4aSubidData:
 	m_InteractionSubidData $00 $00 $22
 	m_InteractionSubidData $00 $00 $22
 	m_InteractionSubidData $6b $12 $14
-	m_InteractionSubidData $85 $00 $46
+	m_InteractionSubidData $85 $00 $46 ; tree branches
 	m_InteractionSubidData $00 $60 $a0
 	m_InteractionSubidData $00 $6a $93
 	m_InteractionSubidDataEnd

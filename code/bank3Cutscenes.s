@@ -741,9 +741,9 @@ intro_titlescreen:
 	call clearOam
 
 .ifdef ROM_AGES
-	ld hl,bank3f.titlescreenMakuSeedSprite
-	ld e,:bank3f.titlescreenMakuSeedSprite
-	call addSpritesFromBankToOam
+	;ld hl,bank3f.titlescreenMakuSeedSprite
+	;ld e,:bank3f.titlescreenMakuSeedSprite
+	;call addSpritesFromBankToOam
 
 	ld a,(wTmpcbb3)
 	and $20
@@ -1935,14 +1935,14 @@ introCinematic_preTitlescreen_state0:
 	jr nz,++
 	ld (hl),INTERAC_INTRO_SPRITES_1
 	inc l
-	ld (hl),$08
+	ld (hl),$08 ;[subid]
 	ld l,Interaction.y
 	ld a,$60
-	ldi (hl),a
-	ldi (hl),a
+	ldi (hl),a ;[yh]
+	ldi (hl),a ;[x]
 	ld a,$3d
 	inc l
-	ldi (hl),a
+	ldi (hl),a ;[z]
 ++
 
 	; Spawn birds
