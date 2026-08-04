@@ -4540,3 +4540,9 @@ paletteDataManhandla:
 	m_RGB16 $00 $00 $00
 	m_RGB16 $00 $12 $00
 	m_RGB16 $19 $1f $19
+
+paletteDataZeldaInFileMenu:
+	m_RGB16 $1f $1f $1f
+	m_RGB16 $1f $16 $06
+	m_RGB16 $1b $00 $00
+	m_RGB16 $00 $00 $00

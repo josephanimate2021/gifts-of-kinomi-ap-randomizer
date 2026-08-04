@@ -41,6 +41,7 @@ m_PaletteHeaderStart $05, PALH_05
 	m_PaletteHeaderBg  0, 1, paletteData48e0
 	m_PaletteHeaderBg  2, 5, paletteData5878
 	m_PaletteHeaderSpr 0, 4, standardSpritePaletteData
+	m_PaletteHeaderSpr 1, 1, paletteDataZeldaInFileMenu
 	m_PaletteHeaderSpr 4, 3, paletteData5858
 	m_PaletteHeaderEnd
 

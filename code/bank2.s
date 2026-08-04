@@ -2638,19 +2638,22 @@ fileSelectDrawLink:
 	.db $4e $70 $00 $2a
 	.db $3e $6b $04 $2a
 
+ ; $06 - completed file (with TODO: Zelda)
 @sprites9:
-	.db $04
+	.db $05
 	.db $4e $58 $00 $00
 	.db $4e $60 $02 $00
-	.db $4e $68 $06 $09
-	.db $4e $70 $08 $09
+	.db $41 $6c $17	$09 ; crown
+	.db $4e $68 $06 $0b ; Zelda
+	.db $4e $70 $08 $0b
 
 @spritesa:
-	.db $04
+	.db $05
 	.db $4e $58 $02 $20
 	.db $4e $60 $00 $20
-	.db $4e $68 $08 $29
-	.db $4e $70 $06 $29
+	.db $41 $6c $17	$29
+	.db $4e $68 $08 $2b
+	.db $4e $70 $06 $2b
 
 @spritesb:
 	.db $02

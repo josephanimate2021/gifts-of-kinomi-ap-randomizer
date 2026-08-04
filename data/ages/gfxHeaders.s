@@ -812,7 +812,7 @@ m_GfxHeaderStart $ba, GFXH_FILE_MENU_WITH_MESSAGE_SPEED
 	; Fall through
 m_GfxHeaderStart $a1, GFXH_FILE_MENU
 	m_GfxHeader spr_din_1, $8001, $06
-	m_GfxHeader spr_nayru_1, $8061, $04
+	m_GfxHeader spr_zelda_1, $8061, $14 ;Zelda and crown
 	m_GfxHeader gfx_messagespeed, $9200
 	m_GfxHeader gfx_pickafile_2, $8801
 	m_GfxHeader gfx_copy, $8a01
