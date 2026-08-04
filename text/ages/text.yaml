@@ -2816,12 +2816,11 @@ groups:
     index:
     - 0x62
     - 0x63
-    text: |-
-      \Link,
-      you did it! We
-      knew you could!
-      Leave this to
-      us!
+    text: >-
+      \Link, it's us, the \col(1)Oracles\col(0)!
+      You did it!
+      
+      We knew you could! Leave this to us!
 
   - name:
     - TX_0564
@@ -7182,10 +7181,12 @@ groups:
   - name: TX_1101
     index: 0x01
     text: >-
-      \pos(2)Hi, I'm Deffie!
+      Hi, I'm Deffie!
       Won't you play
       hide 'n' seek?\stop
+
       No?\stop
+
       Aw!
 
       There is a \col(1)labyrinth\col(0) beneath
@@ -7197,7 +7198,7 @@ groups:
   - name: TX_1102
     index: 0x02
     text: >-
-      \pos(2)I'm Triffie!
+      I'm Triffie!
       Where did you come from?\stop
 
       Was it from that icky \col(1)labyrinth\col(0)?
@@ -7214,7 +7215,7 @@ groups:
   - name: TX_1103
     index: 0x03
     text: >-
-      \pos(2)I'm Chloe! The kind \col(1)witch\col(0)
+      I'm Chloe! The kind \col(1)witch\col(0)
       to the west offers many remedies,
       but I think she's looking for a mushroom!
 
@@ -7224,7 +7225,7 @@ groups:
   - name: TX_1104
     index: 0x04
     text: >-
-      \pos(2)What's that, mister?
+      What's that, mister?
       Oh! Is that the \col(1)Cane\col(0)?\stop
 
       Let me have it!
@@ -7237,7 +7238,7 @@ groups:
   - name: TX_1105
     index: 0x05
     text: >-
-      \pos(2)The \col(1)labyrinth\col(0)
+      The \col(1)labyrinth\col(0)
       has an exit all the way
       on top of the cliffs!
 
@@ -7246,7 +7247,7 @@ groups:
   - name: TX_1106
     index: 0x06
     text: >-
-      \pos(2)Do you think this
+      Do you think this
       forest will last forever?
 
       I hope so! It is my home!\stop
@@ -7263,7 +7264,7 @@ groups:
   - name: TX_1107
     index: 0x07
     text: >-
-      \pos(2)At the top of these cliffs,
+      At the top of these cliffs,
       there is a spring that feeds the whole forest.
 
       I just can't imagine if the waters
@@ -7274,7 +7275,7 @@ groups:
   - name: TX_1108
     index: 0x08
     text: >-
-      \pos(2)Ooh, ooh!
+      Ooh, ooh!
       Where did you get those?
 
       I want to play with those \col(1)gloves\col(0)!
@@ -7286,7 +7287,7 @@ groups:
   - name: TX_1109
     index: 0x09
     text: >-
-      \pos(2)I made it up here, mister!
+      I made it up here, mister!
       The spring is just as beautiful
       as I imagined!
 
@@ -7295,7 +7296,7 @@ groups:
   - name: TX_110a
     index: 0x0a
     text: >-
-      \pos(2)The kind \col(1)witch\col(0)
+      The kind \col(1)witch\col(0)
       told us that there is a
       cursed \col(1)mine\col(0)
       connected to the \col(1)labyrinth\col(0)
@@ -7312,14 +7313,14 @@ groups:
   - name: TX_110b
     index: 0x0b
     text: >-
-      \pos(2)I can't believe the waters to our
+      I can't believe the waters to our
       beautiful forest start from this
       itty bitty spring!
 
   - name: TX_110c
     index: 0x0c
     text: >-
-      \pos(2)Are you going up to the
+      Are you going up to the
       cursed \col(1)mine\col(0)?
 
       You are now our friend,
@@ -7334,14 +7335,14 @@ groups:
   - name: TX_110d
     index: 0x0d
     text: >-
-      \pos(2)Be careful up there, mister!
+      Be careful up there, mister!
 
       My sister, Uffie, is really concerned about your safety!
 
   - name: TX_110e
     index: 0x0e
     text: >-
-      \pos(2)Mister, you're back!\stop
+      Mister, you're back!\stop
 
       Oh, I'm so happy! We should celebrate!
 
@@ -7350,7 +7351,7 @@ groups:
   - name: TX_110f
     index: 0x0f
     text: >-
-      \pos(2)Uffie and Triffie couldn't stop
+      Uffie and Triffie couldn't stop
       worrying about you!
 
       You won't be going back there, right?\stop
@@ -7362,7 +7363,7 @@ groups:
   - name: TX_1110
     index: 0x10
     text: >-
-      \pos(2)I'm happy you're back!
+      I'm happy you're back!
 
       But about the spring...
       Do you think we could make sure
@@ -7373,10 +7374,10 @@ groups:
   - name: TX_1111
     index: 0x11
     text: >-
-      \pos(2)Pssst, mister!
+      Pssst, mister!
 
       Is this where you are from?
-      Oh, it very pretty!
+      Oh, it is very pretty!
 
       I'll tell my sisters all about this!
 
@@ -9717,8 +9718,14 @@ groups:
 
   - name: TX_1d09
     index: 0x09
-    text: |-
-      The guards have blocked off the \col(1)villa\col(0) to prevent further attacks! \col(1)Din\col(0) and I weren't gone for long...
+    text: >-
+      The guards have blocked off the \col(1)villa\col(0)
+      to prevent further attacks! \col(1)Din\col(0)
+      and I weren't gone for long...
+
+      Oh, \Link, that fearsome beast wandered into
+      an ancient mine closed \col(1)long ago\col(0)!
+      Please find Zelda!
 
   - name: TX_1d0a
     index: 0x0a
@@ -14840,11 +14847,14 @@ groups:
       Additionally thanks to \col(1)Kaip\col(0) for
       assistance on graphics when \col(1)Gamma\col(0) and I were new to hacking.\stop
       Original idea for the hack conceived by \col(1)ZerotoKoops\col(0) and \col(1)Gamma\col(0).\stop
+      
       Finally, thank you all for playing my hack!
       If you have any feedback, please share it on the Wind Fishes' Breeze discord!
       And if this has made you interested in making your own romhack,
       please join the discord if you haven't already!
 
+      Go outside to enjoy the party!
+      
       Enter the villa to save and reset the game. \heart
 
   - name: TX_2e1c

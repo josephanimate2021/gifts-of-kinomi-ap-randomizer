@@ -1844,5 +1844,4 @@ endgameCutsceneHandler_22:
 	ld (de),a
 	call objectSetInvisible
 @state2:
-
 	jpab cutscenesBank10.agesFunc_10_7298

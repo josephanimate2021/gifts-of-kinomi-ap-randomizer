@@ -11,6 +11,8 @@ interactionCode3f:
 
 @state0:
 	call interactionIncState
+	ld a,$06
+	call objectSetCollideRadius
 	call interactionInitGraphics
 	call objectMarkSolidPosition
 	call objectSetVisiblec2

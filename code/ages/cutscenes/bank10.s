@@ -390,9 +390,9 @@ agesFunc_10_7298:
 	ld (wDeathRespawnBuffer.room),a
 	ld a,DIR_DOWN
 	ld (wDeathRespawnBuffer.facingDir),a
-	ld a,$38
+	ld a,$30
 	ld (wDeathRespawnBuffer.y),a
-	ld a,$50
+	ld a,$78
 	ld (wDeathRespawnBuffer.x),a
 	xor a
 	ld (wDeathRespawnBuffer.stateModifier),a

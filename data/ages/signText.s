@@ -49,6 +49,7 @@ signTextGroup2Data:
 signTextGroup3Data:
 	.db $15 $78 $05
 	.db $14 $49 $06
+	.db $35, <ROOM_AGES_01c, <TX_2e1b ; Credits
 	.db $00
 
 signTextGroup4Data:

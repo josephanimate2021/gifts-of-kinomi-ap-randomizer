@@ -5196,7 +5196,7 @@ group1Map12ObjectData:
 	obj_SpecificEnemyA 0 $5a $39 $00 $00
 	obj_Interaction $e1 $00 $28 $48
 	obj_Interaction INTERAC_MUSTACHE_MAN $02 $58 $28
-	obj_Interaction INTERAC_FOREST_FAIRY $02 $68 $68 $02
+	obj_Interaction INTERAC_FOREST_FAIRY $02 $68 $68 $03
 	obj_Interaction INTERAC_FOREST_FAIRY $02 $58 $38 $03
 	obj_End
 

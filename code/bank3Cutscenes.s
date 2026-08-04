@@ -519,6 +519,12 @@ intro_capcomScreen:
 	ld a,PALH_91;_AQUAMENTUS_SCREEN; 	PALH_SEASONS_91;PALH_06
 	call loadPaletteHeader
 
+/*
+	lda $06
+	ld (wTilesetAnimation),a
+	call loadAnimationData
+*/
+
 	lda $00
 	call @loadAquamentusSprites
 

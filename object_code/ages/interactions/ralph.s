@@ -14,6 +14,8 @@ interactionCode37:
 
 @state0:
 	call interactionIncState
+	ld a,$06
+	call objectSetCollideRadius
 	call interactionInitGraphics
 	call objectMarkSolidPosition
 	call objectSetVisiblec2
@@ -48,7 +50,8 @@ interactionCode37:
 	.dw mainScripts.ralph_subid1Script ; ROOM_AGES_035
 	.dw mainScripts.ralph_subid2Script ; ROOM_AGES_218
 	.dw mainScripts.ralph_subid3Script ; ROOM_AGES_041
-	.dw mainScripts.ralph_subid4Script ; ROOM_AGES_014 | ROOM_AGES_213
+	.dw mainScripts.ralph_subid4Script ; ROOM_AGES_001
+	.dw mainScripts.ralph_subid5Script ; ROOM_AGES_014 | ROOM_AGES_213
 
 
 

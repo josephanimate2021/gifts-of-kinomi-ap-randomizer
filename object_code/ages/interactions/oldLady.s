@@ -11,8 +11,6 @@ interactionCode3d:
 
 @state0:
 	call interactionIncState
-
-	call interactionInitGraphics
 	;ld a,$06
 	;call objectSetCollideRadius
 	call objectMarkSolidPosition

@@ -27,6 +27,8 @@ interactionCode3a:
 	jp z,@initSubid0c
 
 	call interactionIncState
+	ld a,$06
+	call objectSetCollideRadius
 	call interactionInitGraphics
 	call objectMarkSolidPosition
 	call objectSetVisiblec2
