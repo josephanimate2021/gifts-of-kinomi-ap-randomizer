@@ -555,7 +555,7 @@ interaction3cSubidData:
 	m_InteractionSubidData $45 $10 $02
 	m_InteractionSubidData $3e $10 $02
 	m_InteractionSubidData $45 $10 $02
-	m_InteractionSubidData $3e $10 $02
+	m_InteractionSubidData $45 $10 $02
 	m_InteractionSubidData $3e $10 $03
 	m_InteractionSubidData $45 $10 $00
 interaction41SubidData:

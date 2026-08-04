@@ -5426,7 +5426,6 @@ group2Map13ObjectData:
 	obj_Interaction INTERAC_ZELDA $01 $58 $58 $0c
 	obj_Interaction INTERAC_MALE_VILLAGER $03 $68 $38
 	obj_Interaction INTERAC_RALPH $05 $48 $68
-	obj_Interaction INTERAC_MALE_VILLAGER $07 $58 $38
 	obj_End
 
 group2Map04ObjectData:
@@ -5448,6 +5447,7 @@ group2Map23ObjectData:
 group2Map24ObjectData:
 	obj_Interaction INTERAC_FOREST_FAIRY $03 $18 $88 $03
 	obj_Interaction INTERAC_BOY_2 $04 $28 $68
+	obj_Interaction INTERAC_MALE_VILLAGER $07 $48 $28
 	obj_End
 
 group2Map03ObjectData:

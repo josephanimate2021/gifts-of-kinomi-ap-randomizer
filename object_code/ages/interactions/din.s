@@ -31,8 +31,13 @@ interactionCodeaa:
 	call objectMarkSolidPosition
 	call objectSetVisiblec2
 
+	ld e,Interaction.subid
+	ld a,(de)
+	cp 9
+	jr z,+
 	ld a,INTERAC_DIN
 	ld (wInteractionIDToLoadExtraGfx),a
++
 
 ; Whether to delete
 	callab agesInteractionsBank09.getGameProgress_Seasons
@@ -76,7 +81,6 @@ interactionCodeaa:
 	jr nz,+
 	ld a,$04
 	call interactionSetAnimation
-	call interactionLoadExtraGraphics
 +
 	jp @@state1
 
@@ -107,7 +111,7 @@ interactionCodeaa:
 	.dw mainScripts.dinScript_generic ; $06
 	.dw mainScripts.dinScript_generic ; $07
 	.dw mainScripts.dinScript_generic ; $08
-	.dw mainScripts.nayruScript_endgame ; $09
+	.dw mainScripts.dinScript_endgame ; $09
 
 @subid0a:
 	ld e,Interaction.state

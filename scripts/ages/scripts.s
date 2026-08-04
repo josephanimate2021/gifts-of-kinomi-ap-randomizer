@@ -1768,7 +1768,7 @@ nayruScript_zeldaKidnapped:
 	scriptend
 
 nayruScript_endgame:
-	setcollisionradii $0c $06
+	setcollisionradii $06 $06
 	makeabuttonsensitive
 @npcLoop:
 	checkabutton
@@ -1778,7 +1778,18 @@ nayruScript_endgame:
 	checktext
 	wait 20
 	setanimation $04
-	scriptjump @npcLoop	
+	scriptjump @npcLoop
+
+dinScript_endgame:
+	setcollisionradii $0c $06
+	makeabuttonsensitive
+@npcLoop:
+	checkabutton
+	;setanimationfromangle
+	showloadedtext
+	checktext
+	wait 20
+	scriptjump @npcLoop
 
 
 /*
