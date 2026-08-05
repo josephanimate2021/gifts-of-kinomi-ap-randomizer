@@ -1846,7 +1846,7 @@ groups:
   - name: TX_030a
     index: 0x0a
     text: |-
-      \Link's House
+      \Link's Cottage
 
   - name: TX_030b
     index: 0x0b
@@ -19283,40 +19283,33 @@ groups:
     - 0x04
     - 0x05
     - 0x0d
-    text: |-
+    text: >-
       \pos(2)Uhhn... \Link!\stop
+
       ...It's ended.
-      Thank you,
-      \Link.
-      You halted the
-      completion
-      of the rites
-      that would have
+
+      Thank you, \Link.
+      You halted the completion
+      of the rites that would have
       revived \col(3)Ganon\col(0)!\stop
-      Since they could
-      not sacrifice me
-      in their final
-      rite, the powers
-      of darkness
-      could revive
-      only a mindless,
-      raging \col(3)Ganon\col(0).\stop
-      Your power,
-      wisdom and
-      courage were
-      able to prevent
-      \col(3)Twinrova's\col(0)
-      planned
-      resurrection of
-      \col(3)Ganon\col(0).\stop
-      Now hope and
-      peace can return
-      to the hearts of
-      the people.
-      Thank you! You
-      are a true hero!
-      Let us return
-      to the others!
+
+      Since they could not sacrifice me
+      in their final rite, the powers
+      of darkness could revive
+      only a mindless, raging \col(3)Ganon\col(0).\stop
+
+      Your power, wisdom and
+      courage were able to prevent
+      \col(3)Twinrova's\col(0) planned
+      resurrection of \col(3)Ganon\col(0) again.\stop
+
+      Now hope and peace can return
+      to the hearts of the people once again.
+      Thank you! You are a true hero!
+      Let us return to the others!
+
+      I'm really wanting some
+      of that birthday cake!
 
   - name:
     - TX_3d06

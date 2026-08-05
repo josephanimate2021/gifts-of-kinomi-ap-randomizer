@@ -1819,7 +1819,6 @@ endgameCutsceneHandler_22:
 	.dw @state2
 
 @state0:
-;ld b,b
 	callab bank3Cutscenes.cutscene_clearTmpCBB3
 	ld a,$01 ; set to 3 since this is what the original was at
 	ld ($cbc1),a
