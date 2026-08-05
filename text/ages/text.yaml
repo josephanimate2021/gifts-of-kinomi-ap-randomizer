@@ -1809,12 +1809,12 @@ groups:
   - name: TX_0303
     index: 0x03
     text: |-
-      Deeper Woods
+      Forgotten Hedges
 
   - name: TX_0304
     index: 0x04
     text: |-
-      Forgotten Hedges
+      Deeper Woods
 
   - name:
     - TX_0305
@@ -7853,10 +7853,14 @@ groups:
 
   - name: TX_1201
     index: 0x01
-    text: |-
+    text: >-
       It sounds like
       the magic barrier
       was detroyed!
+
+      \col(3)Winter\col(0) has
+      returned to the
+      \col(1)north\col(0) stump!
 
   - name: TX_1202
     index: 0x02
@@ -9521,10 +9525,12 @@ groups:
     text: |-
       \Link, this mystic \col(1)shrine\col(0) dedicated to the seasons...
       What did you think? Was it wonderful\stop
+
       Is that a \col(1)cape\col(0)? Oh how I'd love to \col(1)fly\col(0) as well!
       Then people from all lands could witness my famous dancing!
       Oh, I hope the party starts soon so we can dance together!\stop
-      \col(4)Nayru\col(0) and I are thinking of going out to see some of Kinomi before the party. Don't be late!
+
+      \col(3)Nayru\col(0) and I are thinking of going out to see some of Kinomi before the party. Don't be late!
 
   - name: TX_1c07
     index: 0x07
@@ -9564,7 +9570,7 @@ groups:
     index: 0x0d
     text: |-
       \pos(1)Why would it go west?\stop
-      Oh this is terrible! What about the party? I wanted my gift!
+      Oh this is terrible! What about the party? I wanted my gifts!
 
   - name: TX_1c0e
     index: 0x0e
@@ -14893,7 +14899,7 @@ groups:
     index: 0x21
     text: |-
       Warning!!!\stop
-      Vincent is bashful and does not like to be stared at.\stop
+      Raj the guard lacks the fortitude to withstand a watchful gaze.\stop
       Leave him alone for your safety!
 
   - name: TX_2e22
@@ -19131,20 +19137,20 @@ groups:
   - name: TX_3903
     index: 0x03
     text: |-
-      Flora flank my path.
+      \col(1)Florac\ol(0) flank my path.
 
   - name:
     - TX_3904
     index:
     - 0x04
     text: |-
-      My righteousness is a shield.
+      My \col(1)right\col(0)eousness is a shield.
 
   - name: TX_3905
     index: 0x05
     text: |-
-      Neither Heaven nor Earth,\stop
-      neither land nor sea.
+      Neither Heaven nor Waves,\stop
+      neither cloud nor sea.
 
   - name: TX_3906
     index: 0x06

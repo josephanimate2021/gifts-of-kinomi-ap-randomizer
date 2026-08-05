@@ -10,7 +10,7 @@ interactionCode37:
 
 @state1:
 	call interactionRunScript
-	jp interactionAnimateAsNpc
+	jp npcFaceLinkAndAnimate
 
 @state0:
 	call interactionIncState

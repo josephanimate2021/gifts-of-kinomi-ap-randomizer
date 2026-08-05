@@ -735,7 +735,7 @@ group0Map11ObjectData:
 group0Map15ObjectData:
 	obj_Pointer group0Map15EnemyObjectData
 	obj_Interaction INTERAC_ZELDA $01 $48 $48 $04
-	obj_Interaction INTERAC_BOY_2 $02 $38 $18
+	obj_Interaction INTERAC_BOY_2 $03 $38 $18
 	obj_End
 
 group0Map16ObjectData:
@@ -3180,6 +3180,7 @@ group4Map7eObjectData:
 	obj_Pointer group4Map7eEnemyObjectData
 	obj_Interaction $7e $00 $58 $78
 	obj_Interaction $12 $02 $38 $b8
+	obj_Interaction INTERAC_DUNGEON_STUFF $00 $88 $78
 	obj_End
 
 group4Map7fObjectData:
@@ -5239,7 +5240,6 @@ group0Map61ObjectData:
 	obj_Interaction $82 $01 $30 $18
 	obj_Pointer group0Map61EnemyObjectData
 	obj_Interaction $e9 $00 $50 $50
-	obj_Interaction INTERAC_MISCELLANEOUS_2 $19 $68 $18 $0d
 	obj_End
 
 group1Map50ObjectData:
