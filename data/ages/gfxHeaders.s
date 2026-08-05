@@ -201,11 +201,11 @@ m_GfxHeaderStart $1a, GFXH_DUNGEON_A_BLURB
 	m_GfxHeaderEnd
 
 m_GfxHeaderStart $1b, GFXH_DUNGEON_B_BLURB
-	m_GfxHeader gfx_blurb_heroscave, $8c00
+	m_GfxHeader gfx_blurb_d2, $8c00
 	m_GfxHeaderEnd
 
 m_GfxHeaderStart $1c, GFXH_DUNGEON_C_BLURB
-	m_GfxHeader gfx_blurb_d6, $8c00
+	m_GfxHeader gfx_blurb_d5, $8c00
 	m_GfxHeaderEnd
 
 m_GfxHeaderStart $1d, GFXH_DUNGEON_D_BLURB

@@ -19137,7 +19137,7 @@ groups:
   - name: TX_3903
     index: 0x03
     text: |-
-      \col(1)Florac\ol(0) flank my path.
+      \col(1)Flora\col(0) flank my path.
 
   - name:
     - TX_3904
