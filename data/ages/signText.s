@@ -57,6 +57,7 @@ signTextGroup4Data:
 	.db $72, <ROOM_AGES_447, <TX_2e11 ; Slingshot hint
 	.db $8c, <ROOM_AGES_471, <TX_2e21 ; Armos hint
 	.db $62, <ROOM_AGES_441, <TX_2e22 ; Cane companion hint
+	.db $77, <ROOM_AGES_43d, <TX_2e22 ; Cane companion hint
 	.db $00
 
 signTextGroup5Data:

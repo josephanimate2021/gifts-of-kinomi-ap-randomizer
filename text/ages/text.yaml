@@ -7207,7 +7207,7 @@ groups:
 
       The kind \col(1)witch\col(0)
       told us that she has many magical powers,
-      but she sometimes like to be left alone.
+      but she sometimes likes to be left alone.
 
       She locked her door and I think
       the key is now hidden in the \col(1)labyrinth\col(0)!
@@ -9809,9 +9809,7 @@ groups:
       through time
       to another age.\stop
       Please, chosen
-      hero, find me! I am
-      counting on you,
-      \Link.
+      hero, find me! I am counting on you, \Link.
 
   - name: TX_1d12
     index: 0x12
@@ -17829,7 +17827,7 @@ groups:
     index: 0x04
     text: |-
       You fought the \col(3)blue\col(0) beast? Where was he? What did he give you? Flippers? What strange technology...\stop
-      In another of my books, it tells of how \col(1)caves\col(0) can \col(2)freeze\col(0) in the harsh cold of winter.
+      In another of my books, it tells of how \col(1)caves\col(0) can \col(3)freeze\col(0) in the harsh cold of winter.
 
   - name: TX_3305
     index: 0x05
