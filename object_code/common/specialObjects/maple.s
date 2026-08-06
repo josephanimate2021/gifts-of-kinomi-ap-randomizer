@@ -1445,6 +1445,7 @@ mapleSpawnItemDrops:
 	cp $05
 	jp nc,mapleSpawnItemDrop
 
+	jr @notHeartPiece
 	; If this is the heart piece, only drop it if it hasn't been obtained yet
 	or a
 	jr nz,@notHeartPiece
