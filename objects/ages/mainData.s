@@ -696,7 +696,7 @@ group0Map06ObjectData:
 
 group0Map07ObjectData:
 	obj_Pointer group0Map07EnemyObjectData
-	obj_Interaction $dc $19 $28 $78
+	obj_Interaction $dc $19 $28 $78 $10
 	obj_End
 
 group0Map09ObjectData:
