@@ -1624,7 +1624,9 @@ group1Map5dObjectData:
 group1Map60ObjectData:
 	obj_Pointer group1Map60EnemyObjectData
 	obj_Interaction $e1 $00 $18 $78
-	obj_Interaction $dc $02 $58 $18 $0c
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $02 $58 $18
+	obj_Condition $0e
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $07 $58 $18
 	obj_End
 
 group1Map61ObjectData:
@@ -2636,7 +2638,7 @@ group4Map25ObjectData:
 
 group4Map27ObjectData:
 	obj_Pointer group4Map27EnemyObjectData
-	obj_Interaction $dc $1a $68 $78
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $19 $68 $78
 	obj_End
 
 group4Map28ObjectData:
@@ -2646,7 +2648,7 @@ group4Map28ObjectData:
 group4Map29ObjectData:
 	obj_Pointer group4Map29EnemyObjectData
 	obj_Interaction $c7 $04 $0f $14
-	obj_Interaction $dc $19 $88 $c8
+	obj_Interaction $dc $19 $88 $c8 $0e
 	obj_End
 
 group4Map2aObjectData:
@@ -2896,7 +2898,7 @@ group4Map52ObjectData:
 
 group4Map53ObjectData:
 	obj_Pointer group4Map53EnemyObjectData
-	obj_Interaction $dc $1a $48 $48
+	obj_Interaction $dc $1a $48 $48 $0c
 	obj_End
 
 group4Map54ObjectData:

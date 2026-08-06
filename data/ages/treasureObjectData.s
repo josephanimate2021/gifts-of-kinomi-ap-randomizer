@@ -249,7 +249,7 @@ treasureObjectData28:
 	m_TreasureSubid $08, $07, $05, $2b, TREASURE_OBJECT_RUPEES_1c
 	m_TreasureSubid $08, $08, $8b, $2c, TREASURE_OBJECT_RUPEES_1d ; new
 	m_TreasureSubid $08, $09, $8c, $2c, TREASURE_OBJECT_RUPEES_1e ; new
-	m_TreasureSubid $08, $0a, $25, $85, TREASURE_OBJECT_RUPEES_1f ; new
+	m_TreasureSubid $08, $0a, $06, $85, TREASURE_OBJECT_RUPEES_1f ; new
 	m_TreasureSubid $08, $0b, $06, $2c, TREASURE_OBJECT_RUPEES_20
 	m_TreasureSubid $08, $0c, $07, $86, TREASURE_OBJECT_RUPEES_21
 	m_TreasureSubid $08, $0d, $09, $86, TREASURE_OBJECT_RUPEES_22
@@ -271,7 +271,7 @@ treasureObjectData28:
 	m_TreasureSubid $28, $07, $05, $2b, TREASURE_OBJECT_RUPEES_32
 	m_TreasureSubid $28, $08, $8b, $2c, TREASURE_OBJECT_RUPEES_33 ; new
 	m_TreasureSubid $28, $09, $8c, $2c, TREASURE_OBJECT_RUPEES_34 ; new
-	m_TreasureSubid $28, $0a, $25, $85, TREASURE_OBJECT_RUPEES_35 ; new
+	m_TreasureSubid $28, $0a, $06, $85, TREASURE_OBJECT_RUPEES_35 ; new
 	m_TreasureSubid $28, $0b, $06, $2c, TREASURE_OBJECT_RUPEES_36
 	m_TreasureSubid $28, $0c, $07, $86, TREASURE_OBJECT_RUPEES_37
 	m_TreasureSubid $28, $0d, $09, $86, TREASURE_OBJECT_RUPEES_38
