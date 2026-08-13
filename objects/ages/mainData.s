@@ -1410,11 +1410,6 @@ group1Map15ObjectData:
 	obj_End
 
 group1Map16ObjectData:
-	obj_Interaction $40 $04 $38 $38
-	obj_Interaction $40 $06 $68 $50
-	obj_Interaction $4d $00 $28 $50
-	obj_Interaction $36 $01 $f0 $58
-	obj_Interaction $40 $0d $28 $48 $01
 	obj_End
 
 group1Map17ObjectData:

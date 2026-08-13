@@ -361,8 +361,8 @@ group0Map43EnemyObjectData:
 	obj_EndPointer
 
 group0Map16EnemyObjectData:
-	obj_Condition $04
-	obj_SpecificEnemyA $00 ENEMY_WATER_TEKTITE $00 $48 $28
+	obj_Condition $09
+	obj_RandomEnemy $20 ENEMY_WATER_TEKTITE $00
 	obj_EndPointer
 
 group0Map27EnemyObjectData:
