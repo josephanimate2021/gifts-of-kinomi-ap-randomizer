@@ -3210,10 +3210,7 @@ groups:
     - 0xb5
     - 0xc5
     text: >-
-      \Link, you seem very far away now! What is taking you so long?
-      When are you coming back?\stop
-      
-      There seem to be some new creatures here at the party,
+      \Link, there seem to be some new creatures here at the party,
       calling themselves the \col(2)Tokay\col(4).
       They say they've settled in this land for generations,
       but I don't remember them yesterday!\stop
@@ -3244,14 +3241,20 @@ groups:
     index:
     - 0xb7
     - 0xc7
-    text: |-
-      \Link! I
-      still hear an
-      \col(2)essence\col(4) echoing
-      near \col(3)Rolling
-      Ridge\col(4). Huh? I
-      think someone's
-      come!
+    text: >-
+      \Link, you seem very far away now! What is taking you so long?
+      When are you coming back?\stop
+
+      \col(3)Nayru\col(4) told me about the \col(2)Labyrinth\col(4).
+      She said there was a \col(2)staff\col(4) that could summon blocks!
+
+      That sounds amazing!
+      But she also said that it was sealed long ago
+      and the only hopes you'd have in
+      finding it would be in the \col(2)present\col(4)
+      when the \col(3)walls have been made weaker\col(4)!\stop
+
+      Oh, \Link! Please hurry back to the our time!
 
   - name:
     - TX_05b8
@@ -3259,16 +3262,19 @@ groups:
     index:
     - 0xb8
     - 0xc8
-    text: |-
-      \Link! I have
-      great news!!!
-      \col(3)Queen Ambi\col(4) has
-      just left the
-      palace! Now is
-      your chance!\stop
-      This may be your
-      only opportunity
-      to save \col(3)Nayru\col(4)!
+    text: >-
+      \Link! It's me, Zelda!
+      So you found a \col(2)sword\col(4)!
+
+      Well, it's best to go in search
+      of those \col(2)gifts\col(4)!
+
+      Please be back in time for the party!\stop
+
+      Explore the town, and go either \col(2)east\col(4) or \col(2)west\col(4)
+      to find the \col(2)gifts\col(4) for the oracles!
+
+      I'm sure you'll figure out what they want as you go, \Link!
 
   - name:
     - TX_05b9
@@ -3427,20 +3433,40 @@ groups:
   data:
   - name: TX_0600
     index: 0x00
-    text: |-
+    text: >-
       I've invited
+
       \col(3)Nayru\col(0) and \col(1)Din\col(0)
+
       to my villa to
+
       celebrate their
+
       birthdays!\stop
+
       You didn't know
+
       that they shared
+
       a birthday? Scoff!
+
       You should go
+
       find some gifts
+
       for them or else
+
       they will be mad
-      at you!
+
+      at you!\stop
+
+      But first, could you help my guards clear
+      away some of the \col(1)monsters\col(0) that have
+      moved into the villa?
+
+      We don't come as often as I'd like and
+      they always fill the place
+      while we're gone.
 
   - name: TX_0601
     index: 0x01

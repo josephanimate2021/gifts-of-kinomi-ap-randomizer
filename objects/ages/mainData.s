@@ -673,6 +673,7 @@ group0Map03ObjectData:
 	obj_Interaction INTERAC_ZELDA $01 $38 $78 $0b
 	obj_Interaction INTERAC_MALE_VILLAGER $01 $68 $38
 	obj_Interaction INTERAC_BOY_2 $00 $38 $38
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $07
 	obj_End
 
 group0Map04ObjectData:
@@ -5251,6 +5252,7 @@ group1Map30ObjectData:
 	obj_Interaction $e1 $00 $68 $68
 	obj_Interaction $90 $12 $28 $58
 	obj_Interaction INTERAC_FOREST_FAIRY $01 $38 $48
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $01 $00 $00 $06
 	obj_End
 
 group2Map0aObjectData:

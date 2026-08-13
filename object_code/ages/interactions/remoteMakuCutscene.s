@@ -22,7 +22,7 @@ interactionCode8a:
 	ld a,(wPaletteThread_mode)
 	cpa $00
 	ret nz
-	
+
 	ld e,Interaction.subid
 	ld a,(de)
 	ld e,Interaction.var3d
@@ -49,6 +49,8 @@ interactionCode8a:
 	.dw @val03 ; obtained Rod of Seasons
 	.dw @val04 ; pushed rock first time
 	.dw @val05 ; obtained all 4 gems
+	.dw @val06 ; time portals added
+	.dw @val07 ; obtained sword
 
 @val00:
 	lda $00
@@ -113,6 +115,20 @@ interactionCode8a:
 	lda GLOBALFLAG_GOT_ALL_4_STONES
 	call setGlobalFlag
 	ldbc $00,<TX_05b6
+	jp @setTextForScript
+
+@val06:
+	lda GLOBALFLAG_WATER_POLLUTION_FIXED
+	call checkGlobalFlag
+	jp z,@deleteSelfAndReturn
+	ldbc $00,<TX_05b7
+	jp @setTextForScript
+
+@val07:
+	lda TREASURE_SWORD
+	call checkTreasureObtained
+	jp nc,@deleteSelfAndReturn
+	ldbc $00,<TX_05b8
 	jp @setTextForScript
 
 /*	
