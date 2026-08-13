@@ -22657,8 +22657,9 @@ groups:
     index: 0x12
     text: |-
       \col(2)Zelda\col(0) said she
-      wanted to throw a party for the Oracles,
-      but we haven't seen them around!
+      wanted to throw a party for the Oracles!
+
+      We must prepare for anything!
 
   - name: TX_5913
     index: 0x13
