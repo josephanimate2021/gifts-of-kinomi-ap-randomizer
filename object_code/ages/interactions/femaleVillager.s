@@ -47,11 +47,11 @@ interactionCode3b:
 	jp interactionSetScript
 
 @womanSubidAppearances:
-	.db $00 $00 $00 $01
+	.db $00 $00 $01 $08
 	.db $01 $01 $01 $02
 	.db $02 $03
 @galSubidAppearances:
-	.db $04 $04 $04 $05
+	.db $04 $04 $05 $09
 	.db $05 $06 $06 $06
 	.db $06 $07
 
@@ -64,6 +64,8 @@ interactionCode3b:
 	.dw mainScripts.gal_subid1Script ; ROOM_AGES_004
 	.dw mainScripts.gal_subid2Script ; ROOM_AGES_024
 	.dw mainScripts.gal_subid3Script ; ROOM_AGES_014 | ROOM_AGES_214
+	.dw mainScripts.woman_subid8Script ; ROOM_AGES_004
+	.dw mainScripts.gal_subid4Script ; ROOM_AGES_024
 
 
 

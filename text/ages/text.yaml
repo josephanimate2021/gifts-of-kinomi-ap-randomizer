@@ -8992,6 +8992,39 @@ groups:
       I'm so happy everything is okay!
       Isn't \col(3)Nayru\col(0) amazing?
 
+  - name: TX_1528
+    index: 0x28
+    text: >- 
+      My husband works in the
+      \col(1)villa\col(0) as a guard,
+      but I rarely see him except for
+      late at night!
+
+      He tells me that no one
+      comes to tell him that his
+      shift is over, but I don't
+      know if I believe him.
+
+      What sort of man doesn't
+      \col(1)keep time\col(0) while
+      on the clock?
+
+  - name: TX_1529
+    index: 0x29
+    text: >- 
+      I saw a girl flying around
+      on a broom.
+
+      It seemed like she was looking for something,
+      but I don't know what!
+
+      I hope she found it. I remember
+      when I had a \col(1)doll\col(0)
+      when I was younger.
+
+      Once, I had lost it. I didn't even want
+      to eat or sleep until I found it!
+
 - group: 0x16
   data:
   - name: TX_1600
@@ -13386,9 +13419,11 @@ groups:
   - name: TX_2901
     index: 0x01
     text: >-
-      What is an oracle?
+      Grandma sometimes has to go home to rest.
 
-      I hear that word so much but what does it mean!
+      She's sick all the time.
+
+      I just wish I could bring some medicine to her!
 
   - name: TX_2902
     index: 0x02

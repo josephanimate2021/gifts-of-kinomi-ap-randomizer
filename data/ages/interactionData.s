@@ -538,6 +538,8 @@ interaction3bSubidData:
 	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $5c $00 $22
+	m_InteractionSubidData $3f $00 $22
+	m_InteractionSubidData $5c $00 $22
 	;m_InteractionSubidData $3f $00 $22
 	;m_InteractionSubidData $3f $00 $22
 interaction3cSubidData:

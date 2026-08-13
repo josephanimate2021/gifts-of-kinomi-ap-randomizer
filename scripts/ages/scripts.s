@@ -2887,6 +2887,9 @@ woman_subid2Script:
 woman_subid3Script:
 	rungenericnpc TX_1523
 
+woman_subid8Script:
+	rungenericnpc TX_1528
+
 gal_subid0Script:
 	rungenericnpc TX_1524
 
@@ -2899,6 +2902,9 @@ gal_subid2Script:
 gal_subid3Script:
 	rungenericnpc TX_1527
 
+gal_subid4Script:
+	rungenericnpc TX_1529
+	
 /*
 ; Cutscene where guy is struck by lightning in intro
 villagerGalSubid00Script:

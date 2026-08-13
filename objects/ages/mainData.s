@@ -679,11 +679,11 @@ group0Map03ObjectData:
 group0Map04ObjectData:
 	obj_Pointer group0Map04EnemyObjectData
 	obj_SpecificEnemyA 0 $5a $01 $00 $00
-	obj_Interaction $44 $03 $38 $68
 	obj_Interaction $3b $00 $58 $38
 	obj_Interaction INTERAC_FEMALE_VILLAGER $05 $68 $28
 	obj_Interaction INTERAC_FEMALE_VILLAGER $02 $58 $28
 	obj_Interaction INTERAC_MALE_VILLAGER $07 $28 $88
+	obj_Interaction INTERAC_FEMALE_VILLAGER $08 $58 $38
 	obj_End
 
 group0Map05ObjectData:
@@ -789,6 +789,7 @@ group0Map24ObjectData:
 	obj_Interaction INTERAC_FEMALE_VILLAGER $06 $48 $28
 	obj_Interaction INTERAC_BOY_2 $04 $28 $68
 	obj_Interaction INTERAC_FOREST_FAIRY $03 $18 $88 $03
+	obj_Interaction INTERAC_FEMALE_VILLAGER $09 $48 $28
 	obj_End
 
 group0Map25ObjectData:
@@ -5162,6 +5163,7 @@ group0Map23ObjectData:
 	obj_Interaction INTERAC_DIN $09 $38 $78
 	obj_Interaction INTERAC_OLD_LADY $03 $28 $58
 	obj_Interaction INTERAC_FEMALE_VILLAGER $01 $38 $58
+	obj_Interaction INTERAC_MISC_MAN_2 $03 $48 $58
 	obj_End
 
 group2Map18ObjectData:
