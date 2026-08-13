@@ -22626,9 +22626,19 @@ groups:
 
   - name: TX_590f
     index: 0x0f
-    text: |-
+    text: >-
       What, kid?!?
-      Are there any monsters around?
+
+      Are there any monsters around?\stop
+
+      I saw a hoard of them to the room
+      east of here, and fled!
+
+      There were just so many!\stop
+
+      The \col(1)key\col(0) to
+      that room must be upstairs.
+      
 
   - name: TX_5910
     index: 0x10
