@@ -13494,7 +13494,10 @@ groups:
       I've been southwest to the Revinna Quarry,
       but I think the Daichi Plains are more my style!
 
-      So many monsters to fight!
+      So many monsters to fight!\stop
+
+      \jump(TX_2a07)
+    null_terminator: False
 
   - name: TX_2a02
     index: 0x02
@@ -13506,7 +13509,10 @@ groups:
       checked out ages ago...
 
       I hope to take that fiend by my blade and
-      ram him through!
+      ram him through!\stop
+
+      \jump(TX_2a07)
+    null_terminator: False
 
   - name: TX_2a03
     index: 0x03
@@ -13516,7 +13522,10 @@ groups:
       I tried swiping my sword against him,
       but he just ignored me!
 
-      UNBELIEVABLE!
+      UNBELIEVABLE!\stop
+      
+      \jump(TX_2a07)
+    null_terminator: False
 
   - name: TX_2a04
     index: 0x04
@@ -13553,22 +13562,11 @@ groups:
     - 0x08
     - 0x09
     text: |-
-      \pos(0)\Link!\stop
-      Did you hear
-      that? They're
-      saying terrible
-      things about
-      \col(3)Nayru\col(0) in the
-      village...
-      But why? It must
-      be \col(3)Veran's\col(0) work!
-      The truth will
-      come out once
-      I save \col(3)Nayru\col(0)!
-      Wait here! I'm
-      going!
-      \jump(TX_2a06)
-    null_terminator: False
+      Also, \Link, did you notice that some enemies
+      drop \col(1)swords\col(0) or \col(1)shields\col(0) when defeated?
+
+      I noticed that although they
+      are \col(1)stronger\col(0), but they \col(3)do not last\col(0)!
 
   - name: TX_2a0a
     index: 0x0a
