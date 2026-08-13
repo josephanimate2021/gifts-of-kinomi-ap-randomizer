@@ -81,6 +81,7 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.lostLabrinthScript_openPortionOfWall
+	.dw mainScripts.lostLabrinthScript_givePastMap
 	;.dw mainScripts.dungeonScript_spawnChestOnTriggerBit0
 	;.dw mainScripts.herosCaveScript_spawnChestWhen4TriggersActive
 	;.dw mainScripts.herosCaveScript_spawnBridgeWhenTriggerPressed
@@ -92,6 +93,7 @@ interactionCode20:
 	.dw mainScripts.dungeonScript_bossDeath
 	.dw mainScripts.ancientTombScript_retractWallWhenTrigger0Active
 	.dw mainScripts.lostLabrinthScript_keyFallsFromActiveTrigger
+	.dw mainScripts.lostLabrinthScript_givePresentCompass
 @dungeonc:
 	.dw mainScripts.dungeonScript_minibossDeath
 	.dw mainScripts.dungeonScript_bossDeath

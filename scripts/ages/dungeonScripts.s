@@ -54,6 +54,16 @@ lostLabrinthScript_openPortionOfWall:
 	asm15 scriptHelp.moonlitGrotto_enableControlAfterBreakingCrystal
 	scriptend
 
+lostLabrinthScript_givePastMap:
+	checkflagset $0b,wDungeonMaps
+	asm15 scriptHelp.lostLabrinthScript_givePastMap
+	scriptend
+
+lostLabrinthScript_givePresentCompass:
+	checkflagset $02,wDungeonCompasses
+	asm15 scriptHelp.lostLabrinthScript_givePresentCompass
+	scriptend
+
 
 
 makuPathScript_keyFallsFromCeilingWhen1TorchLit:

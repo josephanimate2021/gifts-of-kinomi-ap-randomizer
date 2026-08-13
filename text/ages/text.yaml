@@ -14949,6 +14949,18 @@ groups:
       Although your path starts here,
       in \col(1)darkness\col(0) you shall seek the right way.
 
+  - name: TX_2e24
+    index: 0x24
+    text: >-
+      A \col(1)red companion\col(0) lies in this room.\stop
+
+      It can do many fantastic things!\stop
+
+      Toss it or drop it,
+      and it will reform as long as you are not underneath it!\stop
+
+      Toss it on buttons, push it into holes, and see what happens!
+
 - group: 0x2f
   data:
   - name: TX_2f00

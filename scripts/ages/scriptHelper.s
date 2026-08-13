@@ -268,6 +268,16 @@ D8armosCheckIfWillMove:
 	ld (hl),150
 	ret
 
+lostLabrinthScript_givePastMap:
+	ld hl,wDungeonMaps
+	ld a,$02
+	jp setFlag
+
+lostLabrinthScript_givePresentCompass:
+	ld hl,wDungeonCompasses
+	ld a,$0b
+	jp setFlag
+
 ; ==============================================================================
 ; INTERAC_BIPIN
 ; ==============================================================================

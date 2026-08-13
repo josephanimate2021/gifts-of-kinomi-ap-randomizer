@@ -403,6 +403,12 @@ objectIsItem:
 ; Loads Cane of Somaria blocks at interaction's position
 ; ==============================================================================
 interactionCodeea:
+	ld a,TREASURE_CANE_OF_SOMARIA
+	call checkTreasureObtained
+	jr nc,+
+	call objectCreatePuff
+	jp interactionDelete
++
 	call checkInteractionState
 	jr z,@spawnBlock
 
@@ -412,12 +418,13 @@ interactionCodeea:
 	call objectGetRelatedObject1Var
 ; if subid is $00, then respawn the block
 	ld a,(hl)
-	or a
+	cpa $00
 	ret nz
 
 	ld e,Interaction.state
 	ld (de),a
 	ret
+
 
 ; state 0
 @spawnBlock:
@@ -450,8 +457,6 @@ interactionCodeea:
 	ld (de),a
 	; Set Y/X of the new item as calculated earlier, and copy Link's Z position
 	jp interactionIncState
-
-
 
 ; ==============================================================================
 ; INTERAC_SPRINGBLOOM_FLOWER

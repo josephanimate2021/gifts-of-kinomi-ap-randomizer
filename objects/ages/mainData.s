@@ -2761,10 +2761,11 @@ group4Map3dObjectData:
 group4Map3eObjectData:
 	obj_Interaction $1e $05 $07 $00
 	obj_Interaction $22 $00 $58 $78
-	obj_Pointer group4Map3eEnemyObjectData
 	obj_Interaction $1e $05 $3e $00
 	obj_Interaction $12 $02 $88 $78
 	obj_Interaction $dc $11 $02 $00
+	obj_Interaction $20 $05
+	obj_Pointer group4Map3eEnemyObjectData
 	obj_End
 
 group4Map3fObjectData:
@@ -5219,6 +5220,7 @@ group4Map67ObjectData:
 	obj_Interaction $1e $04 $a5 $00
 	obj_Part $08 $00 $00 $00 $00
 	obj_Interaction $dc $11 $01 $00
+	obj_Interaction INTERAC_DUNGEON_SCRIPT $04
 	obj_End
 
 group0Map53ObjectData:

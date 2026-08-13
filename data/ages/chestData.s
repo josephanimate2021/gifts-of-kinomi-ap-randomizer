@@ -94,7 +94,6 @@ chestGroup4Data:
 	m_ChestData $47 $30 $0400
 	m_ChestData $87 $40 $3302
 	m_ChestData $3d $41 $3003
-	m_ChestData $4c $55 $3401
 	m_ChestData $69 $56 $3202
 	m_ChestData $57 $60 $2805
 	m_ChestData $65, <ROOM_AGES_487, $0a00

@@ -59,6 +59,7 @@ signTextGroup4Data:
 	.db $62, <ROOM_AGES_441, <TX_2e22 ; Cane companion hint
 	.db $77, <ROOM_AGES_43d, <TX_2e22 ; Cane companion hint
 	.db $7c, <ROOM_AGES_422, <TX_2e23 ; Path hint in Grotto
+	.db $31, <ROOM_AGES_46a, <TX_2e24 ; Soimaria Block hint
 	.db $00
 
 signTextGroup5Data:
