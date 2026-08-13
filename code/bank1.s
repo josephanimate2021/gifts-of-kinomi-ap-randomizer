@@ -4548,6 +4548,7 @@ getNextActiveRoom:
 	ld a,(wScrollMode)
 	and $04
 	ret z
+
 	ld a,(wActiveRoom)
 	ld hl,mapTransitionGroupTable
 	call findRoomSpecificData
@@ -5208,9 +5209,10 @@ checkSeedTreeRefillIndex:
 +
 	; Clear the buffer... even if we didn't set the bit?
 	; So visiting a tree which hasn't regrown yet will reset the counter...
+
+	pop de
 ; ZTK: Removed clear memory
 /*
-	pop de
 	ld l,e
 	ld h,d
 	ld b,$08
