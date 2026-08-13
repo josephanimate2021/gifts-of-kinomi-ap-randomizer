@@ -403,12 +403,6 @@ objectIsItem:
 ; Loads Cane of Somaria blocks at interaction's position
 ; ==============================================================================
 interactionCodeea:
-	ld a,TREASURE_CANE_OF_SOMARIA
-	call checkTreasureObtained
-	jr nc,+
-	call objectCreatePuff
-	jp interactionDelete
-+
 	call checkInteractionState
 	jr z,@spawnBlock
 
@@ -428,6 +422,12 @@ interactionCodeea:
 
 ; state 0
 @spawnBlock:
+	ld a,TREASURE_CANE_OF_SOMARIA
+	call checkTreasureObtained
+	jr nc,+
+	call objectCreatePuff
+	jp interactionDelete
++
 	push de
 	ld de,w1Link.yh
 	call getShortPositionFromDE

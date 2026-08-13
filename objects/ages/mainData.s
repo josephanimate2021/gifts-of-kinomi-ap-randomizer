@@ -3051,7 +3051,8 @@ group4Map6eObjectData:
 	obj_Part $09 $80 $84
 	obj_Part $09 $81 $87
 	obj_Part PART_BUTTON $82 $8a
-	obj_Interaction $20 $04 $88 $c8
+	obj_Part PART_BUTTON $83 $8d
+	obj_Interaction $20 $04 $88 $90
 	obj_Interaction $bd $00
 	obj_Interaction $dc $17
 	obj_End
