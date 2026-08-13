@@ -59,7 +59,7 @@ enemyCode72:
 
 @state8:
 	ldh a,(<hEnemyTargetX);(<hEnemyTargetY)
-	cp $38;$58
+	cp $50;$58
 	ret nc;c
 	ld h,d
 	ld l,e

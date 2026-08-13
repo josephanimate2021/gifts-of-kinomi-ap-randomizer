@@ -278,6 +278,9 @@ interactionCode9e:
 @subid1Substate7:
 	call interactionRunSimpleScript
 	ret nc
+	lda GLOBALFLAG_PUSHED_ROCK_FIRST_TIME
+	call setGlobalFlag
+
 	ld hl,@subid1WarpDestVariables
 	call setWarpDestVariables
 	jp @playPuzzleSound

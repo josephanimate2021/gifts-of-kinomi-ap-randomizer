@@ -19,13 +19,17 @@ interactionCode8a:
 
 @state0:
 	call returnIfScrollMode01Unset
+	ld a,(wPaletteThread_mode)
+	cpa $00
+	ret nz
+	
 	ld e,Interaction.subid
 	ld a,(de)
 	ld e,Interaction.var3d
 	ld (de),a
 	call @checkConditionsAndSetText
 	call getThisRoomFlags
-	and $40
+	and ROOMFLAG_40;$40
 	jp nz,interactionDelete
 
 	call @loadScript
@@ -44,6 +48,7 @@ interactionCode8a:
 	.dw @val02 ; obtained Ghastly doll
 	.dw @val03 ; obtained Rod of Seasons
 	.dw @val04 ; pushed rock first time
+	.dw @val05 ; obtained all 4 gems
 
 @val00:
 	lda $00
@@ -81,9 +86,34 @@ interactionCode8a:
 	jp nc,@deleteSelfAndReturn
 	ldbc $00,<TX_05b4
 	jp @setTextForScript
-@val04:
-	jp @deleteSelfAndReturn
 
+@val04:
+	lda GLOBALFLAG_PUSHED_ROCK_FIRST_TIME
+	call checkGlobalFlag
+	jp z,@deleteSelfAndReturn
+	ldbc $00,<TX_05b5
+	jp @setTextForScript
+
+@val05:
+	lda GLOBALFLAG_GOT_ALL_4_STONES
+	call checkGlobalFlag
+	jp nz,@deleteSelfAndReturn
+	
+	ld l,TREASURE_FIRST_STONE-1
+-
+	inc l
+	ld a,l
+	cpa TREASURE_LAST_STONE+1
+	jr z,+
+
+	call checkTreasureObtained
+	jp nc,@deleteSelfAndReturn
+	jr -
++
+	lda GLOBALFLAG_GOT_ALL_4_STONES
+	call setGlobalFlag
+	ldbc $00,<TX_05b6
+	jp @setTextForScript
 
 /*	
 	rst_jumpTable

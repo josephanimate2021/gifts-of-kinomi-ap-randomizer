@@ -741,6 +741,7 @@ group0Map15ObjectData:
 group0Map16ObjectData:
 	obj_Pointer group0Map16EnemyObjectData
 	obj_Interaction $1f $00 $61 $00
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map17ObjectData:
@@ -848,6 +849,7 @@ group0Map34ObjectData:
 group0Map35ObjectData:
 	obj_Pointer group0Map35EnemyObjectData
 	obj_Interaction INTERAC_RALPH $01 $38 $18
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map36ObjectData:
@@ -859,6 +861,7 @@ group0Map37ObjectData:
 	obj_Pointer group0Map37EnemyObjectData
 	obj_Interaction $dc $10 $04 $18
 	obj_Interaction $eb $00 $28 $78
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map38ObjectData:
@@ -1943,22 +1946,15 @@ group2Map8eObjectData:
 	obj_End
 
 group2Map90ObjectData:
-	obj_Interaction $dc $09
-	obj_Interaction $dc $0a
-	obj_Interaction $6b $11
 	obj_End
 
 group2Mapa0ObjectData:
-	obj_Interaction $ab $10 $48 $78
-	obj_Interaction $ab $14 $38 $18
 	obj_End
 
 group2Mapb1ObjectData:
-	obj_Interaction $ab $13 $18 $88
 	obj_End
 
 group2MapdeObjectData:
-	obj_Interaction $48 $0d $38 $50
 	obj_End
 
 group2MapdfObjectData:
@@ -2002,8 +1998,6 @@ group2MapefObjectData:
 	obj_End
 
 group2Map9eObjectData:
-	obj_Interaction $dc $12
-	obj_Part $03 $00 $61
 	obj_End
 
 group2Map9fObjectData:
@@ -2023,7 +2017,6 @@ group2MapcfObjectData:
 	obj_End
 
 group2Mapd1ObjectData:
-	obj_Interaction $ab $1b $48 $58
 	obj_End
 
 group2Mapf3ObjectData:
@@ -2051,7 +2044,6 @@ group2MapfaObjectData:
 	obj_End
 
 group3MapbeObjectData:
-	obj_Interaction $94 $00 $28 $58
 	obj_Pointer group3MapbeEnemyObjectData
 	obj_End
 
@@ -2138,7 +2130,6 @@ group3Map5fObjectData:
 	obj_End
 
 group3Map6eObjectData:
-	obj_Interaction $bf $06 $38 $28
 	obj_End
 
 group3Map6fObjectData:
@@ -2558,7 +2549,7 @@ group4Map19ObjectData:
 
 group4Map1aObjectData:
 	obj_Pointer group4Map1aEnemyObjectData
-	obj_Part $08 $01 $00 $00 $1e
+	obj_Part $08 $01 $00 $00 $74
 	obj_End
 
 group4Map1bObjectData:
@@ -2587,7 +2578,7 @@ group4Map1eObjectData:
 	obj_Interaction $1e $05 $ab $00
 	obj_Interaction $1e $05 $70 $00
 	obj_Pointer group4Map1eEnemyObjectData
-	obj_Interaction $dc $19 $18 $18
+	obj_Interaction $dc $19 $18 $18 $10
 	obj_End
 
 group4Map1fObjectData:
@@ -3848,7 +3839,7 @@ group5Map2aObjectData:
 group5Map2bObjectData:
 	obj_Pointer group5Map2bEnemyObjectData
 	obj_Interaction $78 $01 $75 $01
-	obj_Part $05 $01 $2b
+	obj_Part $05 $02 $2b
 	obj_End
 
 group5Map2cObjectData:
@@ -4161,6 +4152,7 @@ group5Map5eObjectData:
 
 group5Map5fObjectData:
 	obj_Pointer group5Map5fEnemyObjectData
+	obj_Part PART_DARK_ROOM_HANDLER $01 $00 $00 $3c
 	obj_End
 
 group5Map60ObjectData:
@@ -4281,6 +4273,7 @@ group5Map6fObjectData:
 	obj_Interaction $1e $04 $30 $00 $03
 	obj_Interaction $1e $04 $70 $00 $04
 	obj_Part $03 $00 $58 $90 $00
+	obj_Part PART_DARK_ROOM_HANDLER $01 $00 $00 $74
 	obj_End
 
 group5Map70ObjectData:
@@ -4958,6 +4951,7 @@ group5Mapf6ObjectData:
 group5Mapf7ObjectData:
 	obj_Pointer group5Mapf7EnemyObjectData
 	obj_Interaction $6b $1a $74 $78
+	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group5Mapf8ObjectData:

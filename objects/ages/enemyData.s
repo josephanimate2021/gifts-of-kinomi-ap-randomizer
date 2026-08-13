@@ -147,10 +147,6 @@ group2Mape3EnemyObjectData:
 	obj_EndPointer
 
 group3MapbeEnemyObjectData:
-	obj_ItemDrop $00 $01 $51
-	obj_ItemDrop     $01 $61
-	obj_ItemDrop     $01 $58
-	obj_ItemDrop     $01 $68
 	obj_EndPointer
 
 group5Mapb0EnemyObjectData:

@@ -95,7 +95,9 @@
 	; Unused?
 	GLOBALFLAG_MAKE_MENU_ERROR				db ; $47
 	GLOBALFLAG_DONT_UPDATE_MINIMAP				db ; $48: 0 if Ages, 1 if Seasons
+	GLOBALFLAG_GOT_ALL_4_STONES			.db ; $47 ;Watched Zelda cutscene after getting all 4 gems
 	GLOBALFLAG_49				db ; $49
+	GLOBALFLAG_PUSHED_ROCK_FIRST_TIME .db ;$4a
 	GLOBALFLAG_4a				db ; $4a
 	GLOBALFLAG_4b				db ; $4b
 	GLOBALFLAG_4c				db ; $4c

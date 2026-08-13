@@ -255,14 +255,24 @@ replaceSwitchTiles:
 	.db $6c $20 $d0 $4c
 
 	.db $50 $80 $0b $7d
-	.db $5a $40 $d0 $27
+	;.db $5a $40 $d0 $27 ;switch weirdness
+; Dungeon 2
+	.db <ROOM_AGES_528, $01, $0b, $7d
+	.db <ROOM_AGES_528, $01, $52, $58
 
-	.db $28 $01 $0b $7d
-	.db $28 $01 $52 $58
-	.db $2b $01 $0b $2b
-	.db $2b $01 $b2 $75
-
-	.db <ROOM_AGES_567 $02 $0b $2c
+	.db <ROOM_AGES_52b, $02, $0b, $2b
+	.db <ROOM_AGES_52b, $02, $b2, $75
+; Dungeon 3
+	.db <ROOM_AGES_567, $02, $0b, $2c
+	.db <ROOM_AGES_567, $02, $6a, $41
+	.db <ROOM_AGES_567, $02, $6a, $51
+	.db <ROOM_AGES_567, $02, $6a, $61
+	.db <ROOM_AGES_567, $02, $6a, $49
+	.db <ROOM_AGES_567, $02, $6a, $59
+	.db <ROOM_AGES_567, $02, $6a, $69
+	.db <ROOM_AGES_567, $02, $f4, $45
+	.db <ROOM_AGES_567, $02, $f4, $55
+	.db <ROOM_AGES_567, $02, $f4, $65
 
 	;.db $6a $01 $57 $23
 	;.db $6a $01 $57 $24

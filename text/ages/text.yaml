@@ -594,7 +594,7 @@ groups:
     index: 0x44
     text: |-
       You got the
-      \col(1)Labrinth Key\col(0)!
+      \col(1)Labyrinth Key\col(0)!
 
   - name: TX_0045
     index: 0x45
@@ -1720,7 +1720,7 @@ groups:
     - 0x02
     - 0x0b
     text: |2-
-       Lost Labrinth
+       Lost Labyrinth
 
   - name: TX_0203
     index: 0x03
@@ -3209,9 +3209,15 @@ groups:
     index:
     - 0xb5
     - 0xc5
-    text: |-
-      \Link, you seem very far away now! What is taking you so long? When are you coming back?\stop
-      There seem to be some new creatures here at the party, calling themselves the \col(2)Tokay\col(4). They say they've settled in this land for generations, but I don't remember them yesterday!\stop
+    text: >-
+      \Link, you seem very far away now! What is taking you so long?
+      When are you coming back?\stop
+      
+      There seem to be some new creatures here at the party,
+      calling themselves the \col(2)Tokay\col(4).
+      They say they've settled in this land for generations,
+      but I don't remember them yesterday!\stop
+      
       \Link, please find out what happened to our \col(3)present time\col(4)!
 
   - name:
@@ -3220,17 +3226,17 @@ groups:
     index:
     - 0xb6
     - 0xc6
-    text: |-
-      \Link, your name
-      has appeared in
-      old Goron tales!
-      Their legends
-      tell of a great
-      hero who saved
-      the Gorons in
-      their hour of
-      need. What could
-      this mean?
+    text: >-
+      \Link, what did you find in the \col(2)Daichi\col(4) region?\stop
+
+      Four \col(2)stones\col(4)?
+
+      If they represent the seasons,
+      they must be telling you a \col(2)secret\col(4)
+      about where to find the ancient \col(2)shrine\col(4)!\stop
+
+      \col(2)Study\col(4) the stones in your pocket and
+      \col(2)listen\col(4) to what they say, \Link!
 
   - name:
     - TX_05b7
@@ -3834,8 +3840,8 @@ groups:
       Witch will be
       mad!
       And I have to
-      get my \col(1)picture
-      doll\col(0) back. Who could have that \col(0x84)\item(0x01) \col(1)book\col(0)?\stop
+      get my \col(1)scary
+      doll\col(0) back. Who could have that \col(0x84)\item(0x01) \col(1)doll\col(0)?\stop
       Well, it's all
       made me mad! So
       I'm gonna take
@@ -4479,33 +4485,33 @@ groups:
     index: 0x21
     text: |-
       Iron Shield
-      A large shield.
+      A large shield. Takes about 20 hits.
 
   - name: TX_0922
     index: 0x22
     text: |-
       Mirror Shield
       A reflective
-      shield.
+      shield. Takes about 100 hits.
 
   - name: TX_0923
     index: 0x23
     text: |-
       Wooden Sword
-      A hero's blade.
+      A hero's blade. Impervious.
 
   - name: TX_0924
     index: 0x24
     text: |-
       Noble Sword
-      A sacred blade.
+      A sacred blade. Takes about 20 hits.
 
   - name: TX_0925
     index: 0x25
     text: |-
       Great Sword
       The blade of
-      legends.
+      legends. Takes about 100 hits.
 
   - name: TX_0926
     index: 0x26
@@ -4811,7 +4817,7 @@ groups:
   - name: TX_0953
     index: 0x53
     text: |-
-      Labrinth Key
+      Labyrinth Key
       The key to a
       vast maze.
 
@@ -5733,7 +5739,7 @@ groups:
     index: 0x63
     text: |-
       \sfx(0xb6)Our \col(1)Temple\col(0)
-      is a labrinth below our feet.
+      is a labyrinth below our feet.
       Only the chief knows what's beyond the stairs we use to pray.
 
   - name: TX_0a64
@@ -6070,7 +6076,7 @@ groups:
     text: |-
       That's the one!
       What can I give you in return...?\stop
-      How about this key! It leads into a vast labrinth to the southwest of here.
+      How about this key! It leads into a vast labyrinth to the southwest of here.
 
   - name: TX_0b23
     index: 0x23
@@ -6364,7 +6370,7 @@ groups:
     text: |-
       \pos(2)If \col(3)Maple\col(0) were
       here, I'd send
-      her to \col(3)that labrinth\col(0)
+      her to \col(3)that labyrinth\col(0)
       for \item(0x06) \col(1)Mushrooms\col(0),
       but since she
       hasn't come
@@ -6895,7 +6901,8 @@ groups:
   - name: TX_0e29
     index: 0x29
     text: |-
-      \col(1)Iron Shield\col(0)\stop
+      \col(1)Iron Shield\col(0)
+      Takes about 20 hits.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -6903,7 +6910,8 @@ groups:
   - name: TX_0e2a
     index: 0x2a
     text: |-
-      \col(1)Mirror Shield\col(0)\stop
+      \col(1)Mirror Shield\col(0)
+      Takes about 100 hits.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -6939,7 +6947,8 @@ groups:
   - name: TX_0e2f
     index: 0x2f
     text: |-
-      \col(1)Noble Sword\col(0)\stop
+      \col(1)Noble Sword\col(0)
+      Takes 20 hits.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -6947,7 +6956,8 @@ groups:
   - name: TX_0e30
     index: 0x30
     text: |-
-      \col(1)Great Sword\col(0)\stop
+      \col(1)Great Sword\col(0)
+      Takes 100 hits.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -14906,6 +14916,12 @@ groups:
     index: 0x22
     text: |-
       Your red companion will pave your path forward.
+
+  - name: TX_2e23
+    index: 0x23
+    text: >-
+      Although your path starts here,
+      in \col(1)darkness\col(0) you shall seek the right way.
 
 - group: 0x2f
   data:

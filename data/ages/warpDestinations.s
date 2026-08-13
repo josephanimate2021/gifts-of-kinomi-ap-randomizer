@@ -152,7 +152,7 @@ group0WarpDestTable:
 	m_WarpDest $33 $14 $0 $1
 	m_WarpDest $20 $61 $0 $1
 	m_WarpDest $35 $37 $0 $1
-	m_WarpDest $16 $61 $0 $1
+	m_WarpDest $16 $61 $0 TRANSITION_DEST_DONT_SET_RESPAWN
 	m_WarpDest $78 $35 $0 $1
 	m_WarpDest $74 $31 $0 $1
 	m_WarpDest $60 $24 $0 $1
