@@ -18509,39 +18509,20 @@ groups:
   - name: TX_3432
     index: 0x32
     text: |-
-      The \col(1)Zora Scale\col(0)?
-      So you're
-      \Link!
-      You may pass!
-      I know not what
-      lies beyond, and
-      I ask not why
-      you must pass.
-      Fare you well!
+      ...\stop
+      Why are you here?
 
   - name: TX_3433
     index: 0x33
-    text: |-
-      I am studying
-      the cause of the
-      filthy seawater.\stop
-      It seems to have
-      suddenly become
-      polluted
-      hundreds of
-      years ago, but
-      I have learned
-      nothing more...
+    text: >-
+      I have nothing more to give you.
+
+      You may be on your way!
 
   - name: TX_3434
     index: 0x34
     text: |-
-      I am going to
-      study here a
-      while longer to
-      aid in the
-      development of
-      Zora society.
+      Wait!
 
   - name: TX_3435
     index: 0x35

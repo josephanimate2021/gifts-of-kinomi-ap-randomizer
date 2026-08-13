@@ -8816,18 +8816,24 @@ zoraSubid0eScript:
 ; Gives zora scale to Link
 zoraSubid10Script:
 	initcollisions
-@loop
+	checkabutton
+	showtext TX_3432
+	checktext
+@loop:
 	asm15 scriptHelp.zora_waitForLinkToMoveDown
 	jumptable_memoryaddress wTmpcfc0.genericCutscene.cfc1
 	.dw @loop
 	.dw @linkMovedDown
 
 @linkMovedDown:
+	incstate
 	disableinput
 	asm15 scriptHelp.zora_createExclamationMark
 	setanimation $02
 	wait 20
 	asm15 scriptHelp.zora_beginJump
+	showtext TX_3434
+	checktext
 	wait 8
 
 	asm15 scriptHelp.zora_makeLinkFaceRight
@@ -8860,9 +8866,11 @@ zoraSubid10Script:
 zoraSubid11And12Script:
 	initcollisions
 	jumpifitemobtained TREASURE_ZORA_SCALE, @gotScale
-	rungenericnpc TX_3431
+	rungenericnpc TX_3432
 
 @gotScale:
+	rungenericnpc TX_3433
+/*
 	checkabutton
 	disableinput
 	showtext TX_3431
@@ -8892,7 +8900,7 @@ zoraSubid11And12Script:
 	orroomflag $40
 	enableinput
 	scriptend
-
+*/
 
 ; ==================================================================================================
 ; INTERAC_ZELDA

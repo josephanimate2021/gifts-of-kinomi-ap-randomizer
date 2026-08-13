@@ -10,18 +10,18 @@
 ;   Param 2: low byte of data location
 
 seedTreeRefillLocations:
-	m_TreeRefillData ROOM_AGES_0ac, (<wxSeedTreeRefillData+$00)
-	m_TreeRefillData ROOM_AGES_004, (<wxSeedTreeRefillData+$08)
-	m_TreeRefillData ROOM_AGES_071, (<wxSeedTreeRefillData+$10)
-	m_TreeRefillData ROOM_AGES_084, (<wxSeedTreeRefillData+$18)
-	m_TreeRefillData ROOM_AGES_085, (<wxSeedTreeRefillData+$20)
-	m_TreeRefillData ROOM_AGES_086, (<wxSeedTreeRefillData+$28)
-	m_TreeRefillData ROOM_AGES_087, (<wxSeedTreeRefillData+$30)
-	m_TreeRefillData ROOM_AGES_000, (<wxSeedTreeRefillData+$38)
-	m_TreeRefillData ROOM_AGES_113, (<wxSeedTreeRefillData+$40)
-	m_TreeRefillData ROOM_AGES_112, (<wxSeedTreeRefillData+$48)
-	m_TreeRefillData ROOM_AGES_150, (<wxSeedTreeRefillData+$50)
-	m_TreeRefillData ROOM_AGES_171, (<wxSeedTreeRefillData+$58)
+	m_TreeRefillData ROOM_AGES_0ac, (<wxSeedTreeRefillData+$00) ;ROOM_AGES_0ac
+	m_TreeRefillData ROOM_AGES_004, (<wxSeedTreeRefillData+$08) ;ROOM_AGES_004
+	m_TreeRefillData ROOM_AGES_071, (<wxSeedTreeRefillData+$10) ;ROOM_AGES_071
+	m_TreeRefillData ROOM_AGES_084, (<wxSeedTreeRefillData+$18) ;ROOM_AGES_084
+	m_TreeRefillData ROOM_AGES_085, (<wxSeedTreeRefillData+$20) ;ROOM_AGES_085
+	m_TreeRefillData ROOM_AGES_086, (<wxSeedTreeRefillData+$28) ;ROOM_AGES_086
+	m_TreeRefillData ROOM_AGES_087, (<wxSeedTreeRefillData+$30) ;ROOM_AGES_087
+	m_TreeRefillData ROOM_AGES_000, (<wxSeedTreeRefillData+$38) ;ROOM_AGES_000
+	m_TreeRefillData ROOM_AGES_113, (<wxSeedTreeRefillData+$40) ;ROOM_AGES_113
+	m_TreeRefillData ROOM_AGES_112, (<wxSeedTreeRefillData+$48) ;ROOM_AGES_112
+	m_TreeRefillData ROOM_AGES_150, (<wxSeedTreeRefillData+$50) ;ROOM_AGES_150
+	m_TreeRefillData ROOM_AGES_171, (<wxSeedTreeRefillData+$58) ;ROOM_AGES_171
 	;above has been changed
 	m_TreeRefillData $178, (<wxSeedTreeRefillData+$60)
 	m_TreeRefillData $180, (<wxSeedTreeRefillData+$68)

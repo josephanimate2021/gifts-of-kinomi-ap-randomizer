@@ -4366,10 +4366,10 @@ showItemText2:
 	ld (hl),a
 	inc a
 	ld d,a
-	ld e,TREASURE_WINTER_STONE
+	ld e,TREASURE_FIRST_STONE
 -
 	ld a,e
-	cp TREASURE_SPRING_STONE+1
+	cp TREASURE_LAST_STONE+1
 	jr z,@endStoneCheck
 	call checkTreasureObtained
 	jr nc,+
@@ -5367,7 +5367,9 @@ inventorySubmenu1_drawCursor:
 	ld d,$02
 	ld a,e
 
-	cp $03;$04
+	cpa $03;$04
+	jr z,+
+	cpa $09
 	jr z,+
 /*
 .ifdef ROM_AGES
@@ -5380,7 +5382,7 @@ inventorySubmenu1_drawCursor:
 
 	dec d
 	dec a
-	jr z,+
+	;jr z,+
 
 	dec d
 +
@@ -6456,11 +6458,13 @@ subscreen1TreasureData:
 	.db TREASURE_WINTER_STONE		$3b $06
 	.db TREASURE_SUMMER_STONE		$2a $06
 	.db TREASURE_AUTUMN_STONE		$2b $06
+	.db TREASURE_GASHA_SEED			$3d $07
 	.db TREASURE_TRADEITEM			$3d $07
 
 		; Row 3
-	.db TREASURE_POTION				$6a $08
-	.db TREASURE_GASHA_SEED			$6d $09
+	.db TREASURE_ZORA_SCALE			$6a $08
+	.db TREASURE_POTION				$6d $09
+
 
 	.db $00
 /*

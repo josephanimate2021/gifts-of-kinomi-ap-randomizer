@@ -232,18 +232,22 @@ zora_subid12:
 
 @subid10:
 	call getThisRoomFlags
-	and $20
+	and ROOMFLAG_20;$20
 	jp nz,interactionDelete
+	ret
 	;ld a,(wEssencesObtained)
 	;bit 6,a
 	;jp z,interactionDelete
 	;ld a,$03
 	;call interactionSetAnimation
-	jp interactionIncState
+	;jp interactionIncState
 
 @subid11:
-	call checkIsLinkedGame
-	jp nz,interactionDelete
+	;call checkIsLinkedGame
+	;jp nz,interactionDelete
+	lda TREASURE_ZORA_SCALE
+	call checkTreasureObtained
+	jp nc,interactionDelete
 	jr @deleteIfFlagSet
 
 @subid12:
@@ -252,7 +256,7 @@ zora_subid12:
 
 @deleteIfFlagSet:
 	call getThisRoomFlags
-	and $40
+	and ROOMFLAG_40;$40
 	jp nz,interactionDelete
 	ret
 

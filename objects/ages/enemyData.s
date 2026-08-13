@@ -453,9 +453,7 @@ group1Map70EnemyObjectData:
 	obj_EndPointer
 
 group1Map71EnemyObjectData:
-	obj_ItemDrop $00 $05 $11
-	obj_ItemDrop     $01 $12
-	obj_ItemDrop     $05 $16
+	obj_ItemDrop $00 $05 $16
 	obj_RandomEnemy $40 $0c $00
 	obj_EndPointer
 

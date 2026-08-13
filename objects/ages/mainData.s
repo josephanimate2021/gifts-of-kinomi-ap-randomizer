@@ -1641,7 +1641,7 @@ group1Map61ObjectData:
 
 group1Map62ObjectData:
 	obj_Pointer group1Map62EnemyObjectData
-	obj_Interaction $dc $08 $66 $40 $ce
+	obj_Interaction $dc $08 $65 $40 $ce
 	obj_End
 
 group1Map63ObjectData:
@@ -5243,6 +5243,7 @@ group1Map50ObjectData:
 	obj_Interaction $e1 $00 $48 $88
 	obj_SpecificEnemyA 0 $5a $0a $00 $00
 	obj_Interaction INTERAC_FOREST_FAIRY $00 $18 $38
+	obj_ItemDrop $00 ITEM_DROP_EMBER_SEEDS $47
 	obj_End
 
 group2Map72ObjectData:
@@ -5406,6 +5407,7 @@ group1Map6cObjectData:
 
 group1Map7aObjectData:
 	obj_Pointer group1Map7aEnemyObjectData
+	obj_Interaction INTERAC_ZORA $11 $28 $68
 	obj_End
 
 group3Map0dObjectData:

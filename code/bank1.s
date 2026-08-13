@@ -5052,10 +5052,10 @@ screenTransitionAgesSea:
 	ret
 
 @agesSeaDirections:
-	.db $00 $00 <ROOM_AGES_17d $00 ; 17A
-	.db $00 $00 <ROOM_AGES_17d $00 ; 17B
-	.db $00 <ROOM_AGES_16d <ROOM_AGES_17d $00 ; 17C
-	.db <ROOM_AGES_17c <ROOM_AGES_17d <ROOM_AGES_17d <ROOM_AGES_17d ; 17D
+	.db $00, $00, <ROOM_AGES_17d, $00 ; 17A
+	.db $00, $00, <ROOM_AGES_17d, $00 ; 17B
+	.db $00, <ROOM_AGES_16d, <ROOM_AGES_17d, $00 ; 17C
+	.db <ROOM_AGES_17c, <ROOM_AGES_17d, <ROOM_AGES_17d, <ROOM_AGES_17d ; 17D
 
 
 ;;
@@ -5208,12 +5208,14 @@ checkSeedTreeRefillIndex:
 +
 	; Clear the buffer... even if we didn't set the bit?
 	; So visiting a tree which hasn't regrown yet will reset the counter...
-
+; ZTK: Removed clear memory
+/*
 	pop de
 	ld l,e
 	ld h,d
 	ld b,$08
 	call clearMemory
+*/
 	pop hl
 	ret
 
@@ -5259,7 +5261,7 @@ initializeSeedTreeRefillData:
 	ld hl,wSeedTreeRefilledBitset
 	ld (hl),%11111111	;Index 0-7
 	inc l
-	ld (hl),%00000000	;Index 8-15
+	ld (hl),%00001111	;Index 8-15
 
 .else; ROM_SEASONS
 

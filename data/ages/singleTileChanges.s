@@ -47,7 +47,8 @@ singleTileChangeGroup0Data:
 	.db $00 $00
 
 singleTileChangeGroup1Data:
-	.db <ROOM_AGES_102 ROOMFLAG_80 $17 $ee
+	.db <ROOM_AGES_102, ROOMFLAG_80, $17, $ee
+	.db <ROOM_AGES_162, ROOMFLAG_40, $65, TILEINDEX_OVERWORLD_STANDARD_GROUND
 ;	.db $0e $80 $16 $af
 ;	.db $48 $02 $48 $3a
 ;	.db $15 $80 $34 $9e
