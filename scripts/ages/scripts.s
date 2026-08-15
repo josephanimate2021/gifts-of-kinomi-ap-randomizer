@@ -4800,12 +4800,44 @@ oldManScript_stubScript:
 	scriptend
 */
 
-oldManScript_generic:
+oldManScript_giveTreasureMap:
+	makeabuttonsensitive
+	jumpifitemobtained TREASURE_TREASURE_MAP,oldManScript_researcher@npcLoop
+	
+	checkabutton
+	turntofacelink
+	disableinput
+	showloadedtext
+	checktext
+	wait 25
+	asm15 scriptHelp.oldManSetAnimationToVar38
+	wait 60
+	turntofacelink
+	showtext TX_3308
+	checktext
+	wait 10
+	giveitem TREASURE_OBJECT_5f_00
+	checktext
+	enableinput
+	scriptjump +
+
+oldManScript_researcher:
 	makeabuttonsensitive
 @npcLoop:
 	checkabutton
 	turntofacelink
 	showloadedtext
++
+	jumptable_objectbyte Interaction.var03
+	.dw @@var03_00
+	.dw @@var03_01
+
+@@var03_00:
+	orroomflag ROOMFLAG_80
+	scriptjump ++
+@@var03_01:
+	orroomflag ROOMFLAG_40
+++
 	asm15 scriptHelp.oldManSetAnimationToVar38
 	scriptjump @npcLoop
 

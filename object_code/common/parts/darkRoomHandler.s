@@ -115,6 +115,25 @@ partCode08:
 	ld e,Part.counter1
 	ld a,c
 	ld (de),a
+
+;ZTK: added
+; lit torches affect this
+	ld a,(wNumTorchesLit)
+	ld e,Part.counter2
+	ld (de),a
+	ld c,a
+
+	dec e ; [counter1]
+	ld a,(de)
+	add c
+	ld (de),a
+; end ZTK code
+
+/*
+	ld e,Part.counter1
+	ld a,c
+	ld (de),a
+*/
 	call objectGetShortPosition
 	ld e,Part.yh
 	ld (de),a

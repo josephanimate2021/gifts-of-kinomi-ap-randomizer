@@ -3,6 +3,8 @@
 ; Bubble spawned from Jabu Jabu?
 ; ==================================================================================================
 partCode16:
+	jp panic
+/*
 	ld e,$c4
 	ld a,(de)
 	rst_jumpTable
@@ -111,3 +113,4 @@ partCode16:
 	ret c
 	ld (hl),a
 	ret
+*/

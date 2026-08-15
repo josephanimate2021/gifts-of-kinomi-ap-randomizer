@@ -509,9 +509,10 @@ treasureCollectionBehaviourTable:
 	.db SND_GETITEM
 
 	; TREASURE_5f (0x5f)
+	; TREASURE_TREASURE_MAP (0x5f)
 	.db $00
 	.db $00
-	.db SND_NONE
+	.db SND_GETITEM;SND_NONE
 
 	; TREASURE_60 (0x60)
 	.db $00

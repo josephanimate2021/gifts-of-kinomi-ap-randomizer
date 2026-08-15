@@ -6449,6 +6449,7 @@ subscreen1TreasureData:
 	.db TREASURE_GRAVEYARD_KEY		$01 $00
 	.db TREASURE_LIBRARY_KEY		$04 $01
 	.db TREASURE_FLIPPERS 			$0a $02
+	.db TREASURE_TREASURE_MAP		$0d $03
 	.db TREASURE_SLATE				$0d $03
 
 		; Row 2
@@ -8196,6 +8197,9 @@ mapMenu_drawSprites:
 	or a
 	jp nz,mapMenu_drawWarpSites
 
+	call mapMenu_drawTimePortal
+	jp mapMenu_drawJewelLocations
+/*
 .ifdef ROM_AGES
 	jp mapMenu_drawTimePortal
 
@@ -8203,6 +8207,7 @@ mapMenu_drawSprites:
 
 	jp mapMenu_drawJewelLocations
 .endif
+*/
 
 ;;
 ; Draws small key, boss key, compass, and map on the map screen if Link has them.
@@ -8717,7 +8722,7 @@ getWarpTreeData:
 	ret
 
 
-.ifdef ROM_AGES
+;.ifdef ROM_AGES
 
 ;;
 ; Draws the time portal sprite on the map. (Ages only)
@@ -8756,7 +8761,7 @@ mapMenu_drawTimePortal:
 	.db $0c $08 $18 $07
 
 
-.else; ROM_SEASONS
+;.else; ROM_SEASONS
 
 
 ;;
@@ -8793,15 +8798,15 @@ mapMenu_drawJewelLocations:
 @drawTreasure:
 	; Don't draw it if Link has the jewel
 	ld a,c
-	add TREASURE_ROUND_JEWEL
+	add TREASURE_FIRST_STONE;ROUND_JEWEL
 	call checkTreasureObtained
 	jr c,@nextTreasure
 
 	; Don't draw it if the jewel has been inserted into tarm ruins entrance.
-	ld a,c
-	ld hl,wInsertedJewels
-	call checkFlag
-	jr nz,@nextTreasure
+	;ld a,c
+	;ld hl,wInsertedJewels
+	;call checkFlag
+	;jr nz,@nextTreasure
 
 	; Treasures are in different locations for linked game
 	push bc
@@ -8825,15 +8830,23 @@ mapMenu_drawJewelLocations:
 	ret
 
 @jewelLocations:
+.rept 2
+	.db <ROOM_AGES_037 ; Winter stone
+	.db <ROOM_AGES_035 ; Summer stone
+	.db <ROOM_AGES_016 ; Autumn stone
+	.db <ROOM_AGES_074 ; Spring stone
+.endr
+/*
 	.db $b5 $1d $c2 $f4 ; Normal locations
 	.db $b5 $7e $a7 $f4 ; Linked game locations
+*/
 
 @sprite:
 	.db $01
 	.db $0c $08 $18 $07
 
 
-.endif; ROM_SEASONS
+;.endif; ROM_SEASONS
 
 
 ;;

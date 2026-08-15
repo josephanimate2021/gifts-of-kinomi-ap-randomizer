@@ -90,10 +90,57 @@ interactionCode52:
 	call checkNpcAppear_seasons
 	jp nz,interactionDelete
 
+; Room flags are set when speaking to old men once
+; If not spoken, overwrite to first text in sequence	
+	call getThisRoomFlags
+	ld e,Interaction.var03
+	ld a,(de)
+	cpa $00
+	ld a,ROOMFLAG_80
+	jr z,+
+	ld a,ROOMFLAG_40
++
+	and (hl)
+	jr nz,+
+	ld b,$00 ;assume no game progress made
+
+; spoke once with old man
++
+;loads text
 	ld hl,@oldManTextIndices
-	call loadNpcText
+	ld e,Interaction.var03
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	ld a,b ;game progress in b
+	rst_addAToHl
+	ld a,(hl)
+
+	ld e,Interaction.textID
+	ld (de),a
+
+	inc e ; Interaction.textID+1
 	ld a,>TX_3300
 	ld (de),a
+
+; loads Scripts
+	ld hl,@oldManScripts
+	ld e,Interaction.var03
+	ld a,(de)
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	ld e,Interaction.subid
+	ld a,(de)
+	sub $03
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a	
+	call interactionSetScript
 
 	call interactionInitGraphics
 ; loads animation,oamFlags,collision
@@ -120,11 +167,9 @@ interactionCode52:
 	ld e,Interaction.var38
 	ld a,(hl)
 	ld (de),a
-	call interactionSetAnimation
-	call objectSetVisiblec2
 
-	ld hl,mainScripts.oldManScript_generic
-	jp interactionSetScript
+	call interactionSetAnimation
+	jp objectSetVisiblec2
 
 ; If subid matches to the game progress, then don't delete NPC
 @oldManSubidAppearances:
@@ -178,6 +223,22 @@ interactionCode52:
 	.db $06 $01 $00 ;0x01
 	;.db $06 $00 $00
 	;.db $06 $01 $02
+
+@oldManScripts:
+	.dw @@var03_00
+	.dw @@var03_01
+
+; First old man in woods house
+@@var03_00:
+	.dw mainScripts.oldManScript_researcher
+	.dw mainScripts.oldManScript_researcher
+	.dw mainScripts.oldManScript_researcher
+
+; Second old man in woods house
+@@var03_01:
+	.dw mainScripts.oldManScript_giveTreasureMap
+	.dw mainScripts.oldManScript_giveTreasureMap
+	.dw mainScripts.oldManScript_giveTreasureMap
 
 ; [in] hl like @oldManSubidAppearances
 ; If subid matches to the game progress, then don't delete NPC

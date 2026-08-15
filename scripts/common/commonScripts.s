@@ -319,7 +319,7 @@ doorController_openWhenTorchesLit_up_2Torches:
 doorController_openWhenTorchesLit_left_2Torches:
 	setcollisionradii $08, $0a
 	setangle $16
-	setspeed $02
+	setspeed $03;$02
 	scriptjump doorController_shutUntilTorchesLit
 
 .ifdef ROM_AGES

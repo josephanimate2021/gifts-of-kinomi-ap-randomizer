@@ -166,7 +166,8 @@ treasureDisplayData_standard:
 	.db TREASURE_GORON_VASE		$e6 $05 $e6 $25 $ff, <TX_094e ; TREASURE_GORON_VASE (0x5c)
 	.db TREASURE_GORONADE		$e7 $01 $e7 $21 $ff, <TX_094f ; TREASURE_GORONADE (0x5d)
 	.db TREASURE_ROCK_BRISKET	$e2 $05 $e3 $05 $ff, <TX_094d ; TREASURE_ROCK_BRISKET (0x5e)
-	.db $00				$00 $00 $00 $00 $ff, <TX_0900 ; TREASURE_5f (0x5f)
+	.db TREASURE_TREASURE_MAP,	$e4, $03, $e5, $03, $ff, <TX_09_TREASUREMAP ; TREASURE_TREASURE_MAP (0x5f)
+	;.db $00				$00 $00 $00 $00 $ff, <TX_0900 ; TREASURE_5f (0x5f)
 
 	; Treasures $60-$67 don't have display data apparently? (they seem to represent
 	; upgrades)

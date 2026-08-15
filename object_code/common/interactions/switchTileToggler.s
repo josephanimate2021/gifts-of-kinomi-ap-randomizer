@@ -63,10 +63,9 @@ interactionCode78:
 	.db $5b $5a
 	.db $5c $5d
 
-
 @group5TileReplacement:
 	.db $b0 $52
 	.db $50 $b2
-
 	.db $60 $d0 ;$97
 	.db $d0 $60
+	.db $b1 $53

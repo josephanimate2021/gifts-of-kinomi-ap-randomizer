@@ -327,7 +327,7 @@ interaction18SubidData:
 	m_InteractionSubidData $7a $12 $40 ; $47
 	m_InteractionSubidData $7a $14 $00
 	m_InteractionSubidData $82 $14 $33
-	m_InteractionSubidData $82 $08 $53
+	m_InteractionSubidData $82 $08 $33
 	m_InteractionSubidData $82 $00 $33
 	m_InteractionSubidData $82 $0c $52
 	m_InteractionSubidData $82 $0e $12

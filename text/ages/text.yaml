@@ -1203,6 +1203,15 @@ groups:
       good! Get your
       \col(1)feather\col(0) back!
 
+  - name: TX_00_GET_TREASUREMAP
+    index: auto
+    text: |-
+      You got the
+      \col(1)Treasure Map\col(0)!
+      Press SELECT to
+      see where the
+      treasure is!
+
 - group: 0x01
   data:
   - name: TX_0100
@@ -5066,6 +5075,13 @@ groups:
       Traded Ore
       Not as useful
       as a feather.
+
+  - name: TX_09_TREASUREMAP
+    index: auto
+    text: |-
+      Treasure Map
+      Shows treasure
+      on your map.
 
 - group: 0x0a
   data:
@@ -17897,7 +17913,12 @@ groups:
       There is a \col(3)Shrine\col(0) somewhere between
       the trees, but I have struggled finding the means to reach it.
       These books are all useless, but I at least know that you must
-      collect four gems to learn the right path.
+      collect \col(3)four\col(0) \col(1)stones\col(0) to learn the right path.
+
+      We are always in research,
+      so \col(1)if you come back later\col(0),
+      we might have more information for you.
+
       Good luck in your endeavors, adventurer!
 
   - name: TX_3303
@@ -17914,6 +17935,8 @@ groups:
       Cisypherestus and I have a friend who lives in a hovel
       somewhere \col(1)hidden in these woods\col(0) that may lead you to that portal.
 
+      Come back if you've found anything!
+      
       Good luck!
 
   - name: TX_3304
@@ -17941,16 +17964,8 @@ groups:
 
   - name: TX_3308
     index: 0x08
-    text: |-
-      This is the \col(1)Book
-      of Seals\col(0). It was
-      once part of a
-      set, but now
-      only this one
-      remains. How
-      they were used
-      is an eternal
-      puzzle.
+    text: >-
+      Oh, and take this! It was curled inside one of my books.
 
   - name: TX_3309
     index: 0x09

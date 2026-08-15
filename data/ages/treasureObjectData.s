@@ -98,7 +98,7 @@ treasureObjectData:
 	/* $5c */ m_TreasureSubid   $0a, $00, $3f, $4c, TREASURE_OBJECT_GORON_VASE_00
 	/* $5d */ m_TreasurePointer treasureObjectData5d
 	/* $5e */ m_TreasurePointer treasureObjectData5e
-	/* $5f */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_5f_00
+	/* $5f */ m_TreasureSubid   $0a, $00, TX_00_GET_TREASUREMAP, $4a, TREASURE_OBJECT_5f_00
 	/* $60 */ m_TreasureSubid   $0c, $00, $ff, $57, TREASURE_OBJECT_60_00
 	/* $61 */ m_TreasurePointer treasureObjectData61
 	/* $62 */ m_TreasureSubid   $02, $00, $46, $20, TREASURE_OBJECT_SATCHEL_UPGRADE_00
@@ -354,7 +354,7 @@ treasureObjectData2e:
 	m_BeginTreasureSubids TREASURE_FLIPPERS
 	m_TreasureSubid $0a, $00, $31, $31, TREASURE_OBJECT_FLIPPERS_00
 	m_TreasureSubid $0a, $00, $7a, $31, TREASURE_OBJECT_FLIPPERS_01
-	m_TreasureSubid $3a, $00, $31, $31, TREASURE_OBJECT_FLIPPERS_02
+	m_TreasureSubid $6a, $00, $31, $31, TREASURE_OBJECT_FLIPPERS_02
 
 treasureObjectData30:
 	m_BeginTreasureSubids TREASURE_SMALL_KEY

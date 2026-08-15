@@ -649,7 +649,28 @@ checkDarkenRoom:
 	ld a,(wDungeonRoomProperties)
 	bit DUNGEONROOMPROPERTY_DARK_BIT,a
 	ret z
-	jp darkenRoom
+
+; ZTK: set wNumTorchesLit and only
+; darken room lightly if torches are present
+	ld b,LARGE_ROOM_HEIGHT << 4
+	ld hl,wRoomLayout
+	ld c,$00
+--
+	ld a,(hl)
+	cp TILEINDEX_LIT_TORCH
+	jr nz,+
+	inc c
++
+	inc l
+	dec b
+	jr nz,--
+	
+	ld a,c
+	cpa $00
+	jp z,darkenRoom
+	ld (wNumTorchesLit),a
+	jp darkenRoomLightly
+	;jp darkenRoom
 
 ;;
 checkBrightenRoom:
@@ -5932,10 +5953,7 @@ checkRoomPackAfterWarp_body:
 	ld a,b
 	jr z,++
 	sub $80
-	cp SEASON_SPRING
-	jr c,+
-	ld a,SEASON_SPRING
-+
+	and $03
 	ld (wCurrentSeason),a
 	ld a,b
 ++

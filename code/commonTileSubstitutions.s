@@ -234,10 +234,10 @@ replaceSwitchTiles:
 	.db $00
 
 @group5SwitchData:
-	.db $68 $01 $0b $91
-	.db $68 $01 $50 $8c
 	.db $51 $01 $0b $8c
-	.db $51 $01 $52 $42
+	.db $51 $01 $52 $44
+	.db $68 $02 $0b $4b
+	.db $68 $02 $53 $8a
 
 	.db $6e $40 $0b $11
 	.db $6e $40 $d0 $33
