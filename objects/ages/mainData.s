@@ -1039,6 +1039,7 @@ group0Map65ObjectData:
 group0Map66ObjectData:
 	obj_Pointer group0Map66EnemyObjectData
 	obj_Interaction INTERAC_BUSINESS_SCRUB $00 $58 $58
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $08 $11 $40 $ce
 	obj_End
 
 group0Map67ObjectData:
