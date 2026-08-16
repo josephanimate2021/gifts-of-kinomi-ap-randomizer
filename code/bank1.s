@@ -34,12 +34,14 @@ screenTransitionState0:
 ;;
 initializeRoomBoundaryAndLoadAnimations:
 	call setCameraFocusedObjectToLink
+
 	ld b,$01
 	ld a,(wActiveGroup)
 	and NUM_SMALL_GROUPS
 	jr z,+
 	ld b,$00
 +
+
 	ld a,b
 	ld (wcd01),a
 	xor $01
@@ -208,6 +210,7 @@ screenTransitionState2:
 	ld c,a
 	jp @startTransition
 +
+	ret ; ZTK testing
 	; Check for screen-edge transitions
 	ld a,(wLinkObjectIndex)
 	ld h,a
@@ -406,10 +409,12 @@ updateCameraPosition:
 	jr nc,@largeRoom
 
 @smallRoom:
+/*
 	xor a
 	ldh (<hCameraY),a
 	ldh (<hCameraX),a
 	ret
+*/
 
 @largeRoom:
 	ld a,(wCameraFocusedObject)
@@ -422,6 +427,7 @@ updateCameraPosition:
 	ld hl,hCameraY
 	ld a,(de)
 	sub SCREEN_HEIGHT*16/2
+/*
 	jr nc,+
 	xor a
 +
@@ -429,6 +435,7 @@ updateCameraPosition:
 	jr c,+
 	ld a,(LARGE_ROOM_HEIGHT-SCREEN_HEIGHT)*16
 +
+*/
 	call @updateComponent
 
 	; Update X
@@ -437,12 +444,14 @@ updateCameraPosition:
 	inc de
 	ld a,(de)
 	sub SCREEN_WIDTH*16/2
+/*
 	jr nc,+
 	xor a
 +
 	cp (LARGE_ROOM_WIDTH-SCREEN_WIDTH)*16
 	jr c,@updateComponent
 	ld a,(LARGE_ROOM_WIDTH-SCREEN_WIDTH)*16
+*/
 
 ;;
 ; @param	a	Target value for the position component
@@ -453,6 +462,12 @@ updateCameraPosition:
 	or a
 	jr nz,@smBit7
 
+	ld a,b
+	cpa $00
+	jr z,++
+	cpa $ff
+	jr z,++
+
 	ld a,(hl)
 	cp b
 	ret z
@@ -462,11 +477,17 @@ updateCameraPosition:
 	jr @smBit7
 +
 	inc (hl)
+	jr @smBit7
+++
+	ld (hl),a
 
 @smBit7:
 	ld hl,wScrollMode
 	set 7,(hl)
 	ret
+
+
+
 
 ;;
 ; Sets hCameraY/X to the correct values immediately. Differs from "updateCameraPosition"
