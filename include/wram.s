@@ -524,6 +524,15 @@ wMapleKillCounter: ; $c641/$c63e
 	db
 
 wBoughtShopItems1: ; $c642/$c63f
+; Bit 0: 1st seed satchel
+; Bit 1: 2nd seed satchel
+; Bit 2: slingshot
+; Bit 3: hyper slingshot
+; Bit 4: 2nd potion (unused)
+; Bit 5: gasha seed (unused)
+; Bit 6: Heart Piece
+; Bit 7: Set the first time you talk to the shopkeeper for the chest game.
+
 ; Bit 0: Bought ring box (ages) or satchel (seasons) upgrade from hidden shop.
 ; Bit 1: Bought gasha seed 1 from hidden shop.
 ; Bit 2: Bought gasha seed 2 from hidden shop.
