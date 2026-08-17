@@ -354,19 +354,32 @@ shopItemState3:
 
 	and $01
 	jr z,@@L2
+
 	ld b,100
 @@L2:
+	lda TREASURE_RED_PEARL
+	call @@checkPearlObtained
+	lda TREASURE_BLUE_PEARL
+	call @@checkPearlObtained
+
 	ld hl,wSwordBreakCounter
 	ld a,c
 
 	and $02
 	jr z,@@sword
-	inc l
+	inc l ; [wShieldBreakCounter]
 @@sword:
 	ld (hl),b
 	ld a,SND_GETITEM
 	jp playSound
 
+@@checkPearlObtained:
+	push bc
+	call checkTreasureObtained
+	pop bc
+	ret nc
+	sla b ; 2x
+	ret
 
 
 ;;

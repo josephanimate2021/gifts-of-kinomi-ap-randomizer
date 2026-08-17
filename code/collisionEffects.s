@@ -289,13 +289,19 @@ enemyCheckCollisions:
 	dec a
 	ret z
 
-	ld hl,wShieldBreakCounter
-	dec (hl)
-	ret nz
-	ld a,20
-	cp (hl)
+	lda TREASURE_RED_PEARL
+	call checkTreasureObtained
+	jr nc,@@notEnoughPearls
+	lda TREASURE_BLUE_PEARL
+	call checkTreasureObtained
 	ret c
 
+@@notEnoughPearls:
+	ld hl,wShieldBreakCounter
+	dec (hl)
+	jr z,+
+	ret nc
++
 	ld a,$01
 	ld (wShieldLevel),a
 	ld a,SND_CLINK2

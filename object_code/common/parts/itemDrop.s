@@ -253,15 +253,31 @@ partCode01:
 	ld e,SND_SHIELD
 
 @swordOrShieldDrop:
+; do nothing if already have L3 sword
 	ld a,(bc)
 	cp $03
 	jr nc,@deleteSelf
-	ld (hl),20
+
+; d is max number of hits
+	ld d,20
+	lda TREASURE_RED_PEARL
+	call @checkPearlObtained
+	lda TREASURE_BLUE_PEARL
+	call nc,@checkPearlObtained
+
+	ld (hl),d
 	ld a,e
 	call playSound
 @deleteSelf:
 	jp partDelete
 
+@checkPearlObtained:
+	push de
+	call checkTreasureObtained
+	pop de
+	ret nc
+	ld d,40
+	ret
 
 ; Data format:
 ;   b0: Treasure to give

@@ -370,6 +370,14 @@ breakSword:
 	dec a
 	ret z
 
+	lda TREASURE_RED_PEARL
+	call checkTreasureObtained
+	jr nc,@notEnoughPearls
+	lda TREASURE_BLUE_PEARL
+	call checkTreasureObtained
+	ret c
+
+@notEnoughPearls:
 	ld hl,wSwordBreakCounter
 	dec (hl)
 	jr z,+

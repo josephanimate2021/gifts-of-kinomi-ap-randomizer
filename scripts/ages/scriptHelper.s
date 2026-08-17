@@ -2799,60 +2799,7 @@ ambiRiseUntilOffScreen:
 dumbbellManScript:
 	scriptend
 ; The guy who you trade a dumbbell to for a mustache
-tradeBrokenSwordScript:
-;	jumpifroomflagset $20, @liftingAnimation
-;	setanimation $00 ; Swaying animation
-;	scriptjump ++
 
-;@liftingAnimation:
-;	setanimation $01 ; Lifting animation
-;++
-;	initcollisions
-
-@npcLoop:
-	checkabutton
-	disableinput
-	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveBook
-
-	setanimation $01		;angry
-	showtextlowindex <TX_0b17
-	wait 30
-	setanimation $00		;calm
-	showtextlowindex <TX_0b1d
-	wait 30
-	jumpiftradeitemeq TRADEITEM_BROKEN_SWORD, @offerTrade
-	enableinput
-	scriptjump @npcLoop
-
-@offerTrade:
-	setanimation $01		;angry
-	showtextlowindex <TX_0b18
-	wait 30
-	jumpiftextoptioneq $00, @giveBook
-
-	; Declined trade
-	showtextlowindex <TX_0b1b
-	enableinput
-	scriptjump @npcLoop
-
-@giveBook:
-	setanimation $00		;calm
-	showtextlowindex <TX_0b19
-	wait 30
-	setanimation $01		;angry
-	showtextlowindex <TX_0b1a
-	wait 30
-	setanimation $00		;calm
-	showtextlowindex <TX_0b1c
-	wait 30
-	giveitem TREASURE_TRADEITEM, TRADEITEM_SPARRING_BOOK
-
-@alreadyGaveBook:
-	setanimation $01		;angry
-	showtextlowindex <TX_0b25
-	wait 15
-	enableinput
-	scriptjump @npcLoop
 
 
 ; ==================================================================================================
@@ -3868,7 +3815,7 @@ maskSalesmanScript:
 	jumpiftextoptioneq $00, @Noble
 	jumpiftextoptioneq $01, @Master
 
-@declinedTrade
+@declinedTrade:
 	wait 15
 	setanimation $01
 	showtextlowindex <TX_0b14
@@ -3889,7 +3836,14 @@ maskSalesmanScript:
 	asm15 @cpRupeeValue, RUPEEVAL_080
 	jumpifmemoryeq wShopHaveEnoughRupees, $01, @notEnoughRupees
 	giveitem TREASURE_SWORD,$01
+	jumpifitemobtained TREASURE_RED_PEARL,@@havePearl
+	jumpifitemobtained TREASURE_BLUE_PEARL,@@havePearl
+	
 	writememory wSwordBreakCounter, 20
+	scriptjump +
+@@havePearl:
+	writememory wSwordBreakCounter, 40	
++
 	asm15 removeRupeeValue, RUPEEVAL_080
 	setanimation $00
 	scriptjump @enableInput
@@ -3901,7 +3855,14 @@ maskSalesmanScript:
 	asm15 @cpRupeeValue, RUPEEVAL_400
 	jumpifmemoryeq wShopHaveEnoughRupees, $01, @notEnoughRupees
 	giveitem TREASURE_SWORD,$02
+	jumpifitemobtained TREASURE_RED_PEARL,@@havePearl
+	jumpifitemobtained TREASURE_BLUE_PEARL,@@havePearl
+
 	writememory wSwordBreakCounter, 100
+	scriptjump +
+@@havePearl:
+	writememory wSwordBreakCounter, 200
++
 	asm15 removeRupeeValue, RUPEEVAL_400
 	setanimation $00
 	scriptjump @enableInput
@@ -3923,7 +3884,51 @@ maskSalesmanScript:
 	ld (wShopHaveEnoughRupees),a
 	ret
 
+tradeBrokenSwordScript:
+@npcLoop:
+	checkabutton
+	disableinput
+	jumpifroomflagset ROOMFLAG_ITEM, @alreadyGaveBook
 
+	setanimation $01		;angry
+	showtextlowindex <TX_0b17
+	wait 30
+	setanimation $00		;calm
+	showtextlowindex <TX_0b1d
+	wait 30
+	jumpiftradeitemeq TRADEITEM_BROKEN_SWORD, @offerTrade
+	enableinput
+	scriptjump @npcLoop
+
+@offerTrade:
+	setanimation $01		;angry
+	showtextlowindex <TX_0b18
+	wait 30
+	jumpiftextoptioneq $00, @giveBook
+
+	; Declined trade
+	showtextlowindex <TX_0b1b
+	enableinput
+	scriptjump @npcLoop
+
+@giveBook:
+	setanimation $00		;calm
+	showtextlowindex <TX_0b19
+	wait 30
+	setanimation $01		;angry
+	showtextlowindex <TX_0b1a
+	wait 30
+	setanimation $00		;calm
+	showtextlowindex <TX_0b1c
+	wait 30
+	giveitem TREASURE_TRADEITEM, TRADEITEM_SPARRING_BOOK
+
+@alreadyGaveBook:
+	setanimation $01		;angry
+	showtextlowindex <TX_0b25
+	wait 15
+	enableinput
+	scriptjump maskSalesmanScript@npcLoop
 
 ; ==================================================================================================
 ; INTERAC_COMEDIAN
@@ -4092,6 +4097,18 @@ goronDance_restartGame:
 	ld b,$0a
 	jpab agesInteractionsBank08.shootingGallery_initializeGameRounds
 
+goronDance_doubleBreakCounter:
+	lda TREASURE_BLUE_PEARL
+	call checkTreasureObtained
+	ret c
+	ld hl,wSwordBreakCounter
+	ld a,(hl)
+	add a
+	ldi (hl),a
+	ld a,(hl) ; [wShieldBreakCounter]
+	add a
+	ld (hl),a
+	ret
 ;;
 ; @param[out]	zflag	Set if in present (in wcddb)
 goron_checkInPresent:

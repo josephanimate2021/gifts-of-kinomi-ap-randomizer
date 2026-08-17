@@ -132,7 +132,7 @@ interactionCodeec:
 	ld a,(wTmpcfc0.subrosianDance.playForPearl)
 	cpa $00
 	jr z,+
-	lda $04 ; artificially set difficulty
+	lda $05 ; artificially set difficulty
 	jr ++
 +
 ; set difficulty based on number of plays
@@ -429,6 +429,17 @@ interactionCodeec:
 	jr @@@setScript
 
 @@@giveBluePearl:
+	lda TREASURE_RED_PEARL
+	call checkTreasureObtained
+	jr c,+
+	ld hl,wSwordBreakCounter
+	ld a,(hl)
+	add a
+	ldi (hl),a
+	ld a,(hl) ; [wShieldBreakCounter]
+	add a
+	ld (hl),a
++
 	ld hl,mainScripts.danceLeaderScript_bluePearl
 
 /*

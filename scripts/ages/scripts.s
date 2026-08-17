@@ -5657,6 +5657,11 @@ goronDance_giveRewardForImperfectGame:
 	.dw @bronze
 
 @platinumOrGold:
+	jumpifitemobtained TREASURE_RED_PEARL, +
+	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
+	asm15 scriptHelp.goronDance_doubleBreakCounter
+	retscript
++
 	;giveitem TREASURE_GASHA_SEED, $00
 	asm15 scriptHelp.giveRupees, RUPEEVAL_200
 	showtext TX_0009
@@ -5664,6 +5669,7 @@ goronDance_giveRewardForImperfectGame:
 @silver:
 	jumpifitemobtained TREASURE_RED_PEARL, +
 	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
+	asm15 scriptHelp.goronDance_doubleBreakCounter
 	retscript
 +
 	asm15 scriptHelp.giveRupees, RUPEEVAL_050
@@ -9793,8 +9799,14 @@ danceLeaderScript_giveOreChunks:
 */
 danceLeaderScript_giveRupees
 	playsound SND_GETITEM
+	jumpifmemoryset wTmpcfc0.subrosianDance.difficultyLevel, $08,+
+
 	asm15 scriptHelp.giveRupees, RUPEEVAL_050
 	showtext TX_0006
+	scriptjump danceLeaderScript_itemGiven
++
+	asm15 scriptHelp.giveRupees, RUPEEVAL_200
+	showtext TX_0009
 
 danceLeaderScript_itemGiven:
 	wait 30

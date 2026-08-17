@@ -4550,14 +4550,14 @@ groups:
     index: 0x21
     text: |-
       Iron Shield
-      A large shield. Takes about 20 hits.
+      A large shield. Takes about 20 hits without buffs.
 
   - name: TX_0922
     index: 0x22
     text: |-
       Mirror Shield
       A reflective
-      shield. Takes about 100 hits.
+      shield. Takes about 100 hits without buffs.
 
   - name: TX_0923
     index: 0x23
@@ -4569,14 +4569,14 @@ groups:
     index: 0x24
     text: |-
       Noble Sword
-      A sacred blade. Takes about 20 hits.
+      A sacred blade. Takes about 20 hits without buffs.
 
   - name: TX_0925
     index: 0x25
     text: |-
       Great Sword
       The blade of
-      legends. Takes about 100 hits.
+      legends. Takes about 100 hits without buffs.
 
   - name: TX_0926
     index: 0x26
@@ -6044,7 +6044,7 @@ groups:
     index: 0x12
     text: |-
       \pos(2)That one looks about twice as powerful as your old wooden sword,
-      but it looks like it can only take about \col(1)20 hits\col(0) before breaking.\stop
+      but it looks like it can only take about \col(1)20 hits\col(0) before breaking without any buffs.\stop
       Would you like to buy it for \col(3)80 rupees\col(0)?
       \opt()Yes \opt()No
 
@@ -6052,7 +6052,7 @@ groups:
     index: 0x13
     text: |-
       \pos(2)This sword is the mighty blade of old, powerful enough to seal the darkness.
-      I snatched it from an worn pedestal, and the blade seems it could take \col(1)100 hits\col(0).
+      I snatched it from an worn pedestal, and the blade seems it could take \col(1)100 hits\col(0) without any buffs.
       Buy it for \col(3)400 rupees\col(0)?
       \opt()Yes \opt()No
 
@@ -6973,7 +6973,7 @@ groups:
     index: 0x29
     text: |-
       \col(1)Iron Shield\col(0)
-      Takes about 20 hits.\stop
+      Takes about 20 hits without buffs.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -6982,7 +6982,7 @@ groups:
     index: 0x2a
     text: |-
       \col(1)Mirror Shield\col(0)
-      Takes about 100 hits.\stop
+      Takes about 100 hits without any buffs.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -7019,7 +7019,7 @@ groups:
     index: 0x2f
     text: |-
       \col(1)Noble Sword\col(0)
-      Takes 20 hits.\stop
+      Takes 20 hits without buffs.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
@@ -7028,7 +7028,7 @@ groups:
     index: 0x30
     text: |-
       \col(1)Great Sword\col(0)
-      Takes 100 hits.\stop
+      Takes 100 hits without buffs.\stop
        \num1 Rupees
       \jump(TX_0e2b)
     null_terminator: False
