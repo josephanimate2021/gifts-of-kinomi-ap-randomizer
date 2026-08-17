@@ -696,6 +696,7 @@ nextToTileWithInfoText:
 	.dw @crackedWall
 	.dw @unlitTorch
 	.dw @rock
+	.dw @mushroom
 
 @pot:
 	; Only show the text if you don't have the power bracelet
@@ -720,6 +721,9 @@ nextToTileWithInfoText:
 
 @rock:
 	ld a,$04
+	jr showInfoTextForTile
+@mushroom:
+	lda $0a
 	jr showInfoTextForTile
 
 ;;

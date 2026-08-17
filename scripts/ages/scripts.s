@@ -5657,7 +5657,7 @@ goronDance_giveRewardForImperfectGame:
 	.dw @bronze
 
 @platinumOrGold:
-	jumpifitemobtained TREASURE_RED_PEARL, +
+	jumpifitemobtained TREASURE_BLUE_PEARL, +
 	scriptjump goronDance_giveRedPearl
 +
 	;giveitem TREASURE_GASHA_SEED, $00
@@ -5682,7 +5682,7 @@ goronDance_giveRewardForPerfectGame:
 	.dw @bronze
 
 @platinum:
-	jumpifitemobtained TREASURE_RED_PEARL, +
+	jumpifitemobtained TREASURE_BLUE_PEARL, +
 	scriptjump goronDance_giveRedPearl
 +
 	;asm15 scriptHelp.goronDance_giveRandomRingPrize
@@ -5692,7 +5692,7 @@ goronDance_giveRewardForPerfectGame:
 
 @platinumOrGold:
 @gold:
-	jumpifitemobtained TREASURE_RED_PEARL, +
+	jumpifitemobtained TREASURE_BLUE_PEARL, +
 	scriptjump goronDance_giveRedPearl
 +
 	;asm15 scriptHelp.goronDance_giveRandomRingPrize
@@ -5700,7 +5700,7 @@ goronDance_giveRewardForPerfectGame:
 	showtext TX_008f
 	retscript
 @silver:
-	jumpifitemobtained TREASURE_RED_PEARL, +
+	jumpifitemobtained TREASURE_BLUE_PEARL, +
 	scriptjump goronDance_giveRedPearl
 +
 	giveitem TREASURE_BOMBCHUS, $00
@@ -5712,7 +5712,7 @@ goronDance_giveRewardForPerfectGame:
 	retscript
 
 goronDance_giveRedPearl:
-	giveitem TREASURE_RED_PEARL, $00
+	giveitem TREASURE_BLUE_PEARL, $00
 	asm15 scriptHelp.goronDance_doubleBreakCounter
 	retscript
 
@@ -9758,7 +9758,7 @@ danceLeaderScript_promptForTutorial:
 	showtext TX_5a15
 	jumpiftextoptioneq $01, @needTutorial
 ; check if Link can play for the pearl, and if he wants to
-	jumpifitemobtained TREASURE_BLUE_PEARL,@danceLeaderScript_readyToDance
+	jumpifitemobtained TREASURE_RED_PEARL,@danceLeaderScript_readyToDance
 	showtext TX_5a16
 	jumpiftextoptioneq $01,@danceLeaderScript_readyToDance
 	writememory wTmpcfc0.subrosianDance.playForPearl,$01
@@ -9779,8 +9779,8 @@ danceLeaderScript_bombchus:
 	giveitem TREASURE_BOMBCHUS, $00
 	scriptjump danceLeaderScript_itemGiven
 
-danceLeaderScript_bluePearl:
-	giveitem TREASURE_BLUE_PEARL, $00
+danceLeaderScript_pearl:
+	giveitem TREASURE_RED_PEARL, $00
 	scriptjump danceLeaderScript_itemGiven
 /*
 danceLeaderScript_giveFlute:

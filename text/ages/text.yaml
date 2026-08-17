@@ -15015,13 +15015,13 @@ groups:
     index: 0x21
     text: |-
       Warning!!!\stop
-      Raj the guard lacks the fortitude to withstand a watchful gaze.\stop
-      Leave him alone for your safety!
+      Raj the guard lacks the fortitude to withstand a \col(1)watchful gaze\col(0).\stop
+      \col(1)Do not attack\col(0) him for your safety!
 
   - name: TX_2e22
     index: 0x22
     text: |-
-      Your red companion will pave your path forward.
+      A \col(1)red companion\col(0) will pave your path forward.
 
   - name: TX_2e23
     index: 0x23

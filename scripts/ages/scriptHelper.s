@@ -4098,7 +4098,7 @@ goronDance_restartGame:
 	jpab agesInteractionsBank08.shootingGallery_initializeGameRounds
 
 goronDance_doubleBreakCounter:
-	lda TREASURE_BLUE_PEARL
+	lda TREASURE_RED_PEARL
 	call checkTreasureObtained
 	ret c
 	ld hl,wSwordBreakCounter

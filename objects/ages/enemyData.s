@@ -1792,6 +1792,7 @@ group5Map66EnemyObjectData:
 	obj_RandomEnemy $40 $49 $00
 	obj_ItemDrop 0 $04 $12
 	obj_Part $09 $04 $6a
+	obj_ItemDrop $00 ITEM_DROP_BOMBS $9d
 	obj_EndPointer
 
 group5Map71EnemyObjectData:

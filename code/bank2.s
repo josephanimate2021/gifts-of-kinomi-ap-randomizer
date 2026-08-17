@@ -6477,8 +6477,8 @@ subscreen1TreasureData:
 	.db TREASURE_ZORA_SCALE			$77 $08
 	.db TREASURE_POTION				$7c $09
 		; Row 4
-	.db TREASURE_RED_PEARL			$71 $0a
-	.db TREASURE_BLUE_PEARL			$73 $0a
+	.db TREASURE_BLUE_PEARL			$71 $0a
+	.db TREASURE_RED_PEARL			$73 $0a
 
 
 	.db $00

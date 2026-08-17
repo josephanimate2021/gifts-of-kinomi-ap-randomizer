@@ -371,7 +371,7 @@ interactionCodeec:
 
 	ld a,(wTmpcfc0.subrosianDance.playForPearl)
 	cpa $00
-	jr nz,@@@giveBluePearl
+	jr nz,@@@givePearl
 ; only counts up to 255
 	ld hl,wNumTimesPlayedSubrosianDance
 	call incHlRefWithCap
@@ -392,9 +392,9 @@ interactionCodeec:
 	;jr nz,@@@giveOreChunksOrGashaSeed
 	;call checkIsLinkedGame
 	;jr nz,@@@giveOreChunksOrGashaSeed
-	lda TREASURE_BLUE_PEARL
+	lda TREASURE_RED_PEARL
 	call checkTreasureObtained
-	jr nc,@@@giveBluePearl
+	jr nc,@@@givePearl
 /*
 ; On only 5th play, give strange flute if haven't returned Ricky's gloves
 	ld a,(wRickyState)
@@ -428,8 +428,8 @@ interactionCodeec:
 	;ld hl,mainScripts.danceLeaderScript_gashaSeed
 	jr @@@setScript
 
-@@@giveBluePearl:
-	lda TREASURE_RED_PEARL
+@@@givePearl:
+	lda TREASURE_BLUE_PEARL
 	call checkTreasureObtained
 	jr c,+
 	ld hl,wSwordBreakCounter
@@ -440,7 +440,7 @@ interactionCodeec:
 	add a
 	ld (hl),a
 +
-	ld hl,mainScripts.danceLeaderScript_bluePearl
+	ld hl,mainScripts.danceLeaderScript_pearl
 
 /*
 @@@giveBoomerang: ;func_5e25:

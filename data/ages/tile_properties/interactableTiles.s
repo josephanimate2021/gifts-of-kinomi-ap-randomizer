@@ -48,6 +48,7 @@ interactableTilesTable:
 @collisions1:
 	;.db $ae $06
 	.db TILEINDEX_DUNGEON_STONE_MUSHROOM $43
+	.db $13 $53 ; mushroom
 @collisions2:
 @collisions5:
 	.db $18 $00
