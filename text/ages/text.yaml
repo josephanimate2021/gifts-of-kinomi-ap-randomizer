@@ -14980,9 +14980,8 @@ groups:
   - name: TX_2e1c
     index: 0x1c
     text: |-
-      **Ancient Cave**
-      Beware! Crumbles
-      easily!
+      Goron Cave\stop
+      It's a secret to everybody!
 
   - name: TX_2e1d
     index: 0x1d
@@ -16814,18 +16813,9 @@ groups:
   data:
   - name: TX_3100
     index: 0x00
-    text: |-
-      \sfx(0xc7)You can't get
-      through due to
-      the rock slide.
-      In times like
-      this, I just
-      sleep and wait.
-      Long ago, there
-      were many rock
-      slides here that
-      caused a lot of
-      trouble.
+    text: >-
+      \sfx(0xc7)You found our humble cave.
+      There's usually a lot more water in here.
 
   - name: TX_3101
     index: 0x01
@@ -16836,48 +16826,26 @@ groups:
 
   - name: TX_3102
     index: 0x02
-    text: |-
-      \sfx(0xc7)A young boy
-      brought \col(1) Bomb
-      Flowers\col(0) to
-      \col(3)Rolling Ridge\col(0).\stop
-      Thanks to him,
-      \col(1)Bomb Flowers\col(0) are
-      now the product
-      that makes
-      \col(3)Rolling Ridge\col(0)
-      famous.
+    text: >-
+      \sfx(0xc7)How much longer do you
+      think the water will be dried up?
 
   - name: TX_3103
     index: 0x03
-    text: |-
-      \sfx(0xc7)With the new
-      tunnel complete,
-      we've got new
-      dwellings! Some
-      Gorons have even
-      opened new
-      shops. You
-      should check
-      it out!
+    text: >-
+      \sfx(0xc7)Water and rocks is what gives us life.
+      I hope they never go away!
 
   - name: TX_3104
     index: 0x04
-    text: |-
-      \sfx(0xc7)Have you been to
-      the Goron shops?
-      Once isn't
-      enough! You have
-      to go at least
-      two or three
-      times to each!
+    text: >-
+      \sfx(0xc7)I wonder if my friend will ever stop digging.
+      He's a machine!
 
   - name: TX_3105
     index: 0x05
-    text: |-
-      \sfx(0xc7)These stairs go
-      to the base of
-      \col(3)Rolling Ridge\col(0).
+    text: >-
+      \sfx(0xc7)I like to pass the time by watching my friend dig.
 
   - name: TX_3106
     index: 0x06
@@ -16891,59 +16859,42 @@ groups:
 
   - name: TX_3107
     index: 0x07
-    text: |-
-      \sfx(0xc7)When my grandpa
-      was younger, he
-      ran a different
-      shop before he
-      opened Target
-      Carts.
+    text: >-
+      \sfx(0xc7)Have you ever been in a brotherhood like ours?
 
   - name: TX_3108
     index: 0x08
-    text: |-
-      \sfx(0xc7)I got all kinds
-      of prizes at the
-      gaming shops
-      today!
+    text: >-
+      \sfx(0xc7)They say only the
+      \col(1)Subrosians\col(0) rival us
+      in dance moves.
 
   - name: TX_3109
     index: 0x09
-    text: |-
-      \sfx(0xc7)That's some
-      racket coming up
-      from down below.
-      Did something
-      happen?
+    text: >-
+      \sfx(0xc7)Have you seen any \col(1)Subrosians\col(0)?
+      Say hello to them, and maybe they will let you \col(1)dance\col(0) with them!
 
   - name: TX_310a
     index: 0x0a
-    text: |-
-      \sfx(0xc7)So the Elder
-      was all right?
-      That's good!
+    text: >-
+      \sfx(0xc7)Where did you come from?
 
   - name: TX_310b
     index: 0x0b
-    text: |-
-      \sfx(0xc7)We Gorons love
-      games! There are
-      plenty of places
-      to play around
-      here!
+    text: >-
+      \sfx(0xc7)We're thinking about opening more games,
+      but don't want to be in infamy
+      like the gorons from \col(1)Rolling Ridge\col(0).
 
   - name: TX_310c
     index: 0x0c
-    text: |-
+    text: >-
       \sfx(0xc7)The \col(3)Graceful
-      Goron\col(0) downstairs
-      was bragging
-      about how he
-      found a
-      beautiful \col(1)key\col(0) in
-      a waterfall
-      grotto. I'm so
-      jealous.
+      Goron\col(0) here was bragging
+      about how he found a
+      beautiful \col(1)pearl\col(0).
+      I'm so jealous.
 
   - name: TX_310d
     index: 0x0d
@@ -16955,11 +16906,9 @@ groups:
 
   - name: TX_310e
     index: 0x0e
-    text: |-
-      \sfx(0xc7)The target range
-      is almost as
-      popular as
-      dancing is!
+    text: >-
+      \sfx(0xc7)Do you think there
+      is anything beyond our cave?
 
   - name: TX_310f
     index: 0x0f
@@ -22772,15 +22721,15 @@ groups:
   data:
   - name: TX_5a00
     index: auto
-    text: |-
-      This is Subrosia
-      Dance Hall.
+    text: >-
+      We are transfers from the Subrosia Dance Hall.
       Good dancers get
       a prize. We're
       about to
       practice. Would
       you like to
       dance with us?
+
         \opt()Yes \opt()No
 
   - name: TX_5a01
@@ -22877,16 +22826,19 @@ groups:
       I'm gonna master
       the Subrosian
       Dance and
-      impress \col(3)Rosa\col(0)!
+      impress \col(1)Din\col(0)!
 
   - name: TX_5a0f
     index: auto
-    text: |-
-      The Subrosian
-      Dance is the
-      traditional
-      dance of
+    text: >-
+      Our Subrosian Dance
+      is a tradition of
       \col(3)Subrosia\col(0).
+
+      We moved here to practice
+      for a great party!
+
+      Do you know of any?
 
   - name: TX_5a10
     index: auto

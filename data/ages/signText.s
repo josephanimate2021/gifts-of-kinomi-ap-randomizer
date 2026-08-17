@@ -42,8 +42,9 @@ signTextGroup1Data:
 	.db $00
 
 signTextGroup2Data:
-	.db $53, <ROOM_AGES_024, <TX_2e01 ; Link's house
-	.db $37, <ROOM_AGES_014, <TX_2e1b ; Credits
+	.db $53, <ROOM_AGES_224, <TX_2e01 ; Link's house
+	.db $37, <ROOM_AGES_214, <TX_2e1b ; Credits
+	.db $43, <ROOM_AGES_23d, <TX_2e1c ; Goron cave
 	.db $00
 
 signTextGroup3Data:

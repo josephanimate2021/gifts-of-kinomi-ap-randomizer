@@ -5440,11 +5440,15 @@ group2Map2dObjectData:
 	obj_End
 
 group2Map3dObjectData:
-	obj_Interaction INTERAC_GORON $0c $68 $88 $04
+	obj_Interaction INTERAC_GORON $0c $58 $78 $04
+	obj_Interaction INTERAC_GORON $0c $18 $78
+	obj_Interaction INTERAC_GORON $0c $38 $48 $03
+	obj_Interaction INTERAC_GORON $0c $68 $28 $02
 	obj_End
 
 group2Map1dObjectData:
 	obj_Interaction INTERAC_GORON $07 $40 $50 $04
+	obj_Interaction INTERAC_GORON $0c $68 $48 $01
 	obj_End
 
 group3Map7aObjectData:

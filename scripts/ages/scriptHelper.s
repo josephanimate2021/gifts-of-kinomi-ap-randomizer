@@ -4343,7 +4343,11 @@ goron_showTextForSubid05:
 ;   $02: after beating King Moblin
 ;   $03: after beating game
 goron_determineTextForGenericNpc:
-	call @getGameState
+	ld a,(wGameProgress1)
+	sub $05
+	ld e,Interaction.var3b
+	ld (de),a
+	;call @getGameState
 	jp @determineTextID
 
 
@@ -4440,6 +4444,12 @@ goron_determineTextForGenericNpc:
 ;   b2: text after beating game (past) or after beating King Moblin (present)
 ;   b3: text after beating game (present)
 ; Value $ff means the goron will delete itself.
+
+; b0: got Cane
+; b1: got Power Gloves
+; b2: got gift
+; b3: got both gifts
+; b4: finished game
 @subid0e:
 	.db $00 $ff $ff $ff ; 0x00 == [var03]
 	.db $ff $01 $01 $01 ; 0x01
@@ -4461,6 +4471,12 @@ goron_determineTextForGenericNpc:
 	.db $ff $1c $1d $00 ; 0x04
 
 @subid0c:
+	.db <TX_3100, <TX_3108, <TX_3102, <TX_3103, <TX_3103
+	.db <TX_3101, $ff, $ff, <TX_3104, <TX_3105
+	.db <TX_3106, <TX_3107, <TX_3108, $ff, <TX_3109
+	.db <TX_310a, <TX_310b, <TX_310c, <TX_310e, <TX_310d
+	.db $ff, <TX_3100, <TX_3100, <TX_3100, $ff
+/*
 	.db $ff $1e $1f $20 ; 0x00
 	.db $ff $ff $21 $22 ; 0x01
 	.db $ff $ff $23 $23 ; 0x02
@@ -4469,7 +4485,7 @@ goron_determineTextForGenericNpc:
 	.db $ff $27 $ff $00 ; 0x05
 	.db $ff $ff $17 $18 ; 0x06
 	.db $ff $ff $19 $19 ; 0x07
-
+*/
 
 ;;
 ; Goron naps if Link is far away, gets up when he approaches.

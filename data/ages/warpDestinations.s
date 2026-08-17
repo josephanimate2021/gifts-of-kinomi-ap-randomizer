@@ -244,7 +244,7 @@ group1WarpDestTable:
 	m_WarpDest $5d $37 $0 $e
 	m_WarpDest $40 $12 $0 $e
 	m_WarpDest $00 $00 $0 TRANSITION_DEST_DONT_SET_RESPAWN
-	m_WarpDest $30 $41 $0 TRANSITION_DEST_DONT_SET_RESPAWN
+	m_WarpDest $30 $43 $0 TRANSITION_DEST_DONT_SET_RESPAWN
 
 group2WarpDestTable:
 	m_WarpDest $5e $f6 $0 $3
