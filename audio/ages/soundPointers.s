@@ -33,13 +33,15 @@ soundPointers:
 	m_soundPointer sound1f
 	m_soundPointer sound20
 	m_soundPointer sound21
-	m_soundPointer sound22
+	;m_soundPointer sound22
+	m_soundPointer musSubrosianDance
 	m_soundPointer sound23
 	m_soundPointer sound24
 	;m_soundPointer sound25
 	m_soundPointer blackMist
 	m_soundPointer sound26
-	m_soundPointer sound27
+	;m_soundPointer sound27
+	m_soundPointer musSubrosianShop
 	m_soundPointer sound28
 	m_soundPointer sound29
 	m_soundPointer sound2a

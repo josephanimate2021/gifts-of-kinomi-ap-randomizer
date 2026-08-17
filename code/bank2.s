@@ -6463,6 +6463,8 @@ subscreen1TreasureData:
 	.db TREASURE_TRADEITEM			$3d $07
 
 		; Row 3
+	.db TREASURE_RED_PEARL			$6a $08
+	.db TREASURE_BLUE_PEARL			$6b $08
 	.db TREASURE_ZORA_SCALE			$6a $08
 	.db TREASURE_POTION				$6d $09
 
@@ -7769,7 +7771,7 @@ minimapPopupType_shop:
 
 minimapPopupType_vasuOrSyrup:
 	ld a,(wMapMenu.cursorIndex)
-	cp $5d
+	cp <ROOM_AGES_120 ;$5d
 	ld a,$0c
 	ret z
 	inc a

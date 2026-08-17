@@ -248,6 +248,7 @@ interactionData:
 	/* $e9 */ m_InteractionData $00 $00 $00
 	/* $ea */ m_InteractionData $00 $00 $00
 	/* $eb */ m_InteractionData $e0 $00 $01
+	/* $ec */ m_InteractionData interactionecSubidData ; Subrosian dancers
 
 interaction60SubidData:
 interaction63SubidData:
@@ -328,7 +329,7 @@ interaction18SubidData:
 	m_InteractionSubidData $7a $14 $00
 	m_InteractionSubidData $82 $14 $33
 	m_InteractionSubidData $82 $08 $33
-	m_InteractionSubidData $82 $00 $33
+	m_InteractionSubidData $79 $00 $23 ;$82 $00 $33
 	m_InteractionSubidData $82 $0c $52
 	m_InteractionSubidData $82 $0e $12
 	m_InteractionSubidData $82 $04 $53
@@ -336,13 +337,13 @@ interaction18SubidData:
 	m_InteractionSubidData $75 $1c $30 ; $50
 	m_InteractionSubidData $81 $0c $43
 	m_InteractionSubidData $7a $16 $03
-	m_InteractionSubidData $82 $1a $50
+	m_InteractionSubidData $82 $1a $50 ; Red pearl
 	m_InteractionSubidData $81 $14 $53
 	m_InteractionSubidData $81 $1c $53
 	m_InteractionSubidData $83 $0a $04
 	m_InteractionSubidData $83 $00 $33
 	m_InteractionSubidData $82 $12 $32	;fairy powder
-	m_InteractionSubidData $00 $00 $00
+	m_InteractionSubidData $82 $1a $40 ;Blue pearl $00 $00 $00
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $83 $06 $53
 	m_InteractionSubidData $83 $04 $52
@@ -923,4 +924,12 @@ interactione4SubidData:
 interaction5fSubidData:
 	m_InteractionSubidData $4f $00 $00
 	m_InteractionSubidData $00 $00 $01
+	m_InteractionSubidDataEnd
+
+; subrosian dancers
+interactionecSubidData:
+	m_InteractionSubidData $e2 $00 $02
+	m_InteractionSubidData $e2 $00 $32
+	m_InteractionSubidData $e2 $00 $22
+	m_InteractionSubidData $e4 $00 $07
 	m_InteractionSubidDataEnd

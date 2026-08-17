@@ -5332,3 +5332,47 @@ interactionOamDataFlowerBloom_0a:
 	.db $0a $fd $00 $03
 	.db $0a $05 $02 $03
 	.db $0a $0c $00 $23
+
+; subrosian dancers
+interactionOamData4c223:
+	.db $02
+	.db $08 $00 $32 $20
+	.db $08 $08 $30 $20
+
+interactionOamData4c22c:
+	.db $02
+	.db $08 $00 $30 $00
+	.db $08 $08 $32 $00
+
+interactionOamData4e055:
+	.db $08
+	.db $04 $00 $1a $04
+	.db $04 $08 $1c $04
+	.db $f8 $fc $10 $01
+	.db $00 $04 $12 $01
+	.db $08 $fc $14 $01
+	.db $10 $04 $16 $22
+	.db $f8 $0c $10 $21
+	.db $08 $0c $14 $21
+
+interactionOamData4e076:
+	.db $08
+	.db $04 $08 $1a $24
+	.db $04 $00 $1c $24
+	.db $f8 $fc $10 $01
+	.db $00 $04 $12 $01
+	.db $08 $fc $14 $01
+	.db $10 $04 $16 $02
+	.db $f8 $0c $10 $21
+	.db $08 $0c $14 $21
+
+interactionOamData4e097:
+	.db $08
+	.db $04 $00 $18 $04
+	.db $04 $08 $18 $24
+	.db $f8 $fc $10 $01
+	.db $00 $04 $12 $01
+	.db $08 $fc $14 $01
+	.db $10 $04 $16 $22
+	.db $f8 $0c $10 $21
+	.db $08 $0c $14 $21

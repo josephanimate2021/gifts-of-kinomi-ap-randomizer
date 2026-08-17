@@ -234,9 +234,10 @@ interactionAnimationTable:
 	.dw interactione8Animations
 ; $e9 - $ea
 .rept 2
-	.db $00 $00
+	.dw $0000
 .endr
 	.dw interactionebAnimations
+	.dw interactionecAnimations
 
 interactionOamDataTable: ; 0x59a23
 	.dw interaction00OamDataPointers
@@ -474,9 +475,10 @@ interactionOamDataTable: ; 0x59a23
 	.dw interactione8OamDataPointers
 ; $e9 - $ea
 .rept 2
-	.db $00 $00
+	.dw $0000
 .endr
 	.dw interactionebOamDataPointers
+	.dw interactionecOamDataPointers
 
 interaction27Animations:
 	.dw interactionAnimation5a3af ; interactionAnimation51cda
@@ -736,6 +738,7 @@ interactionabAnimations:
 interactionbfAnimations:
 interactionc2Animations:
 interactionc4Animations:
+
 	.dw interactionAnimation5a468
 	.dw interactionAnimation5a5a6
 	.dw interactionAnimation5a60c
@@ -1328,10 +1331,20 @@ interactionebAnimations:
 	.dw interactionAnimation5a793
 	.dw interactionAnimationFlowerBloom_2
 	.dw interactionAnimationFlowerBloom_3
-
 	;.dw interactionAnimation52665
 	;.dw interactionAnimation52668
 	;.dw interactionAnimation5267d
+interactionecAnimations: ;subrosian dancers
+	.dw interactionAnimation5a468
+	.dw interactionAnimation5a5a6
+	.dw interactionAnimation5a60c
+	.dw interactionAnimation5a653
+	.dw interactionAnimation51e0d ; from seasons
+	.dw interactionAnimation51e21 ; from seasons
+	.dw interactionAnimation51e2c ; from seasons
+	.dw interactionAnimation51e37 ; from seasons
+	.dw interactionAnimation51e3a ; from seasons
+	.dw interactionAnimation51e3d ; from seasons
 
 interactionAnimationFlowerBloom_2:
 	.db $08 $00 $00
@@ -4651,6 +4664,20 @@ interactiona5OamDataPointers: ; 0x5af0c
 	.dw interactionOamData5020e	;interactionOamData500ae		;ghastly doll
 	.dw interactionOamData50205	;fairy powder
 
+interactionecOamDataPointers: ;subrosian dancers
+	.dw interactionOamData502f8
+	.dw interactionOamData50325
+	.dw interactionOamData50388
+	.dw interactionOamData503d0
+	.dw interactionOamData5020e
+	.dw interactionOamData502a7
+	.dw interactionOamData5037f
+	.dw interactionOamData503b5
+	.dw interactionOamData4c223 ; from seasons
+	.dw interactionOamData4c22c ; from seasons
+	.dw interactionOamData4e055 ; from seasons
+	.dw interactionOamData4e076 ; from seasons
+	.dw interactionOamData4e097 ; from seasons
 
 ; Din animations
 interactionAnimation51d5f:
@@ -4672,3 +4699,48 @@ interactionAnimation51da7:
 	.db $10 $0c $00
 	.db $10 $0e $00
 	m_AnimationLoop interactionAnimation51da7
+
+; subrosian dancer animations
+interactionAnimation51e0d:
+	.db $02 $08 $00
+	.db $02 $0c $00
+	.db $02 $00 $00
+	.db $02 $04 $00
+	.db $02 $08 $00
+interactionAnimation51e0dLoop:
+	.db $7f $10 $00
+	m_AnimationLoop interactionAnimation51e0dLoop
+
+interactionAnimation51e21:
+	.db $03 $04 $02
+	.db $05 $06 $fe
+interactionAnimation51e21Loop:
+	.db $7f $06 $00
+	m_AnimationLoop interactionAnimation51e21Loop
+
+interactionAnimation51e2c:
+	.db $03 $0c $fe
+	.db $05 $0e $02
+interactionAnimation51e2cLoop:
+	.db $7f $0e $00
+	m_AnimationLoop interactionAnimation51e2cLoop
+
+interactionAnimation51e37:
+	.db $7f $14 $00
+interactionAnimation51e3a:
+	.db $7f $16 $00
+interactionAnimation51e3d:
+	.db $7f $18 $00
+	.db $04 $00 $00
+	.db $08 $02 $00
+	.db $02 $00 $00
+	.db $08 $04 $01
+	.db $02 $00 $00
+	.db $06 $02 $00
+	.db $02 $00 $00
+	.db $04 $04 $00
+	.db $02 $00 $00
+	.db $02 $02 $00
+interactionAnimation51e40Loop:
+	.db $02 $00 $ff
+	m_AnimationLoop interactionAnimation51e40Loop

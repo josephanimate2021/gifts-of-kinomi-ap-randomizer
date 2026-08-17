@@ -7,6 +7,8 @@
 ;   var38: Nonzero if Link has rings in the ring list?
 ; ==================================================================================================
 interactionCode89:
+	jp panic
+/*
 	ld a,(wTextIsActive)
 	or a
 	jr nz,++
@@ -355,3 +357,4 @@ interactionCode89:
 	inc e
 	ld (de),a
 	ret
+*/

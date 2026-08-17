@@ -45,6 +45,8 @@ tileTypesTable:
 	.db $e6 TILETYPE_LAVA
 	.db $e7 TILETYPE_LAVA
 	.db $e8 TILETYPE_LAVA
+
+	.db $df TILETYPE_WARPHOLE
 	.db $00
 
 ;ZerotoK's tilesets (dungeon)

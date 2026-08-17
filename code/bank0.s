@@ -13308,6 +13308,9 @@ updateInteraction:
 	cp $dc
 	jr c,@cnt
 	ld b,$10
+	cp $ec
+	jr c,@cnt
+	ld b,$0b
 
 .else ; ROM_SEASONS
 

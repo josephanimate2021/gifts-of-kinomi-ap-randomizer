@@ -5329,6 +5329,7 @@ goron_subid00_npcLoop:
 	jumpifitemobtained TREASURE_GORON_LETTER, @danceForOldMermaidKey
 
 @present:
+	scriptjump @danceForGenericItem
 	; Check this in past and present
 	jumpifitemobtained TREASURE_BROTHER_EMBLEM, @danceForGenericItem
 
@@ -5407,6 +5408,7 @@ goronDance_begin:
 	jumpifitemobtained TREASURE_GORON_LETTER, @lowestDanceLevel
 
 @present:
+	scriptjump @selectDifficulty
 	; Check this in past and present
 	jumpifitemobtained TREASURE_BROTHER_EMBLEM, @selectDifficulty
 
@@ -5587,11 +5589,14 @@ goronDanceScript_givePrize:
 	jumpifmemoryset wcddb, CPU_ZFLAG, @present
 
 @past:
+/*
 	; Only check these in the past
 	jumpifitemobtained TREASURE_MERMAID_KEY, @giveGenericPrize
 	jumpifitemobtained TREASURE_GORON_LETTER, @giveOldMermaidKey
-
+*/
 @present:
+	scriptjump @giveGenericPrize
+/*
 	; Check this in past and present
 	jumpifitemobtained TREASURE_BROTHER_EMBLEM, @giveGenericPrize
 
@@ -5616,6 +5621,7 @@ goronDanceScript_givePrize:
 	asm15 scriptHelp.goronDance_clearVariables
 	enableinput
 	scriptjump goron_subid00_npcLoop
+*/
 
 @giveGenericPrize:
 	asm15 scriptHelp.goronDance_checkNumFailedRounds
@@ -5651,9 +5657,15 @@ goronDance_giveRewardForImperfectGame:
 	.dw @bronze
 
 @platinumOrGold:
-	giveitem TREASURE_GASHA_SEED, $00
+	;giveitem TREASURE_GASHA_SEED, $00
+	asm15 scriptHelp.giveRupees, RUPEEVAL_200
+	showtext TX_0009
 	retscript
 @silver:
+	jumpifitemobtained TREASURE_RED_PEARL, +
+	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
+	retscript
++
 	asm15 scriptHelp.giveRupees, RUPEEVAL_050
 	showtext TX_0006
 	retscript
@@ -5665,16 +5677,35 @@ goronDance_giveRewardForImperfectGame:
 
 goronDance_giveRewardForPerfectGame:
 	jumptable_memoryaddress wTmpcfc0.goronDance.danceLevel
-	.dw @platinumOrGold
-	.dw @platinumOrGold
+	.dw @platinum
+	.dw @gold
 	.dw @silver
 	.dw @bronze
 
+@platinum:
+	jumpifitemobtained TREASURE_TOKAY_EYEBALL, +
+	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
+	retscript
++
+	;asm15 scriptHelp.goronDance_giveRandomRingPrize
+	asm15 scriptHelp.giveRupees, RUPEEVAL_500
+	showtext TX_0090
+	retscript
+
 @platinumOrGold:
-	asm15 scriptHelp.goronDance_giveRandomRingPrize
+@gold:
+	jumpifitemobtained TREASURE_TOKAY_EYEBALL, +
+	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
+	retscript
++
+	;asm15 scriptHelp.goronDance_giveRandomRingPrize
+	asm15 scriptHelp.giveRupees, RUPEEVAL_300
+	showtext TX_008f
 	retscript
 @silver:
-	giveitem TREASURE_GASHA_SEED, $00
+	;giveitem TREASURE_GASHA_SEED, $00
+	asm15 scriptHelp.giveRupees, RUPEEVAL_200
+	showtext TX_0009
 	retscript
 @bronze:
 	asm15 scriptHelp.giveRupees, RUPEEVAL_100
@@ -9699,3 +9730,139 @@ waterPushblock_screenShake:
 	wait 60
 	writememory w1Link.direction, DIR_DOWN
 	scriptend
+
+
+; ==================================================================================================
+; INTERAC_DANCE_HALL_MINIGAME
+; ==================================================================================================
+dancecLeaderScript_promptToStartDancing:
+	initcollisions
+	jumpifroomflagset ROOMFLAG_80, @dancedBefore
+	checkabutton
+	showtext TX_5a00
+	jumpiftextoptioneq $00, @beginDance
+	showtext TX_5a03
+@dancedBefore:
+	checkabutton
+	showtext TX_5a01
+	jumpiftextoptioneq $00, @beginDance
+	showtext TX_5a03
+	scriptjump @dancedBefore
+@beginDance:
+	loadscript danceLeaderScript_moveIntoPosition
+
+danceLeaderScript_promptForTutorial:
+	showtext TX_5a15
+	jumpiftextoptioneq $01, @needTutorial
+; check if Link can play for the pearl, and if he wants to
+	jumpifitemobtained TREASURE_BLUE_PEARL,@danceLeaderScript_readyToDance
+	showtext TX_5a16
+	jumpiftextoptioneq $01,@danceLeaderScript_readyToDance
+	writememory wTmpcfc0.subrosianDance.playForPearl,$01
+
+@danceLeaderScript_readyToDance:
+	asm15 fastFadeoutToWhite
+	setsubstate $ff
+	scriptend
+@needTutorial:
+	loadscript danceLeaderScript_danceTutorial
+
+/*
+danceLeaderScript_boomerang:
+	giveitem TREASURE_BOOMERANG, $00
+	scriptjump danceLeaderScript_itemGiven
+*/
+danceLeaderScript_bombchus:
+	giveitem TREASURE_BOMBCHUS, $00
+	scriptjump danceLeaderScript_itemGiven
+
+danceLeaderScript_bluePearl:
+	giveitem TREASURE_BLUE_PEARL, $00
+	scriptjump danceLeaderScript_itemGiven
+/*
+danceLeaderScript_giveFlute:
+	giveitem TREASURE_FLUTE, $00
+	scriptjump danceLeaderScript_itemGiven
+
+danceLeaderScript_gashaSeed:
+	giveitem TREASURE_GASHA_SEED, $00
+	scriptjump danceLeaderScript_itemGiven
+
+danceLeaderScript_giveOreChunks:
+	giveitem TREASURE_ORE_CHUNKS, $00
+*/
+danceLeaderScript_giveRupees
+	playsound SND_GETITEM
+	asm15 scriptHelp.giveRupees, RUPEEVAL_050
+	showtext TX_0006
+
+danceLeaderScript_itemGiven:
+	wait 30
+	resetmusic
+	enableinput
+	setsubstate $ff
+
+danceLeaderScript_showLoadedText:
+	initcollisions
+-
+	checkabutton
+	showloadedtext
+	scriptjump -
+
+
+danceLeaderScript_moveIntoPosition:
+	showtext TX_5a02
+	orroomflag $80
+	setdisabledobjectsto91
+	writememory w1Link.direction, DIR_LEFT ;$d008, $03
+	incstate
+	setspeed SPEED_200
+	moveleft 33
+	setangleandanimation ANGLE_DOWN ;$10
+	delay 6
+	setspeed SPEED_100
+	asm15 scriptHelp.danceHallMinigame_makeLeaderJump
+	applyspeed 10
+	setanimation $04
+	delay 6
+	setanimation $02
+	incstate
+	scriptend
+
+danceLeaderScript_danceTutorial:
+	writememory wTmpcfc0.subrosianDance.tutorialState, $00
+	spawninteraction INTERAC_DANCE_HALL_MINIGAME, $03, $00, $00
+	setanimation $05
+	writememory wTmpcfc0.subrosianDance.tutorialState, $01
+	delay 2
+	showtext TX_5a05
+	setanimation $05
+	playsound SND_DANCE_MOVE
+	asm15 scriptHelp.danceHallMinigame_moveClockwise;seasonsFunc_15_5d20
+	checkmemoryeq wTmpcfc0.subrosianDance.dancerIndex, $00
+	setcounter1 50
+	setanimation $06
+	writememory wTmpcfc0.subrosianDance.tutorialState, $02
+	delay 2
+	showtext TX_5a06
+	setanimation $06
+	playsound SND_SEEDSHOOTER
+	asm15 scriptHelp.danceHallMinigame_moveCounterclockwise ;seasonsFunc_15_5d29
+	checkmemoryeq wTmpcfc0.subrosianDance.dancerIndex, $00
+	setcounter1 50
+	setanimation $04
+	writememory wTmpcfc0.subrosianDance.tutorialState, $03
+	delay 2
+	showtext TX_5a07
+	setanimation $04
+	playsound SND_GORON_DANCE_B
+	asm15 scriptHelp.danceHallMinigame_makePose ;seasonsFunc_15_5d32
+	checkmemoryeq wTmpcfc0.subrosianDance.dancerIndex, $00
+	setcounter1 50
+	writememory wTmpcfc0.subrosianDance.tutorialState, $ff
+	setanimation $01
+	showtext TX_5a08
+	jumpiftextoptioneq $01, danceLeaderScript_promptForTutorial@needTutorial
+	showtext TX_5a09
+	checkmemoryeq wTextIsActive, $00
+	scriptjump danceLeaderScript_promptForTutorial@danceLeaderScript_readyToDance

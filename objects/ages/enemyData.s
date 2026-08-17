@@ -115,28 +115,15 @@ objectData4129: ; UNUSED?
 	obj_EndPointer
 
 group2Map6eEnemyObjectData:
-	obj_SpecificEnemyA $00 $38 $00 $30 $50
 	obj_EndPointer
 
 group2Map6fEnemyObjectData:
-	obj_ItemDrop $03 $05 $11
-	obj_ItemDrop     $05 $18
-	obj_ItemDrop     $05 $61
-	obj_ItemDrop     $05 $68
 	obj_EndPointer
 
 group2Map7fEnemyObjectData:
-	obj_ItemDrop $03 $06 $11
-	obj_ItemDrop     $09 $18
-	obj_ItemDrop     $09 $61
-	obj_ItemDrop     $06 $68
 	obj_EndPointer
 
 group2Map8eEnemyObjectData:
-	obj_ItemDrop $03 $08 $11
-	obj_ItemDrop     $07 $18
-	obj_ItemDrop     $07 $61
-	obj_ItemDrop     $08 $68
 	obj_EndPointer
 
 group2MapcfEnemyObjectData:
@@ -270,7 +257,6 @@ group5Mape9EnemyObjectData:
 	obj_EndPointer
 
 group2MapdfEnemyObjectData:
-	obj_SpecificEnemyA $00 $38 $00 $38 $50
 	obj_EndPointer
 
 group2Mapf9EnemyObjectData:

@@ -1,6 +1,7 @@
 sound46Start:
 
 sound46Channel1:
+/*
 	vibrato $00
 	env $0 $00
 	duty $01
@@ -190,9 +191,11 @@ musicf6412:
 	note c7  $0b
 	rest $58
 	goto musicf6412
+*/
 	cmdff
 
 sound46Channel0:
+/*
 	vibrato $00
 	env $0 $00
 	duty $01
@@ -250,9 +253,11 @@ musicf6550:
 	note c7  $0b
 	rest $48
 	goto musicf6550
+*/
 	cmdff
 
 sound46Channel4:
+/*
 musicf65b0:
 	duty $0e
 	note g2  $2c
@@ -286,6 +291,7 @@ musicf65b0:
 	note a4  $b0
 	rest $84
 	goto musicf65b0
+*/
 	cmdff
 
 .define sound46Channel6 MUSIC_CHANNEL_FALLBACK EXPORT

@@ -554,8 +554,28 @@ interactionCode60:
 	ld e,Interaction.var35
 	ld a,(de)
 	cp $ff
-	jr z,++
+	jr z,@@skipText
 
+
+	cpa <TX_00_REDPEARL ;Red pearl
+	ld l,a
+	jr nz,+
+	lda TREASURE_BLUE_PEARL
+	jr ++
++
+	cpa <TX_00_BLUEPEARL
+	jr nz,@@notPearl
+	lda TREASURE_RED_PEARL
+++
+	call checkTreasureObtained
+	lda <TX_00_SWORD_DURABILITY_1
+	jr nc,+
+	inc a ; <TX_00_SWORD_DURABILITY_2
++
+	ld (wTextSubstitutions),a
+	ld a,l
+
+@@notPearl:
 	ld c,a
 	ld b,>TX_0000
 	call showText
@@ -572,7 +592,7 @@ interactionCode60:
 	xor a
 +
 	ld (wTextboxPosition),a
-++
+@@skipText:
 	ld e,Interaction.var33
 	ld a,(de)
 	or a

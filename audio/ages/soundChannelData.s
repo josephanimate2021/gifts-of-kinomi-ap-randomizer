@@ -68,7 +68,8 @@ soundbdChannel2:
 .include "audio/mus/common/finalBoss.s"
 .include "audio/mus/common/essence.s"
 .include "audio/sfx/ages/echoes.s"
-.include "audio/mus/ages/underwater.s"
+.include "audio/mus/ages/subrosiandance.s"
+;.include "audio/mus/ages/underwater.s"
 
 
 .ifdef BUILD_VANILLA
@@ -230,12 +231,14 @@ bank3bChannelFallback:
 .include "audio/sfx/common/galeSeed.s"
 .include "audio/mus/ages/tokayHouse.s"
 .include "audio/mus/custom/theGreatPalace.s" ; TODO
-
+.include "audio/sfx/ages/danceMove.s"
+/*
 soundcaStart:
 soundcaChannel2:
 	cmdff
 soundcaChannel7:
 	cmdff
+*/
 
 .include "audio/sfx/common/selectItem.s"
 .include "audio/sfx/common/solvePuzzle.s"
@@ -316,7 +319,8 @@ bank3dChannelFallback:
 .include "audio/mus/common/disaster.s"
 .include "audio/mus/common/pirates.s"
 .include "audio/mus/common/finalDungeon.s"
-.include "audio/mus/common/rosaDate.s"
+.include "audio/mus/ages/subrosianShop.s"
+;.include "audio/mus/common/rosaDate.s"
 .include "audio/mus/common/roomOfRites.s"
 .include "audio/mus/common/blackTowerEntrance.s"
 .include "audio/mus/common/zeldaSaved.s"

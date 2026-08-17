@@ -1413,7 +1413,7 @@ linkState02:
 	ld a,(wActiveTileType)
 	cp TILETYPE_WARPHOLE
 	jr nz,@respawn
-
+	
 .ifdef ROM_AGES
 	; Check if the current room is the moblin keep with the crumbling floors
 	ld a,(wActiveGroup)
@@ -5010,7 +5010,48 @@ checkLinkPushingAgainstBed:
 	ret nz
 
 	ld a,(wActiveGroup)
-	cp $03
+	cpa >ROOM_AGES_130
+	jr nz,@bedCheck
+
+	ldbc <ROOM_AGES_130,$32
+	ld l,DIR_LEFT
+	call @checkState
+	jr nc,@@incCounter
+
+	ldbc <ROOM_AGES_130,$41
+	ld l,DIR_UP
+	call @checkState
+	jr nc,@@incCounter
+
+	ldbc <ROOM_AGES_130,$21
+	ld l,DIR_DOWN
+	call @checkState
+	ret c
+
+@@incCounter:
+	; Increment counter, wait until it's been XX frames
+	ld hl,wLinkPushingAgainstBedCounter
+	inc (hl)
+	ld a,(hl)
+	cp 20
+	ret c
+
+	pop hl
+	ld hl,wInformativeTextsShown
+	set 1,(hl)
+
+	ld e,SpecialObject.yh
+	ld a,$37
+	ld (de),a
+	ld e,SpecialObject.xh
+	ld a,$18
+	ld (de),a
+
+	ret
+
+
+@bedCheck:
+	cpa <ROOM_AGES_308;$03
 	ret nz
 
 	; Check link is in the room with the bed, and is next to it
@@ -5021,21 +5062,8 @@ checkLinkPushingAgainstBed:
 	ldbc <ROOM_SEASONS_382, $14
 	ld l,DIR_LEFT
 .endif
-	ld a,(wActiveRoom)
-	cp b
-	ret nz
-
-	ld a,(wActiveTilePos)
-	cp c
-	ret nz
-
-	ld e,SpecialObject.direction
-	ld a,(de)
-	cp l
-	ret nz
-
-	call checkLinkPushingAgainstWall
-	ret z
+	call @checkState
+	ret c
 
 	; Increment counter, wait until it's been 90 frames
 	ld hl,wLinkPushingAgainstBedCounter
@@ -5049,6 +5077,32 @@ checkLinkPushingAgainstBed:
 	set 1,(hl)
 	ld a,LINK_STATE_SLEEPING
 	jp linkSetState
+
+@checkState:
+	ld a,(wActiveRoom)
+	cp b
+	jr nz,@@notYet
+
+	ld a,(wActiveTilePos)
+	cp c
+	jr nz,@@notYet
+
+	ld e,SpecialObject.direction
+	ld a,(de)
+	cp l
+	jr nz,@@notYet
+
+	call checkLinkPushingAgainstWall
+	jr z,@@notYet
+
+	scf
+	ccf
+	ret
+
+@@notYet:
+	scf
+	ret
+
 
 ;;
 ; Pushing against tree stump

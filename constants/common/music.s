@@ -77,6 +77,7 @@
 	MUS_DISASTER              db ; $21
 
 .ifdef ROM_AGES
+	MUS_SUBROSIAN_DANCE		 .db ;$22
 	MUS_UNDERWATER            db ; $22
 .else
 	MUS_SUBROSIAN_DANCE       db ; $22
@@ -360,6 +361,7 @@
 	SND_CIRCLING            db ; $c9 ; Used in the cutscene where Veran possesses Ambi (veran is circling around)
 
 .ifdef ROM_AGES
+	SND_DANCE_MOVE          .db 
 	SND_CA                  db ; $ca (blank)
 .else
 	SND_DANCE_MOVE          db ; $ca ; Moved left or right in subrosian dance

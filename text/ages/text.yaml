@@ -710,11 +710,11 @@ groups:
 
   - name: TX_0056
     index: 0x56
-    text: |-
+    text: >-
       You got the
-      \col(1)Tokay Eyeball\col(0),
-      a treasure of
-      the deep!
+
+      \col(1)Red Pearl\col(0)!
+      \call(0xff)
 
   - name: TX_0057
     index: 0x57
@@ -1211,6 +1211,36 @@ groups:
       Press SELECT to
       see where the
       treasure is!
+
+  - name: TX_00_REDPEARL
+    index: auto
+    text: >-
+      You got the
+
+      \col(1)Red Pearl\col(0)!
+
+      \call(0xff)
+
+  - name: TX_00_BLUEPEARL
+    index: auto
+    text: >-
+      You got the
+
+      \col(1)Blue Pearl\col(0)!
+
+      \call(0xff)
+
+  - name: TX_00_SWORD_DURABILITY_1
+    index: auto
+    text: >-
+      Higher level swords now can take
+      \col(1)twice\col(0) as many hits!
+
+  - name: TX_00_SWORD_DURABILITY_2
+    index: auto
+    text: >-
+      Your higher level swords
+      \col(1)will not  break\col(0)!
 
 - group: 0x01
   data:
@@ -4912,9 +4942,8 @@ groups:
     - 0x5e
     - 0x5f
     text: |-
-      Tokay Eyeball
-      A treasure of
-      the deep!
+      Pearl
+      A treasure for a swordsman.
 
   - name: TX_0960
     index: 0x60
@@ -22736,3 +22765,171 @@ groups:
     text: >-
       Be careful! Without a \col(1)shield\col(0),
       monsters will try to ram into you!
+
+- group: 0x5a
+  data:
+  - name: TX_5a00
+    index: auto
+    text: |-
+      This is Subrosia
+      Dance Hall.
+      Good dancers get
+      a prize. We're
+      about to
+      practice. Would
+      you like to
+      dance with us?
+        \opt()Yes \opt()No
+
+  - name: TX_5a01
+    index: auto
+    text: |-
+      We're about to
+      start practice.
+      Will you dance
+      with us?
+        \opt()Yes \opt()No
+
+  - name: TX_5a02
+    index: auto
+    text: |-
+      Then join the
+      circle.
+
+  - name: TX_5a03
+    index: auto
+    text: |-
+      Come back if you
+      feel the urge.
+
+  - name: TX_5a04
+    index: auto
+    text: |-
+      You're terrible!
+      Get outta here!
+
+  - name: TX_5a05
+    index: auto
+    text: |-
+      Try to copy
+      what I do.
+      On "doo," step
+      right.
+
+  - name: TX_5a06
+    index: auto
+    text: |-
+      On "dah," step
+      left.
+
+  - name: TX_5a07
+    index: auto
+    text: |-
+      On "dee," hold a
+      pose.
+
+  - name: TX_5a08
+    index: auto
+    text: |-
+      Don't mess up or
+      bump into the
+      people near you.
+      Got it?
+        \opt()Yes \opt()Umm...
+
+  - name: TX_5a09
+    index: auto
+    text: |-
+      OK! Let's dance!
+
+  - name: TX_5a0a
+    index: auto
+    text: |-
+      You're pretty
+      good. You're our
+      best dancer
+      today! Here's
+      your prize!
+
+  - name: TX_5a0b
+    index: auto
+    text: |-
+      Shh! We're
+      starting!
+
+  - name: TX_5a0c
+    index: auto
+    text: |-
+      Don't talk!
+
+  - name: TX_5a0d
+    index: auto
+    text: |-
+      Today, I'll
+      definitely win
+      the prize!
+
+  - name: TX_5a0e
+    index: auto
+    text: |-
+      I'm gonna master
+      the Subrosian
+      Dance and
+      impress \col(3)Rosa\col(0)!
+
+  - name: TX_5a0f
+    index: auto
+    text: |-
+      The Subrosian
+      Dance is the
+      traditional
+      dance of
+      \col(3)Subrosia\col(0).
+
+  - name: TX_5a10
+    index: auto
+    text: |-
+      The Subrosian
+      Dance is a good
+      workout, really!
+
+  - name: TX_5a11
+    index: auto
+    text: |-
+      Right on "doo,"
+      left on "dah..."
+
+  - name: TX_5a12
+    index: auto
+    text: |-
+      Press \abtn to pose
+      on "dee." Hmm...
+
+  - name: TX_5a13
+    index: auto
+    text: |-
+      Something good
+      might happen if
+      you're voted
+      best many times.
+
+  - name: TX_5a14
+    index: auto
+    text: |-
+      ...Then join
+      the circle.
+
+  - name: TX_5a15
+    index: auto
+    text: |-
+      Need
+      instructions?
+        \opt()No \opt()Yes
+
+  - name: TX_5a16
+    index: auto
+    text: >-
+      Would you like to try
+      for a \col(3)special prize\col(0)?
+        \opt()Yes \opt()No
+      

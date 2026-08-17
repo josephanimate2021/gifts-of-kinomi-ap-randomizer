@@ -119,6 +119,8 @@
 		.include {"{GAME_DATA_DIR}/tile_properties/tileTypeMappings.s"}
 		.include {"{GAME_DATA_DIR}/tile_properties/cliffTiles.s"}
 
+		.include "object_code/ages/specialObjects/subrosiaDanceLink.s" ; ZTK
+
 		.include "code/ages/garbage/bank05End.s"
 	.ends
 
@@ -500,6 +502,7 @@ m_section_free Ages_Interactions_Bank0b NAMESPACE agesInteractionsBank0b
 	.include "object_code/ages/interactions/makuSeedAndEssences.s"
 	.include "object_code/ages/interactions/leverLavaFiller.s"
 	.include "object_code/ages/interactions/slateSlot.s"
+	.include "object_code/ages/interactions/koopsInteractions3.s"
 .ends
 
 	.include "code/ages/garbage/bank0bEnd.s"

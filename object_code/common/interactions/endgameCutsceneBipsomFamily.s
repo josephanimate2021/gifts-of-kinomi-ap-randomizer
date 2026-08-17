@@ -2,6 +2,8 @@
 ; INTERAC_ENDGAME_CUTSCENE_BIPSOM_FAMILY
 ; ==================================================================================================
 interactionCodea7:
+	jp panic
+/*
 	ld e,Interaction.state
 	ld a,(de)
 	rst_jumpTable
@@ -79,3 +81,4 @@ interactionCodea7:
 	ret nz
 	ld a,$03
 	jp interactionSetAnimation
+*/

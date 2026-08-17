@@ -440,6 +440,7 @@ oldMan_takeRupees:
 oldMan_giveRupees:
 	ld e,Interaction.var03
 	ld a,(de)
+danceLeader_giveRupees:
 	ld hl,oldMan_rupeeValues
 	rst_addAToHl
 	ld c,(hl)
@@ -9088,3 +9089,77 @@ simpleScript_waterfallFillingBelow:
 	ss_settile $72, $ff
 	ss_wait 60
 	ss_end
+
+; ==================================================================================================
+; INTERAC_DANCE_HALL_MINIGAME
+; ==================================================================================================
+danceHallMinigame_moveClockwise: ;seasonsFunc_15_5d20:
+	ld a,$01
+	ld (wTmpcfc0.subrosianDance.dancerSetDirection),a
+	ld a,$04
+	jr +++
+
+danceHallMinigame_moveCounterclockwise: ;seasonsFunc_15_5d29:
+	ld a,$ff
+	ld (wTmpcfc0.subrosianDance.dancerSetDirection),a
+	ld a,$04
+	jr +++
+	
+danceHallMinigame_makePose: ;seasonsFunc_15_5d32:
+	ld a,$05
+	jr +++
+
+; unknown
+	ld a,$03
++++
+	ld (wTmpcfc0.subrosianDance.dancerSetState),a
+	ld a,$09
+	ld (wTmpcfc0.subrosianDance.dancerIndex),a
+	ld hl,wTmpcfc0.subrosianDance.leaderSubstate
+	inc (hl)
+	ret
+
+danceHallMinigame_makeLeaderJump: ;seasonsFunc_15_5d45:
+	ld e,Interaction.speedZ
+	ld a,$80
+	ld (de),a
+	ld a,$fe
+	inc e ; [speedZ+1]
+	ld (de),a
+	ld e,Interaction.z
+	ld a,$01
+	ld (de),a
+	ret
+
+danceHallMinigame_getRingPrize: ;seasonsFunc_15_5e20:
+	call getRandomNumber
+	and $03
+	ld c,a
+	ld b,$04
+-
+	push bc
+	ld a,c
+	ld bc,@table_5e4a
+	call addAToBc
+	ld a,(bc)
+	ld hl,wRingsObtained
+	call checkFlag
+	jr z,+
+	pop bc
+	ld a,c
+	inc a
+	and $03
+	ld c,a
+	dec b
+	jr nz,-
+	ld b,$80
+	scf
+	ret
++
+	ld a,(bc)
+	pop bc
+	ld b,a
+	ret
+
+@table_5e4a:
+	.db WHIMSICAL_RING, FIST_RING, BLUE_HOLY_RING, GREEN_LUCK_RING

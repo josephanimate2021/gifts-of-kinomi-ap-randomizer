@@ -775,7 +775,7 @@ tilesetData: ; 4:4f9c
 	.db $4f $01 $00 $00 $6a $00 $03 $06 ; Tileset 0x6f
 	.db $4f $01 $00 $00 $6b $00 $02 $06 ; Tileset 0x70
 	.db $0f $01 $00 $00 PALH_99 $00 $00 $00 ; Tileset 0x71
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x72
+	.db $1f $04 $00 $00 PALH_TILESET_SIDESCROLL_SPIRITS_GRAVE $00 $00 $10 ; Tileset 0x72
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x73
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x74
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x75

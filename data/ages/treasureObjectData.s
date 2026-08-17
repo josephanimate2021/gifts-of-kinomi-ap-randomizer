@@ -50,7 +50,7 @@ treasureObjectData:
 	/* $2c */ m_TreasurePointer treasureObjectData2c
 	/* $2d */ m_TreasurePointer treasureObjectData2d
 	/* $2e */ m_TreasurePointer treasureObjectData2e
-	/* $2f */ m_TreasureSubid   $02, $00, $ff, $30, TREASURE_OBJECT_POTION_00
+	/* $2f */ m_TreasurePointer treasureObjectData2f
 	/* $30 */ m_TreasurePointer treasureObjectData30
 	/* $31 */ m_TreasurePointer treasureObjectData31
 	/* $32 */ m_TreasurePointer treasureObjectData32
@@ -82,8 +82,8 @@ treasureObjectData:
 	/* $4c */ m_TreasurePointer treasureObjectData4c
 	/* $4d */ m_TreasureSubid   $0a, $00, $0d, $3e, TREASURE_OBJECT_SCENT_SEEDLING_00
 	/* $4e */ m_TreasureSubid   $0a, $00, $47, $51, TREASURE_OBJECT_ZORA_SCALE_00
-	/* $4f */ m_TreasureSubid   $0a, $00, $56, $53, TREASURE_OBJECT_TOKAY_EYEBALL_00
-	/* $50 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_EMPTY_BOTTLE_00
+	/* $4f */ m_TreasureSubid   $0a, $00, TX_00_REDPEARL, $53, TREASURE_OBJECT_TOKAY_EYEBALL_00
+	/* $50 */ m_TreasureSubid   $0a, $00, TX_00_BLUEPEARL, $59, TREASURE_OBJECT_EMPTY_BOTTLE_00
 	/* $51 */ m_TreasureSubid   $0a, $00, $55, $58, TREASURE_OBJECT_FAIRY_POWDER_00
 	/* $52 */ m_TreasureSubid   $0a, $00, $7d, $3c, TREASURE_OBJECT_CHEVAL_ROPE_00
 	/* $53 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_MEMBERS_CARD_00
@@ -452,5 +452,10 @@ treasureObjectData61:
 	m_BeginTreasureSubids TREASURE_BOMB_UPGRADE
 	m_TreasureSubid $02, $00, $6e, $05, TREASURE_OBJECT_BOMB_UPGRADE_00
 	m_TreasureSubid $3a, $01, $6e, $05, TREASURE_OBJECT_BOMB_UPGRADE_01
+
+treasureObjectData2f:
+	m_BeginTreasureSubids TREASURE_POTION
+	m_TreasureSubid $02, $00, $ff, $30, TREASURE_OBJECT_POTION_00
+	m_TreasureSubid $6a, $00, TX_006d, $4b, TREASURE_OBJECT_POTION_01
 
 .ends

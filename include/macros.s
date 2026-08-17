@@ -504,7 +504,7 @@
 
 ; Arg 1: Lower byte of room
 ; Arg 2: First popup
-; Arg 3: Secnod popup
+; Arg 3: Second popup
 .macro m_PopupData
 	.if NARGS > 3
 		.fail

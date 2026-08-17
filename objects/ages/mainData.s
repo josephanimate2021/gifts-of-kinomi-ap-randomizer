@@ -238,7 +238,6 @@ group2Map12ObjectData:
 group2Map15ObjectData:
 group2Map16ObjectData:
 group2Map17ObjectData:
-group2Map1dObjectData:
 group2Map20ObjectData:
 group2Map21ObjectData:
 group2Map22ObjectData:
@@ -246,7 +245,6 @@ group2Map25ObjectData:
 group2Map26ObjectData:
 group2Map27ObjectData:
 group2Map2cObjectData:
-group2Map2dObjectData:
 group2Map31ObjectData:
 group2Map32ObjectData:
 group2Map33ObjectData:
@@ -257,7 +255,6 @@ group2Map37ObjectData:
 group2Map38ObjectData:
 group2Map3bObjectData:
 group2Map3cObjectData:
-group2Map3dObjectData:
 group2Map40ObjectData:
 group2Map41ObjectData:
 group2Map42ObjectData:
@@ -482,7 +479,6 @@ group3Map73ObjectData:
 group3Map75ObjectData:
 group3Map76ObjectData:
 group3Map77ObjectData:
-group3Map7aObjectData:
 group3Map7bObjectData:
 group3Map7cObjectData:
 group3Map7dObjectData:
@@ -496,7 +492,6 @@ group3Map86ObjectData:
 group3Map87ObjectData:
 group3Map88ObjectData:
 group3Map89ObjectData:
-group3Map8aObjectData:
 group3Map8bObjectData:
 group3Map8cObjectData:
 group3Map8dObjectData:
@@ -1881,27 +1876,21 @@ group2Map0eObjectData:
 	obj_End
 
 group2Map0fObjectData:
-	obj_Interaction $6a $00 $40 $50
 	obj_End
 
 group2Map1eObjectData:
-	obj_Interaction $69 $00 $48 $68
 	obj_End
 
 group2Map1fObjectData:
-	obj_Interaction $69 $01 $48 $28
 	obj_End
 
 group2Map2eObjectData:
-	obj_Interaction $59 $00 $20 $50 $01
 	obj_End
 
 group2Map2fObjectData:
-	obj_Interaction $55 $00 $18 $18
 	obj_End
 
 group2Map3eObjectData:
-	obj_Interaction $5b $00 $54 $88
 	obj_End
 
 group2Map4eObjectData:
@@ -1909,7 +1898,6 @@ group2Map4eObjectData:
 	obj_End
 
 group2Map3fObjectData:
-	obj_Interaction $48 $05 $28 $48
 	obj_End
 
 group2Map5eObjectData:
@@ -1917,7 +1905,6 @@ group2Map5eObjectData:
 	obj_Interaction $47 $03 $28 $68
 	obj_Interaction $47 $04 $28 $50
 	obj_Interaction $46 $00 $58 $88
-	obj_Interaction $71 $0c
 	obj_Interaction $dc $19 $68 $18 $0c
 	obj_End
 
@@ -1985,22 +1972,15 @@ group2MapebObjectData:
 	obj_End
 
 group2MapeeObjectData:
-	obj_Interaction $89 $00 $28 $50
-	obj_Interaction $89 $01 $38 $38
-	obj_Interaction $89 $06 $38 $68
-	obj_Interaction $e5 $00 $48 $28
-	obj_Interaction $e5 $01 $48 $78
 	obj_End
 
 group2MapefObjectData:
-	obj_Interaction $66 $00 $40 $50
 	obj_End
 
 group2Map9eObjectData:
 	obj_End
 
 group2Map9fObjectData:
-	obj_Interaction $dc $0b $18 $18
 	obj_End
 
 group2MapafObjectData:
@@ -2063,18 +2043,12 @@ group2MapfdObjectData:
 	obj_End
 
 group2MapffObjectData:
-	obj_Interaction $66 $08 $58 $88
 .ifdef REGION_JP
 	obj_Interaction $66 $0c $68 $18 $04
 	obj_Interaction $66 $0c $38 $38 $05
 	obj_Interaction $4e $02 $38 $18 $00
 	obj_Interaction $4e $02 $38 $28 $01
 .else
-	obj_Interaction $66 $10 $40 $38 ; Not in JP
-	obj_Interaction $66 $0c $68 $18 $04
-	obj_Interaction $66 $0c $18 $38 $05
-	obj_Interaction $4e $02 $18 $18
-	obj_Interaction $4e $02 $18 $28 $01
 .endif
 	obj_End
 
@@ -2199,7 +2173,6 @@ group3MapceObjectData:
 	obj_End
 
 group3MapcfObjectData:
-	obj_Interaction $42 $01 $40 $50
 	obj_End
 
 group3Mapd1ObjectData:
@@ -5460,4 +5433,25 @@ group2MapedObjectData:
 group1Map52ObjectData:
 	obj_Interaction INTERAC_FOREST_FAIRY $00 $28 $78 $02
 	obj_Interaction INTERAC_FOREST_FAIRY $01 $58 $28 $03
+	obj_End
+
+group2Map2dObjectData:
+	obj_Interaction INTERAC_GORON $00 $40 $50
+	obj_End
+
+group2Map3dObjectData:
+	obj_Interaction INTERAC_GORON $0c $68 $88 $04
+	obj_End
+
+group2Map1dObjectData:
+	obj_Interaction INTERAC_GORON $07 $40 $50 $04
+	obj_End
+
+group3Map7aObjectData:
+	obj_ItemDrop $00 ITEM_DROP_PEGASUS_SEEDS $16
+	obj_ItemDrop     ITEM_DROP_PEGASUS_SEEDS $61
+	obj_End
+
+group3Map8aObjectData:
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $00
 	obj_End

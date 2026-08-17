@@ -236,3 +236,16 @@ objectData_makeTorchesLightableForD6Room:
 	obj_Pointer objectData_makeAllTorchesLightable
 	obj_End
 
+; Subrosian dancers
+objectData7e6c:
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $01 $38 $88
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $21 $00
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $41 $01
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $61 $02
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $63 $03
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $65 $04
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $56 $05
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $16 $06
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $14 $07
+	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $02 $12 $08
+	obj_End

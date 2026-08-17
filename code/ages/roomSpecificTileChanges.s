@@ -81,6 +81,7 @@ applyRoomSpecificTileChanges:
   .dw tileReplacement_group5Mapd3 ; $49
   .dw tileReplacement_group0Map30 ; $4a
   .dw tileReplacement_group0Map20 ; $4b
+  .dw tileReplacement_group2Map1d ; $4c
 
 
 roomTileChangerCodeGroupTable:
@@ -138,6 +139,7 @@ roomTileChangerCodeGroup2Data:
   .db $90 $2b
   .db $9e $2f
   .db $7e $02
+  .db <ROOM_AGES_21d, $4c
   .db $00
 roomTileChangerCodeGroup3Data:
   .db $00
@@ -1822,6 +1824,59 @@ tileReplacement_group0Map20:
 +
 	ld (hl),a
 	ret
+
+tileReplacement_group2Map1d:
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,(hl)
+	jr z,++
+
+	ld a,TILEINDEX_CHEST_OPENED
+	ld c,$14
+	call setTile
+	ld a,TILEINDEX_CHEST_OPENED
+	ld c,$16
+	jp setTile
+++
+	ld a,(hl)
+	and $c0
+	cp $c0
+	ret z
+
+	bit 6,(hl)
+	jr z,+
+
+	ld a,(wSeedTreeRefilledBitset)
+	bit 0,a
+	ret nz
++
+	ld hl,@wallInsertion
+	ld bc,wRoomLayout + $03
+	ld a,$04
+---
+	ldh (<hFF8D),a
+	ld a,$05
+--
+	ldh (<hFF8C),a
+	ldi a,(hl)
+	ld (bc),a
+	inc bc
+	ldh a,(<hFF8C)
+	dec a
+	jr nz,--
+
+	ld a,$0b
+	call addAToBc
+	ldh a,(<hFF8D)
+	dec a
+	jr nz,---
+	ret
+
+@wallInsertion:
+	.db $b9 $a7 $a7 $a7 $b8
+	.db $b1 $a7 $a7 $a7 $b3
+	.db $b1 $a7 $a7 $a7 $b3
+	.db $b6 $b0 $b0 $b0 $b7
+
 
 ;;
 ; @param	bc	$0808

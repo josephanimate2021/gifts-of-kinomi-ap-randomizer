@@ -275,6 +275,17 @@ sound23:
 	.dw sound23Channel6
 	.db $ff
 
+musSubrosianShop:
+	.db $00
+	.dw musSubrosianShopChannel0
+	.db $01
+	.dw musSubrosianShopChannel1
+	.db $04
+	.dw musSubrosianShopChannel4
+	.db $06
+	.dw musSubrosianShopChannel6
+	.db $ff
+/*
 sound27:
 	.db $00
 	.dw sound27Channel0
@@ -285,6 +296,7 @@ sound27:
 	.db $06
 	.dw sound27Channel6
 	.db $ff
+*/
 
 sound29:
 	.db $00
@@ -838,7 +850,7 @@ sound1a:
 	.db $06
 	.dw sound1aChannel6
 	.db $ff
-
+/*
 sound22:
 	.db $00
 	.dw sound22Channel0
@@ -848,6 +860,17 @@ sound22:
 	.dw sound22Channel4
 	.db $06
 	.dw sound22Channel6
+	.db $ff
+*/
+musSubrosianDance:
+	.db $00
+	.dw musSubrosianDanceChannel0
+	.db $01
+	.dw musSubrosianDanceChannel1
+	.db $04
+	.dw musSubrosianDanceChannel4
+	.db $06
+	.dw musSubrosianDanceChannel6
 	.db $ff
 
 sound24:

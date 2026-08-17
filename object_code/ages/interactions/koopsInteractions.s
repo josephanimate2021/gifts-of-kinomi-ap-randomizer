@@ -1,3 +1,4 @@
+; BANK $10
 ; ==============================================================================
 ; INTERAC_USED_ROD_OF_SEASONS
 ; ==============================================================================
@@ -583,22 +584,26 @@ interactionCodeeb:
 	call interactionIncState
 	ld a,$02
 	jp interactionSetAnimation
+
 @state6:
 	call interactionAnimate
 	ld e,Interaction.animParameter ; $61
 	ld a,(de)
 	inc a
 	jr nz,@func_5ce8
+
 	ld (de),a
 	ld (wcca7),a
 	call objectSetVisible83
 	jp interactionIncState
+
 @func_5ce8:
 	dec a
 	ld (wcca7),a
 	cp $02
 	ret c
 	jp objectSetVisible82
+
 func_5cf2:
 	ld hl,table_5d08
 	rst_addDoubleIndex
@@ -637,3 +642,4 @@ seasonsFunc_0a_5d18:
 	call objectSetVisible83
 	ld a,$00
 	jp interactionSetAnimation
+

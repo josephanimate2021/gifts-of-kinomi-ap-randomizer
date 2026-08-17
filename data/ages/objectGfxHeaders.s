@@ -233,6 +233,9 @@ objectGfxHeaderTable:
 	/* $df */ m_ObjectGfxHeader spr_twinrovamerged_2, 1
 	/* $e0 */ m_ObjectGfxHeader spr_springflower_makuleaf_farorebook
 	/* $e1 */ m_ObjectGfxHeader spr_hyperslingshot_inventory
+	/* $e2 */ m_ObjectGfxHeader spr_subrosian
+	/* $e3 */ m_ObjectGfxHeader spr_subrosian_2, 1
+	/* $e4 */ m_ObjectGfxHeader spr_arrows
 
 	;;  TODO: Crossitems hyper slingshot icon conflicts with above!
 	; /* $e0 */ m_ObjectGfxHeader spr_hyperslingshot_inventory

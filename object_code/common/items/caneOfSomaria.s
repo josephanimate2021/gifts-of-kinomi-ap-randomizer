@@ -486,7 +486,7 @@ itemCode1f:
 	or a
 	jr z,++
 	cp $fc
-	jr c,@delete
+	jp c,@delete
 ++
 
 	ld e,Item.counter1
@@ -542,6 +542,15 @@ itemCode1f:
 	cp SMALL_ROOM_WIDTH-1
 	jr z,@delete
 ++
+; special case
+	ld a,(wActiveGroup)
+	cpa >ROOM_AGES_37a
+	jr nz,@continue
+	ld a,(wActiveRoom)
+	cpa <ROOM_AGES_37a
+	jr z,@delete
+
+@continue:
 	; Replace tile
 	call objectGetShortPosition
 	ld c,a

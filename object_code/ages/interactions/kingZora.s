@@ -2,6 +2,8 @@
 ; INTERAC_KING_ZORA
 ; ==================================================================================================
 interactionCode9c:
+	jp panic
+/*
 	ld e,Interaction.subid
 	ld a,(de)
 	ld e,Interaction.state
@@ -137,3 +139,4 @@ interactionCode9c:
 	ret nc
 	ld hl,mainScripts.kingZoraScript_past_havePotion
 	ret
+*/

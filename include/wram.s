@@ -882,6 +882,8 @@ wJabuWaterLevel: ; $c6e9
 ; Bits 0-3: Actual water level (0 for drained, 2 for full)
 	db
 
+wNumTimesPlayedSubrosianDance
+	.db 
 wWildTokayGameLevel: ; $c6ea
 ; Goes up to 4. (Level 0 is playing for the scent seedling.)
 	db
@@ -3275,6 +3277,77 @@ wRoomLayoutEnd: ; $cfc0
 	; this is used in Seasons for the puzzle where you kill armos in order?)
 	killedArmosPositions:
 		dsb $10
+
+.nextu subrosianDance
+	cfc0: ; $cfc0
+		.db
+	filler1: ; $cfc0
+		dsb $08
+
+	move1: ; $cfc8
+		db
+	move2: ; $cfc9
+		db
+	move3: ; $cfca
+		db
+	leaderMoveCounter: ; $cfcb
+		db
+	playForPearl:
+		; ZTK: set when player wants to play for special prize
+		; script adds difficulty
+		.db
+	filler2: ; $cfcc
+		dsb $04
+	danceOver: ; $cfd0
+		; $01 if won the game
+		; $ff if lost
+		db
+	dancerIndex ; $cfd1
+		; this is set to $09 by the leader
+		; then the dancers will decrement it by one
+		; It makes sure that all dancers
+		; complete their actions before moving on
+		db
+	dancerSetDirection ; $cfd2
+		; $ff for counterclockwise
+		; $01 for clockwise
+		db
+	dancerSetSpeed: ; $cfd3
+		db
+	dancerSetState: ; $cfd4
+		db
+	remainingRounds ; $cfd5
+		db
+	dancerSetCounter1: ; $cfd6
+		db
+	difficultyLevel: ; $cfd7
+		; difficulty decided first based on times played
+		; capped at $08 (index of 9)
+		; then, 
+		db
+	linksMove: ; $cfd8
+		; set to $ff after each move
+		db
+	dancerMoveCounter: ; $cfd9
+		db
+	leaderSubstate: ; $cfda
+		; $00 at initialization
+		; $01 while waiting for Link to begin the game
+		; $02 ?
+		db
+	roundsPlayed: ; $cfdb
+		; capped at $08
+		db
+	cfdc: ; $cfdc
+		db
+	dancerCollidedWithLink: ; $cfdd
+		; $01 if Link collided with a dancer
+		db
+	tutorialState: ; $cfdf
+		;$00 - $03 during tutorial
+		;$ff after tutorial
+		db
+
 
 .endu
 .endu

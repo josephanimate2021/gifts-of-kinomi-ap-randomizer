@@ -1,328 +1,8 @@
-; BANK $0a
-; ==============================================================================
-; INTERAC_GET_ROD_OF_SEASONS
-;
-; Variables:
-;   var03:    Index of a seasons' sparkle from 0 to 3
-;   var3b:    Initial time for each seasons' sparkle to start dropping sparkles
-;   $cceb:    Set to 1 when Rod disappears, to remove its aura, and continue cutscene
-; ==============================================================================
-interactionCode94:
-	ld e,Interaction.state
-	ld a,(de)
-	rst_jumpTable
-	.dw _state0
-	.dw _state1
-
-_state0:
-	ld a,$01
-	ld (de),a
-
-	call interactionInitGraphics
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @subid0
-	.dw @sparkles
-	.dw @rodOfSeasons
-	.dw @rodOfSeasonsAura
-
-@subid0:
-	call getThisRoomFlags
-	bit 5,(hl)
-	jp nz,interactionDelete
-	xor a
-	ld (wcceb),a
-	ld hl,mainScripts.gettingRodOfSeasonsScript
-	jp interactionSetScript
-
-@sparkles:
-	ld e,Interaction.var03
-	ld a,(de)
-	rlca
-	ld hl,@sparklesData
-	rst_addDoubleIndex
-
-	ldi a,(hl)
-	ld e,Interaction.angle
-	ld (de),a
-
-	ldi a,(hl)
-	ld e,Interaction.oamFlags
-	ld (de),a
-
-	ldi a,(hl)
-	ld e,Interaction.var3b
-	ld (de),a
-
-	ldi a,(hl)
-	ld e,Interaction.speed
-	ld (de),a
-
-	ld h,d
-	ld l,Interaction.counter1
-	ld (hl),60
-
-	ld l,Interaction.counter2
-	ld (hl),90
-	jp objectSetVisible80
-@sparklesData:
-	; angle - oamFlags - var3b(time to start pulsing) - speed
-	.db $03 $00 $08 SPEED_180	;spring
-	.db $0b $02 $0c SPEED_100	;summer
-	.db $15 $03 $10 SPEED_100	;autumn
-	.db $1d $01 $14 SPEED_180	;winter
-
-@rodOfSeasons:
-	ld a,$04
-	call objectSetCollideRadius
-	ld h,d
-	ld l,Interaction.zh
-	ld (hl),$f0
-
-	ld l,Interaction.counter1
-	ld (hl),$00
-
-	ld l,Interaction.counter2
-	ld (hl),$30
-
-	ldbc INTERAC_GET_ROD_OF_SEASONS 03
-	call objectCreateInteraction
-	ret nz
-
-	ld l,Interaction.relatedObj1
-	ldh a,(<hActiveObjectType)
-	ldi (hl),a
-	ldh a,(<hActiveObject)
-	ld (hl),a
-
-	jp objectSetVisible81
-
-@rodOfSeasonsAura:
-	call interactionSetAlwaysUpdateBit
-	jp objectSetVisible82
-
-_state1:
-	ld e,Interaction.subid
-	ld a,(de)
-	rst_jumpTable
-	.dw @subid0
-	.dw @sparkles
-	.dw @rodOfSeasons
-	.dw @rodOfSeasonsAura
-
-@subid0:
-	call interactionRunScript
-	jp c,interactionDelete
-	ret
-
-@sparkles:
-	call interactionAnimate
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @@waitToMove
-	.dw @@move
-
-@@waitToMove:
-	call interactionDecCounter2
-	ret nz
-	call interactionIncSubstate
-
-@@move:
-	call dropSparkles
-	call objectApplySpeed
-	call interactionDecCounter1
-	jp z,interactionDelete
-	ret
-
-@rodOfSeasons:
-	ld e,Interaction.substate
-	ld a,(de)
-	rst_jumpTable
-	.dw @@substate0
-	.dw @@substate1
-	.dw @@substate2
-	.dw @@substate3
-	.dw @@substate4
-	.dw @@substate5
-	.dw @@substate6
-
-@@substate0:
-	ld a,(wFrameCounter)
-	and $03
-	ret nz
-
-	ld h,d
-	ld l,Interaction.counter1
-	inc (hl)
-	ld a,(hl)
-	and $0f
-	ld hl,@@hoverOffset;seasonsTable_15_705f
-	rst_addAToHl
-	ld a,(hl)
-	add $f0
-	ld e,Interaction.zh
-	ld (de),a
-	ld h,d
-	ld l,Interaction.counter2
-	dec (hl)
-	ret nz
-
-	call clearAllParentItems
-
-	ld hl,w1Link.direction
-	ld (hl),DIR_UP
-
-	call objectGetAngleTowardLink
-	ld h,d
-	ld l,Interaction.angle
-	ld (hl),a
-
-	ld l,Interaction.speed
-	ld (hl),SPEED_80
-
-	ld l,Interaction.substate
-	inc (hl)
-	ret
-
-@@hoverOffset:;seasonsTable_15_705f:
-	.db $00 $00 $ff $ff
-	.db $ff $fe $fe $fe
-	.db $fe $fe $fe $ff
-	.db $ff $ff $ff $00
-
-@@substate1:
-	call objectGetAngleTowardLink
-	ld e,Interaction.angle
-	ld (de),a
-	call objectApplySpeed
-	call objectCheckCollidedWithLink_ignoreZ
-	ret nc
-
-	ld e,Interaction.collisionRadiusX
-	ld a,$06
-	ld (de),a
-	jp interactionIncSubstate
-
-@@substate2:
-	ld c,$08
-	call objectUpdateSpeedZ_paramC
-	jr z,+
-	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
-	ret nc
-+
-	ld h,d
-	ld l,Interaction.counter2
-	ld (hl),$1e
-	jp interactionIncSubstate
-
-@@substate3:
-	call interactionDecCounter2
-	ret nz
-
-	ld a,$04
-	ld (wLinkForceState),a
-	xor a
-	ld (wcc50),a
-
-	call interactionIncSubstate
-	ld a,(w1Link.yh)
-	sub $0e
-	ld l,Interaction.yh
-	ldi (hl),a
-
-	inc l
-	ld a,(w1Link.xh)
-	sub $04
-	ldi (hl),a
-
-	; zh/speed
-	inc l
-	xor a
-	ldi (hl),a
-	ld (hl),a
-
-	ld b,>TX_0081
-	ld c,<TX_0081
-	call showText
-
-	call getThisRoomFlags
-	set 5,(hl)
-
-	ld a,MUS_ESSENCE
-	call playSound
-
-	ld c,$07
-	ld a,TREASURE_ROD_OF_SEASONS
-	call giveTreasure
-
-	jp darkenRoom
-
-@@substate4:
-	call retIfTextIsActive
-	call interactionIncSubstate
-	ld hl,mainScripts.gettingRodOfSeasonsScript_setCounter1To32
-	jp interactionSetScript
-
-@@substate5:
-	call interactionRunScript
-	ret nc
-
-	call interactionIncSubstate
-	ld l,Interaction.counter2
-	ld (hl),$14
-	jp brightenRoom
-
-@@substate6:
-	ld a,(wPaletteThread_mode)
-	or a
-	ret nz
-
-	call interactionDecCounter2
-	ret nz
-	ld a,$01
-	ld (wcceb),a
-	jp interactionDelete
-
-@rodOfSeasonsAura:
-	ld a,(wcceb)
-	or a
-	jp nz,interactionDelete
-
-	ld a,$00
-	call objectGetRelatedObject1Var
-	call objectTakePosition
-	call interactionAnimate
-	ld h,d
-	ld l,Interaction.animParameter
-	ld a,(hl)
-	or a
-	ret z
-	ld (hl),$00
-	ld l,Interaction.visible
-	ld a,$80
-	xor (hl)
-	ld (hl),a
-	ret
-
-dropSparkles:
-	ld h,d
-	ld l,Interaction.var3b
-	dec (hl)
-	ret nz
-
-	ld l,Interaction.var3b
-	ld (hl),$10
-	ldbc INTERAC_SPARKLE, $01
-	jp objectCreateInteraction
-
+; BANK $0b
 ; ==================================================================================================
 ; INTERAC_DANCE_HALL_MINIGAME
 ; ==================================================================================================
-/*
 interactionCodeec:
-ld b,b
 	ld e,Interaction.subid
 	ld a,(de)
 	rst_jumpTable
@@ -338,6 +18,7 @@ ld b,b
 	ld b,$20
 	ld hl,wTmpcfc0.subrosianDance.cfc0 ;$cfc0
 	call clearMemory
+
 	ld hl,objectData.objectData7e6c
 	call parseGivenObjectData
 	jp interactionDelete
@@ -367,6 +48,7 @@ ld b,b
 	inc l ; [angle]
 	ld (hl),ANGLE_DOWN ;$10
 	call interactionInitGraphics
+	call interactionLoadExtraGraphics
 	jp objectSetVisiblec2
 
 @@state2:
@@ -403,7 +85,7 @@ ld b,b
 	ldd (hl),a ; [substate] == 0
 	inc (hl) ; inc [state]
 ; sets Link's ID to subrosia dance
-	ld a,$14;$01
+	ld a,$01;$14;
 	call setLinkIDOverride
 	jp fastFadeinFromWhite
 
@@ -446,13 +128,19 @@ ld b,b
 @@@substate0:
 	ld a,$01
 	ld (de),a
-; set difficulty based on number of plays
-	;ld a,(wNumTimesPlayedSubrosianDance)
-	ld a,(wGameProgress2)
-	cpa $08
-	jr c,+
-	lda $08
+
+	ld a,(wTmpcfc0.subrosianDance.playForPearl)
+	cpa $00
+	jr z,+
+	lda $04 ; artificially set difficulty
+	jr ++
 +
+; set difficulty based on number of plays
+	ld a,(wNumTimesPlayedSubrosianDance)
+	cpa $08
+	jr c,++
+	lda $08
+++
 	ld (wTmpcfc0.subrosianDance.difficultyLevel),a
 	ld (wTmpcfc0.subrosianDance.cfdc),a
 	call @@@setMoveSpeedValues
@@ -598,7 +286,7 @@ ld b,b
 
 ; You lose!
 @@@loseGame: ;func_5d91:
-	ld bc,TX_0104
+	ld bc,TX_5a04
 	call showText
 	lda $04
 	ld e,Interaction.substate
@@ -619,7 +307,7 @@ ld b,b
 	ld (wTmpcfc0.subrosianDance.danceOver),a
 	ld a,SNDCTRL_MEDIUM_FADEOUT
 	call playSound
-	ld bc,TX_010a
+	ld bc,TX_5a0a
 	jp showText
 
 ; clean up for after game is over
@@ -680,32 +368,43 @@ ld b,b
 	ld a,$81
 	ld (wDisabledObjects),a
 	ld (wMenuDisabled),a
+
+	ld a,(wTmpcfc0.subrosianDance.playForPearl)
+	cpa $00
+	jr nz,@@@giveBluePearl
 ; only counts up to 255
 	ld hl,wNumTimesPlayedSubrosianDance
 	call incHlRefWithCap
 	ld a,(hl)
 ; give boomerang if played only once
 	dec a
-	jr z,@@@giveBoomerang
+	jr z,@@@giveBombchus 
+	;jr z,@@@giveBoomerang
 
 ; give a random ring on eighth and subsequent plays
 ; if received all rings, then give a gasha seed
-	cp $08
-	jr z,@@@giveRingOrGashaSeed
+	;cp $08
+	;jr z,@@@giveRingOrGashaSeed
 
 ; randomly give ore chunks or gasha seed on 2nd - 4th and 6th - 7th plays
 	cp $05
-	jr nz,@@@giveOreChunksOrGashaSeed
-	call checkIsLinkedGame
-	jr nz,@@@giveOreChunksOrGashaSeed
-	
+	jr nz,@@@giveRupeesOrBombchus
+	;jr nz,@@@giveOreChunksOrGashaSeed
+	;call checkIsLinkedGame
+	;jr nz,@@@giveOreChunksOrGashaSeed
+	lda TREASURE_BLUE_PEARL
+	call checkTreasureObtained
+	jr nc,@@@giveBluePearl
+/*
 ; On only 5th play, give strange flute if haven't returned Ricky's gloves
 	ld a,(wRickyState)
 	and $20
 	jr nz,@@@giveOreChunksOrGashaSeed
 	ld hl,mainScripts.danceLeaderScript_giveFlute
 	jr @@@setScript
+*/
 
+/*
 @@@giveRingOrGashaSeed: ;func_5e40:
 	callab scriptHelp.danceHallMinigame_getRingPrize
 	bit 7,b
@@ -714,18 +413,28 @@ ld b,b
 	call giveRingToLink
 	ld hl,mainScripts.danceLeaderScript_itemGiven
 	jr @@@setScript
+*/
 
-@@@giveOreChunksOrGashaSeed: ;func_5e56:
+@@@giveRupeesOrBombchus:
+;@@@giveOreChunksOrGashaSeed: ;func_5e56:
 	call getRandomNumber
 	cpa $60
-	ld hl,mainScripts.danceLeaderScript_giveOreChunks
+	ld hl,mainScripts.danceLeaderScript_giveRupees
+	;ld hl,mainScripts.danceLeaderScript_giveOreChunks
 	jr nc,@@@setScript
-+
-	ld hl,mainScripts.danceLeaderScript_gashaSeed
+;+
+@@@giveBombchus:
+	ld hl,mainScripts.danceLeaderScript_bombchus
+	;ld hl,mainScripts.danceLeaderScript_gashaSeed
 	jr @@@setScript
 
+@@@giveBluePearl:
+	ld hl,mainScripts.danceLeaderScript_bluePearl
+
+/*
 @@@giveBoomerang: ;func_5e25:
 	ld hl,mainScripts.danceLeaderScript_boomerang
+*/
 
 @@@setScript: ;func_5e68:
 	call interactionSetScript
@@ -912,7 +621,7 @@ ld b,b
 	ld e,Interaction.textID
 	ld a,(hl)
 	ld (de),a
-	ld a,>TX_0100
+	ld a,>TX_5a00
 	inc e ; [textID+1]
 	ld (de),a
 	ld h,d
@@ -925,9 +634,9 @@ ld b,b
 	jp interactionSetScript
 
 @@dancerNpcText: ;table_5f72:
-	.db <TX_010b, <TX_010c, <TX_010d
-	.db <TX_010e, <TX_010f, <TX_0110
-	.db <TX_0111, <TX_0112, <TX_0113
+	.db <TX_5a0b, <TX_5a0c, <TX_5a0d
+	.db <TX_5a0e, <TX_5a0f, <TX_5a10
+	.db <TX_5a11, <TX_5a12, <TX_5a13
 
 ; Act as NPC until Leader wants to start
 @@state1:
@@ -961,7 +670,7 @@ ld b,b
 
 	ld (hl),a
 	ld a,(wTmpcfc0.subrosianDance.dancerSetState)
-	ld l,Interaction.state;$44
+	ld l,Interaction.state
 	ld (hl),a
 	cpa $04
 	call z,@@setDancersDirection
@@ -1020,27 +729,28 @@ ld b,b
 ; b1: direction and animation
 ;	upper nibble: going counterclockwise
 ;	lower nibble: going clockwise
-@@movementTable ;table_5ff1:
-	.db $11, (8<<DIR_DOWN | DIR_RIGHT)
-	.db $21, (8<<DIR_DOWN | DIR_UP)
-	.db $31, (8<<DIR_DOWN | DIR_UP)
-	.db $41, (8<<DIR_DOWN | DIR_UP)
-	.db $51, (8<<DIR_DOWN | DIR_UP)
-	.db $61, (8<<DIR_RIGHT | DIR_UP)
-	.db $62, (8<<DIR_RIGHT | DIR_LEFT)
-	.db $63, (8<<DIR_RIGHT | DIR_LEFT)
-	.db $64, (8<<DIR_RIGHT | DIR_LEFT)
-	.db $65, (8<<DIR_RIGHT | DIR_LEFT)
-	.db $66, (8<<DIR_UP | DIR_LEFT)
-	.db $56, (8<<DIR_UP | DIR_DOWN)
-	.db $46, (8<<DIR_UP | DIR_DOWN)
-	.db $36, (8<<DIR_UP | DIR_DOWN)
-	.db $26, (8<<DIR_UP | DIR_DOWN)
-	.db $16, (8<<DIR_LEFT | DIR_DOWN)
-	.db $15, (8<<DIR_LEFT | DIR_DOWN)
-	.db $14, (8<<DIR_LEFT | DIR_DOWN)
-	.db $13, (8<<DIR_LEFT | DIR_DOWN)
-	.db $12, (8<<DIR_LEFT | DIR_DOWN)
+@@movementTable: ;table_5ff1:
+	.db $11, ((DIR_DOWN<<4) | DIR_RIGHT)
+	.db $21, ((DIR_DOWN<<4) | DIR_UP)
+	.db $31, ((DIR_DOWN<<4) | DIR_UP)
+	.db $41, ((DIR_DOWN<<4) | DIR_UP)
+	.db $51, ((DIR_DOWN<<4) | DIR_UP)
+	.db $61, ((DIR_RIGHT<<4) | DIR_UP)
+	.db $62, ((DIR_RIGHT<<4) | DIR_LEFT)
+	.db $63, ((DIR_RIGHT<<4) | DIR_LEFT)
+	.db $64, ((DIR_RIGHT<<4) | DIR_LEFT)
+	.db $65, ((DIR_RIGHT<<4) | DIR_LEFT)
+	.db $66, ((DIR_UP<<4) | DIR_LEFT)
+	.db $56, ((DIR_UP<<4) | DIR_DOWN)
+	.db $46, ((DIR_UP<<4) | DIR_DOWN)
+	.db $36, ((DIR_UP<<4) | DIR_DOWN)
+	.db $26, ((DIR_UP<<4) | DIR_DOWN)
+	.db $16, ((DIR_LEFT<<4) | DIR_DOWN)
+	.db $15, ((DIR_LEFT<<4) | DIR_RIGHT)
+	.db $14, ((DIR_LEFT<<4) | DIR_RIGHT)
+	.db $13, ((DIR_LEFT<<4) | DIR_RIGHT)
+	.db $12, ((DIR_LEFT<<4) | DIR_RIGHT)
+
 
 @@state3:
 	ld a,$02
@@ -1224,4 +934,3 @@ ld b,b
 	.db $30 $58 $07 ; right
 	.db $30 $38 $08 ; left
 	.db $30 $58 $09 ; pose
-*/

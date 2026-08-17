@@ -526,3 +526,5 @@
 	m_GfxData spr_aquamentus_3 ; $0ac851
 	m_GfxData map_zerotokoops_screen
 	m_GfxData flg_zerotokoops_screen
+	m_GfxData spr_subrosian_2
+	m_GfxData spr_arrows

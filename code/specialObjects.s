@@ -94,30 +94,33 @@ updateSpecialObjects:
 	ld l,Object.id
 	ld a,(hl)
 	rst_jumpTable
-	.dw specialObjectCode_link
+	.dw specialObjectCode_link ;$00
 .ifdef ROM_AGES
-	.dw specialObjectCode_transformedLink
-.else
 	.dw specialObjectCode_subrosiaDanceLink
+	;.dw specialObjectCode_transformedLink ;$01
+.else
+	.dw specialObjectCode_subrosiaDanceLink ;$01
 .endif
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_transformedLink
-	.dw specialObjectCode_linkInCutscene
-	.dw specialObjectCode_linkRidingAnimal
-	.dw specialObjectCode_minecart
-	.dw specialObjectCode_ricky
-	.dw specialObjectCode_dimitri
-	.dw specialObjectCode_moosh
-	.dw specialObjectCode_maple
-	.dw specialObjectCode_companionCutscene
-	.dw specialObjectCode_companionCutscene
-	.dw specialObjectCode_companionCutscene
-	.dw specialObjectCode_companionCutscene
-	.dw specialObjectCode_raft
+	.dw specialObjectCode_transformedLink ;$02
+	.dw specialObjectCode_transformedLink ;$03
+	.dw specialObjectCode_transformedLink ;$04
+	.dw specialObjectCode_transformedLink ;$05
+	.dw specialObjectCode_transformedLink ;$06
+	.dw specialObjectCode_transformedLink ;$07
+	.dw specialObjectCode_linkInCutscene ;$08
+	.dw specialObjectCode_linkRidingAnimal ;$09
+	.dw specialObjectCode_minecart ;$0a
+	.dw specialObjectCode_ricky ;$0b
+	.dw specialObjectCode_dimitri ;$0c
+	.dw specialObjectCode_moosh ;$0d
+	.dw specialObjectCode_maple ;$0e
+	.dw specialObjectCode_companionCutscene ;$0f
+	.dw specialObjectCode_companionCutscene ;$10
+	.dw specialObjectCode_companionCutscene ;$11
+	.dw specialObjectCode_companionCutscene ;$12
+	.dw specialObjectCode_raft ;$13
+; ZTK
+	.dw specialObjectCode_subrosiaDanceLink ;$14
 
 ;;
 ; Updates wGameKeysPressed based on wKeysPressed, and updates wLinkAngle based on

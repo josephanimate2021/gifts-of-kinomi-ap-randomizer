@@ -1,4 +1,6 @@
 specialObjectCode_linkRidingAnimal:
+; stubbed to save space	
+/*
 	ld e,SpecialObject.state
 	ld a,(de)
 	rst_jumpTable
@@ -23,13 +25,14 @@ specialObjectCode_linkRidingAnimal:
 	ldi (hl),a ; [collisionRadiusX] = $06
 	call @readCompanionAnimParameter
 	jp objectSetVisiblec1
-
+*/
 	; Unused code? (Revert back to ordinary Link code)
 	lda SPECIALOBJECT_LINK
 	call setLinkIDOverride
 	ld b,INTERAC_GREENPOOF
 	jp objectCreateInteractionWithSubid00
 
+/*
 @state1:
 	ld a,(wPaletteThread_mode)
 	or a
@@ -56,3 +59,4 @@ specialObjectCode_linkRidingAnimal:
 	ld e,SpecialObject.var31
 	ld (de),a
 	ret
+*/
