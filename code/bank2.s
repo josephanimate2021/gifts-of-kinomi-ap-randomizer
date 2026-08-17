@@ -4697,6 +4697,8 @@ inventoryMenuState1:
 ; Pressed A on subscreen 1; check whether to equip a ring
 ;
 @checkEquipRing:
+	ret
+/*
 	ld a,(wInventorySubmenu1CursorPos)
 	sub $10
 	ret c
@@ -4727,6 +4729,7 @@ inventoryMenuState1:
 	ld (wActiveRing),a
 	ld a,SND_SELECTITEM
 	jp playSound
+*/
 
 ;;
 ; Main code for last item screen (essences, heart pieces, s&q option)
@@ -5105,18 +5108,20 @@ inventorySubmenu1CheckDirectionButtons:
 
 ; DIR_RIGHT,DIR_LEFT,DIR_UP,DIR_DOWN
 @positions:
-	.db $01 $09 $04 $04 ; 0x00
-	.db $02 $00 $05 $05 ; 0x01
+	.db $01 $09 $0a $04 ; 0x00
+	.db $02 $00 $0a $05 ; 0x01
 	.db $03 $01 $08 $06 ; 0x02
 	.db $04 $02 $09 $07 ; 0x03
 
-	.db $05 $03 $00 $00 ; 0x04
-	.db $06 $04 $01 $01 ; 0x05
+	.db $05 $03 $00 $0a ; 0x04
+	.db $06 $04 $01 $0a ; 0x05
 	.db $07 $05 $02 $08 ; 0x06
-	.db $08 $06 $03 $09 ; 0x07
+	.db $0a $06 $03 $09 ; 0x07
 
-	.db $09 $07 $06 $02 ; 0x08
+	.db $09 $0a $06 $02 ; 0x08
 	.db $00 $08 $07 $03 ; 0x09
+
+	.db $08 $07 $05 $01 ; 0x0a
 
 ;$01 $ff $fc $04 
 
@@ -5370,7 +5375,7 @@ inventorySubmenu1_drawCursor:
 	cpa $03;$04
 	jr z,+
 	cpa $09
-	jr z,+
+	jr nc,+
 /*
 .ifdef ROM_AGES
 	cp $09
@@ -5398,6 +5403,7 @@ inventorySubmenu1_drawCursor:
 	.db $52 $55 $5b $5e
 	.db $82 $85 $8b $8e
 	.db         $bb $be
+	.db   $c3
 /*
 	.db $52 $55 $58 $5b $5e
 	.db $82 $85 $88 $8b $8e
@@ -5809,6 +5815,8 @@ inventorySubscreen1_drawTreasures:
 	jr @drawTreasure
 
 @undrawRingBox:
+	ret
+/*
 	; Clear away some tiles based on ring box level
 	ld a,(wRingBoxLevel)
 	cp $03
@@ -5870,6 +5878,7 @@ inventorySubscreen1_drawTreasures:
 	ld de,w4TileMap+$182
 	ld a,$fe
 	jp getRingTiles
+*/
 
 ;;
 ; @param	a	"Position" byte to convert
@@ -6448,6 +6457,7 @@ subscreen1TreasureData:
 		; Row 1
 	.db TREASURE_GRAVEYARD_KEY		$01 $00
 	.db TREASURE_LIBRARY_KEY		$04 $01
+
 	.db TREASURE_FLIPPERS 			$0a $02
 	.db TREASURE_TREASURE_MAP		$0d $03
 	.db TREASURE_SLATE				$0d $03
@@ -6455,6 +6465,7 @@ subscreen1TreasureData:
 		; Row 2
 	.db TREASURE_OLD_MERMAID_KEY	$31 $04
 	.db TREASURE_CROWN_KEY			$34 $05
+
 	.db TREASURE_SPRING_STONE		$3a $06
 	.db TREASURE_WINTER_STONE		$3b $06
 	.db TREASURE_SUMMER_STONE		$2a $06
@@ -6463,10 +6474,11 @@ subscreen1TreasureData:
 	.db TREASURE_TRADEITEM			$3d $07
 
 		; Row 3
-	.db TREASURE_RED_PEARL			$6a $08
-	.db TREASURE_BLUE_PEARL			$6b $08
 	.db TREASURE_ZORA_SCALE			$6a $08
 	.db TREASURE_POTION				$6d $09
+		; Row 4
+	.db TREASURE_RED_PEARL			$72 $0a
+	.db TREASURE_BLUE_PEARL			$74 $0a
 
 
 	.db $00

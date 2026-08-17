@@ -5658,20 +5658,13 @@ goronDance_giveRewardForImperfectGame:
 
 @platinumOrGold:
 	jumpifitemobtained TREASURE_RED_PEARL, +
-	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
-	asm15 scriptHelp.goronDance_doubleBreakCounter
-	retscript
+	scriptjump goronDance_giveRedPearl
 +
 	;giveitem TREASURE_GASHA_SEED, $00
 	asm15 scriptHelp.giveRupees, RUPEEVAL_200
 	showtext TX_0009
 	retscript
 @silver:
-	jumpifitemobtained TREASURE_RED_PEARL, +
-	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
-	asm15 scriptHelp.goronDance_doubleBreakCounter
-	retscript
-+
 	asm15 scriptHelp.giveRupees, RUPEEVAL_050
 	showtext TX_0006
 	retscript
@@ -5689,9 +5682,8 @@ goronDance_giveRewardForPerfectGame:
 	.dw @bronze
 
 @platinum:
-	jumpifitemobtained TREASURE_TOKAY_EYEBALL, +
-	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
-	retscript
+	jumpifitemobtained TREASURE_RED_PEARL, +
+	scriptjump goronDance_giveRedPearl
 +
 	;asm15 scriptHelp.goronDance_giveRandomRingPrize
 	asm15 scriptHelp.giveRupees, RUPEEVAL_500
@@ -5700,24 +5692,29 @@ goronDance_giveRewardForPerfectGame:
 
 @platinumOrGold:
 @gold:
-	jumpifitemobtained TREASURE_TOKAY_EYEBALL, +
-	giveitem TREASURE_OBJECT_TOKAY_EYEBALL_00
-	retscript
+	jumpifitemobtained TREASURE_RED_PEARL, +
+	scriptjump goronDance_giveRedPearl
 +
 	;asm15 scriptHelp.goronDance_giveRandomRingPrize
 	asm15 scriptHelp.giveRupees, RUPEEVAL_300
 	showtext TX_008f
 	retscript
 @silver:
+	jumpifitemobtained TREASURE_RED_PEARL, +
+	scriptjump goronDance_giveRedPearl
++
+	giveitem TREASURE_BOMBCHUS, $00
 	;giveitem TREASURE_GASHA_SEED, $00
-	asm15 scriptHelp.giveRupees, RUPEEVAL_200
-	showtext TX_0009
 	retscript
 @bronze:
 	asm15 scriptHelp.giveRupees, RUPEEVAL_100
 	showtext TX_0007
 	retscript
 
+goronDance_giveRedPearl:
+	giveitem TREASURE_RED_PEARL, $00
+	asm15 scriptHelp.goronDance_doubleBreakCounter
+	retscript
 
 goron_subid01Script:
 	initcollisions
