@@ -3661,6 +3661,7 @@ group5Map11ObjectData:
 group5Map12ObjectData:
 	obj_BeforeEvent group5Map12BeforeEventObjectData
 	obj_Interaction $1e $04 $a4 $01 $03
+	obj_Part PART_OWL_STATUE $08 $45
 	obj_End
 
 group5Map13ObjectData:
@@ -3670,6 +3671,7 @@ group5Map13ObjectData:
 	obj_Part $13 $05 $5c
 	obj_Part $13 $03 $52
 	obj_Interaction $90 $22 $18 $78
+	obj_Part PART_OWL_STATUE $06 $11
 	obj_End
 
 group5Map14ObjectData:
@@ -3694,6 +3696,7 @@ group5Map17ObjectData:
 	obj_Pointer group5Map17EnemyObjectData
 	obj_Part $03 $00 $1d
 	obj_Interaction $1e $04 $80 $00 $03
+	obj_Part PART_OWL_STATUE $07 $16
 	obj_End
 
 group5Map18ObjectData:
@@ -3716,6 +3719,7 @@ group5Map1aObjectData:
 group5Map1bObjectData:
 	obj_Pointer group5Map1bEnemyObjectData
 	obj_Part $03 $03 $42
+	obj_Part PART_OWL_STATUE $08 $45
 	obj_End
 
 group5Map1cObjectData:
@@ -3774,6 +3778,7 @@ group5Map25ObjectData:
 	obj_Pointer group5Map25EnemyObjectData
 	obj_Interaction $1e $04 $20 $00 $03
 	obj_Part $03 $00 $1d
+	obj_Part PART_OWL_STATUE $07 $16
 	obj_End
 
 group5Map26ObjectData:
@@ -3826,6 +3831,7 @@ group5Map2dObjectData:
 	obj_Interaction $1e $04 $a4 $03 $03
 	obj_Interaction $21 $18
 	obj_Interaction $2f $00
+	obj_Part PART_OWL_STATUE $08 $45
 	obj_End
 
 group5Map2eObjectData:
@@ -3850,6 +3856,7 @@ group5Map31ObjectData:
 group5Map32ObjectData:
 	obj_Pointer group5Map32EnemyObjectData
 	obj_Part $03 $00 $1d
+	obj_Part PART_OWL_STATUE $07 $16
 	obj_End
 
 group5Map33ObjectData:
@@ -3927,6 +3934,7 @@ group5Map3dObjectData:
 	obj_Interaction $1e $04 $08 $00 $03
 	obj_Interaction $21 $18
 	obj_Interaction $2f $00
+	obj_Part PART_OWL_STATUE $07 $16
 	obj_End
 
 group5Map3eObjectData:
@@ -3953,6 +3961,7 @@ group5Map41ObjectData:
 	obj_Pointer group5Map41EnemyObjectData
 	obj_Part $03 $01 $42
 	obj_Interaction $1e $04 $9e $02 $03
+	obj_Part PART_OWL_STATUE $08 $45
 	obj_End
 
 group5Map42ObjectData:

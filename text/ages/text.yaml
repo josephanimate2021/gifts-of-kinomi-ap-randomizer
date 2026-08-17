@@ -14908,7 +14908,7 @@ groups:
     text: |-
       \left
       Shrine of Summer\stop
-      Seasons' shrines are hidden, accessible to only those that have visited them!
+      A floor to each season. Even your \col(1)rod\col(0) will need to visit that season to be called on a \col(1)stump\col(0)!
 
   - name: TX_2e15
     index: 0x15
@@ -14929,7 +14929,7 @@ groups:
     text: |-
       \left
       Shrine of Spring\stop
-      Gales reach all shrines!
+      Your \col(1)gales\col(0) can travel to any \col(1)tree\col(0) you've encountered.
 
   - name: TX_2e18
     index: 0x18
@@ -19191,45 +19191,43 @@ groups:
 
   - name: TX_3902
     index: 0x02
-    text: |-
-      Day by day,
-      season by season,
-      these rooms remain
-      to reveal the path.
+    text: >-
+      This mystic shrine
+      with each floor for a season,
+      share rooms that assist your way.
 
   - name: TX_3903
     index: 0x03
     text: |-
-      \col(1)Flora\col(0) flank my path.
+      My guard is the color of \col(1)flora\col(0).
 
   - name:
     - TX_3904
     index:
     - 0x04
     text: |-
-      My \col(1)right\col(0)eousness is a shield.
+      My guard's \col(1)right\col(0)eousness is a shield.
 
   - name: TX_3905
     index: 0x05
     text: |-
-      Neither Heaven nor Waves,\stop
-      neither cloud nor sea.
+      My guard is not of the others.
+      He is neither \col(1)right\col(0)eous nor a \col(1)desireable color\col(0).
 
   - name: TX_3906
     index: 0x06
     text: |-
-      The power of the orb trascends time.
+      My friends each desire a \col(1)guard\col(0).
 
   - name: TX_3907
     index: 0x07
     text: |-
-      Cold areas point to smokey paths.
+      The door of this room, shared among seasons, will open by the orb.
 
   - name: TX_3908
     index: 0x08
     text: |-
-      Scents seduce
-      savage beasts.
+      Even when inaccessible by stump, this room in winter still can be breached by other means.
 
   - name: TX_3909
     index: 0x09
