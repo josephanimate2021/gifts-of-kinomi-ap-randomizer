@@ -6,7 +6,7 @@ tilesetData: ; 4:4f9c
 	.db $0f $01
 	.db $01
 	.db $40
-	.db $10
+	.db PALH_TILESET_LYNNA_CITY
 	.db $00 $00 $00
 
 ; Tileset 0x01

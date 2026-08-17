@@ -5402,8 +5402,8 @@ inventorySubmenu1_drawCursor:
 @data:
 	.db $52 $55 $5b $5e
 	.db $82 $85 $8b $8e
-	.db         $bb $be
-	.db   $c3
+	.db         $c8 $cd
+	.db   $c2
 /*
 	.db $52 $55 $58 $5b $5e
 	.db $82 $85 $88 $8b $8e
@@ -6474,11 +6474,11 @@ subscreen1TreasureData:
 	.db TREASURE_TRADEITEM			$3d $07
 
 		; Row 3
-	.db TREASURE_ZORA_SCALE			$6a $08
-	.db TREASURE_POTION				$6d $09
+	.db TREASURE_ZORA_SCALE			$77 $08
+	.db TREASURE_POTION				$7c $09
 		; Row 4
-	.db TREASURE_RED_PEARL			$72 $0a
-	.db TREASURE_BLUE_PEARL			$74 $0a
+	.db TREASURE_RED_PEARL			$71 $0a
+	.db TREASURE_BLUE_PEARL			$73 $0a
 
 
 	.db $00

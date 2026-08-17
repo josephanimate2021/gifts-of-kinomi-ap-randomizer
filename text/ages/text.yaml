@@ -14943,7 +14943,9 @@ groups:
     index: 0x19
     text: |-
       \right Return to
-         Daichi Plain
+         Daichi Plain\stop
+      Warning!!
+         No return!
 
   - name: TX_2e1a
     index: 0x1a
