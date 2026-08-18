@@ -259,24 +259,25 @@ partCode01:
 	jr nc,@deleteSelf
 
 ; d is max number of hits
-	ld d,20
+	ld c,20
+	ld b,e
 	lda TREASURE_RED_PEARL
 	call @checkPearlObtained
 	lda TREASURE_BLUE_PEARL
 	call nc,@checkPearlObtained
 
-	ld (hl),d
-	ld a,e
+	ld (hl),c
+	ld a,b
 	call playSound
 @deleteSelf:
 	jp partDelete
 
 @checkPearlObtained:
-	push de
+	push bc
 	call checkTreasureObtained
-	pop de
+	pop bc
 	ret nc
-	ld d,40
+	ld c,40
 	ret
 
 ; Data format:

@@ -5013,6 +5013,11 @@ checkLinkPushingAgainstBed:
 	cpa >ROOM_AGES_130
 	jr nz,@bedCheck
 
+; ret if rock hasn't been pushed
+	call getThisRoomFlags
+	and ROOMFLAG_LAYOUTSWAP
+	ret z
+
 	ldbc <ROOM_AGES_130,$32
 	ld l,DIR_LEFT
 	call @checkState

@@ -1824,8 +1824,8 @@ endgameCutsceneHandler_22:
 	ld ($cbc1),a
 	lda $00
 	ld ($cbc2),a
-	ld a,$04
 	call func_60e0
+	ld a,$04
 	jp fadeoutToWhiteWithDelay
 
 @state1:
