@@ -33,7 +33,7 @@ chestGroup1Data:
 	.db $ff
 
 chestGroup2Data:
-	m_ChestData $14, $1d, TREASURE_OBJECT_POTION_01
+	m_ChestData $14, $1d, TREASURE_OBJECT_BIGGORON_SWORD_01
 	m_ChestData $15 $2a $2b01
 	m_ChestData $12 $29 $4b00
 	m_ChestData $14 $af $2b01

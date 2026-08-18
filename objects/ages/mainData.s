@@ -1920,6 +1920,7 @@ group2Map7eObjectData:
 
 group2Map7fObjectData:
 	obj_Pointer group2Map7fEnemyObjectData
+	obj_BeforeEvent group2Map7fBeforeEventObjectData
 	obj_End
 
 group2Map8eObjectData:
@@ -5444,10 +5445,11 @@ group2Map2dObjectData:
 	obj_End
 
 group2Map3dObjectData:
-	obj_Interaction INTERAC_GORON $0c $58 $78 $04
-	obj_Interaction INTERAC_GORON $0c $18 $78
-	obj_Interaction INTERAC_GORON $0c $38 $48 $03
+	obj_Interaction INTERAC_GORON $0c $18 $88 $04
+	obj_Interaction INTERAC_GORON $0c $58 $78
+	obj_Interaction INTERAC_GORON $0c $48 $48 $03
 	obj_Interaction INTERAC_GORON $0c $68 $28 $02
+	obj_Interaction INTERAC_SARCOPHAGUS $01 $20 $58
 	obj_End
 
 group2Map1dObjectData:

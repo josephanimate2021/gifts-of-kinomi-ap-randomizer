@@ -3315,6 +3315,8 @@ groups:
 
       I'm sure you'll figure out what they want as you go, \Link!
 
+      But if you ever get stuck, just come back and \col(2)ask any of us\col(4).
+
   - name:
     - TX_05b9
     - TX_05c9
@@ -7246,14 +7248,15 @@ groups:
   data:
   - name: TX_1100
     index: 0x00
-    text: |-
+    text: >-
       \pos(2)Hello mister! I'm Uffie!
       This is our
       playground!
 
       Welcome to the
       \col(1)Forest of Time\col(0)!\stop
-      Eh, are you worried you're stuck here?
+
+      Eh? Are you worried you're stuck here?
 
       If you can, go meet the
       kind \col(1)witch\col(0)!
@@ -7271,7 +7274,7 @@ groups:
       Aw!
 
       There is a \col(1)labyrinth\col(0) beneath
-      us that hides as well.
+      us that hides as well.\stop
 
       Us fairies like to poke in and out
       of it, seeing where we'll end up!

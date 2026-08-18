@@ -305,6 +305,7 @@ doorController_shutUntilTorchesLit:
 @torchesLit:
 	wait 30
 	playsound SND_SOLVEPUZZLE
+	orroomflag ROOMFLAG_80
 	incstate
 	scriptend
 

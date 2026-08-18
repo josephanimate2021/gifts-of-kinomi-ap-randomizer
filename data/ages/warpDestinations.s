@@ -94,7 +94,7 @@ group0WarpDestTable:
 	m_WarpDest $da $06 $0 $1
 	m_WarpDest $dd $25 $0 $1
 	m_WarpDest $e0 $46 $0 $1
-	m_WarpDest $e1 $53 $0 $1
+	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $e1 $26 $0 $1
 	m_WarpDest $24 $55 $0 $1
 	m_WarpDest $f1 $43 $0 $1
@@ -130,7 +130,7 @@ group0WarpDestTable:
 	m_WarpDest $28 $35 $0 $1
 	m_WarpDest $08 $27 $0 $1
 	m_WarpDest $84 $61 $0 $1
-	m_WarpDest $00 $00 $0 TRANSITION_DEST_DONT_SET_RESPAWN
+	m_WarpDest $22 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $85 $61 $0 $1
 	m_WarpDest $10 $11 $0 $1
 	m_WarpDest $30 $47 $0 $1
@@ -158,7 +158,7 @@ group0WarpDestTable:
 	m_WarpDest $60 $24 $0 $1
 	m_WarpDest $51 $04 $0 $1
 	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
-	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
+	m_WarpDest $22 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $00 $00 $0 $1
 	m_WarpDest $05 $11 $0 $1
 	m_WarpDest $00 $00 $0 $1
@@ -243,8 +243,9 @@ group1WarpDestTable:
 	m_WarpDest $50 $02 $0 $e
 	m_WarpDest $5d $37 $0 $e
 	m_WarpDest $40 $12 $0 $e
-	m_WarpDest $00 $00 $0 TRANSITION_DEST_DONT_SET_RESPAWN
+	m_WarpDest $50 $06 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $30 $43 $0 TRANSITION_DEST_DONT_SET_RESPAWN
+	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
 
 group2WarpDestTable:
 	m_WarpDest $5e $f6 $0 $3
@@ -302,7 +303,7 @@ group2WarpDestTable:
 	m_WarpDest $e8 $61 $0 $4
 	m_WarpDest $e8 $68 $0 $4
 	m_WarpDest $e9 $ff $9 $3
-	m_WarpDest $2c $f7 $0 $3
+	m_WarpDest $7f $ff $0 TRANSITION_DEST_ENTERSCREEN
 	m_WarpDest $1c $f5 $9 $3
 	m_WarpDest $4e $18 $0 $1
 	m_WarpDest $ae $61 $0 $4
@@ -338,8 +339,9 @@ group2WarpDestTable:
 	m_WarpDest $0d $ff $0 $3
 	m_WarpDest $0b $52 $0 $4
 	m_WarpDest $24 $55 $0 TRANSITION_DEST_DONT_SET_RESPAWN
-	m_WarpDest $3d $46 $0 TRANSITION_DEST_FALL
-	m_WarpDest $00 $00 $0 TRANSITION_DEST_DONT_SET_RESPAWN
+	m_WarpDest $3d $56 $0 TRANSITION_DEST_FALL
+	m_WarpDest $2c $f7 $0 TRANSITION_DEST_ENTERSCREEN
+	m_WarpDest $2c $f7 $0 TRANSITION_DEST_ENTERSCREEN
 
 group3WarpDestTable:
 	m_WarpDest $0f $f4 $9 $3

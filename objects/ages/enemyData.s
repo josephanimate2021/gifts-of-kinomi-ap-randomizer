@@ -121,6 +121,12 @@ group2Map6fEnemyObjectData:
 	obj_EndPointer
 
 group2Map7fEnemyObjectData:
+	obj_ItemDrop $00 ITEM_DROP_SCENT_SEEDS $11
+	obj_ItemDrop     ITEM_DROP_PEGASUS_SEEDS $18
+	obj_ItemDrop     ITEM_DROP_GALE_SEEDS $61
+	obj_ItemDrop     ITEM_DROP_MYSTERY_SEEDS $68
+	obj_Part PART_SMALL_FAIRY $00 $45
+	obj_Part PART_SMALL_FAIRY $00 $49
 	obj_EndPointer
 
 group2Map8eEnemyObjectData:
@@ -2948,4 +2954,7 @@ group0MapcaEnemyObjectData:
 	obj_EndPointer
 
 group0Mapc9EnemyObjectData:
+	obj_EndPointer
+
+group2Map7fBeforeEventObjectData:
 	obj_EndPointer
