@@ -6459,7 +6459,6 @@ subscreen1TreasureData:
 	.db TREASURE_LIBRARY_KEY		$04 $01
 
 	.db TREASURE_FLIPPERS 			$0a $02
-	.db TREASURE_TREASURE_MAP		$0d $03
 	.db TREASURE_SLATE				$0d $03
 
 		; Row 2
@@ -6471,11 +6470,12 @@ subscreen1TreasureData:
 	.db TREASURE_SUMMER_STONE		$2a $06
 	.db TREASURE_AUTUMN_STONE		$2b $06
 	.db TREASURE_GASHA_SEED			$3d $07
+	.db TREASURE_POTION				$3d $07
 	.db TREASURE_TRADEITEM			$3d $07
 
 		; Row 3
 	.db TREASURE_ZORA_SCALE			$77 $08
-	.db TREASURE_POTION				$7c $09
+	.db TREASURE_TREASURE_MAP		$7c $09
 		; Row 4
 	.db TREASURE_BLUE_PEARL			$71 $0a
 	.db TREASURE_RED_PEARL			$73 $0a
@@ -8797,7 +8797,7 @@ mapMenu_drawJewelLocations:
 	add (hl)
 	ld (hl),a
 
-	; Return if in subrosia
+	; Return if in subrosia (or in the past)
 	ld a,(wMapMenu.mode)
 	rrca
 	ret c

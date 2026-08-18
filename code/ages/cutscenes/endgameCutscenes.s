@@ -1820,7 +1820,7 @@ endgameCutsceneHandler_22:
 
 @state0:
 	callab bank3Cutscenes.cutscene_clearTmpCBB3
-	ld a,$01 ; set to 3 since this is what the original was at
+	ld a,$01
 	ld ($cbc1),a
 	lda $00
 	ld ($cbc2),a
@@ -1847,10 +1847,5 @@ endgameCutsceneHandler_22:
 	call clearPegasusSeedCounter
 	call clearOam
 	call clearLinkObject
-	;ld d,>w1Link.id
-	;ld e,<w1Link.id
-	;ld a,SPECIALOBJECT_LINK_CUTSCENE
-	;ld (de),a
-	;call objectSetInvisible
 @state2:
 	jpab cutscenesBank10.agesFunc_10_7298
