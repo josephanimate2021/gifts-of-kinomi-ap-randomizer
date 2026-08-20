@@ -5011,18 +5011,25 @@ hardhatWorkerSubid00Script:
 	.dw @doesntGiveShovel
 
 @givesShovel:
-	jumpifroomflagset $20, @alreadyGaveShovel
-	showtextlowindex <TX_1001
-	wait 30
-	giveitem TREASURE_SHOVEL, $00
-	wait 30
+	showtextlowindex <TX_1002
+	scriptjump @enableInput
 
 @alreadyGaveShovel:
-	showtextlowindex <TX_1002
+	showtextlowindex <TX_1001
+	jumpiftextoptioneq, $01, @givesShovel
 	scriptjump @enableInput
 
 @doesntGiveShovel:
 	showtextlowindex <TX_1000
+	jumpiftextoptioneq, $01, @alreadyGaveShovel
+	showtextlowindex <TX_1003
+	jumpiftextoptioneq, $00, @questionWrong
+	showtextlowindex <TX_1005
+	scriptjump @enableInput
+
+@questionWrong:
+	showtextlowindex <TX_1004
+	scriptjump @enableInput
 
 @enableInput:
 	setanimation $04

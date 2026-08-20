@@ -7090,92 +7090,61 @@ groups:
   - name: TX_1000
     index: 0x00
     text: |-
-      We're supposed
-      to finish
-      tomorrow, but
-      we're way behind
-      schedule! We'll
-      never make it!
+      Welcome to the
+      Gifts of Kinomi
+      Archipelago
+      Randomizer.\stop
+      Did you read the FAQ?
+      \opt()Yes \opt()No
 
   - name: TX_1001
     index: 0x01
     text: |-
-      Huh? A diggin'
-      tool? That's the
-      spirit, sonny!
-      Here! You can
-      have this
-      \col(1)Shovel\col(0)! Can you
-      use the \col(1)Shovel\col(0)
-      to move that
-      dirt outta the
-      way?
+      Oh, I suggest you 
+      read the FAQ first. 
+      \opt()Ok \opt()Where?
 
   - name: TX_1002
     index: 0x02
     text: |-
-      We're workin'
-      hard on this
-      tower! Help us
-      out!
+      It is linked in
+      the setup. If
+      you don't have
+      it check
+      tinyurl.com/
+      kinomiSetup 
 
   - name: TX_1003
     index: 0x03
     text: |-
-      This is the
-      entry to the
-      tower being
-      built to the
-      heavens by the
-      order of
-      \col(3)Queen Ambi\col(0).
+      How do you
+      refill your
+      satchel and
+      shield
+      \opt() Shop \opt() Impa
 
   - name: TX_1004
     index: 0x04
     text: |-
-      It's not like
-      \col(3)Queen Ambi\col(0) to
-      drive us so
-      hard. We're so
-      busy we don't
-      have time to
-      sleep!
+      Wrong. Please
+      check the FAQ,
+      you will get
+      stuck otherwise.
 
   - name: TX_1005
     index: 0x05
     text: |-
-      \pos(0)At first, this
-      tower was being
-      built to guide
-      Queen Ambi's
-      love safely back
-      from the sea.
-      But ever since
-      Nayru came, the
-      sun sits high in
-      the sky as if
-      time itself has
-      stopped.
-      It's not like
-      Queen Ambi to
-      push us so hard.
-      In the village,
-      they've started
-      calling it the
-      Black Tower.
+      Right! You can
+      get out of here 
+      by warping.
 
   - name: TX_1006
     index: 0x06
     text: |-
-      You can look
-      around, but the
-      construction has
-      some areas
-      closed. If you
-      hang around too
-      much, though,
-      you might get
-      yelled at.
+      Just warp to
+      the start,
+      you can do it
+      everywhere
 
   - name: TX_1007
     index: 0x07
