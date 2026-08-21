@@ -2,12 +2,12 @@
 ; INTERAC_MASK_SALESMAN
 ; ==================================================================================================
 interactionCode5c:
-	ld a,>TX_0b00
-	call interactionSetHighTextIndex
 	call checkInteractionState
 	jr nz,@state1
 
 @state0:
+	ld a,>TX_0b00
+	call interactionSetHighTextIndex
 	call @loadScriptAndInitGraphics
 	call interactionSetAlwaysUpdateBit
 @state1:

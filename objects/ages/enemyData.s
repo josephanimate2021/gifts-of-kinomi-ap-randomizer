@@ -1088,7 +1088,7 @@ group4Map58EnemyObjectData:
 
 group4Map59EnemyObjectData:
 	obj_SpecificEnemyA 0 $34 $00 $78 $a8
-	obj_SpecificEnemyA     $34 $01 $58 $38
+	obj_SpecificEnemyA     $34 $01 $78 $48
 	obj_EndPointer
 
 group4Map5cEnemyObjectData:

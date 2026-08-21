@@ -3928,6 +3928,7 @@ tradeBrokenSwordScript:
 	showtextlowindex <TX_0b25
 	wait 15
 	enableinput
+	loadscript scriptHelp.maskSalesmanScript
 	scriptjump maskSalesmanScript@npcLoop
 
 ; ==================================================================================================
