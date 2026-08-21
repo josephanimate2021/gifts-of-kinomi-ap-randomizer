@@ -94,7 +94,7 @@ group0WarpDestTable:
 	m_WarpDest $da $06 $0 $1
 	m_WarpDest $dd $25 $0 $1
 	m_WarpDest $e0 $46 $0 $1
-	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
+	m_WarpDest $34 $35 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $e1 $26 $0 $1
 	m_WarpDest $24 $55 $0 $1
 	m_WarpDest $f1 $43 $0 $1

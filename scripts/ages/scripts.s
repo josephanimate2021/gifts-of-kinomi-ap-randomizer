@@ -5065,6 +5065,9 @@ hardhatWorkerSubid02Script:
 hardhatWorkerSubid03Script:
 	loadscript scriptHelp.hardhatWorkerSubid03Script
 
+; Generic NPC.
+hardhatWorkerSubid04Script:
+	rungenericnpclowindex <TX_1007
 
 ; The object moves for [var3c] frames, and its direction is stored in [var3e]. When
 ; [var3c] hits 0, this returns. The object can also be talked to by Link while doing this.

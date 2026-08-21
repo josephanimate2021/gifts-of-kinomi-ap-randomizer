@@ -10,7 +10,6 @@ group0Map3eObjectData:
 group0Map3fObjectData:
 group0Map4aObjectData:
 group0Map4eObjectData:
-group0Map4fObjectData:
 group0Map5eObjectData:
 group0Map5fObjectData:
 group0Map69ObjectData:
@@ -5465,4 +5464,8 @@ group3Map7aObjectData:
 
 group3Map8aObjectData:
 	obj_Interaction INTERAC_DANCE_HALL_MINIGAME $00
+	obj_End
+
+group0Map4fObjectData:
+	obj_Interaction INTERAC_HARDHAT_WORKER $04 $28 $78
 	obj_End

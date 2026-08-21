@@ -7149,10 +7149,23 @@ groups:
   - name: TX_1007
     index: 0x07
     text: |-
-      Why build such a
-      huge thing..?
-      It's just work,
-      work, work!
+      Please take
+      what's in that
+      chest as a thank
+      you for finding me.\stop
+      I know that you 
+      may be struggling 
+      to find all the 
+      checks in this
+      randomizer.\stop 
+      Trust me, I know how 
+      you feel. I felt the 
+      same way when I first 
+      played this randomizer.\stop
+      I hope you can 
+      find the courage 
+      to keep going and 
+      finish the game.\stop
 
   - name:
     - TX_1008

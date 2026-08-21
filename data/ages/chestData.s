@@ -17,6 +17,7 @@ chestDataGroupTable:
 	.dw chestGroup7Data
 
 chestGroup0Data:
+	m_ChestData $18, $4f, TREASURE_OBJECT_POTION_01
 	m_ChestData $27 $27 $280a
 	m_ChestData $12 $08 $2e02
 	m_ChestData $53 $60 $4b00
