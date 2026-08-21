@@ -650,23 +650,7 @@ checkDarkenRoom:
 	bit DUNGEONROOMPROPERTY_DARK_BIT,a
 	ret z
 
-; ZTK: set wNumTorchesLit and only
-; darken room lightly if torches are present
-	ld b,LARGE_ROOM_HEIGHT << 4
-	ld hl,wRoomLayout
-	ld c,$00
---
-	ld a,(hl)
-	cp TILEINDEX_LIT_TORCH
-	jr nz,+
-	inc c
-+
-	inc l
-	dec b
-	jr nz,--
-	
-	ld a,c
-	cpa $00
+	call countTorches
 	jp z,darkenRoom
 	ld (wNumTorchesLit),a
 	jp darkenRoomLightly
@@ -682,12 +666,47 @@ checkBrightenRoom:
 	ld a,(wDungeonRoomProperties)
 	bit DUNGEONROOMPROPERTY_DARK_BIT,a
 	ret nz
+/*
+	jr z,+
+
+	call countTorches
+	ret z
+	ld (wNumTorchesLit),a
 
 	ld a,(wPaletteThread_parameter)
 	or a
 	ret z
+	ld a,$30
+	ld b,$f7
+	jp brightenRoomHelper
+	;jp brightenRoomLightly
++
+*/
+	ld a,(wPaletteThread_parameter)
+	or a
+	ret z
+
 	jp brightenRoom
 
+; ZTK: set wNumTorchesLit and only
+; darken room lightly if torches are present
+countTorches:
+	ld b,LARGE_ROOM_HEIGHT << 4
+	ld hl,wRoomLayout
+	ld c,$00
+--
+	ld a,(hl)
+	cp TILEINDEX_LIT_TORCH
+	jr nz,+
+	inc c
++
+	inc l
+	dec b
+	jr nz,--
+	
+	ld a,c
+	cpa $00
+	ret
 ;;
 ; State 4: reload unique gfx / palettes, then proceed to state 5?
 ;
