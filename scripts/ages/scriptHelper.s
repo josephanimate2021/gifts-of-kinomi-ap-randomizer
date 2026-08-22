@@ -8995,7 +8995,7 @@ simpleScript_waterfallEmptyingBelow:
 	ss_wait 20
 
 	ss_settile $21, $f9
-;	ss_settile $31, $f9
+ 	ss_settile $31, $dc
 	ss_settile $41, $1b
 	ss_settile $42, $1b
 	ss_wait 20
@@ -9093,7 +9093,7 @@ simpleScript_waterfallFillingBelow:
 	ss_wait 20
 
 	ss_settile $21, $fa
-;	ss_settile $31, $fa
+ 	ss_settile $31, $fa
 	ss_settile $41, $fa
 	ss_settile $42, $fa
 	ss_wait 20
