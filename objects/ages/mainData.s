@@ -643,7 +643,6 @@ group0Mapc1ObjectData:
 
 group0Map00ObjectData:
 	obj_Pointer group0Map00EnemyObjectData
-	obj_Interaction $dc $0a $11 $02 $dc
 	obj_End
 
 group0Map01ObjectData:
@@ -2894,7 +2893,6 @@ group4Map58ObjectData:
 group4Map59ObjectData:
 	obj_Pointer objectData_makeAllTorchesLightable
 	obj_Pointer group4Map59EnemyObjectData
-	obj_Interaction $13 $01 $68 $b8
 	obj_End
 
 group4Map5aObjectData:

@@ -11482,7 +11482,7 @@ _setDarkeningVariables:
 brightenRoomLightly:
 	ld b,$f7
 	ld a,$01
-	jr _brightenRoomHelper
+	jr brightenRoomHelper
 
 ;;
 ; Unused?
@@ -11500,7 +11500,7 @@ func_333e:
 ; @param	a	Speed of brightening
 brightenRoomWithSpeed:
 	ld b,$00
-	jr _brightenRoomHelper
+	jr brightenRoomHelper
 
 ;;
 brightenRoom:
@@ -11510,7 +11510,7 @@ brightenRoom:
 ;;
 ; @param	a	Speed of brightening
 ; @param	b	Amount to brighten
-_brightenRoomHelper:
+brightenRoomHelper:
 	call _setDarkeningVariables
 	ld a,$06
 	ld (wPaletteThread_mode),a
