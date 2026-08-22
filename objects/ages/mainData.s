@@ -66,7 +66,6 @@ group0Mapd3ObjectData:
 group0Mapd4ObjectData:
 group0Mapd5ObjectData:
 group0Mapd6ObjectData:
-group0Mapd9ObjectData:
 group0MapdcObjectData:
 group0MapdeObjectData:
 group0MapdfObjectData:
@@ -109,14 +108,12 @@ group1Map0fObjectData:
 group1Map18ObjectData:
 group1Map1cObjectData:
 group1Map1eObjectData:
-group1Map1fObjectData:
 group1Map29ObjectData:
 group1Map2aObjectData:
 group1Map2bObjectData:
 group1Map2eObjectData:
 group1Map2fObjectData:
 group1Map3aObjectData:
-group1Map3cObjectData:
 group1Map3eObjectData:
 group1Map3fObjectData:
 group1Map4aObjectData:
@@ -700,8 +697,6 @@ group0Map09ObjectData:
 	obj_End
 
 group0Map0aObjectData:
-	obj_Interaction $90 $11 $18 $78
-	obj_Interaction $8a $00 $00 $00 $07
 	obj_Pointer group0Map0aEnemyObjectData
 	obj_End
 
@@ -866,10 +861,7 @@ group0Map38ObjectData:
 	obj_End
 
 group0Map39ObjectData:
-	obj_Interaction $6b $01
 	obj_Interaction $e1 $01 $28 $28
-	obj_Interaction $37 $0d $28 $18
-	obj_Interaction $5d $02 $18 $68
 	obj_End
 
 group0Map3aObjectData:
@@ -881,6 +873,7 @@ group0Map3bObjectData:
 	obj_End
 
 group0Map3cObjectData:
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $68 $18
 	obj_End
 
 group0Map3dObjectData:
@@ -978,8 +971,6 @@ group0Map58ObjectData:
 	obj_End
 
 group0Map59ObjectData:
-	obj_Interaction $34 $00 $26 $38
-	obj_Part $5a $5a $23
 	obj_End
 
 group0Map5aObjectData:
@@ -1044,12 +1035,6 @@ group0Map68ObjectData:
 	obj_End
 
 group0Map6aObjectData:
-	obj_Interaction $31 $00 $38 $48
-	obj_Interaction $dc $08 $48 $02
-	obj_Interaction $71 $04 $08 $58
-	obj_Interaction $71 $05 $40 $98
-	obj_Interaction $67 $02
-	obj_Interaction $71 $03
 	obj_End
 
 group0Map6bObjectData:
@@ -1178,7 +1163,6 @@ group0Map8dObjectData:
 	obj_End
 
 group0Map90ObjectData:
-	obj_Interaction $b6 $04 $68 $18
 	obj_End
 
 group0Map91ObjectData:
@@ -1231,7 +1215,7 @@ group0MapabObjectData:
 	obj_End
 
 group0MapadObjectData:
-	obj_Interaction $b6 $05 $38 $68
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $78 $38
 	obj_End
 
 group0Mapb8ObjectData:
@@ -1257,6 +1241,7 @@ group0MapbcObjectData:
 
 group0MapbdObjectData:
 	obj_Interaction $48 $12 $48 $78
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $48 $68
 	obj_End
 
 group0Mapc8ObjectData:
@@ -1279,6 +1264,7 @@ group0MapcbObjectData:
 
 group0MapccObjectData:
 	obj_Pointer group0MapccEnemyObjectData
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $58 $68
 	obj_End
 
 group0MapcdObjectData:
@@ -1331,7 +1317,6 @@ group1Map4dObjectData:
 	obj_End
 
 group1MapbaObjectData:
-	obj_SpecificEnemyA $00 $62 $02 $00 $00
 	obj_End
 
 group1Map08ObjectData:
@@ -1397,7 +1382,6 @@ group1Map09ObjectData:
 	obj_End
 
 group1Map0aObjectData:
-	obj_Interaction $b6 $09 $68 $68
 	obj_End
 
 group1Map15ObjectData:
@@ -1514,7 +1498,7 @@ group1Map38ObjectData:
 	obj_End
 
 group1Map39ObjectData:
-	obj_Interaction $3a $0d $28 $18
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $01 $38 $18
 	obj_End
 
 group1Map3bObjectData:
@@ -1561,8 +1545,6 @@ group1Map48ObjectData:
 	obj_End
 
 group1Map49ObjectData:
-	obj_Interaction $3c $0e $48 $78
-	obj_Interaction $3a $0c $48 $38
 	obj_Interaction $43 $06 $28 $78
 	obj_End
 
@@ -1811,6 +1793,8 @@ group1MapadObjectData:
 	obj_Interaction $48 $15 $58 $68
 .else
 .endif
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $18 $78
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $78 $38
 	obj_End
 
 group1MapbbObjectData:
@@ -1824,6 +1808,7 @@ group1MapbcObjectData:
 	obj_End
 
 group1MapbdObjectData:
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $48 $68
 	obj_End
 
 group1MapcaObjectData:
@@ -1832,11 +1817,12 @@ group1MapcaObjectData:
 
 group1MapcbObjectData:
 	obj_Pointer group1MapcbEnemyObjectData
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $58 $18
 	obj_End
 
 group1MapccObjectData:
-	obj_SpecificEnemyA $00 $62 $03 $00 $00
 	obj_Pointer group1MapccEnemyObjectData
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $58 $78
 	obj_End
 
 group1MapcdObjectData:
@@ -1851,10 +1837,10 @@ group1Mapd7ObjectData:
 	obj_End
 
 group1Mapd9ObjectData:
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $18 $88
 	obj_End
 
 group1MapdaObjectData:
-	obj_SpecificEnemyA $00 $62 $04 $00 $00
 	obj_End
 
 group1MapdbObjectData:
@@ -2965,7 +2951,6 @@ group4Map65ObjectData:
 	obj_End
 
 group4Map66ObjectData:
-	obj_Interaction $12 $00 $88 $78
 	obj_Interaction $e2 $01
 	obj_Interaction $7e $00
 	obj_Interaction $21 $18
@@ -3456,7 +3441,6 @@ group4MapbaObjectData:
 	obj_End
 
 group4MapbbObjectData:
-	obj_Interaction $12 $00 $88 $78
 	obj_Interaction $e2 $01
 	obj_Interaction $7e $00
 	obj_Pointer group4MapbbEnemyObjectData
@@ -5452,7 +5436,7 @@ group2Map3dObjectData:
 
 group2Map1dObjectData:
 	obj_Interaction INTERAC_GORON $07 $40 $50 $04
-	obj_Interaction INTERAC_GORON $0c $68 $48 $01
+	obj_Interaction INTERAC_GORON $0c $58 $38 $01
 	obj_End
 
 group3Map7aObjectData:
@@ -5466,4 +5450,16 @@ group3Map8aObjectData:
 
 group0Map4fObjectData:
 	obj_Interaction INTERAC_HARDHAT_WORKER $04 $28 $78
+	obj_End
+
+group1Map1fObjectData:
+	obj_Interaction INTERAC_HARDHAT_WORKER $04 $18 $78
+	obj_End
+
+group1Map3cObjectData:
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $68 $18
+	obj_End
+
+group0Mapd9ObjectData:
+	obj_Interaction INTERAC_TIMEPORTAL_SPAWNER $00 $18 $88
 	obj_End
