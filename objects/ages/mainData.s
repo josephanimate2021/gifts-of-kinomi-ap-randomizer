@@ -1864,6 +1864,7 @@ group2Map1fObjectData:
 	obj_End
 
 group2Map2eObjectData:
+	obj_Interaction INTERAC_PLEN $00 $20 $50
 	obj_End
 
 group2Map2fObjectData:
@@ -2219,7 +2220,6 @@ group4Map03ObjectData:
 	obj_End
 
 group4Map04ObjectData:
-	obj_Interaction $12 $00 $88 $78
 	obj_Interaction $e2 $01
 	obj_End
 
@@ -2265,12 +2265,9 @@ group4Map0bObjectData:
 	obj_End
 
 group4Map0cObjectData:
-	obj_Interaction $13 $01 $48 $78
-	obj_Interaction $1e $08 $07 $00
 	obj_End
 
 group4Map0dObjectData:
-	obj_Interaction $12 $00 $88 $78
 	obj_Interaction $e2 $01
 	obj_End
 
@@ -5101,7 +5098,7 @@ group0Map08ObjectData:
 	obj_End
 
 group2Map08ObjectData:
-	obj_Interaction $3a $04 $28 $68
+	obj_Interaction $3a $04 $28 $60
 	obj_Interaction INTERAC_MALE_VILLAGER $05 $48 $78
 	obj_Interaction INTERAC_MALE_VILLAGER $06 $28 $48
 	obj_Interaction INTERAC_FEMALE_VILLAGER $03 $38 $38
@@ -5269,6 +5266,7 @@ group2Map14ObjectData:
 	obj_End
 
 group4Map0eObjectData:
+	obj_Interaction INTERAC_HARDHAT_WORKER $03 $18 $78 $01
 	obj_End
 
 group1Map40ObjectData:

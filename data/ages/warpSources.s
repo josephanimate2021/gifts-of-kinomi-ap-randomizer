@@ -51,9 +51,6 @@ warpSourcesTable:
 	.dw group7WarpSources
 
 group0WarpSources:
-	m_StandardWarp $1 $48 $07 $0 $3
-	m_StandardWarp $2 $48 $07 $0 $3
-	m_PointerWarp     $48 warpSource4ab5
 	m_PointerWarp     $8d warpSource4ac5
 	m_StandardWarp $0 $ba $04 $4 $4
 	m_PointerWarp     $0a warpSource4a79
@@ -69,7 +66,6 @@ group0WarpSources:
 	m_PointerWarp     $3d warpSource4aad
 	m_StandardWarp $0 $4d $09 $2 $4
 	m_StandardWarp $0 $55 $1f $5 $2
-	m_StandardWarp $0 $58 $3b $2 $4
 	m_StandardWarp $0 $5d $8c $0 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $0 $66 $49 $3 $4
 	m_PointerWarp     $68 warpSource4abd
@@ -113,7 +109,7 @@ group0WarpSources:
 	m_StandardWarp $0 $33 $5d $4 $4
 	m_StandardWarp $0 $20 $5e $4 $2
 	m_PointerWarp     $29 warpSource4a11
-	m_StandardWarp $0 $12 $5b $4 $2
+	m_StandardWarp $0 $12 $5b $4 TRANSITION_SRC_INSTANT
 	m_PointerWarp  $34 group0Room34WarpSources
 	m_PointerWarp     $46 warpSource4a09
 	m_StandardWarp $0 $88 $85 $5 $4
@@ -231,7 +227,7 @@ warpSource4a79:
 	m_WarpListEndWithDefault
 
 warpSource4a81:
-	m_PositionWarp $27 $30 $2 $4
+	m_PositionWarp $27 $00 $4 $4
 	m_PositionWarp $43 $43 $2 $4
 	m_PositionWarp $41 $5e $2 $4
 	m_WarpListEndWithDefault
@@ -261,10 +257,6 @@ warpSource4aad:
 	m_PositionWarp $13 $8e $0 TRANSITION_SRC_FADEOUT
 	m_WarpListEndWithDefault
 
-warpSource4ab5:
-	m_PositionWarp $21 $00 $4 $4
-	m_PositionWarp $28 $07 $4 $4
-	m_WarpListEndWithDefault
 
 warpSource4abd:
 	m_PositionWarp $18 $65 $0 $8
@@ -273,6 +265,7 @@ warpSource4abd:
 
 warpSource4ac5:
 	m_PositionWarp $61 $66 $5 $4
+	m_PositionWarp $26 $20 $2 TRANSITION_SRC_FADEOUT
 	m_WarpListEndWithDefault
 
 warpSource4acd:
@@ -281,11 +274,7 @@ warpSource4acd:
 	m_WarpListEndWithDefault
 
 group1WarpSources:
-	m_StandardWarp $0 $48 $01 $4 $4
-	m_StandardWarp $0 $83 $03 $4 $4
 	m_StandardWarp $0 $5c $02 $5 $4
-	m_StandardWarp $1 $48 $04 $1 $3
-	m_StandardWarp $2 $48 $04 $1 $3
 	m_StandardWarp $0 $0e $00 $5 $4
 	m_StandardWarp $4 $0e $2a $0 $3
 	m_StandardWarp $0 $02 $51 $4 $4
@@ -317,7 +306,6 @@ group1WarpSources:
 	m_StandardWarp $0 $55 $07 $2 $4
 	m_StandardWarp $0 $56 $3d $2 $4
 	m_StandardWarp $0 $57 $06 $2 $4
-	m_PointerWarp     $58 warpSource4c55
 	m_StandardWarp $0 $5a $3f $2 $4
 	m_StandardWarp $0 $66 $3d $3 $4
 	m_PointerWarp     $70 warpSource4c65
@@ -359,6 +347,7 @@ group1WarpSources:
 	m_StandardWarp $0 $31 $22 $3 $4
 	m_StandardWarp $0 $5d $32 $2 $4
 	m_StandardWarp $0 $1f $8b $0 $4
+	m_StandardWarp $0 $49 $01 $4 $4
 	m_WarpListEndNoDefault
 group1Room50WarpSources:
 	m_PositionWarp $06 $37 $2 $4
@@ -415,10 +404,6 @@ warpSource4c49:
 	m_PositionWarp $35 $5f $2 $4
 	m_WarpListEndWithDefault
 
-warpSource4c55:
-	m_PositionWarp $32 $36 $2 $4
-	m_PositionWarp $35 $41 $3 $4
-	m_WarpListEndWithDefault
 
 warpSource4c5d:
 	m_PositionWarp $24 $03 $2 $4
@@ -440,7 +425,7 @@ group2WarpSources:
 	m_StandardWarp $4 $0f $02 $1 $3
 	m_StandardWarp $4 $1e $38 $1 $3
 	m_StandardWarp $4 $1f $39 $1 $3
-	m_StandardWarp $0 $2e $3d $0 $4
+	m_StandardWarp $0 $2e $08 $2 $4
 	m_StandardWarp $4 $2f $29 $1 $3
 	m_StandardWarp $8 $3e $27 $1 $3
 	m_StandardWarp $4 $3f $47 $0 $3
@@ -520,6 +505,11 @@ group2WarpSources:
 	m_StandardWarp $0 $24 $3c $3 $4
 	m_StandardWarp $0 $3d $50 $1 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $04 $1d $54 $1 $4
+	m_PointerWarp  $09 group2Room09WarpSources
+	m_WarpListEndNoDefault
+group2Room09WarpSources:
+	m_PositionWarp $43 $0a $2 $4
+	m_PositionWarp $37 $07 $0 TRANSITION_SRC_FADEOUT
 	m_WarpListEndNoDefault
 
 warpSource4dd9:
@@ -747,11 +737,9 @@ group4WarpSources:
 	m_StandardWarp $4 $bb $04 $0 $3
 	m_PointerWarp  $bb group4RoombbWarpSources
 	m_StandardWarp $4 $ce $05 $0 $3
-	m_StandardWarp $4 $04 $00 $0 $3
-	m_StandardWarp $4 $0d $00 $1 $3
+	m_StandardWarp $4 $0d $10 $0 $3
 	m_StandardWarp $0 $09 $00 $6 $2
 	m_StandardWarp $0 $07 $1d $1 $4
-	m_StandardWarp $0 $01 $26 $0 $4
 	m_StandardWarp $0 $1b $01 $6 $2
 	m_StandardWarp $0 $86 $07 $6 $2
 	m_StandardWarp $0 $99 $0f $6 $2
@@ -937,8 +925,6 @@ group5WarpSources:
 	m_StandardWarp $4 $d1 $0a $1 $3
 	m_StandardWarp $0 $d1 $44 $5 $2
 	m_StandardWarp $4 $d8 $1f $0 $3
-	m_StandardWarp $4 $da $10 $0 $3
-	m_StandardWarp $8 $db $13 $0 $3
 	m_StandardWarp $0 $dc $05 $3 $2
 	m_StandardWarp $0 $dd $49 $2 $2
 	m_StandardWarp $0 $de $08 $3 $2

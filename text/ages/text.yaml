@@ -7204,11 +7204,10 @@ groups:
   - name: TX_100c
     index: 0x0c
     text: |-
-      Busy, busy,
-      busy! If I don't
-      hurry, the
-      guards will come
-      check on me!
+      I have been pacing around trying to figure out which stair leads to which place.
+      Man this randomizer does sure get tricky sometimes. From where I came in, I am pretty sure that the stair on my left
+      leads to Crown Dungeon while the one on my right leads to the remains of Moonlit Grotto.
+      I am not sure if that's correct, but you may take them for yourself to find out.
 
   - name: TX_100d
     index: 0x0d
@@ -18956,41 +18955,54 @@ groups:
   - name: TX_3700
     index: 0x00
     text: |-
-      I am \col(3)Plen\col(0), the
-      mayor here in
-      \col(3)Lynna City\col(0).\stop
-      Did you need me
-      for something?
-        \opt()Yes \opt()No
+      You know, I rolled that pot into place myself. Tested it and everything, stood right there, nodded, thought \col(1)yep, that'll do it.\col(0) And you just... walked past it. Like it was nothing.
 
   - name: TX_3701
     index: 0x01
-    text: |-
-      I see...
+    text: >-
+      H-hey! How did you get back here? I put a POT there!
 
   - name: TX_3702
     index: 0x02
     text: |-
-      It's from the
-      oddly dressed
-      out-of-towner.
-      Thank you for
-      your kindness.
-      Please accept
-      this.
+      I don't even want to know how. Nobody's gotten back here uninvited before, not once, and I've been stocking this library for three years.
 
   - name: TX_3703
     index: 0x03
     text: |-
-      What's that?
+      ...You know what, fine. You clearly want something back here bad enough to out-stubborn a boulder. Here, take it. Least I can do is make sure you didn't sneak past a pot for nothing.
+
+  - name: TX_3704
+    index: 0x04
+    text: >-
+      Just don't tell anyone how you got it, and have a great rest of your randomizer run.
+
+  - name: TX_3705
+    index: 0x05
+    text: >-
+      ...Hang on. You've already got one of these.
+
+  - name: TX_3706
+    index: 0x06
+    text: >-
+      Course you do. Figures a rock wasn't gonna stop someone who's already got half of everything worth having.
+
+  - name: TX_3707
+    index: 0x07
+    text: >-
+      Here. Call it a toll for the rock. You didn't out-stubborn a boulder for nothing.
+
+  - name: TX_3708
+    index: 0x08
+    text: >-
+      That money should help you on your way. Now please scram before my manager fires me for giving money to people I don't know.
+
+  - name: TX_3709
+    index: 0x09
+    text: >-
+      ...Right. Already gave you the toll. I just don't want to be fired by my manager, so don't go expecting seconds.
 
   - name:
-    - TX_3704
-    - TX_3705
-    - TX_3706
-    - TX_3707
-    - TX_3708
-    - TX_3709
     - TX_370a
     - TX_370b
     - TX_370c
@@ -18998,12 +19010,6 @@ groups:
     - TX_370e
     - TX_370f
     index:
-    - 0x04
-    - 0x05
-    - 0x06
-    - 0x07
-    - 0x08
-    - 0x09
     - 0x0a
     - 0x0b
     - 0x0c

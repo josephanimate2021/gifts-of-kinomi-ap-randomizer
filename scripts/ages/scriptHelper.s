@@ -8654,47 +8654,35 @@ linkedNpc_calcLowTextIndex:
 ; INTERAC_PLEN
 ; ==================================================================================================
 plenSubid0Script:
-	jumpifglobalflagset GLOBALFLAG_FINISHEDGAME, @finishedGame
-	jumpifglobalflagset GLOBALFLAG_SAVED_NAYRU, @savedNayru
-	rungenericnpc TX_3714
-
-@savedNayru:
-	rungenericnpc TX_3715
-
-@finishedGame:
 	initcollisions
 @loop:
 	checkabutton
 	disableinput
-	jumpifglobalflagset GLOBALFLAG_DONE_PLEN_SECRET, @alreadyCompletedSecret
-
-	; He can be given a secret
-	showtext TX_3700
-	wait 30
-	jumpiftextoptioneq $00, @giveSecret
 	showtext TX_3701
-	scriptjump @resume
-
-@giveSecret:
-	askforsecret PLEN_SECRET
-	wait 30
-	jumpifmemoryeq wTextInputResult, $00, @validSecret
-	; Bad secret
-	showtext TX_3703
-	scriptjump @resume
-
-@validSecret:
-	setglobalflag GLOBALFLAG_BEGAN_PLEN_SECRET
+	showtext TX_3700
 	showtext TX_3702
+	jumpifroomflagset $40, @alreadyGotToll
+	jumpifroomflagset $20, @alreadyGotItem
+	showtext TX_3703
+	giveitem TREASURE_POTION, $01
 	wait 30
-	asm15 giveRingAToLink, SPIN_RING
-	setglobalflag GLOBALFLAG_DONE_PLEN_SECRET
-	wait 30
+	orroomflag $20
 	showtext TX_3704
 	scriptjump @resume
 
-@alreadyCompletedSecret:
+@alreadyGotItem:
 	showtext TX_3705
+	showtext TX_3706
+	showtext TX_3707
+	giveitem TREASURE_RUPEES, $04
+	wait 30
+	orroomflag $40
+	showtext TX_3708
+	scriptjump @resume
+
+@alreadyGotToll:
+	showtext TX_3709
+	scriptjump @resume
 
 @resume:
 	enableinput
