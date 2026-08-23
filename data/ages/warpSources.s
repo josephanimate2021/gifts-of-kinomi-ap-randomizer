@@ -299,7 +299,6 @@ group1WarpSources:
 	m_StandardWarp $0 $39 $28 $0 $8
 	m_PointerWarp     $3c warpSource4c49
 	m_StandardWarp $0 $3d $4b $2 $4
-	m_StandardWarp $0 $43 $20 $3 $4
 	m_StandardWarp $0 $45 $3f $3 $4
 	m_StandardWarp $0 $4d $33 $3 $4
 	m_StandardWarp $0 $51 $56 $4 $2
