@@ -15020,6 +15020,11 @@ groups:
       and it will reform as long as you are not underneath it!\stop
 
       Toss it on buttons, push it into holes, and see what happens!
+  - name: TX_2e25
+    index: 0x25
+    text: |- 
+      I hope you are enjoying the randomizer so far. Please report any 
+      bugs at the Wind Fishes' Breeze discord server if you saw any.
 
 - group: 0x2f
   data:
