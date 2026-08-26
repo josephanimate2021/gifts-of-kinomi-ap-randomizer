@@ -1519,8 +1519,7 @@ groups:
   - name: TX_0120
     index: 0x20
     text: |-
-      \Link, please
-      save \col(3)Nayru\col(0)!
+      Come see me if you need a refill!
 
   - name: TX_0121
     index: 0x21

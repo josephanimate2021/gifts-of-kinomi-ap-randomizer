@@ -5039,6 +5039,7 @@ group3Map08ObjectData:
 	obj_Interaction $dc $19 $68 $18
 	obj_Interaction INTERAC_ZELDA $01 $28 $58
 	obj_Interaction INTERAC_HARDHAT_WORKER $00 $48 $88 $01
+	obj_Interaction INTERAC_IMPA_NPC $00 $28 $68
 	obj_End
 
 group3Map68ObjectData:
