@@ -2486,6 +2486,7 @@ group4Map18ObjectData:
 	obj_Interaction $c7 $04 $0f $15
 	obj_Pointer group4Map18EnemyObjectData
 	obj_Part $08 $01 $00 $00 $b4
+	obj_Interaction INTERAC_DUNGEON_STUFF $01 $58 $70
 	obj_End
 
 group4Map19ObjectData:
@@ -2965,6 +2966,7 @@ group4Map69ObjectData:
 	obj_Interaction $20 $00
 	obj_Interaction $1e $05 $5e $00
 	obj_Interaction $1e $05 $05 $00
+	obj_Interaction INTERAC_DUNGEON_STUFF $01 $58 $70
 	obj_End
 
 group4Map6aObjectData:
@@ -3405,6 +3407,7 @@ group4Mapb4ObjectData:
 	obj_Interaction $1e $0b $80 $00
 	obj_Interaction $1e $08 $07 $00
 	obj_BeforeEvent group4Mapb4BeforeEventObjectData
+	obj_Interaction INTERAC_DUNGEON_STUFF $01 $58 $70
 	obj_End
 
 group4Mapb5ObjectData:
@@ -3717,6 +3720,7 @@ group5Map1eObjectData:
 	obj_Interaction $1e $05 $04 $00
 	obj_Interaction $1e $05 $6e $00
 	obj_Interaction $1e $05 $80 $00
+	obj_Interaction INTERAC_DUNGEON_STUFF $01 $58 $70
 	obj_End
 
 group5Map1fObjectData:
@@ -4076,6 +4080,7 @@ group5Map59ObjectData:
 	obj_Interaction $1e $05 $30 $00
 	obj_Interaction $20 $00
 	obj_Interaction $7e $00 $58 $78
+	obj_Interaction INTERAC_DUNGEON_STUFF $01 $58 $70
 	obj_End
 
 group5Map5aObjectData:

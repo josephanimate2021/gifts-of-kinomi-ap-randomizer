@@ -71,7 +71,7 @@ group0WarpDestTable:
 	m_WarpDest $53 $52 $0 $e
 	m_WarpDest $4d $38 $0 $1
 	m_WarpDest $02 $27 $0 $0
-	m_WarpDest $da $06 $0 TRANSITION_DEST_SET_RESPAWN
+	m_WarpDest $34 $35 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $02 $27 $0 $1
 	m_WarpDest $34 $11 $0 $1
 	m_WarpDest $60 $57 $0 $1
@@ -169,7 +169,7 @@ group0WarpDestTable:
 	m_WarpDest $da $06 $0 TRANSITION_DEST_SET_RESPAWN
 
 group1WarpDestTable:
-	m_WarpDest $48 $21 $0 $1
+	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $70 $07 $0 $1
 	m_WarpDest $50 $17 $0 $1
 	m_WarpDest $02 $17 $0 $1
@@ -293,7 +293,7 @@ group2WarpDestTable:
 	m_WarpDest $4a $ff $0 $3
 	m_WarpDest $af $61 $0 $4
 	m_WarpDest $09 $37 $0 TRANSITION_DEST_SET_RESPAWN
-	m_WarpDest $ba $12 $0 $1
+	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $be $15 $0 $4
 	m_WarpDest $ec $f5 $9 TRANSITION_DEST_ENTERSCREEN
 	m_WarpDest $bf $15 $0 $4
@@ -391,7 +391,7 @@ group3WarpDestTable:
 	m_WarpDest $9f $11 $0 $4
 	m_WarpDest $a1 $25 $0 $e
 	m_WarpDest $ae $11 $0 $4
-	m_WarpDest $af $ff $9 $3
+	m_WarpDest $0e $11 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $be $18 $0 $4
 	m_WarpDest $f6 $ff $0 $3
 	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN

@@ -55,6 +55,7 @@ chestGroup2Data:
 	.db $ff
 
 chestGroup3Data:
+	m_ChestData $24, $0e, TREASURE_OBJECT_RING_16
 	m_ChestData $35, $e8, TREASURE_OBJECT_POTION_01
 	m_ChestData $35 $0d $1500
 	m_ChestData $14 $1a TREASURE_OBJECT_BOMB_UPGRADE_01
@@ -63,7 +64,6 @@ chestGroup3Data:
 	m_ChestData $24 $3b $3a00
 	m_ChestData $18 $1f $2806
 	m_ChestData $35, <ROOM_AGES_3ff, TREASURE_OBJECT_POTION_01
-	m_ChestData $18 $f9 $2d20
 	m_ChestData $34, <ROOM_AGES_3fd, $2b01
 	.db $ff
 
