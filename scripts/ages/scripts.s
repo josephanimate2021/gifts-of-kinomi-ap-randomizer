@@ -498,6 +498,23 @@ veranFaceCutsceneScript:
 ; INTERAC_OLD_MAN_WITH_RUPEES
 ; ==================================================================================================
 
+oldManScript_givesTreasure:
+	initcollisions
+	jumpifroomflagset $40, @alreadyGaveTreasure
+	checkabutton
+	disableinput
+	showtextlowindex <TX_3318
+	asm15 scriptHelp.oldMan_givesTreasure
+	wait 32
+	checkrupeedisplayupdated
+	orroomflag $40
+	enableinput
+
+@alreadyGaveTreasure:
+	checkabutton
+	showtextlowindex <TX_3319
+	scriptjump @alreadyGaveTreasure
+	
 oldManScript_givesRupees:
 	initcollisions
 	jumpifroomflagset $40, @alreadyGaveMoney

@@ -436,6 +436,37 @@ oldMan_takeRupees:
 	ld a,(hl)
 	jp removeRupeeValue
 
+; Credit to Ishigh1 for parts of the code shown below until the end of the spawnTreasureOnLink function.
+oldMan_givesTreasure:
+	ld e,Interaction.var03
+	ld a,(de)
+	ld hl,oldManLocationsTable
+	add a,a
+	rst_addAToHl
+	ldi a,(hl)
+    ld b,a
+    ld c,(hl)
+    jp @spawnTreasureOnLink
+
+@spawnTreasureOnLink:
+	call createTreasure
+    ret nz
+    push de
+    ld de,w1Link.yh
+    call objectCopyPosition_rawAddress
+    pop de
+    xor a
+    ret
+
+oldManLocationsTable:
+	.db TREASURE_RUPEES,RUPEEVAL_100	; Lake of Memories Old Man
+	.db TREASURE_RUPEES,RUPEEVAL_050	; Daichi Plain Old Man (All Seasons)
+	.db TREASURE_RUPEES,RUPEEVAL_200	; Deeper Woods Old Man (Not Deep Yet)
+	.db TREASURE_RUPEES,RUPEEVAL_150	; Hedge Maze Old Man 1
+	.db TREASURE_RUPEES,RUPEEVAL_080	; Daichi Plain Old Man (Summer Only)
+	.db TREASURE_RUPEES,RUPEEVAL_500	; Hedge Maze Old Man 2
+	.db TREASURE_RUPEES,RUPEEVAL_300	; Deeper Woods Old Man (Deeper In)
+
 ;;
 oldMan_giveRupees:
 	ld e,Interaction.var03
@@ -443,13 +474,18 @@ oldMan_giveRupees:
 danceLeader_giveRupees:
 	ld hl,oldMan_rupeeValues
 	rst_addAToHl
+	ld c,(hl)
+	ld a,TREASURE_RUPEES
+	jp giveTreasure
 
 oldMan_rupeeValues:
-	.db RUPEEVAL_100	;subid 00, 05, 06
+	.db RUPEEVAL_100	;subid 00
 	.db RUPEEVAL_050	;subid 01
 	.db RUPEEVAL_200	;subid 02
 	.db RUPEEVAL_150	;subid 03
 	.db RUPEEVAL_080	;subid 04
+	.db RUPEEVAL_500    ;subid 05
+	.db RUPEEVAL_300    ;subid 06
 
 
 ; ==================================================================================================

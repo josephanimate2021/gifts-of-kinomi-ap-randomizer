@@ -644,7 +644,6 @@ group0Map00ObjectData:
 
 group0Map01ObjectData:
 	obj_Pointer group0Map01EnemyObjectData
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $02
 	obj_Interaction INTERAC_RALPH $04 $58 $48
 	obj_End
 
@@ -663,7 +662,6 @@ group0Map03ObjectData:
 	obj_Interaction INTERAC_ZELDA $01 $38 $78 $0b
 	obj_Interaction INTERAC_MALE_VILLAGER $01 $68 $38
 	obj_Interaction INTERAC_BOY_2 $00 $38 $38
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $07
 	obj_End
 
 group0Map04ObjectData:
@@ -731,7 +729,6 @@ group0Map15ObjectData:
 group0Map16ObjectData:
 	obj_Pointer group0Map16EnemyObjectData
 	obj_Interaction $1f $00 $61 $00
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map17ObjectData:
@@ -840,19 +837,16 @@ group0Map34ObjectData:
 group0Map35ObjectData:
 	obj_Pointer group0Map35EnemyObjectData
 	obj_Interaction INTERAC_RALPH $01 $38 $18
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map36ObjectData:
 	obj_Pointer group0Map36EnemyObjectData
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $03
 	obj_End
 
 group0Map37ObjectData:
 	obj_Pointer group0Map37EnemyObjectData
 	obj_Interaction $dc $10 $04 $18
 	obj_Interaction $eb $00 $28 $78
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group0Map38ObjectData:
@@ -1087,7 +1081,6 @@ group0Map78ObjectData:
 	obj_Interaction INTERAC_DECORATION $00 $58 $88
 	obj_Interaction INTERAC_ESSENCE $00 $36 $50 $01
 	obj_AfterEvent group0Map78AfterEventObjectData
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $01
 	obj_End
 
 group0Map79ObjectData:
@@ -3129,7 +3122,6 @@ group4Map7eObjectData:
 group4Map7fObjectData:
 	obj_Pointer group4Map7fEnemyObjectData
 	obj_Interaction $7f $00 $28 $78
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00
 	obj_End
 
 group4Map80ObjectData:
@@ -4910,7 +4902,6 @@ group5Mapf6ObjectData:
 group5Mapf7ObjectData:
 	obj_Pointer group5Mapf7EnemyObjectData
 	obj_Interaction $6b $1a $74 $78
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $00 $00 $00 $05
 	obj_End
 
 group5Mapf8ObjectData:
@@ -5215,7 +5206,6 @@ group1Map30ObjectData:
 	obj_Interaction $e1 $00 $68 $68
 	obj_Interaction $90 $12 $28 $58
 	obj_Interaction INTERAC_FOREST_FAIRY $01 $38 $48
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $01 $00 $00 $06
 	obj_End
 
 group2Map0aObjectData:
