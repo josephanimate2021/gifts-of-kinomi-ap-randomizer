@@ -443,9 +443,6 @@ oldMan_giveRupees:
 danceLeader_giveRupees:
 	ld hl,oldMan_rupeeValues
 	rst_addAToHl
-	ld c,(hl)
-	ld a,TREASURE_RUPEES
-	jp giveTreasure
 
 oldMan_rupeeValues:
 	.db RUPEEVAL_100	;subid 00, 05, 06
