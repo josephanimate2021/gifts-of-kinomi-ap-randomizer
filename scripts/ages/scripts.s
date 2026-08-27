@@ -5713,7 +5713,7 @@ goronDance_giveRewardForPerfectGame:
 	jumpifitemobtained TREASURE_BLUE_PEARL, +
 	scriptjump goronDance_giveRedPearl
 +
-	giveitem TREASURE_BOMBCHUS, $00
+	asm15 scriptHelp.giveRupees, RUPEEVAL_100
 	;giveitem TREASURE_GASHA_SEED, $00
 	retscript
 @bronze:

@@ -1414,7 +1414,6 @@ group1Map20ObjectData:
 	obj_Pointer group1Map20EnemyObjectData
 	obj_Interaction $9e $00 $58 $48
 	obj_Interaction $9e $01 $58 $38
-	obj_Interaction INTERAC_REMOTE_MAKU_CUTSCENE $01 $00 $00 $04
 	obj_Interaction INTERAC_FOREST_FAIRY $02 $38 $18 $02
 	obj_End
 

@@ -102,7 +102,6 @@ chestGroup4Data:
 	m_ChestData $87 $40 $3302
 	m_ChestData $3d $41 $3003
 	m_ChestData $69 $56 $3202
-	m_ChestData $57 $60 $2805
 	m_ChestData $47 $c1 $3003
 	m_ChestData $27 $c3 $3401
 	m_ChestData $47 $c4 $3003
