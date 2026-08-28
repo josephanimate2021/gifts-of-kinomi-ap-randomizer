@@ -540,7 +540,7 @@ tilesetData: ; 4:4f9c
 	.db $32 $05 $ff
 
 ; Tileset 0x4c
-	.db $3d $28
+	.db $31 $28
 	.db $00
 	.db $6d
 	.db $51
