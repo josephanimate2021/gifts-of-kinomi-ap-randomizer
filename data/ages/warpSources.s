@@ -136,7 +136,6 @@ group0WarpSources:
 	m_WarpListEndNoDefault
 group0Room34WarpSources:
 	m_PositionWarp $11 $7c $5 $4
-	m_PositionWarp $35 $05 $2 TRANSITION_SRC_FADEOUT
 	m_WarpListEndNoDefault
 
 warpSource49e5:

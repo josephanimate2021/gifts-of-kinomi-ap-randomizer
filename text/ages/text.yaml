@@ -1519,7 +1519,8 @@ groups:
   - name: TX_0120
     index: 0x20
     text: |-
-      Come see me if you need a refill!
+      Hi \Link, I am so happy to see you again, especially for the birthday of the Oracles!
+      Come see me again if you need a refill!
 
   - name: TX_0121
     index: 0x21
@@ -9700,13 +9701,8 @@ groups:
   - name: TX_1c12
     index: 0x12
     text: |-
-      Actually, the
-      theme of my
-      trip is "the
-      independent
-      woman," so you
-      have to wait for
-      another date.
+      Hi \Link, I am so happy to see you again, especially for the birthday of the Oracles!
+      Come see me again if you need a refill!
 
   - name: TX_1c13
     index: 0x13
