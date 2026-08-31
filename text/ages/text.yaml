@@ -70,43 +70,30 @@ groups:
   - name: TX_000a
     index: 0x0a
     text: |-
-      You learned the
-      \col(1)Currents Tune\col(0)!\stop
-      Play it to move
-      from the past to
-      the present!
-      Choose it when
-      you use the
-      \col(1)harp\col(0)!
+      You found a
+      \col(1)Boss Key\col(0)
+      for Summer Villa!
 
   - name: TX_000b
     index: 0x0b
     text: |-
-      You learned the
-      \col(1)Tune of Time\col(0)!\stop
-      Play it to move
-      back and forth
-      between past
-      and present!
-      Choose it when
-      you use the
-      \col(1)harp\col(0).
+      You found a
+      \col(1)Boss Key\col(0)
+      for Spirit's Grotto!
 
   - name: TX_000c
     index: 0x0c
     text: |-
-      You got the
-      \col(1)Brother Emblem\col(0)!
-      Now you are a
-      Goron, too!
+      You found a
+      \col(1)Small Key\col(0)
+      for Summer Villa!
 
   - name: TX_000d
     index: 0x0d
     text: |-
-      You got a \col(1)Scent
-      Seedling\col(0)! Maybe
-      it will produce
-      many seeds!
+      You found a
+      \col(1)Small Key\col(0)
+      for Spirit's Grotto!
 
   - name: TX_000e
     index: 0x0e
@@ -127,80 +114,44 @@ groups:
   - name: TX_0010
     index: 0x10
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Echoing Howl\col(0), an
-      Essence of Time!\stop
-      It echoes far
-      across the
-      plains to speak
-      to insolent
-      hearts.
+      You found a
+      \col(1)Small Key\col(0)
+      for Lost Labyrinth (Past)!
 
   - name: TX_0011
     index: 0x11
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Burning Flame\col(0),
-      an Essence of
-      Time!\stop
-      It reignites
-      wavering hearts
-      with a hero's
-      burning
-      passion.
+      You found a
+      \col(1)Small Key\col(0)
+      for Four Corners Cave!
 
   - name: TX_0012
     index: 0x12
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Sacred Soil\col(0), an
-      Essence of Time!\stop
-      All that lies
-      sleeping in the
-      bosom of the
-      earth will know
-      the nourishing
-      warmth of the
-      Sacred Soil.
+      You found a
+      \col(1)Small Key\col(0)
+      for Seasons Shrine!
 
   - name: TX_0013
     index: 0x13
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Bereft Peak\col(0), an
-      Essence of Time!\stop
-      It is a proud,
-      lonely spirit
-      that remains
-      stalwart, even
-      in trying times.
+      You found a
+      \col(1)Small Key\col(0)
+      for Temple of The Tokay!
 
   - name: TX_0014
     index: 0x14
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Rolling Sea\col(0), an
-      Essence of Time!\stop
-      The mystical
-      song of the sea
-      roars into a
-      crashing wave
-      that sweeps
-      heroes out into
-      adventure.
+      You found a
+      \col(1)Small Key\col(0)
+      for Lost Labyrinth (Present)!
 
   - name: TX_0015
     index: 0x15
     text: |-
-      \pos(2)\slow()You got the
-      \col(1)Falling Star\col(0), an
-      Essence of Time!\stop
-      The eternal
-      light of this
-      heavenly body
-      acts as guide
-      to the other
-      essences.
+      You found a
+      \col(1)Small Key\col(0)
+      for Crown Dungeon!
 
   - name: TX_0016
     index: 0x16
@@ -224,33 +175,20 @@ groups:
   - name: TX_0018
     index: 0x18
     text: |-
-      It's a \col(1)Dungeon
-      Map\col(0)! Press
-      SELECT to see
-      it. The darkened
-      rooms are ones
-      you haven't been
-      to yet.
+      You found the \col(1)Dungeon
+      Map\col(0)!
 
   - name: TX_0019
     index: 0x19
     text: |-
       You found the
-      \col(1)Compass\col(0)!\stop
-      Use it to track
-      your position,
-      locate chests
-      and find keys.
+      \col(1)Compass\col(0)!
 
   - name: TX_001a
     index: 0x1a
     text: |-
       You found a
-      \col(1)Small Key\col(0)!\stop
-      Use it to open a
-      locked door or
-      block in this
-      dungeon.
+      \col(1)Small Key\col(0)!
 
   - name: TX_001b
     index: 0x1b
@@ -353,19 +291,16 @@ groups:
   - name: TX_0027
     index: 0x27
     text: |-
-      You got \col(1)Roc's
-      Feather\col(0)! You
-      feel light as a
-      feather!
+      You found a
+      \col(1)Boss Key\col(0)
+      for Lost Labyrinth (Past)
 
   - name: TX_0028
     index: 0x28
     text: |-
-      You got the \col(1)Long
-      Switch\col(0)! Switch
-      places with
-      objects from a
-      distance.
+      You found a
+      \col(1)Boss Key\col(0)
+      for Four Corners Cave
 
   - name: TX_0029
     index: 0x29
@@ -425,11 +360,9 @@ groups:
   - name: TX_002e
     index: 0x2e
     text: |-
-      You got the
-      \col(1)Seed Shooter\col(0)!\stop
-      Pick your \col(1)seeds\col(0),
-      fire, then watch
-      them ricochet.
+      You found a
+      \col(1)Boss Key\col(0)
+      for Temple of The Tokay!
 
   - name: TX_002f
     index: 0x2f
@@ -442,11 +375,9 @@ groups:
   - name: TX_0030
     index: 0x30
     text: |-
-      You got the
-      \col(1)Switch Hook\col(0)!
-      Shoot at an
-      object to switch
-      places with it.
+      You found a
+      \col(1)Boss Key\col(0)
+      for Seasons Shrine!
 
   - name: TX_0031
     index: 0x31
@@ -468,17 +399,16 @@ groups:
   - name: TX_0033
     index: 0x33
     text: |-
-      You got a \col(1)Huge
-      Maku Seed\col(0)! This
-      should penetrate
-      evil forces!
+      You found the
+      \col(1)Compass\col(0)
+      for Summer Villa!
 
   - name: TX_0034
     index: 0x34
     text: |-
-      You got a bigger
-      \col(1)Ring Box\col(0)! It can
-      hold more \col(1)rings\col(0)!
+      You found the
+      \col(1)Compass\col(0)
+      for Spirit's Grotto!
 
   - name: TX_0035
     index: 0x35
@@ -490,62 +420,50 @@ groups:
   - name: TX_0036
     index: 0x36
     text: |-
-      You got a
-      \col(1)Mermaid Suit\col(0)!
-      Now you can swim
-      in deep waters.
-      Press \col(0x84)\item(0x00)\col(0) to swim,
-      \bbtn to dive and
-      \abtn to use items.
+      You found the
+      \col(1)Compass\col(0)
+      for Lost Labyrinth (Past)!
 
   - name: TX_0037
     index: 0x37
     text: |-
-      You got the
-      \col(1)Tuni Nut\col(0)!
+      You found the
+      \col(1)Compass\col(0)
+      for Four Corners Cave!
 
   - name: TX_0038
     index: 0x38
     text: |-
-      You got \col(1)Ricky's
-      Flute\col(0)! \col(3)Ricky\col(0)
-      will come to
-      your aid when
-      you play it.
+      You found the
+      \col(1)Compass\col(0)
+      for Seasons Shrine!
 
   - name: TX_0039
     index: 0x39
     text: |-
-      You got
-      \col(1)Dimitri's Flute\col(0)!
-      \col(3)Dimitri\col(0) will
-      come to your aid
-      when you play
-      it.
+      You found the
+      \col(1)Compass\col(0)
+      for Temple of The Tokay!
 
   - name: TX_003a
     index: 0x3a
     text: |-
-      You got \col(1)Moosh's
-      Flute\col(0)! \col(3)Moosh\col(0)
-      will come to
-      your aid when
-      you play it!
+      You found the
+      \col(1)Compass\col(0)
+      for Lost Labyrinth (Present)
 
   - name: TX_003b
     index: 0x3b
     text: |-
-      You got a
-      \col(1)Strange Flute\col(0)!
-      It sure looks
-      rare!
+      You found the
+      \col(1)Compass\col(0)
+      for Crown Dungeon
 
   - name: TX_003c
     index: 0x3c
     text: |-
-      You got a \col(1)Bomb
-      Flower\col(0)! Handle
-      it with care!!!
+      You found the \col(1)Dungeon
+      Map\col(0) for Summer Villa!
 
   - name: TX_003d
     index: 0x3d
@@ -556,34 +474,35 @@ groups:
   - name: TX_003e
     index: 0x3e
     text: |-
-      You got
-      \col(1)Rock Brisket\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Spirit's Grotto!
 
   - name: TX_003f
     index: 0x3f
     text: |-
-      You got the
-      \col(1)Goron Vase\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Lost 
+      Labyrinth (Past)!
 
   - name: TX_0040
     index: 0x40
     text: |-
-      You got
-      \col(1)Goronade\col(0)! One
-      quick gulp will
-      keep you awake.
+      You found the \col(1)Dungeon
+      Map\col(0) for Four Corners
+      Cave!
 
   - name: TX_0041
     index: 0x41
     text: |-
-      You got
-      \col(1)Lava Juice\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Seasons Shrine!
 
   - name: TX_0042
     index: 0x42
     text: |-
-      You got the
-      \col(1)Mermaid Key\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Temple of The
+      Tokay!
 
   - name: TX_0043
     index: 0x43
@@ -599,9 +518,9 @@ groups:
   - name: TX_0045
     index: 0x45
     text: |-
-      You got a
-      town shop
-      \col(1)Member's Card\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Lost 
+      Labyrinth (Present)
 
   - name: TX_0046
     index: 0x46
@@ -636,8 +555,8 @@ groups:
   - name: TX_004a
     index: 0x4a
     text: |-
-      You got a \col(1)Letter
-      of Introduction\col(0)!
+      You found the \col(1)Dungeon
+      Map\col(0) for Crown Dungeon!
 
   - name: TX_004b
     index: 0x4b
