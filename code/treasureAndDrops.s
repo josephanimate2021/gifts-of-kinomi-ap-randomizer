@@ -269,8 +269,7 @@ giveTreasure_body:
 
 ; Set bit [wDungeonIndex] in [de].
 @mode6:
-	ld a,(wDungeonIndex)
-	ld c,a
+	ret
 
 ; Set bit c in [de].
 @mode1:
@@ -305,8 +304,6 @@ giveTreasure_body:
 ; Increment [de+[wDungeonIndex]].
 ; Used for small keys.
 @mode7:
-	ld a,(wDungeonIndex)
-	ld b,a
 	ld a,(wActiveGroup)
 	; Check if in Group 0 or 1
 	xor $01
