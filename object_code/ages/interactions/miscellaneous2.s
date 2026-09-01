@@ -647,7 +647,7 @@ interactiondc_subid1a:
 	call getThisRoomFlags
 	bit ROOMFLAG_BIT_ITEM,a
 	jp nz,interactionDelete
-
+	
 	ld a,(wScrollMode)
 	and $08 ; in screen transition
 	ret nz
@@ -676,6 +676,42 @@ isHeartPieceOrRupee:
 +
 	ld b,TREASURE_HEART_PIECE
 	ret
+	
+staticItemsReplacementsLookup:
+	push bc
+	ld a,(wActiveGroup)
+	ld b,a
+	ld a,(wActiveRoom)
+	ld c,a
+	ld e,$02
+	nop
+	call searchDoubleKey
+	pop bc
+	ret nc
+	ld b,(hl) ; item id
+	ret
+
+; searches for a value in a table starting at hl, with an entry matching
+; keys b and subkey c, and values e bytes long. sets c if found. a key of
+; ff ends the table.
+searchDoubleKey:
+@loop:
+    ldi a,(hl)
+    cp $ff
+    ret z
+    cp b
+    jr nz,@next
+    ldi a,(hl)
+    cp c
+    jr nz,@done
+    scf
+    ret
+@next:
+    inc hl
+@done:
+    ld a,e
+    rst_jumpTable
+    jr @loop
 
 interactiondc_subid02:
 	call getThisRoomFlags
