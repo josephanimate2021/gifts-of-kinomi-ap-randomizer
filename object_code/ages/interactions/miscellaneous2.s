@@ -644,7 +644,10 @@ interactiondc_subid19:
 	jp interactionDelete
 
 interactiondc_subid1a:
-	
+	call getThisRoomFlags
+	bit ROOMFLAG_BIT_ITEM,a
+	jp nz,interactionDelete
+
 	ld a,(wScrollMode)
 	and $08 ; in screen transition
 	ret nz
