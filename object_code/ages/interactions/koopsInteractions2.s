@@ -243,10 +243,6 @@ _state1:
 	ldi (hl),a
 	ld (hl),a
 
-	ld b,>TX_0081
-	ld c,<TX_0081
-	call showText
-
 	call getThisRoomFlags
 	set 5,(hl)
 
