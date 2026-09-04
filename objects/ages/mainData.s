@@ -717,7 +717,7 @@ group0Map10ObjectData:
 group0Map11ObjectData:
 	obj_Pointer group0Map11EnemyObjectData
 	obj_Interaction $dc $01
-	obj_Interaction INTERAC_MISCELLANEOUS_2 $1a $58 $78
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $1a $58 $78 $29
 	obj_End
 
 group0Map15ObjectData:
@@ -1590,7 +1590,7 @@ group1Map60ObjectData:
 	obj_Interaction $e1 $00 $18 $78
 	obj_Interaction INTERAC_MISCELLANEOUS_2 $02 $58 $18
 	obj_Condition $0e
-	obj_Interaction INTERAC_MISCELLANEOUS_2 $07 $58 $18
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $07 $58 $18 $2b
 	obj_End
 
 group1Map61ObjectData:
@@ -2571,7 +2571,7 @@ group4Map25ObjectData:
 
 group4Map27ObjectData:
 	obj_Pointer group4Map27EnemyObjectData
-	obj_Interaction INTERAC_MISCELLANEOUS_2 $19 $68 $78
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $19 $68 $78 $2a
 	obj_End
 
 group4Map28ObjectData:

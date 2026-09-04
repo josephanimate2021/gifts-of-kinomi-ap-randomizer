@@ -644,9 +644,6 @@ interactiondc_subid19:
 	jp interactionDelete
 
 interactiondc_subid1a:
-	call getThisRoomFlags
-	bit ROOMFLAG_BIT_ITEM,a
-	jp nz,interactionDelete
 	
 	ld a,(wScrollMode)
 	and $08 ; in screen transition
@@ -712,6 +709,9 @@ itemsTable:
 	.db TREASURE_HEART_PIECE ; Room 138
 	.db TREASURE_HEART_PIECE ; Room 122
 	.db TREASURE_HEART_PIECE ; Room 057
+	.db TREASURE_HEART_PIECE ; Room 011
+	.db TREASURE_HEART_PIECE ; Room 427
+	.db TREASURE_HEART_PIECE ; Room 160
 
 interactiondc_subid02:
 	call getThisRoomFlags
