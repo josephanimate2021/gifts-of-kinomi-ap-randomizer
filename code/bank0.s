@@ -5867,6 +5867,72 @@ linkInteractWithAButtonSensitiveObjects:
 	.db $00 $f6 ; DIR_LEFT
 
 ;;
+checkNetItemBuffer:
+    push bc
+    push de
+    push hl
+    
+    ld a,(wMenuDisabled)
+    and a
+    jr nz,@done
+    ld a,(wLinkGrabState)
+    and a
+    jr nz,@done
+    ld hl,$cbfb
+    ldi a,(hl)
+    or a
+    jr z,@done
+    cp $ff
+    jr nz,@notDeathlink
+    
+    ; If item in buffer is 0xFF, it's a deathlink signal so make Link die
+    ld a,$fe
+    ld (wLinkDeathTrigger),a
+    jr @done
+    
+@notDeathlink:
+    ld b,a
+    ld c,(hl)
+    call spawnTreasureOnLink
+    jr nz,@done
+    ld l,$71
+    ld (hl),$02
+    
+    ld hl,$c6a8
+    inc (hl)
+    ld a,(hl)
+    or a
+    jr nz,@noOverflow
+    ld hl,$c6a9
+    inc (hl)
+    
+@noOverflow:
+    ld hl,$cbfb
+    xor a
+    ldi (hl),a
+    ld (hl),a
+    
+@done:
+    pop hl
+    pop de
+    pop bc
+    call linkInteractWithAButtonSensitiveObjects
+    ret
+
+;;
+; @param b = treasure id
+; @param c = treasure subid
+spawnTreasureOnLink:
+    call createTreasure
+    ret nz
+    push de
+    ld de,w1Link.yh
+    call objectCopyPosition_rawAddress
+    pop de
+    xor a
+    ret
+
+;;
 objectCheckContainsPoint:
 	ld h,d
 	ldh a,(<hActiveObjectType)

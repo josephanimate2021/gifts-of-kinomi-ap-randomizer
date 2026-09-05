@@ -436,7 +436,7 @@ oldMan_takeRupees:
 	ld a,(hl)
 	jp removeRupeeValue
 
-; Credit to Ishigh1 for parts of the code shown below until the end of the spawnTreasureOnLink function.
+; Credit to Ishigh1 for parts of the code shown below.
 oldMan_givesTreasure:
 	ld e,Interaction.var03
 	ld a,(de)
@@ -446,17 +446,7 @@ oldMan_givesTreasure:
 	ldi a,(hl)
     ld b,a
     ld c,(hl)
-    jp @spawnTreasureOnLink
-
-@spawnTreasureOnLink:
-	call createTreasure
-    ret nz
-    push de
-    ld de,w1Link.yh
-    call objectCopyPosition_rawAddress
-    pop de
-    xor a
-    ret
+    jp spawnTreasureOnLink
 
 oldManLocationsTable:
 	.db TREASURE_RUPEES,RUPEEVAL_100	; Lake of Memories Old Man

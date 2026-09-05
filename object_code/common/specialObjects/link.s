@@ -2720,7 +2720,7 @@ linkState10:
 	jr nz,++
 
 	; Return if Link interacts with an object
-	call linkInteractWithAButtonSensitiveObjects
+	call checkNetItemBuffer
 	ret c
 
 	; Deal with push blocks, chests, signs, etc. and return if he opened a chest, read

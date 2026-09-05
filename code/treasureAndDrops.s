@@ -359,7 +359,7 @@ giveTreasure_body:
 
 ; [de] += c (as bcd values), and [de+1] is the cap.
 @moded:
-	call @mode4
+	call @extendedModeD
 	ld h,d
 	ld l,e
 	inc l
@@ -369,6 +369,35 @@ giveTreasure_body:
 	ldd a,(hl)
 	ld (hl),a
 	ret
+
+; If max bombs == 0, increase max bombs even if it is a wild bomb drop (like the one in D2)
+@extendedModeD:
+    ld h,d
+    ld l,e
+    inc l
+    ld a,(hl)
+    or a
+    jr nz,@normalCase
+    ld a,$10
+    ldd (hl),a
+    jr @done
+
+; Otherwise, only increase max bombs if quantity has bit 7 set (only for "treasure" bombs, not drops)
+@normalCase:
+    bit 7,c
+    jr z,@done
+    
+@increaseMaxQuantity:
+    res 7,c
+    add a,c
+    daa
+    jr nc,@writeNewMaxValue
+    ld a,$99
+@writeNewMaxValue:
+    ldd (hl),a
+    
+@done:
+    jp @mode4
 
 ; Adds rupee value of 'c' to 2-byte bcd value at [de].
 ; Also adds to wTotalRupeesCollected if operating on wNumRupees.
