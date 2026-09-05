@@ -5920,6 +5920,24 @@ checkNetItemBuffer:
     ret
 
 ;;
+; make satchel refill seeds inherently, not as part of a scripted event.
+satchelRefillSeeds:
+    ld a,e
+    cp TREASURE_SEED_SATCHEL
+    ret nz
+    push bc
+    push de
+    push hl
+    ld hl,wSeedSatchelLevel
+    inc (hl) ; needed since this is run *before* the satchel is given
+    call refillSeedSatchel
+    dec (hl)
+    pop hl
+    pop de
+    pop bc
+    ret
+
+;;
 ; @param b = treasure id
 ; @param c = treasure subid
 spawnTreasureOnLink:

@@ -540,7 +540,7 @@ interactionCode60:
 	inc c
 ++
 	ld a,b
-	call giveTreasure
+	call @@handleGetItem
 	ld b,a
 
 	ld e,Interaction.var32
@@ -551,7 +551,7 @@ interactionCode60:
 	ld a,b
 	call playSound
 +
-	ld e,Interaction.var35
+	call @@bypassKeydropsTextbox
 	ld a,(de)
 	cp $ff
 	jr z,@@skipText
@@ -574,6 +574,70 @@ interactionCode60:
 +
 	ld (wTextSubstitutions),a
 	ld a,l
+
+@@handleGetItem:
+    ld a,b
+    ld e,a
+    push de
+    ld e,$73
+    ld a,(de) ; nonzero if interaction should set item room flag
+    pop de
+    and a
+    push af
+    call satchelRefillSeeds
+    call @@slingshotAddDefaultSeed
+    pop af
+    jr z,@@incoming
+	
+@@outgoing:
+    ; TODO: call some functions if needed.
+
+@@incoming:
+    ; TODO: call some functions if needed.
+    ld a,e
+    call giveTreasure
+    push af
+    ; TODO: call some functions if needed.
+    pop af
+    ret
+
+@@slingshotAddDefaultSeed:
+    ld a,e
+    cp TREASURE_SLINGSHOT
+    ret nz
+    push bc
+    ld a,$20
+    ld c,$20
+    call giveTreasure
+    pop bc
+    ret
+
+@@bypassKeydropsTextbox:
+    ; Don't bypass anything if keysanity is on, since we want the textbox to indicate for which dungeon 
+    ; that key was for.
+    ld a,$00
+    or a
+    jr nz,@@regularText
+
+    ld e,$71            ; var31, containing spawn mode
+    ld a,(de)
+    cp $02
+    jr nz,@@regularText  ; jump if not a drop from ceiling
+    
+    ld e,$72            ; var32, containing grab mode
+    ld a,(de)
+    or a
+    jr nz,@@regularText  ; jump if grab triggers an animation change
+    
+    ; It's a drop not triggering an animation change ==> it's a keydrop, so skip its textbox (0xFF)
+    ld a,$ff
+    ret
+    
+; return regular text ID otherwise
+@@regularText:
+    ld e,$75            ; var35, containing text id
+    ld a,(de)
+    ret
 
 @@notPearl:
 	ld c,a
