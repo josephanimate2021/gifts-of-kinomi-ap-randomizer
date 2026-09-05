@@ -2388,12 +2388,22 @@ func_03_7244:
 	ld a,(wGameKeysPressed)
 	cpl
 	and BTN_A | BTN_B
+	or $02
 	jr nz,@@dontSkip
 	call @@func_72ec ; Delete objects
 	ld a,$03 ; Skip state 2
 	ld (wCutsceneState),a
 	ld a,SNDCTRL_STOPSFX
 	call playSound
+	; Set the palette that the timeportal "beam" will use (we're skipping the first beam so we
+	; must set this so the second beam palette doesn't get corrupted)
+	ld a,(wTilesetFlags)
+	and $80
+	ld a,$02
+	jr nz,+
+	dec a
++
+	ld (wcc50),a
 	jp @state2@cbb3_00 ; Call this to prevent breakage when warping into a wall
 
 @@dontSkip:

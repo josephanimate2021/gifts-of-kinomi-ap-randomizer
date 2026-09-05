@@ -93,6 +93,7 @@ parentItemCode_harp:
 	jr nz,@noCancel
 	ld a,SNDCTRL_STOPSFX
 	call playSound
+	pop af
 
 	; Defined state 2 for rando which jumps to @done. Doing this instead of jumping directly to
 	; @done here, because it's better for other objects to "see" Link playing the harp for at
