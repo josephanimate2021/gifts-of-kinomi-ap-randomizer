@@ -3449,6 +3449,56 @@ updateStatusBar_body:
 	ld a,(wStatusBarNeedsRefresh)
 	bit 2,a
 	call nz,inGameDrawHeartDisplay
+
+/*
+; clock
+	ld a,GLOBALFLAG_INTRO_DONE
+	call checkGlobalFlag
+	jr z,++
+	;ld hl,w4StatusBarTileMap+$28
+	;ld b,($34-$28+1)
+	;call clearMemory
+; actual clock
+	ld a,(wStatusBarNeedsRefresh)
+	bit 5,a
+	jr z,++
+	ld hl,w4StatusBarTileMap+$34
+	call correctAddressForExtraHeart
+	ld c,$10
+	ld e,$01
+	ld a,(wMinute)
+-
+	ld b,a
+	and $0f
+	add c
+	ldd (hl),a
+	ld a,b
+	swap a
+	and $0f
+	add c
+	ldd (hl),a
+	
+	ld a,(wHour)
+	dec e
+	jr z,-
+
+	ld hl,w4StatusBarTileMap+$14
+	call correctAddressForExtraHeart
+	ld a,(wDay)
+	add c
+	ldd (hl),a
+	ld a,$1e
+	ldd (hl),a
+	dec a
+	ldd (hl),a
+	dec a
+	ldd (hl),a
+
+	;ld hl,wStatusBarNeedsRefresh
+	;res 5,(hl)
+++
+*/
+
 	ld hl,w4StatusBarTileMap+$0a
 	call correctAddressForExtraHeart
 	ld (hl),$04
@@ -6944,11 +6994,20 @@ mapMenu_state1:
 	jr nc,@noDirectionButtonPressed
 
 .ifdef ROM_AGES
-
+/*
 	ld c,a
 	; d,e are Y/X boundaries for the cursor (cursor can't meet or exceed them).
 	ldde OVERWORLD_HEIGHT*16, OVERWORLD_WIDTH
-
+*/
+	ld c,a
+	ldde $f0, OVERWORLD_WIDTH
+	
+	; Check for second region
+	ld a,(wMapMenu.mode)
+	rrca
+	jr nc,+
+	ldde $70, SECOND_REGION_WIDTH
++
 .else; ROM_SEASONS
 
 	; In seasons, 'd' is a bitset to AND the position with instead of a maximum value.
@@ -6987,7 +7046,7 @@ mapMenu_state1:
 	jr @setNewCursorIndex
 
 @verticalMove:
-
+/*
 .ifdef ROM_AGES
 	ld a,h
 	@loop2:
@@ -6998,12 +7057,12 @@ mapMenu_state1:
 	ld h,a
 
 .else; ROM_SEASONS
-
+*/
 	ld a,h
 	add c
 	and d
 	ld h,a
-.endif
+;.endif
 
 @setNewCursorIndex:
 	ld a,h
@@ -8552,7 +8611,14 @@ mapMenu_clearUnvisitedTiles:
 	ldde OVERWORLD_HEIGHT, OVERWORLD_WIDTH
 	ld hl,w4TileMap + OVERWORLD_MAP_START_Y*$20 + OVERWORLD_MAP_START_X
 
-.ifdef ROM_SEASONS
+.ifdef ROM_AGES
+	ld a,(wMapMenu.mode)
+	rrca
+	jr nc,+
+	ldde SECOND_REGION_HEIGHT, SECOND_REGION_WIDTH
+	ld hl,w4TileMap + SECOND_REGION_MAP_START_Y*$20 + SECOND_REGION_MAP_START_X
++
+.else ; ROM_SEASONS
 	; Different dimensions for subrosia map
 	ld a,(wMapMenu.mode)
 	rrca

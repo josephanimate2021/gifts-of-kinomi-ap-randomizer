@@ -13,6 +13,10 @@ applyRoomSpecificTileChanges:
 	call findRoomSpecificData
 	ret nc
 	rst_jumpTable
+
+	.dw tileReplacement_group5Mape8 ; $00
+	.dw tileReplacement_group5Mapf8 ; $01
+/*
 	.dw tileReplacement_group5Mapf5 ; $00
 	.dw tileReplacement_group4Map1b ; $01
 	.dw tileReplacement_group2Map7e ; $02
@@ -69,6 +73,8 @@ applyRoomSpecificTileChanges:
 	.dw tileReplacement_group0Map98 ; $35
 	.dw tileReplacement_group0Map76 ; $36
 	.dw tileReplacement_group0Mapa5 ; $37
+*/
+
 
 roomTileChangerCodeGroupTable:
 	.dw roomTileChangerCodeGroup0Data
@@ -85,6 +91,7 @@ roomTileChangerCodeGroupTable:
 ;   b1: Index for jump table above
 
 roomTileChangerCodeGroup0Data:
+/*
 	.db $38 $08
 	.db $48 $17
 	.db $5c $14
@@ -110,22 +117,28 @@ roomTileChangerCodeGroup0Data:
 	.db $98 $35
 	.db $a5 $37
 	.db $76 $36
+*/
 	.db $00
 roomTileChangerCodeGroup1Data:
+/*
 	.db $38 $09
 	.db $27 $28
 	.db $8c $2c
 	.db $58 $34
+*/
 	.db $00
 roomTileChangerCodeGroup2Data:
+/*
 	.db $f7 $15
 	.db $90 $2b
 	.db $9e $2f
 	.db $7e $02
+*/
 	.db $00
 roomTileChangerCodeGroup3Data:
 	.db $00
 roomTileChangerCodeGroup4Data:
+/*
 	.db $1b $01
 	.db $4c $03
 	.db $4e $04
@@ -135,8 +148,12 @@ roomTileChangerCodeGroup4Data:
 	.db $c7 $2d
 	.db $c9 $2e
 	.db $ea $33
+*/
 	.db $00
 roomTileChangerCodeGroup5Data:
+	.db <ROOM_AGES_5e8, $00
+	.db <ROOM_AGES_5f8, $01
+/*
 	.db $f5 $00
 	.db $38 $0a
 	.db $25 $0b
@@ -152,13 +169,49 @@ roomTileChangerCodeGroup5Data:
 	.db $b9 $27
 	.db $c2 $29
 	.db $e3 $2a
+*/
 	.db $00
 roomTileChangerCodeGroup6Data:
 	.db $00
 roomTileChangerCodeGroup7Data:
+/*
 	.db $4a $11
+*/
 	.db $00
 
+;;
+; Moves tables after helping with stock
+tileReplacement_group5Mape8:
+	call getThisRoomFlags
+	and ROOMFLAG_80
+	ret nz
+; Place tables near stairs
+	ld de,@stairTables
+	call drawRectInRoomLayout
+; Remove tables near pillars
+	ld hl,@pillarTables
+	jp fillRectInRoomLayout
+
+@stairTables:
+	.db $35 $02 $04
+	.db $a0 $8b $a0 $a0
+	.db $8b $a0 $8b $8b
+
+@pillarTables:
+	.db $65 $02 $04 $a0
+
+;;
+; Turns bed solid after intro
+tileReplacement_group5Mapf8:
+	lda GLOBALFLAG_PREGAME_INTRO_DONE
+	call checkGlobalFlag
+	ret z
+
+	ld hl,wRoomLayout+$11
+	ld (hl),$dd
+	ret
+
+/*
 ;;
 ; Opens advance shop
 tileReplacement_group1Map58:
@@ -956,7 +1009,7 @@ tileReplacement_group0Map51:
 	inc l
 	ld (hl),$5c
 	ret
-
+*/
 ;;
 ; Replaces tiles that should be turned into vines.
 ; @param de Data structure with values to replace the sides of the vine with.
@@ -1036,7 +1089,7 @@ initializeVinePositions:
 
 @defaultVinePositions:
 	.include {"{GAME_DATA_DIR}/defaultVinePositions.s"}
-
+/*
 ;;
 ; Present, bridge to nuun highlands
 tileReplacement_group0Map54:
@@ -1376,7 +1429,7 @@ tileReplacement_group0Mapa5:
 	inc l
 	ld (hl),$ef
 	ret
-
+*/
 ;;
 ; Leftover function from Seasons (d8LavaRoomsFillTilesWithLava). Can be used for other tiles, not
 ; just lava

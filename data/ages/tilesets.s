@@ -52,7 +52,7 @@ tilesetData:
 	.db UNIQUE_GFXH_CRESCENT_ISLAND
 	.db GFXH_TILESET_OVERWORLD_PRESENT
 	.db PALH_TILESET_CRESCENT_ISLAND_PRESENT
-	.db $04, $00, $01
+	.db $04, $00, $00
 
 	; 0x06
 	.db $0f, $01
@@ -734,10 +734,10 @@ tilesetData:
 	.db $16, $02, $10
 
 	; HACK-BASE: Stub tilesets for expanded tilesets patch
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x67
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x68
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x69
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6a
+	.db $0f $81 $00 $00 PALH_TILESET_FAIRIES_FOREST $00 $00 $01 ; Tileset 0x67
+	.db $0f $01 $00 $00 PALH_TILESET_FOREST_OF_TIME $00 $00 $01 ; Tileset 0x68
+	.db $0f $01 $00 $00 PALH_cc $00 $00 $01 ; Tileset 0x69
+	.db $0f $01 $00 $00 PALH_cc $00 $00 $01 ; Tileset 0x6a
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6b
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6c
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6d

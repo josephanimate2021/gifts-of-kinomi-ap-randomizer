@@ -315,11 +315,20 @@ screenTransitionState2:
 	and TILESETFLAG_OUTDOORS
 	jr z,@doneBoundaryChecks
 
+
+	ld b,OVERWORLD_WIDTH-1
+	ld d,(OVERWORLD_HEIGHT-1)*16
+	ld a,(wActiveGroup)
+	and $01
+	jr z,+
+	ld b,SECOND_REGION_WIDTH-1
+	ld d,(OVERWORLD_HEIGHT-1)*16
++
 	; Check rightmost map boundary
 	ld a,(wActiveRoom)
 	ld e,a
 	and $0f
-	cp OVERWORLD_WIDTH-1
+	cp b;OVERWORLD_WIDTH-1
 	jr nz,+
 	ld a,c
 	cp DIR_RIGHT
@@ -327,7 +336,7 @@ screenTransitionState2:
 +
 	; Check bottom-most map boundary
 	ld a,e
-	cp (OVERWORLD_HEIGHT-1)*16
+	cp d;(OVERWORLD_HEIGHT-1)*16
 	jr c,+
 	ld a,c
 	cp DIR_DOWN
@@ -1519,6 +1528,7 @@ updateTilesetPalette:
 	ret z
 
 	ld (wLoadedTilesetPalette),a
+	call updateTimeOfDayPalette
 	jp loadPaletteHeader
 
 ;;
@@ -3611,7 +3621,10 @@ standardGameState:
 	.dw cutscene20
 	.dw cutscene21
 .endif
-
+	.dw cutsceneTimeOfDay ; time of day; clock
+	;.dw cutsceneWallRetraction
+	;.dw cutsceneOutOfTime ; clock
+	;.dw cutsceneSongOfTime ; clock
 
 ;;
 ; Cutscene 0 = not in a cutscene; loading a room
@@ -3671,6 +3684,32 @@ cutscene01:
 	call updateAllObjects
 .endif
 
+	ld a,GLOBALFLAG_TIME_FLOWING
+	call checkGlobalFlag
+	jr z,@doneUpdatingClock
+	;ld a,(w1ParentItem5.id)
+	;cp ITEM_HARP
+	;jr z,++
+	ld a,(wTextIsActive)
+	cpa $00
+	jr nz,@doneUpdatingClock
+
+	ld a,(wLinkDeathTrigger)
+	or a
+	jr nz,@doneUpdatingClock
+
+	ld a,(wActiveGroup)
+	ld hl,timeCanPassTable
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	ld a,(wActiveRoom)
+	call checkFlag
+	call z,updateClock ; clock
+	call c,updateDayOrNight ; clock
+
+@doneUpdatingClock:
 	call updateStatusBar
 
 .ifdef ROM_AGES
@@ -3728,7 +3767,6 @@ cutscene01:
 .else
 	jp initializeRoom
 .endif
-
 
 .ifdef ROM_SEASONS
 
@@ -3804,9 +3842,14 @@ func_5c18:
 	call checkDisplayEraOrSeasonInfo
 	call checkDarkenRoomAndClearPaletteFadeState
 	call fadeinFromWhiteToRoom
+	;ZTK - this is called later in the cutscene
+	ld a,(wCutsceneIndex)
+	cpa CUTSCENE_CHANGE_TIME_OF_DAY
+	jr z,+
 	call checkPlayRoomMusic
 	xor a
 	ld (wCutsceneIndex),a
++
 .ifdef ROM_AGES
 	ld (wDontUpdateStatusBar),a
 .endif
@@ -4173,6 +4216,7 @@ checkPlayRoomMusic:
 	call checkGlobalFlag
 	ret z
 .endif
+playRoomMusic:
 
 .ifdef ROM_SEASONS
 	; Override subrosia music if on a date with Rosa
@@ -4211,6 +4255,35 @@ checkPlayRoomMusic:
 ++
 .endif
 
+; clock music
+	ld a,(wActiveGroup)
+	cpa >ROOM_AGES_000
+	jr nz,@dayMusic
+
+	ld a,(wTimeOfDay)
+	rst_jumpTable
+	.dw @dayMusic
+	.dw @dawnDuskMusic
+	.dw @nightMusic
+	.dw @dawnDuskMusic
+
+@dawnDuskMusic:
+	ld a,(wActiveMusic)
+	and $7f
+	jr z,+
+	ld a,MUS_RIVERSIDE_STATION
+	jr @setMusic
++
+	ld a,(wActiveMusic)
+	cpa MUS_NONE
+	ret z
+
+@nightMusic:
+	lda MUS_SADNESS
+	ld (wActiveMusic2),a
+	jr @setMusic
+@dayMusic:
+	call loadScreenMusic
 	ld a,(wActiveMusic2)
 
 @setMusic:
@@ -4258,7 +4331,22 @@ checkDisplayEraOrSeasonInfo:
 ; In Ages, it's always $00 (green).
 ;
 updateGrassAnimationModifier:
+	ld a,(wActiveGroup)
+	cpa >ROOM_AGES_000
+	jr nz,++
+	ld a,(wTimeOfDay)
+	rrca
+	jr nc,+
+	ld a,$02
++
+	ld hl,@grassAnimationValues
+	rst_addAToHl
+	ld a,(hl)
+++
+	ld (wGrassAnimationModifier),a
+	ret
 
+/*
 .ifdef ROM_AGES
 	ld a,$00
 	ld (wGrassAnimationModifier),a
@@ -4284,7 +4372,7 @@ updateGrassAnimationModifier:
 	ld a,(hl)
 	ld (wGrassAnimationModifier),a
 	ret
-
+*/
 @grassAnimationValues:
 
 .db terrainEffects.greenGrassAnimationFrame0  - terrainEffects.greenGrassAnimationFrame0
@@ -4292,7 +4380,7 @@ updateGrassAnimationModifier:
 .db terrainEffects.orangeGrassAnimationFrame0 - terrainEffects.greenGrassAnimationFrame0
 .db terrainEffects.blueGrassAnimationFrame0   - terrainEffects.greenGrassAnimationFrame0
 
-.endif
+;.endif
 
 
 ;;
@@ -5413,6 +5501,7 @@ func_7b93:
 	ldh (<hNextLcdInterruptBehaviour),a
 	ld a,SND_WARP_START
 	call playSound
+
 	ld a,$ff
 	jp initWaveScrollValues
 
@@ -5422,6 +5511,11 @@ func_7b93:
 	ld a,(wPaletteThread_mode)
 	or a
 	ret nz
+
+	ld a,$03
+	ld ($d000),a
+	ld a,LINK_STATE_SLEEPING
+	ld (wLinkForceState),a
 
 	ld hl,wCutsceneIndex
 	inc (hl)
@@ -5454,12 +5548,19 @@ func_7b93:
 
 	ld hl,wGenericCutscene.cbb3
 	inc (hl)
+/*
 	ld a,$03
 	ld ($d000),a
+	ld a,LINK_STATE_SLEEPING
+	ld (wLinkForceState),a
+*/
+
+/*
 	ld a,LINK_STATE_WARPING
 	ld (wLinkForceState),a
 	ld a,$0b
 	ld (wWarpTransition),a
+*/
 	ret
 
 @substate1:
@@ -5490,6 +5591,10 @@ func_7b93:
 	ld (wDisabledObjects),a
 	ld a,GLOBALFLAG_PREGAME_INTRO_DONE
 	call setGlobalFlag
+	call playRoomMusic;checkPlayRoomMusic
+; make bed solid
+	ld hl,wRoomCollisions+$11
+	ld (hl),$0f
 	jp initializeRoom
 
 
@@ -5640,5 +5745,7 @@ cutscene1f:
 	jp updateAllObjects
 
 .endif ; ROM_AGES
+
+	.include "code/bank1Clock.s"
 
 .ends
