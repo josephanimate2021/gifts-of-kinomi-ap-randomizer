@@ -5877,8 +5877,7 @@ linkInteractWithAButtonSensitiveObjects:
 ; rando stuff
 .include "code/rando/multi.s"
 .include "code/rando/util.s"
-
-;;
+.include "code/rando/collect.s"
 objectCheckContainsPoint:
 	ld h,d
 	ldh a,(<hActiveObjectType)

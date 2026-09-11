@@ -362,7 +362,7 @@ m_section_free Ages_Interactions_Bank9 NAMESPACE agesInteractionsBank09
 
 .BANK $0a SLOT 1
 .ORG 0
-	.include "code/rando/collect.s"
+
 m_section_free Interaction_Code_Group3 NAMESPACE commonInteractions3
 	.include "object_code/common/interactions/bombFlower.s"
 	.include "object_code/common/interactions/switchTileToggler.s"

@@ -1,13 +1,28 @@
-m_section_free Rando_CollectMode NAMESPACE randoCollectMode
+;;
+; calls lookupCollectMode_body in bank $00.
+lookupCollectMode:
+    push bc
+    push de
+    push hl
+    ld e,$00
+    ld hl,lookupCollectMode_body
+    call interBankCall
+    ld a,e
+    pop hl
+    cp $ff
+    jr nz,@next
+    dec hl
+    ldi a,(hl)
+@next:
+    pop de
+    pop bc
+    ret
 
 ;;
 ; return a spawning item's collection mode in a and e, based on current room.
 ; the table format is (group, room, mode), and modes 80+ are used to index a
 ; jump table for special cases. if no match is found, it returns the regular,
 ; non-overriden mode. does nothing if the item's collect mode is already set.
-dummyTable: 
-    .db $ff
-;;
 lookupCollectMode_body:
     ld e,$71
     ld a,(de)
@@ -39,4 +54,6 @@ lookupCollectMode_body:
     ld l,a
     jp (hl)
 
-.ends
+;;
+dummyTable:
+    .db $ff
