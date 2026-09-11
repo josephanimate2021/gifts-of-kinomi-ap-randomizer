@@ -13,6 +13,9 @@ interactionCode68:
 	jr nz,@@state1
 
 @@state0:
+	ld a,$00
+	or a
+	jp z,interactionDelete
 	call @initGraphicsAndLoadScript
 	call objectSetVisiblec2
 	ld hl,mainScripts.rosa_subid00Script_alreadyGaveShovel

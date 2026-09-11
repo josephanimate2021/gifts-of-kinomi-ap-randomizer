@@ -4782,6 +4782,7 @@ impaNpcScript_lookingAtPassage:
 	writeobjectbyte Interaction.direction, $ff
 	showloadedtext
 	setanimation $00
+	asm15 scriptHelp.rosaRefill
 	scriptjump @npcLoop
 
 ; ==================================================================================================
