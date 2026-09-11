@@ -1,3 +1,5 @@
+m_section_free Rando_CollectMode NAMESPACE randoCollectMode
+
 ;;
 ; return a spawning item's collection mode in a and e, based on current room.
 ; the table format is (group, room, mode), and modes 80+ are used to index a
@@ -36,3 +38,5 @@ lookupCollectMode_body:
     ld h,(hl)
     ld l,a
     jp (hl)
+
+.ends
