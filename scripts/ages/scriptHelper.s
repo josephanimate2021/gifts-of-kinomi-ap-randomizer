@@ -16,6 +16,104 @@ setTrigger2IfTriggers0And1Set:
 	ret
 
 ;;
+; entries (ID, subID) indexed by wDungeon Index
+bossItemTable:
+    .db TREASURE_HEART_CONTAINER,$00
+    .db TREASURE_HEART_CONTAINER,$00
+	.db $00,$00 ; Lost Labyrinth (Past) Doesn't have a boss.
+	.db TREASURE_HEART_CONTAINER,$00
+	.db TREASURE_HEART_CONTAINER,$00
+	.db $00,$00  ; Old D5 dosen't have a boss.
+	.db $00,$00 ; There are no rooms in that dungeon.
+	.db $00,$00 ; ^
+	.db $00,$00 ; ^
+	.db $00,$00 ; Maku Path (Present) Dosen't have a boss.
+	.db $00,$00 ; Ganon dosen't give you anythin upon defeat.
+	.db $00,$00 ; Lost Labyrinth (Present) Dosen't have a boss.
+	.db TREASURE_HEART_CONTAINER,$00
+
+;;
+; spawn items from bossItemTable in place of boss heart containers.
+spawnBossItem:
+    push hl
+    ld hl,bossItemTable
+    ld a,(wDungeonIndex)
+    rst_addDoubleIndex
+    ld b,(hl)
+    inc hl
+    ld c,(hl)
+    call createTreasure
+    call objectCopyPosition
+    pop hl
+    ret
+
+;;
+rosaRefill: 
+    push de
+    push hl
+    
+    ld b,TREASURE_EMBER_SEEDS
+    ld hl,wNumEmberSeeds
+    
+@refillSeedsLoop:
+    ld a,b
+    call checkTreasureObtained
+    jr nc,@nextSeed
+    ld a,(hl)           ; currently owned seeds
+    cp $20
+    jr nc,@nextSeed
+    ld (hl),$20
+    
+@nextSeed:
+    ld a,b
+    cp TREASURE_MYSTERY_SEEDS
+    jr z,@refillBombs
+    inc hl
+    inc b
+    jr @refillSeedsLoop
+    
+@refillBombs:
+    ld a,TREASURE_BOMBS
+    call checkTreasureObtained
+    jr nc,@refillBombchus
+    ld hl,wMaxBombs
+    ldd a,(hl)
+    ld (hl),a
+    
+@refillBombchus:
+    ld a,TREASURE_BOMBCHUS
+    call checkTreasureObtained
+    jr nc,@refillShield
+    ld hl,wNumBombchus
+    ld a,$10
+    ld (hl),a
+    
+@refillShield:
+    ld a,TREASURE_SHIELD
+    call checkTreasureObtained
+    jr nc,@refillHealth
+    ld a,TREASURE_SHIELD
+    ldh ($8b),a     ; put item ID in FF8B
+    ld e,$3f
+    ld hl,$46b6     ; addTreasureToInventory in bank 3F
+    call interBankCall
+    
+@refillHealth:
+    ld hl,wLinkMaxHealth
+    ldd a,(hl)
+    ld (hl),a
+    
+    ; Play a sound and update status bar to give feedback
+    ld a,SND_GETSEED
+    call playSound
+    ld a,$03
+    ld (wStatusBarNeedsRefresh),a
+    
+    pop hl
+    pop de
+    ret
+
+;;
 makeTorchesTemporarilyLightable:
 	ld c,a
 ;;

@@ -40,7 +40,6 @@ interactiondc_subid07:
 	and ROOMFLAG_ITEM
 	jp nz,interactionDelete
 
-	ldbc RUPEEVAL_COUNT-1, $00 ; instant heart piece
 	call getItemBasedOnVar03
 	call createTreasure
 	call objectCopyPosition
@@ -635,7 +634,6 @@ interactiondc_subid19:
 	ret z
 
 	; Tile has changed
-	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
 	call getItemBasedOnVar03
 	call createTreasure
 	call objectCopyPosition
@@ -656,7 +654,6 @@ interactiondc_subid1a:
 	cpa $00
 	ret nz
 
-	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
 	call getItemBasedOnVar03
 	call createTreasure
 	call objectCopyPosition
@@ -668,53 +665,55 @@ getItemBasedOnVar03:
 	ld hl,itemsTable
 	rst_addAToHl
 	ld b,(hl)
+	inc hl
+	ld c,(hl)
 	ret
 
 itemsTable:
-	.db TREASURE_HEART_PIECE ; Room 005
-	.db TREASURE_HEART_PIECE ; Room 007
-	.db TREASURE_HEART_PIECE ; Room 00d
-	.db TREASURE_HEART_PIECE ; Room 032
-	.db TREASURE_HEART_PIECE ; Room 172
-	.db TREASURE_HEART_PIECE ; Room 133
-	.db TREASURE_HEART_PIECE ; Room 50a
-	.db TREASURE_HEART_PIECE ; Room 501
-	.db TREASURE_HEART_PIECE ; Room 506
-	.db TREASURE_HEART_PIECE ; Room 504
-	.db TREASURE_HEART_PIECE ; Room 038
-	.db TREASURE_HEART_PIECE ; Room 50b
-	.db TREASURE_HEART_PIECE ; Room 25e
-	.db TREASURE_HEART_PIECE ; Room 453
-	.db TREASURE_HEART_PIECE ; Room 429
-	.db TREASURE_HEART_PIECE ; Room 42a
-	.db TREASURE_HEART_PIECE ; Room 044
-	.db TREASURE_HEART_PIECE ; Room 41e
-	.db TREASURE_HEART_PIECE ; Room 509
-	.db TREASURE_HEART_PIECE ; Room 113
-	.db TREASURE_HEART_PIECE ; Room 239
-	.db TREASURE_HEART_PIECE ; Room 50d
-	.db TREASURE_HEART_PIECE ; Room 32a
-	.db TREASURE_HEART_PIECE ; Room 308
-	.db TREASURE_HEART_PIECE ; Room 507
-	.db TREASURE_HEART_PIECE ; Room 505
-	.db TREASURE_HEART_PIECE ; Room 5b2
-	.db TREASURE_HEART_PIECE ; Room 5c1
-	.db TREASURE_HEART_PIECE ; Room 5c0
-	.db TREASURE_HEART_PIECE ; Room 5b8
-	.db TREASURE_HEART_PIECE ; Room 572
-	.db TREASURE_HEART_PIECE ; Room 54c
-	.db TREASURE_HEART_PIECE ; Room 548
-	.db TREASURE_HEART_PIECE ; Room 534
-	.db TREASURE_HEART_PIECE ; Room 406
-	.db TREASURE_HEART_PIECE ; Room 3af
-	.db TREASURE_HEART_PIECE ; Room 186
-	.db TREASURE_HEART_PIECE ; Room 153
-	.db TREASURE_HEART_PIECE ; Room 138
-	.db TREASURE_HEART_PIECE ; Room 122
-	.db TREASURE_HEART_PIECE ; Room 057
-	.db TREASURE_HEART_PIECE ; Room 011
-	.db TREASURE_HEART_PIECE ; Room 427
-	.db TREASURE_HEART_PIECE ; Room 160
+	.db TREASURE_HEART_PIECE,$00 ; Room 005
+	.db TREASURE_HEART_PIECE,$00 ; Room 007
+	.db TREASURE_HEART_PIECE,$00 ; Room 00d
+	.db TREASURE_HEART_PIECE,$00 ; Room 032
+	.db TREASURE_HEART_PIECE,$00 ; Room 172
+	.db TREASURE_HEART_PIECE,$00 ; Room 133
+	.db TREASURE_HEART_PIECE,$00 ; Room 50a
+	.db TREASURE_HEART_PIECE,$00 ; Room 501
+	.db TREASURE_HEART_PIECE,$00 ; Room 506
+	.db TREASURE_HEART_PIECE,$00 ; Room 504
+	.db TREASURE_HEART_PIECE,$00 ; Room 038
+	.db TREASURE_HEART_PIECE,$00 ; Room 50b
+	.db TREASURE_HEART_PIECE,$00 ; Room 25e
+	.db TREASURE_HEART_PIECE,$02 ; Room 453
+	.db TREASURE_HEART_PIECE,$00 ; Room 429
+	.db TREASURE_HEART_PIECE,$02 ; Room 42a
+	.db TREASURE_HEART_PIECE,$00 ; Room 044
+	.db TREASURE_HEART_PIECE,$00 ; Room 41e
+	.db TREASURE_HEART_PIECE,$00 ; Room 509
+	.db TREASURE_HEART_PIECE,$00 ; Room 113
+	.db TREASURE_HEART_PIECE,$02 ; Room 239
+	.db TREASURE_HEART_PIECE,$00 ; Room 50d
+	.db TREASURE_HEART_PIECE,$02 ; Room 32a
+	.db TREASURE_HEART_PIECE,$00 ; Room 308
+	.db TREASURE_HEART_PIECE,$00 ; Room 507
+	.db TREASURE_HEART_PIECE,$00 ; Room 505
+	.db TREASURE_HEART_PIECE,$02 ; Room 5b2
+	.db TREASURE_HEART_PIECE,$00 ; Room 5c1
+	.db TREASURE_HEART_PIECE,$00 ; Room 5c0
+	.db TREASURE_HEART_PIECE,$00 ; Room 5b8
+	.db TREASURE_HEART_PIECE,$00 ; Room 572
+	.db TREASURE_HEART_PIECE,$00 ; Room 54c
+	.db TREASURE_HEART_PIECE,$00 ; Room 548
+	.db TREASURE_HEART_PIECE,$00 ; Room 534
+	.db TREASURE_HEART_PIECE,$00 ; Room 406
+	.db TREASURE_HEART_PIECE,$00 ; Room 3af
+	.db TREASURE_HEART_PIECE,$00 ; Room 186
+	.db TREASURE_HEART_PIECE,$00 ; Room 153
+	.db TREASURE_HEART_PIECE,$00 ; Room 138
+	.db TREASURE_HEART_PIECE,$02 ; Room 122
+	.db TREASURE_HEART_PIECE,$00 ; Room 057
+	.db TREASURE_HEART_PIECE,$02 ; Room 011
+	.db TREASURE_HEART_PIECE,$00 ; Room 427
+	.db TREASURE_HEART_PIECE,$00 ; Room 160
 
 interactiondc_subid02:
 	call getThisRoomFlags

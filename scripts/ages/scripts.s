@@ -6851,8 +6851,8 @@ rosa_subid00Script_alreadyGaveShovel:
 @npcLoop:
 	checkabutton
 	showtextlowindex <TX_1c12  
+	asm15 scriptHelp.rosaRefill
 	scriptjump @npcLoop
-	; TODO: Figure out how to implement rosa refill with oracles disasm
 
 
 ; Rosa at goron dance, linked only

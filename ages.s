@@ -22,7 +22,7 @@
 .ORG 0
 
 	.include "code/bank0.s"
-
+	
 
 .BANK $01 SLOT 1
 .ORG 0
@@ -878,7 +878,7 @@ m_section_superfree Terrain_Effects NAMESPACE terrainEffects
 
 	.include "scripts/common/scriptHelper.s"
 
-	 m_section_free Object_Pointers namespace objectData
+	m_section_free Object_Pointers namespace objectData
 
 	;;
 	getObjectDataAddress:
@@ -1339,6 +1339,9 @@ oamData_7249:
 .include "code/ages/garbage/bank3fEnd.s"
 
 .ends
+
+; rando stuff
+.include "data/rando/fileSelectGfx.s"
 
 
 ; HACK-BASE: Expanded tileset data

@@ -340,6 +340,7 @@ fileSelectMode1:
 @back:
 	ld a,UNCMP_GFXH_08
 	call loadUncompressedGfxHeader
+	call drawRandoFileSelectString ; RANDO: Draw info string
 	jp decFileSelectMode2
 
 @leftOrRight:
@@ -2040,7 +2041,8 @@ fileSelectDrawHeartsAndDeathCounter:
 +++
 	; Load the tile map that was just drawn on
 	ld a,UNCMP_GFXH_08
-	jp loadUncompressedGfxHeader
+	call loadUncompressedGfxHeader
+	jp drawRandoFileSelectString ; RANDO: Draw info string
 
 ;;
 ; Draws the cursor on the main file select and "new game/secret/link" screen
@@ -11655,5 +11657,7 @@ runFakeReset:
 	ld hl,wMenuLoadState
 	inc (hl)
 	jp fadeoutToWhite
+
+.include "code/rando/fileSelect.s"
 
 .ENDS

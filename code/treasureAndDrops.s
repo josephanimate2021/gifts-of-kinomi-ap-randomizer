@@ -202,7 +202,7 @@ giveTreasure_body:
 @extraItemsToAddTable:
 	.db TREASURE_SEED_SATCHEL	TREASURE_EMBER_SEEDS		$20
 	.db TREASURE_HEART_CONTAINER	TREASURE_HEART_REFILL		$40
-	.db TREASURE_BOMB_FLOWER	TREASURE_BOMB_FLOWER_LOWER_HALF	$00
+	.db TREASURE_SLINGSHOT	TREASURE_EMBER_SEEDS	$20
 	.db TREASURE_TUNE_OF_ECHOES	TREASURE_HARP			$01
 	.db $00
 
@@ -370,7 +370,7 @@ giveTreasure_body:
 	ld (hl),a
 	ret
 
-; If max bombs == 0, increase max bombs even if it is a wild bomb drop (like the one in D2)
+; If max bombs == 0, increase max bombs even if it is a wild bomb drop
 @extendedModeD:
     ld h,d
     ld l,e
