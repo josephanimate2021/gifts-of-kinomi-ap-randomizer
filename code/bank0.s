@@ -4821,7 +4821,7 @@ loseTreasureWithoutLosingFlag:
     ld hl,wObtainedTreasureFlags
     set 1,(hl)
     ret
-	
+
 ;;
 ; @param	a	Item to check for (see constants/common/treasure.s)
 ; @param[out]	cflag	Set if you have that item
@@ -5878,6 +5878,26 @@ linkInteractWithAButtonSensitiveObjects:
 .include "code/rando/multi.s"
 .include "code/rando/util.s"
 .include "code/rando/collect.s"
+
+;;
+; calls lookupCollectMode_body in another bank.
+lookupCollectMode: 
+    push bc
+    push de
+    push hl
+    ld e,$06
+    ld hl,lookupCollectMode_body
+    call interBankCall
+    ld a,e
+    pop hl
+    cp $ff
+    jr nz,@next
+    dec hl
+    ldi a,(hl)
+    @next:
+    pop de
+    pop bc
+    ret
 
 ;;
 objectCheckContainsPoint:
