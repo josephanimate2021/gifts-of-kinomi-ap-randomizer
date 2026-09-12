@@ -7008,18 +7008,17 @@ groups:
   - name: TX_1000
     index: 0x00
     text: |-
-      Welcome to the
-      Gifts of Kinomi
-      Archipelago
-      Randomizer.\stop
-      Did you read the FAQ?
+      Welcome to the Gifts of Kinomi
+      Archipelago Randomizer.\stop
+      Did you 
+      read the FAQ?
       \opt()Yes \opt()No
 
   - name: TX_1001
     index: 0x01
     text: |-
-      Oh, I suggest you 
-      read the FAQ first. 
+      Oh, I suggest you read 
+      the FAQ first. 
       \opt()Ok \opt()Where?
 
   - name: TX_1002
@@ -7035,26 +7034,18 @@ groups:
   - name: TX_1003
     index: 0x03
     text: |-
-      How do you
-      refill your
-      satchel and
-      shield
+      How do you refill your satchel and shield
       \opt() Shop \opt() Rosa
 
   - name: TX_1004
     index: 0x04
     text: |-
-      Wrong. Please
-      check the FAQ,
-      you will get
-      stuck otherwise.
+      Wrong. Please check the FAQ, you will get stuck otherwise.
 
   - name: TX_1005
     index: 0x05
     text: |-
-      Right! You can
-      get out of here 
-      by warping.
+      Right! You can get out of here by warping.
 
   - name: TX_1006
     index: 0x06
