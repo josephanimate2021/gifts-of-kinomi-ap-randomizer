@@ -23,6 +23,9 @@ interactionCode58:
 	ld a,$04
 	call interactionSetAnimation
 @@state1:
+	ld a,$00
+	or a
+	jp z,interactionDelete
 	call interactionRunScript
 	jp c,interactionDelete
 	jp interactionAnimateAsNpc
