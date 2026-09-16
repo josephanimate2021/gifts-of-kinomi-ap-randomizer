@@ -14656,7 +14656,7 @@ groups:
     index: 0x01
     text: |-
       You need 2 gifts to beat ganon and start the party.\stop
-      You will need 8 slates in order to beat the Temple of The Tokay boss.
+      You need 8 slates in order to beat the Temple of The Tokay boss.
 
   - name: TX_2e02
     index: 0x02
