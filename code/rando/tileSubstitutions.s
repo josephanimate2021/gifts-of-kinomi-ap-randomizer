@@ -51,3 +51,17 @@ applyExtraTileSubstitutions:
 ; "flags" are usually $10 (ROOMFLAG_VISITED) which applies the change always.
 @tileSubTable_dummy:
 	.db $ff
+
+@tileSubTable_noExtraStairsForLabyrinth:
+
+	; JIKU CLIFS (PAST)
+	.db $01, $62, $00, $67 $3a
+	.db $01, $63, $00, $37 $d8
+	.db $01, $51, $00, $27 $3a
+
+	; INSIDE LABYRINTH
+	.db $04, $57, $00, $79 $53
+	.db $04, $58, $00, $79 $53
+
+	; END OF TABLE
+	.db $ff
