@@ -816,9 +816,8 @@ miscPuzzles_subid0e:
 	; Wait for all slates to be put in
 	ld hl,wNumPlacedSlates
 	ld a,(hl)
-;	and ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
-;	cp  ROOMFLAG_01|ROOMFLAG_02|ROOMFLAG_04|ROOMFLAG_08
-	inc a
+	call getNumSetBits
+	cp 8
 	ret nz
 
 	ld hl,wActiveTriggers

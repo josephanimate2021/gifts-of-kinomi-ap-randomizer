@@ -14655,7 +14655,8 @@ groups:
   - name: TX_2e01
     index: 0x01
     text: |-
-      \Link's Cottage
+      You need 2 gifts to beat ganon and start the party.\stop
+      You need 8 slates in order to beat the Temple of The Tokay boss.
 
   - name: TX_2e02
     index: 0x02

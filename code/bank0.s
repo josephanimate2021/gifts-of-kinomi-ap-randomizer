@@ -5874,10 +5874,7 @@ linkInteractWithAButtonSensitiveObjects:
 	.db $0a $00 ; DIR_DOWN
 	.db $00 $f6 ; DIR_LEFT
 
-; rando stuff
-.include "code/rando/multi.s"
-.include "code/rando/util.s"
-.include "code/rando/collect.s"
+;;
 objectCheckContainsPoint:
 	ld h,d
 	ldh a,(<hActiveObjectType)
@@ -12607,7 +12604,7 @@ loadTilesetAndRoomLayout:
 	; Load the room layout and apply any dynamic changes necessary
 	call          loadRoomLayout
 
-	callfrombank0 roomTileChanges.applyAllTileSubstitutions
+	callfrombank0 roomTileChanges.applyExtraTileSubstitutions
 
 	; Copy wRoomLayout to w3RoomLayoutBuffer
 	ld a,:w3RoomLayoutBuffer
@@ -13918,5 +13915,7 @@ getSomariaBlockIndex:
 
 
 .include "code/debug.s"
+.include "code/rando/multi.s"
+.include "code/rando/util.s"
 
 .ENDS
