@@ -420,8 +420,8 @@ warpSource4c6d:
 group2WarpSources:
 	m_StandardWarp $4 $0e $33 $0 $3
 	m_StandardWarp $4 $0f $02 $1 $3
-	m_StandardWarp $4 $1e $38 $1 $3
-	m_StandardWarp $4 $1f $39 $1 $3
+	m_StandardWarp $00 $1e $02 $4 TRANSITION_SRC_FADEOUT
+	m_StandardWarp $00 $1f $03 $4 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $0 $2e $08 $2 $4
 	m_StandardWarp $4 $2f $29 $1 $3
 	m_StandardWarp $8 $3e $27 $1 $3
