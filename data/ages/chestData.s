@@ -55,22 +55,10 @@ chestGroup3Data:
 	m_ChestData $14 $48 $2818
 	m_ChestData $18 $2b $2804
 	m_ChestData $24 $3b $3a00
-	m_ChestData $18 $1f $2806
 	m_ChestData $35, <ROOM_AGES_3ff, TREASURE_OBJECT_POTION_01
 	.db $ff
 
 chestGroup4Data:
-	m_ChestData $47, $9e, TREASURE_OBJECT_SMALL_KEY_02
-	m_ChestData $58, $9b, TREASURE_OBJECT_BOSS_KEY_02
-	m_ChestData $19, $99, TREASURE_OBJECT_RUPEES_0a
-	m_ChestData $57, $9f, TREASURE_OBJECT_MAP_02
-	m_ChestData $17, $be, TREASURE_OBJECT_BOSS_KEY_02
-	m_ChestData $57, $bc, TREASURE_OBJECT_SMALL_KEY_02
-	m_ChestData $57, $ba, TREASURE_OBJECT_SMALL_KEY_02
-	m_ChestData $57, $a3, TREASURE_OBJECT_SMALL_KEY_03
-	m_ChestData $53, $a5, TREASURE_OBJECT_GASHA_SEED_01
-	m_ChestData $8b, $ad, TREASURE_OBJECT_COMPASS_02
-	m_ChestData $11, $66, TREASURE_OBJECT_POTION_01
 	m_ChestData $6d $63 $3003
 	m_ChestData $81 $37 $2b01
 	m_ChestData $1d $76 $4b00
@@ -105,18 +93,6 @@ chestGroup4Data:
 	m_ChestData $3d $41 $3003
 	m_ChestData $69 $56 $3202
 	m_ChestData $57 $60 $2805
-	m_ChestData $47 $c1 $3003
-	m_ChestData $27 $c3 $3401
-	m_ChestData $47 $c4 $3003
-	m_ChestData $27 $c5 $2d1f
-	m_ChestData $47 $c6 $3401
-	m_ChestData $8b $c7 $3003
-	m_ChestData $47 $c8 $3003
-	m_ChestData $8c $c9 $3401
-	m_ChestData $3b $ca $3003
-	m_ChestData $47 $cb $3003
-	m_ChestData $66, <ROOM_AGES_4cc, $2808
-	m_ChestData $57, <ROOM_AGES_4cf, $3003
 	.db $ff
 
 chestGroup5Data:
@@ -151,24 +127,8 @@ chestGroup5Data:
 	m_ChestData $57 $b0 $3003
 	m_ChestData $17 $2c TREASURE_OBJECT_FEATHER_04
 	m_ChestData $57, <ROOM_AGES_545 $3401
-	m_ChestData $18 $4d $3401
-	m_ChestData $12 $4e $0a01
 	m_ChestData $41 $6c $3003
 	m_ChestData $6c $72 $3003
-	m_ChestData $12 $79 $3103
-	m_ChestData $16, <ROOM_AGES_57b $3003
-	m_ChestData $27, <ROOM_AGES_57c $4b00
-	m_ChestData $27, <ROOM_AGES_57e $4b00
-	m_ChestData $1b $85 $3302
-	m_ChestData $27 $92 $4b00
-	m_ChestData $25, <ROOM_AGES_594 $4b00
-	m_ChestData $16, <ROOM_AGES_597 $3003
-	m_ChestData $2c $9f $3401
-	m_ChestData $1d $a3 $3003
-	m_ChestData $1a $a4 $3202
-	m_ChestData $6d, <ROOM_AGES_5a7 $3003
-	m_ChestData $37 $a6 $1602
-	m_ChestData $27 $91 $3401
 	m_ChestData $27 $b5 $0104
 	m_ChestData $1c $b9 $3103
 	m_ChestData $15 $ee $3401
@@ -177,8 +137,8 @@ chestGroup5Data:
 	m_ChestData $24, <ROOM_AGES_5c0 $2804
 	m_ChestData $83 $e1 $2805
 	m_ChestData $22 $e0 $3401
-	m_ChestData $14, <ROOM_AGES_5ac $2808
 chestGroup6Data:
+	m_ChestData $00, $10, TREASURE_OBJECT_BRACELET_00
 	.db $ff
 
 chestGroup7Data:
