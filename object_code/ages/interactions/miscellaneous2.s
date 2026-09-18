@@ -714,6 +714,7 @@ itemsTable:
 	.db TREASURE_HEART_PIECE,$02 ; Room 011
 	.db TREASURE_HEART_PIECE,$00 ; Room 427
 	.db TREASURE_HEART_PIECE,$00 ; Room 160
+	.db TREASURE_HEART_PIECE,$00 ; Room 20a
 
 interactiondc_subid02:
 	call getThisRoomFlags

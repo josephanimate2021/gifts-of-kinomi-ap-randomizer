@@ -1588,7 +1588,7 @@ group1Map5dObjectData:
 group1Map60ObjectData:
 	obj_Pointer group1Map60EnemyObjectData
 	obj_Interaction $e1 $00 $18 $78
-	obj_Interaction INTERAC_MISCELLANEOUS_2 $02 $58 $18
+	obj_Interaction INTERAC_MISCELLANEOUS_2 $02 $58 $18 $2b
 	obj_Condition $0e
 	obj_Interaction INTERAC_MISCELLANEOUS_2 $07 $58 $18 $2b
 	obj_End
@@ -5211,7 +5211,7 @@ group1Map30ObjectData:
 
 group2Map0aObjectData:
 	obj_Interaction $42 $00 $38 $78
-	obj_Interaction $dc $02 $68 $18
+	obj_Interaction $dc $02 $68 $18 $2c
 	obj_Interaction INTERAC_MUSTACHE_MAN $01 $28 $28
 	obj_Interaction INTERAC_MUSTACHE_MAN $03 $28 $78
 	obj_End

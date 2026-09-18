@@ -677,6 +677,7 @@ fileSelectMode4:
 ;;
 ; Returns z-flag unset if something was selected.
 fileSelectUpdateInput:
+	call checkChangeRandoVars
 	ld a,(wKeysJustPressed)
 	ld c,a
 	ld hl,wFileSelect.cursorPos
