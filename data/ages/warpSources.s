@@ -125,7 +125,7 @@ group0WarpSources:
 	m_StandardWarp $0 $51 $58 $2 $4
 	m_StandardWarp $0 $10 $1e $2 $4
 	m_StandardWarp $0 $05 $5e $3 $2
-	m_StandardWarp $0 $4f $4b $0 TRANSITION_SRC_FADEOUT
+	m_StandardWarp $0 $4f $05 $2 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $0 $91 $6d $4 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $0 $90 $90 $0 $4
 	m_StandardWarp $0 $8b $91 $0 $4
