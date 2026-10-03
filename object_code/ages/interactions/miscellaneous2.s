@@ -40,7 +40,6 @@ interactiondc_subid07:
 	and ROOMFLAG_ITEM
 	jp nz,interactionDelete
 
-	ldbc RUPEEVAL_COUNT-1, $00 ; instant heart piece
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
@@ -635,7 +634,7 @@ interactiondc_subid19:
 	ret z
 
 	; Tile has changed
-	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
+	
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
@@ -656,25 +655,25 @@ interactiondc_subid1a:
 	cpa $00
 	ret nz
 
-	ldbc (RUPEEVAL_COUNT-1)*2,$02 ; falling heart piece
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition
 	jp interactionDelete
 
 isHeartPieceOrRupee:
-	ld e,Interaction.var03
-	ld a,(de)
-	sub $01
-	jr c,+
-
-	add b
+	push bc
+	ld a,(wActiveGroup)
+	ld b,a
+	ld a,(wActiveRoom)
 	ld c,a
-	ld b,TREASURE_RUPEES
-	ret
-
-+
-	ld b,TREASURE_HEART_PIECE
+	ld e,$02
+	ld hl,staticItemsReplacementsTable
+	call searchDoubleKey
+	pop bc
+	ret nc
+	ld b,(hl) ; item id
+	inc hl
+	ld c,(hl) ; item subid
 	ret
 
 interactiondc_subid02:
@@ -693,7 +692,7 @@ interactiondc_subid02:
 	call objectCheckCollidedWithLink_notDeadAndNotGrabbing
 	ret nc
 
-	ldbc RUPEEVAL_COUNT-1,$00 ; instant heart piece
+	
 	call isHeartPieceOrRupee
 	call createTreasure
 	call objectCopyPosition

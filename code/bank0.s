@@ -13905,7 +13905,12 @@ getSomariaBlockIndex:
 	ret
 .endif
 
+;;
+staticItemsReplacementsTable:
+	dwbe $0011, TREASURE_OBJECT_SEED_SATCHEL_02
+
 
 .include "code/debug.s"
+.include "code/rando/util.s"
 
 .ENDS
