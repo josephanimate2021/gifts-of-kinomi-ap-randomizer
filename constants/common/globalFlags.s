@@ -130,6 +130,8 @@
 	GLOBALFLAG_BALLADE_FORAIN_CREUSE	db ; $67: le démineur gagné en Difficile : le coffre à la bombe du forain s'ouvre
 	GLOBALFLAG_BALLADE_FORAIN_MAMONO	db ; $68: le Mamono gagné en Dur sans une égratignure : le coffre au monstre
 	GLOBALFLAG_BALLADE_FORAIN_LYNELS	db ; $69: le 2e Labyrinthe des Lynels gagné : le coffre au Lynel
+	GLOBALFLAG_BALLADE_PRISON		db ; $6a: la Tour Sans-Nuit, Link prisonnier (objets confisqués, Marine en cage : code/ages/balladePrison.s)
+	GLOBALFLAG_BALLADE_ASSOMME		db ; $6b: Link a été assommé à l'entrée de la tour (une seule fois)
 
 .else; ROM_SEASONS
 

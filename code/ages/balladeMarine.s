@@ -41,6 +41,10 @@ photosHint:
 
 ;;
 marineTalk:
+	; Link prisonnier dans la Tour Sans-Nuit : Marine est en cage (code/ages/balladePrison.s)
+	ld a,GLOBALFLAG_BALLADE_PRISON
+	call checkGlobalFlag
+	ret nz
 	; Dans le Récif Murmurant (donjon 3) et la Fosse de Bulle (9), Link est seul : Marine l'attend
 	; dehors
 	ld a,(wDungeonIndex)
@@ -62,8 +66,8 @@ marineTalk:
 	ld (hl),$01
 	ret
 +
-	; Devant Ganon (5:c7, son arène 5:f5) sans l'Épée de Légende : elle propose de sortir de la tour
-	; (balladeObjects.ganonEscape ; Denis : sinon, c'est bloqué)
+	; Devant Ganon (5:c7, son arène 5:f5) sans l'Épée de Légende : Sauvegarder et Quitter, l'épée 3
+	; (balladeObjects.ganonEscape)
 	ld a,(wActiveGroup)
 	cp $05
 	jr nz,++
@@ -559,6 +563,10 @@ bombCarrier:
 ;;
 ; Link vient de tomber : Marine va-t-elle le rattraper ?
 checkSifflet:
+	; (Link prisonnier dans la Tour : Marine est en cage, personne ne le rattrape)
+	ld a,GLOBALFLAG_BALLADE_PRISON
+	call checkGlobalFlag
+	ret nz
 	ld a,GLOBALFLAG_BALLADE_SIFFLET
 	call checkGlobalFlag
 	jr nz,+
@@ -883,6 +891,14 @@ finale:
 	call interactionInitGraphics
 	call interactionSetAlwaysUpdateBit
 	call interactionIncState
+	; var03 = 1 : la fin, après Ganon (5:c7, balladeFin.towerEnding) : pas d'Insomnis, elle se pose
+	; tout de suite à côté de Link
+	ld e,Interaction.var03
+	ld a,(de)
+	or a
+	jr z,+
+	ld (hl),$04
++
 	ld l,Interaction.yh
 	ld a,(w1Link.yh)
 	ld (hl),a

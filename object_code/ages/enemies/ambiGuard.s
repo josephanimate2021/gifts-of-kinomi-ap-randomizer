@@ -247,6 +247,12 @@ ambiGuard_balladeWakeLink:
 	ld a,(wActiveGroup)
 	or $80
 	ld (wWarpDestGroup),a
+	; (prisonnier dans la Tour : au cachot, code/ages/balladePrison.s)
+	ld a,(wDungeonIndex)
+	cp $08
+	jr nz,+
+	callab balladePrison.caught
++
 	ld a,SND_TELEPORT
 	jp playSound
 
@@ -367,7 +373,16 @@ ambiGuard_attacksLink_state11:
 ambiGuard_commonInitialization:
 	ld hl,wGroup4RoomFlags+$fc
 	bit 7,(hl)
-	jr z,++
+	jr nz,+
+	; BALLADE: dans la Tour Sans-Nuit, les gardes ne sont là que si Link est prisonnier
+	; (code/ages/balladePrison.s)
+	ld a,(wDungeonIndex)
+	cp $08
+	jr nz,++
+	ld a,GLOBALFLAG_BALLADE_PRISON
+	call checkGlobalFlag
+	jr nz,++
++
 	call enemyDelete
 	or d
 	ret
@@ -798,20 +813,23 @@ ambiGuard_noHealth:
 
 ; The tables below define the guards' patrol patterns.
 ; See include/movementscript_commands.s.
+; BALLADE : les rondes d'Ages $00-$0c ne servent nulle part (seulement la cathédrale $0d-$14,
+; Ghost Babel $15-$17 et la Tour $18-$24) : elles pointent toutes vers une ronde sur place, pour
+; la place de la banque $0e
 ambiGuard_tossesLinkOut_scriptTable:
-	.dw @subid00
-	.dw @subid01
-	.dw @subid02
-	.dw @subid03
-	.dw @subid04
-	.dw @subid05
-	.dw @subid06
-	.dw @subid07
-	.dw @subid08
-	.dw @subid09
 	.dw @subid0a
-	.dw @subid0b
-	.dw @subid0c
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
+	.dw @subid0a
 	; BALLADE: les Veilleurs de la Cathédrale des Échos (story/salles/cathedrale.txt)
 	.dw @subid0d
 	.dw @subid0e
@@ -824,147 +842,19 @@ ambiGuard_tossesLinkOut_scriptTable:
 	.dw @subid15
 	.dw @subid16
 	.dw @subid17
-
-@subid00:
-	.db SPEED_c0
-	.db DIR_UP
-@@loop:
-	ms_up    $18
-	ms_left  $28
-	ms_down  $58
-	ms_right $68
-	ms_loop  @@loop
-
-@subid01:
-	.db SPEED_c0
-	.db DIR_RIGHT
-@@loop:
-	ms_right $30
-	ms_state 15, $0d
-	ms_right $58
-	ms_wait  30
-	ms_left  $30
-	ms_state 15, $0d
-	ms_left  $08
-	ms_wait  30
-	ms_loop  @@loop
-
-@subid02:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_right $78
-	ms_down  $18
-	ms_wait  60
-	ms_left  $38
-	ms_down  $18
-	ms_wait  60
-	ms_right $58
-	ms_loop  @@loop
-
-@subid03:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_right $78
-	ms_up    $38
-	ms_wait  60
-	ms_left  $18
-	ms_down  $38
-	ms_wait  60
-	ms_right $48
-	ms_loop  @@loop
-
-@subid04:
-	.db SPEED_80
-	.db DIR_DOWN
-@@loop:
-	ms_down  $38
-	ms_right $48
-	ms_wait  60
-	ms_left  $18
-	ms_down  $38
-	ms_wait  60
-	ms_up    $18
-	ms_right $48
-	ms_state 15, $0d
-	ms_wait  40
-	ms_state 15, $0d
-	ms_loop  @@loop
-
-@subid05:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $38
-	ms_state 15, $0d
-	ms_wait  40
-	ms_state 15, $0d
-	ms_left  $38
-	ms_down  $58
-	ms_left  $38
-	ms_wait  60
-	ms_right $68
-	ms_state 15, $0d
-	ms_wait  40
-	ms_state 15, $0d
-	ms_loop  @@loop
-
-@subid06:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_right $38
-	ms_down  $48
-	ms_right $38
-	ms_wait  60
-	ms_down  $68
-	ms_left  $18
-	ms_up    $18
-	ms_loop  @@loop
-
-@subid07:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $18
-	ms_right $88
-	ms_down  $68
-	ms_left  $68
-	ms_up    $48
-	ms_left  $68
-	ms_wait  60
-	ms_loop  @@loop
-
-@subid08:
-	.db SPEED_80
-	.db DIR_LEFT
-@@loop:
-	ms_left  $18
-	ms_state 15, $0d
-	ms_up    $18
-	ms_state 15, $0d
-	ms_right $78
-	ms_state 15, $0d
-	ms_down  $58
-	ms_state 15, $0d
-	ms_left  $48
-	ms_loop  @@loop
-
-@subid09:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_right $78
-	ms_state 15, $0d
-	ms_up    $18
-	ms_state 15, $0d
-	ms_left  $28
-	ms_state 15, $0d
-	ms_down  $58
-	ms_state 15, $0d
-	ms_right $58
-	ms_loop  @@loop
+	.dw @subid18
+	.dw @subid19
+	.dw @subid1a
+	.dw @subid1b
+	.dw @subid1c
+	.dw @subid1d
+	.dw @subid1e
+	.dw @subid1f
+	.dw @subid20
+	.dw @subid21
+	.dw @subid22
+	.dw @subid23
+	.dw @subid24
 
 @subid0a:
 	.db SPEED_80
@@ -973,21 +863,6 @@ ambiGuard_tossesLinkOut_scriptTable:
 	ms_wait  127
 	ms_loop  @@loop
 
-@subid0b:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_wait  127
-	ms_loop  @@loop
-
-@subid0c:
-	.db SPEED_80
-	.db DIR_LEFT
-@@loop:
-	ms_wait  127
-	ms_loop  @@loop
-
-; BALLADE: la chapelle des cierges (5:8f) : va et vient sur la ligne 5 (départ : $58 $28)
 @subid0d:
 	.db SPEED_80
 	.db DIR_RIGHT
@@ -1113,22 +988,155 @@ ambiGuard_tossesLinkOut_scriptTable:
 	ms_right $c8
 	ms_wait  40
 	ms_loop  @@loop
+; BALLADE: la Tour Sans-Nuit, Link prisonnier (code/ages/balladePrison.s) : les gardes de chaque
+; étage, des allers-retours
+; le cachot (5:a0) : la colonne 6, de haut en bas
+@subid18:
+	.db SPEED_80
+	.db DIR_DOWN
+@@loop:
+	ms_down  $98
+	ms_wait  30
+	ms_up    $18
+	ms_wait  30
+	ms_loop  @@loop
+; le couloir du sous-sol (5:a1) : la colonne 9
+@subid19:
+	.db SPEED_80
+	.db DIR_UP
+@@loop:
+	ms_up    $18
+	ms_wait  30
+	ms_down  $98
+	ms_wait  30
+	ms_loop  @@loop
+; l'entrée (5:c0) : la ligne 5 (le chemin de la Lune qui tombe)
+@subid1a:
+	.db SPEED_80
+	.db DIR_RIGHT
+@@loop:
+	ms_right $c8
+	ms_wait  30
+	ms_left  $28
+	ms_wait  30
+	ms_loop  @@loop
+; l'entrée : la colonne 11 (à côté du coffre)
+@subid1b:
+	.db SPEED_80
+	.db DIR_DOWN
+@@loop:
+	ms_down  $98
+	ms_wait  30
+	ms_up    $18
+	ms_wait  30
+	ms_loop  @@loop
+; 2F, l'arrivée (5:c2) : la ligne 5
+@subid1c:
+	.db SPEED_80
+	.db DIR_LEFT
+@@loop:
+	ms_left  $28
+	ms_wait  30
+	ms_right $c8
+	ms_wait  30
+	ms_loop  @@loop
+; 2F, l'arrivée : la ligne 2, devant le coffre
+@subid1d:
+	.db SPEED_80
+	.db DIR_RIGHT
+@@loop:
+	ms_right $a8
+	ms_wait  40
+	ms_left  $48
+	ms_wait  40
+	ms_loop  @@loop
+; 2F, le coffre du bout (5:a2) : la colonne 5
+@subid1e:
+	.db SPEED_80
+	.db DIR_DOWN
+@@loop:
+	ms_down  $98
+	ms_wait  20
+	ms_up    $18
+	ms_wait  20
+	ms_loop  @@loop
+; 2F, le coffre du bout : la colonne 9
+@subid1f:
+	.db SPEED_80
+	.db DIR_UP
+@@loop:
+	ms_up    $18
+	ms_wait  20
+	ms_down  $98
+	ms_wait  20
+	ms_loop  @@loop
+; 3F, l'arrivée (5:c5) : la ligne 5, plus vite
+@subid20:
+	.db SPEED_c0
+	.db DIR_LEFT
+@@loop:
+	ms_left  $28
+	ms_wait  30
+	ms_right $c8
+	ms_wait  30
+	ms_loop  @@loop
+; 3F, le coffre du bout (5:a5) : la colonne 9
+@subid21:
+	.db SPEED_80
+	.db DIR_DOWN
+@@loop:
+	ms_down  $98
+	ms_wait  20
+	ms_up    $18
+	ms_wait  20
+	ms_loop  @@loop
+; 3F, le coffre du bout : la colonne 5
+@subid22:
+	.db SPEED_80
+	.db DIR_UP
+@@loop:
+	ms_up    $18
+	ms_wait  20
+	ms_down  $98
+	ms_wait  20
+	ms_loop  @@loop
+; 4F, l'épée (5:ca) : la colonne 7
+@subid23:
+	.db SPEED_80
+	.db DIR_DOWN
+@@loop:
+	ms_down  $98
+	ms_wait  30
+	ms_up    $18
+	ms_wait  30
+	ms_loop  @@loop
+; 4F, l'épée : la ligne 2
+@subid24:
+	.db SPEED_80
+	.db DIR_RIGHT
+@@loop:
+	ms_right $b8
+	ms_wait  30
+	ms_left  $38
+	ms_wait  30
+	ms_loop  @@loop
 
 
+; BALLADE : les rondes $80-$8c non plus (aucun garde qui attaque) : toutes vers @subid80
 ambiGuard_attacksLink_scriptTable:
 	.dw @subid80
-	.dw @subid81
-	.dw @subid82
-	.dw @subid83
-	.dw @subid84
-	.dw @subid85
-	.dw @subid86
-	.dw @subid87
-	.dw @subid88
-	.dw @subid89
-	.dw @subid8a
-	.dw @subid8b
-	.dw @subid8c
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
+	.dw @subid80
 
 
 @subid80:
@@ -1141,153 +1149,3 @@ ambiGuard_attacksLink_scriptTable:
 	ms_right $68
 	ms_loop  @@loop
 
-@subid81:
-	.db SPEED_c0
-	.db DIR_RIGHT
-@@loop:
-	ms_right $30
-	ms_state 15, $0d
-	ms_right $58
-	ms_wait  30
-	ms_left  $30
-	ms_state 15, $0d
-	ms_left  $08
-	ms_wait  30
-	ms_loop  @@loop
-
-@subid82:
-	.db SPEED_80
-	.db DIR_DOWN
-@@loop:
-	ms_down  $88
-	ms_left  $28
-	ms_up    $48
-	ms_state 15, $0d
-	ms_down  $88
-	ms_right $98
-	ms_up    $28
-	ms_left  $28
-	ms_down  $48
-	ms_state 15, $0d
-	ms_up    $28
-	ms_right $98
-	ms_loop  @@loop
-
-@subid83:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $58
-	ms_right $d8
-	ms_up    $28
-	ms_left  $98
-	ms_down  $58
-	ms_right $d8
-	ms_down  $88
-	ms_left  $98
-	ms_up    $78
-	ms_loop  @@loop
-
-@subid84:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $18
-	ms_right $d8
-	ms_down  $88
-	ms_left  $18
-	ms_loop  @@loop
-
-@subid85:
-	.db SPEED_80
-	.db DIR_DOWN
-@@loop:
-	ms_down  $88
-	ms_left  $18
-	ms_up    $18
-	ms_right $d8
-	ms_loop  @@loop
-
-@subid86:
-	.db SPEED_80
-	.db DIR_DOWN
-@@loop:
-	ms_down  $58
-	ms_left  $28
-	ms_up    $28
-	ms_right $68
-	ms_loop  @@loop
-
-@subid87:
-	.db SPEED_80
-	.db DIR_RIGHT
-@@loop:
-	ms_right $c8
-	ms_up    $28
-	ms_left  $88
-	ms_down  $58
-	ms_loop  @@loop
-
-@subid88:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $58
-	ms_left  $58
-	ms_down  $88
-	ms_right $98
-	ms_loop  @@loop
-
-@subid89:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $28
-	ms_left  $38
-	ms_down  $88
-	ms_right $98
-	ms_loop  @@loop
-
-@subid8a:
-	.db SPEED_80
-	.db DIR_DOWN
-@@loop:
-	ms_down  $98
-	ms_right $c8
-	ms_up    $18
-	ms_left  $a8
-	ms_wait  60
-	ms_right $c8
-	ms_down  $98
-	ms_left  $a8
-	ms_up    $18
-	ms_wait  60
-	ms_loop  @@loop
-
-@subid8b:
-	.db SPEED_80
-	.db DIR_UP
-@@loop:
-	ms_up    $18
-	ms_left  $28
-	ms_down  $58
-	ms_right $48
-	ms_down  $98
-	ms_left  $28
-	ms_up    $58
-	ms_right $48
-	ms_loop  @@loop
-
-@subid8c:
-	.db SPEED_80
-	.db DIR_LEFT
-@@loop:
-	ms_left  $78
-	ms_wait  60
-	ms_down  $58
-	ms_wait  60
-	ms_right $78
-	ms_wait  60
-	ms_up    $58
-	ms_wait  60
-	ms_loop  @@loop

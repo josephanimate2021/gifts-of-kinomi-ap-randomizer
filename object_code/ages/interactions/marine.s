@@ -27,6 +27,11 @@ interactionCodee7:
 	jr nz,+
 	jpab balladeMarine.finale
 +
+	; Sous-type $0a : en cage, dans la salle de Dark Link (code/ages/balladePrison.s)
+	cp $0a
+	jr nz,+
+	jpab balladePrison.cagedMarine
++
 	call checkInteractionState
 	jr nz,@state1
 

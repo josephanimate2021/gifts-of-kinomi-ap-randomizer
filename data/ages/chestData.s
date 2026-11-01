@@ -148,6 +148,14 @@ chestGroup4Data:
 	.db $ff
 
 chestGroup5Data:
+	; BALLADE: la Tour Sans-Nuit, les coffres des objets confisqués : vides (rien ne sort ; c'est
+	; balladePrison.prisonChest qui rend les objets). Un seul coffre par salle (getChestData).
+	m_ChestData $2b, $a1, $0000 ; B1 : le bouclier
+	m_ChestData $1c, $c0, $0000 ; 1F : les graines
+	m_ChestData $17, $c2, $0000 ; 2F : le Boomerang-Toupie, les bombes
+	m_ChestData $2b, $a2, $0000 ; 2F : la Canne, le Grappin, le Bracelet, la Pelle, la Lanterne
+	m_ChestData $23, $a5, $0000 ; 3F : la Cape de Roc, la Clochette d'Aube, le reste
+	m_ChestData $5c, $ca, $0000 ; 4F : l'épée
 	; BALLADE: la Cathédrale des Échos (story/salles/cathedrale.txt)
 	m_ChestData $53, $92, TREASURE_OBJECT_MAP_02        ; le bas-côté sud-ouest : la carte
 	m_ChestData $57, $93, TREASURE_OBJECT_COMPASS_02    ; les Stalfos battus : la boussole
@@ -221,14 +229,14 @@ chestGroup5Data:
 	; BALLADE: plus de coffre d'Ages en 5:ee (le 2e Labyrinthe des Lynels) : le quart de cœur ramassé,
 	; le jeu y dessinait un coffre ouvert en plein mur (Denis)
 	m_ChestData $15, $dd, TREASURE_OBJECT_BOMBS_00
-	m_ChestData $81, $c0, TREASURE_OBJECT_RUPEES_04
-	m_ChestData $24, $c0, TREASURE_OBJECT_RUPEES_04
+	;m_ChestData $81, $c0, TREASURE_OBJECT_RUPEES_04 ; BALLADE: la Tour Sans-Nuit (5:c0)
+	;m_ChestData $24, $c0, TREASURE_OBJECT_RUPEES_04 ; BALLADE: la Tour Sans-Nuit (5:c0)
 	m_ChestData $83, $e1, TREASURE_OBJECT_RUPEES_05
 	m_ChestData $22, $e0, TREASURE_OBJECT_GASHA_SEED_01
 	m_ChestData $47, $b3, TREASURE_OBJECT_GASHA_SEED_01
 	m_ChestData $57, $cb, TREASURE_OBJECT_RUPEES_05 ; BALLADE: plus d'anneaux au hasard (RING_1c, RING_1a)
 	m_ChestData $43, $c7, TREASURE_OBJECT_RUPEES_05
-	m_ChestData $12, $ca, TREASURE_OBJECT_GASHA_SEED_01
+	;m_ChestData $12, $ca, TREASURE_OBJECT_GASHA_SEED_01 ; BALLADE: la Tour Sans-Nuit (5:ca)
 	m_ChestData $22, $b8, TREASURE_OBJECT_RING_19
 	m_ChestData $14, $ac, TREASURE_OBJECT_RUPEES_08
 	m_ChestData $12, $f7, TREASURE_OBJECT_RING_1b

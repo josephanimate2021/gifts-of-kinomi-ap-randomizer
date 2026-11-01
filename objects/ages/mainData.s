@@ -3079,20 +3079,8 @@ group5Map9fObjectData:
 	obj_Pointer group5Map9fEnemyObjectData
 	obj_End
 
-group5Mapa0ObjectData:
-	obj_Part $03 $00 $97
-	obj_Pointer group5Mapa0EnemyObjectData
-	obj_End
 
-group5Mapa1ObjectData:
-	obj_Interaction $7d $00 $57 $02
-	obj_Pointer group5Mapa1EnemyObjectData
-	obj_End
 
-group5Mapa2ObjectData:
-	obj_Interaction $1e $0b $50 $00
-	obj_Pointer group5Mapa2EnemyObjectData
-	obj_End
 
 group5Mapa3ObjectData:
 	obj_Pointer group5Mapa3EnemyObjectData
@@ -3102,9 +3090,6 @@ group5Mapa4ObjectData:
 	obj_Pointer group5Mapa4EnemyObjectData
 	obj_End
 
-group5Mapa5ObjectData:
-	obj_Pointer group5Mapa5EnemyObjectData
-	obj_End
 
 group5Mapa6ObjectData:
 	obj_Interaction $25 $00 $18 $78
@@ -4757,6 +4742,33 @@ group5Map93ObjectData:
 	obj_RandomEnemy $60 ENEMY_STALFOS $00
 	obj_Interaction $12 $02 $58 $78
 	obj_End
+group5Mapa0ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $63 $08 $08
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $18 $18 $68
+	obj_Interaction INTERAC_BALLADE_CREUSE $04 $88 $28 ; une boîte en carton
+	obj_End
+group5Mapa1ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $28 $b8 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $19 $98 $98
+	obj_End
+group5Mapa2ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $28 $b8 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1e $18 $58
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1f $98 $98
+	obj_End
+group5Mapa5ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $28 $38 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $21 $18 $98
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $22 $98 $58
+	obj_End
 group5MapaaObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $09 $08 $08
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
@@ -4773,12 +4785,24 @@ group5Mapb2ObjectData:
 group5Mapc0ObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $09 $08 $08
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
+	obj_Interaction INTERAC_BALLADE_OBJECT $62 $08 $08
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $18 $c8 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1a $58 $28
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1b $18 $b8
 	obj_End
 group5Mapc1ObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $31 $88 $78
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
 	obj_End
 group5Mapc2ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $18 $78 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1c $58 $c8
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $1d $28 $48
+	obj_Interaction INTERAC_BALLADE_CREUSE $04 $88 $c8 ; une boîte en carton
 	obj_End
 group5Mapc3ObjectData:
 	obj_Part $05 $01 $2b
@@ -4787,32 +4811,35 @@ group5Mapc3ObjectData:
 	obj_RandomEnemy $30 ENEMY_KEESE $00
 	obj_End
 group5Mapc4ObjectData:
-	obj_Interaction INTERAC_MARINE $08 $08 $08 ; Marine félicite Link quand le boss est battu
-	obj_Interaction $1e $0b $50 $00
-	obj_SpecificEnemyA $00 $64 $00 $58 $b8
+	obj_Interaction INTERAC_MARINE $0a $28 $78
+	obj_Interaction $1e $0b $5e $00
+	obj_SpecificEnemyA $00 $64 $00 $58 $38
 	obj_Interaction INTERAC_BALLADE_OBJECT $32 $58 $78
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
 	obj_End
 group5Mapc5ObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $20 $58 $c8
 	obj_End
 group5Mapc6ObjectData:
 	obj_Part $09 $80 $57
 	obj_Interaction $1e $07 $50 $00
 	obj_End
 group5Mapc7ObjectData:
-	obj_Interaction INTERAC_MARINE $08 $08 $08 ; Marine félicite Link quand le boss est battu
 	obj_BeforeEvent balladeTourGanonBeforeEventObjectData
 	obj_Interaction INTERAC_BALLADE_OBJECT $36 $08 $08
 	obj_Interaction INTERAC_BALLADE_OBJECT $32 $58 $78
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $10 $08 $08 ; la fin : Zelda, en rêve (code/ages/balladeFin.s)
 	obj_End
 group5Mapc8ObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
 	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
 	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $15 $18 $d8
 	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $16 $58 $18
 	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $17 $58 $c8
-	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; Ghost Babel : le regard des fantômes
 	obj_Interaction INTERAC_BALLADE_CREUSE $04 $88 $58 ; une boîte en carton (l'arrivée)
 	obj_Interaction INTERAC_BALLADE_CREUSE $04 $98 $98 ; une autre (l'arrivée : les couloirs n'ont qu'une case de large, une boîte posée les boucherait)
 	obj_End
@@ -4820,18 +4847,18 @@ group5Mapc9ObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $2f $58 $d8
 	obj_End
 group5MapcaObjectData:
-	obj_Interaction INTERAC_MARINE $08 $08 $08 ; Marine félicite Link quand le boss est battu
-	obj_Interaction $1e $0b $50 $00
-	obj_BeforeEvent group4Map6bBeforeEventObjectData
-	obj_Interaction INTERAC_BALLADE_OBJECT $32 $88 $78
-	obj_Interaction INTERAC_BALLADE_OBJECT $01 $08 $08
+	obj_Interaction INTERAC_BALLADE_OBJECT $64 $58 $c8 ; le coffre des objets confisqués
+	obj_Interaction INTERAC_BALLADE_OBJECT $38 $08 $08
+	obj_Interaction INTERAC_BALLADE_CREUSE $05 $08 $08 ; le regard des gardes
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $23 $18 $78
+	obj_SpecificEnemyA $00 ENEMY_AMBI_GUARD $24 $28 $38
 	obj_End
 group5MapcbObjectData:
 	obj_End
 group5MapccObjectData:
+	obj_Interaction INTERAC_BALLADE_OBJECT $65 $08 $08
 	obj_Interaction INTERAC_BALLADE_RHYTHM $00 $58 $78
 	obj_Interaction INTERAC_BALLADE_OBJECT $57 $70 $78 ; l'Insomnis à terre (Marine le frappe : INTERAC_MARINE $09)
-	obj_Interaction INTERAC_BALLADE_CREUSE $10 $08 $08 ; la fin : Zelda, en rêve (code/ages/balladeFin.s)
 	obj_End
 group5Mapd0ObjectData:
 	obj_Interaction INTERAC_BALLADE_OBJECT $34 $08 $08

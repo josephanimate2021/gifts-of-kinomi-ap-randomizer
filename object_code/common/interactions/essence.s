@@ -308,6 +308,17 @@ interaction7f_subid00:
 	call interactionDecCounter1
 	ret nz
 
+.ifdef ROM_AGES
+	; BALLADE: la 8e essence (Dark Link, dans la Tour Sans-Nuit) : Link reste dans la tour
+	; (code/ages/balladePrison.s)
+	ld a,(wDungeonIndex)
+	cp $08
+	jr nz,+
+	callab balladePrison.essenceDone
+	jp interactionDelete
++
+.endif
+
 	; Warp Link outta there
 	ld l,Interaction.var03
 	ld a,(hl)

@@ -2,7 +2,8 @@
 ; BALLADE: la fin du jeu et l'après-jeu (INTERAC_BALLADE_CREUSE $10-$18). Voir story/iles.md, « La
 ; fin » : à raconter simplement.
 ;
-; 1. En haut de la Tour Sans-Nuit (5:cc), l'Insomnis battu ($10) : Zelda apparaît, en rêve ($11).
+; 1. En haut de la Tour Sans-Nuit (5:c7), Ganon battu après l'Insomnis ($10) : Zelda apparaît, en
+;    rêve ($11).
 ;    Depuis que Link a disparu en mer, elle ne dort plus ; l'Insomnis se nourrissait de son
 ;    inquiétude. Marine comprend, et lui chante sa chanson complète (le huitième couplet), comme une
 ;    berceuse ; Zelda lui répond avec la sienne, elles chantent ensemble, et leur chant rend Marine
@@ -40,16 +41,25 @@ towerEnding:
 	.dw @fadeOut
 	.dw @done
 
-; L'Insomnis battu (wBalladeRhythmStage = 3), un moment (une seule fois : après la fin, quand
-; on refait la tour, rien)
+; Ganon battu (drapeau $80 de 5:c7 ; Denis, 01/11 : le rythme, puis Ganon, le boss final), un
+; moment (une seule fois : après la fin, quand on refait la tour, rien)
 @waitBoss:
 	ld a,GLOBALFLAG_BALLADE_FIN
 	call checkGlobalFlag
 	jp nz,interactionDelete
-	ld a,(wBalladeRhythmStage)
-	cp $03
-	ret nz
+	ld a,(wGroup5RoomFlags+$c7)
+	rlca
+	ret nc
 	call interactionIncState
+	; Marine sort de la tunique et se pose à côté de Link (balladeMarine.finale, var03 = 1)
+	call getFreeInteractionSlot
+	jr nz,+
+	ld (hl),INTERAC_MARINE
+	inc l
+	ld (hl),$09
+	inc l
+	ld (hl),$01
++
 	ld e,Interaction.counter1
 	ld a,150
 	ld (de),a

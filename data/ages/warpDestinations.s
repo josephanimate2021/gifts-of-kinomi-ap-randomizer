@@ -577,6 +577,8 @@ group5WarpDestTable:
 	m_WarpDest $c5 $87 $0 $4 ; $75 : 3F, l'arrivée
 	m_WarpDest $c8 $87 $0 $4 ; $76 : 4F, l'arrivée
 	m_WarpDest $cb $87 $0 $4 ; $77 : 5F, l'arrivée
+	m_WarpDest $c0 $27 $0 $4 ; $78 : 1F, l'entrée, en haut (l'escalier du sous-sol)
+	m_WarpDest $cc $87 $0 $4 ; $79 : 6F, l'Insomnis (puis Ganon, à l'ouest)
 
 group6WarpDestTable:
 	m_WarpDest $05 $02 $f $3

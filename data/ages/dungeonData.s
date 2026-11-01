@@ -51,7 +51,7 @@ dungeonData06:
 dungeonData07:
 	m_DungeonData >wGroup4RoomFlags, $55, dungeon07LayoutPalais, $01, $03, $01, $00, $00 ; BALLADE: le Palais Givré
 dungeonData08:
-	m_DungeonData >wGroup5RoomFlags, $c0, dungeon08LayoutTour, $05, $03, $1f, $00, $00 ; BALLADE: la Tour Sans-Nuit
+	m_DungeonData >wGroup5RoomFlags, $c0, dungeon08LayoutTour, $07, $02, $7f, $00, $00 ; BALLADE: la Tour Sans-Nuit (B1-6F)
 dungeonData09:
 	; BALLADE: la Fosse de Bulle (la plongée, vue de côté), sept salles l'une sous l'autre (1 m à 7 m)
 	m_DungeonData >wGroup5RoomFlags, $d0, dungeon09Layout, $01, $03, $00, $00, $00

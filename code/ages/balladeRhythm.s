@@ -51,6 +51,15 @@ main:
 ; Début : la salle est silencieuse (sa musique = SNDCTRL_STOPMUSIC, make_music.py) ; Marine parle,
 ; puis le morceau commence
 @state0:
+	; L'Insomnis déjà battu (drapeau $80 de la salle, en haut de la Tour : balladePrison.towerTop) :
+	; le combat ne recommence pas
+	ld a,(wActiveGroup)
+	cp $05
+	jr nz,+
+	call getThisRoomFlags
+	and $80
+	jp nz,interactionDelete
++
 	call interactionSetAlwaysUpdateBit
 	call interactionIncState
 	; Venu par le code secret : le fichier retrouve son vrai point de départ (s'il est sauvé)

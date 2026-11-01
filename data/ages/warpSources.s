@@ -769,10 +769,13 @@ group5WarpSources:
 	m_StandardWarp $0 $fb $07 $7 $2
 	; BALLADE: la Tour Sans-Nuit : la sortie (l'arche), les escaliers d'un étage à l'autre
 	m_StandardWarp $4 $c0 $5d $1 $3 ; BALLADE: sortie de la tour -> le parvis (1:c9)
+	m_StandardWarp $0 $c0 $79 $5 $4 ; BALLADE: 1F, l'escalier direct (Ganon vu sans l'épée) -> 6F
+	m_StandardWarp $0 $a1 $78 $5 $4 ; BALLADE: B1 -> 1F
 	m_StandardWarp $0 $c1 $74 $5 $4 ; BALLADE: 1F -> 2F
-	m_StandardWarp $0 $c4 $75 $5 $4 ; BALLADE: 2F -> 3F
-	m_StandardWarp $0 $c7 $76 $5 $4 ; BALLADE: 3F -> 4F
+	m_StandardWarp $0 $a2 $75 $5 $4 ; BALLADE: 2F -> 3F
+	m_StandardWarp $0 $a5 $76 $5 $4 ; BALLADE: 3F -> 4F
 	m_StandardWarp $0 $ca $77 $5 $4 ; BALLADE: 4F -> 5F
+	m_StandardWarp $0 $c4 $79 $5 $4 ; BALLADE: 5F (Dark Link) -> 6F
 	m_WarpListEndNoDefault
 
 warpSource7dba:

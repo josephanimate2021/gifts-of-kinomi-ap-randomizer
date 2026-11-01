@@ -492,9 +492,9 @@ debugEntries:
 	.dw debugNone
 	.db $22, $05, $c0, $97 ; la Tour Sans-Nuit, l'entrée (la porte ouverte)
 	.dw debugNone
-	.db $23, $05, $c5, $87 ; 3F, l'arrivée (la Lune et Dark Link vaincus)
-	.dw debugNone
-	.db $24, $05, $cb, $87 ; 5F, l'arrivée (devant l'Insomnis)
+	.db $23, $05, $cb, $87 ; 5F, l'arrivée, Link prisonnier (devant Dark Link et Marine en cage)
+	.dw debugTourPrison
+	.db $24, $05, $cc, $87 ; 6F, l'Insomnis (Dark Link vaincu, Marine libre)
 	.dw debugNone
 	.db $ff, $00, $00, $00 ; (la fin : à écrire)
 	.dw debugNone
@@ -644,17 +644,29 @@ debugMilestones:
 	.db DBG_ROOMFLAG, $00, $ca, $40
 	.db DBG_ROOMFLAG, $01, $c9, $80
 	.db DBG_END
-	; 35. 1F et 2F : la Lune (le Sablier) et Dark Link vaincus (les escaliers)
+	; 35. La tour jusqu'au 4F (code/ages/balladePrison.s) : Link assommé à l'entrée, la Lune (le
+	; Sablier), les coffres des objets confisqués ouverts (le menu de test donne déjà tout)
+	.db DBG_GLOBALFLAG, GLOBALFLAG_BALLADE_ASSOMME
 	.db DBG_ROOMFLAG, $05, $c1, $80
 	.db DBG_TREASURE, TREASURE_14, $00
-	.db DBG_ROOMFLAG, $05, $c4, $80
+	.db DBG_ROOMFLAG, $05, $a1, $20
+	.db DBG_ROOMFLAG, $05, $c0, $20
+	.db DBG_ROOMFLAG, $05, $c2, $20
+	.db DBG_ROOMFLAG, $05, $a2, $20
+	.db DBG_ROOMFLAG, $05, $a5, $20
+	.db DBG_ROOMFLAG, $05, $ca, $20
 	.db DBG_END
-	; 36. 3F et 4F : Ganon et le Cauchemar vaincus (les escaliers)
-	.db DBG_ROOMFLAG, $05, $c7, $80
-	.db DBG_ROOMFLAG, $05, $ca, $80
+	; 36. 5F : Dark Link vaincu, Marine libre, la 8e essence (prise)
+	.db DBG_ROOMFLAG, $05, $c4, $a0
+	.db DBG_TREASURE, TREASURE_ESSENCE, $07
 	.db DBG_END
 
 debugNone:
+	.db DBG_END
+
+; Link encore prisonnier (Marine en cage, les gardes)
+debugTourPrison:
+	.db DBG_GLOBALFLAG, GLOBALFLAG_BALLADE_PRISON
 	.db DBG_END
 
 debugPhareBossKey:

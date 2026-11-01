@@ -72,8 +72,8 @@
 ; @subid_47{La pierre de lave, sur l'îlot de la coulée du belvédère (1:2c) : le rouge}
 ; @subid_4f{Invisible, la Spirale Céleste : un pont qui se déploie case par case (Y = le pont)}
 ; @subid_50{Invisible, la Spirale Céleste : une bombe qui explose contre un cristal le frappe}
-; @subid_51{Invisible : devant Ganon sans l'Épée de Légende, Marine propose de sortir de la tour}
-; @subid_52{Invisible : la même, après « nos coups ne lui font rien » (TX_5ae5)}
+; @subid_51{Invisible : devant Ganon sans l'Épée de Légende (Select), Marine casse le 4e mur}
+; @subid_52{Invisible : la même, au premier coup sur Ganon (TX_5ae5 : Sauvegarder et Quitter)}
 ; @subid_53{Invisible : la progression vers le 100 % (le menu, 3e page, B)}
 ; @subid_55{Un trésor flottant de la Fosse de Bulle (rubis à 2 m et 4 m, quart de cœur à 3 m)}
 ; @subid_56{Invisible : le bassin de Bulle (3:24) ; Link y saute : la plongée dans la Fosse}
@@ -84,6 +84,10 @@
 ; @subid_5e{Invisible : Marine (Select) fait une vanne, puis donne un indice selon la progression}
 ; @subid_5f{Les coffres du forain, sur sa plage : $5f la bombe (le démineur), $60 le monstre (le Mamono),
 ;          $61 le Lynel (le Labyrinthe)}
+; @subid_62{Invisible, l'entrée de la Tour (5:c0) : Link assommé, Marine emportée ; la herse ; l'escalier du 6F}
+; @subid_63{Invisible, le cachot (5:a0) : le réveil ; le passage vers l'étage où Link a été pris}
+; @subid_64{Invisible, sur un coffre des objets confisqués (la Tour) : il rend son groupe d'objets}
+; @subid_65{Invisible, le 6F (5:cc) : la porte de Ganon s'ouvre quand l'Insomnis est battu}
 ; ==================================================================================================
 
 ;;
@@ -189,6 +193,21 @@ main:
 	.dw forainChest
 	.dw forainChest
 	.dw forainChest
+	.dw prisonKidnap
+	.dw prisonCell
+	.dw prisonChest
+	.dw prisonTop
+
+
+; La Tour Sans-Nuit, Link prisonnier : code/ages/balladePrison.s (sa propre section)
+prisonKidnap:
+	jpab balladePrison.kidnap
+prisonCell:
+	jpab balladePrison.prisonCell
+prisonChest:
+	jpab balladePrison.prisonChest
+prisonTop:
+	jpab balladePrison.towerTop
 
 
 ;;
@@ -245,6 +264,10 @@ waitRoomReady:
 ; drapeau $40 de la salle ; elle peut aussi apprendre quelque chose (un drapeau global).
 ; ==================================================================================================
 arrivalTalk:
+	; (Link prisonnier dans la Tour : Marine est en cage, elle ne parle pas)
+	ld a,GLOBALFLAG_BALLADE_PRISON
+	call checkGlobalFlag
+	jp nz,interactionDelete
 	ld e,Interaction.state
 	ld a,(de)
 	or a
@@ -3499,6 +3522,10 @@ floorStairs_solved:
 	call objectCreatePuff
 
 floorStairs_setStairs:
+	; (Ganon, en haut de la tour : pas d'escalier, la fin commence : balladeFin.towerEnding)
+	ld a,(wActiveRoom)
+	cp $c7
+	jp z,interactionDelete
 	call objectGetShortPosition
 	ld c,a
 	ld a,$45
@@ -3677,6 +3704,10 @@ insomnis:
 @init:
 	ld a,GLOBALFLAG_BALLADE_FIN
 	call checkGlobalFlag
+	jp nz,interactionDelete
+	; (déjà battu : balladePrison.towerTop)
+	call getThisRoomFlags
+	and $80
 	jp nz,interactionDelete
 	call interactionInitGraphics
 	call interactionSetAlwaysUpdateBit
@@ -4557,58 +4588,25 @@ ganonEscapeSpawn:
 	ret
 
 ; ==================================================================================================
-; La sortie de la tour (subids $51, $52 ; Denis : « elle nous fait partir du donjon, sinon c'est
-; soft lock ») : Marine propose de sortir (TX_5a0f) ; Oui : le parvis de la tour (1:c9), en fondu.
-; $52 : d'abord la Fosse (TX_5ae5). Select (marineTalk) en crée une ($51) devant Ganon sans l'épée.
+; Devant Ganon sans l'Épée de Légende (subids $51, $52 ; Denis, 01/11 : « ça brise le 4e mur ») :
+; Marine casse le quatrième mur, TX_5ae5 : « Moi, à ta place, je ferais Sauvegarder et Quitter...
+; on n'a jamais eu cette discussion ! Va trouver l'épée 3, le Zora en sait quelque chose ». Le
+; joueur sauvegarde et quitte : il reprend au début de la tour (le point de retour est l'entrée
+; depuis que Marine est libre : balladePrison.cagedMarine). $52 : le premier coup sur Ganon ;
+; $51 : Select (marineTalk), devant Ganon sans l'épée.
 ; ==================================================================================================
 ganonEscape:
 	ld e,Interaction.state
 	ld a,(de)
-	rst_jumpTable
-	.dw @init
-	.dw @waitFosse
-	.dw @waitAnswer
-
-@init:
+	or a
+	jr nz,+
 	call interactionIncState
-	ld e,Interaction.subid
-	ld a,(de)
-	cp $52
-	jr nz,@ask
 	ld bc,TX_5ae5
 	jp showText
-
-@waitFosse:
++
 	ld a,(wTextIsActive)
 	or a
 	ret nz
-@ask:
-	ld e,Interaction.state
-	ld a,$02
-	ld (de),a
-	ld bc,TX_5a0f
-	jp showText
-
-@waitAnswer:
-	ld a,(wTextIsActive)
-	or a
-	ret nz
-	ld a,(wSelectedTextOption)
-	or a
-	jp nz,interactionDelete
-	; Oui : le parvis (1:c9), devant la porte
-	ld a,$81
-	ld (wWarpDestGroup),a
-	ld a,$c9
-	ld (wWarpDestRoom),a
-	ld a,$64
-	ld (wWarpDestPos),a
-	xor a
-	ld (wWarpTransition),a
-	ld a,$03 ; fondu
-	ld (wWarpTransition2),a
-	ld a,SND_BALLADE_GULL
-	call playSound
 	jp interactionDelete
 
 
@@ -4805,7 +4803,13 @@ ghostVeil:
 	inc a
 	ld (de),a
 	push hl
+	; (Link prisonnier : Marine est en cage ; c'est le garde qui crie, balladePrison.s)
+	ld a,GLOBALFLAG_BALLADE_PRISON
+	call checkGlobalFlag
 	ld bc,TX_5aec
+	jr z,+
+	ld bc,TX_5c37
++
 	call showText
 	pop hl
 @skip:

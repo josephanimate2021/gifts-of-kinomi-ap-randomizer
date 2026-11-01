@@ -263,6 +263,11 @@ specialObjectLoadAnimationFrameToBuffer:
 		.include "code/ages/balladeGhost.s"
 	.ends
 
+	 ; BALLADE: la Tour Sans-Nuit, Link prisonnier (INTERAC_BALLADE_OBJECT $62-$65, INTERAC_MARINE $0a)
+	 m_section_superfree Ballade_Prison namespace balladePrison
+		.include "code/ages/balladePrison.s"
+	.ends
+
 	 ; BALLADE: le Terrier des Serpents (INTERAC_BALLADE_CREUSE $0a-$0f)
 	 m_section_superfree Ballade_Terrier namespace balladeTerrier
 		.include "code/ages/balladeTerrier.s"
