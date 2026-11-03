@@ -52,7 +52,7 @@ soundPointers:
 	/* 0x30 */ m_soundPointer musFairyForest
 	/* 0x31 */ m_soundPointer musCrazyDance
 	/* 0x32 */ m_soundPointer musFinalBoss
-	/* 0x33 */ m_soundPointer musTwinrova
+	/* 0x33 */ m_soundPointer musBalladeLorule ; BALLADE: Lorule Castle, la 5e manche du boss en rythme du Terrier (au lieu de Twinrova, qu'on ne combat plus)
 	/* 0x34 */ m_soundPointer musGanon
 	/* 0x35 */ m_soundPointer musRalph
 	/* 0x36 */ m_soundPointer musCave
@@ -61,7 +61,7 @@ soundPointers:
 	/* 0x39 */ m_soundPointer musGreatMoblin
 	/* 0x3a */ m_soundPointer musBalladeRythme5 ; BALLADE: boss en rythme, niveau 5
 	/* 0x3b */ m_soundPointer musBalladeCoffre ; BALLADE: le Coffre à Jouets (donjon 2)
-	/* 0x3c */ m_soundPointer musSyrup
+	/* 0x3c */ m_soundPointer musBalladeDeesse ; BALLADE: la Ballade de la Déesse, la 2e manche du boss en rythme du Terrier (au lieu de la boutique de Sirop)
 	/* 0x3d */ m_soundPointer musBalladeGrelot ; BALLADE: Hameau-Grelot (île 2)
 	/* 0x3e */ m_soundPointer musGoronCave
 	/* 0x3f */ m_soundPointer musIntro1

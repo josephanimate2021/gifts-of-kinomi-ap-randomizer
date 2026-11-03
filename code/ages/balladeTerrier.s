@@ -10,14 +10,12 @@
 ;   et 12 âmes ; dans l'arène (4:d7), à 16 âmes, le boss (Denis : « tu demandes 16 âmes et j'en fais
 ;   à peine 8 » : c'était 6, 12, 18 et 24). Les serpents (ENEMY_ROPE) sont gris (la palette 6) et
 ;   tiennent quatre coups d'épée.
-; - Le boss ($0c) : une machine de guerre à deux pattes (clin d'œil à Metal Gear REX), possédée
-;   par un fantôme (art/rex.txt : il marche, deux images de pattes). Chaque coup d'épée lui arrache
-;   une âme ; à moitié, son blindage tombe, il va plus vite et s'efface (il clignote) ; à zéro, le
-;   fantôme ($0f) s'en échappe, très vite ; trois coups, et le gantelet absorbe son âme : il devient
-;   une relique, le Bracelet des Âmes (bit 1) : l'épée lance toujours un rayon, et chaque ennemi
-;   touché rend un peu de vie à Link (object_code/common/itemParents/swordParent.s,
-;   items/swordBeam.s). Puis Link revient à l'entrée du Terrier (Denis : pas tout le chemin à
-;   l'envers).
+; - Le boss ($0c) : une machine de guerre (clin d'œil à Metal Gear REX), possédée par un fantôme.
+;   Elle danse (Denis, 03/11/2026 : « un jeu de rythme, genre Dance Dance Revolution ; 5 manches ») :
+;   cinq morceaux de la série, des flèches ($27) qui montent vers quatre cibles ($28) ; voir plus
+;   bas. Cinq manches gagnées : elle explose ; le gantelet absorbe l'âme du fantôme : une relique,
+;   le Bracelet des Âmes (bit 1 de wBalladeSoulState ; l'attaque tourbillon aspire les âmes). Puis
+;   Link revient à l'entrée du Terrier (Denis : pas tout le chemin à l'envers).
 ; ==================================================================================================
 
 .define TERRIER_BOSS_SOULS	16	; les âmes qu'il faut pour que le boss apparaisse
@@ -663,25 +661,43 @@ jar:
 
 
 ; ==================================================================================================
-; Le boss ($0c) : la machine possédée, en grand, au fond de l'arène (Denis : « regarde comment c'est
-; dans Ghost Babel ») : 7 x 5 briques du décor (tools/make_rex.py) qui sortent de l'ombre quand elle
-; apparaît. Elle tire des missiles et fait tomber des rochers (les projectiles, $0f). Seule une bombe
-; qui explose contre elle l'arrête (Denis) : cinq secondes, ses yeux s'éteignent, des étincelles ;
-; une attaque tourbillon contre elle, alors, la touche. Cinq fois, et elle explose ; le gantelet
-; absorbe l'âme du fantôme : le Bracelet des Âmes ; puis Link revient à l'entrée du Terrier.
+; Le boss ($0c) : la machine possédée, en grand, au fond de l'arène : 7 x 5 briques du décor
+; (tools/make_rex.py) qui sortent de l'ombre quand elle apparaît. Puis elle danse (Denis, 03/11/2026 :
+; « on devrait en faire un jeu de rythme le boss, genre Dance Dance Revolution ; 5 manches ») :
+; cinq morceaux de la série (balladeDanseRounds, data/ages/balladeDanseCharts.s, écrit par
+; tools/make_music.py : la Berceuse de Zelda, la Ballade de la Déesse, le Chant des Tempêtes, la
+; Vallée Gerudo, le Château de Lorule). Des flèches ($27) montent vers les quatre cibles grises ($28,
+; en haut de l'écran) ; la croix dans la bonne direction quand une flèche touche sa cible (à
+; DANSE_WINDOW images près) = coup juste : la voix du thème s'entend jusqu'à la flèche suivante
+; (sinon elle est coupée, NR51, comme le prototype balladeRhythm.s). Les deux tiers de coups justes :
+; la machine a mal (une manche de moins) ; sinon elle frappe du pied, Link perd un cœur (jamais le
+; dernier quart) et la manche recommence. Cinq manches gagnées : elle explose.
+; Le temps : wBalladeRhythmClock (compté par le moteur son), remis à zéro au début du morceau ;
+; avant, DANSE_TRAVEL images d'avance (un temps négatif) pour que les premières flèches montent.
 ;
-; var30 sa vie, var31 la rangée de briques (en apparaissant, en disparaissant), var32 le temps
-; qu'elle reste arrêtée (images), var33 l'attaque suivante (0 missiles, 1 rochers), var34 le temps
-; qu'elle reste blanche (touchée), counter1 le temps avant l'attaque suivante
+; var30 les manches qui restent, var31 la rangée de briques (en apparaissant, en disparaissant),
+; var32 l'étape de la danse (0 Marine explique, 1 la manche s'annonce, 2 l'avance, 3 le morceau,
+; 4 la fin du morceau), var33-34 la prochaine flèche à lancer, var35-36 la prochaine à juger,
+; var37-38 le temps où la voix se tait, var39 les coups justes, var3a les flèches jugées,
+; var3b le temps où elle reste blanche (touchée) ou les yeux fermés (un coup juste), var3c sa voix (NR51), var3d sa musique,
+; var3e-3f le temps « maintenant » ; counter1 l'avance, la fin du morceau
 ; ==================================================================================================
 
-.define REX_HP		5
-.define REX_STUN	300	; (cinq secondes)
+.include "data/ages/balladeDanseCharts.s"
+
+.define REX_HP		5	; les manches
 .define REX_BRICK	$c0	; ses briques ($c0-$e2, tools/make_rex.py), 7 par rangée
 .define REX_POS		$14	; la brique en haut à gauche (ligne 1, colonne 4)
 .define REX_BOTTOM	$60	; (en pixels : le bas, la gauche, la droite de la machine)
 .define REX_LEFT	$40
 .define REX_RIGHT	$b0
+
+.define DANSE_WINDOW	10	; un coup juste : à 10 images près
+.define DANSE_TRAVEL	56	; une flèche met 56 images à monter jusqu'à sa cible (2 pixels par image)
+.define DANSE_TARGET_Y	$18	; les cibles, à l'écran (sous la barre du haut)
+.define DANSE_CENTER_X	$50	; le milieu des quatre cibles (à 16 pixels l'une de l'autre)
+.define DANSE_LINK_Y	$80	; Link danse ici, figé (l'écran ne bouge plus)
+.define DANSE_LINK_X	$78
 
 rex:
 	ld e,Interaction.state
@@ -689,19 +705,16 @@ rex:
 	rst_jumpTable
 	.dw @init
 	.dw @rise
-	.dw @fight
+	.dw @danse
 	.dw @explode
 	.dw @vanish
 	.dw @relic
 
 @init:
 	call interactionIncState
-	call interactionInitGraphics	; (les images des projectiles : spr_ballade_rex)
 	ld h,d
 	ld l,Interaction.var30
 	ld (hl),REX_HP
-	ld l,Interaction.counter1
-	ld (hl),90
 	ld a,PALH_REX
 	call loadPaletteHeader
 	; Link pas dans la machine
@@ -772,205 +785,568 @@ rex:
 	jr nz,--
 	ret
 
-@fight:
+; ----- La danse -----
+@danse:
 	ld a,(wTextIsActive)
 	or a
 	ret nz
-	; touchée : elle reste blanche un instant
+	; touchée : elle reste blanche un instant ; un coup juste : elle ferme les yeux
 	ld h,d
-	ld l,Interaction.var34
+	ld l,Interaction.var3b
 	ld a,(hl)
 	or a
 	jr z,+
 	dec (hl)
-	call z,@palette
+	ld a,PALH_REX
+	call z,loadPaletteHeader
 +
-	ld h,d
-	ld l,Interaction.var32
-	ld a,(hl)
-	or a
-	jr z,@active
-	; arrêtée : des étincelles ; une attaque tourbillon la touche
-	ld a,(wFrameCounter)
-	rrca
-	jr c,+
-	dec (hl)
-	jp z,@palette
-+
-	ld a,(wFrameCounter)
-	and $0f
-	call z,@spark
-	jp @checkSpin
+	ld e,Interaction.var32
+	ld a,(de)
+	rst_jumpTable
+	.dw @explain
+	.dw @announce
+	.dw @preroll
+	.dw @play
+	.dw @tail
 
-@active:
-	call @checkBomb
-	ret c
+; Marine explique (une fois) ; Link se met face à la machine, figé
+@explain:
+	ld a,SNDCTRL_STOPMUSIC
+	call playSound
+	ld a,(wDisabledObjects)
+	or DISABLE_LINK
+	ld (wDisabledObjects),a
+	ld a,$01
+	ld (wMenuDisabled),a
+	ld a,DANSE_LINK_Y
+	ld (w1Link.yh),a
+	ld a,DANSE_LINK_X
+	ld (w1Link.xh),a
+	ld a,DIR_UP
+	ld (w1Link.direction),a
+	ld b,$28
+	call createTerrierObject
+	call @nextStep
+	ld bc,TX_5c40
+	jp showText
+
+; La manche s'annonce (son nom) ; ses flèches, sa musique
+@announce:
+	ld e,Interaction.var30
+	ld a,(de)
+	ld b,a
+	ld a,REX_HP
+	sub b			; a = la manche (0-4)
+	push af
+	add a
+	add a
+	ld hl,balladeDanseRounds
+	rst_addAToHl
+	ld e,Interaction.var3d
+	ldi a,(hl)
+	ld (de),a
+	ld e,Interaction.var3c
+	ldi a,(hl)
+	ld (de),a
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+	ld e,Interaction.var33
+	call @storeHl
+	call @storeHl		; (var35-36 : la même)
+	; var37-38 : la voix se tait (-DANSE_TRAVEL : avant le tout début de l'avance)
+	ld a,$100-DANSE_TRAVEL
+	ld (de),a
+	inc e
+	ld a,$ff
+	ld (de),a
+	inc e
+	xor a
+	ld (de),a		; var39, var3a
+	inc e
+	ld (de),a
+	ld e,Interaction.counter1
+	ld a,DANSE_TRAVEL
+	ld (de),a
+	call @nextStep
+	pop af
+	ld bc,TX_5c41
+	add c
+	ld c,a
+	jp showText
+
+; L'avance : un temps négatif, les premières flèches montent ; puis le morceau commence
+@preroll:
+	ld h,d
+	ld l,Interaction.counter1
+	ld a,(hl)
+	cpl
+	inc a
+	ld l,Interaction.var3e
+	ldi (hl),a
+	ld (hl),$ff
+	call @frame
 	call interactionDecCounter1
 	ret nz
-	ld (hl),100
-	ld l,Interaction.var33
-	ld a,(hl)
-	xor $01
-	ld (hl),a
-	jr z,@rocks
-
-	; les missiles : deux, depuis le lance-missiles, vers Link
-	ld a,SND_THROW
+	ld e,Interaction.var3d
+	ld a,(de)
+	ld (wActiveMusic),a
+	di
 	call playSound
-	ld hl,$2868
-	call @missile
-	ld hl,$2888
-@missile:
-	ld b,$0f
-	jp createTerrierObjectAt
+	xor a
+	ld (wBalladeRhythmClock),a
+	ld (wBalladeRhythmClock+1),a
+	ei
+	jr @nextStep
 
-	; les rochers : elle frappe du pied ; trois rochers tombent, dont un sur Link
-@rocks:
+; Le morceau : jusqu'à la dernière flèche jugée
+@play:
+	call @now
+	call @frame
+	ld e,Interaction.var35
+	call @loadHl
+	ldi a,(hl)
+	and (hl)
+	inc a
+	ret nz
+	ld e,Interaction.counter1
+	ld a,60
+	ld (de),a
+@nextStep:
+	ld e,Interaction.var32
+	ld a,(de)
+	inc a
+	ld (de),a
+	ret
+
+; La fin du morceau (une seconde), puis le résultat de la manche
+@tail:
+	call @now
+	call @voices
+	call interactionDecCounter1
+	ret nz
+	ld a,SNDCTRL_STOPMUSIC
+	call playSound
+	ld a,$ff
+	ld ($ff00+R_NR51),a
+	call @clearArrows
+	; les deux tiers de coups justes ?
+	ld h,d
+	ld l,Interaction.var39
+	ld a,(hl)
+	ld b,a
+	add a
+	add b
+	ld b,a			; b = coups justes x 3
+	inc l
+	ld a,(hl)
+	add a			; a = flèches x 2
+	ld l,Interaction.var32
+	ld (hl),$01		; (la manche suivante, ou la même)
+	cp b
+	jr z,@hurt
+	jr c,@hurt
+	; ratée : elle frappe du pied, Link perd un cœur (jamais le dernier quart)
 	ld a,SND_STRONG_POUND
 	call playSound
 	ld a,$20
 	call setScreenShakeCounter
-	ld a,(w1Link.yh)
-	ld h,a
-	ld a,(w1Link.xh)
-	ld l,a
-	call @rock
-	call @randomFloor
-	call @rock
-	call @randomFloor
-@rock:
-	ld b,$0f
-	jp createTerrierObjectAt
+	ld a,(wLinkHealth)
+	sub $04
+	jr z,+
+	jr nc,++
++
+	ld a,$01
+++
+	ld (wLinkHealth),a
+	ld bc,TX_5c47
+	jp showText
 
-; hl = une position au hasard, devant la machine
-@randomFloor:
-	call getRandomNumber
-	and $1f
-	add REX_BOTTOM+$18
-	ld h,a
-	call getRandomNumber
-	and $7f
-	add $30
-	ld l,a
-	ret
-
-; une étincelle, sur la machine
-@spark:
-	call getRandomNumber
-	and $3f
-	add $18
-	ld h,a
-	call getRandomNumber
-	and $5f
-	add REX_LEFT+8
-	ld l,a
-	ld b,$0f
-	call createTerrierObjectAt
-	ld a,SND_SHOCK
-	jp playSound
-
-;;
-; Une bombe explose contre elle : elle s'arrête (cf : oui)
-@checkBomb:
-	ld h,FIRST_ITEM_INDEX
---
-	ld l,Item.enabled
-	ld a,(hl)
-	or a
-	jr z,@nextItem
-	inc l
-	ld a,(hl)
-	cp ITEM_BOMB
-	jr nz,@nextItem
-	ld l,Item.var2f
-	bit 4,(hl)
-	jr z,@nextItem
-	ld l,Item.yh
-	ld a,(hl)
-	cp REX_BOTTOM+$20
-	jr nc,@nextItem
-	ld l,Item.xh
-	ld a,(hl)
-	cp REX_LEFT-$10
-	jr c,@nextItem
-	cp REX_RIGHT+$10
-	jr nc,@nextItem
-	; arrêtée (var32 compte toutes les deux images)
-	ld h,d
-	ld l,Interaction.var32
-	ld (hl),REX_STUN/2
-	call @palette
-	ld a,SND_SHOCK
-	call playSound
-	scf
-	ret
-@nextItem:
-	inc h
-	ld a,h
-	cp LAST_ITEM_INDEX+1
-	jr c,--
-	xor a
-	ret
-
-;;
-; Une attaque tourbillon contre elle (pendant qu'elle est arrêtée) : touchée
-@checkSpin:
-	ld a,(w1WeaponItem.enabled)
-	or a
-	ret z
-	ld a,(w1WeaponItem.id)
-	cp ITEM_SWORD
-	ret nz
-	ld a,(w1WeaponItem.state)
-	cp $04
-	ret nz
-	ld a,(w1Link.yh)
-	cp REX_BOTTOM+$20
-	ret nc
-	ld a,(w1Link.xh)
-	cp REX_LEFT-$10
-	ret c
-	cp REX_RIGHT+$10
-	ret nc
-	; touchée
-	ld h,d
-	ld l,Interaction.var32
-	ld (hl),$00
-	ld l,Interaction.var34
-	ld (hl),24
-	ld l,Interaction.counter1
-	ld (hl),60
+@hurt:
+	ld l,Interaction.var3b
+	ld (hl),30
 	ld a,PALH_REX_HIT
 	call loadPaletteHeader
 	ld a,SND_BOSS_DAMAGE
 	call playSound
-	ld a,$10
+	ld a,$20
 	call setScreenShakeCounter
 	ld h,d
 	ld l,Interaction.var30
 	dec (hl)
-	ret nz
-	; Cinq fois : elle explose
+	ld bc,TX_5c46
+	jp nz,showText
+	; Cinq manches : elle explose ; Link est libre
 	ld l,Interaction.state
 	ld (hl),$03
 	ld l,Interaction.counter1
 	ld (hl),80
-	ld a,SNDCTRL_STOPMUSIC
-	jp playSound
+	ld a,(wDisabledObjects)
+	and ~DISABLE_LINK
+	ld (wDisabledObjects),a
+	xor a
+	ld (wMenuDisabled),a
+	jp @clearTargets
 
-; Ses couleurs : les yeux éteints quand elle est arrêtée
-@palette:
-	ld e,Interaction.var32
+;;
+; Une image de la danse : les flèches à lancer, la flèche à juger, puis la voix
+@frame:
+	call @spawn
+	call @judge
+
+;;
+; La voix du thème : entendue jusqu'au temps var37-38, coupée ensuite
+@voices:
+	call @voiceOver
+	ld a,$ff
+	jr nc,+
+	ld e,Interaction.var3c
 	ld a,(de)
-	or a
-	ld a,PALH_REX
-	jr z,+
-	ld a,PALH_REX_STUN
+	cpl
 +
-	jp loadPaletteHeader
+	ld ($ff00+R_NR51),a
+	ret
 
-; Elle explose : des explosions partout sur elle
+;;
+; @param[out]	cf	1 si le temps var37-38 est passé
+@voiceOver:
+	ld h,d
+	ld l,Interaction.var3e
+	ld c,(hl)
+	inc l
+	ld b,(hl)
+	ld l,Interaction.var37
+	ld a,(hl)
+	sub c
+	ld c,a
+	inc l
+	ld a,(hl)
+	sbc b
+	bit 7,a
+	scf
+	ret nz			; (négatif : passé)
+	or c
+	scf
+	ret z			; (zéro : passé)
+	xor a
+	ret
+
+;;
+; Maintenant = l'horloge du moteur son
+@now:
+	di
+	ld a,(wBalladeRhythmClock)
+	ld c,a
+	ld a,(wBalladeRhythmClock+1)
+	ei
+	ld h,d
+	ld l,Interaction.var3e
+	ld (hl),c
+	inc l
+	ld (hl),a
+	ret
+
+;;
+; hl = l'adresse en (de) ; e avance de 2
+@loadHl:
+	ld a,(de)
+	ld l,a
+	inc e
+	ld a,(de)
+	ld h,a
+	inc e
+	ret
+
+;;
+; (de) = hl ; e avance de 2
+@storeHl:
+	ld a,l
+	ld (de),a
+	inc e
+	ld a,h
+	ld (de),a
+	inc e
+	ret
+
+;;
+; La flèche dont l'adresse est en (de) :
+; @param[out]	hl	Son temps - maintenant
+; @param[out]	b	Sa direction (0-3 : gauche, bas, haut, droite)
+; @param[out]	c	Combien de temps la voix s'entend après un coup juste
+; @param[out]	cf	1 : plus de flèches
+@chartDelta:
+	call @loadHl
+	ldi a,(hl)
+	ld c,a
+	ldi a,(hl)
+	ld b,a
+	and c
+	inc a
+	scf
+	ret z
+	push hl
+	ld h,d
+	ld l,Interaction.var3e
+	ld a,c
+	sub (hl)
+	ld c,a
+	inc l
+	ld a,b
+	sbc (hl)
+	pop hl
+	ld e,a			; (e : le poids fort)
+	ldi a,(hl)
+	ld b,a
+	ld a,(hl)
+	ld h,e
+	ld l,c
+	ld c,a
+	or a
+	ret
+
+;;
+; Les flèches à lancer : celles qui touchent leur cible dans DANSE_TRAVEL images ou moins
+@spawn:
+	ld e,Interaction.var33
+	call @chartDelta
+	ret c
+	bit 7,h
+	jr nz,+			; déjà en retard : tout de suite, sur sa cible
+	ld a,h
+	or a
+	ret nz
+	ld a,l
+	cp DANSE_TRAVEL+1
+	ret nc
+	jr ++
++
+	xor a
+++
+	add a
+	add DANSE_TARGET_Y
+	ld c,a			; c = sa hauteur à l'écran
+	ld a,b
+	call @laneX
+	ldh a,(<hCameraY)
+	add c
+	ld h,a
+	ld b,$27
+	call createTerrierObjectAt
+	; la suivante
+	ld h,d
+	ld l,Interaction.var33
+	ld a,(hl)
+	add $04
+	ldi (hl),a
+	ld a,(hl)
+	adc $00
+	ld (hl),a
+	jr @spawn
+
+;;
+; l = le x (dans la salle) de la cible a (0-3)
+@laneX:
+	swap a
+	add DANSE_CENTER_X-24
+	ld l,a
+	ldh a,(<hCameraX)
+	add l
+	ld l,a
+	ret
+
+;;
+; La flèche à juger : un appui sur la croix près d'elle, ou elle est passée
+@judge:
+	ld e,Interaction.var35
+	call @chartDelta
+	ret c
+	; hl = son temps - maintenant : à DANSE_WINDOW images près ?
+	bit 7,h
+	jr nz,@late
+	ld a,h
+	or a
+	ret nz			; (trop tôt : rien)
+	ld a,l
+	cp DANSE_WINDOW+1
+	ret nc
+	jr @near
+@late:
+	ld a,h
+	inc a
+	jr nz,@judged		; (très en retard : ratée)
+	ld a,l
+	cp $100-DANSE_WINDOW
+	jr c,@judged		; trop tard : ratée
+@near:
+	ld a,(wGameKeysJustPressed)
+	and BTN_UP|BTN_DOWN|BTN_LEFT|BTN_RIGHT
+	ret z
+	ld e,a
+	ld a,b
+	ld hl,@laneButtons
+	rst_addAToHl
+	ld a,(hl)
+	and e
+	jr z,@judged		; la mauvaise direction : ratée
+	; juste ! la voix s'entend jusqu'à la flèche suivante ; la flèche disparaît
+	ld h,d
+	ld l,Interaction.var39
+	inc (hl)
+	ld l,Interaction.var3e
+	ld a,(hl)
+	add c
+	ld e,a
+	inc l
+	ld a,(hl)
+	adc $00
+	ld l,Interaction.var37
+	ld (hl),e
+	inc l
+	ld (hl),a
+	ld a,b
+	call @hitArrow
+	; ses yeux clignotent (elle a senti le coup)
+	ld h,d
+	ld l,Interaction.var3b
+	ld (hl),8
+	ld a,PALH_REX_STUN
+	call loadPaletteHeader
+@judged:
+	ld h,d
+	ld l,Interaction.var3a
+	inc (hl)
+	ld l,Interaction.var35
+	ld a,(hl)
+	add $04
+	ldi (hl),a
+	ld a,(hl)
+	adc $00
+	ld (hl),a
+	ret
+
+@laneButtons:
+	.db BTN_LEFT, BTN_DOWN, BTN_UP, BTN_RIGHT
+
+;;
+; La flèche la plus haute de la cible a disparaît (dans un petit nuage, sans bruit : la musique)
+@hitArrow:
+	call @laneX
+	ld c,l			; c = son x
+	ld b,$ff		; b = la plus haute
+	ld e,$00		; e = son objet
+	ld h,FIRST_INTERACTION_INDEX
+-
+	call @isArrow
+	jr nz,+
+	ld l,Interaction.xh
+	ld a,(hl)
+	cp c
+	jr nz,+
+	ld l,Interaction.yh
+	ld a,(hl)
+	cp b
+	jr nc,+
+	ld b,a
+	ld e,h
++
+	inc h
+	ld a,h
+	cp LAST_INTERACTION_INDEX+1
+	jr c,-
+	ld a,e
+	or a
+	ret z
+	ld h,a
+	ld l,Interaction.yh
+	ld b,(hl)
+	ld l,Interaction.xh
+	ld c,(hl)
+	push bc
+	call @deleteObject
+	call getFreeInteractionSlot
+	pop bc
+	ret nz
+	ld (hl),INTERAC_PUFF
+	inc l
+	ld (hl),$80		; (sans son)
+	ld l,Interaction.yh
+	ld (hl),b
+	ld l,Interaction.xh
+	ld (hl),c
+	ret
+
+;;
+; z si l'objet h est une flèche ($27)
+@isArrow:
+	ld l,Interaction.enabled
+	ld a,(hl)
+	or a
+	jr z,@notObject
+	inc l
+	ld a,(hl)
+	cp INTERAC_BALLADE_CREUSE
+	jr nz,@notObject
+	inc l
+	ld a,(hl)
+	cp $27
+	ret
+
+;;
+; z si l'objet h est un objet de la danse de sous-type c
+@isObjectC:
+	ld l,Interaction.enabled
+	ld a,(hl)
+	or a
+	jr z,@notObject
+	inc l
+	ld a,(hl)
+	cp INTERAC_BALLADE_CREUSE
+	jr nz,@notObject
+	inc l
+	ld a,(hl)
+	cp c
+	ret
+@notObject:
+	or $01
+	ret
+
+;;
+; L'objet h disparaît (vidé en entier, comme le jeu)
+@deleteObject:
+	ld l,Interaction.enabled
+	xor a
+-
+	ldi (hl),a
+	bit 7,l
+	jr z,-
+	ret
+
+;;
+; Les flèches qui restent disparaissent (et les cibles)
+@clearArrows:
+	ld c,$27
+	jr @clearObjects
+@clearTargets:
+	call @clearArrows
+	ld c,$28
+@clearObjects:
+	ld h,FIRST_INTERACTION_INDEX
+-
+	call @isObjectC
+	call z,@deleteObject
+	inc h
+	ld a,h
+	cp LAST_INTERACTION_INDEX+1
+	jr c,-
+	ret
+
+; Elle explose : des explosions partout sur elle (blanche un instant, puis ses couleurs)
 @explode:
+	ld e,Interaction.counter1
+	ld a,(de)
+	cp 50
+	ld a,PALH_REX
+	call z,loadPaletteHeader
 	ld a,(wFrameCounter)
 	and $07
 	jr nz,+
@@ -1061,7 +1437,75 @@ rex:
 
 
 ;;
-; Les projectiles de la machine ($0f) : var3e 0 un missile (il file vers là où était Link), 1 un
+; Une flèche de la danse ($27) : elle monte de 2 pixels par image jusqu'au-dessus des cibles. Sa
+; direction vient de son x (un objet tout neuf est vidé avant sa première image : la machine la
+; crée sous sa cible). Image 7 de art/rex.txt : la flèche du haut ($1c), celle de gauche ($1e) ;
+; retournées, celles du bas et de droite
+danseArrow:
+	ld e,Interaction.state
+	ld a,(de)
+	or a
+	jr nz,@run
+	inc a
+	ld (de),a
+	call interactionInitGraphics
+	call objectSetVisible80
+	ldh a,(<hCameraX)
+	ld b,a
+	ld e,Interaction.xh
+	ld a,(de)
+	sub b
+	sub DANSE_CENTER_X-24
+	swap a
+	and $03
+	add a
+	ld hl,@lanes
+	rst_addAToHl
+	ld e,Interaction.oamTileIndexBase
+	ld a,(de)
+	add (hl)
+	ld (de),a
+	inc hl
+	ld a,(hl)
+	ld e,Interaction.oamFlagsBackup
+	ld (de),a
+	inc e
+	ld (de),a
+@run:
+	ld h,d
+	ld l,Interaction.yh
+	dec (hl)
+	dec (hl)
+	ldh a,(<hCameraY)
+	add DANSE_TARGET_Y-$18
+	cp (hl)
+	ret c
+	jp interactionDelete
+
+; l'image en plus, les retournements et la palette : gauche, bas, haut, droite
+@lanes:
+	.db $02, $02
+	.db $00, $41
+	.db $00, $01
+	.db $02, $22
+
+;;
+; Les quatre cibles grises de la danse ($28) : fixes à l'écran, en haut
+danseTargets:
+	call terrierObjectInit
+	ldh a,(<hCameraY)
+	add DANSE_TARGET_Y
+	ld e,Interaction.yh
+	ld (de),a
+	ldh a,(<hCameraX)
+	add DANSE_CENTER_X
+	ld e,Interaction.xh
+	ld (de),a
+	ret
+
+
+;;
+; Les projectiles de la machine ($0f ; plus utilisés depuis qu'elle danse) : var3e 0 un missile (il file vers là où était Link), 1 un
 ; rocher (son ombre, puis il tombe), 2 une étincelle. Images (spr_ballade_rex, art/rex.txt) : 0-1 le
 ; missile, 2 le rocher, 3 son ombre, 4-5 l'étincelle
 ghost:

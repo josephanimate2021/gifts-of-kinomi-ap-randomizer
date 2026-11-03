@@ -418,6 +418,9 @@
 .define MUS_BALLADE_BRAISE $26 ; Mont-Braise (île 4 ; au lieu de MUS_TOKAY_HOUSE)
 .define MUS_BALLADE_FORGE $17 ; la Forge Endormie (donjon 4 ; au lieu de MUS_CROWN_DUNGEON)
 .define MUS_BALLADE_TEMPETES $2b ; le Chant des Tempêtes (fin du chapitre 6, les moulins ; au lieu de MUS_MAPLE_THEME)
+.define MUS_BALLADE_DEESSE $3c ; la Ballade de la Déesse (music/deesse.txt, la berceuse à l'envers) : 2e manche du boss en rythme du Terrier (au lieu de MUS_SYRUP)
+.define MUS_BALLADE_LORULE $33 ; Lorule Castle (music/lorule.txt, la partition de Denis) : 5e manche du boss en rythme du Terrier (au lieu de MUS_TWINROVA)
+.define MUS_BALLADE_GERUDO $0b ; la Vallée Gerudo (music/gerudo.txt ; au lieu du village de Lynna) : le forain, et la 4e manche du boss en rythme du Terrier
 ; MUS_BOSS ($2e) joue le thème du jeu (music/theme.txt), MUS_MINIBOSS ($2d) music/miniboss.txt
 .define SND_BALLADE_GULL  $d6
 

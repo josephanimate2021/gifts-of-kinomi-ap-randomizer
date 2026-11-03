@@ -45,6 +45,8 @@ dispatch:
 	.dw @zeldaVisit		; $24 Zelda en visite sur l'île de Marine (balladeFin.s)
 	.dw @tarkinNeighbor	; $25 Tarkin, le voisin de Marine (balladeFin.s)
 	.dw @ringGiver		; $26 un anneau gagné, donné quand la voie est libre (balladeFin.s)
+	.dw @danseArrow		; $27-$28 le boss du Terrier en rythme : une flèche, les cibles (balladeTerrier.s)
+	.dw @danseTargets
 
 @creuse:
 	jpab balladeCreuse.main
@@ -124,3 +126,7 @@ dispatch:
 	jpab balladeFin.tarkinNeighbor
 @ringGiver:
 	jpab balladeFin.ringGiver
+@danseArrow:
+	jpab balladeTerrier.danseArrow
+@danseTargets:
+	jpab balladeTerrier.danseTargets

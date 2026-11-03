@@ -406,6 +406,16 @@ interactionOamDataRexHurtA:
 	.db $10 $08 $14 $00
 	.db $10 $10 $16 $00
 ; sans blindage, pas B
+; BALLADE: les quatre cibles du boss du Terrier en rythme (spr_ballade_rex image 7 : $1c la flèche
+; vers le haut, $1e vers la gauche) : gauche, bas (retournée), haut, droite (retournée), 16 pixels
+; d'écart
+interactionOamDataBalladeDanseCibles:
+	.db $04
+	.db $08 $ec $1e $00
+	.db $08 $fc $1c $40
+	.db $08 $0c $1c $00
+	.db $08 $1c $1e $20
+
 interactionOamDataRexHurtB:
 	.db $08
 	.db $00 $f8 $08 $00

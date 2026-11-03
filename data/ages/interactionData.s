@@ -896,6 +896,9 @@ interactionebSubidData:
 	m_InteractionSubidData $11 $00 $70 ; $24 Zelda en visite sur l'île (son dessin d'Ages ; palette 7, PALH_ZELDA)
 	m_InteractionSubidData $eb $00 $60 ; $25 Tarkin, le voisin (spr_ballade_tarkin, de face ; palette 6, PALH_TARKIN)
 	m_InteractionSubidData $00 $00 $00 ; $26 un anneau gagné, donné quand la voie est libre (invisible)
+	; le boss du Terrier en rythme (code/ages/balladeTerrier.s) : spr_ballade_rex, image 7
+	m_InteractionSubidData $e6 $1c $11 ; $27 une flèche qui monte (un sprite ; palette 1 ou 2)
+	m_InteractionSubidData $e6 $00 $66 ; $28 les quatre cibles, en haut de l'écran (palette 6, animation 6)
 	m_InteractionSubidDataEnd
 
 ; BALLADE: les objets de nos îles (INTERAC_BALLADE_OBJECT) : spr_ballade_objects ($e3), image n =
