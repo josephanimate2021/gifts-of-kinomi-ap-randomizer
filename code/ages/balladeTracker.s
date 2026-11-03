@@ -5,7 +5,7 @@
 ; - les couplets (les essences, 7, + le 8e, chanté à Zelda à la fin : GLOBALFLAG_BALLADE_FIN) ;
 ; - les cœurs (11 au plus : 3 + 6 réceptacles + 10 quarts, les deux derniers restent des quarts) et les quarts
 ;   du cœur suivant ;
-; - les objets (@items, 15, et 3 améliorations : la Cape, l'Épée de Légende, le Bracelet des Âmes) ;
+; - les objets (@items, 15, et 3 améliorations : la Cape, la Master Sword, le Bracelet des Âmes) ;
 ; - les anneaux (les 5 de la Ballade) ;
 ; - les coffres (balladeTrackerChests.s, tools/make_tracker.py : le drapeau $20 de leur salle).
 ; Le pour cent : 20 points par sorte, au prorata (les cœurs : les quarts gagnés depuis les 3 du

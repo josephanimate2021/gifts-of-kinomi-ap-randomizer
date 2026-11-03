@@ -52,8 +52,8 @@
 ; @subid_32{Invisible : l'escalier d'un étage de la tour, quand l'étage est vaincu (plus d'ennemis)}
 ; @subid_33{Invisible : le Sablier retourné (le temps arrêté, puis les coups en crescendo)}
 ; @subid_34{Invisible : le souffle, dans la Fosse de Bulle (les cœurs se vident ; la profondeur permise)}
-; @subid_35{L'Épée de Légende, au fond de la Fosse de Bulle (5:d6, 7 m)}
-; @subid_36{Invisible : Ganon (5:c7) ne craint que l'Épée de Légende}
+; @subid_35{La Master Sword, au fond de la Fosse de Bulle (5:d6, 7 m)}
+; @subid_36{Invisible : Ganon (5:c7) ne craint que la Master Sword}
 ; @subid_37{Invisible, à l'auberge du Songe (2:9e) : après le chapitre 5, Marine fouille les poches de Link, les photos}
 ; @subid_38{Invisible, le 4F de la Tour (5:c8) : les Veilleurs en fantômes ; vu : « LIIINK! »}
 ; @subid_39{Invisible, à l'auberge du Songe (2:9e) : après les photos, le quiz de Marine sur Cocolint}
@@ -72,7 +72,7 @@
 ; @subid_47{La pierre de lave, sur l'îlot de la coulée du belvédère (1:2c) : le rouge}
 ; @subid_4f{Invisible, la Spirale Céleste : un pont qui se déploie case par case (Y = le pont)}
 ; @subid_50{Invisible, la Spirale Céleste : une bombe qui explose contre un cristal le frappe}
-; @subid_51{Invisible : devant Ganon sans l'Épée de Légende (Select), Marine casse le 4e mur}
+; @subid_51{Invisible : devant Ganon sans la Master Sword (Select), Marine casse le 4e mur}
 ; @subid_52{Invisible : la même, au premier coup sur Ganon (TX_5ae5 : Sauvegarder et Quitter)}
 ; @subid_53{Invisible : la progression vers le 100 % (le menu, 3e page, B)}
 ; @subid_55{Un trésor flottant de la Fosse de Bulle (rubis à 2 m et 4 m, quart de cœur à 3 m)}
@@ -3603,7 +3603,7 @@ surfInstructor:
 	call interactionAnimateAsNpc
 	jp villagerTalk
 
-	; La Fosse : une plongée ? (une fois l'Épée de Légende trouvée, une offre plus courte ; tant que
+	; La Fosse : une plongée ? (une fois la Master Sword trouvée, une offre plus courte ; tant que
 	; le quart de cœur de 3 m est là, Marine le signale : TX_5be5, Denis l'avait trouvé mal indiqué)
 @offer:
 	ld bc,TX_5ae1
@@ -4000,7 +4000,7 @@ sablier:
 	ld a,(de)
 	or a
 	jr z,@nextEnemy
-	; (Ganon ne craint que l'Épée de Légende : ganonGuard)
+	; (Ganon ne craint que la Master Sword : ganonGuard)
 	ld c,a
 	ld l,Enemy.id
 	ld a,(hl)
@@ -4155,7 +4155,7 @@ sablierHold:
 ; de 1 m. Il descend aussi bas qu'il a de couplets de Marine (essences, 7 m au plus) : un mètre
 ; plus bas (Denis : « le screen blackout si on n'a pas le niveau »), « l'eau est noire » (TX_5ae7),
 ; l'écran devient noir et Bulle remonte Link ; au club, elle se moque de lui (« t'es pas un vrai
-; Bubulle », TX_5be6 ; GLOBALFLAG_BALLADE_SYNCOPE). L'Épée de Légende (subid $35) est au fond, à
+; Bubulle », TX_5be6 ; GLOBALFLAG_BALLADE_SYNCOPE). La Master Sword (subid $35) est au fond, à
 ; 7 m : il faut sept couplets.
 ; ==================================================================================================
 .define FOSSE_FRAMES 90 ; (un quart de cœur toutes les 1,5 s)
@@ -4321,7 +4321,7 @@ fosseSurface:
 
 
 ; ==================================================================================================
-; L'Épée de Légende (subid $35), plantée dans le sable au fond de la Fosse (5:d6, 7 m) : Link la
+; La Master Sword (subid $35), plantée dans le sable au fond de la Fosse (5:d6, 7 m) : Link la
 ; touche (ou A) -> elle passe au-dessus de sa tête (TREASURE_SWORD, niveau 3, TX_001e), puis Bulle le
 ; remonte (TX_5ae4). Partie si Link l'a déjà. Pour descendre à 7 m, il faut sept couplets (fosseAir).
 ; ==================================================================================================
@@ -4465,7 +4465,7 @@ fosseTreasure:
 
 
 ; ==================================================================================================
-; Ganon (subid $36, dans 5:c7 ; il pose son arène 5:f5) ne craint que l'Épée de Légende. Sans elle,
+; Ganon (subid $36, dans 5:c7 ; il pose son arène 5:f5) ne craint que la Master Sword. Sans elle,
 ; son mode de collision devient celui d'un ennemi invincible (ENEMYCOLLISION_PODOBOO : l'épée
 ; rebondit, « bump », au lieu de le faire souffrir pour rien ; Denis) ; sa vie revient quand même
 ; s'il en perdait. Au premier coup, Marine parle de la Fosse (TX_5ae5) et propose de sortir ($52) ;
@@ -4588,9 +4588,9 @@ ganonEscapeSpawn:
 	ret
 
 ; ==================================================================================================
-; Devant Ganon sans l'Épée de Légende (subids $51, $52 ; Denis, 01/11 : « ça brise le 4e mur ») :
+; Devant Ganon sans la Master Sword (subids $51, $52 ; Denis, 01/11 : « ça brise le 4e mur ») :
 ; Marine casse le quatrième mur, TX_5ae5 : « Moi, à ta place, je ferais Sauvegarder et Quitter...
-; on n'a jamais eu cette discussion ! Va trouver l'épée 3, le Zora en sait quelque chose ». Le
+; on n'a jamais eu cette discussion ! Va trouver la Master Sword, le Zora en sait quelque chose ». Le
 ; joueur sauvegarde et quitte : il reprend au début de la tour (le point de retour est l'entrée
 ; depuis que Marine est libre : balladePrison.cagedMarine). $52 : le premier coup sur Ganon ;
 ; $51 : Select (marineTalk), devant Ganon sans l'épée.

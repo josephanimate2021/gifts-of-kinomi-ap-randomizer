@@ -66,7 +66,7 @@ marineTalk:
 	ld (hl),$01
 	ret
 +
-	; Devant Ganon (5:c7, son arène 5:f5) sans l'Épée de Légende : Sauvegarder et Quitter, l'épée 3
+	; Devant Ganon (5:c7, son arène 5:f5) sans la Master Sword : Sauvegarder et Quitter, la Master Sword
 	; (balladeObjects.ganonEscape)
 	ld a,(wActiveGroup)
 	cp $05

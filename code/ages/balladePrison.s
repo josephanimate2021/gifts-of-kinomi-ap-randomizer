@@ -8,7 +8,7 @@
 ; ENEMY_AMBI_GUARD, en fantômes de cauchemar) : vu, Link retourne au cachot ; un passage dans sa
 ; cellule le ramène à l'arrivée de l'étage où il a été pris. Au 5F, Marine, en mouette, est en cage
 ; dans la salle de Dark Link : elle l'encourage ; Dark Link battu, la cage s'ouvre, la 8e essence.
-; Puis le combat en rythme (l'Insomnis, 6F), et Ganon : sans l'Épée de Légende, Marine casse le
+; Puis le combat en rythme (l'Insomnis, 6F), et Ganon : sans la Master Sword, Marine casse le
 ; quatrième mur (« Sauvegarder et Quitter » : on revient au début de la tour) et l'envoie chez le
 ; Zora (la Fosse de Bulle). Au retour, un escalier de l'entrée monte tout droit au 6F.
 ;
@@ -243,7 +243,7 @@ warpInTower:
 ; - la première fois, quelques pas après l'arche : BONK, Link tombe ; Marine crie son nom ; écran
 ;   noir, ses objets confisqués ; il se réveille au cachot (prisonCell) ;
 ; - prisonnier : la herse est baissée sous l'arche (pas de sortie sans Marine) ;
-; - Ganon vu sans l'Épée de Légende (drapeau $20 de 5:c7), Marine libre : un escalier au milieu
+; - Ganon vu sans la Master Sword (drapeau $20 de 5:c7), Marine libre : un escalier au milieu
 ;   (5,7) monte tout droit au 6F (warpSources.s).
 ; ==================================================================================================
 kidnap:
