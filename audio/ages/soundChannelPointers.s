@@ -21,15 +21,15 @@ musMinigame:
 	.dw musMinigameChannel6
 	.db $ff
 
-musOverworld:
+musHyruleField:
 	.db $00
-	.dw musOverworldChannel0
+	.dw musHyruleFieldChannel0
 	.db $01
-	.dw musOverworldChannel1
+	.dw musHyruleFieldChannel1
 	.db $04
-	.dw musOverworldChannel4
+	.dw musHyruleFieldChannel4
 	.db $06
-	.dw musOverworldChannel6
+	.dw musHyruleFieldChannel6
 	.db $ff
 
 mus37:
@@ -503,6 +503,17 @@ musRiversideStation:
 	.dw musRiversideStationChannel6
 	.db $ff
 
+musMajestyAndGlory:
+	.db $00
+	.dw musMajestyAndGloryChannel0
+	.db $01
+	.dw musMajestyAndGloryChannel1
+	.db $04
+	.dw musMajestyAndGloryChannel4
+	.db $06
+	.dw musMajestyAndGloryChannel6
+	.db $ff
+
 musAmbiPalace:
 	.db $00
 	.dw musAmbiPalaceChannel0
@@ -580,15 +591,15 @@ musRalph:
 	.dw musRalphChannel6
 	.db $ff
 
-musLynnaCity:
+musCrownCity:
 	.db $00
-	.dw musLynnaCityChannel0
+	.dw musCrownCityChannel0
 	.db $01
-	.dw musLynnaCityChannel1
+	.dw musCrownCityChannel1
 	.db $04
-	.dw musLynnaCityChannel4
+	.dw musCrownCityChannel4
 	.db $06
-	.dw musLynnaCityChannel6
+	.dw musCrownCityChannel6
 	.db $ff
 
 musLynnaVillage:

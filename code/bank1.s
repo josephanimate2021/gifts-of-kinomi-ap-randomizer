@@ -3698,6 +3698,7 @@ cutscene01:
 	or a
 	jr nz,@doneUpdatingClock
 
+; Clock
 	ld a,(wActiveGroup)
 	ld hl,timeCanPassTable
 	rst_addDoubleIndex

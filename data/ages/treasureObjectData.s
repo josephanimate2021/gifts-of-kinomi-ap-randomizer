@@ -42,7 +42,7 @@ treasureObjectData:
 	/* $0d */ m_TreasurePointer treasureObjectData0d
 	/* $0e */ m_TreasurePointer treasureObjectData0e
 	/* $0f */ m_TreasureSubid   $38, $01, $2e, $21, TREASURE_OBJECT_SHOOTER_00
-	/* $10 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_10_00
+	/* $10 */ m_TreasurePointer treasureObjectData10
 	/* $11 */ m_TreasurePointer treasureObjectData11
 	/* $12 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_12_00
 	/* $13 */ m_TreasurePointer treasureObjectData13
@@ -106,7 +106,7 @@ treasureObjectData:
 	/* $4d */ m_TreasureSubid   $0a, $00, $0d, $3e, TREASURE_OBJECT_SCENT_SEEDLING_00
 	/* $4e */ m_TreasureSubid   $0a, $00, $47, $51, TREASURE_OBJECT_ZORA_SCALE_00
 	/* $4f */ m_TreasureSubid   $0a, $00, $56, $53, TREASURE_OBJECT_TOKAY_EYEBALL_00
-	/* $50 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_EMPTY_BOTTLE_00
+	/* $50 */ m_TreasurePointer treasureObjectData50
 	/* $51 */ m_TreasureSubid   $0a, $00, $55, $58, TREASURE_OBJECT_FAIRY_POWDER_00
 	/* $52 */ m_TreasureSubid   $0a, $00, $7d, $3c, TREASURE_OBJECT_CHEVAL_ROPE_00
 	/* $53 */ m_TreasureSubid   $00, $00, $ff, $00, TREASURE_OBJECT_MEMBERS_CARD_00
@@ -133,6 +133,7 @@ treasureObjectData01:
 	m_TreasureSubid $0a, $02, $20, $14, TREASURE_OBJECT_SHIELD_01
 	m_TreasureSubid $0a, $03, $21, $15, TREASURE_OBJECT_SHIELD_02
 	m_TreasureSubid $0a, $03, $ff, $15, TREASURE_OBJECT_SHIELD_03
+	m_TreasureSubid $38, $01, $ff, $13, TREASURE_OBJECT_SHIELD_04
 
 treasureObjectData03:
 	m_BeginTreasureSubids TREASURE_BOMBS
@@ -189,7 +190,7 @@ treasureObjectData11:
 
 treasureObjectData13:
 	m_BeginTreasureSubids TREASURE_SLINGSHOT
-	m_TreasureSubid $38, $01, <TX_00_GET_SLINGSHOT,      $7d, TREASURE_OBJECT_SLINGSHOT_00
+	m_TreasureSubid $38, $02, <TX_00_GET_SLINGSHOT,      $7d, TREASURE_OBJECT_SLINGSHOT_00
 	m_TreasureSubid $38, $02, <TX_00_GET_HYPERSLINGSHOT, $7e, TREASURE_OBJECT_SLINGSHOT_01
 
 treasureObjectData15:
@@ -219,6 +220,7 @@ treasureObjectData19:
 	m_TreasureSubid $29, $00, $2d, $20, TREASURE_OBJECT_SEED_SATCHEL_02
 	m_TreasureSubid $09, $00, $2d, $20, TREASURE_OBJECT_SEED_SATCHEL_03
 	m_TreasureSubid $01, $00, $80, $20, TREASURE_OBJECT_SEED_SATCHEL_UPGRADE
+	m_TreasureSubid $69, $00, $80, $20, TREASURE_OBJECT_SEED_SATCHEL_05
 
 treasureObjectData20:
 	m_BeginTreasureSubids TREASURE_EMBER_SEEDS
@@ -401,5 +403,15 @@ treasureObjectData5e:
 	m_BeginTreasureSubids TREASURE_ROCK_BRISKET
 	m_TreasureSubid $0a, $00, $3e, $4e, TREASURE_OBJECT_ROCK_BRISKET_00
 	m_TreasureSubid $10, $00, $3e, $4e, TREASURE_OBJECT_ROCK_BRISKET_01
+
+treasureObjectData50:
+	m_BeginTreasureSubids TREASURE_EMPTY_BOTTLE
+	m_TreasureSubid $08, $00, TX_00_GET_EMPTYBOTTLE, $83, TREASURE_OBJECT_EMPTY_BOTTLE_00
+	m_TreasureSubid $38, $00, TX_00_GET_EMPTYBOTTLE, $83, TREASURE_OBJECT_EMPTY_BOTTLE_01
+
+treasureObjectData10:
+	m_BeginTreasureSubids TREASURE_EMPTY_BOTTLE
+	m_TreasureSubid $08, $00, TX_00_GET_EMPTYBOTTLE, $83, TREASURE_OBJECT_10_00
+	m_TreasureSubid $38, $00, TX_00_GET_EMPTYBOTTLE, $83, TREASURE_OBJECT_EMPTY_BOTTLE_01
 
 .ends

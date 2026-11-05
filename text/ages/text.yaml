@@ -1088,6 +1088,25 @@ groups:
       good! Get your
       \col(1)feather\col(0) back!
 
+  - name: TX_00_GET_EMPTYBOTTLE
+    index: auto
+    text: >-
+      You got an
+      \col(1)empty bottle\col(0)!
+
+  - name: TX_00_GET_FAIRYBOTTLE
+    index: auto
+    text: >-
+      You bottled a
+      \col(1)fairy\col(0)!\stop
+
+      Let her go anywhere and she will heal you.
+
+  - name: TX_00_GET_WATERBOTTLE
+    index: auto
+    text: >-
+      You put \col(1)water\col(0) in the bottle!
+
 - group: 0x01
   data:
   - name: TX_0100
@@ -3750,7 +3769,7 @@ groups:
     text: |-
       Need some target
       practice? It's
-      only 10 Rupees!
+      free!
         \opt()Yes \opt()No
 
   - name: TX_0801
@@ -3929,7 +3948,7 @@ groups:
     index: 0x1a
     text: |-
       Try again for
-      10 Rupees?
+      free?
        \opt()Sure \opt()No
 
   - name: TX_081b
@@ -3942,7 +3961,7 @@ groups:
   - name: TX_081c
     index: 0x1c
     text: |-
-      Strike! -50 pts!
+      Strike! -20 pts!
 
 - group: 0x09
   data:
@@ -4669,6 +4688,34 @@ groups:
     text: |-
       Book of Might
       A hard-cover bound book.
+
+  - name: TX_09_EMPTYBOTTLE
+    index: auto
+    text: |-
+      Empty Bottle
+      A bottle of many possibilities.
+
+  - name: TX_09_FAIRYBOTTLE
+    index: auto
+    text: |-
+      Bottled Fairy
+      Let her go and she will heal you.
+
+  - name: TX_09_WATERBOTTLE
+    index: auto
+    text: |-
+      Water in Bottle
+      Try on many things.
+
+  - name: TX_09_CANTEMPTY
+    index: auto
+    text: >-
+      You can't use that here...
+
+  - name: TX_09_SOFTSOIL
+    index: auto
+    text: >-
+      \sfx($4d)You watered your seedling a little...
 
 - group: 0x0a
   data:
@@ -6602,6 +6649,14 @@ groups:
     text: |2-
         \opt()OK \opt()No thanks\cmd8(0x0f)
 
+  - name: TX_0e2c
+    index: 0x2c
+    text: |-
+      \col(1)Empty Bottle\col(0)\stop
+       \num1 Rupees
+      \jump(TX_0e2b)
+    null_terminator: False
+
 - group: 0x0f
   data:
   - name: TX_0f00
@@ -8340,11 +8395,12 @@ groups:
 
   - name: TX_1520
     index: 0x20
-    text: |-
-      They're building
-      a tower on the
-      other side of
-      the river.
+    text: >-
+      Hello, are you here to speak with the mayor?
+
+      I'm sorry but he is currently busy.
+
+      Please come back tomorrow.
 
   - name: TX_1521
     index: 0x21
@@ -9036,19 +9092,15 @@ groups:
   data:
   - name: TX_1d00
     index: 0x00
-    text: |-
-      Thank you.\stop
-      You've come all
-      the way from
-      \col(3)Hyrule\col(0), correct?
-      Pleased to meet
-      you. I am \col(3)Nayru\col(0).
-      I've been very
-      worried after
-      hearing that
-      \col(3)Labrynna\col(0) would
-      face many evil
-      troubles.
+    text: >-
+      Hello! And you are?\stop
+
+      \col(4)Farore\col(0)?
+      Nice to meet you.
+
+      I'm sorry you missed our service, 
+      but if you want to speak with our priest,
+      \col(3)Adlar\col(0), he is over to your left.
 
   - name: TX_1d01
     index: 0x01
@@ -9543,7 +9595,7 @@ groups:
   - name: TX_1e01
     index: 0x01
     text: |-
-      Sir, you must be
+      Ma'am, you must be
       smitten with the
       forest fairies!\stop
       How'd you like
@@ -9563,8 +9615,7 @@ groups:
       \col(3)Tingle\col(0) will give
       you his \col(1)chart\col(0)
       that shows the
-      way to the
-      secret island!
+      way to \col(3)Kinomi\col(0)!
 
   - name: TX_1e03
     index: 0x03
@@ -9695,6 +9746,37 @@ groups:
       are the coolest!
       Don't steal
       them!
+
+  - name: TX_1e11
+    index: 0x11
+    text: >-  
+      Oh, but do you have a \col(1)fairy\col(0)?
+
+      If you have a fairy, you must give it to me!
+
+      Please!!
+
+  - name: TX_1e12
+    index: 0x12
+    text: >- 
+      Give him the \col(1)fairy\col(0)
+      in your bottle?\stop
+
+      \opt()Sure
+
+      \opt()Maybe not...
+
+  - name: TX_1e13
+    index: 0x13
+    text: >- 
+      Yipee!! Here you go, friend!
+
+  - name: TX_1e14
+    index: 0x14
+    text: >- 
+      Oh...
+
+      I was hoping you'd have one...
 
 - group: 0x20
   data:
@@ -13666,6 +13748,46 @@ groups:
       eats \col(1)shields\col(0)!
       How frightful!
 
+  - name: TX_2c23
+    index: 0x23
+    text: >-
+      Hoh hoh! I am
+      
+      \col(3)Troy\col(0)! 
+
+      I think I saw you traveling with
+      my friend \Link once!
+
+      I summer here when I'm not in \col(1)Labrynna\col(0).
+
+  - name: TX_2c24
+    index: 0x24
+    text: >-
+      What I've been enjoying is
+      digging up the ground with
+      my \col(1)shovel\col(0)!\stop
+
+      Say, I'll trade you for it though
+      if you have any \col(1)bombs\col(0)?
+
+  - name: TX_2c25
+    index: 0x25
+    text: >-     
+      No? Too bad...
+
+  - name: TX_2c26
+    index: 0x26
+    text: >-  
+      I only need \col(1)four\col(0).
+
+      Trade bombs?
+        \opt()Yes \opt()No
+
+  - name: TX_2c27
+    index: 0x27
+    text: >-  
+      Thank you, again, miss!
+
 - group: 0x2d
   data:
   - name: TX_2d00
@@ -14106,9 +14228,12 @@ groups:
 
   - name: TX_2e01
     index: 0x01
-    text: |-
-      \left Rolling Ridge
-      \down Lynna City
+    text: >-
+      \left \col(1)Tingle\col(0)'s Many 
+          Maps!\stop
+      If you bring me down well, I have maps to sell!\stop
+
+      Please no \col(1)bombs\col(0)!
 
   - name: TX_2e02
     index: 0x02
@@ -18408,93 +18533,71 @@ groups:
 
   - name: TX_3710
     index: 0x10
-    text: |-
+    text: >-
       I am \col(3)Adlar\col(0).\stop
-      For fifty years,
-      I was a palace
-      advisor, but I
-      have since been
-      chased from the
-      palace and am
-      now retired. I
-      have known the
-      Queen since she
-      was young. She
-      always held the
-      people foremost
-      in her heart.
-      But since she
-      took that girl
-      \col(3)Nayru\col(0) in, she
-      has changed
-      completely...
-      She quit
-      listening to my
-      advice...
-      It was that girl
-      who suggested
-      I be banished,
-      but...
+
+      I am the priest over this temple to the
+      \col(3)Moon Goddess\col(0), \col(3)Temiar\col(0).\stop
+
+      She protects us on this island.
+
+      Would you like to hear more about her?
+        \opt()Yes \opt()No
 
   - name: TX_3711
     index: 0x11
-    text: |-
-      Just who is this
-      \col(3)Nayru\col(0)..?\stop
-      I can only see
-      her as a monster
-      in human guise.\stop
-      I wonder if the
-      Queen is
-      all right...
+    text: >-
+      Long ago, the moon had its own light,
+      a shining \col(3)blue\col(0) that made
+      men weep in its beauty.
+      
+      Then one day, \col(1)Lopollo\col(0), the \col(1)Sun God\col(0),
+      declared himself lord over all
+      creation, and the bringer of life.
+
+      He claimed without his heat and light,
+      no creature could survive.\n
+    null_terminator: False
 
   - name: TX_3712
     index: 0x12
-    text: |-
-      I thought \col(3)Nayru\col(0)
-      had gone, but
-      now it seems
-      something is
-      wrong with the
-      Queen. She gives
-      me that same
-      evil feeling
-      \col(3)Nayru\col(0) used to.
-      It's like the
-      Queen is now
-      the beast in
-      human guise...\stop
-      I hope the Queen
-      is all right...
+    text: >-
+      This angered Temiar as she knew without her water
+      and respite from her brother's heat,
+      the creatures of earth would perish all the same.\stop
+
+      She and Lopollo fought for seemingly no end,
+      but finally Temiar found a way to appease him.
+
+      She let him shine his light onto her so that
+      even during the night, his brilliance would be known.\stop
+
+      Never again has the moon shown this hidden blue,
+      but in our temple, we've shown her in
+      her majesty and beauty.
 
   - name: TX_3713
     index: 0x13
     text: |-
-      The Queen is
-      back to her kind
-      old self. That's
-      good and well,
-      but she says
-      she's going on
-      an eye-opening
-      journey to other
-      lands.\stop
-      ...I hope she'll
-      be all right...
+      Our service has already concluded for today,
+      but you may pray to her any time
+      you wish, either here at the
+      altar or at the shrine we
+      have near the entrance.
 
   - name: TX_3714
     index: 0x14
-    text: |-
-      I am \col(3)Plen\col(0), the
-      mayor here in
-      \col(3)Lynna City\col(0).\stop
-      \col(3)Lynna\col(0) has a long
-      history reaching
-      back hundreds
-      of years. Back
-      then, it was
-      \col(3)Lynna Village\col(0)--
-      not a city.
+    text: >-
+      I am \col(3)Dotour\col(0),
+      the mayor here in this fine city of
+      \col(1)Blank City\col(0).\stop
+
+      This island of \col(3)Wasureta\col(0)
+      is a major hub prior to
+      arriving in \col(3)Kinomi\col(0),
+      the land just north of here.\stop
+      
+      I hope you enjoy your stay.
 
   - name: TX_3715
     index: 0x15

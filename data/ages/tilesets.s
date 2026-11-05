@@ -622,7 +622,7 @@ tilesetData:
 	.db $15, $05, $10
 
 	; 0x57
-	.db $2f, $12
+	.db $2f, $00
 	.db UNIQUE_GFXH_NONE
 	.db GFXH_TILESET_INDOORS
 	.db PALH_TILESET_MAKU_TREE_INSIDE
@@ -738,10 +738,10 @@ tilesetData:
 	.db $0f $01 $00 $00 PALH_TILESET_FOREST_OF_TIME $00 $00 $01 ; Tileset 0x68
 	.db $0f $01 $00 $00 PALH_cc $00 $00 $01 ; Tileset 0x69
 	.db $0f $01 $00 $00 PALH_cc $00 $00 $01 ; Tileset 0x6a
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6b
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6c
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6d
-	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6e
+	.db $0f $01 $00 $00 PALH_cd $00 $00 $00 ; Tileset 0x6b
+	.db $0f $01 $00 $00 PALH_cc $00 $00 $03 ; Tileset 0x6c
+	.db $0f $01 $00 $00 PALH_cc $00 $00 $00 ; Tileset 0x6d
+	.db $0f $01 $00 $00 PALH_cc $00 $00 $01 ; Tileset 0x6e
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x6f
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x70
 	.db $0f $01 $00 $00 $00 $00 $00 $00 ; Tileset 0x71

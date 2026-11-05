@@ -28,6 +28,7 @@
 	ITEM_BOMBCHUS			db ; 0x0d
 	ITEM_FLUTE			db ; 0x0e
 	ITEM_SHOOTER			db ; 0x0f
+	ITEM_EMPTY_BOTTLE	.db	; 0x10
 	ITEM_10				db ; 0x10
 	ITEM_HARP			db ; 0x11
 	ITEM_12				db ; 0x12
@@ -48,6 +49,7 @@
 	; Used to give minecarts collisions with enemies
 	ITEM_MINECART_COLLISION		db ; 0x1d
 
+	ITEM_BOOK_OF_MIGHT		.db ; 0x1e
 	ITEM_FOOLS_ORE			db ; 0x1e
 	ITEM_1f				db ; 0x1f
 

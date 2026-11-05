@@ -53,7 +53,7 @@ interactionData:
 	/* $26 */ m_InteractionData $00 $00 $00
 	/* $27 */ m_InteractionData $00 $00 $00
 	/* $28 */ m_InteractionData $46 $00 $00
-	/* $29 */ m_InteractionData $62 $12 $00
+	/* $29 */ m_InteractionData $62 $12 $10
 	/* $2a */ m_InteractionData $55 $1a $00
 	/* $2b */ m_InteractionData $47 $00 $00
 	/* $2c */ m_InteractionData $a2 $00 $20
@@ -66,7 +66,7 @@ interactionData:
 	/* $33 */ m_InteractionData $00 $00 $00
 	/* $34 */ m_InteractionData $3d $00 $60
 	/* $35 */ m_InteractionData interaction35SubidData
-	/* $36 */ m_InteractionData $26 $00 $12
+	/* $36 */ m_InteractionData $26 $00 $32
 	/* $37 */ m_InteractionData $24 $00 $12
 	/* $38 */ m_InteractionData interaction38SubidData
 	/* $39 */ m_InteractionData $4e $10 $30
@@ -262,7 +262,7 @@ interaction63SubidData:
 	m_InteractionSubidData $79 $0a $10
 	m_InteractionSubidData $79 $08 $00
 	m_InteractionSubidData $00 $00 $00
-	m_InteractionSubidData $7d $00 $00
+	m_InteractionSubidData $7d $00 $00 ; $10
 	m_InteractionSubidData $7d $02 $50
 	m_InteractionSubidData $7d $04 $40
 	m_InteractionSubidData $7d $06 $00
@@ -278,7 +278,7 @@ interaction63SubidData:
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $7d $1e $40
-	m_InteractionSubidData $7c $00 $50
+	m_InteractionSubidData $7c $00 $50 ; $20
 	m_InteractionSubidData $7c $14 $50 ; CROSSITEMS: Seed Shooter gfx moved
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $7c $16 $03
@@ -294,7 +294,7 @@ interaction63SubidData:
 	m_InteractionSubidData $78 $08 $43
 	m_InteractionSubidData $78 $08 $53
 	m_InteractionSubidData $00 $00 $00
-	m_InteractionSubidData $79 $00 $00
+	m_InteractionSubidData $79 $00 $00 ; $30
 	m_InteractionSubidData $79 $04 $53
 	m_InteractionSubidData $79 $04 $00
 	m_InteractionSubidData $79 $14 $00
@@ -310,7 +310,7 @@ interaction63SubidData:
 	m_InteractionSubidData $65 $10 $23
 	m_InteractionSubidData $83 $00 $03
 	m_InteractionSubidData $45 $06 $20
-	m_InteractionSubidData $7a $00 $33
+	m_InteractionSubidData $7a $00 $33 ; $40
 	m_InteractionSubidData $7a $04 $13
 interaction17SubidData:
 	m_InteractionSubidData $7a $0c $50
@@ -328,7 +328,7 @@ interaction18SubidData:
 	m_InteractionSubidData $82 $0e $12
 	m_InteractionSubidData $82 $04 $53
 	m_InteractionSubidData $83 $12 $0d
-	m_InteractionSubidData $75 $1c $30
+	m_InteractionSubidData $75 $1c $30 ; $50
 	m_InteractionSubidData $81 $0c $13
 	m_InteractionSubidData $7a $16 $03
 	m_InteractionSubidData $82 $1a $50
@@ -345,7 +345,7 @@ interaction18SubidData:
 	m_InteractionSubidData $00 $00 $00
 interactiond7SubidData:
 	m_InteractionSubidData $83 $12 $0d
-	m_InteractionSubidData $7f $00 $13
+	m_InteractionSubidData $7f $00 $13 ; $60
 	m_InteractionSubidData $7f $04 $02
 	m_InteractionSubidData $7f $06 $32
 	m_InteractionSubidData $7f $08 $22
@@ -381,7 +381,9 @@ interactiond7SubidData:
 	m_InteractionSubidData $84 $04 $40 ; $7f (Magic Boomerang)
 	m_InteractionSubidData $7d $0e $50 ; $80 (Roc's Cape)
 	m_InteractionSubidData $7d $10 $20 ; $81 (Rod of Seasons)
-	m_InteractionSubidData $7d $14 $00 ; $82 (Fool's Ore)
+	m_InteractionSubidData $7d $14 $20 ; $82 (Fool's Ore)
+
+	m_InteractionSubidData $82 $10 $32 ; $83 (empty bottle)
 
 	m_InteractionSubidDataEnd
 
@@ -497,10 +499,10 @@ interaction3aSubidData:
 	m_InteractionSubidData $5c $10 $12
 	m_InteractionSubidData $5c $10 $11
 interaction3bSubidData:
+	m_InteractionSubidData $5c $00 $22 ; Mayor's attendant
 	m_InteractionSubidData $3f $00 $22
 	m_InteractionSubidData $3f $00 $22
 	m_InteractionSubidData $3f $00 $22
-	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $5c $00 $22
 	m_InteractionSubidData $5c $00 $22
@@ -548,6 +550,18 @@ interactione0SubidData:
 	m_InteractionSubidData $70 $00 $10
 	m_InteractionSubidData $70 $08 $30
 interaction47SubidData:
+	m_InteractionSubidData $79 $0a $10 ; $00
+	m_InteractionSubidData $78 $02 $59 ; $01
+	m_InteractionSubidData $78 $10 $40 ; $02
+	m_InteractionSubidData $7d $06 $00 ; $03
+	m_InteractionSubidData $82 $14 $33 ; $04
+	m_InteractionSubidData $82 $12 $32 ; $05
+	m_InteractionSubidData $82 $0c $52 ; $06
+	m_InteractionSubidData $79 $10 $22 ; $07
+	m_InteractionSubidData $79 $0a $10 ; $08
+	m_InteractionSubidData $7c $16 $03 ; $09
+	m_InteractionSubidData $7d $08 $50 ; $0a
+/*
 	m_InteractionSubidData $79 $14 $10
 	m_InteractionSubidData $78 $02 $59
 	m_InteractionSubidData $79 $0a $10
@@ -570,6 +584,7 @@ interaction47SubidData:
 	m_InteractionSubidData $79 $0a $10
 	m_InteractionSubidData $79 $14 $20
 	m_InteractionSubidData $79 $10 $22
+*/
 interaction4aSubidData:
 	m_InteractionSubidData $6b $00 $60
 	m_InteractionSubidData $6b $00 $60
@@ -616,6 +631,8 @@ interaction68SubidData:
 
 interaction6bSubidData:
 	m_InteractionSubidData $00 $00 $00
+	m_InteractionSubidData $81 $10 $32
+/*
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $00 $00 $00
 	m_InteractionSubidData $58 $00 $00
@@ -638,6 +655,7 @@ interaction6bSubidData:
 	m_InteractionSubidData $4c $1c $49
 	m_InteractionSubidData $6d $00 $64
 	m_InteractionSubidData $00 $06 $aa
+*/
 	m_InteractionSubidDataEnd
 
 interaction6dSubidData:

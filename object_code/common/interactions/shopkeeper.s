@@ -13,6 +13,16 @@ checkReloadShopItemTiles:
 	push de
 	ld a,UNCMP_GFXH_11
 	call loadUncompressedGfxHeader
+	ld a,(wActiveGroup)
+	cpa >ROOM_AGES_5e1
+	jr nz,@end
+	ld a,(wActiveRoom)
+	cpa <ROOM_AGES_5e1
+	jr nz,@end
+; loads extra line
+	lda UNCMP_GFXH_AGES_EXTRA_SHOP
+	call loadUncompressedGfxHeader
+@end:
 	pop de
 	ret
 
@@ -149,10 +159,12 @@ shopkeeperState1:
 	ld e,Interaction.subid
 	ld a,(de)
 	and $01
-	ld c,$69
+; [subid] == $00,$02
+	ld c,$99;$69
 	ld b,(hl)
-	ld a,$69
+	ld a,$99;$69
 	jr z,+
+; [subid] == $01
 	ld b,$27
 	ld c,(hl)
 	ld a,$27
@@ -579,24 +591,27 @@ shopkeeperCheckLinkHasItemAlready:
 
 	ld h,>wc600Block
 	ld a,b
-	cp $13
+	cp $08 ; second GASHA_SEED
 	ret z
 
 	cp $03
 	jr z,@shield
-	cp $11
+	cp $0a;$11
 	jr z,@shield
+/*
 	cp $12
 	jr z,@shield
-
-	cp $0d
+*/
+	cp $09;$0d
 	jr z,@flute
 
 	ld l,<wNumBombs
-	cp $04
+	cp $02;$04
 	jr z,+
 
 	ld l,<wLinkHealth
+	cpa $01
+	ret nz
 +
 	ldi a,(hl)
 	cp (hl)

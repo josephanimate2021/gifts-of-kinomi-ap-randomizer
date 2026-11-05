@@ -120,8 +120,24 @@ wChannelWaitCounters: ; $c075
 	dsb 8
 wChannelVolumes: ; $c07d
 	dsb 8
-
 ; $c085-$c09f unused?
+
+; =================================
+; Custom Music Variables 1
+; =================================
+wChannelAddressPointers: ;$cddb/$cc3b
+	dsw 8
+wChannelTranspose: ; $c580
+	dsb 5
+wChannelJumpIndex: ; $c586
+; Set by 
+	db;dsb 8
+wLastChannelJumpIndex: ; $c587
+	db
+wChannelJumpIndexTimer: ; $c588
+; Used to count down how long Link has been idle
+	db
+
 
 .ENDS
 
@@ -337,6 +353,11 @@ wObjectsToDraw: ; $c500
 
 ; $c580-$c5af unused?
 
+wChannelLoopPointers: ; $c08b
+	dsw 8
+wChannelLoopCounters: ; $c085
+	dsb 8
+
 .ENDS
 
 ; ==================================================================================================
@@ -374,6 +395,7 @@ wUnappraisedRings: ; $c5c0
 wUnappraisedRingsEnd: ; $c600
 	.db
 
+
 wFirstClockVar:
 	.db
 wTimeOfDay:
@@ -395,6 +417,7 @@ wDay:
 wTimeFlags:
 	db
 ; bit 0 set if slower time
+
 
 
 ; ==================================================================================================
@@ -887,6 +910,12 @@ wJabuWaterLevel: ; $c6e9
 wWildTokayGameLevel: ; $c6ea
 ; Goes up to 4. (Level 0 is playing for the scent seedling.)
 	db
+
+wEmptyBottleItem:
+; $00: empty
+; $01: fairy
+; $02: water
+	.db
 
 wMakuTreeSeedSatchelXPosition: ; $c6eb
 	db

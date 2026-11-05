@@ -90,9 +90,9 @@ group0WarpSources:
 	m_StandardWarp $0 $89 $17 $2 $4
 	m_StandardWarp $0 $a3 $38 $3 $4
 	m_StandardWarp $0 $bd $31 $2 $4
-	m_StandardWarp $0 $c5 $27 $3 $4
+	m_PointerWarp  $c5 group0Roomc5WarpSources
 	m_StandardWarp $0 $cd $29 $2 $4
-	m_StandardWarp $0 $da $3a $3 $4
+	m_StandardWarp $0 $da $53 $1 $4
 	m_StandardWarp $0 $dd $08 $2 $4
 	m_StandardWarp $0 $3a $1a $3 $4
 	m_PointerWarp     $38 warpSource76e6
@@ -116,6 +116,28 @@ group0WarpSources:
 	m_StandardWarp $0 $cb $19 $1 $4
 	m_StandardWarp $0 $cc $51 $1 $4
 	m_StandardWarp $0 $dc $52 $1 $4
+	m_PointerWarp  $d8 group0Roomd8WarpSources
+	m_StandardWarp $0 $d6 $55 $1 $4
+	m_PointerWarp  $d7 group0Roomd7WarpSources
+	m_PointerWarp  $c8 group0Roomc8WarpSources
+	m_StandardWarp $0 $97 $56 $1 $4
+	m_StandardWarp $0 $99 $57 $1 $4
+	m_WarpListEndNoDefault
+group0Roomc5WarpSources:
+	m_PositionWarp $65 $58 $1 $4
+	m_PositionWarp $15 $5e $0 $4
+	m_WarpListEndNoDefault
+group0Roomc8WarpSources:
+	m_PositionWarp $65 $1b $1 $4
+	m_WarpListEndNoDefault
+group0Roomd7WarpSources:
+	m_PositionWarp $43 $42 $5 $4
+	m_PositionWarp $45 $05 $5 $4
+	m_PositionWarp $47 $04 $5 $4
+	m_WarpListEndNoDefault
+group0Roomd8WarpSources:
+	m_PositionWarp $35 $32 $0 $4
+	m_PositionWarp $63 $68 $5 TRANSITION_SRC_FADEOUT
 	m_WarpListEndNoDefault
 group0RoomdbWarpSources:
 	m_PositionWarp $42 $4b $1 $4
@@ -127,9 +149,9 @@ group0RoomeaWarpSources:
 	m_PositionWarp $28 $4a $1 $4
 	m_WarpListEndNoDefault
 group0Roome8WarpSources:
-	m_PositionWarp $53 $08 $0 $4
-	m_PositionWarp $55 $4d $0 $4
-	m_PositionWarp $34 $4e $0 $4
+	m_PositionWarp $53 $25 $1 $4
+	m_PositionWarp $55 $54 $1 $4
+	m_PositionWarp $34 $17 $1 $4
 	m_WarpListEndNoDefault
 
 warpSource769a:
@@ -292,6 +314,15 @@ group1WarpSources:
 	m_StandardWarp $0 $e5 $4e $1 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $0 $e4 $4f $1 TRANSITION_SRC_FADEOUT
 	m_StandardWarp $08 $e3 $51 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $e1 $54 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $03 $e6 $46 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $f6 $08 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $f7 $4d $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $e8 $56 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $e9 $58 $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $f9 $4e $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $ea $5c $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $04 $fb $34 $0 TRANSITION_SRC_LEAVESCREEN
 	m_WarpListEndNoDefault
 
 warpSource7836:
@@ -459,7 +490,6 @@ group3WarpSources:
 	m_StandardWarp $4 $bf $25 $2 $3
 	m_StandardWarp $0 $c1 $2c $3 $4
 	m_StandardWarp $0 $c5 $0a $2 $4
-	m_StandardWarp $0 $c7 $42 $3 $4
 	m_StandardWarp $4 $ce $44 $0 $3
 	m_StandardWarp $4 $cf $3f $1 $3
 	m_PointerWarp     $d0 warpSource7ac6
@@ -467,19 +497,11 @@ group3WarpSources:
 	m_StandardWarp $4 $df $24 $3 $3
 	m_StandardWarp $4 $e3 $2a $2 $3
 	m_StandardWarp $4 $e4 $2b $2 $3
-	m_StandardWarp $4 $e5 $29 $3 $3
-	m_StandardWarp $4 $e6 $2a $3 $3
-	m_StandardWarp $4 $e7 $17 $1 $3
-	m_StandardWarp $4 $e8 $20 $2 $3
-	m_StandardWarp $0 $e9 $25 $1 $4
 	m_StandardWarp $4 $ea $0a $0 $3
 	m_StandardWarp $8 $ec $0d $0 $3
 	m_StandardWarp $4 $ed $37 $0 $3
 	m_StandardWarp $4 $ee $41 $0 $3
 	m_StandardWarp $4 $ef $36 $1 $3
-	m_StandardWarp $4 $f6 $46 $0 $3
-	m_StandardWarp $4 $f7 $32 $0 $3
-	m_StandardWarp $4 $f8 $34 $0 $3
 	m_StandardWarp $4 $fa $2d $1 $3
 	m_StandardWarp $4 $fb $2d $0 $3
 	m_StandardWarp $4 $fc $24 $1 $3
@@ -691,10 +713,11 @@ group5WarpSources:
 	m_StandardWarp $0 $dd $49 $2 $2
 	m_StandardWarp $0 $de $08 $3 $2
 	m_StandardWarp $0 $df $4c $2 $2
-	m_StandardWarp $4 $e0 $1b $1 $3
-	m_StandardWarp $0 $e1 $0c $3 $2
+	m_StandardWarp $08 $e0 $57 $0 $3
+	m_StandardWarp $04 $e1 $5a $0 TRANSITION_SRC_LEAVESCREEN
+	m_StandardWarp $08 $e1 $59 $0 TRANSITION_SRC_LEAVESCREEN
 	m_StandardWarp $4 $e2 $23 $0 $3
-	m_StandardWarp $0 $e3 $0a $3 $2
+	m_StandardWarp $0 $e3 $5b $0 $2
 	m_StandardWarp $4 $e5 $0d $1 $3
 	m_StandardWarp $8 $e6 $0e $1 $3
 	m_StandardWarp $0 $e8 $50 $0 $2

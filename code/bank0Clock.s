@@ -56,7 +56,7 @@ updateTimeOfDayPalette:
 	.dw @normalPalette
 .ifdef ROM_AGES
 	.dw @dawnDuskPalette
-	.dw @nightPalette
+	.dw @normalPalette;@nightPalette
 	.dw @dawnDuskPalette
 .else ; ROM_SEASONS
 	.dw @duskPalette
@@ -72,8 +72,20 @@ updateTimeOfDayPalette:
 @dawnDuskPalette:
 	call checkForDawnDuskPaletteExceptions
 	jr c,@normalPalette
-	ld a,PALH_TILESET_OVERWORLD_PAST_ALTERNATE
+
+	ld a,(wTimeOfDay)
+	sra a
+	ld hl,@@paletteHeaders
+	rst_addAToHl
+	ld a,(hl)
 	ret
+
+@@paletteHeaders:
+	.db DUSK_PALETTE_HEADER
+	.db DAWN_PALETTE_HEADER
+@@paletteData:
+	.dw DUSK_PALETTE_DATA
+	.dw DAWN_PALETTE_DATA
 
 .else ; ROM_SEASONS
 @duskPalette:
@@ -124,3 +136,106 @@ getDayNightCombination:
 	pop hl
 	ret
 */
+
+;;
+; @param	a	Palette header to load (see data/[ages|seasons]/paletteHeaders.s)
+loadPaletteData:
+	push de
+	ld l,a
+	ld a,($ff00+R_SVBK)
+	ld c,a
+	ldh a,(<hRomBank)
+	ld b,a
+	push bc
+	ld a,:bank1Moveable.paletteHeaderTable
+	setrombank
+
+	ld a,l
+	ld hl,bank1Moveable.paletteHeaderTable
+	rst_addDoubleIndex
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a
+; load palette data address
+	inc hl
+	ldi a,(hl)
+	ld h,(hl)
+	ld l,a	
+
+	pop bc
+	ld a,b
+	setrombank
+	ld a,c
+	ld ($ff00+R_SVBK),a
+	pop de
+	ret
+
+; param bc: time to set the clock
+setTime:
+	push hl
+	ld hl,wClock
+	ld (hl),c
+	inc l
+	ld (hl),b
+	pop hl
+	ret
+
+
+compareTime:
+	call checkTime
+	cpa $00
+	ret
+
+;;
+; Checks if it is after this day and time
+; param a: Day
+; param bc: time to check
+checkDay:
+	push hl
+	ld hl,wDay
+	cp (hl)
+	pop hl
+	ret
+
+; param bc: time to check
+checkTime:
+	push hl
+	ld hl,wClock
+	jp compareHlToBc
+	pop hl
+	ret
+
+checkBottleItem:
+	ld b,a
+checkBottleItem_paramB:
+	push hl
+	ld a,(wEmptyBottleItem)
+	cp b
+	jr nz,@noItem	
+
+	lda TREASURE_EMPTY_BOTTLE
+	ld hl,wInventoryB
+	cp (hl)
+	jr z,@hasBottleEquipped
+	inc l
+	cp (hl)
+	jr z,@hasBottleEquipped
+
+@noItem:
+	scf 
+	ccf
+	jr +
+@hasBottleEquipped:
+; has item
+	scf
++
+	pop hl
+	ret
+
+emptyBottleItem:
+	lda $00
+	ld (wEmptyBottleItem),a
+emptyBottle_refreshGfx:
+	ld hl,wStatusBarNeedsRefresh
+	set 0,(hl)
+	ret

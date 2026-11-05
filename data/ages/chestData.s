@@ -17,6 +17,7 @@ chestDataGroupTable:
 	.dw chestGroup7Data
 
 chestGroup0Data:
+	m_ChestData $12, $87, TREASURE_OBJECT_SEED_SATCHEL_05
 	m_ChestData $49, $51, TREASURE_OBJECT_RUPEES_04
 	m_ChestData $51, $49, TREASURE_OBJECT_RUPEES_04
 	m_ChestData $36, $84, TREASURE_OBJECT_RUPEES_05
@@ -27,6 +28,7 @@ chestGroup0Data:
 	.db $ff
 
 chestGroup1Data:
+	m_ChestData $53, $f0, TREASURE_OBJECT_RUPEES_04
 	m_ChestData $43, $6d, TREASURE_OBJECT_RING_27
 	.db $ff
 
@@ -45,7 +47,6 @@ chestGroup2Data:
 chestGroup3Data:
 	m_ChestData $24, $0e, TREASURE_OBJECT_RING_26
 	m_ChestData $18, $1f, TREASURE_OBJECT_RUPEES_06
-	m_ChestData $35, $e8, TREASURE_OBJECT_NONE_00
 	m_ChestData $35, $ff, TREASURE_OBJECT_NONE_00
 	m_ChestData $18, $f9, TREASURE_OBJECT_RING_20
 	m_ChestData $34, $fd, TREASURE_OBJECT_HEART_PIECE_01
@@ -108,6 +109,8 @@ chestGroup4Data:
 	.db $ff
 
 chestGroup5Data:
+	m_ChestData $46, $e2, TREASURE_OBJECT_RUPEES_07
+	m_ChestData $00, $e1, TREASURE_OBJECT_GORON_LETTER_00
 	m_ChestData $17, $13, TREASURE_OBJECT_MERMAID_SUIT_00
 	m_ChestData $25, $14, TREASURE_OBJECT_SMALL_KEY_03
 	m_ChestData $53, $1b, TREASURE_OBJECT_SMALL_KEY_03
@@ -156,8 +159,6 @@ chestGroup5Data:
 	m_ChestData $15, $dd, TREASURE_OBJECT_BOMBS_00
 	m_ChestData $81, $c0, TREASURE_OBJECT_RUPEES_04
 	m_ChestData $24, $c0, TREASURE_OBJECT_RUPEES_04
-	m_ChestData $83, $e1, TREASURE_OBJECT_RUPEES_05
-	m_ChestData $22, $e0, TREASURE_OBJECT_GASHA_SEED_01
 	m_ChestData $47, $b3, TREASURE_OBJECT_GASHA_SEED_01
 	m_ChestData $57, $cb, TREASURE_OBJECT_RING_1c
 	m_ChestData $43, $c7, TREASURE_OBJECT_RING_1a
