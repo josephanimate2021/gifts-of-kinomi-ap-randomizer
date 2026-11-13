@@ -63,6 +63,7 @@ mermaidsCave_spawnBridge_room38:
 	ld bc,$0800
 	ld e,$69
 	jp spawnBridge
+	
 
 herosCave_spawnBridge_roomc9:
 	call getThisRoomFlags
@@ -77,6 +78,11 @@ ancientTomb_startWallRetractionCutscene:
 	ld a,CUTSCENE_WALL_RETRACTION
 	ld (wCutsceneTrigger),a
 	jp resetLinkInvincibility
+
+;;
+playSecretSound:
+	ld a,SND_SOLVEPUZZLE
+	call playSound
 
 ;;
 moonlitGrotto_enableControlAfterBreakingCrystal:

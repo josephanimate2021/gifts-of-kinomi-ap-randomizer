@@ -6645,34 +6645,19 @@ groups:
   - name: TX_1000
     index: 0x00
     text: |-
-      We're supposed
-      to finish
-      tomorrow, but
-      we're way behind
-      schedule! We'll
-      never make it!
+      I will be out of your way now, just a second.
 
   - name: TX_1001
     index: 0x01
     text: |-
-      Huh? A diggin'
-      tool? That's the
-      spirit, sonny!
-      Here! You can
-      have this
-      \col(1)Shovel\col(0)! Can you
-      use the \col(1)Shovel\col(0)
-      to move that
-      dirt outta the
-      way?
+      \link, I am so glad that you could make it! 
+      That weirdo pumpkin monster is up to no good in that room and is the reason on why we all can't dream here on Mist Island anymore.\stop
+      That lantern you have though won't be enough to help you beat him to the ground. Take this item instead!
 
   - name: TX_1002
     index: 0x02
     text: |-
-      We're workin'
-      hard on this
-      tower! Help us
-      out!
+      That bracelet is going to give you the strength to lift up the pumpkin off his head when he gets stunned after hitting your sword to his body mutiple times. You got this \link!
 
   - name: TX_1003
     index: 0x03
