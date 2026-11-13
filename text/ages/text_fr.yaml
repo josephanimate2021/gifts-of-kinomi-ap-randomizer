@@ -6636,24 +6636,16 @@ groups:
   - name: TX_1001
     index: 0x01
     text: |-
-      Huh? A diggin'
-      tool? That's the
-      spirit, sonny!
-      Here! You can
-      have this
-      \col(1)Shovel\col(0)! Can you
-      use the \col(1)Shovel\col(0)
-      to move that
-      dirt outta the
-      way?
+      \link, je suis tellement content que tu aies pu venir! 
+      Ce monstre de citrouille bizarre mijote quelque chose de louche dans cette pièce, 
+      et c'est à cause de lui qu'on ne peut plus rêver ici, sur l'île de Mist.\stop 
+      Mais cette lanterne que tu as ne suffira pas pour te permettre de le mettre K.O. Prends plutôt cet objet!
 
   - name: TX_1002
     index: 0x02
     text: |-
-      We're workin'
-      hard on this
-      tower! Help us
-      out!
+      Ce bracelet va te donner la force de lui retirer la citrouille de la tête quand il sera étourdi après avoir reçu plusieurs coups d'épée dans le corps. 
+      Tu vas y arriver \link !
 
   - name: TX_1003
     index: 0x03
