@@ -337,12 +337,12 @@ groups:
   - name: TX_0026
     index: 0x26
     text: |-
-      \pos(2)You got the
-      \col(1)Power Bracelet\col(0)!
-      Hold the button
-      and press \col(0x84)\item(0x00)\col(0)
-      to lift heavy
-      objects!
+      \pos(2)Tu as obtenu le
+      \col(1)bracelet de force\col(0) !
+      Maintiens le bouton enfoncé
+      et appuie sur \col(0x84)\item(0x00)\col(0)
+      pour soulever des
+      objets lourds !
 
   - name: TX_0027
     index: 0x27
