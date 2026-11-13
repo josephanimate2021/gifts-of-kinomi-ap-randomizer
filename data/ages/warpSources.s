@@ -110,6 +110,7 @@ group0WarpSources:
 	m_StandardWarp $0 $5b $28 $5 $4
 	m_StandardWarp $0 $a0 $33 $5 $4
 	m_StandardWarp $0 $a5 $3e $5 $4
+	m_StandardWarp $0 $7b $40 $4 $4
 	m_WarpListEndNoDefault
 
 warpSource769a:

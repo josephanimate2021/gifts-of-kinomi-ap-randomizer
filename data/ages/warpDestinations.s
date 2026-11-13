@@ -20,7 +20,7 @@ warpDestTable:
 
 group0WarpDestTable:
 	m_WarpDest $48 $21 $0 $1
-	m_WarpDest $8d $26 $0 $1
+	m_WarpDest $00 $00 $0 TRANSITION_DEST_SET_RESPAWN
 	m_WarpDest $ba $55 $0 $1
 	m_WarpDest $03 $35 $0 $e
 	m_WarpDest $0a $17 $0 $1
@@ -392,7 +392,7 @@ group4WarpDestTable:
 	m_WarpDest $d2 $57 $0 $4
 	m_WarpDest $d2 $8a $0 $4
 	m_WarpDest $d3 $57 $0 $4
-	m_WarpDest $d3 $22 $0 $4
+	m_WarpDest $24 $f7 $0 TRANSITION_DEST_ENTERSCREEN
 	m_WarpDest $d3 $2c $0 $4
 	m_WarpDest $d3 $07 $0 $4
 	m_WarpDest $e6 $ff $9 $3
