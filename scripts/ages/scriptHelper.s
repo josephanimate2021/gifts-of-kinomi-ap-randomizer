@@ -2998,6 +2998,11 @@ mamamuDog_reverseDirection:
 	jp interactionSetAnimation
 
 ;;
+playSecretSound:
+	ld a,SND_SOLVEPUZZLE
+	call playSound
+
+;;
 mamamuDog_setCounterRandomly:
 	call getRandomNumber
 	and $07

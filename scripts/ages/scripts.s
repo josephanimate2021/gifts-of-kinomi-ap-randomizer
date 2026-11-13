@@ -4725,6 +4725,7 @@ pickaxeWorkerSubid03Script:
 
 ; NPC who gives you the shovel. If var03 is nonzero, he's just a generic guy.
 hardhatWorkerSubid00Script:
+	jumpifroomflagset $20, @alreadyGaveShovel
 	initcollisions
 @npcLoop:
 	checkabutton
@@ -4735,15 +4736,21 @@ hardhatWorkerSubid00Script:
 	.dw @doesntGiveShovel
 
 @givesShovel:
-	jumpifroomflagset $20, @alreadyGaveShovel
+	asm15 scriptHelp.turnToFaceLink
 	showtextlowindex <TX_1001
 	wait 30
-	giveitem TREASURE_SHOVEL, $00
+	giveitem TREASURE_BRACELET, $00
 	wait 30
+	showtextlowindex <TX_1002
+	asm15 scriptHelp.playSecretSound
+	writeobjectbyte Interaction.var3f, $01 ; Change animation mode (don't face link)
+	setspeed SPEED_200
+	movedown $40
+	wait 30
+	scriptjump @enableInput
 
 @alreadyGaveShovel:
-	showtextlowindex <TX_1002
-	scriptjump @enableInput
+	scriptend
 
 @doesntGiveShovel:
 	showtextlowindex <TX_1000
